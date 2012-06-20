@@ -1,22 +1,69 @@
 package paper
 
 /** Abstract Syntax Trees for terms. */
-abstract class Term
+sealed abstract class Term
 
-case class Paper(title: Title, authors: Authors) extends Term
+
+// Try to keep this immutable
+case class Paper(val id :       Int, 
+                 val title:     Title, 
+                 val authors:   List[Author], 
+                 val abstr:     Abstract, 
+                 val body:      Body, 
+                 val refs:      List[Reference], 
+                 val meta:      Map[String, String],
+                 val links :    List[Link]) extends Term {
+
+                 // Add a field that contains options, such as parsed and linked
+
+  val parsed : Boolean = false
+  val linked : Boolean = false
+
+  override def toString: String = title + "\n" + authors.mkString(", ") + "\n" + abstr + "\n" + body  + "\n" + refs.mkString("\n")
+
+  def getDistinctNames : List[String] = {
+    val as = authors ::: refs.flatMap(r => r.authors)
+    val names = as.map(a => a.toString)
+    return names.distinct
+  }
+
+  def clean : Paper =
+    return Paper(id, title, authors.filter(a => a.name.length > 4), abstr, body, refs.map(r => r.clean), meta, links)
+
+  def setMeta(p : (String, String)) : Paper = 
+    return Paper(id, title, authors, abstr, body, refs, meta + p, links)
+
+  def hasMeta(l : String) : Boolean = (meta.get(l) == None)
+
+  def setIndex(newId : Int) : Paper = 
+    return Paper(newId, title, authors, abstr, body, refs, meta, links)
+
+  def setLinks(newLinks : List[Link]) : Paper = 
+    return Paper(id, title, authors, abstr, body, refs, meta, newLinks)
+}
 
 case class Title(t: String) extends Term {
-  override def toString: String = "Title: " + t
+  override def toString: String = t
 }
 
-case class Authors(as: List[Author]) extends Term {
-  override def toString: String = {
-    if (as.length == 1) "Author: " + as.head.toString
-    else "Authors:\n" + as.mkString("\n  ")
-  }
+case class Author(name: String) extends Term {
+  override def toString: String = name
 }
 
-case class Author(name: String, school: String) extends Term {
-  override def toString: String =  name + ", " + school
+case class Abstract(text: String) extends Term {
+  override def toString : String = "Abstract:\t" + text.take(40) + " ... "
+}
+
+case class Body(text: String) extends Term {
+  override def toString: String = "Body:\t\t" + text.take(100) ++ " ... \n"
+}
+
+case class Reference(authors: List[Author], title: Title) extends Term {
+  def clean : Reference = return Reference(authors.filter(a => a.name.stripMargin.length > 0), title)
+  override def toString : String = authors.mkString("\n") + "\n--\n" + title
+}
+
+case class Link(id : Int, weight : Int) extends Term {
+  override def toString : String = id + " " + weight
 }
 

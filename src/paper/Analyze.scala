@@ -18,6 +18,7 @@ class Analyzer extends Object with LoadPaper
                               with ParsePaper 
                               with ExtendPaper
                               with ComparePaper
+                              with XMLScheduleParser
                               with Graphs {
 
   // Set a limit in percent for when papers get an edge between them
@@ -27,12 +28,16 @@ class Analyzer extends Object with LoadPaper
   val cache : List[String] = List(Cache.extended, Cache.linked, Cache.parsed)
 
   // Set sources we want to extend with
-  val sources : List[PaperSource] = List(TalkDates, TalkRooms, PdfLink)
+  //val sources : List[PaperSource] = List(TalkDates, TalkRooms, PdfLink)
+  val sources : List[PaperSource] = List(PdfLink)
 
   // Analyze a paper
   def analyze(paperPos: String): Unit = {
 
     // Get a list of parsed papers
+    val papers : List[Paper] = load(paperPos, cache, Isit)
+
+    // Mix in the schedule data
     val papers : List[Paper] = load(paperPos, cache, Isit)
 
     // Compare the papers individually

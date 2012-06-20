@@ -4,7 +4,7 @@ version := "1.0"
 
 scalaVersion := "2.9.1"
 
-scalaSource in Compile <<= baseDirectory(_ / "src/toolc")
+scalaSource in Compile <<= baseDirectory(_ / "src/paper")
 
 scalacOptions ++= Seq("-unchecked", "-Ywarn-dead-code", "-deprecation")
 
@@ -17,7 +17,7 @@ initialCommands := """
 """
 
 // The main class
-mainClass in (Compile, run) := Some("parsePaper.Main")
+mainClass in (Compile, run) := Some("paper.Analyze")
 
 // The sources to be watched
 //watchSources <+= baseDirectory map { _ / "lexer" }
