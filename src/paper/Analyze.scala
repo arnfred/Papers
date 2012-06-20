@@ -25,7 +25,7 @@ class Analyzer extends Object with LoadPaper
   val limit : Int = 1
 
   // Get cached papers in this order
-  val cache : List[String] = List(Cache.extended, Cache.linked, Cache.parsed)
+  val cache : List[String] = List(Cache.extended, Cache.scheduled, Cache.linked, Cache.parsed)
 
   // Set sources we want to extend with
   //val sources : List[PaperSource] = List(TalkDates, TalkRooms, PdfLink)
@@ -37,14 +37,14 @@ class Analyzer extends Object with LoadPaper
     // Get a list of parsed papers
     val papers : List[Paper] = load(paperPos, cache, Isit)
 
-    // Mix in the schedule data
-    val papers : List[Paper] = load(paperPos, cache, Isit)
-
     // Compare the papers individually
     val comparedPapers : List[Paper] = compare(papers, limit)
 
+    // Mix in the schedule XML data
+    val XMLPapers : List[Paper] = getXMLSchedule(paperPos, comparedPapers)
+
     // Extend papers with tertiary data
-    val extendedPapers : List[Paper] = extend(comparedPapers, sources) 
+    val extendedPapers : List[Paper] = extend(XMLPapers, sources) 
     
     // Create graph
     val graph : Graph = getGraph(extendedPapers)

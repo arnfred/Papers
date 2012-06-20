@@ -48,14 +48,23 @@ trait XMLScheduleParser {
     // Loop through all papers and add the xml elements the appropriate one
     papers = for (p <- papers) yield xml.get(p.id) match {
       case None             => println("No schedule data for paper with id: " + p.id)); p
-      case Some(data)       => setXMLData(data, p)
+      case Some(data)       => {
+        // Get resulting paper
+        val result = setXMLData(data, p)
+
+        // Save result
+        Cache.save(result, Cache.scheduled)
+
+        // Return result
+        result
+      }
     }
   }
 
   // Putting the xml in a paper
   def setXMLData(xml : Elem, paper : Paper) : Paper = {
     paper.setMeta(("xmldate"        -> (xml \\ "date").text))
-         .setMeta(("xmlroom"        -> (xml \\ "room").text))
+         .setMeta(("xmlroom"        -> getRoom(xml \\ "room"))
          .setMeta(("xmlsession"     -> (xml \\ "sess").text)) 
          .setMeta(("xmlstarttime"   -> (xml \\ "starttime").text))
          .setMeta(("xmlendtime"     -> (xml \\ "endtime").text)) 
@@ -69,6 +78,18 @@ trait XMLScheduleParser {
   // Converts an authors XML note to string
   def getAuthors(authors : Elem) : String = {
     as : String = (for (a <- (authors / "author")) yield a.text).mkString(", ")
+  }
+
+  def getRoom(room : Elem) : String = room.text match {
+    case "Track 1"              => "Kresge Rehearsal B (030)"
+    case "Track 2"              => "Kresge Auditorium (109)"
+    case "Track 3"              => "Stratton Sala de Puerto Rico (202)"
+    case "Track 4"              => "Stratton 20 Chimneys (306)"
+    case "Track 5"              => "Kresge Little Theatre (035)"
+    case "Track 6"              => "Kresge Rehearsal A (033)"
+    case "Track 7"              => "Stratton (407)"
+    case "Track 8"              => "Stratton (491)"
+    case "Track 9"              => "Stratton West Lounge (201)"
   }
 
 }

@@ -12,6 +12,7 @@ object Cache {
   val parsed = "parsed"
   val extended = "extended"
   val linked = "linked"
+  val scheduled = "scheduled"
   val bad = "bad"
 
   import scala.io.Source

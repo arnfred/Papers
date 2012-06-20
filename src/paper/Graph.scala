@@ -25,7 +25,7 @@ trait Graphs {
     return new Graph(nodes, edges)
   }
 
-  def makeNode(paper : Paper) : Node = Node(paper.id, paper.title, paper.authors, paper.meta("pdf"), paper.meta("date"), paper.meta("room"))
+  def makeNode(paper : Paper) : Node = Node(paper.id, paper.meta("xmltitle"), paper.meta("xmlauthors"), paper.meta("pdf"), paper.meta("xmldate"), paper.meta("xmlroom"))
   
   def makeEdges(paper : Paper, nodes : List[Node]) : List[Edge] = {
     // only make edge if both nodes exist
