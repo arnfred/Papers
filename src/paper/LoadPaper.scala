@@ -29,8 +29,10 @@ object Cache {
     // Make sure file exists
     if(!f.exists) f.createNewFile
     val w = new PrintWriter(f)
+
     // Print paper
     w.println("[[[ ID ]]]" + "\n" + p.id)
+    w.println("[[[ INDEX ]]]" + "\n" + p.index)
     w.println("[[[ TITLE ]]]" + "\n" + p.title)
     w.println("[[[ AUTHORS ]]]" + "\n" + p.authors.mkString("\n"))
     w.println("[[[ ABSTR ]]]" + "\n" + p.abstr.text)
@@ -56,6 +58,7 @@ object Cache {
     // Order the information
     for (l <- lines) l match {
       case "[[[ ID ]]]"         => current = "id"
+      case "[[[ INDEX ]]]"      => current = "index"
       case "[[[ TITLE ]]]"      => current = "title"
       case "[[[ AUTHORS ]]]"    => current = "authors"
       case "[[[ ABSTR ]]]"      => current = "abstr"
@@ -67,6 +70,7 @@ object Cache {
     }
 
     return Paper(vars("id").head.toInt, 
+                 vars("index").head.toInt,
                  Title(vars("title").head), 
                  stringToAuthors(vars("authors")),
                  Abstract(vars("abstr").mkString("\n")),
@@ -79,7 +83,10 @@ object Cache {
 
   def setMeta(s : List[String]) : Map[String, String] = {
     var m : Map[String, String] = Map.empty
-    for (e <- s) m = m + Pair((e.split(" -> "))(0), (e.split(" -> "))(1))
+    // Looping through all the maps
+    for (e <- s) {
+      m = m + Pair((e.split(" -> "))(0), (e.split(" -> "))(1))
+    }
     return m
   }
 
@@ -145,8 +152,7 @@ trait LoadPaper {
     somePapers = somePapers.zip(files).map(p => if (p._1 == None) loadFromFile(p._2, parser) else p._1)
 
     // Filter papers for None's and set index
-    val papers : List[Paper] = somePapers.filter(p => p != None).zipWithIndex.map(p => p._1.get.setIndex(p._2)).toList
-
+    val papers : List[Paper] = somePapers.filter(p => p != None).zipWithIndex.map({case Pair(p,i) => p.get.setIndex(i) }).toList
 
     return papers
   }
@@ -162,8 +168,10 @@ trait LoadPaper {
     val maybePaper : Option[Paper] = p.parse(Source.fromFile(file))
     // If paper exists and parsed, save it in cache
     if (maybePaper != None) {
-      // Set filename
-      val paper : Paper = maybePaper.get.setMeta(("file" -> file.getPath))
+      // Get index
+      var id = file.getPath.split('/').last.split('.').first.toInt
+      // Set filename and id
+      val paper : Paper = maybePaper.get.setMeta("file" -> file.getPath).setId(id)
       // Save and return
       Cache.save(paper.clean, Cache.parsed)
       return Some(paper)

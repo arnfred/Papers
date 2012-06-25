@@ -25,17 +25,20 @@ trait Graphs {
     return new Graph(nodes, edges)
   }
 
-  def makeNode(paper : Paper) : Node = Node(paper.id, paper.meta("xmltitle"), paper.meta("xmlauthors"), paper.meta("pdf"), paper.meta("xmldate"), paper.meta("xmlroom"))
+  def makeNode(paper : Paper) : Node = {
+    println("Making node for " + paper.id)
+    Node(paper.id, paper.meta("xmlpapertitle"), paper.meta("xmlauthors"), paper.meta("pdf"), paper.meta("xmldate"), paper.meta("xmlroom"))
+  }
   
   def makeEdges(paper : Paper, nodes : List[Node]) : List[Edge] = {
-    // only make edge if both nodes exist
-    val edges = for (link <- paper.links if nodes.exists(n => (link.id == n.id))) yield (makeEdge(paper.id, link))
+    // make edge
+    val edges = for (link <- paper.links) yield (makeEdge(paper.index, link))
     // Sort edges by weight and pick the n biggest
     val l = math.min(4, edges.length)
     return edges.sortWith(_.weight > _.weight).take(l)
   }
 
-  def makeEdge(id : Int, link : Link) : Edge = Edge(id, link.id, link.weight)
+  def makeEdge(index : Int, link : Link) : Edge = Edge(index, link.index, link.weight)
 
 }
 
@@ -64,11 +67,12 @@ class Graph(nodes : List[Node], edges : List[Edge]) {
   }
 }
 
-case class Node(id : Int, title : Title, authors : List[Author], pdf : String, date : String, room : String) {
+case class Node(id : Int, title : String, authors : String, pdf : String, date : String, room : String) {
   override def toString : String = {
     var ret : String = "{"
-    ret += "\"title\":\"" + Escape(title.toString) + "\",\n   "
-    ret += "\"authors\":\"" + Escape(authors.mkString(", ")) + "\",\n   "
+    ret += "\"id\":" + id + ",\n   "
+    ret += "\"title\":\"" + Escape(title) + "\",\n   "
+    ret += "\"authors\":\"" + Escape(authors) + "\",\n   "
     ret += "\"pdf\":\"" + Escape(pdf) + "\",\n   "
     ret += "\"date\":\"" + Escape(date) + "\",\n   "
     ret += "\"room\":\"" + Escape(room) + "\""

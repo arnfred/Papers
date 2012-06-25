@@ -17,7 +17,7 @@ trait ComparePaper {
 
         // Make links
         //val links = for ((p,w) <- otherPapers.zip(weights) if w >= limit) yield Link(p.id,w)
-        val links = for ((p,w) <- otherPapers.zip(weights) if w >= 1) yield Link(p.id,w)
+        val links = for ((p,w) <- otherPapers.zip(weights) if w >= 1) yield Link(p.index,w)
 
         // Add links to paper, and set it as linked
         val result = p.setLinks(links).setMeta("linked", "yes")

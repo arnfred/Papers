@@ -20,8 +20,12 @@ trait ParsePaper {
   object Isit extends Parsers {
 
     def paper : Parser[Paper] = (
-      title ~ authors ~ dropLinesUntil("R EFERENCES") ~ references
-        ^^ { case t~a~b~r => Paper(0,t,a,Abstract("Not saved"),Body("Not saved"),r,Map.empty,List()) })
+      //title ~ authors ~ dropLinesUntil("R EFERENCES") ~ references
+      dropLinesUntil("R EFERENCES") ~ references
+        ^^ { case b~r => Paper(0,0,Title(""),Nil,Abstract("Not saved"),Body("Not saved"),r,Map.empty,List()) }
+     | dropLinesUntil("References") ~ references
+        ^^ { case b~r => Paper(0,0,Title(""),Nil,Abstract("Not saved"),Body("Not saved"),r,Map.empty,List()) })
+
 
     def title : Parser[Title] = (
       line && ("Title:" ~> rest) 

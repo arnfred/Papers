@@ -6,6 +6,7 @@ sealed abstract class Term
 
 // Try to keep this immutable
 case class Paper(val id :       Int, 
+                 val index :    Int,
                  val title:     Title, 
                  val authors:   List[Author], 
                  val abstr:     Abstract, 
@@ -28,18 +29,27 @@ case class Paper(val id :       Int,
   }
 
   def clean : Paper =
-    return Paper(id, title, authors.filter(a => a.name.length > 4), abstr, body, refs.map(r => r.clean), meta, links)
+    return Paper(id, index, title, authors.filter(a => a.name.length > 4), abstr, body, refs.map(r => r.clean), meta, links)
 
   def setMeta(p : (String, String)) : Paper = 
-    return Paper(id, title, authors, abstr, body, refs, meta + p, links)
+    return Paper(id, index, title, authors, abstr, body, refs, meta + p, links)
+
+  def setTitle(t : String) : Paper =
+    return Paper(id, index, Title(t), authors, abstr, body, refs, meta, links)
+
+  def setAuthors(as : List[Author]) : Paper =
+    return Paper(id, index, title, as, abstr, body, refs, meta, links)
 
   def hasMeta(l : String) : Boolean = (meta.get(l) == None)
 
-  def setIndex(newId : Int) : Paper = 
-    return Paper(newId, title, authors, abstr, body, refs, meta, links)
+  def setId(newId : Int) : Paper = 
+    return Paper(newId, index, title, authors, abstr, body, refs, meta, links)
+
+  def setIndex(newIndex : Int) : Paper = 
+    return Paper(id, newIndex, title, authors, abstr, body, refs, meta, links)
 
   def setLinks(newLinks : List[Link]) : Paper = 
-    return Paper(id, title, authors, abstr, body, refs, meta, newLinks)
+    return Paper(id, index, title, authors, abstr, body, refs, meta, newLinks)
 }
 
 case class Title(t: String) extends Term {
@@ -63,7 +73,7 @@ case class Reference(authors: List[Author], title: Title) extends Term {
   override def toString : String = authors.mkString("\n") + "\n--\n" + title
 }
 
-case class Link(id : Int, weight : Int) extends Term {
-  override def toString : String = id + " " + weight
+case class Link(index : Int, weight : Int) extends Term {
+  override def toString : String = index + " " + weight
 }
 
