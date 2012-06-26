@@ -86,7 +86,7 @@ trait XMLScheduleParser {
   def getRoom(room : NodeSeq) : String = room.text match {
     case "Track 1"              => "Kresge Rehearsal B (030)"
     case "Track 2"              => "Kresge Auditorium (109)"
-    case "Track 3"              => "Stratton Sala de Puerto Rico (202)"
+    case "Track 3"              => "Stratton S. de P. Rico (202)"
     case "Track 4"              => "Stratton 20 Chimneys (306)"
     case "Track 5"              => "Kresge Little Theatre (035)"
     case "Track 6"              => "Kresge Rehearsal A (033)"
