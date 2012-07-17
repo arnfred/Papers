@@ -60,7 +60,7 @@ trait ParsePaper {
           ^^ { x => x.init.map { a => Author(a.mkString) } } )
 
     def refTitle : Parser[Title] = (
-        until(",”" | "”," | "”." | ".") ^^ (s => Title(s.mkString))
+        until(",\"" | "\"," | "\"." | ".") ^^ (s => Title(s.mkString))			// Character modification. Possible errors in the future !!!
       | success(Title("")))
 
     def reference : Parser[Reference] = (
