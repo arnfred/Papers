@@ -6,7 +6,7 @@ object Analyze {
     // create analyse
     val A : Analyzer = new Analyzer()
 
-    // Check that a directory is supplied (the is an argument)
+    // Check that a directory is supplied (there is an argument)
     if (args.length == 0) println("You really need to supply a directory as argument");
 
     // Then go ahead
