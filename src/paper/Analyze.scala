@@ -2,7 +2,6 @@ package paper
 
 object Analyze {
   def main(args : Array[String]): Unit = {
-
     // create analyse
     val A : Analyzer = new Analyzer()
 
@@ -37,20 +36,22 @@ class Analyzer extends Object with LoadPaper
     // Get a list of parsed papers
     val papers : List[Paper] = load(paperPos, cache, Isit)
 
+    println("LOAD COMPLETED!!!")
+    
     // Mix in the schedule XML data
-    val xmlPapers : List[Paper] = getXMLSchedule(paperPos, papers)
+    //val xmlPapers : List[Paper] = getXMLSchedule(paperPos, papers)
 
     // Compare the papers individually
-    val comparedPapers : List[Paper] = compare(xmlPapers, limit)
+    //val comparedPapers : List[Paper] = compare(xmlPapers, limit)
 
     // Extend papers with tertiary data
-    val extendedPapers : List[Paper] = extend(comparedPapers, sources) 
+    //val extendedPapers : List[Paper] = extend(comparedPapers, sources) 
     
     // Create graph
-    val graph : Graph = getGraph(extendedPapers)
+    //val graph : Graph = getGraph(extendedPapers)
 
     // Print graph to file 'data.json'
-    graph.save
+    //graph.save
 
   }
 }

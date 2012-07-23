@@ -127,8 +127,7 @@ object Cache {
 trait LoadPaper {
 
   def load(name : String, postfix : List[String], parser : Parsers) : List[Paper] = {
-
-    // Get file handle of original file or directory
+	// Get file handle of original file or directory
     val orig = new File(name)
 
     // Check that directory or file exists
@@ -138,10 +137,12 @@ trait LoadPaper {
     var fnames : List[String]  = List(name)
     var files : List[File]  = List(orig)
 
-    // In case it's a directory, let the file array contain all the files of the directory
+    // In case it's a directory, let the file array contain all the files of the directory (regex utilization)
     if (orig.isDirectory) {
-      files   = orig.listFiles.filter(f => """.*\.txt$""".r.findFirstIn(f.getName).isDefined).toList
-      fnames  = files.filter(n => n.getName != ".txt").map(f => name ++ f.getName)
+      //files   = orig.listFiles.filter(f => """.*\.txt$""".r.findFirstIn(f.getName).isDefined).toList
+      //fnames  = files.filter(n => n.getName != ".txt").map(f => name ++ f.getName)
+    	files   = orig.listFiles.filter(f => """.+\.(txt|pdf)$""".r.findFirstIn(f.getName).isDefined).toList			// MODIFIED
+    	fnames  = files.map(f => name ++ f.getName)
     }
 
     // If postfix exists, try loading from cache
@@ -165,11 +166,18 @@ trait LoadPaper {
     if (checkIfBad(file)) return None
 
     println("parsing " + file.getPath)
-    val maybePaper : Option[Paper] = p.parse(Source.fromFile(file))
+    
+    // If the file's name contains non numerical values
+    if("""[^0-9]+\..+$""".r.findFirstIn(file.getName()).isDefined) return isBadFile(file)
+    
+    val maybePaper : Option[Paper] = p.parse(Source.fromFile(FileFormatDispatcher.getFileFormat(file).parseToTXT)) // MODIFIED
+    FileFormatDispatcher.releaseFile(file)
     // If paper exists and parsed, save it in cache
     if (maybePaper != None) {
       // Get index
-      var id = file.getPath.split('/').last.split('.').first.toInt
+      //var id = file.getPath.split('/').last.split('.').first						//  MODIFIED
+      var id = ("""\..+$""".r.replaceAllIn(file.getName(), "")).toInt
+
       // Set filename and id
       val paper : Paper = maybePaper.get.setMeta("file" -> file.getPath).setId(id)
       // Save and return
@@ -178,11 +186,17 @@ trait LoadPaper {
     }
     // If paper doesn't exist and didn't parse, let's not parse it again
     else {
-      Cache.bad(file)
-      return None
+    	return isBadFile(file)
     }
   }
 
+  
+  def isBadFile(file: File): Option[Paper] = {
+      println("Couldn't parse " + file.getName())
+      Cache.bad(file)
+      return None
+  }
+  
   def checkIfBad(file : File) : Boolean = {
 
     // Get file
@@ -219,4 +233,6 @@ trait LoadPaper {
       }
     }
   }
+  
+  
 }
