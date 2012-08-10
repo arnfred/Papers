@@ -1,7 +1,4 @@
 package paper
-import com.itextpdf.text.pdf.PdfReader
-import com.itextpdf.text.pdf.parser.PdfReaderContentParser
-import com.itextpdf.text.pdf.parser.SimpleTextExtractionStrategy
 
 object Analyze {
   def main(args : Array[String]): Unit = {
@@ -38,7 +35,7 @@ class Analyzer extends Object with LoadPaper
   def analyze(paperPos: String): Unit = {
 
     // Get a list of parsed papers
-    val papers : List[Paper] = load(paperPos, cache, JQParser, ITextLoader)
+    val papers : List[Paper] = load(paperPos, cache, XMLParser, XMLParserLoader)
 
     println("LOAD COMPLETED!!!")
     
