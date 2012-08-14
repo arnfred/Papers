@@ -50,6 +50,15 @@ case class Paper(val id :       Int,
 
   def setLinks(newLinks : List[Link]) : Paper = 
     return Paper(id, index, title, authors, abstr, body, refs, meta, newLinks)
+    
+  def setAbstract(newAbstract : Abstract) : Paper = 
+    return Paper(id, index, title, authors, newAbstract, body, refs, meta, links)
+    
+  def setBody(newBody : Body) : Paper = 
+    return Paper(id, index, title, authors, abstr, newBody, refs, meta, links)
+    
+  def setReferences(newRefs : List[Reference]) : Paper = 
+    return Paper(id, index, title, authors, abstr, body, newRefs, meta, links)
 }
 
 case class Title(t: String) extends Term {
