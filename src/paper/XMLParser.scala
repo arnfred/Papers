@@ -4,45 +4,80 @@ import scala.xml.XML
 import scala.xml.Elem
 import scala.xml.NodeSeq
 import scala.xml.TypeSymbol
+import scala.util.matching.Regex.MatchIterator
 
 
 object XMLParser extends Parsers {
   
    // This method returns the xml representation of the text contained in the Source object
-   def getXMLObject(in: Source): Elem = {
+   def getXMLObject(in: Source): Option[Elem] = {
       val text = in.mkString
       in.close
       
-      XML.loadString("""</?[bi]>""".r.replaceAllIn(text, ""))
+      try {
+    	  Some(XML.loadString("""</?[bi]>""".r.replaceAllIn(text, "")))
+      } catch {
+        case _ => println("Couldn't load the XML file."); None
+      }
    }
   
-   // This method extracts the text contained in A PAGE having a particular font id. 
-   // If there are lines with other font id between the paragraph, they will be added
-   def extractParagraph(page: xml.Node, xmlFont: Option[XMLFont]): String = {
-     // we still need to compare the page's fonts because sometimes more fonts are exactly the same, but have different id
-     // and the paragraph pick one of these "randomly"
-     // we should maybe construct a structure holding similar fonts
+   // This method extracts the text contained in A PAGE according to a particular rule. 
+   // If there are lines not according with the rule between the paragraph, they will be added
+   // The first line is the one according with the initial condition
+   def extractParagraph(page: xml.Node, initialCondition: NodeSeq => Boolean, rule: NodeSeq => Boolean): String = {
      
      def dropUntil(lines: NodeSeq): NodeSeq = lines.isEmpty match {
         case true => lines
         case false => {
-	        if(xmlFont.get.checkID((lines.head \\ "@font").text)) lines
-	        else dropUntil(lines.tail)
+	        if(initialCondition(lines)) lines // Initial condition
+	        else dropUntil(lines.tail)	// Lines elimination
         }
       }
       
       def extractParagraph0(lines: NodeSeq, accu: String, cache: String): String = lines.isEmpty match {
         case true => if(accu.length() >= 1) accu.take(accu.length - 1) else accu // Avoiding the last space
         case false => {
-          if(xmlFont.get.checkID((lines.head \\ "@font").text)) extractParagraph0(lines.tail, accu + cache + lines.head.text + " ", "")
+          if(rule(lines)) extractParagraph0(lines.tail, accu + cache + lines.head.text + " ", "")
           else extractParagraph0(lines.tail, accu, cache + lines.head.text + " ")
         }				
       }
       
-      xmlFont match {
-        case None => ""
-        case Some(s) => extractParagraph0(dropUntil(page \\ "text"), "", "")
-      }
+      extractParagraph0(dropUntil(page \\ "text"), "", "")
+   }
+   
+   
+   def extractReferences(t : (Elem, Option[Paper])): (Elem, Option[Paper]) = {
+     def extract(xml: Elem, paper: Paper): (Elem, Option[Paper]) = {
+        def parseReference(ref: String): Reference = {
+           val title = """[“\"].+[”\"]""".r.findFirstIn(ref)
+           
+           
+           Reference(List(), Title(title.get.tail.dropRight(1)))
+        }
+       
+        def extractReferencesFromIterator(iter: MatchIterator, accu: List[Reference]): List[Reference] = iter.hasNext match {
+          case false => accu
+          case true => extractReferencesFromIterator(iter, parseReference(iter.next())::accu)
+        }
+        
+        
+        val pages = xml \\ "page"
+        val page = pages.last
+        
+        val parag = extractParagraph(page, (lines: NodeSeq) => lines.head.text == "R" && lines.tail.head.text == "EFERENCES", (l: NodeSeq) => true)
+        
+        val iter = """\[[0-9]+\][^\[]+""".r.findAllIn(parag)
+        
+        val refs = extractReferencesFromIterator(iter, List()).reverse
+        
+        (xml, Some(paper.setReferences(refs)))
+     }
+     
+     val xml = t._1
+     val paper = t._2
+     
+     if(paper == None) (xml, None)
+     else extract(xml, paper.get)
    }
    
    
@@ -123,9 +158,10 @@ object XMLParser extends Parsers {
      def extract(xml: Elem, p: Paper): (Elem, Option[Paper]) = {
        // let's find the page with number = 1
 	   val pages = (xml \\ "page") filter((n) => (n \ "@number").text == "1")
+	   val xmlPageFontsComp = XMLObjectsManager.getFontsComparatorFromPage(xml, "1")
 	     
 	   // there must be only one page
-	   if(pages.length != 1) { println("Parsing error : other than one page have number 1"); return (xml, None) }
+	   if(pages.length != 1 || xmlPageFontsComp == None) { println("Parsing error : other than one page have number 1"); return (xml, None) }
 	   else {
 	      val firstPage = pages.head
        
@@ -135,14 +171,13 @@ object XMLParser extends Parsers {
 	      if(abstractBegin.length != 1) { println("Parsing error : other than one text line is the beginning of the abstract"); (xml, None) }
 	      else {
 	        val id = (abstractBegin.head \ "@font").text
-	        val xmlPageFontsComp = XMLObjectsManager.getFontsComparatorFromPage(xml, "1")
 	        
-	        xmlPageFontsComp match {
-	          case None => (xml, None)
-	          case Some(x) =>
-		        // call of the extractParagraph method, then deleting the beginning ("Abstract—")
-		        (xml, Some(p.setAbstract(Abstract(abstractRegex.r.replaceAllIn(extractParagraph(firstPage, x.getXMLFont(id)), "")))))
-		    }
+		    // call of the extractParagraph method, then deleting the beginning ("Abstract—")
+	        val xmlFont = xmlPageFontsComp.get.getXMLFont(id)
+	        def f (lines: NodeSeq) = xmlFont.get.checkID((lines.head \\ "@font").text)
+	        
+	        if(xmlFont == None) (xml, None)
+	        else (xml, Some(p.setAbstract(Abstract(abstractRegex.r.replaceAllIn(extractParagraph(firstPage, f, f), "")))))
 	      }
        
 	   }
@@ -151,24 +186,24 @@ object XMLParser extends Parsers {
      val xml = t._1
      val paper = t._2
      
-     paper match {
-       case None => (xml, None)
-       case Some(p) => extract(xml, p)
-     }
+     if(paper == None) (xml, None)
+     else extract(xml, paper.get)
    }
    
 	// The function for actually parsing a paper
    def parse(in: Source) : Option[Paper] = {  
 	  val xml = getXMLObject(in)
-      val cleanPaper = Paper(0, 0, Title(""), Nil, Abstract("Not saved"), Body("Not saved"), List(), Map.empty, List())
-	  
-	  val paper = extractAbstract(extractTitle((xml, Some(cleanPaper))))
-	  XMLObjectsManager.clearFontPageComparatorsList
-	  
-      paper._2 match {
-	    case None => None
-	    case Some(p) =>	Some(p.setMeta("parsed" -> "yes"))
+      
+	  if(xml == None) None
+	  else {
+		  val cleanPaper = Paper(0, 0, Title(""), Nil, Abstract("Not saved"), Body("Not saved"), List(), Map.empty, List())
+		  
+		  val paper = extractReferences(extractAbstract(extractTitle((xml.get, Some(cleanPaper)))))
+		  XMLObjectsManager.dispose
+		  
+	      if(paper._2 == None) None
+	      else	Some(paper._2.get.setMeta("parsed" -> "yes"))
 	  }
-    }
+   }
 
 }

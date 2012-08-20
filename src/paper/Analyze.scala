@@ -35,7 +35,7 @@ class Analyzer extends Object with LoadPaper
   def analyze(paperPos: String): Unit = {
 
     // Get a list of parsed papers
-    val papers : List[Paper] = load(paperPos, cache, XMLParser, XMLParserLoader)
+    val papers : List[Paper] = load(paperPos, cache, XMLParser, XMLConverterLoader)
 
     println("LOAD COMPLETED!!!")
     

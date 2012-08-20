@@ -55,19 +55,14 @@ object XMLObjectsManager {
 	   
 	   val pageComparator = fontPageComparators.find(p => p.getPageNumber == pageNumber)
 	   
-	   pageComparator match {
-	     case None => {
+	   if(pageComparator == None) {
 	       val pageC = getFontsComparatorFromPage0
 	       
-	       pageC match {
-	         case None => None
-	         case Some(p) => fontPageComparators = p :: fontPageComparators; Some(p)
-	       }
-	       
-	     }
-	     case Some(p) => Some(p)
+	       if(pageC == None) None
+	       else fontPageComparators = pageC.get :: fontPageComparators; pageC
 	   }
+	   else pageComparator
    }
    
-   def clearFontPageComparatorsList = fontPageComparators = List()
+   def dispose = {fontPageComparators = List() }
 }

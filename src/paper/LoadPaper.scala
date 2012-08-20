@@ -5,6 +5,7 @@ import scala.collection.immutable.Stream
 import scala.io.Source
 import java.io._
 
+
 object Cache {
   
   // Constants
@@ -139,9 +140,7 @@ trait LoadPaper {
 
     // In case it's a directory, let the file array contain all the files of the directory (regex utilization)
     if (orig.isDirectory) {
-      //files   = orig.listFiles.filter(f => """.*\.txt$""".r.findFirstIn(f.getName).isDefined).toList
-      //fnames  = files.filter(n => n.getName != ".txt").map(f => name ++ f.getName)
-    	files   = FileFormatDispatcher.getFilesFromDirectory(orig)			// MODIFIED
+    	files   = SystemHelper.getFilesFromDirectory(orig)			// MODIFIED
     	fnames  = files.map(f => name ++ f.getName)
     }
 
@@ -159,11 +158,11 @@ trait LoadPaper {
   }
 
 
-  // Loads a paper from a text file and parses it
+  // Loads a paper from a text file and parses it. It has been modified in order to make loading and parsing flexible
   def loadFromFile(file : File, p : Parsers, loader: FileLoader) : Option[Paper] = {
 
     // Check if file is bad or contains non numerical values (in the name)
-    if (checkIfBad(file) || """[^0-9]+""".r.findFirstIn(FileFormatDispatcher.name(file.getName())).isDefined) return None
+    if (checkIfBad(file) || """[^0-9]+""".r.findFirstIn(SystemHelper.name(file.getName())).isDefined) return None
     
     val result = loader.loadFromFile(file, p)
     

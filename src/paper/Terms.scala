@@ -40,7 +40,7 @@ case class Paper(val id :       Int,
   def setAuthors(as : List[Author]) : Paper =
     return Paper(id, index, title, as, abstr, body, refs, meta, links)
 
-  def hasMeta(l : String) : Boolean = (meta.get(l) == None)
+  def hasMeta(l : String) : Boolean = (meta.get(l) != None)
 
   def setId(newId : Int) : Paper = 
     return Paper(newId, index, title, authors, abstr, body, refs, meta, links)
