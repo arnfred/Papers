@@ -8,7 +8,21 @@ import scala.util.matching.Regex.MatchIterator
 
 
 object XMLParser extends Parsers {
-  
+	def processAdjacentParagraphs(paragraphs: List[XMLParagraph], condition: (XMLParagraph, List[XMLParagraph]) => Boolean, replacement:(List[XMLParagraph]) => List[XMLParagraph]) = {
+		def process(paragraphs: List[XMLParagraph], accu: List[XMLParagraph], cache: List[XMLParagraph]): List[XMLParagraph] = paragraphs match {
+		  case List() => accu
+		  case x::xs =>
+		    // Paragraph feature matched
+		    if(condition(x, cache)) process(xs, accu, x::cache)
+		    // Paragraph not matched but anything in the cache (normal text)
+		    else if(cache.length == 0) process(xs, x::accu, cache)
+		    // Paragraph not matched but something in the cache
+		    else process(xs, x::replacement(cache.reverse).reverse:::accu, List())
+		}
+		
+		process(paragraphs, List(), List()).reverse
+	}
+	
    // This method returns the xml representation of the text contained in the Source object
    def getXMLObject(in: Source): Option[Elem] = {
       val text = in.mkString
@@ -21,32 +35,9 @@ object XMLParser extends Parsers {
       }
    }
   
-   // This method extracts the text contained in A PAGE according to a particular rule. 
-   // If there are lines not according with the rule between the paragraph, they will be added
-   // The first line is the one according with the initial condition
-   def extractParagraph(page: xml.Node, initialCondition: NodeSeq => Boolean, rule: NodeSeq => Boolean): String = {
-     
-     def dropUntil(lines: NodeSeq): NodeSeq = lines.isEmpty match {
-        case true => lines
-        case false => {
-	        if(initialCondition(lines)) lines // Initial condition
-	        else dropUntil(lines.tail)	// Lines elimination
-        }
-      }
-      
-      def extractParagraph0(lines: NodeSeq, accu: String, cache: String): String = lines.isEmpty match {
-        case true => if(accu.length() >= 1) accu.take(accu.length - 1) else accu // Avoiding the last space
-        case false => {
-          if(rule(lines)) extractParagraph0(lines.tail, accu + cache + lines.head.text + " ", "")
-          else extractParagraph0(lines.tail, accu, cache + lines.head.text + " ")
-        }				
-      }
-      
-      extractParagraph0(dropUntil(page \\ "text"), "", "")
-   }
-   
-   
-   def extractReferences(t : (Elem, Option[Paper])): (Elem, Option[Paper]) = {
+  
+   /*
+   def extractReferences(t : (XMLDocument, Option[Paper])): (XMLDocument, Option[Paper]) = {
      def extract(xml: Elem, paper: Paper): (Elem, Option[Paper]) = {
         def parseReference(ref: String): Reference = {
            val title = """[“\"].+[”\"]""".r.findFirstIn(ref)
@@ -79,89 +70,62 @@ object XMLParser extends Parsers {
      if(paper == None) (xml, None)
      else extract(xml, paper.get)
    }
-   
+   */
    
    // This method extracts the title of the article.
    // It uses the following rules:
    // - The title is contained in the first page
    // - It has the biggest font size
-   def extractTitle(t : (Elem, Option[Paper])): (Elem, Option[Paper]) = {
-     // This method finds the maximum size of a NodeSeq (of fontspec)
-     def findMaxSize(in: NodeSeq): Int = {
-       def findMaxSize0(in: NodeSeq, max: Int): Int = {
-         if(in.isEmpty) max
-         else { 
-           val newSize = (in.head \ "@size").text.toInt // here we take the size of a particular fontspec element
-           if(newSize > max) findMaxSize0(in.tail, newSize)
-           else findMaxSize0(in.tail, max)
-         }
-       }
-       
-       findMaxSize0(in, 0)
-     }
-     
-     // This method concatenates a list of texts (in.head.text is the actual text)
-     def concatTexts(in: NodeSeq): String = {
-       def concatTexts0(in: NodeSeq, accu: String): String = {
-         if(in.isEmpty) { if(accu.length() >= 1) accu.take(accu.length - 1) else accu} // we avoid the last space in the concatenation
-         else concatTexts0(in.tail, accu + in.head.text + " ") // be aware of the space after the last concatenated string
-       }
-       
-       concatTexts0(in, "")
-     }
-     
-     def extract(xml: Elem, p: Paper): (Elem, Option[Paper]) = {
-         // let's find the page with number = 1
-	     val pages = (xml \\ "page") filter((n) => (n \ "@number").text == "1")
-	     
-	     // there must be only one page
-	     if(pages.length != 1) { println("Parsing error : other than one page have number 1"); return (xml, None) }
-	     else {
-	        val firstPage = pages.head
-	        
-	        // let's find the maximum size of fontspec list contained in the first page
-	        val maxSize = findMaxSize(firstPage \\ "fontspec").toString()
-	        
-	        // we find the fontspec node which has the maximum font size
-	        val maxIdFonts = (firstPage \\ "fontspec") filter ((f) => (f \ "@size").text == maxSize)
-	        
-	        // there must be only one font (the title font)
-	        if(maxIdFonts.length != 1) { println("Parsing error : other than one font type has greatest size"); return (xml, None) }
-	        else {
-	          // let's find the id of the font
-	          val id = (maxIdFonts.head \ "@id").text
-	          // let's find all the texts which have the title font and concatenate them
-	          val texts = (firstPage \\ "text") filter ((p) => (p \ "@font").text == id)
-	          (xml, Some(p.setTitle(concatTexts(texts))))
-	        }
-	     }
-     }
-     
+   def extractTitle(t : (XMLDocument, Option[Paper])): (XMLDocument, Option[Paper]) = {
      val xml = t._1
      val paper = t._2
      
+     // This method finds the font id having the maximum size
+     def findMaxSizeID(paragraphs: List[XMLParagraph]): String = {
+       def findMaxSizeID0(paragraphs: List[XMLParagraph], max: Int, id: String): String = paragraphs match{
+         case List() => id
+         case x::xs => 
+           val newSize = xml.getFontsContainer.getXMLFont(x.getFontID).get.getSize.toInt
+           if(newSize > max) findMaxSizeID0(xs, newSize, xml.getFontsContainer.getXMLFont(x.getFontID).get.getID)
+           else findMaxSizeID0(xs, max, id)
+       }
+       
+       findMaxSizeID0(paragraphs, 0, "")
+     }
+     
+
+     
+     def extract(p: Paper): Option[Paper] = {
+         val maxSizeIDFont = xml.getFontsContainer.getXMLFont(findMaxSizeID(xml.getPage(1).getParagraphs))
+         
+         val title = xml.getPage(1).getParagraphs.filter(p => maxSizeIDFont.get.checkID(p.getFontID))
+         
+         if(title.length == 1) Some(p.setTitle(title.head.getText.replace("\n", " ")))
+         else None
+     }
+     
      paper match {
        case None => (xml, None)
-       case Some(p) => extract(xml, p)
+       case Some(p) => (xml, extract(p))
      }
      
    }
-   
+   /*
    // This method extracts the abstract of the article.
    // It uses the following rules:
    // - The abstract begins by "Abstract-"
    // - It is contained entirely in the first page
    // - The paragraph has the same font type (id)
-   def extractAbstract(t : (Elem, Option[Paper])): (Elem, Option[Paper]) = {
+   def extractAbstract(t : (XMLDocument, Option[Paper])): (XMLDocument, Option[Paper]) = {
 	 val abstractRegex = """^Abstract[—-]"""
      
      def extract(xml: Elem, p: Paper): (Elem, Option[Paper]) = {
        // let's find the page with number = 1
 	   val pages = (xml \\ "page") filter((n) => (n \ "@number").text == "1")
-	   val xmlPageFontsComp = XMLObjectsManager.getFontsComparatorFromPage(xml, "1")
+	   val xmlPageFontsComp = XMLObjectsManager.constructXMLDocument(xml).get.getFontsContainer
 	     
 	   // there must be only one page
-	   if(pages.length != 1 || xmlPageFontsComp == None) { println("Parsing error : other than one page have number 1"); return (xml, None) }
+	   if(pages.length != 1 || xmlPageFontsComp == None) { println("Parsing error : other than one page have number 1. Abstract not parsed"); return (xml, None) }
 	   else {
 	      val firstPage = pages.head
        
@@ -173,7 +137,7 @@ object XMLParser extends Parsers {
 	        val id = (abstractBegin.head \ "@font").text
 	        
 		    // call of the extractParagraph method, then deleting the beginning ("Abstract—")
-	        val xmlFont = xmlPageFontsComp.get.getXMLFont(id)
+	        val xmlFont = xmlPageFontsComp.getXMLFont(id)
 	        def f (lines: NodeSeq) = xmlFont.get.checkID((lines.head \\ "@font").text)
 	        
 	        if(xmlFont == None) (xml, None)
@@ -189,7 +153,7 @@ object XMLParser extends Parsers {
      if(paper == None) (xml, None)
      else extract(xml, paper.get)
    }
-   
+   */
 	// The function for actually parsing a paper
    def parse(in: Source) : Option[Paper] = {  
 	  val xml = getXMLObject(in)
@@ -197,9 +161,10 @@ object XMLParser extends Parsers {
 	  if(xml == None) None
 	  else {
 		  val cleanPaper = Paper(0, 0, Title(""), Nil, Abstract("Not saved"), Body("Not saved"), List(), Map.empty, List())
+		  val xmlDocument = XMLObjectsManager.constructXMLDocument(xml.get, "\n")
 		  
-		  val paper = extractReferences(extractAbstract(extractTitle((xml.get, Some(cleanPaper)))))
-		  XMLObjectsManager.dispose
+		  if(xmlDocument == None) return None
+		  val paper = extractTitle((xmlDocument.get, Some(cleanPaper)))
 		  
 	      if(paper._2 == None) None
 	      else	Some(paper._2.get.setMeta("parsed" -> "yes"))

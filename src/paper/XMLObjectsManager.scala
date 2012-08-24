@@ -3,66 +3,109 @@ import scala.xml.XML
 import scala.xml.Elem
 import scala.xml.NodeSeq
 
-class XMLFont(IDs:String, size: String, family: String, color: String) {
-   def getID: String = IDs
-   def getSize: String = size
-   def getFamily: String = family
-   def getColor: String = color
-     
-   def addID(id: String): XMLFont = new XMLFont(IDs + "|" + id, size, family, color)
-   def checkID(id: String): Boolean = ("^" + IDs + "$").r.findFirstIn(id).isDefined
-   def compareXMLFont(font: XMLFont): Boolean = (size == font.getSize && family == font.getFamily && color == font.getColor)
-}
-
-class XMLPageFontsComparator(pageNumber: String, fonts: List[XMLFont]){
-	def getXMLFont(id: String): Option[XMLFont] = fonts.find(f => f.checkID(id))
-	def getPageNumber: String = pageNumber
-}
 
 object XMLObjectsManager {
-   private var fontPageComparators: List[XMLPageFontsComparator] = List()
-   def getFontsComparatorFromPage(xml: Elem, pageNumber: String): Option[XMLPageFontsComparator] = {
-	   def getFontsComparatorFromPage0: Option[XMLPageFontsComparator] = {
-		   def constructFontLists(fonts: NodeSeq): List[XMLFont] = {
-		     def constructFontLists0(fonts: NodeSeq, accu: List[XMLFont]): List[XMLFont] = {
+   // Since the xml file sometimes creates different fonts with the same features (size, family, etc), it
+   // is important to create a structure that takes into account this detail and hides it.
+   // The XMLFont class performs this job. XMLFontsContainer just contains the list of XMLFont objects
+   private def getFontsContainer(xml: Elem): Option[XMLFontsContainer] = {
+       val pages = (xml \\ "page")
+       
+       // This method updates the previous XMLFont list with the new fonts defined in the page.
+	   def getXMLFontListFromPage(previousList: List[XMLFont], pageNumber: String): List[XMLFont] = {
+		   // Recursive method that runs through the page's fonts list and updates the given XMLFont list
+    	   def constructFontLists(fonts: NodeSeq, accu: List[XMLFont]): List[XMLFont] = {
+		     	       
+    	       // This method runs through the given XMLFont list and checks if the new XMLFont defined object is already in the list
 		       def checkIfExist(xmlFont: XMLFont, list: List[XMLFont], matched: Boolean, accu: List[XMLFont]): List[XMLFont] = list match{
-		         case List() => if(matched) accu else xmlFont :: accu
-		         case x::xs => if(x.compareXMLFont(xmlFont)) checkIfExist(xmlFont, xs, true, x.addID(xmlFont.getID) :: accu)
+		         case List() => if(matched) accu else xmlFont :: accu // Putting the new XMLFont at the end of the list
+		         case x::xs => if(x.compareXMLFont(xmlFont)) checkIfExist(xmlFont, xs, true, x.addID(xmlFont.getID) :: accu) // Updating the given XMLFont list
 		         			   else checkIfExist(xmlFont, xs, false, x :: accu)
 		       }
 		       
 		       fonts.isEmpty match {
 		           case true => accu
 		           case false => {
+		             // Creating then new XMLFont object according to the font parameters
 		             val xmlFont = new XMLFont((fonts.head \ "@id").text, (fonts.head \ "@size").text, (fonts.head \ "@family").text, (fonts.head \ "@color").text)
-		             constructFontLists0(fonts.tail, checkIfExist(xmlFont, accu, false, List()))
+		             constructFontLists(fonts.tail, checkIfExist(xmlFont, accu, false, List()))
 		           }
 		       }
-		     }
-		     
-		     constructFontLists0(fonts, List())
+			     
 		   }
 		   
-		   val pages = (xml \\ "page") filter((n) => (n \ "@number").text == pageNumber)
+		   // Getting the page
+		   val page = pages filter((n) => (n \ "@number").text == pageNumber)
 		   
-		   if(pages.length != 1) None
+		   if(page.length != 1) previousList
 		   else {
-		     val fonts = pages.head \\ "fontspec"
+		     val fonts = page.head \\ "fontspec"
 		
-		     Some(new XMLPageFontsComparator(pageNumber, constructFontLists(fonts)))
+		     // Updating the XMLFont list
+		     constructFontLists(fonts, previousList)
 		   }
 	   }
 	   
-	   val pageComparator = fontPageComparators.find(p => p.getPageNumber == pageNumber)
+       // Method for running through the pages list
+	   def constructUntilPage(pagesNumber: Int, accu: List[XMLFont], currentPage: Int): List[XMLFont] = {
+		   if(currentPage > pagesNumber) accu
+		   else constructUntilPage(pagesNumber, getXMLFontListFromPage(accu, currentPage.toString()), currentPage + 1)
+	   } 
+
+	   // Getting the xml fonts list
+	   val xmlFonts = constructUntilPage(pages.length, List(), 1)
 	   
-	   if(pageComparator == None) {
-	       val pageC = getFontsComparatorFromPage0
-	       
-	       if(pageC == None) None
-	       else fontPageComparators = pageC.get :: fontPageComparators; pageC
-	   }
-	   else pageComparator
+	   // Creating the container
+	   if(xmlFonts.length >= 1) Some(new XMLFontsContainer(xmlFonts))
+	   else None
    }
    
-   def dispose = {fontPageComparators = List() }
+   // This method creates the pages of the document. The final list is reversed
+   private def constructXMLPages(pages: NodeSeq, fontsContainer: Option[XMLFontsContainer], lineSeparator: String): Option[List[XMLPage]] = {
+	 // This method constructs the xml page
+     def constructXMLPage(page: xml.Node): Option[XMLPage] = {
+	     try {
+	         // First we get the global page parameters
+		     val number = (page \ "@number").text.toInt
+		     val x = (page \ "@top").text.toInt
+		     val y = (page \ "@left").text.toInt
+		     val width = (page \ "@width").text.toInt
+		     val height = (page \ "@height").text.toInt
+		     val position = new XMLPosition(x, y, width, height)
+		     // Construction of the paragraphs
+		     val paragraphs = XMLParagraphsConstructor.constructXMLParagraphs(page, position, fontsContainer.get, lineSeparator)
+		      
+		     if (paragraphs != None) Some(new XMLPage(number, position, paragraphs.get))
+		     else None
+	     }catch {
+	         case _ => None
+	     }
+      
+	 }
+     
+	 // Recursive method in order to run through the pages list 
+     def constructXMLPages0(pages: NodeSeq, accu: Option[List[XMLPage]]): Option[List[XMLPage]] = {            
+        if(pages.isEmpty) accu
+        else {
+           val page = constructXMLPage(pages.head)
+           
+           if(page == None) None
+           else constructXMLPages0(pages.tail, Some(page.get :: accu.get))
+        }
+     }
+     
+     if(fontsContainer != None) constructXMLPages0(pages, Some(List()))
+     else None
+   }
+   
+   // This method constructs the xml document of the file
+   def constructXMLDocument(xml:Elem, lineSeparator:String): Option[XMLDocument] = {     
+      // getting fontsContainer and xml pages
+      val fontsContainer = getFontsContainer(xml)
+      val xmlPages = constructXMLPages(xml \\ "page", fontsContainer, lineSeparator)
+      
+      // If everything is fine, then create the document
+      if(xmlPages != None) Some(new XMLDocument(fontsContainer.get, xmlPages.get.reverse))
+      else None
+   }
 }

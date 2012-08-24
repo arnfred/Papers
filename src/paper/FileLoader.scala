@@ -24,9 +24,9 @@ object SystemHelper {
 	   case None => false
 	}
 	  
-	// The apps is on Unix (Linux) (probably NOT CORRECT!!!)
-	def isUnix: Boolean = os match {
-	   case Some(s) => """.*Unix.*""".r.findFirstIn(s.toString()).isDefined
+	// The apps is on Linux
+	def isLinux: Boolean = os match {
+	   case Some(s) => """.*Linux.*""".r.findFirstIn(s.toString()).isDefined
 	   case None => false
 	}
 }

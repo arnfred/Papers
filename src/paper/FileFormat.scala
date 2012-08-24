@@ -12,19 +12,19 @@ object Paths {
 	  
 	  
   	private def getOSDir: String = { if(SystemHelper.isWindows) windowsSepStr + windowsDirStr + windowsSepStr
-  	  						 		 else if(SystemHelper.isUnix) linuxSepStr + linuxDirStr + linuxSepStr
+  	  						 		 else if(SystemHelper.isLinux) linuxSepStr + linuxDirStr + linuxSepStr
   	  						 		 else "" }
   	  	
 	def toolsDir = toolsDirStr + getOSDir
-	def ext = if(SystemHelper.isWindows) windowsExtStr else if(SystemHelper.isUnix) linuxExtStr else ""
-	def sep = if(SystemHelper.isWindows) windowsSepStr else if(SystemHelper.isUnix) linuxSepStr else ""
+	def ext = if(SystemHelper.isWindows) windowsExtStr else if(SystemHelper.isLinux) linuxExtStr else ""
+	def sep = if(SystemHelper.isWindows) windowsSepStr else if(SystemHelper.isLinux) linuxSepStr else ""
 }
 
 object Commands {
     private val windowsDelStr = "cmd /c del"
     private val linuxDelStr = "rm -f"
       
-    def del = if(SystemHelper.isWindows) windowsDelStr else if(SystemHelper.isUnix) linuxDelStr else ""
+    def del = if(SystemHelper.isWindows) windowsDelStr else if(SystemHelper.isLinux) linuxDelStr else ""
 }
 
 // This class transforms a File object into another File object, according to the extension of the file
@@ -33,7 +33,6 @@ abstract class FileFormat {
 	    case TXTFormat(file) => file
 	    case PDFFormat(file) => {
 	      val command = "\"" + Paths.toolsDir + "pdfTo" + format + "Parser" + Paths.ext + "\" " + params + " \"" + file.getAbsoluteFile() + "\""
-	      println(command)
 		  val process: Process = sys.runtime.exec(command)    
 		    
 		  // Waiting until the end of the command execution
