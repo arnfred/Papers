@@ -19,21 +19,33 @@ object XMLParagraphsConstructor {
 	
 	def constructXMLParagraphs(page: xml.Node, pagePosition: XMLPosition, fontsContainer: XMLFontsContainer, lineSeparator: String): Option[List[XMLParagraph]] = {
 		val lines = page \\ "text"
-		val pageCenter = new ParagraphDelimiter(pagePosition.getWidth / 2, 5)
+		val pageCenter = new ParagraphDelimiter(pagePosition.getWidth / 2, 3)
 
 		def createXMLLine(line: xml.Node) = new XMLLine((line \ "@font").text, new XMLPosition((line \ "@left").text.toInt, (line \ "@top").text.toInt, (line \ "@width").text.toInt, (line \ "@height").text.toInt), line.text)
 		
 		// incorporation rules
-		def incorporate(nextLines: NodeSeq, currentLine: XMLLine): (NodeSeq, XMLLine) = nextLines.isEmpty match{
-		  case true => (nextLines, currentLine)
+		def incorporate(nextLines: NodeSeq, currentLine: XMLLine, fontLengthMap: Map[String, Int]): (NodeSeq, XMLLine) = nextLines.isEmpty match{
+		  case true => {
+			  val maxFontLength = fontLengthMap.toList.map((f:(String, Int)) => f._2).max
+			  (nextLines, currentLine.setFontID(fontLengthMap.filter((p:(String, Int)) => p._2 == maxFontLength).head._1))
+			}
 		  case false =>
 			val nextLine = createXMLLine(nextLines.head)
 			val currentLineYRange = new ParagraphDelimiter(currentLine.getPosition.getY, currentLine.getPosition.getHeight)
 			val tabulation = if(nextLine.getPosition.getX - (currentLine.getPosition.getX + currentLine.getPosition.getWidth) >= 2*currentLine.getPosition.getHeight) " \t " else " "
 	
+			
 			// If the top of the next line is in the range, then it must be added to the current line
-			if(currentLineYRange === nextLine.getPosition.getY) incorporate(nextLines.tail, currentLine.addText(nextLine.setText(tabulation + nextLine.getText)))
-			else (nextLines, currentLine)
+			if(currentLineYRange === nextLine.getPosition.getY) { 
+			  val nextFontLength = fontLengthMap.get(nextLine.getFontID)
+			  val newMap = if(nextFontLength == None) fontLengthMap + ((nextLine.getFontID, (tabulation + nextLine.getText).length)) else fontLengthMap - (nextLine.getFontID) + ((nextLine.getFontID, (tabulation + nextLine.getText).length + nextFontLength.get))
+			    
+			  incorporate(nextLines.tail, currentLine.addText(nextLine.setText(tabulation + nextLine.getText)), newMap) 
+			}
+			else {
+			  val maxFontLength = fontLengthMap.toList.map((f:(String, Int)) => f._2).max
+			  (nextLines, currentLine.setFontID(fontLengthMap.filter((p:(String, Int)) => p._2 == maxFontLength).head._1))
+			}
 		}
 		
 		// output is (newParagraph, line included?, paragraph will continue?)
@@ -49,18 +61,27 @@ object XMLParagraphsConstructor {
 				return (new XMLParagraph(line.getFontID, line.getPosition, optionContainer, List(line), lineSeparator, line.getText), true, true)
 			}
 			
-			val previousLineBegin = new ParagraphDelimiter(paragraph.getLines.head.getPosition.getX, 5)
-			val previousLineEnd = new ParagraphDelimiter(paragraph.getLines.head.getPosition.getX + paragraph.getLines.head.getPosition.getWidth, 5)
+			val previousLineText = paragraph.getLines.head.getText
+			val previousLineTop = paragraph.getLines.head.getPosition.getY
+			val previousLineHeight = paragraph.getLines.head.getPosition.getHeight
+			val previousLineBegin = new ParagraphDelimiter(paragraph.getLines.head.getPosition.getX, 3)
+			val previousLineEnd = new ParagraphDelimiter(paragraph.getLines.head.getPosition.getX + paragraph.getLines.head.getPosition.getWidth, 3)
 			val lineBegin = line.getPosition.getX
 			val lineEnd = line.getPosition.getX + line.getPosition.getWidth
+			val lineTop = line.getPosition.getY
+			val lineHeight = line.getPosition.getHeight
 			
-			// This is the second paragraph's line (rule 2)
+			// rule 7
+			if(lineTop - previousLineTop > 2*previousLineHeight || !fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph, false, false)	
+			
+			// This is the second paragraph's line
 			if(paragraph.getLines.length == 1) {
+				// rule 2
 				if(previousLineEnd === lineEnd) return (paragraph.addLine(line).addOption(XMLParagraphOptions.JUSTIFY), true, true)
 				// rule 4
-				else if(paragraphCenter === lineCenter && fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph.addLine(line).addOption(XMLParagraphOptions.CENTERED), true, true)
-				
-				else return (paragraph, false, false)
+				else if(paragraphCenter === lineCenter && """[A-Z]""".r.findAllIn(previousLineText).length < """[a-z]""".r.findAllIn(previousLineText).length) return (paragraph.addLine(line).addOption(XMLParagraphOptions.CENTERED), true, true)
+				// rule 5
+				else if(previousLineEnd > lineEnd && paragraphCenter != lineCenter) return (paragraph.addLine(line).addOption(XMLParagraphOptions.JUSTIFY), true, false)
 			}
 			
 			// Normal line (rules 3, 4, 5)
@@ -68,13 +89,12 @@ object XMLParagraphsConstructor {
 				// rule 3
 				if(previousLineBegin === lineBegin && previousLineEnd === lineEnd) return (paragraph.addLine(line), true, true)
 				// rule 4
-				else if(paragraphCenter === lineCenter && fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph.addLine(line), true, true)
+				//else if(!paragraph.hasOption(XMLParagraphOptions.JUSTIFY) && paragraphCenter === lineCenter && fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph.addLine(line), true, true)
+				else if(previousLineBegin != lineBegin && previousLineEnd != lineEnd && paragraphCenter === lineCenter) if(paragraph.hasOption(XMLParagraphOptions.JUSTIFY)) return (paragraph.addLine(line).removeOption(XMLParagraphOptions.JUSTIFY).addOption(XMLParagraphOptions.CENTERED), true, true) else return (paragraph.addLine(line), true, true)
 				// rule 5
 				else if(previousLineBegin === lineBegin && previousLineEnd > lineEnd) return (paragraph.addLine(line), true, false)
 				// rule 6
 				else if(previousLineBegin != lineBegin) return (paragraph, false, false)
-				// rule 7 to do
-				
 			}
 			
 			(paragraph, false, false)
@@ -92,7 +112,7 @@ object XMLParagraphsConstructor {
 		  case true => (lines, currentParagraph)
 		  case false =>
 			val tempLine = createXMLLine(lines.head)			
-			val incorporation = incorporate(lines.tail, tempLine)
+			val incorporation = incorporate(lines.tail, tempLine, Map((tempLine.getFontID, tempLine.getText.length)))
 
 			val remainingLines = incorporation._1
 			val linkage = linkLine(incorporation._2, currentParagraph)
@@ -115,7 +135,7 @@ object XMLParagraphsConstructor {
 		}
 		
 		
-		def processGlobalPage(paragraphs: List[XMLParagraph]): List[XMLParagraph] = paragraphs.remove(p => p.getLines.length == 1 && p.getText.length() <= 3)
+		def processGlobalPage(paragraphs: List[XMLParagraph]): List[XMLParagraph] = paragraphs.remove(p => (p.getLines.length == 1 && p.getText.length() <= 3) || p.getPosition.getX < 0 || (p.getPosition.getX + p.getPosition.getWidth) > (pagePosition.getX + pagePosition.getWidth) || p.getPosition.getY < 0 || (p.getPosition.getY + p.getPosition.getHeight) > (pagePosition.getY + pagePosition.getHeight))
 		// Reversed and reversed becomes normal
 		val finalParagraphs = processGlobalPage(constructParagraphs(lines, List()).reverse)
 		

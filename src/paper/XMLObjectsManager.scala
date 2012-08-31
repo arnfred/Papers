@@ -17,10 +17,10 @@ object XMLObjectsManager {
     	   def constructFontLists(fonts: NodeSeq, accu: List[XMLFont]): List[XMLFont] = {
 		     	       
     	       // This method runs through the given XMLFont list and checks if the new XMLFont defined object is already in the list
-		       def checkIfExist(xmlFont: XMLFont, list: List[XMLFont], matched: Boolean, accu: List[XMLFont]): List[XMLFont] = list match{
-		         case List() => if(matched) accu else xmlFont :: accu // Putting the new XMLFont at the end of the list
-		         case x::xs => if(x.compareXMLFont(xmlFont)) checkIfExist(xmlFont, xs, true, x.addID(xmlFont.getID) :: accu) // Updating the given XMLFont list
-		         			   else checkIfExist(xmlFont, xs, false, x :: accu)
+		       def checkIfExist(xmlFont: XMLFont, list: List[XMLFont], accu: List[XMLFont]): List[XMLFont] = list match{
+		         case List() => (xmlFont :: accu).reverse // Putting the new XMLFont at the end of the list
+		         case x::xs => if(x.compareXMLFont(xmlFont)) (x.addID(xmlFont.getID) :: accu).reverse ::: xs // Updating the given XMLFont list
+		         			   else checkIfExist(xmlFont, xs, x :: accu)
 		       }
 		       
 		       fonts.isEmpty match {
@@ -28,14 +28,14 @@ object XMLObjectsManager {
 		           case false => {
 		             // Creating then new XMLFont object according to the font parameters
 		             val xmlFont = new XMLFont((fonts.head \ "@id").text, (fonts.head \ "@size").text, (fonts.head \ "@family").text, (fonts.head \ "@color").text)
-		             constructFontLists(fonts.tail, checkIfExist(xmlFont, accu, false, List()))
+		             constructFontLists(fonts.tail, checkIfExist(xmlFont, accu, List()))
 		           }
 		       }
 			     
 		   }
 		   
 		   // Getting the page
-		   val page = pages filter((n) => (n \ "@number").text == pageNumber)
+		   val page = pages filter((n) => (n \ "@number").text.equals(pageNumber))
 		   
 		   if(page.length != 1) previousList
 		   else {

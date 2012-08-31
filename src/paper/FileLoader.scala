@@ -105,7 +105,7 @@ object XMLConverterLoader extends ExternalLoader {
 	    // looking for the format and setting the correct parameters
 	    SystemHelper.ext(file.getName()) match {
 	      case "txt" => loadFromFile(file, p, "txt", "-enc UTF-8")
-	      case "pdf" => loadFromFile(file, p, "xml", "-xml -enc UTF-8")
+	      case "pdf" => loadFromFile(file, p, "xml", "-xml -q -enc UTF-8")
 	    }
     }
 }

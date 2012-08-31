@@ -23,6 +23,53 @@ object XMLParser extends Parsers {
 		process(paragraphs, List(), List()).reverse
 	}
 	
+   // This method finds the first element in a list matching a particular condition and returns it with the rest of the list
+   def findFirstOf(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = list match{
+     case List() => Nil
+     case x::xs => if(condition(x)) x::xs else findFirstOf(xs, condition)
+   }
+   
+   // This method find the first element matching a condition and return the previous ones (not matching)
+   def untilFirstOf(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = {
+	   def untilFirstOf0(l: List[XMLParagraph], accu: List[XMLParagraph]): List[XMLParagraph] = l match{
+	     case List() => accu.reverse
+	     case x::xs => if(condition(x)) accu.reverse else untilFirstOf0(xs, x::accu)
+	   }
+	   
+	   untilFirstOf0(list, List())
+   }
+   
+   // This method filters some the first elements matching a condition which are adjacent
+   def filterAdjacents(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = {
+	   def filterAdjacents0(l: List[XMLParagraph], accu: List[XMLParagraph]): List[XMLParagraph] = l match {
+	     case List() => accu
+	     case x::xs => if(condition(x)) filterAdjacents0(xs, x::accu)
+	     			   else if(accu.length == 0) filterAdjacents0(xs, accu) else accu
+	   }
+	   
+	   filterAdjacents0(list, List()).reverse
+   }
+   
+   // This method finds the first elements matching a condition which are adjacent and returns the list of the remaining ones (after these)
+   def discardAdjacents(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = {
+	   def discardAdjacents0(l: List[XMLParagraph], accu: Int): List[XMLParagraph] = l match {
+	     case List() => Nil
+	     case x::xs => if(condition(x)) discardAdjacents0(xs, accu + 1)
+	     			   else if(accu == 0) discardAdjacents0(xs, accu) else x::xs
+	   }
+	   
+	   discardAdjacents0(list, 0)
+   }
+   
+   def concatText(list: List[String]): String = {
+	   def concatText0(l: List[String], accu: String): String = l match {
+	     case List() => if(accu.length() > 0) accu.dropRight(1) else accu // Last \n replacement
+	     case x::xs => concatText0(xs, accu + x + "\n")
+	   }
+	   
+	   concatText0(list, "")
+   }
+	
    // This method returns the xml representation of the text contained in the Source object
    def getXMLObject(in: Source): Option[Elem] = {
       val text = in.mkString
@@ -36,49 +83,98 @@ object XMLParser extends Parsers {
    }
   
   
-   /*
-   def extractReferences(t : (XMLDocument, Option[Paper])): (XMLDocument, Option[Paper]) = {
-     def extract(xml: Elem, paper: Paper): (Elem, Option[Paper]) = {
-        def parseReference(ref: String): Reference = {
-           val title = """[“\"].+[”\"]""".r.findFirstIn(ref)
-           
-           
-           Reference(List(), Title(title.get.tail.dropRight(1)))
-        }
-       
-        def extractReferencesFromIterator(iter: MatchIterator, accu: List[Reference]): List[Reference] = iter.hasNext match {
-          case false => accu
-          case true => extractReferencesFromIterator(iter, parseReference(iter.next())::accu)
-        }
-        
-        
-        val pages = xml \\ "page"
-        val page = pages.last
-        
-        val parag = extractParagraph(page, (lines: NodeSeq) => lines.head.text == "R" && lines.tail.head.text == "EFERENCES", (l: NodeSeq) => true)
-        
-        val iter = """\[[0-9]+\][^\[]+""".r.findAllIn(parag)
-        
-        val refs = extractReferencesFromIterator(iter, List()).reverse
-        
-        (xml, Some(paper.setReferences(refs)))
-     }
-     
+   
+   def extractReferences(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
      val xml = t._1
      val paper = t._2
+     val paragraphs = t._3
      
-     if(paper == None) (xml, None)
-     else extract(xml, paper.get)
+     def extract(paper: Paper): (Option[Paper], List[XMLParagraph]) = {
+        val referencesStringList = findFirstOf(xml.getParagraphs, (p: XMLParagraph) => ("""^""" + ExtractionRegexes.referencesName + """$""").r.findFirstIn(p.getText).isDefined).tail
+
+        def makeReferences(refs: List[XMLParagraph], accu: List[Reference]): List[Reference] = refs match {
+          case List() => accu
+          case x::xs => {
+        	  val refExtr = ReferenceExtractorDispatcher.getReferenceExtractor(x.getText.replaceAll("\n", " "))
+        	  val title = refExtr.extractTitle()
+        	  val authors = refExtr.extractAuthors()
+        	  
+        	  if(title == None || authors == None) makeReferences(xs, accu)
+        	  else makeReferences(xs, (new Reference(authors.get, title.get)::accu))
+          }
+        }
+        
+    	(Some(paper.setReferences(makeReferences(referencesStringList, List()).reverse)), List())
+     }
+     
+     
+	   paper match {
+		 case None => (xml, None, paragraphs)
+		 case Some(p) => {val extraction = extract(p); (xml, extraction._1, extraction._2)}
+	   }
    }
-   */
+   
+   
+   // This method extracts the bopdy of the article.
+   // It uses the following rules:
+   // - It begins with the first justified paragraph after the abstract
+   // - It is justified and belongs to one column
+   def extractBody(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
+     val xml = t._1
+     val paper = t._2
+     val paragraphs = t._3
+     
+     def extract(p: Paper): (Option[Paper], List[XMLParagraph]) = {
+		 val firstBodyList = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && !p.hasOption(XMLParagraphOptions.NO_COLUMN))
+		 val bodyXmlFont = xml.getFontsContainer.getXMLFont(firstBodyList.head.getFontID)
+         val bodyListWithReturn = firstBodyList.filter((p: XMLParagraph) => bodyXmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY) && !p.hasOption(XMLParagraphOptions.NO_COLUMN))
+		 val lastBodyParagraph = bodyListWithReturn.last
+		 val bodyList = bodyListWithReturn.map((p: XMLParagraph) => p.getText.replaceAll("\n", " "))
+         val remainingList = findFirstOf(paragraphs, (p:XMLParagraph) => p.getText.equals(lastBodyParagraph.getText)).tail
+         
+		 if(bodyList.length > 0) (Some(p.setBody(new Body(concatText(bodyList)))), remainingList)
+		 else (None, paragraphs)
+     }
+     
+	   paper match {
+		 case None => (xml, None, paragraphs)
+		 case Some(p) => {val extraction = extract(p); (xml, extraction._1, extraction._2)}
+	   }
+   }
+   
+   
+   def extractAuthors(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
+	   val xml = t._1
+	   val paper = t._2
+	   val paragraphs = t._3
+     
+	   def extract(p: Paper): (Option[Paper], List[XMLParagraph]) = {
+		   val list = untilFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
+		   val remainingList = paragraphs.drop(list.length)
+		   
+		   val authorsList = AuthorsDetector.detect(list)
+		   
+		   if(authorsList != None) (Some(p.setAuthors(authorsList.get)), remainingList)
+		   else (Some(p), paragraphs)
+	   }
+	   
+	   paper match {
+		 case None => (xml, None, paragraphs)
+		 case Some(p) => {val extraction = extract(p); (xml, extraction._1, extraction._2)}
+	   }
+   }
+   
+   
+   
    
    // This method extracts the title of the article.
    // It uses the following rules:
    // - The title is contained in the first page
    // - It has the biggest font size
-   def extractTitle(t : (XMLDocument, Option[Paper])): (XMLDocument, Option[Paper]) = {
+   def extractTitle(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
      val xml = t._1
      val paper = t._2
+     val paragraphs = t._3
      
      // This method finds the font id having the maximum size
      def findMaxSizeID(paragraphs: List[XMLParagraph]): String = {
@@ -86,6 +182,7 @@ object XMLParser extends Parsers {
          case List() => id
          case x::xs => 
            val newSize = xml.getFontsContainer.getXMLFont(x.getFontID).get.getSize.toInt
+          
            if(newSize > max) findMaxSizeID0(xs, newSize, xml.getFontsContainer.getXMLFont(x.getFontID).get.getID)
            else findMaxSizeID0(xs, max, id)
        }
@@ -95,68 +192,48 @@ object XMLParser extends Parsers {
      
 
      
-     def extract(p: Paper): Option[Paper] = {
-         val maxSizeIDFont = xml.getFontsContainer.getXMLFont(findMaxSizeID(xml.getPage(1).getParagraphs))
-         
-         val title = xml.getPage(1).getParagraphs.filter(p => maxSizeIDFont.get.checkID(p.getFontID))
-         
-         if(title.length == 1) Some(p.setTitle(title.head.getText.replace("\n", " ")))
-         else None
+     def extract(p: Paper): (Option[Paper], List[XMLParagraph]) = {
+         val maxSizeIDFont = xml.getFontsContainer.getXMLFont(findMaxSizeID(paragraphs.take(5)))
+         val title = findFirstOf(paragraphs, p => maxSizeIDFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.CENTERED) && p.hasOption(XMLParagraphOptions.NO_COLUMN))
+
+         if(title.length >= 1) (Some(p.setTitle(title.head.getText.replace("\n", " "))), title.tail)
+         else (Some(p), paragraphs)
      }
      
-     paper match {
-       case None => (xml, None)
-       case Some(p) => (xml, extract(p))
-     }
-     
+	   paper match {
+		 case None => (xml, None, paragraphs)
+		 case Some(p) => {val extraction = extract(p); (xml, extraction._1, extraction._2)}
+	   }
    }
-   /*
+   
    // This method extracts the abstract of the article.
    // It uses the following rules:
-   // - The abstract begins by "Abstract-"
-   // - It is contained entirely in the first page
-   // - The paragraph has the same font type (id)
-   def extractAbstract(t : (XMLDocument, Option[Paper])): (XMLDocument, Option[Paper]) = {
-	 val abstractRegex = """^Abstract[—-]"""
+   // - It is the first justified paragraph
+   // - It is entirely contained in the first page
+   def extractAbstract(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
+	   val xml = t._1
+	   val paper = t._2
+	   val paragraphs = t._3
      
-     def extract(xml: Elem, p: Paper): (Elem, Option[Paper]) = {
-       // let's find the page with number = 1
-	   val pages = (xml \\ "page") filter((n) => (n \ "@number").text == "1")
-	   val xmlPageFontsComp = XMLObjectsManager.constructXMLDocument(xml).get.getFontsContainer
-	     
-	   // there must be only one page
-	   if(pages.length != 1 || xmlPageFontsComp == None) { println("Parsing error : other than one page have number 1. Abstract not parsed"); return (xml, None) }
-	   else {
-	      val firstPage = pages.head
-       
-	      // let's find the text containing "Abstract-" and store his font id
-	      val abstractBegin = (firstPage \\ "text") filter ((t) => (abstractRegex + """.*$""").r.findFirstIn(t.text).isDefined)
-	      
-	      if(abstractBegin.length != 1) { println("Parsing error : other than one text line is the beginning of the abstract"); (xml, None) }
-	      else {
-	        val id = (abstractBegin.head \ "@font").text
-	        
-		    // call of the extractParagraph method, then deleting the beginning ("Abstract—")
-	        val xmlFont = xmlPageFontsComp.getXMLFont(id)
-	        def f (lines: NodeSeq) = xmlFont.get.checkID((lines.head \\ "@font").text)
-	        
-	        if(xmlFont == None) (xml, None)
-	        else (xml, Some(p.setAbstract(Abstract(abstractRegex.r.replaceAllIn(extractParagraph(firstPage, f, f), "")))))
-	      }
-       
+	   def extract(p: Paper): (Option[Paper], List[XMLParagraph]) = {	     
+			val list = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
+			val xmlFont = xml.getFontsContainer.getXMLFont(list.head.getFontID)
+			val abstractList = filterAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY)).map((p: XMLParagraph) => p.getText.replaceAll("\n", " "))
+			val remainingList = discardAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY))
+			
+			if(abstractList.length > 0) (Some(p.setAbstract(new Abstract(concatText(abstractList)))), remainingList)
+			else (Some(p), paragraphs)
 	   }
-     }
-     
-     val xml = t._1
-     val paper = t._2
-     
-     if(paper == None) (xml, None)
-     else extract(xml, paper.get)
+	   
+	   paper match {
+		 case None => (xml, None, paragraphs)
+		 case Some(p) => {val extraction = extract(p); (xml, extraction._1, extraction._2)}
+	   }
    }
-   */
-	// The function for actually parsing a paper
-   def parse(in: Source) : Option[Paper] = {  
-	  val xml = getXMLObject(in)
+   
+   // The function for actually parsing a paper
+   def parse(in: Source) : Option[Paper] = {
+      val xml = getXMLObject(in)
       
 	  if(xml == None) None
 	  else {
@@ -164,7 +241,7 @@ object XMLParser extends Parsers {
 		  val xmlDocument = XMLObjectsManager.constructXMLDocument(xml.get, "\n")
 		  
 		  if(xmlDocument == None) return None
-		  val paper = extractTitle((xmlDocument.get, Some(cleanPaper)))
+		  val paper = extractReferences(extractBody(extractAbstract(extractAuthors(extractTitle((xmlDocument.get, Some(cleanPaper), xmlDocument.get.getParagraphs))))))
 		  
 	      if(paper._2 == None) None
 	      else	Some(paper._2.get.setMeta("parsed" -> "yes"))

@@ -6,6 +6,8 @@ class XMLPosition(x: Int, y: Int, width: Int, height: Int) {
    def getY: Int = y
    def getWidth: Int = width
    def getHeight: Int = height
+   
+   override def toString(): String = "[x= " + x + ", y= " + y + ", width= " + width + ", height= " + height + "]"
 }
 
 // This class defines a particular font (with the totality of xml ids defining it)
@@ -16,10 +18,10 @@ class XMLFont(IDs:String, size: String, family: String, color: String) {
    def getColor: String = color
    
    // This method adds a new xml id to the definition of the font
-   def addID(id: String): XMLFont = new XMLFont(IDs + "|" + id, size, family, color)
+   def addID(id: String): XMLFont = new XMLFont(IDs + "-" + id, size, family, color)
    
    // This method checks if a particular xml id is defining that font. Use "xmlFont.checkID(myid)" instead of "xmlFont.getID == myid"
-   def checkID(id: String): Boolean = ("^" + IDs + "$").r.findFirstIn(id).isDefined
+   def checkID(id: String): Boolean = ("(^(" + IDs.replace("-", "|") + ")$)|(^(" + IDs.replace("-", "|") + ")-)|(-(" + IDs.replace("-", "|") + ")$)|(-(" + IDs.replace("-", "|") + ")-)").r.findFirstIn(id).isDefined
    
    // This method checks if two xml font are basically the same
    def compareXMLFont(font: XMLFont): Boolean = (size == font.getSize && family == font.getFamily && color == font.getColor)
@@ -43,7 +45,7 @@ object XMLParagraphOptions {
 
 sealed class XMLParagraphOptionsContainer(value: String) {
 	def getValue: String = value
-	def addOption(option: String): XMLParagraphOptionsContainer = new XMLParagraphOptionsContainer(value + "|" + option)
+	def addOption(option: String): XMLParagraphOptionsContainer = if(!hasOption(option)) new XMLParagraphOptionsContainer(value + "|" + option) else this
 	def hasOption(option: String): Boolean = ("^(" + value + ")$").r.findFirstIn(option).isDefined
 	def removeOption(option: String): XMLParagraphOptionsContainer = new XMLParagraphOptionsContainer(value.replaceAll("|" + option, ""))
 }
@@ -53,6 +55,7 @@ class XMLLine(fontID: String, position: XMLPosition, text: String) {
 	def getPosition: XMLPosition = position
 	def getText: String = text
 	
+	def setFontID(newFont: String) = new XMLLine(newFont, position, text)
 	def addText(newLine: XMLLine): XMLLine = new XMLLine(fontID, new XMLPosition(position.getX, position.getY, (newLine.getPosition.getX + newLine.getPosition.getWidth) - position.getX, position.getHeight), text + newLine.getText)
 	def setText(newText: String): XMLLine = new XMLLine(fontID, position, newText)
 }
@@ -85,8 +88,18 @@ class XMLPage(number: Int, position: XMLPosition, paragraphs: List[XMLParagraph]
 
 // This class defines the entire xml file structure
 class XMLDocument(fontsContainer: XMLFontsContainer, pages: List[XMLPage]) {
+	private val paragraphs = {
+		def get(pageList: List[XMLPage], accu: List[XMLParagraph]):List[XMLParagraph] = pageList match {
+		  case List() => accu
+		  case x::xs => get(xs, accu ::: x.getParagraphs)
+		}
+		
+		get(pages, List())
+	}
+  
 	def getFontsContainer: XMLFontsContainer = fontsContainer
 	def getPage(pageNumber: Int): XMLPage = (pages.filter(p => p.getNumber == pageNumber)).head
+	def getParagraphs: List[XMLParagraph] = paragraphs
 }
 
 

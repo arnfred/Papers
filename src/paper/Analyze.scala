@@ -5,10 +5,8 @@ object Analyze {
     // create analyse
     val A : Analyzer = new Analyzer()
     
-    
-    
     // Check that a directory is supplied (there is an argument)
-    if (args.length == 0) println("You really need to supply a directory as argument"); 
+    if (args.length != 1) println("You really need to supply a directory as argument");
     // Then go ahead
     else A.analyze(args(0))
   }
