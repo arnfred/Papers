@@ -31,7 +31,7 @@ object XMLParagraphsConstructor {
 			}
 		  case false =>
 			val nextLine = createXMLLine(nextLines.head)
-			val currentLineYRange = new ParagraphDelimiter(currentLine.getPosition.getY, currentLine.getPosition.getHeight)
+			val currentLineYRange = new ParagraphDelimiter(currentLine.getPosition.getY, currentLine.getPosition.getHeight - 3)
 			val tabulation = if(nextLine.getPosition.getX - (currentLine.getPosition.getX + currentLine.getPosition.getWidth) >= 2*currentLine.getPosition.getHeight) " \t " else " "
 	
 			
@@ -51,16 +51,16 @@ object XMLParagraphsConstructor {
 		// output is (newParagraph, line included?, paragraph will continue?)
 		def linkLine(line: XMLLine, paragraph: XMLParagraph): (XMLParagraph, Boolean, Boolean) = {		  
 			val lineCenter = ((2 * line.getPosition.getX) + line.getPosition.getWidth) / 2
-			val paragraphCenter = new ParagraphDelimiter(((2 * paragraph.getPosition.getX) + paragraph.getPosition.getWidth) / 2, 5)
 
-		  
 			// First paragraph's line (rule 1)
 			if(paragraph.getLines.length == 0) {
-				val optionContainer = if(pageCenter === lineCenter) (new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE)).addOption(XMLParagraphOptions.CENTERED) else new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE)
+				val optionContainer = if(pageCenter === lineCenter) (new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE)).addOption(XMLParagraphOptions.PAGECENTERED) else new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE)
 
 				return (new XMLParagraph(line.getFontID, line.getPosition, optionContainer, List(line), lineSeparator, line.getText), true, true)
 			}
 			
+			
+			val previousLineCenter = new ParagraphDelimiter(((2 * paragraph.getLines.head.getPosition.getX) + paragraph.getLines.head.getPosition.getWidth) / 2, 3)
 			val previousLineText = paragraph.getLines.head.getText
 			val previousLineTop = paragraph.getLines.head.getPosition.getY
 			val previousLineHeight = paragraph.getLines.head.getPosition.getHeight
@@ -70,31 +70,37 @@ object XMLParagraphsConstructor {
 			val lineEnd = line.getPosition.getX + line.getPosition.getWidth
 			val lineTop = line.getPosition.getY
 			val lineHeight = line.getPosition.getHeight
+			val previousLineCapitalVersurNotDifference = """[A-Z]""".r.findAllIn(previousLineText).length - """[a-z]""".r.findAllIn(previousLineText).length
+			val lineCapitalVersurNotDifference = """[A-Z]""".r.findAllIn(line.getText).length - """[a-z]""".r.findAllIn(line.getText).length
 			
 			// rule 7
-			if(lineTop - previousLineTop > 2*previousLineHeight || !fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph, false, false)	
+			if(lineTop - previousLineTop > 2*lineHeight || !fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph, false, false)
+			// line is not title and previous line is title
+			if(lineCapitalVersurNotDifference <= 0 && previousLineCapitalVersurNotDifference > 0) return (paragraph, false, false)
 			
 			// This is the second paragraph's line
 			if(paragraph.getLines.length == 1) {
-				// rule 2
-				if(previousLineEnd === lineEnd) return (paragraph.addLine(line).addOption(XMLParagraphOptions.JUSTIFY), true, true)
-				// rule 4
-				else if(paragraphCenter === lineCenter && """[A-Z]""".r.findAllIn(previousLineText).length < """[a-z]""".r.findAllIn(previousLineText).length) return (paragraph.addLine(line).addOption(XMLParagraphOptions.CENTERED), true, true)
-				// rule 5
-				else if(previousLineEnd > lineEnd && paragraphCenter != lineCenter) return (paragraph.addLine(line).addOption(XMLParagraphOptions.JUSTIFY), true, false)
+				if(previousLineBegin === lineBegin && previousLineEnd === lineEnd && previousLineCenter === lineCenter) return (paragraph.addLine(line).addOption(XMLParagraphOptions.CENTERED).addOption(XMLParagraphOptions.JUSTIFY), true, true)
+				
+				else if(previousLineBegin != lineBegin && previousLineEnd != lineEnd && previousLineCenter === lineCenter) return (paragraph.addLine(line).addOption(XMLParagraphOptions.CENTERED), true, true)
+				
+				else if(previousLineEnd >= lineEnd) return (paragraph.addLine(line).addOption(XMLParagraphOptions.JUSTIFY), true, true)
 			}
 			
 			// Normal line (rules 3, 4, 5)
 			if(paragraph.getLines.length > 1) {
-				// rule 3
-				if(previousLineBegin === lineBegin && previousLineEnd === lineEnd) return (paragraph.addLine(line), true, true)
-				// rule 4
-				//else if(!paragraph.hasOption(XMLParagraphOptions.JUSTIFY) && paragraphCenter === lineCenter && fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph.addLine(line), true, true)
-				else if(previousLineBegin != lineBegin && previousLineEnd != lineEnd && paragraphCenter === lineCenter) if(paragraph.hasOption(XMLParagraphOptions.JUSTIFY)) return (paragraph.addLine(line).removeOption(XMLParagraphOptions.JUSTIFY).addOption(XMLParagraphOptions.CENTERED), true, true) else return (paragraph.addLine(line), true, true)
-				// rule 5
-				else if(previousLineBegin === lineBegin && previousLineEnd > lineEnd) return (paragraph.addLine(line), true, false)
-				// rule 6
-				else if(previousLineBegin != lineBegin) return (paragraph, false, false)
+				if(paragraph.hasOption(XMLParagraphOptions.CENTERED) && !paragraph.hasOption(XMLParagraphOptions.JUSTIFY)) {
+					if(previousLineCenter === lineCenter) return (paragraph.addLine(line), true, true)
+				}
+				else if(!paragraph.hasOption(XMLParagraphOptions.CENTERED) && paragraph.hasOption(XMLParagraphOptions.JUSTIFY)) {
+					if(previousLineBegin === lineBegin && previousLineEnd === lineEnd) return (paragraph.addLine(line), true, true)
+					else if(previousLineBegin === lineBegin && previousLineEnd > lineEnd) return (paragraph.addLine(line), true, false)
+				}
+				else if(paragraph.hasOption(XMLParagraphOptions.CENTERED) && paragraph.hasOption(XMLParagraphOptions.JUSTIFY)) {
+					if(previousLineBegin === lineBegin && previousLineEnd === lineEnd) return (paragraph.addLine(line), true, true)
+					else if(previousLineBegin != lineBegin && previousLineEnd != lineEnd && previousLineCenter === lineCenter) return (paragraph.addLine(line).removeOption(XMLParagraphOptions.JUSTIFY), true, true)
+					else if(previousLineBegin === lineBegin && previousLineEnd > lineEnd) return (paragraph.addLine(line).removeOption(XMLParagraphOptions.CENTERED), true, false)
+				}
 			}
 			
 			(paragraph, false, false)

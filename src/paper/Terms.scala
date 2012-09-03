@@ -34,8 +34,8 @@ case class Paper(val id :       Int,
   def setMeta(p : (String, String)) : Paper = 
     return Paper(id, index, title, authors, abstr, body, refs, meta + p, links)
 
-  def setTitle(t : String) : Paper =
-    return Paper(id, index, Title(t), authors, abstr, body, refs, meta, links)
+  def setTitle(t : Title) : Paper =
+    return Paper(id, index, t, authors, abstr, body, refs, meta, links)
 
   def setAuthors(as : List[Author]) : Paper =
     return Paper(id, index, title, as, abstr, body, refs, meta, links)
