@@ -21,14 +21,15 @@ object XMLParser extends Parsers {
 	
    // This method returns the xml representation of the text contained in the Source object
    def getXMLObject(in: Source): Option[Elem] = {
-      val text = in.mkString
+	  // String generation and illegal xml character removing
+	  val text = in.mkString.replace("" + '\uffff', "")
       // This instruction is important, otherwise the xml file can't be deleted
       in.close
       
       try {
     	  // The replacement of the <b> and <i> tags is important because loadString sometimes generate an exception about these tags
     	  // Of course, some information is lost, but not really an important one
-    	  Some(XML.loadString("""</?[bi]>""".r.replaceAllIn(text, "").replace("" + (0xef) + (0xbf) + (0xbf), "")))
+    	  Some(XML.loadString("""</?[bi]>""".r.replaceAllIn(text, "")))
       } catch {
       	case _ => println("Couldn't load the XML file."); None
       }
