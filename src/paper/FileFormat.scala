@@ -14,9 +14,14 @@ object Paths {
   	private def getOSDir: String = { if(SystemHelper.isWindows) windowsSepStr + windowsDirStr + windowsSepStr
   	  						 		 else if(SystemHelper.isLinux) linuxSepStr + linuxDirStr + linuxSepStr
   	  						 		 else "" }
-  	  	
+  	
+  	// Returns the tools directory according to the current operating system
 	def toolsDir = toolsDirStr + getOSDir
+	
+	// Returns the file extension according to the current operating system
 	def ext = if(SystemHelper.isWindows) windowsExtStr else if(SystemHelper.isLinux) linuxExtStr else ""
+	  
+	// Returns the path separator according to the current operating system
 	def sep = if(SystemHelper.isWindows) windowsSepStr else if(SystemHelper.isLinux) linuxSepStr else ""
 }
 

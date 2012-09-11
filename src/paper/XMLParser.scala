@@ -10,97 +10,51 @@ import sun.nio.cs.Unicode
 
 object XMLParser extends Parsers {
 	// These are the modifiable parameters (extractors and extraction order)
-	val authorsExtractor = AuthorsExtractor1
-	val abstractExtractor = AbstractExtractor1
-	val titleExtractor = TitleExtractor1
-	val referencesExtractor = ReferencesExtractor1
-	val bodyExtractor = BodyExtractor1
-	
-	def extractInformation(xmlDocument: XMLDocument, cleanPaper: Paper): (XMLDocument, Option[Paper], List[XMLParagraph]) = extractReferences(extractBody(extractAbstract(extractAuthors(extractTitle((xmlDocument, Some(cleanPaper), xmlDocument.getParagraphs))))))
+	val authorsExtractor: AuthorsExtractor = AuthorsExtractor1
+	val abstractExtractor: AbstractExtractor = AbstractExtractor1
+	val titleExtractor: TitleExtractor = TitleExtractor1
+	val referencesExtractor: ReferencesExtractor = ReferencesExtractor1
+	val bodyExtractor: BodyExtractor = BodyExtractor1
+	val extractionOrder: List[InformationExtractor] = List(titleExtractor, authorsExtractor, abstractExtractor, bodyExtractor, referencesExtractor)
 	
 	
 	
    // This method returns the xml representation of the text contained in the Source object
    def getXMLObject(in: Source): Option[Elem] = {
       val text = in.mkString
+      // This instruction is important, otherwise the xml file can't be deleted
       in.close
       
       try {
-    	  Some(XML.loadString("""</?[bi]>""".r.replaceAllIn(text, "")))
+    	  // The replacement of the <b> and <i> tags is important because loadString sometimes generate an exception about these tags
+    	  // Of course, some information is lost, but not really an important one
+    	  Some(XML.loadString("""</?[bi]>""".r.replaceAllIn(text, "").replace("" + (0xef) + (0xbf) + (0xbf), "")))
       } catch {
-        case _ => println("Couldn't load the XML file."); None
+      	case _ => println("Couldn't load the XML file."); None
       }
    }
    
-   // Method for references extraction
-   def extractReferences(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
-	   val xml = t._1
-	   val paper = t._2
-	   val paragraphs = t._3
-     
-	   if(paper != None) {
-		   val references = referencesExtractor.extract(xml, paragraphs)
-		   if(references._2 != None) return (xml, Some(paper.get.setReferences(references._2.get)), references._1)
+   
+   // Method for references extraction following the extraction order
+   def extract(extractors: List[InformationExtractor], t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
+	   def extract0(extractors: List[InformationExtractor], t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
+		   if(extractors.length == 0) return t
+	     
+	       val input = if(extractors.length == 1) t else extract0(extractors.tail, t)
+		   val xml = input._1
+		   val paper = input._2
+		   val paragraphs = input._3
+	     
+		   if(paper != None) {
+			   // Calling the extraction method of the extractor
+			   val extraction = extractors.head.extract(paper.get, xml, paragraphs)
+			   return (xml, Some(extraction._2), extraction._1)
+		   }
+		   
+		   (xml, None, paragraphs)
 	   }
 	   
-	   (xml, None, paragraphs)
-   }
-   
-   
-   // Method for body extraction
-   def extractBody(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
-	   val xml = t._1
-	   val paper = t._2
-	   val paragraphs = t._3
-     
-	   if(paper != None) {
-		   val body = bodyExtractor.extract(xml, paragraphs)
-		   if(body._2 != None) return (xml, Some(paper.get.setBody(body._2.get)), body._1)
-	   }
-	   
-	   (xml, None, paragraphs)
-   }
-   
-   // Method for authors extraction
-   def extractAuthors(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
-	   val xml = t._1
-	   val paper = t._2
-	   val paragraphs = t._3
-	   
-	   if(paper != None) {
-		   val authors = authorsExtractor.extract(xml, paragraphs)
-		   if(authors._2 != None) return (xml, Some(paper.get.setAuthors(authors._2.get)), authors._1)
-	   }
-	   
-	   (xml, None, paragraphs)
-   }
-   
-   // Method for title extraction
-   def extractTitle(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
-     val xml = t._1
-     val paper = t._2
-     val paragraphs = t._3
-     
-     if(paper != None) {
-    	 val title = titleExtractor.extract(xml, paragraphs)
-		 if(title._2 != None) return (xml, Some(paper.get.setTitle(title._2.get)), title._1)
-	 }
-	   
-	 (xml, None, paragraphs)
-   }
-   
-   // Method for abstract extraction
-   def extractAbstract(t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
-	   val xml = t._1
-	   val paper = t._2
-	   val paragraphs = t._3
-     
-	   if(paper != None) {
-		   val abstractS = abstractExtractor.extract(xml, paragraphs)
-		   if(abstractS._2 != None) return (xml, Some(paper.get.setAbstract(abstractS._2.get)), abstractS._1)
-	   }
-	   
-	   (xml, None, paragraphs)
+	   extract0(extractors.reverse, t)
    }
    
    // The function for actually parsing a paper
@@ -111,11 +65,9 @@ object XMLParser extends Parsers {
 	  else {
 		  val cleanPaper = Paper(0, 0, Title(""), Nil, Abstract("Not saved"), Body("Not saved"), List(), Map.empty, List())
 		  val xmlDocument = XMLObjectsManager.constructXMLDocument(xml.get, "\n")
-	
-		  //xmlDocument.get.getParagraphs.foreach((p: XMLParagraph) => println(p.getText + "\n" + p.getOptionsValue + "\n\n"))
 		  
 		  if(xmlDocument == None) return None
-		  val paper = extractInformation(xmlDocument.get, cleanPaper)
+		  val paper = extract(extractionOrder, (xmlDocument.get, Some(cleanPaper), xmlDocument.get.getParagraphs))
 		    
 	      if(paper._2 == None) None
 	      else	Some(paper._2.get.setMeta("parsed" -> "yes"))

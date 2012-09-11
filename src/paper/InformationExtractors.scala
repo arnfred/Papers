@@ -2,7 +2,7 @@ package paper
 
 trait InformationExtractor {
    // This is the main method. It takes a list of paragraphs and extracts something
-   def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[Any])
+   def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
 	
    // This method finds the first element in a list matching a particular condition and returns it with the rest of the list
    protected def findFirstOf(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = list match{
@@ -10,7 +10,7 @@ trait InformationExtractor {
      case x::xs => if(condition(x)) x::xs else findFirstOf(xs, condition)
    }
    
-   // This method find the first element matching a condition and return the previous ones (not matching)
+   // This method find the first element matching a condition and returns the previous ones (not matching)
    protected def untilFirstOf(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = {
 	   def untilFirstOf0(l: List[XMLParagraph], accu: List[XMLParagraph]): List[XMLParagraph] = l match{
 	     case List() => accu.reverse
@@ -20,7 +20,7 @@ trait InformationExtractor {
 	   untilFirstOf0(list, List())
    }
    
-   // This method filters some the first elements matching a condition which are adjacent
+   // This method filters the first elements matching a condition which are adjacent
    protected def filterAdjacents(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = {
 	   def filterAdjacents0(l: List[XMLParagraph], accu: List[XMLParagraph]): List[XMLParagraph] = l match {
 	     case List() => accu
@@ -53,24 +53,25 @@ trait InformationExtractor {
    }
 }
 
+// These are more specific traits and have to be implemented
 trait TitleExtractor extends InformationExtractor {
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[Title])
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
 }
 
 trait AuthorsExtractor extends InformationExtractor {
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[List[Author]])
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
 }
 
 trait AbstractExtractor extends InformationExtractor {
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[Abstract])
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
 }
 
 trait BodyExtractor extends InformationExtractor {
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[Body])
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
 }
 
 trait ReferencesExtractor extends InformationExtractor {
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[List[Reference]])
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
 }
 
 
@@ -81,7 +82,7 @@ object AuthorsExtractor1 extends AuthorsExtractor{
     // It uses the following rules:
     // - They are located in the first page between title and abstract
     // - Every author paragraph contains the name at the top of it, i.e. the names are located at the first line of these paragraphs
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[List[Author]]) = {
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val list = untilFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
 		val remainingList = paragraphs.drop(list.length)
 		  
@@ -94,8 +95,8 @@ object AuthorsExtractor1 extends AuthorsExtractor{
 		val authorsList = authors.map((s: String) => new Author(ExtractionRegexes.authorsSeparator.r.replaceAllIn(s, "")))
 	
 		   
-		if(authorsList.length != 0) (remainingList, Some(authorsList))
-		else (paragraphs, None)
+		if(authorsList.length != 0) (remainingList, paper.setAuthors(authorsList))
+		else (paragraphs, paper)
 		   
 	}
 }
@@ -105,14 +106,14 @@ object AbstractExtractor1 extends AbstractExtractor{
     // It uses the following rules:
     // - It is the first justified paragraph
     // - It is entirely contained in the first page
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[Abstract]) = {
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val list = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
 		val xmlFont = xml.getFontsContainer.getXMLFont(list.head.getFontID)
 		val abstractList = filterAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY)).map((p: XMLParagraph) => p.getText.replaceAll("\n", " "))
 		val remainingList = discardAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY))
 			
-		if(abstractList.length != 0) (remainingList, Some(new Abstract(concatText(abstractList))))
-		else (paragraphs, None)
+		if(abstractList.length != 0) (remainingList, paper.setAbstract(new Abstract(concatText(abstractList))))
+		else (paragraphs, paper)
 	}
 }
 
@@ -121,7 +122,7 @@ object TitleExtractor1 extends TitleExtractor {
     // It uses the following rules:
     // - The title is contained in the first page
     // - It has the biggest font size
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[Title]) = {
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		// This method finds the font id having the maximum size
 		def findMaxSizeID(paragraphs: List[XMLParagraph]): String = {
 			def findMaxSizeID0(paragraphs: List[XMLParagraph], max: Int, id: String): String = paragraphs match{
@@ -136,11 +137,11 @@ object TitleExtractor1 extends TitleExtractor {
 			findMaxSizeID0(paragraphs, 0, "")
 		}
 		
-		val maxSizeIDFont = xml.getFontsContainer.getXMLFont(findMaxSizeID(paragraphs.take(5)))
-        val title = findFirstOf(paragraphs, p => maxSizeIDFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.PAGECENTERED))
+		val maxSizeIDFont = xml.getFontsContainer.getXMLFont(findMaxSizeID(paragraphs.take(10)))
+        val title = findFirstOf(paragraphs, p => maxSizeIDFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.PAGE_CENTERED))
 
-        if(title.length != 0) (title.tail, Some(new Title(title.head.getText.replace("\n", " "))))
-        else (paragraphs, None)
+        if(title.length != 0) (title.tail, paper.setTitle(new Title(title.head.getText.replace("\n", " "))))
+        else (paragraphs, paper)
 	}
 }
 
@@ -150,7 +151,7 @@ object BodyExtractor1 extends BodyExtractor {
     // It uses the following rules:
     // - It begins with the first justified paragraph after the abstract
     // - It is justified and belongs to one column
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[Body]) = {
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val firstBodyList = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && !p.hasOption(XMLParagraphOptions.NO_COLUMN))
 		val bodyXmlFont = xml.getFontsContainer.getXMLFont(firstBodyList.head.getFontID)
         
@@ -162,8 +163,8 @@ object BodyExtractor1 extends BodyExtractor {
 		val bodyList = bodyListWithReturn.map((p: XMLParagraph) => p.getText.replaceAll("\n", " "))
         val remainingList = findFirstOf(paragraphs, (p:XMLParagraph) => p.getText.equals(lastBodyParagraph.getText)).tail
          
-		if(bodyList.length != 0) (remainingList, Some(new Body(concatText(bodyList))))
-		else (paragraphs, None)
+		if(bodyList.length != 0) (remainingList, paper.setBody(new Body(concatText(bodyList))))
+		else (paragraphs, paper)
 	}
 }
 
@@ -173,7 +174,7 @@ object ReferencesExtractor1 extends ReferencesExtractor {
     // - They begin with a paragraph containing a reference title
     // - Each following paragraph is a reference.
     // - The method recognizes the reference format and applies a suitable xtraction stategy
-	def extract(xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Option[List[Reference]]) = {
+	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
         val refParagraphs = findFirstOf(paragraphs, (p: XMLParagraph) => ("""^""" + ExtractionRegexes.referencesName + """$""").r.findFirstIn(p.getText).isDefined)
         val referencesStringList = if(!refParagraphs.isEmpty) refParagraphs.tail else List()
 
@@ -193,7 +194,7 @@ object ReferencesExtractor1 extends ReferencesExtractor {
         
         val refList = makeReferences(referencesStringList, List()).reverse
         
-    	if(refList.length != 0) (List(), Some(refList))
-		else (paragraphs, None)
+    	if(refList.length != 0) (List(), paper.setReferences(refList))
+		else (paragraphs, paper)
 	}
 }

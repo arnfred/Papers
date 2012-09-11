@@ -36,7 +36,7 @@ class XMLFontsContainer(fonts: List[XMLFont]){
 
 object XMLParagraphOptions {
 	val CENTERED = "CTR"
-	val PAGECENTERED = "PCT"
+	val PAGE_CENTERED = "PCT"
 	val JUSTIFY = "JFY"
 	val COLUMN_LEFT = "CLL"
 	val COLUMN_RIGHT = "CLR"
@@ -44,7 +44,7 @@ object XMLParagraphOptions {
 	val NONE = "NON"
 }
 
-sealed class XMLParagraphOptionsContainer(value: String) {
+class XMLParagraphOptionsContainer(value: String) {
 	def getValue: String = value
 	def addOption(option: String): XMLParagraphOptionsContainer = if(!hasOption(option)) new XMLParagraphOptionsContainer(value + "|" + option) else this
 	def hasOption(option: String): Boolean = ("^(" + value + ")$").r.findFirstIn(option).isDefined
