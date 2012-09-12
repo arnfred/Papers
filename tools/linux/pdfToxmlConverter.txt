@@ -1,0 +1,1 @@
+If this tool doesn't work, please install pdftohtml
