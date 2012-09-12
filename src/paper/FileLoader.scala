@@ -75,13 +75,14 @@ abstract class ExternalLoader extends FileLoader {
     // getFileFormat looks for other file formats (like pdf), then using external tools it extracts the content of the file and 
     // converts it to another format file
     val fileFormat = FileFormatDispatcher.getFileFormat(file)
-    val text = Source.fromFile(fileFormat.convertTo(format, params))
+    val newFile = fileFormat.convertTo(format, params)
+    val text = Source.fromFile(newFile)
 
     // actual parsing of the file content
     val maybePaper : Option[Paper] = p.parse(text)
     
     // this method deletes temporary files that could have been previously created
-    fileFormat.releaseFile(format)
+    fileFormat.releaseFile(newFile)
     
     // If paper exists and parsed, save it in cache
     setLastModifications(file, maybePaper)
