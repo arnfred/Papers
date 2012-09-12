@@ -71,7 +71,7 @@ object SimpleLoader extends FileLoader {
 // This class uses external tools in order to convert a particular format file into another before it is passed to the parser
 abstract class ExternalLoader extends FileLoader {  
   // Converts a particular format file into another using an external tool
-  def loadFromFile(file : File, p : Parsers, format : String, params : String) : Option[Paper] = {    
+  def loadFromFile(file : File, p : Parsers, format : String, params : List[String]) : Option[Paper] = {    
     // getFileFormat looks for other file formats (like pdf), then using external tools it extracts the content of the file and 
     // converts it to another format file
     val fileFormat = FileFormatDispatcher.getFileFormat(file)
@@ -94,7 +94,7 @@ object TXTConverterLoader extends ExternalLoader {
     override def loadFromFile(file : File, p : Parsers) : Option[Paper] = {
     	println("parsing " + file.getPath + " using txt loader")
 	    // looking for the format and setting the correct parameters
-	    loadFromFile(file, p, "txt", "-enc UTF-8")
+	    loadFromFile(file, p, "txt", List("-enc", "UTF-8"))
     }
 }
 
@@ -105,8 +105,8 @@ object XMLConverterLoader extends ExternalLoader {
 	    
 	    // looking for the format and setting the correct parameters
 	    SystemHelper.ext(file.getName()) match {
-	      case "txt" => loadFromFile(file, p, "txt", "-enc UTF-8")
-	      case "pdf" => loadFromFile(file, p, "xml", "-xml -q -enc UTF-8")
+	      case "txt" => loadFromFile(file, p, "txt", List("-enc", "UTF-8"))
+	      case "pdf" => loadFromFile(file, p, "xml", List("-xml", "-q", "-enc", "UTF-8"))
 	    }
     }
 }

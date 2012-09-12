@@ -27,15 +27,16 @@ object Paths {
 
 // This class transforms a File object into another File object, according to the extension of the file
 abstract class FileFormat {  
-	def convertTo(format: String, params: String): File = this match{
+	def convertTo(format: String, params: List[String]): File = this match{
 	    case TXTFormat(file) => file
 	    case PDFFormat(file) => {
-	      val command = CommandDetector.detect(Paths.toolsDir + "pdfTo" + format + "Converter" + Paths.ext) + " " + params + " \"" + file.getAbsoluteFile() + "\""
-		  val process: Process = sys.runtime.exec(command)
-		    
+	      val command = CommandDetector.detect(Paths.toolsDir + "pdfTo" + format + "Converter" + Paths.ext, format)
+
+	      val process: Process = sys.runtime.exec((List(command) ::: params ::: List(file.getAbsolutePath())).toArray[String])
+	      
 		  // Waiting until the end of the command execution
 		  if(process.waitFor() != 0) { println("Can't convert pdf file. Program will exit"); exit }
-	      
+
 		  new File(file.getParent() + Paths.sep + SystemHelper.name(file.getName) + "." + format)
 		}
 	}
@@ -63,8 +64,8 @@ object FileFormatDispatcher {
 
 // This object handles special tool cases
 object CommandDetector {
-	def detect(toolPath: String): String = {
-		if(toolPath.equals("xml") && SystemHelper.isLinux) return "pdftohtml"
+	def detect(toolPath: String, format: String): String = {
+		if(format.equals("xml") && SystemHelper.isLinux) return "pdftohtml"
 		
 		toolPath
 	}
