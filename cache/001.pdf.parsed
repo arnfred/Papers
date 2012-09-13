@@ -1,0 +1,135 @@
+[[[ ID ]]]
+1
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+List Decoding of Polar Codes
+[[[ AUTHORS ]]]
+Ido Tal
+Alexander Vardy
+[[[ ABSTR ]]]
+Abstract—We describe a successive-cancellation list decoder for polar codes, which is a generalization of the classic successive- cancellation decoder of Arıkan. In the proposed list decoder, up to L decoding paths are considered concurrently at each decoding stage. Simulation results show that the resulting performance is very close to that of a maximum-likelihood decoder, even for moderate values of L. Thus it appears that the proposed list decoder bridges the gap between successive-cancellation and maximum-likelihood decoding of polar codes.
+The speciﬁc list-decoding algorithm that achieves this perfor- mance doubles the number of decoding paths at each decoding step, and then uses a pruning procedure to discard all but the L “best” paths. In order to implement this algorithm, we introduce a natural pruning criterion that can be easily evaluated. Never- theless, straightforward implementation still requires O(L · n 2 ) time, which is in stark contrast with the O(n log n) complexity of the original successive-cancellation decoder. We utilize the structure of polar codes to overcome this problem. Speciﬁcally, we devise an efﬁcient, numerically stable, implementation taking only O(L · n log n) time and O(L · n) space.
+[[[ BODY ]]]
+Polar codes, recently discovered by Arıkan [1], are a major breakthrough in coding theory. They are the ﬁrst and currently only family of codes known to have an explicit construc- tion and efﬁcient encoding and decoding algorithms, while also being capacity achieving over binary input symmetric memoryless channels. Their probability of error is known to approach O (2 −
+n ) [2], with generalizations giving even better asymptotic results [3].
+Of course, “capacity achieving” is an asymptotic property, and the main sticking point of polar codes to date is that their performance at short to moderate block lengths is disappoint- ing. As we ponder why, we identify two possible culprits: either the codes themselves are inherently weak at these lengths, or the successive cancellation (SC) decoder employed to decode them is signiﬁcantly degraded with respect to Maximum Likelihood (ML) decoding performance. More so, the two possible culprits are complementary, and so both may occur.
+In this paper we show an improvement to the SC decoder, namely, a successive cancellation list (SCL) decoder. Our list decoder has a corresponding list size L, and setting L = 1 results in the classic SC decoder. As can be seen in Figure 1, our algorithm improves upon the classic SC decoder. Indeed, Figure 1 shows a wide range in which our algorithm has performance very close to that of the ML decoder 1 , even for
+moderate values of L. Thus as we have suspected, the sub- optimality of the SC decoder plays a role in the disappointing performance of polar codes.
+The structure of this paper is as follows. In Section II, we present Arıkan’s SC decoder in a notation that will be useful to us later on. In Section III, we show how the space complexity of the SC decoder can be brought down from O (n log n) to O (n). This observation will later help us in Section IV, where we presents our successive cancellation list decoder with time complexity O (L · nlog n).
+The Successive Cancellation decoder is due to Arıkan [1]. In this section, we recast it using our notation, for future reference. However, let us start by stating some conventions and deﬁning the underlying bit channels [1].
+Let the polar code under consideration have length n = 2 m and dimension k. Thus, the number of frozen bits is n −k. We denote by u = (u i ) n−1 i=0 the information bits vector (including the frozen bits), and by c = (c i ) n−1 i=0 the corresponding code- word, which is sent over a binary-input channel W : X → Y, where X = {0,1}. At the other end of the channel, we get the received word y = (y i ) n−1 i=0 . A decoding algorithm is
+then applied to y, resulting in a decoded codeword ˆ c having corresponding information bits ˆ u.
+For layer 0 ≤ λ ≤ m, denote hereafter Λ = 2 λ . Recall that for 0 ≤ ϕ < 2 λ , bit channel W (ϕ) λ is a binary input channel with output alphabet Y Λ × X ϕ , the conditional probability of which we generically denote as W (ϕ) λ (z Λ−1 0 , u ϕ−1 0 |u ϕ ). In our context, z Λ−1 0 is always a contiguous subvector of y.
+For 1 ≤ λ ≤ m, recall the recursive deﬁnition of a bit channel [1, Equations (22) and (23)] : let 0 ≤ 2ψ < Λ, then
+For 0 ≤ λ ≤ m deﬁne the following quotient/remainder shorthand. Let 0 ≤ ϕ < 2 λ and 0 ≤ β < 2 m−λ , then
+Note that each integer 0 ≤ i < 2 m has a unique representation as i = ϕ, β λ . For reasons which will become clear, we call ϕ and β the phase and branch parts of i, respectively. Thus, we will say that layer λ has 2 λ phases, each phase consisting of 2 m−λ branches.
+Our ﬁrst implementation of the SC decoder (Algorithms 1– 3) will be straightforward, but somewhat wasteful in terms of space. It will make use of two sets of arrays. The ﬁrst set of arrays is deﬁned as follows. For each 0 ≤ λ ≤ m, we will have a probabilities array, denoted by P λ , of length 2 m , indexed by an integer 0 ≤ i < 2 m . Each element P λ [i] will contain a probability pair, indexed as P λ [i][0] and P λ [i][1]. The second set consists of bit arrays, denoted by B λ . They have the same length and indexing of probability arrays. However, each element B λ [i] of a bit array consists of a single bit. Initially, most array elements will be uninitialized, and will become initialized as the algorithm runs its course. Note that the total space needed for these arrays is O (n log n). In the interest of brevity, for a generic array A we abbreviate A λ [ ϕ, β λ ] as A λ [ ϕ, β ]. Also, we use the shorthand A λ [ ϕ, ∗ ] to symbolize all the elements A λ [ ϕ, β ] for 0 ≤ β < 2 m−λ .
+Due to space limitations, we will not give a full proof of the correctness of our implementation, but rather a short explanation. For λ > 0 and 0 ≤ ϕ < 2 λ , recall the recursive deﬁnition of W (ϕ) λ (z Λ−1 0 , u ϕ−1 0 |u ϕ ) given in either (1) or (2),
+3 for ϕ = 0, 1, . . . , n − 1 do // Main loop 4 	 recursivelyCalcP (m, ϕ) 5 	 if ˆ u ϕ is frozen then
+6 	 set B m [ ϕ, 0 ] to the frozen value 7 	 else
+8 	 if P m [ ϕ, 0 ][0] > P m [ ϕ, 0 ][1] then 9 	 set B m [ ϕ, 0 ] ← 0
+Algorithm 2: recursivelyUpdateB (λ, ϕ) Require: ϕ is odd
+3 	 B λ−1 [ ψ, 2β ] ← B λ [ ϕ − 1,β ] ⊕ B λ [ ϕ, β ] 4 	 B λ−1 [ ψ, 2β + 1 ] ← B λ [ ϕ, β ]
+depending on the parity of ϕ. In both cases, the channel W (ψ) λ−1 , ψ = ϕ/2 is used with two different outputs. Thus, we need a simple way of deﬁning which set of outputs we are referring to. We do this by specifying, apart from the layer λ and the phase ϕ which deﬁne the channel, the branch number 0 ≤ β < 2 m−λ . Since the channel W (ϕ) m has only one vector pair of outputs associated with it, (y n 0 , ˆ u ϕ−1 0 ), we give a branch number of β = 0 to each such pair. Next, we proceed recursively as follows. Consider a channel W (ϕ) λ with outputs (z Λ−1 0 , u ϕ−1 0 ) and corresponding branch number β. The output (z Λ/2−1 0 	 , u 2ψ−1 0,even ⊕ u 2ψ−1 0,odd ) associated with W (ψ) λ−1 will have a branch number of 2β, while the output (z Λ−1 Λ/2 , u 2ψ−1 0,odd ) will
+1 if λ = 0 then return // Stopping condition 2 set ψ ← ϕ/2
+3 if ϕ mod 2 = 0 then recursivelyCalcP(λ − 1,ψ) 4 for β = 0, 1, . . . , 2 m−λ − 1 do // calculation
+5 	 if ϕ mod 2 = 0 then // apply Equation (1) 6 	 for u ∈ {0,1} do
+7 	 P λ [ ϕ, β ][u ] ← 	 u 1 2 P λ−1 [ ψ, 2β ][u ⊕ u ] · P λ−1 [ ψ, 2β + 1 ][u ]
+8 	 else 	 // apply Equation (2) 9 	 set u ← B λ [ ϕ − 1,β ]
+11 	 P λ [ ϕ, β ][u ] ← 1 2 P λ−1 [ ψ, 2β ][u ⊕ u ] · P λ−1 [ ψ, 2β + 1 ][u ]
+have a branch number of 2β + 1 (recall the even branch/odd branch naming). Similarly to tagging the output of a channel by the branch number β, we do the same for the input to it.
+The running time of the SC decoder is O (n log n), and our implementation is no exception. As we have previously noted, the space complexity of our algorithm is O (n log n) as well. However, we will now show how to bring the space complexity down to O (n). The observation that one can reduce the space complexity to O (n) was noted, in the context of VLSI design, in [5].
+As a ﬁrst step towards this end, consider the probability pair array P m . By examining the main loop in Algorithm 1, we quickly see that if we are currently at phase ϕ, then we will never again make use of P m [ ϕ , 0 ] for all ϕ < ϕ. On the other hand, we see that P m [ ϕ , 0 ] are uninitialized for all ϕ > ϕ. Thus, instead of reading and writing to P m [ ϕ, 0 ], we can essentially disregard the phase information, and use only the ﬁrst element P m [0] of the array, discarding all the rest. By the recursive nature of polar codes, this observation — disregarding the phase information — can be exploited for a general layer λ as well. Speciﬁcally, for all 0 ≤ λ ≤ m, let us now deﬁne the number of elements in P λ to be 2 m−λ . Accordingly, we must also replace all references of the generic form P λ [ ϕ, β ] by P λ [β].
+Note that the total space needed to hold the P arrays has gone down from O (n log n) to O(n). We would now like to do the same for the B arrays. However, as things are currently stated, we can not disregard the phase, as can be seen for example in line 3 of Algorithm 2. The solution is a simple renaming. As a ﬁrst step, let us deﬁne for each 0 ≤ λ ≤ m an array C λ consisting of bit pairs and having length n/ 2. Next, let a generic reference of the form B λ [ ϕ, β ] be replaced by C λ [ψ + β ·2 λ−1 ][ϕ mod 2], where ψ = ϕ/2 . Note that we have done nothing more than rename the elements of B λ as elements of C λ . However, we now see that as before we can disregard the value of ψ and take note only of the parity of ϕ. So, let us make one more substitution: replace C λ [ψ + β · 2 λ−1 ][ϕ mod 2] by C λ [β][ϕ mod 2], and resize each array C λ to have 2 m−λ bit pairs. The alert reader will notice that a further reduction in space is possible, since for λ = 0 we will always have that ϕ = 0 and thus its parity is always even. However, this reduction does not affect the asymptotic space complexity which is now indeed down to O (n).
+The main loop of the new algorithm is given as Algorithm 4. The helper functions are given as Algorithms 5 and 6, with the added condition of ignoring the parameter (deﬁned and used in the next section) and any lines making reference to it.
+We end this subsection by mentioning that although we were concerned here with reducing the space complexity of our SC decoder, the observations made with this goal in mind will be of great use in analyzing the time complexity of our list decoder.
+Algorithm 4: Space efﬁcient SC decoder, main loop Input: the received vector y
+2 	 set P 0 [β][0] ← W(y β |0), P 0 [β][1] ← W(y β |1) // Main loop
+4 	 recursivelyCalcP (m, ϕ) 5 	 if ˆ u ϕ is frozen then
+6 	 set C m [0][ϕ mod 2] to the frozen value 7 	 else
+9 	 set C m [0][ϕ mod 2] ← 0 10 	 else
+1 if λ = 0 then return 2 set ψ ← ϕ/2
+3 if ϕ mod 2 = 0 then recursivelyCalcP(λ − 1,ψ) // Perform the calculation
+7 	 if ϕ mod 2 = 0 then // apply Equation (1) 8 	 for u ∈ {0,1} do 9 	 P λ [β][u ] ←
+10 	 else 	 // apply Equation (2) 11 	 C λ ← getArrayPointer_C(λ, ) 12 	 set u ← C λ [β][0]
+13 	 for u ∈ {0,1} do 14 	 P λ [β][u ] ←
+Algorithm 6: recursivelyUpdateC (λ, ϕ, ) Require: ϕ is odd
+2 set C λ−1 ← getArrayPointer_C(λ − 1, ) 3 set ψ ← ϕ/2
+5 	 C λ−1 [2β][ψ mod 2] ← C λ [β][0] ⊕ C λ [β][1] 6 	 C λ−1 [2β + 1][ψ mod 2] ← C λ [β][1]
+In this section we introduce and deﬁne our algorithm, the successive cancellation list (SCL) decoder. Our list decoder has a parameter L, called the list size. Generally speaking, larger values of L mean lower error rates but longer running times. We note at this point that successive cancellation list decoding is not a new idea: it was applied in [6] to Reed- Muller codes 2 .
+Recall the main loop of an SC decoder, in which at each phase we must decide on the value of ˆ u ϕ . In an SCL decoder, instead of deciding to set the value of an unfrozen ˆ u ϕ to either a 0 or a 1, we inspect both options. Namely, at each phase, when decoding a non-frozen bit, we split each decoding path into two paths (see Figure 2). Of course, since the number of paths grows exponentially, we must prune them, and the maximum number of paths allowed is the speciﬁed list size, L. Naturally, we would like to keep the best paths at each stage, and thus require a pruning criterion.
+Consider the following outline for a naive implementation of an SCL decoder. Each time a decoding path is split in two, the data structures used by the “parent” path are duplicated, with one copy given to the ﬁrst split and the other to the second. Since the number of splits occurring is O (L ·n), and since the size of the data structures used by each path is at least O (n), the copying operation alone would take time at least O (L · n 2 ). This running time is clearly impractical for all but the shortest of codes. However, all known (to us) implementations of successive cancellation list decoding have complexity at least O (L · n 2 ). Our main contribution in this section is the following: we show how to implement SCL decoding with time complexity O (L · nlog n) instead of O(L · n 2 ).
+The key observation is as follows. Consider the P arrays of the last section, and recall that the size of P λ is proportional to 2 m−λ . Thus, the cost of copying P λ grows exponentially small with λ. On the other hand, when looking at the main loop of Algorithm 4 and unwinding the recursion, we see that P λ is accessed only every 2 m−λ incrementations of ϕ in Algorithm 4. Put another way, the bigger P λ is, the less frequently it is accessed. The same observation applies to the C arrays. This observation suggest the use of a “lazy copy”. Namely, At each given stage, the same array may be ﬂagged as belonging to more than one decoding path . However, when a given decoding path needs access to an array it is sharing with another path, a copy is made.
+The previous high level description translates into quite a bit of book-keeping, through the use of auxiliary arrays and queues. Unfortunately, space limitations prevent us from furnishing all of the relevant pseudo code in this paper. Algorithms 5–10 are all that we have managed to ﬁt in, and we hope the names of the missing functions give a good hint as to what they do. Likewise, we do not elaborate on how we have chosen the pruning function. Lastly, if one were to try to implement our pseudo code, they would quickly discover numerical problems; speciﬁcally underﬂow. This can be overcome through careful normalization of the probabilities. We close by promising that a full version of this paper, with all the missing details and explanations, will be posted on arXiv.
+2 inactiveArrayIndices ← new array of size m, the elements of which are queues
+5 pathIndexToArrayIndex ← new 2-D array of size m×L 6 arrayPointer P ← new 2-D array of size m × L, the
+7 arrayPointer C ← new 2-D array of size m × L, the elements of which are array pointers
+10 	 arrayPointer P [λ][s] ← new array of ﬂoat pairs of size 2 m−λ
+11 	 arrayPointer C [λ][s] ← new array of bit pairs of size 2 m−λ
+12 	 arrayReferenceCount [λ][s] ← 0 13 	 push (inactiveArrayIndices[λ], s)
+14 for = 0, 1, . . . , L − 1 do 15 	 activePath [ ] ← false
+// Get the new path index, and mark its arrays
+17 	 ← pop(inactivePathIndices) 18 activePath [ ] ← true
+20 	 s ← pop(inactiveArrayIndices[λ]) 21 	 pathIndexToArrayIndex [λ][ ] ← s 22 	 arrayReferenceCount [λ][s] ← 1
+2 	 if pathIndexInactive ( ) then continue 3 	 C m ← getArrayPointer_C(m, )
+1 forksArray ← new (ﬂoat,bit,index)-triplets array of size 2L
+4 	 if pathIndexInactive ( ) then continue 5 	 P m ← getArrayPointer_P(m, ) 6 	 forksArray [ 2i] ← (P m [0][0], 0, )
+7 	 forksArray [ 2i + 1] ← (P m [0][1], 1, ) 8 	 i ← i + 1
+10 rearrange the entries of forksArray so that for all α < ρ and β ≥ ρ we have that
+forksArray [α][0] ≥ forksArray[β][0] // Pick the best ρ forks
+11 contForks ← new (boolean,boolean)-pairs array of size L
+12 initialize all elements of contForks to (false,false) 13 for r = 0, 1, . . . , ρ − 1 do 14 	 ← forksArray[r][2]
+18 	 if pathIndexInactive ( ) then 19 	 continue
+contForks [ ][0] = false and contForks[ ][1] = false then
+// Continue relevant paths, and duplicate if necessary
+22 for = 0, 1, . . . , L − 1 do 23 	 if
+26 	 if contForks [ ][0] = true and contForks[ ][1] = true then // both forks are good
+27 	 set C m [0][ϕ mod 2] ← 0 28 	 ← clonePath( )
+29 	 C m ← getArrayPointer_C(m, ) 30 	 set C m [0][ϕ mod 2] ← 1
+31 	 else// exactly one fork is good 32 	 if contForks [ ][0] = true then 33 	 set C m [0][ϕ mod 2] ← 0
+Input: the received vector y and a list size L as a global Output: a decoded codeword ˆ c
+2 P 0 ← getArrayPointer_P(0, ) 3 for β = 0, 1, . . . , n − 1 do
+4 	 set P 0 [β][0] ← W(y β |0), P 0 [β][1] ← W(y β |1) // Main loop
+7 	 if pathIndexInactive ( ) then 8 	 continue
+11 	 continuePaths_FrozenBit (ϕ) 12 	 else
+16 	 if pathIndexInactive ( ) then 17 	 continue
+21 	 if pathIndexInactive ( ) then 22 	 continue
+23 	 C m ← getArrayPointer_C(m, ) 24 	 P m ← getArrayPointer_P(m, ) 25 	 if p < P m [0][C m [0][1]] then
+[[[ REFS ]]]
+E. Arıkan
+--
+Channel polarization: A method for constructing capacity- achieving codes for symmetric binary-input memoryless channels
+----
+E. Arıkan 
+E. Telatar
+--
+On the rate of channel polarization
+----
+S. B. Korada
+E. S¸as¸o˘glu
+R. Urbanke
+--
+Polar codes: Characterization of exponent, bounds, and constructions
+----
+I. Tal 
+A. Vardy
+--
+How to construct polar codes
+----
+C. Leroux
+I. Tal
+A. Vardy
+W. J. Gross
+--
+Hardware ar- chitectures for successive cancellation decoding of polar codes
+----
+I. Dumer 
+K. Shabunov
+--
+Soft-decision decoding of Reed-Muller codes: recursive lists
+[[[ META ]]]
+parsed -> yes
+file -> C:\Users\Jonny\Desktop\isit\001.pdf
+[[[ LINKS ]]]
+

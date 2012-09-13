@@ -34,13 +34,13 @@ case class Paper(val id :       Int,
   def setMeta(p : (String, String)) : Paper = 
     return Paper(id, index, title, authors, abstr, body, refs, meta + p, links)
 
-  def setTitle(t : String) : Paper =
-    return Paper(id, index, Title(t), authors, abstr, body, refs, meta, links)
+  def setTitle(t : Title) : Paper =
+    return Paper(id, index, t, authors, abstr, body, refs, meta, links)
 
   def setAuthors(as : List[Author]) : Paper =
     return Paper(id, index, title, as, abstr, body, refs, meta, links)
 
-  def hasMeta(l : String) : Boolean = (meta.get(l) == None)
+  def hasMeta(l : String) : Boolean = (meta.get(l) != None)
 
   def setId(newId : Int) : Paper = 
     return Paper(newId, index, title, authors, abstr, body, refs, meta, links)
@@ -50,6 +50,15 @@ case class Paper(val id :       Int,
 
   def setLinks(newLinks : List[Link]) : Paper = 
     return Paper(id, index, title, authors, abstr, body, refs, meta, newLinks)
+    
+  def setAbstract(newAbstract : Abstract) : Paper = 
+    return Paper(id, index, title, authors, newAbstract, body, refs, meta, links)
+    
+  def setBody(newBody : Body) : Paper = 
+    return Paper(id, index, title, authors, abstr, newBody, refs, meta, links)
+    
+  def setReferences(newRefs : List[Reference]) : Paper = 
+    return Paper(id, index, title, authors, abstr, body, newRefs, meta, links)
 }
 
 case class Title(t: String) extends Term {
