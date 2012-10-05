@@ -41,6 +41,7 @@ object XMLParagraphOptions {
 	val COLUMN_LEFT = "CLL"
 	val COLUMN_RIGHT = "CLR"
 	val NO_COLUMN = "NCL"
+	val ENUMERATION = "ENM"
 	val NONE = "NON"
 }
 
@@ -62,22 +63,23 @@ class XMLLine(fontID: String, position: XMLPosition, text: String) {
 }
 
 // This class represents a paragraph contained in a page
-class XMLParagraph(fontID: String, position: XMLPosition, options: XMLParagraphOptionsContainer, lines: List[XMLLine], linesSeparator: String, text: String) {
+class XMLParagraph(fontID: String, position: XMLPosition, options: XMLParagraphOptionsContainer, lines: List[XMLLine], linesSeparator: String, text: String, enumFormat: String) {
 	def getFontID: String = fontID
 	def getPosition: XMLPosition = position
 	def getText: String = text
 	def getLines: List[XMLLine] = lines
+	def getEnumerationFormat: String = enumFormat
 	
-	def addOption(option: String): XMLParagraph = new XMLParagraph(fontID, position, options.addOption(option), lines, linesSeparator, text)
+	def addOption(option: String): XMLParagraph = new XMLParagraph(fontID, position, options.addOption(option), lines, linesSeparator, text, enumFormat)
 	def hasOption(option: String): Boolean = options.hasOption(option)
-	def removeOption(option: String): XMLParagraph = new XMLParagraph(fontID, position, options.removeOption(option), lines, linesSeparator, text)
+	def removeOption(option: String): XMLParagraph = new XMLParagraph(fontID, position, options.removeOption(option), lines, linesSeparator, text, enumFormat)
 	def getOptionsValue: String = options.getValue
 	
 	// This method adds a new XMLLine to the paragraph. However, the added line will be the first one on the list, so pay attention!
 	// The text and position arguments will be correctly updated
-	def addLine(line: XMLLine): XMLParagraph = new XMLParagraph(fontID, new XMLPosition(Math.min(position.getX, line.getPosition.getX), position.getY, Math.max(position.getX + position.getWidth, line.getPosition.getX + line.getPosition.getWidth) - Math.min(position.getX, line.getPosition.getX), (line.getPosition.getY + line.getPosition.getHeight) - position.getY), options, line :: lines, linesSeparator, text + linesSeparator + line.getText)
-	def addParagraph(newParagraph: XMLParagraph): XMLParagraph = new XMLParagraph(fontID, new XMLPosition(Math.min(position.getX, newParagraph.getPosition.getX), position.getY, Math.max(position.getX + position.getWidth, newParagraph.getPosition.getX + newParagraph.getPosition.getWidth) - Math.min(position.getX, newParagraph.getPosition.getX), (newParagraph.getPosition.getY + newParagraph.getPosition.getHeight) - position.getY), options, newParagraph.getLines ::: lines, linesSeparator, text + linesSeparator + newParagraph.getText)
-	def reverseLines: XMLParagraph = new XMLParagraph(fontID, position, options, lines.reverse, linesSeparator, text)
+	def addLine(line: XMLLine): XMLParagraph = new XMLParagraph(fontID, new XMLPosition(Math.min(position.getX, line.getPosition.getX), position.getY, Math.max(position.getX + position.getWidth, line.getPosition.getX + line.getPosition.getWidth) - Math.min(position.getX, line.getPosition.getX), (line.getPosition.getY + line.getPosition.getHeight) - position.getY), options, line :: lines, linesSeparator, text + linesSeparator + line.getText, enumFormat)
+	def addParagraph(newParagraph: XMLParagraph): XMLParagraph = new XMLParagraph(fontID, new XMLPosition(Math.min(position.getX, newParagraph.getPosition.getX), position.getY, Math.max(position.getX + position.getWidth, newParagraph.getPosition.getX + newParagraph.getPosition.getWidth) - Math.min(position.getX, newParagraph.getPosition.getX), (newParagraph.getPosition.getY + newParagraph.getPosition.getHeight) - position.getY), options, newParagraph.getLines ::: lines, linesSeparator, text + linesSeparator + newParagraph.getText, enumFormat)
+	def reverseLines: XMLParagraph = new XMLParagraph(fontID, position, options, lines.reverse, linesSeparator, text, enumFormat)
 }
 
 // This class is the representation of a page

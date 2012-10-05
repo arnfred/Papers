@@ -3,7 +3,7 @@ package paper
 object Analyze {
   def main(args : Array[String]): Unit = {
     // create analyse
-    val A : Analyzer = new Analyzer()
+    val A : Analyzer = new Analyzer()    
     
     // Check that a directory is supplied (there is an argument)
     if (args.length != 1) println("You really need to supply a directory as argument");
@@ -36,21 +36,21 @@ class Analyzer extends Object with LoadPaper
     val papers : List[Paper] = load(paperPos, cache, XMLParser, XMLConverterLoader)
 
     println("PARSING COMPLETED!!!")
-    println("BEGIN OF GRAPH OPERATIONS")
+    //println("BEGIN OF GRAPH OPERATIONS")
     // Mix in the schedule XML data
-    val xmlPapers : List[Paper] = getXMLSchedule(paperPos, papers)
+    //val xmlPapers : List[Paper] = getXMLSchedule(paperPos, papers)
 
     // Compare the papers individually
-    val comparedPapers : List[Paper] = compare(xmlPapers, limit)
+    //val comparedPapers : List[Paper] = compare(xmlPapers, limit)
 
     // Extend papers with tertiary data
-    val extendedPapers : List[Paper] = extend(comparedPapers, sources) 
+    //val extendedPapers : List[Paper] = extend(comparedPapers, sources) 
     
     // Create graph
-    val graph : Graph = getGraph(extendedPapers)
+    //val graph : Graph = getGraph(extendedPapers)
 
     // Print graph to file 'data.json'
-    graph.save
+    //graph.save
 
   }
 }
