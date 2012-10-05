@@ -5,11 +5,15 @@ import scala.xml.NodeSeq
 
 
 object XMLObjectsManager {
+   
+   def getCleanXMLParagraph(lineSeparator: String): XMLParagraph = new XMLParagraph("", new XMLPosition(0, 0, 0, 0), new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE), List(), lineSeparator, "", "")
+  
    // Since the xml file sometimes creates different fonts with the same features (size, family, etc), it
    // is important to create a structure that takes into account this detail and hides it.
    // The XMLFont class performs this job. XMLFontsContainer just contains the list of XMLFont objects
    private def getFontsContainer(xml: Elem): Option[XMLFontsContainer] = {
        val pages = (xml \\ "page")
+       
        
        // This method updates the previous XMLFont list with the new fonts defined in the page.
 	   def getXMLFontListFromPage(previousList: List[XMLFont], pageNumber: String): List[XMLFont] = {
