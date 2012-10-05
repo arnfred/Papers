@@ -43,12 +43,13 @@ object TalkDates extends PaperSource {
   def getLabel : String = "date"
 }
 
+
+// Adds the link of the pdf to the paper
 object PdfLink extends PaperSource {
   import scala.util.Random
 
-  // TODO: This is also just a temporary thing
   def getInfo(p : Paper) : String = {
-    
+
     var f : String = p.meta("file")
     var pdf : String = f.takeWhile(_!='.').concat(".pdf")
     return pdf;
@@ -72,6 +73,10 @@ object TalkRooms extends PaperSource {
 }
 
 
+/** Extend paper loops through a list of sources. Each source implements the
+ * interface paperSource and provides two methods: getLabel and getInfo.
+ * Get label returns the map label, while getInfo returns the particular information
+ */
 trait ExtendPaper {
 
   def extend(papers : List[Paper], sources : List[PaperSource]) : List[Paper] = {
@@ -81,7 +86,7 @@ trait ExtendPaper {
       var result : Paper = p
 
       // For each source, check if it's already added, and if not, add it
-      for (s <- sources if p.hasMeta(s.getLabel)) {
+      for (s <- sources if !p.hasMeta(s.getLabel)) {
         result = result.setMeta(s.getLabel, s.getInfo(p))
       }
 
