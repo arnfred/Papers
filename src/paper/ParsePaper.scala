@@ -4,6 +4,7 @@ import scala.collection.immutable.Stream
 import scala.collection.immutable.StringOps
 import scala.util.parsing.input._
 import scala.io.Source
+import java.io.File
 
 abstract class Parsers {
   def parse(file : Source) : Option[Paper]
@@ -60,7 +61,7 @@ trait ParsePaper {
           ^^ { x => x.init.map { a => Author(a.mkString) } } )
 
     def refTitle : Parser[Title] = (
-        until(",”" | "”," | "”." | ".") ^^ (s => Title(s.mkString))
+        until(",\"" | "\"," | "\"." | ".") ^^ (s => Title(s.mkString))			// Character modification. Possible errors in the future !!!
       | success(Title("")))
 
     def reference : Parser[Reference] = (
@@ -73,7 +74,6 @@ trait ParsePaper {
 
     // The function for actually parsing a paper
     def parse(file : Source) : Option[Paper] = {
-
       paper(getText(file)) match {
         case Failure(msg, rest)       => println("Failure: " + msg); None
         case Success(result, rest)    => Some(result.setMeta("parsed" -> "yes"))

@@ -5,6 +5,7 @@ import scala.collection.immutable.Stream
 import scala.io.Source
 import java.io._
 
+
 object Cache {
   
   // Constants
@@ -126,9 +127,8 @@ object Cache {
 
 trait LoadPaper {
 
-  def load(name : String, postfix : List[String], parser : Parsers) : List[Paper] = {
-
-    // Get file handle of original file or directory
+  def load(name : String, postfix : List[String], parser : Parsers, loader : FileLoader) : List[Paper] = {
+	// Get file handle of original file or directory
     val orig = new File(name)
 
     // Check that directory or file exists
@@ -138,10 +138,10 @@ trait LoadPaper {
     var fnames : List[String]  = List(name)
     var files : List[File]  = List(orig)
 
-    // In case it's a directory, let the file array contain all the files of the directory
+    // In case it's a directory, let the file array contain all the files of the directory (regex utilization)
     if (orig.isDirectory) {
-      files   = orig.listFiles.filter(f => """.*\.txt$""".r.findFirstIn(f.getName).isDefined).toList
-      fnames  = files.filter(n => n.getName != ".txt").map(f => name ++ f.getName)
+    	files   = SystemHelper.getFilesFromDirectory(orig)			// MODIFIED
+    	fnames  = files.map(f => name ++ f.getName)
     }
 
     // If postfix exists, try loading from cache
@@ -149,7 +149,7 @@ trait LoadPaper {
     if (postfix != Nil) somePapers = files.map(f => loadFromCache(f, postfix))
 
     // All papers that weren't loaded by cache are loaded by file
-    somePapers = somePapers.zip(files).map(p => if (p._1 == None) loadFromFile(p._2, parser) else p._1)
+    somePapers = somePapers.zip(files).map(p => if (p._1 == None) loadFromFile(p._2, parser, loader) else p._1)
 
     // Filter papers for None's and set index
     val papers : List[Paper] = somePapers.filter(p => p != None).zipWithIndex.map({case Pair(p,i) => p.get.setIndex(i) }).toList
@@ -158,31 +158,28 @@ trait LoadPaper {
   }
 
 
-  // Loads a paper from a text file and parses it
-  def loadFromFile(file : File, p : Parsers) : Option[Paper] = {
+  // Loads a paper from a text file and parses it. It has been modified in order to make loading and parsing flexible
+  def loadFromFile(file : File, p : Parsers, loader: FileLoader) : Option[Paper] = {
 
-    // Check if file is bad
-    if (checkIfBad(file)) return None
-
-    println("parsing " + file.getPath)
-    val maybePaper : Option[Paper] = p.parse(Source.fromFile(file))
-    // If paper exists and parsed, save it in cache
-    if (maybePaper != None) {
-      // Get index
-      var id = file.getPath.split('/').last.split('.').first.toInt
-      // Set filename and id
-      val paper : Paper = maybePaper.get.setMeta("file" -> file.getPath).setId(id)
-      // Save and return
-      Cache.save(paper.clean, Cache.parsed)
-      return Some(paper)
-    }
+    // Check if file is bad or contains non numerical values (in the name)
+    if (checkIfBad(file) || """[^0-9]+""".r.findFirstIn(SystemHelper.name(file.getName())).isDefined) return None
+    
+    val result = loader.loadFromFile(file, p)
+    
     // If paper doesn't exist and didn't parse, let's not parse it again
-    else {
-      Cache.bad(file)
-      return None
-    }
+    if(result == None) return isBadFile(file)
+    else Cache.save(result.get.clean, Cache.parsed)          // Save and return
+    
+    return result
   }
 
+  
+  def isBadFile(file: File): Option[Paper] = {
+      println("Couldn't parse " + file.getName())
+      Cache.bad(file)
+      return None
+  }
+  
   def checkIfBad(file : File) : Boolean = {
 
     // Get file
@@ -219,4 +216,6 @@ trait LoadPaper {
       }
     }
   }
+  
+  
 }
