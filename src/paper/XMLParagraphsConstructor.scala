@@ -54,13 +54,26 @@ object XMLParagraphsConstructor {
 		
 		// This is the main step of the process (see documentation). The output of the method is (newParagraph, line included?, paragraph will continue?)
 		def linkLine(line: XMLLine, paragraph: XMLParagraph): (XMLParagraph, Boolean, Boolean) = {		  
+			def constructEnumFormat(line: String): String = {
+				val enumRegex = """^([^0-9]*)?[0-9]+([^0-9]+?) """
+				  
+				if(line.length < 5) return ""
+				else {
+					val result = enumRegex.r.findFirstIn(line.take(5))
+					if(result.isDefined) return """[0-9]""".r.replaceAllIn(result.get, "{d}").dropRight(1)
+					else return ""
+				}
+			}
+		  
 			val lineCenter = ((2 * line.getPosition.getX) + line.getPosition.getWidth) / 2
-
+			val enumFormat = constructEnumFormat(line.getText)
+			
 			// First paragraph's line (rule 1)
 			if(paragraph.getLines.length == 0) {
 				val optionContainer = if(pageCenter === lineCenter) (new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE)).addOption(XMLParagraphOptions.PAGE_CENTERED) else new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE)
-
-				return (new XMLParagraph(line.getFontID, line.getPosition, optionContainer, List(line), lineSeparator, line.getText), true, true)
+				val enumeratedOptionContainer = if(enumFormat != "") optionContainer.addOption(XMLParagraphOptions.ENUMERATION) else optionContainer
+				
+				return (new XMLParagraph(line.getFontID, line.getPosition, enumeratedOptionContainer, List(line), lineSeparator, line.getText, enumFormat), true, true)
 			}
 			
 			// Calculate some important parameters
@@ -81,6 +94,9 @@ object XMLParagraphsConstructor {
 			if(lineTop - previousLineTop > 2*lineHeight || !fontsContainer.getXMLFont(paragraph.getFontID).get.checkID(line.getFontID)) return (paragraph, false, false)
 			// Rule 3: The current line is not a title but previous is (contains only capital letters), even if the have the same font
 			if(lineCapitalVersurNotDifference <= 0 && previousLineCapitalVersurNotDifference > 0) return (paragraph, false, false)
+			// If both lines have the same enumeration format (which must be defined), then the current line is a new enumeration, hence it belongs to a new paragraph
+			if(paragraph.hasOption(XMLParagraphOptions.ENUMERATION) && enumFormat == paragraph.getEnumerationFormat) return (paragraph, false, false)
+			
 			
 			// This is the second paragraph's line
 			if(paragraph.getLines.length == 1) {
@@ -149,7 +165,7 @@ object XMLParagraphsConstructor {
 		def constructParagraphs(lines: NodeSeq, accu: List[XMLParagraph]): List[XMLParagraph] = lines.isEmpty match {
 		  case true => accu
 		  case false =>
-		    val construction = constructNewParagraph(lines, new XMLParagraph("", new XMLPosition(0, 0, 0, 0), new XMLParagraphOptionsContainer(XMLParagraphOptions.NONE), List(), lineSeparator, ""))
+		    val construction = constructNewParagraph(lines, XMLObjectsManager.getCleanXMLParagraph(lineSeparator))
 		    val layoutParagraph = setLayout(construction._2.reverseLines)
 		    constructParagraphs(construction._1, layoutParagraph :: accu)
 		}
