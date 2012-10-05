@@ -74,7 +74,7 @@ trait XMLScheduleParser {
          .setMeta("xmlpapertitle"  -> (xml \\ "papertitle").text)
          .setMeta("xmlabstract"    -> (xml \\ "abstract").text)
          .setMeta("xmlauthors"     -> getAuthors(xml \\ "authors").mkString(", "))
-         .setTitle((xml \\ "papertitle").text)
+         .setTitle(new Title((xml \\ "papertitle").text))
          .setAuthors(getAuthors(xml \\ "authors").map(a => Author(formatAuthors(a))))
   }
 

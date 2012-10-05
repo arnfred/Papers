@@ -2,13 +2,11 @@ package paper
 
 object Analyze {
   def main(args : Array[String]): Unit = {
-
     // create analyse
     val A : Analyzer = new Analyzer()
-
+    
     // Check that a directory is supplied (there is an argument)
-    if (args.length == 0) println("You really need to supply a directory as argument");
-
+    if (args.length != 1) println("You really need to supply a directory as argument");
     // Then go ahead
     else A.analyze(args(0))
   }
@@ -35,8 +33,10 @@ class Analyzer extends Object with LoadPaper
   def analyze(paperPos: String): Unit = {
 
     // Get a list of parsed papers
-    val papers : List[Paper] = load(paperPos, cache, Isit)
+    val papers : List[Paper] = load(paperPos, cache, XMLParser, XMLConverterLoader)
 
+    println("PARSING COMPLETED!!!")
+    println("BEGIN OF GRAPH OPERATIONS")
     // Mix in the schedule XML data
     val xmlPapers : List[Paper] = getXMLSchedule(paperPos, papers)
 
