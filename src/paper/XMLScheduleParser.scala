@@ -1,4 +1,5 @@
 package paper
+import java.io.File
 
 trait XMLScheduleParser {
 
@@ -7,11 +8,14 @@ trait XMLScheduleParser {
 
   // Overall function that loads the xml schedule and returns the papers with the extra data
   def getXMLSchedule(paperPos : String, papers : List[Paper]) : List[Paper] = {
-
+	val path = paperPos + "/schedule.xml"
+	
+    if (!(new File(path)).exists()) return papers;
+	
     // Parse schedule
-    val xml : Map[Int, Elem] = parse(paperPos)
+    val xml : Map[Int, Elem] = parse(path)
 
-    // match scedule with papers
+    // match schedule with papers
     return matchXML(xml, papers);
   }
 
@@ -19,7 +23,7 @@ trait XMLScheduleParser {
   def parse(paperPos : String) : Map[Int, Elem] = {
 
     // Load schedule file
-    val schedule : Elem = XML.loadFile(paperPos + "/schedule.xml")
+    val schedule : Elem = XML.loadFile(paperPos)
 
     // Initialize Map
     var data : Map[Int, Elem] = Map.empty

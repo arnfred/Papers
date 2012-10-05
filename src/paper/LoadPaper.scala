@@ -115,8 +115,6 @@ object Cache {
       case line         => map = map + (current -> (line :: map(current)))
     }
 
-    //println(map.mkString("\n"))
-
     // Now gather it
     val refs = for (i <- 0 to index) yield Reference(stringToAuthors(map("authors" + i)), Title(map("title" + i).head))
     return refs.toList
@@ -135,24 +133,19 @@ trait LoadPaper {
     if (!orig.exists) sys.error("Something is wrong with the file or directory in the argument")
 
     // If exists, set name and file
-    var fnames : List[String]  = List(name)
-    var files : List[File]  = List(orig)
-
     // In case it's a directory, let the file array contain all the files of the directory (regex utilization)
-    if (orig.isDirectory) {
-    	files   = SystemHelper.getFilesFromDirectory(orig)
-    	fnames  = files.map(f => name ++ f.getName)
-    }
+    val files : List[File]  = if(orig.isDirectory) SystemHelper.getFilesFromDirectory(orig) else List(orig)
+    val fnames : List[String]  = if(orig.isDirectory) files.map(f => name ++ f.getName) else List(name)
+
 
     // If postfix exists, try loading from cache
-    var somePapers : List[Option[Paper]] = Nil
-    if (postfix != Nil) somePapers = files.map(f => loadFromCache(f, postfix))
+    val somePapers : List[Option[Paper]] = if (postfix != Nil) files.map(f => loadFromCache(f, postfix)) else Nil
 
     // All papers that weren't loaded by cache are loaded by file
-    somePapers = somePapers.zip(files).map(p => if (p._1 == None) loadFromFile(p._2, parser, loader) else p._1)
+    val finalPapers = somePapers.zip(files).map(p => if (p._1 == None) loadFromFile(p._2, parser, loader) else p._1)
 
     // Filter papers for None's and set index
-    val papers : List[Paper] = somePapers.filter(p => p != None).zipWithIndex.map({case Pair(p,i) => p.get.setIndex(i) }).toList
+    val papers : List[Paper] = finalPapers.filter(p => p != None).zipWithIndex.map({case Pair(p,i) => p.get.setIndex(i) }).toList
 
     return papers
   }

@@ -5,7 +5,7 @@ import scala.io.BufferedSource
 
 // This object provides helpful methods for file and system managing
 object SystemHelper {
-	private val supportedFormats = """txt|pdf"""
+	private val supportedFormats = """pdf"""
 	private val os = sys.props.get("os.name")
 	  
 	def ext(file: String) = ("""\..+$""".r.findFirstIn(file).get).tail
