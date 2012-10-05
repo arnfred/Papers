@@ -61,8 +61,9 @@ trait AuthorsExtractor1 extends InformationExtractor{
 	def extractAuthors(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val list = untilFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
 		val remainingList = paragraphs.drop(list.length)
-		  
+		
 		// Finding of the most at the top paragraphs
+		if(list.length == 0) return (paragraphs, paper)
 		val minTop = list.map((p:XMLParagraph) => p.getPosition.getY).min
 		val unprocessedAuthorsList = list.filter((p:XMLParagraph) => p.getPosition.getY == minTop)
 		
@@ -114,7 +115,7 @@ trait TitleExtractor1 extends InformationExtractor {
 		}
 		
 		val maxSizeIDFont = xml.getFontsContainer.getXMLFont(findMaxSizeID(paragraphs.take(10)))
-        val title = findFirstOf(paragraphs, p => maxSizeIDFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.PAGE_CENTERED))
+        val title = findFirstOf(paragraphs, p => maxSizeIDFont.get.checkID(p.getFontID) || p.hasOption(XMLParagraphOptions.PAGE_CENTERED))
 
         if(title.length != 0) (title.tail, paper.setTitle(new Title(title.head.getText.replace("\n", " "))))
         else (paragraphs, paper)

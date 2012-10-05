@@ -140,7 +140,7 @@ trait LoadPaper {
 
     // In case it's a directory, let the file array contain all the files of the directory (regex utilization)
     if (orig.isDirectory) {
-    	files   = SystemHelper.getFilesFromDirectory(orig)			// MODIFIED
+    	files   = SystemHelper.getFilesFromDirectory(orig)
     	fnames  = files.map(f => name ++ f.getName)
     }
 
