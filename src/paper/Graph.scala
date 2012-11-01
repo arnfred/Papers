@@ -1,31 +1,22 @@
 package paper
 
-//  {"nodes":[
-//  	{"name":"Myriel"},
-//  	{"name":"Napoleon"},
-//  	{"name":"Mlle.Baptistine"},
-//  	{"name":"Mme.Magloire"}],
-//  
-//   "links":[
-//  	{"source":1,"target":3,"value":1},
-//  	{"source":2,"target":1,"value":50},
-//  	{"source":3,"target":2,"value":100},
-//  	{"source":0,"target":1,"value":1}]
-//  }
-
 trait Graphs {
 
-  def getGraph(papers : List[Paper]) : Graph = {
+  def getGraph(paperPos:String, papers : Option[List[Paper]]) : Graph = {
+    println("BEGIN OF GRAPH CREATION")
+    val loadedPapers = if(papers == None) CacheLoader.load(paperPos, Cache.linked) else papers.get
     // Add all papers as nodes
-    val nodes : List[Node] = for (p <- papers) yield makeNode(p)
+    val nodes : List[Node] = for (p <- loadedPapers) yield makeNode(p)
 
     // Then create all edges
-    val edges : List[Edge] = for (p <- papers; e <- makeEdges(p, nodes)) yield e
+    val edges : List[Edge] = for (p <- loadedPapers; e <- makeEdges(p, nodes)) yield e
 
+    println("END OF GRAPH CREATION")
     return new Graph(nodes, edges)
   }
 
-  def makeNode(paper : Paper) : Node = {
+  // MODIFICATION
+ def makeNode(paper : Paper) : Node = {
     println("Making node for " + paper.id)
     Node(paper.id, paper.meta("xmlpapertitle"), paper.meta("xmlauthors"), paper.meta("pdf"), paper.meta("xmldate"), paper.meta("xmlroom"))
   }
@@ -81,7 +72,7 @@ case class Node(id : Int, title : String, authors : String, pdf : String, date :
   }
 }
 
-case class Edge(from : Int, to : Int, weight : Int) {
+case class Edge(from : Int, to : Int, weight : Double) {
   override def toString : String = "{\"source\":" + from + ",\"target\":" + to + ",\"value\":" + weight + "}"
 }
 

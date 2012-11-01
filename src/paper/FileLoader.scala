@@ -5,11 +5,11 @@ import scala.io.BufferedSource
 
 // This object provides helpful methods for file and system managing
 object SystemHelper {
-	private val supportedFormats = """txt|pdf"""
+	private val supportedFormats = """pdf"""
 	private val os = sys.props.get("os.name")
 	  
-	def ext(file: String) = ("""\..+$""".r.findFirstIn(file).get).tail
-	def name(file: String) = """\..+$""".r.replaceAllIn(file, "")
+	def ext(file: String) = """^.+?\.""".r.findFirstIn(file.reverse).get.dropRight(1).reverse
+	def name(file: String) = """^.+?\.""".r.replaceAllIn(file.reverse, "").reverse
 	def isSupported(format: String): Boolean = ("^" + supportedFormats + "$").r.findFirstIn(format).isDefined
 	  
 	// Returns the files from a directory

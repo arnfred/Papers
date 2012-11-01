@@ -2,7 +2,7 @@ package paper
 import scala.collection.immutable.List
 
 
-object bagOfWords {
+ trait bagOfWords {
 
 
 	//return list of papers linked?
@@ -12,7 +12,7 @@ object bagOfWords {
 
 	//}
 	//}
-  
+  /*
 	def main(args: Array[String]): Unit = {
 
 	val directory : java.io.File = new java.io.File("NewDataset/")
@@ -20,6 +20,7 @@ object bagOfWords {
 	println(papersSorted.deep.mkString("\n"))			
 
 	}
+	*/
 
 
 	//}
@@ -27,14 +28,14 @@ object bagOfWords {
 
 
 	//compare based on scores and return List[Paper]
-	/*
-	def compareBoW(papers : List[Paper], limit : Int) : List[Paper] = {
+	def compareBoW(paperPos: String, papers : Option[List[Paper]], limit : Int) : List[Paper] = {
+	  val loadedPapers = if(papers == None) CacheLoader.load(paperPos, Cache.extended) else papers.get
 	  val matrixOfWeights: Array[Array[Double]] = getMatrixOfScores(new java.io.File("PapersDataset/"))
-			papers.map(p => {
+			loadedPapers.map(p => {
 				// Check that paper isn't already linked
 				if (p.meta.get("linked") == None) {
 					// Get list of papers that aren't current paper
-					val otherPapers = papers.filter(p != _)
+					val otherPapers = loadedPapers.filter(p != _)
 
 							// Compare to every other paper
 							// Test
@@ -56,7 +57,7 @@ object bagOfWords {
 				else p
 			})
 	}
-*/
+
 	def getScores(matrixOfScores: Array[Array[Double]], column: Int): List[Double] ={
 	  
 	  val matrixOfScoresTranspose = matrixOfScores.transpose
