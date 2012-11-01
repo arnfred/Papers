@@ -2,8 +2,6 @@ package paper
 import scala.collection.immutable.List
 
 
-
-
 object bagOfWords {
 
 
