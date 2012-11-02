@@ -100,7 +100,7 @@ case class Reference(authors: List[Author], title: Title) extends Term {
   def getTitle: Title = title
 }
 
-case class Link(index : Int, weight : Double) extends Term {
+case class Link(index : Int, weight : Int) extends Term {
   override def toString : String = index + " " + weight
 }
 

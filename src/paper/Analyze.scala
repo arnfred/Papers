@@ -1,7 +1,7 @@
 package paper
 
 object Analyze {
-  def main(args : Array[String]): List[Paper] = {
+  def main(args : Array[String]): Unit= {
     // create analyzer
     val A : Analyzer = new Analyzer()    
     
@@ -17,7 +17,6 @@ object Analyze {
 class Analyzer extends Object with LoadPaper
                               with ParsePaper 
                               with ExtendPaper
-                             // with ComparePaper
                               with bagOfWords
                               with XMLScheduleParser
                               with Graphs {
