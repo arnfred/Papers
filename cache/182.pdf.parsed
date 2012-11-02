@@ -1,0 +1,199 @@
+[[[ ID ]]]
+182
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Vector Gaussian Multiple Description Coding with Individual and Central Distortion Constraints
+[[[ AUTHORS ]]]
+Jun Chen
+Jia Wang
+[[[ ABSTR ]]]
+Abstract—We characterize the rate region of vector Gaussian multiple description coding with individual and central covari- ance distortion constraints. Speciﬁcally, we derive a lower bound and an upper bound for each supporting hyperplane of the rate region and show that these two bounds coincide. The rate region of vector Gaussian multiple description coding with individual and central trace distortion constraints as well as its extension to the stationary Gaussian process setup is also characterized.
+[[[ BODY ]]]
+Characterizing the rate region of multiple description coding is a longstanding open problem in network information theory. El Gamal and Cover (EGC) [1] established the ﬁrst general inner bound of the 2-description rate region, which was shown to be tight in the no-excess-rate case by Ahlswede [2]. The EGC inner bound was later improved by Zhang and Berger [3], and further extended to the general L-description case by Venkataramani, Kramer, and Goyal [4]. Related work on the symmetric multiple description problem can be found in [5]– [7].
+In view of the fact that a complete characterization of the multiple description rate region for general sources and distor- tion measures is likely difﬁcult to obtain, special attention has been paid to the quadratic Gaussian case. In particular, Ozarow [8] developed an ingenious converse argument and showed that the EGC inner bound is tight for the scalar Gaussian 2- description problem. Wang and Viswanath [9] discovered an insightful and highly non-trivial generalization of Ozarow’s argument, which enabled them to derive the minimum sum rate of vector Gaussian L-description coding with individual and central covariance distortion constraints (the scalar symmetric version was solved earlier in [4]).
+Recently the whole rate region was characterized for scalar Gaussian L-description coding with individual and central distortion constraints [10]. Speciﬁcally, a lower bound (ex- pressed as a max-min problem) and an upper bound (expressed as a min-max problem) were established in [10] for each supporting hyperplane of the rate region, and the two bounds were shown to coincide due to the existence of a saddle point. The goal of the present work is to extend this result to the vector case. It is worth noting that although the general proof strategy in [10] can be adopted in the vector case with no major conceptual change, one has to overcome signiﬁcant technical
+difﬁculties in order to obtain the desired generalization. For example, the saddle point analysis in [10] was done in a brute force manner; it appears to be a formidable task to carry out this type of analysis in the vector case, which requires, among other things, deriving explicit optimal solutions to certain complicated matrix functions. In contrast, we take a more conceptual approach based on Kakutani’s ﬁxed point theorem [11] in this work.
+The remainder of this paper is organized as follows. We state the main results in Section II. Section III contains two extremal inequalities that play important roles in characterizing the rate region of vector Gaussian multiple description coding with individual and central covariance distortion constraints. The saddle point analysis is given in Section IV. We characterize the rate region of vector Gaussian multiple description coding with individual and central trace distortion constraints as well as its extension to the stationary Gaussian process setup in Section V. Section VI contains some concluding remarks.
+E[(V − E[V|U ])(V − E[V|U ]) T ] by Σ V |U for any random object U and m × n random matrix V; for the special case where V is a 1 × n random vector, we sometimes denote
+σ 2 V |U respectively. We use R m ×n (or simply R n when m = 1) to denote the set of m × n real matrices.
+Let {X(t)} ∞ t =1 be an i.i.d. process, where X (t) is an m × 1 Gaussian random vector with mean zero and positive deﬁnite covariance matrix Σ X .
+Deﬁnition 1: A rate vector R 	 (R 1 , · · · , R L ) T is said to be achievable subject to individual covariance distortion constraint D (D {1} , · · · , D {L} ) and central covariance dis- tortion constraint D {1,··· ,L} if there exist encoding functions f (n) i : R m ×n → C (n) i , i = 1, · · · , L, such that
+set of all the achievable rate vectors subject to individual covariance distortion constraint D and central covariance distortion constraint D {1,··· ,L} .
+It can be readily shown through a simple time-sharing argument that R(Σ X , D, D {1,··· ,L} ) is a (closed) convex set. Therefore, to determine R(Σ X , D, D {1,··· ,L} ), it sufﬁces to characterize its supporting hyperplanes, i.e., to solve the following optimization problem
+where µ (µ 1 , · · · , µ L ) T with µ 1 ≥ · · · ≥ µ L ≥ 0. In fact, it will be seen that we are able to solve a slightly more general problem.
+Deﬁnition 2: A weighted sum rate R is said to be achievable subject to individual covariance distortion con- straint D, auxiliary covariance distortion constraint D
+(D {1,2} , · · · , D {1,··· ,L−1} ), and central covariance distortion constraint D {1,··· ,L} if there exist encoding functions f (n) i : R m ×n → C (n) i , i = 1, · · · , L, such that
+1 n
+Let κ (µ, Σ X , D, D , D {1,··· ,L} ) denote the inﬁmum of all achievable weighted sum rates subject to individual covari- ance distortion constraint D, auxiliary covariance distortion constraint D , and central covariance distortion constraint D {1,··· ,L} . We assume 0 ≺ D {1,··· ,i} Σ X , i = 2, · · · , L−1.
+Note that the auxiliary covariance distortion constraint is void if L = 2.
+To the end of characterizing κ (µ, Σ X , D, D , D {1,··· ,L} ), we introduce the following function whose importance will become transparent:
+(Σ X − Σ i ) + Σ i | |D {i+1} Σ −1 X (Σ X − Σ i ) + Σ i |
+where Σ (Σ 1 , · · · , Σ L −1 ). Moreover, we deﬁne κ l (µ, Σ X , D, D , D {1,··· ,L} ) = max
+ψ (µ, Σ X , D, D {1,2} , · · · , D {1,··· ,L} , Σ ), κ u (µ, Σ X , D, D , D {1,··· ,L} ) = 	 min
+Theorem 1: κ l (µ, Σ X , D, D , D {1,··· ,L} ) is a lower bound on κ (µ, Σ X , D, D , D {1,··· ,L} ), i.e.,
+Theorem 2: κ u (µ, Σ X , D, D , D {1,··· ,L} ) is an upper bound on κ (µ, Σ X , D, D , D {1,··· ,L} ), i.e.,
+Theorem 3: The lower bound and the upper bound coincide, i.e.,
+The proofs of Theorem 1 and Theorem 2 are omitted while the proof of Theorem 3 is given in Section IV. The counterparts of these three theorems in the scalar case can be found in [10]. It is worth noting that Theorem 3 actually provides a characterization of certain supporting hyperplanes of the rate region of vector Gaussian multiple description coding with individual and hierarchical covariance distortion constraints [12].
+The main results of this section are two extremal in- equalities that play a signiﬁcant role in characterizing κ (µ, Σ X , D, D , D {1,··· ,L} ).
+Theorem 4: Let N n i be an m × n random matrix with each column being an independent copy of N i , where N i is an m ×1 zero-mean Gaussian random vector with positive deﬁnite covariance matrix Σ N i , i = 1, 2. Let α 1 ≥ α 2 ≥ 0 be two real numbers, and B be an m × m positive deﬁnite matrix. For any random object U and m × n random matrix S n , both independent of (N n 1 , N n 2 ), such that Σ S n |U B , we have
+Moreover, the solution to the minimization problem in (1) is unique if α 1 > α 2 > 0.
+Remark: Theorem 4 can be viewed as a generalization of [10, Lemma 1] and as a variant of [13, Theorem 2]. Our
+proof is based on the enhancement technique by Weingarten et al. [14], [15], the worst additive noise lemma by Diggavi and Cover [16], and the reduction method by Watanabe and Oohama [17]. The details are omitted.
+Theorem 5: Let N i be an m × 1 zero-mean Gaussian random vector with positive deﬁnite covariance matrix Σ N i , i = 1, 2, 3. Let B be an m × m positive deﬁnite matrix. For any random object U and m × 1 random vector S, both independent of (N 1 , N 2 , N 3 ), such that Σ S |U B , we have
+Moreover, the solution to the maximization problem in (2) is unique.
+Remark: Theorem 5 can be viewed as a variant of [18, Lemma 2]. Its proof is omitted.
+To the end of proving Theorem 3, we need the following variant of Kakutani’s ﬁxed point theorem [11, Theorem 2].
+Theorem 6: Let X and Y be two bounded closed convex sets in the Euclidean spaces R m and R n respectively, and X × Y be their Cartesian product in R m +n . Let U and V be two closed subsets of X × Y such that for x ∈ X the set U x {y ∈ Y : (x, y) ∈ U} is non-empty, closed and convex, and such that for any y ∈ Y the set V y {x ∈ X : (x, y) ∈ V} is non-empty, closed and convex. Under these assumptions, U and V have a common point.
+Now we proceed to prove a minimax theorem from which Theorem 3 follows easily. For any subset S of a topological space, we denote the interior and the boundary of S by S o and ∂ S respectively.
+Theorem 7: Let X and Y be two bounded closed convex sets, with non-empty interiors X o and Y o , in the Euclidean spaces R m and R n respectively, and X × Y be their Cartesian product in R m +n . Let f (x, y) be a continuous real-valued function deﬁned on X × Y with x ∈ X and y ∈ Y. If for every x ∈ X o the solution to min y ∈Y f (x, y) is unique, and if for every y ∈ Y o the solution to max x ∈X f (x, y) is unique, then we have
+Proof: For every x ∈ X o , denote the solution to min y ∈Y f (x, y) by y(x) and deﬁne U x = {y(x)}. Moreover, for every x ∈ ∂X , deﬁne U x = {y ∈ Y :
+there exists a sequence x 1 , x 2 , · · · in X o , with lim k →∞ x k = x, such that lim k →∞ y (x k ) = y }. Similarly, for every y ∈ Y o , denote the solution to max x ∈X f (x, y) by x(y) and deﬁne V y = {x(y)}; for every y ∈ ∂Y, deﬁne V y = {x ∈ X : there exists a sequence y 1 , y 2 , · · · in Y o , with lim k →∞ y k = y, such that lim k →∞ x (y k ) = x}.
+Now we proceed to show that for every x ∈ X , the set U x is non-empty, closed and convex. It sufﬁces to consider the case x ∈ ∂X . Let y 1 , y 2 , · · · be a Cauchy sequence in U x with lim k →∞ y k = y. By the deﬁnition of U x , for each k there exists an x k ∈ X o such that x k − x ≤ 1 k and
+y k − y(x k ) ≤ 1 k . Therefore, we have lim k →∞ x k = x and lim k →∞ y (x k ) = y, which, in view of the deﬁnition of U x , implies y ∈ U x . Hence, U x is a closed set. Note that for arbitrary y, y ∈ U x , there exist two sequences x 1 , x 2 , · · · and x 1 , x 2 , · · · in X o , with lim k →∞ x k = lim k →∞ x k = x, such that lim k →∞ y (x k ) = y and lim k →∞ y (x k ) = y . It is easy to show that y (·) is a continuous function on X o . Therefore, for any α ∈ [0, 1] and positive integer k, there exists an ˜ x k on the line segment connecting x k and x k such that y (˜ x k ) = αy (x k )+(1−α)y(x k ). It is clear that ˜ x k ∈ X o , lim k →∞ ˜ x k = x, and lim k →∞ y (˜ x k ) = αy + (1 − α)y . Therefore, by the deﬁnition of U x , we have αy + (1 − α)y ∈ U x , which shows that U x is a convex set. Similarly, it can be shown that for every y ∈ Y, the set V y is non-empty, closed and convex.
+Deﬁne U = {(x, y) : x ∈ X , y ∈ U x } and V = {(x, y) : x ∈ V y , y ∈ Y}. Let (x 1 , y 1 ), (x 2 , y 2 ), · · · be a Cauchy sequence in U with lim k →∞ (x k , y k ) = (x, y). By the deﬁnition of U, for each k there exists an x k ∈ X o such that x k − x k ≤ 1 k and
+y (x k ) − y k ≤ 1 k . Therefore, we have lim k →∞ (x k , y (x k )) = (x, y), which, in view of the deﬁnition of U, implies (x, y) ∈ U. As a consequence, the set U is closed. Similarly, it can be shown that V is a closed set.
+We have veriﬁed that both U and V satisfy the assumptions of Theorem 6. Hence, by Theorem 6, there exists (x ∗ , y ∗ ) ∈ U ∩ V for some x ∗ ∈ X and y ∗ ∈ Y. It is easy to show that f (x ∗ , y ∗ ) = min y ∈Y f (x ∗ , y ) = max x ∈X f (x, y ∗ ). Therefore, we have max x ∈X min y ∈Y f (x, y) ≥ min y ∈Y f (x ∗ , y ) = f (x ∗ , y ∗ ) = max x ∈X f (x, y ∗ ) ≥ min y ∈Y max x ∈X f (x, y). Since it is obvious that max x ∈X min y ∈Y f (x, y) ≤ min y ∈Y max x ∈X f (x, y), the proof is complete.
+Now one can readily prove Theorem 3 by invoking Theo- rems 4, 5, and 7. The details are omitted.
+A. Vector Gaussian Multiple Description Coding with Individ- ual and Central Trace Distortion Constraints
+Deﬁnition 3: A rate vector R is said to be achiev- able subject to individual trace distortion constraint d
+(d {1} , · · · , d {L} ) and central trace distortion constraint d {1,··· ,L} if there exist encoding functions f (n) i : R m ×n → C (n) i , i = 1, · · · , L, such that
+The rate region R(Σ X , d, d {1,··· ,L} ) is the closure of the set of all the achievable rate vectors subject to individual trace
+Remark: Without loss of generality, we shall assume 0 < d {1} , · · · , d {L} , d {1,··· ,L} ≤ tr(Σ X ).
+It is easy to show that R(Σ X , d, d {1,··· ,L} ) is a closed convex set. Moreover, it is clear that
+where the union is over (D, D {1,··· ,L} ) subject to the con- straints
+Again, one can convert the problem of characterizing R(Σ X , d, d {1,··· ,L} ) to that of solving the following optimiza- tion problem
+where µ (µ 1 , · · · , µ L ) with µ 1 ≥ · · · ≥ µ L ≥ 0. In view of (3), we have
+where the minimization in (7) is over (D, D {1,··· ,L} ) subject to the constraints (4), (5), and (6).
+The following theorem provides a more explicit characteri- zation of φ (µ, Σ X , d, d {1,··· ,L} ).
+Theorem 8: Let Σ X = UΛU T be the eigenvalue decom- position of Σ X , where U is a unitary matrix and Λ = diag (λ 1 , · · · , λ m ) is a positive deﬁnite diagonal matrix. We have
+Remark: One can prove Theorem 8 by leveraging Fiedler’s inequality [19] and the results in Section II.
+B. Multiple Description Coding for Stationary Gaussian Sources
+Let {X(t)} ∞ t =1 be a zero-mean stationary Gaussian process with autocorrelation function c (τ ) = E[X(t)X(t − τ)], τ = 0, ±1, ±2, · · · , and power spectral distribution ν. Note that ν is a positive measure on [−π, π), and is related to c(τ ) by
+We assume ν is absolutely continuous with respect to the Lebesgue measure, and denote the Radon-Nikodym derivative of ν with respect to the Lebesgue measure, referred to as the power spectral density of {X(t)} ∞ t =1 , by s (ω), ω ∈ [−π, π).
+Deﬁnition 4: A rate vector R is said to be achievable subject to individual distortion constraint d and central dis- tortion constraint d {1,··· ,L} if there exist encoding functions f (n) i : R n → C (n) i , i = 1, · · · , L, such that
+The rate region R( s(ω)| ω ∈[−π,π) , d, d {1,··· ,L} ) is the closure of the set of all the achievable rate vectors subject to indi- vidual distortion constraint d and central distortion constraint
+Remark: Without loss of generality, we shall assume 0 < d {1} , · · · , d {L} , d {1,··· ,L} ≤ σ 2 X c (0).
+In view of the fact that R( s(ω)| ω ∈[−π,π) , d, d {1,··· ,L} ) is a closed convex set, it sufﬁces to characterize its supporting hyperplanes, i.e., to solve the following optimization problem
+Remark: The proof of Theorem 9 is similar to that for the 2-description case [20] and is omitted.
+We have characterized the whole rate region of vector Gaussian multiple description coding with individual and central covariance distortion constraints. It is worth noting that this characterization can be viewed a manifestation of certain extremal properties of mutual information and differential entropy. Here we state a mathematical result that highlights these extremal properties and might be of independent interest. This result can be extracted from the proofs of Theorems 1, 2, and 3.
+Let X be an m × 1 Gaussian random vector with mean zero and positive deﬁnite covariance matrix Σ X . Let µ = (µ 1 , · · · , µ L ) L with µ 1 ≥ · · · ≥ µ L ≥ 0. Deﬁne
+X − V form a Markov chain. Moreover, deﬁne P = {p U |X : 0 ≺ Σ X |U
+D {1,··· ,j} , j = 2, · · · , L}, where 0 ≺ D {i} 	 Σ X , i = 1, · · · , L, and 0 ≺ D {1,··· ,j} Σ X , j = 2, · · · , L; let P G = {p U |X ∈ P : U and X are jointly Gaussian}. Similarly, deﬁne P = {p V |X : 0 ≺ Σ X |V i ≺ Σ X , i = 1, · · · , L − 1} and P G = {p V |X ∈ P : V and X are jointly Gaussian}.
+furthermore, one can replace any P by P G (similarly, P by P G ) without affecting the equalities.
+Note that (a) is the minimum weighted sum rate of vector Gaussian multiple description coding with individual and hierarchical covariance distortion constraints; (b) can be interpreted as the minimum weighted sum rate achievable by the EGC scheme 1 ; (c) = (c ) can be viewed as an information-
+theoretic minimax formula. Therefore, Theorem 10 provides connections among several different objects.
+The work of Jun Chen was supported in part by an Early Research Award from the Province of Ontario and in part by the Natural Science and Engineering Research Council (NSERC) of Canada under a Discovery Grant. The work of Jia Wang was supported in part by the NSFC under Grant 60802020.
+[[[ REFS ]]]
+A. A. El Gamal
+T. M. Cover
+--
+Achievable rates for multiple descriptions
+----
+R. Ahlswede
+--
+The rate-distortion region for multiple descriptions without excess rate
+----
+Z. Zhang
+T. Berger
+--
+New results in binary multiple descriptions
+----
+R. Venkataramani
+G. Kramer
+V. K. Goyal
+--
+Multiple description coding with many channels
+----
+S. S. Pradhan
+R. Puri
+K. Ramchandran
+--
+n-channel symmetric multiple descriptions - Part I: (n, k) source-channel erasure codes
+----
+R. Puri
+S. S. Pradhan
+K. Ramchandran
+--
+n-channel symmetric multiple descriptions - Part II: An achievable rate-distortion region
+----
+C. Tian
+J. Chen
+--
+New coding schemes for the symmetric K- description problem
+----
+L. Ozarow
+--
+On a source coding problem with two channels and three receivers
+----
+H. Wang
+P. Viswanath
+--
+Vector Gaussian multiple description with individual and central receivers
+----
+J. Chen
+--
+Rate region of Gaussian multiple description coding with individual and central distortion constraints
+----
+S. Kakutani
+--
+A generalization of Brouwer’s ﬁxed point theorem
+----
+J. Wang
+J. Chen
+L. Zhao
+P. Cuff
+H. Permuter
+--
+On the role of the reﬁnement layer in multiple description coding and scalable coding
+----
+R. Liu
+T. Liu
+H. V. Poor
+S. Shamai (Shitz)
+--
+A vector generaliza- tion of Costa’s entropy-power inequality with applications
+----
+H. Weingarten
+Y. Steinberg
+S. Shamai (Shitz)
+--
+The capacity region of the Gaussian multiple-input multiple-output broadcast channel
+----
+T. Liu
+P. Viswanath
+--
+An extremal inequality motivated by multi- terminal information-theoretic problems
+----
+S. N. Diggavi
+T. M. Cover
+--
+The worst additive noise under a covariance constraint
+----
+S. Watanabe
+Y. Oohama
+--
+Secret key agreement from vector Gaus- sian sources by rate limited public communication
+----
+H. Weingarten
+T. Liu
+S. Shamai (Shitz)
+Y. Steinberg
+P. Viswanath
+--
+The capacity region of the degraded multiple-input multiple-output compound broadcast channel
+----
+M. Fiedler
+--
+Bounds for the determinant of the sum of Hermition matrices
+----
+J. Chen
+C. Tian
+S. N. Diggavi
+--
+Multiple description coding for stationary Gaussian sources
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\182.pdf
+[[[ LINKS ]]]
+

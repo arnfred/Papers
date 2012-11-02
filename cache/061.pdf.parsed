@@ -1,0 +1,143 @@
+[[[ ID ]]]
+61
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Improving the DMT Performances of MIMO Linear Receivers
+[[[ AUTHORS ]]]
+Ti-wen Tang
+Min-kun Chen
+Hsiao-feng (Francis) Lu
+[[[ ABSTR ]]]
+Abstract—In this paper, we investigate the diversity multi- plexing tradeoff (DMT) performance of MIMO linear receivers with general colored Gaussian input. By varying the rank of the covariance matrix of the channel input and allowing temporal coding across multiple channel uses, we ﬁnd the DMT perfor- mance of MIMO linear receivers can be signiﬁcantly improved and be much better than the currently known.
+[[[ BODY ]]]
+The MIMO communication system with n t transmit and n r receive antennas can simultaneously provide a much higher rate and a much larger diversity gain than the conventional SISO system. Assuming a quasi-static MIMO Rayleigh fading channel, given transmission rate R = r log SNR (in the unit of nats per channel use), it is known that the optimal diversity gain that can be achieved by any coding scheme is given by the function d ∗ (r) [1], [2], provided that the channel remains ﬁxed for at least n t channel uses. The function d ∗ (r) is generally termed the diversity-multiplexing tradeoff [1], and it is a piecewise linear function 1 connecting the points (r, (n t − r)(n r − r)) for r = 0,1,··· ,K, where r is the multiplexing gain and K := min {n t , n r } is termed the channel degree of freedom [1]. Moreover, given n t and r there are space-time codes constructed explicitly from cyclic division algebras that can achieve the maximal diversity gain d ∗ (r) in n t channel uses at high SNR regime [2], if ML decoding is employed. While the computational complexity of ML decoding is extremely high, it is fortunate the cyclic- division-algebra based space-time codes can be represented in linear-dispersion forms [3] and hence could be decoded by sphere decoding, which is known to be ML-equivalent, but at a much lower complexity.
+Sphere decoding of linear-dispersion space-time codes in general has polynomial complexity in the form of O ( |A| n ), where A is the QAM base-alphabet and n is some exponent depending on the dimension of code lattice. The value of n is often quite large and can be even larger if the MIMO system is under-determined, i.e. if n r < n t . Therefore, it is still of great practical interest to replace the sphere decoder by
+the linear decoder, which has complexity only linear in |A|, even knowing that linear receivers could lead to a considerable performance loss beforehand.
+Assuming the MIMO channel matrix is known fully to the receiver, the DMT performance of MIMO linear receivers such as zero-forcing (ZF) receiver and minimum mean-square error (MMSE) receiver has been studied in several works. In [4], it is shown that if the code has ﬁnite size (and hence has multiplexing gain r approaching 0) and is transmitted in only one channel use, the maximal diversity gain is given by n r − n t + 1, which is signiﬁcantly smaller than the optimal d ∗ (r = 0) = n t n r . Kumar et al. [5] extended the DMT analysis to the case when the code has size SNR r , growing as SNR increases, and showed that ZF and MMSE receivers have the same DMT performance given by (n r −n t +1) 1 − r n
+for multiplexing gain r, where (x) + := max {0,x}, under the assumption of using an i.i.d. complex Gaussian channel input. To make up for the loss due to the use of linear receivers, [6]–[9] proposed to perform the Lenstra-Lenstra-Lov´az (LLL) lattice basis reduction algorithm on the channel matrix prior to linear equalization. In particular, it is shown [10] that with the additional complexity from LLL reduction the overall diversity gain can be increased to n r for a ﬁnite code rate R, i.e. for the case of r approaches 0.
+The contribution of this paper is the following. First we remark that while the i.i.d. complex Gaussian channel input is sufﬁcient for achieving the optimal DMT in general MIMO channel under ML decoding as established by Zheng and Tse [1], such assumption of channel input is in general not true for linear receivers. Secondly, as most of the existing space- time codes can be represented in linear-dispersion forms, it makes less sense to study only the DMT performance of linear receivers under the restriction of single channel use. Motivated by the above, in this paper we investigate the DMT perfor- mance of linear receivers with general Gaussian codebook, by which we mean that colored (and possibly degenerate) complex Gaussian random vectors are used as channel input. We show that with such relaxation a much higher DMT performance is indeed achievable by linear receivers. Our main result is reported in Theorem 3 where we show that by varying
+the rank of the covariance matrix of the colored Gaussian input and allowing temporal coding, the linear receiver can achieve the maximal possible diversity gain n t n r as r approaches 0. This is much larger than all previously known results. Similar improvements of DMT performance are also obtained for r > 0 through our approach.
+Notation. Underlined lowercase letters x represent vectors and uppercase letters A denote matrices. The (i, j) the entry of matrix A is denoted by A i,j . A † (resp. A ) denotes the Hermitian transpose (resp. transpose) of matrix A, and A
+denotes the denotes the Frobenius norm of matrix A. I n is the (n × n) identity matrix and 0 n denotes the all-zero (n × n) matrix. Inequalities, denoted by , , and , represent partial orderings of positive semi-deﬁnite matrices. x ∼ CN (m,K x ) stands for a circularly symmetric complex Gaussian random vector x with mean m and covariance matrix K x . f (x) and g(x) are said to be exponentially equal, denoted
+Eponential inequalities, indicated by ˙ ≤, ˙ ≥, ˙< and ˙>, are deﬁned similarly.
+In this section we investigate the DMT performance of lin- ear receivers with general colored Gaussian input. For brevity, we will restrict ourselves to the MMSE receiver while our techniques can be directly applied to ZF receivers and all the results will hold the same. For simplicity, in Section II-A we will ﬁrst focus on the DMT analysis of linear receiver under single channel use. It will be shown that even in this case, by varying the rank of the covariance matrix, the resulting maximal diversity gain can already be increased to the value of n r , compared to the original value of (n r − n t + 1) given in [4], [5]. In Section II-B we will extend the results to the case of multiple channel uses with temporal coding allowed. A. DMT of Linear Receiver under Single Channel Use
+Consider an (n t × n r ) MIMO channel with the following channel input-output relation
+where x ∼ CN (0,K x ) is the transmitted code vector with Tr (K x ) ≤ 1. H is the (n r × n t ) channel matrix with i.i.d. C N (0,1) entries and is assumed to be known to the receiver, but not the transmitter. w ∼ CN (0,I n r ) is the additive complex Gaussian noise. We assume n t ≤ n r throughout.
+Let K x = U x Λ x U † x be the eigen-decomposition of K x . Note that H and HU x share the same statistical distribution. We can without loss of generality reformulate (1) as
+where ˜ x = U † x x and ˜ H = HU x . It should be noted that ˜ x ∼ CN (0,Λ x ). Assume that Λ x has rank m ≤ n t and that the ﬁrst m diagonal entries of Λ x are nonzero. Then the transmitted code vector ˜ x is statistically equivalent to
+where s ∼ CN (0,Λ) and Λ = diag(λ 1 , ··· ,λ m ) is the (m ×m) diagonal matrix whose main diagonal consists of the nonzero eigenvalues of K x . Therefore, it sufﬁces to reduce the channel to the following
+where H s is the equivalent channel matrix of size (n r × m) and consists of the left-most m columns of ˜ H. Knowing that
+˜ H = HU x and H share the same statistical distribution, and that H s is an (n r × m) channel matrix with i.i.d. CN (0,1) entries, (2) can be regarded as an (m ×n r ) MIMO channel with channel matrix H s and channel input s ∼ CN (0,Λ) subject to the constraints of Λ 0 m and Tr (Λ) ≤ 1. For Λ = 1 m I m , the following result is immediate from [5, Theorem 1].
+Theorem 1: Given Λ = 1 m I m , the DMT of (n t ×n r ) i.i.d. Rayleigh MIMO channel with m ≤ n t ≤ n r and multiplexing gain r, using either linear MMSE or ZF receivers in single channel use, is given by
+From the above theorem, it is clear that even in the case of single channel use, the maximal diversity gain of either MMSE or ZF linear receivers can be signiﬁcantly improved to n r by setting m = 1 and r = 0. The value is much larger compared to the previously known (n r − n t + 1) in [4], [5].
+While Theorem 1 concerns only the case of Λ = 1 m I m , below we show a much stronger result that the same DMT (3) holds for all K x 0 n t , Tr (K x ) ≤ 1 and rank(K x ) = m.
+Theorem 2: The DMT of the (n t × n r ) i.i.d. Rayleigh MIMO channel with rank (K x ) = m ≤ n t ≤ n r and multiplexing gain r, using either linear MMSE or ZF receivers in single channel use, is given by
+By varying values of m, in Fig. 1, we show the best DMT performance offered by Theorem 2. That is, for each r, we ﬁnd
+It can be clearly seen that the colored degenerate Gaussian input can achieve a much larger DMT than that in [5] which uses i.i.d. input.
+To prove Theorem 2, recall that the ﬁlter response of linear MMSE equalizer for (2) is
+W MMSE = √SNRΛH † s SNR · H s ΛH † s + I n r − 1 = √SNR SNR · ΛH † s H s + I m − 1 ΛH † s
+(6) Moreover, for simplicity and for later use we set
+so that G = I m −P. Throughout this subsection, we will work with the equalized channel model (5), instead of (1).
+After obtaining ˆ y, the MMSE detector sees (5) as a parallel fading channel that consists of m sub-channels. The channel input-output relation of each sub-channel is given by
+G ,i s i + n is the lump noise in the th sub-channel. The term z contains interferences from other channel inputs s i and a Gaussian noise n that is correlated with other n i ’s. Yet, the detector would simply ignore the interference- and noise-correlations and make an independent decision for each s .
+Given H s the channel input-output mutual information for the th sub-channel is
+in nats per channel use, where SINR is the signal-to- interference plus noise ratio. To derive SINR , note from (6) that G , = 1 − P , . Hence the signal power in (8) is G 2 , λ . Moreover, it can be shown that K ˆ y = E ˆ y ˆ y † = GΛ. It follows that E |z | 2 = λ (G , − G 2 , ), and
+The channel outage probability of the MMSE receiver given K x with rank m and transmission rate R is
+where we have assumed without-loss-of-generality an equal- rate-split among the m sub-channels since the transmitter has no knowledge of the channel. Furthermore, at high SNR it can be shown that the channel outage is dominated by the outage event that has the largest probability, i.e.,
+Thus, given constraint of rank (K x ) = m and R = r log SNR, the optimal outage probability in our case, when minimized over all possible choices of Λ, is given by
+P out,MMSE (r | rank(K x ) = m) . = inf
+Clearly setting Λ = 1 m I m yields an upper bound, i.e., P out,MMSE (r | rank(K x ) = m)
+where the last exponential equality can be obtained from arguments similar to [5, Theorem 1], and details are omitted for brevity.
+To bound P out,MMSE (r | rank(K x ) = m) from below, note from (7) that P = SNR · H † s H s + Λ − 1 −1 Λ − 1 . As 0 m 	 Λ 	 I m , we have SNR · H † s H s + Λ − 1
+SNR · H † s H s + λ − 1 min I m , where λ min := min 1≤ ≤m λ > 0; hence
+for = 1, ··· ,m since both matrices are positive deﬁnite. It is then clear that
+As λ is independent of SNR and λ . = SNR 0 for all , we have
+P out,MMSE (r | rank(K x ) = m) ˙ > max
+where the last exponential equality can be obtained from arguments similar to [5, Theorem 1], and details are omitted for brevity. Finally, combining (11) and (12) proves Theorem 2.
+Having seen the signiﬁcant improvement on the DMT performance of linear receivers in single channel use in the previous subsection, we now consider the case when the (n t × n r ) MIMO channel is ﬁxed for n channel uses so that temporal coding can be applied across the multiple n channel uses. Speciﬁcally, by temporal coding we mean the space-time codes that have linear dispersion forms [3] so that the linear receivers can be used to recover the transmitted message. In this case, the channel input-output relation is given by
+By stacking the received signal vectors vertically, the above channel can be reformulated as
+where x = x 1 ··· x n and w = w 1 ··· w n . Let x be a complex Gaussian random vector with x ∼ CN (0,K x ) with rank (K x ) = m and Tr(K x ) ≤ n. Since K x is Hermitian symmetric and non-negative deﬁnite, K x can be decomposed as K x = U x ΛU † x where Λ is a diagonal (m × m) matrix whose main diagonal consists of the nonzero eigenvalues of K x . U x is an (nn t × m) matrix satisfying U † x U x = I m . Then the stacking channel (13) is statistically equivalent to
+where H s = ˜ HU x and s ∼ CN (0,Λ). It should be noted that unlike the previous section, here H s does not share the same statistical distribution as H.
+Following similar arguments as in the previous section, it can be shown that with Λ = n m I m , the optimal outage probability is upper bounded by
+(15) where K = U x ∈ C nn t ×m : U † x U x = I m . Furthermore, from (15) we see that the outage upper bound does depend upon the choice of “pre-coding” matrix U x . To analyze the above, we consider the following speciﬁc type of U x
+where δ i,j = 1 if i = j and δ i,j = 0 if i = j. It is not hard to see U x is nonempty if and only if nm ≤ n t . Moreover, there is a one-one correspondence between the set U x and the submatrices of the elements in the unitary group U(n t ). Thus, given any U x ∈ U x , it can be shown that the entries of H s ,
+are i.i.d. C N 0, 1 n random variables. It means that the equivalent channel (14) is an (m ×nn r ) i.i.d. Rayleigh MIMO channel. Following similar arguments as in the previous sec- tion we have
+Theorem 3: For an (n t × n r ), n t ≤ n r , i.i.d. quasi-static Rayleigh MIMO channel in which the MIMO channel remains ﬁxed for at least n t channel uses, given multiplexing gain r, the DMT under linear MMSE or ZF receivers is lower bounded by
+We remark that with n = n t channel uses and m = 1, the optimal DMT is lower bounded by
+It shows at r = 0 the maximal diversity order n t n r is indeed achievable by the use of linear receivers, without help from any further processing such as the LLL lattice reduction.
+Before concluding this subsection, we would like to say more about the design of pre-coding matrix U x . We offer the following theorem for the case of mn ≤ n t .
+Theorem 4: For an (n t × n r ), n t ≤ n r , i.i.d. quasi-static Rayleigh MIMO channel that is ﬁxed for at least n channel uses, let
+be the (nn t ×m) pre-coding matrix deﬁned as before, i.e., we have K x = U x ΛU † x , rank (K x ) = m and Tr(K x ) ≤ n . If the set of vectors {u 11 , ··· ,u nm } is linearly independent over C, then given multiplexing gain r, the DMT resulting from the use of linear MMSE or ZF receivers is exactly
+We remark that the condition of Theorem 4 is much weaker than that in (16) and, therefore, gives more insight to the
+design of pre-coders. Furthermore, as the vectors u ij are of length n t , a necessary and sufﬁcient condition for the requirement of Theorem 4 to hold means mn ≤ n t .
+To prove Theorem 4, we ﬁrst note that although the entries of the equivalent channel matrix H s = ˜ HU x are correlated, with the set of vectors {u 11 , ··· ,u nm } being linearly inde- pendent over C, the (nn r m ×nn r m ) covariance matrix of the entries of H s must have full rank nn r m. It then follows from the proof of [11, Theorem 3] that the joint ordered-eigenvalue distribution of H † s H s is exponentially equal to that of ˆ H † ˆ H, where ˆ H is an (nn r ×m) random matrix with i.i.d. CN (0,1) entries. Having seen the above, following similar arguments as in Section II-A, for such pre-coding matrix U x , it can be shown that the outage probability is upper and lower bounded by
+P out,MMSE (r | rank(K x ) = m, n channel uses, U x ) ≤ Pr Tr SNR m H † s H s + I m − 1 ≥ SNR − nr m
+P out,MMSE (r | rank(K x ) = m, n channel uses, U x ) ˙ > max
+The lower bounds (17) of the optimal DMT for the (4 ×4) and (4 × 6) MIMO channels are plotted in Fig. 2 and Fig. 3, respectively. We observe that our proposed method achieves the same maximal diversity gain as ML decoding at r = 0. For other values of r, the colored degenerate Gaussian input can achieve a much higher DMT than that in [5].
+[[[ REFS ]]]
+L. Zheng
+D. Tse
+--
+Diversity and multiplexing: a fundamental tradeoff in multiple antenna channels
+----
+P. Elia
+K. R. Kumar
+S. A. Pawar
+P. V. Kumar
+H.-F. Lu
+--
+Explicit construction of space-time block codes achieving the diversity- multiplexing gain tradeoff
+----
+B. Hassibi
+M. Hochwald
+--
+High-rate codes that are linear in space and time
+----
+X. Ma
+W. Zhang
+--
+Performance analysis for MIMO systems with lattice-reduction aided linear equalization
+----
+K. Kumar
+G. Caire
+A. Moustakas
+--
+Asymptotic performance of linear receivers in MIMO fading channels
+----
+C. Windpassinger
+R. F. H. Fischer
+--
+Low-complexity near- maximum-likelihood detection and precoding for mimo systems using lattice reduction
+----
+D. Wubben
+R. Bohnke
+V. Kuhn
+K.-D. Kammeyer
+--
+MMSE extension of V-BLAST based on sorted QR decomposition
+----
+
+--
+Near-maximum-likelihood detection of MIMO systems using mmse-based lattice reduction
+----
+H. Yao
+G. W. Wornell
+--
+Lattice-reduction-aided detectors for mimo communication systems
+----
+M. Taherzadeh
+A. Mobasher
+A. Khandani
+--
+LLL lattice-basis reduction achieves the maximum diversity in MIMO systems
+----
+K. R. Kumar
+G. Caire
+--
+Outage analysis and code design for correlated MIMO fading channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\061.pdf
+[[[ LINKS ]]]
+

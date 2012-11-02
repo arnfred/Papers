@@ -1,0 +1,172 @@
+[[[ ID ]]]
+101
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+TRAINING OVER SPARSE MULTIPATH CHANNELS IN THE LOW SNR REGIME
+[[[ AUTHORS ]]]
+Elchanan Zwecher
+Dana Porrat
+[[[ ABSTR ]]]
+Abstract—Training over sparse multipath noisy channels is explored. The energy allocation and the optimal shape of training signals that enable communications over unknown channels are characterized as a function of the channels’ statistics. The performance of training is evaluated by the reduction of the mean square error of the channel estimate and by the decrease in the the mutual information due to the uncertainty of the channel. The performance of low dimensional training signal is compared to the performance of a full dimensional one. Especially, The trade-off between the number of required measurements (signal dimensions) and the energy allocation is calculated, and it is proven that if the signal to noise ratio of the received training signal is low, reducing the number of channel measurements using compressed sensing is as efﬁcient as training over the entire frequency band.
+[[[ BODY ]]]
+Channel statistics determine the incoherent achievable rate [1], [2], [3]. If we transmit x over a noisy random LTI channel denoted by the random impulse response h, and white Gaussian noise z is added such that the received signal is y = h ∗ x + z, where ∗ denotes convolution, then the mutual information between y and x obeys
+I(y; x) = I(y; x, h) − I(y; h|x) 	 (1) ≥ I(y; x|h) − I(y; h|x)
+The second form term of (1) I(y; h|x) is the penalty term due to the uncertainty of the channel h. The mutual information between y and x is lower bounded by coherent rate minus the penalty term. The penalty term is a function of the statistics of h, the ’richer’ is the statistics of h i.e. the bigger the entropy of h, the higher the penalty term.
+The statistics of the channel affect its entropy, but what is their effect on the best way to train the system? This paper is concentrated on training over the sparse multipath channel. This channel can be considered as a collection of narrowband eigenchannels, with no interference between them. Each eigenchannel ampliﬁes the transmitted data by a gain and as a result of channel sparsity, there is a dependence between the gains of the eigenchannels, dependence that causes the low uncertainty of the channel.
+The performance of training can be evaluated from two perspectives: the minimum mean square error (MMSE) in estimating the channel and the reduction in the penalty term.
+By compressed sensing, one can divide the signal in the frequency domain to a data part and a training part.
+Recovering sparse vectors in noisy environments using thresh- olding is discussed in [4]. The idea of recovering sparse vectors after compressing them is introduced in [5], [6] and this ability was extended to the noisy case [7]. Recent works are concentrated on the ability of exact pattern recovery [8], [9], [10], i.e. the ability to detect almost always all the non- zero entries of the vector h which represents the channel. [11] discusses compressed sensing of vectors and [12] discuss compressed sensing of channels in the ﬁnite SNR regime.
+A connection between information theory and compressed sensing is introduced in [13]. This work bounds the number of required measurements (the rows’ rank of the the compressing matrix) needed to reduce the mean square error of the com- pressed random vector v to a value of η ∈ R + in a noisy environment:
+where R v (η) is the mean square error rate distortion function of v at the point η and 1 2 log(1 + SNR) is the capacity of an AWGN channel. From (2) the total energy of compress- ing/training is lower bounded by
+However, it is not clear whether the bounds (2) and (3) are achievable.
+Our Contribution: In accordance with the physical char- acteristics of multipath channels in the wideband limit we assume that the sparsity of the channel tends to zero and that the channel remains constant during short coherence periods. Unlike papers that discuss ﬁnite or high SNR [11], [8], this paper is concentrated in training in the low SNR regime, where sparsity enables recovery of the channel. We design a signal composed of a data part and a training part such that the output can be separated into two parts that do not interfere, and training uses as small a subspace as possible so the data space is maximized.
+[9], [10] look for exact pattern recovery, and their results do not achieve the lower bounds (2) (3). We show that in the low SNR regime, if one is satisﬁed with almost perfect
+channel recovery then using techniques of compressed sensing the lower bound on the number of require measurements (2) is achievable while using minimum training energy (3), as long as the training signal is composed of enough harmonic vectors and channel measurements are done in the frequency domain. In addition we evaluate the effect of training on the penalty term.
+A comparison of the required training energy and number of channel measurements between this paper and [9] is presented in Table I.
+The model assumes that the channel remains constant during a period of t c , and the maximal delay is t d , where t d is signiﬁcantly smaller than t c and both are constants independent of the bandwidth. As the bandwidth increases the number of delayed reﬂections of the transmitted signal also grows, however the growth is sublinear with the bandwidth. The receiver gets the signal with additive white Gaussian noise independent of the transmitted signal and the channel. After discretizing, the channel can be represented by the vector h of length k c = w × t c , where w is the bandwidth, the last w(t c − t d ) entries are zero and only the ﬁrst k d = w × t d entries may differ from zero.
+The statistics of each path delay are as follows: each of the ﬁrst k d entries of h is an active path in probability
+independent of the other entries, and L(w) is any sublinear function of w, lim w→∞ L(w) w = 0, so the channel becomes sparser as the bandwidth increases. The statistics of the amplitudes are also independent and denoted by the probability density function P(·). We assume that E [h] = 0 and E h 2 2 = 1 such that each amplitude of an active path has a zero mean and variance 1 L(w) . Since k d is signiﬁcantly smaller than k c , we approximate the output of the LTI channel by a cyclic convolution and get the received training signal y train (SNR) =
+SNRx train ∗ h + z train where ∗ denotes the cyclic convolution, z train is additive white Gaussian noise and SNR is the signal to noise ratio.
+Let x data be the data part of the transmitted signal. If we trans- mit and train concurrently then y =
+The realization of the channel depends on the pdf of the path gains P. We pay special attention to the following cases: (1) the statistics of the active path gains are Gaussian and (2) the active path gains equal 1 √
+in probability 1 2 so the absolute value of the gains is constant. In the Gaussian case we replace h by h gaussian and in the constant (absolute value) case we replace h by h constant . The eigenvectors of the LTI channel are the harmonic vectors. The i’th k c -length harmonic vector f (i) at the k’th position obeys:
+Hence, in each general formula contains h, a subscript may be used to denote the type of the channel (constant or gaussian). B. Training signals
+• x impulse that uses all the transmission space (i.e. all the band holds training energy).
+1) Impulse probing: Impulse probing means sending a pulse over the channel h to get its noisy impulse response. The impulse training signal is:
+Training with x train = x impulse we get the received training signal:
+SNR k c h + z train 	 (4) Training using impulse probing, a linear part of the commu- nication space, the ﬁrst k d = wt d positions of the input x and the output y are allocated for training, and the rest positions are allocated for data.
+2) Training in the frequency domain: This type of training uses fewer pilots (channel measurements) and enables to divide the band to separate data and training bands. We show later that using this scheme, the allocated band for training is sublinear in the wideband. The training signal is chosen randomly in the following way: Let Q be a m-random subset of {1, 2, ..., k c }. The training signal x frequency is:
+SNRx frequency ∗ h + z train 	 (6) Let i 1 , i 2 , ..., i m be the elements of Q and let λ i , i ∈ Q be the eigenvalues of the cyclic convolution represented by h, i.e. h ∗ f (i) = λ i f (i) . Obviously:
+Let F be a matrix whose rows are the harmonic vectors corresponding to Q. Projecting y train onto F and using the orthogonality of harmonic vectors we get the vector y frequency :
+  
+  
+where z ∗ train is white Gaussian noise with unit norm. The con- volution (6) is equivalent to projecting h onto the compressing matrix F . Since E λ 2 i = 1, SNR frequency , the signal to noise ratio of y frequency is
+We can now compare training by impulse probing to compressed training in the frequency domain: in both cases the total energy of training is SNR x impulse 2 2 = SNR x frequency 2 2 = SNRk c However, y impulse , the received training signal of x impulse is k c -length with signal to noise ration SNR while y frequency is m-length with signal to noise ratio k c m SNR.
+The minimum mean square error of h given y train as a function of SNR is
+Obviously, the higher the SNR the smaller the minimum mean square error so (11) monotonically decreases. Later (in Theorem 1) we see that the curve of the function behaves as a decreasing step function.
+An alternative way to quantify the performance of training is to evaluate the uncertainty of the channel after training. We introduce two such similar criteria: penalty term and rate distortion function. Section IV shows that using a low training energy, the minimum mean square error is not reduced although the penalty term and the rate distortion function are strongly affected.
+1) Rate distortion function: Let η 0 be a small (negligible) positive number. The rate distortion function R h (η 0 ) with square error distortion quantiﬁes the amount of informa- tion required to almost perfectly recover the channel. If we have already trained the system, the remaining amount of information required to recover the channel is reduced to R h|y train (η 0 ) < R h (η 0 ). The rate distortion function without training can be approximated by
+when H b (·) is the binary entropy function. (12) is justiﬁed be- cause the information required for an approximate recovery of h is a discrete k d -length vector which contains the information
+on the path delays plus L(w) variables that contain data about the path gains. However, the required information on the path gains is negligible relative to the required information on the path delays (see [2]). The rate distortion function after training is
+A comparison between the rate distortion function and the minimum mean square error after training is possible by comparing Figure (a) to Figure (b).
+2) Penalty term: The penalty term, the reduction in mutual information due to the uncertainty of channel, is the mutual information between the received data signal y data and the channel h. Under resonable assumptions on the data and train- ing signals, the penalty term equals I(y data ; h|y train (SNR)) and is upper bounded by (13):
+Optimization of the training is done over the number of required measurements and the energy consumption, so we want to minimize the energy of x train and when training in the frequency domain also the number of harmonic vectors composing x frequency . From [13] we know that the number of required measurements m for negligible minimum mean square error η 0 is lower bounded by m ≥ 	 R h (η 0 ) 1
+≥ 2R h (η 0 ). The following section show that these bounds are achievable.
+1) Minimum mean square error: Let be a positive number as small as we wish and let
+k c 	 (15) The following theorem shows the effect of the training energy on the mean square error of channel recovery.
+then the minimum mean square error of h constant is o(1) in the wideband limit. On the other hand, if the total training energy is less than (1 − )k c SNR 0 then the asymptotic mean square error of h constant is 1 − o(1).
+Sketch of proof: Let T threshold = k c L(w) SNR 0 . The proof is based on he fact that only o (L(w)) noise terms are high such that |(z train ) i | ≥ T threshold but as long as the training energy
+is higher than (16), almost every (y train ) i corresponding to an active path obeys |(y train ) i | ≥ T threshold so recovery is almost perfect and negligible minimum mean square error is achievable.
+On the other hand, if we use a little less training energy than (1 − )k c SNR 0 , then the |(y train ) i |’s corresponding to active paths do not achieve the threshold T threshold , and there are many more than L(w) noise terms that are bigger than most of the |(y train ) i |’s whose origins are active paths so random noise terms are more likely to look like active paths than the actual ones. As a result, any estimator cannot decide whether the origin of (y train ) i is an active path or a noise term and the estimation completely fails.
+Interpertation of Theorem 1: This theorem in fact shows that the required training energy for almost perfect channel recovery asymptotically achieves the lower bound (3). To see this remember from (3) and (12) that the required training energy to recover the channel is lower bounded by
+k d 	 (17) Combining (15), (16) and (17), the training energy of Theo- rem 1 achieves the lower bound on training energy (3), because
+The mean square error as a function of SNR behaves ap- proximately as a step function, because the mean square error of h is 1 − o(1) if SNR ≤ (1 − )SNR 0 and o(1) if SNR ≥ (1+ )SNR 0 . The reduction in the minimum mean square error occurs in the interval [(1 − )SNR 0 , (1 + )SN R 0 ], which is as small as we wish.
+Although training with limited energy may be inefﬁcient in the sense that it does not reduce the mean square error, it does affect the penalty term. Using the I-MMSE connection we conclude from Theorem 1:
+Corollary 2: The penalty term of h constant after train- ing (14) is upper bounded by:
+Interpretation: Since the mean square error is a step function of SNR, the mutual information between y train and h constant increases linearly when recovery fails and remain constant when recovery is almost perfect. As a result the penalty term decreases linearly for a low SNR to a negligible value.
+C. Mean square error, penalty term and rate distortion func- tion of h gaussian
+The ability to detect a path delay depends on its gain’s impulsivity. Like in Theorem 1, training can detect with high probability the delays of active paths of h gaussian as long as |(y train ) i | =
+begin with a theorem summarizing the results of estimating h gaussian and then compare them to the h constant case.
+Theorem 3: Let Q(·) be the cummultive density function of normal random variable. The minimum mean square error of h gaussian as a function of SNR obeys:
+Using the I-MMSE connection, we get the following corol- lary regarding the penalty term of the estimate of h gaussian
+Corollary 4: The penalty term (14) of h gaussian is upper bounded by:
+The penalty term (4) does not decrease linearly as in the h constant case, but in a strictly convex manner, see Figure (b). Interpretation of Theorem 3 and Corollary 4
+1) The performance of training in terms of minimum mean square error of h gaussian as SNR ≤ (1 − )SNR 0 is better than training over h constant (compare Theorem 1 to Theorem 3). However, as SNR ≥ (1 + )SNR 0 training h constant yields better results. Anyway, in terms of penalty term training over h constant is more efﬁcient at any SNR, see Figure (a) and Figure (b).
+2) The performance of training h gaussian depends on the impulsivity of the path gains, and is not due to their uncertainty. If the path gains where Gaussian and known, the asymptotic results where identical to results over h gaussian although in the h gaussian model the amplitudes are not known.
+3) The mean square error, unlike the penalty term, is very sensitive to the extreme noise values. Since modeling physical noise as white Gaussian relates to the average case, it is interesting to measure the behavior of the extreme case of the physical noise in multipath chan- nels. Note that the extreme case ’captures’ a very low percentage of the probability mass and the power of the noise.
+When training in the frequency domain (with the training signal x frequency ) we use only part of the available band for training and leave the rest of the band to transmit data. This section shows the conditions where the lower bound on training energy for almost perfect channel recovery (3)
+is achievable despite the reduction in the band allocated for training.
+The main theorem of this section is based on the ’restricted isometry property’ of matrices deﬁned in [5], [6] and on the fact that the compressing matrix F (see Section II-A) whose rows are the m harmonic vectors composing x frequency obeys with very high probability [14] [15] the restricted isometry property for 2L(w)-sparse vectors with as small a parameter as we wish, if the number of rows of F obeys:
+where the equality (21) is based on an explicit evaluation of R h constant (η 0 ) in (12).
+Recall that SNR frequency is the signal to noise ratio of the m channel measurements. The following theorem shows when the number of channel measurements and the training energy can be minimized together.
+Theorem 5: In the h constant case, if the total training energy is at least (1+ )k c SNR 0 (i.e. SNR frequency ≥ (1+ ) k c m SNR 0 ) and m, the number of harmonic vectors composing the training signal x frequency obeys (21), then the mean square error of h constant is o(1) in the wideband limit. On the other hand, if the total training energy is less than (1 − )k c SNR 0 (i.e. SNR frequency ≤ (1 − ) k c m SNR 0 ) then the mean square error of h constant is 1 − o(1).
+Interpretation: As long as the training signal x frequency (5) is composed of enough harmonic vectors, such that the cor- responding matrix F obeys the restricted isometry property with a very low parameter, the performance of training is asymptotically the same as training by impulse probing with the same total amount of energy. Equation (21) shows that if the number of channel measurements is in order of magnitude of the rate distortion function R h constant (η 0 ) multiplied by log 3 L(w), then recovery is possible using minimum training energy (3). Can we reduce the number of measurements further and still achieve minimum training energy? By [15] it is known that if the compressing matrix was i.i.d. Gaussian, the condition on m is
+so for an i.i.d. gaussian matrix the only condition required to achieve minimum training energy is that m is a superlinear function in R h constant (η 0 ). In the case of F , where the rows of h are harmonic vectors, we don’t know whether the condition (21) can be improved.
+Using Theorem 5, training in the frequency domain yields a corollary similar to Corollary 2 and a theorem and corollary similar to Theorem 3 and Corollary 4 while using the same total amount of training energy over h gaussian .
+This paper discusses the required power of low SNR training in order to achieve a high bit rate and almost perfect recovery of the channel. We show that recovery a channel of
+type h constant depends on a sharp threshold of the training energy that equals twice the entropy of the path delays. If the training energy is below this threshold, recovery absolutely fails. This result holds not only for training over the whole frequency band, but also when it is composed of pilots that occupy only a small part of the band. The above threshold also plays a key role while training a channel of type h gaussian .
+[[[ REFS ]]]
+L. Zheng
+M. M´edard
+D. Tse
+C. Luo
+--
+On channel coherence in the low SNR regime
+----
+D. Porrat
+D. Tse
+--
+Channel uncertainty in ultra wideband communication systems
+----
+E. Zwecher
+D. Porrat
+--
+Spreading signals in the wideband limit
+----
+L. Donoho
+I. M. Johnstone
+--
+Ideal spatial adaptation by wavelet shrinkage
+----
+E. Candes
+T. Tao
+--
+Decoding by linear programming
+----
+E. Candes
+J. Romberg
+T. Tao
+--
+Robust uncertainty principles: Exact signal reconstruction from highly incomplete frequency information
+----
+E. Candes
+T. Tao
+--
+The dantzig selector: Statistical estimation when p is much larger than n
+----
+V. S. Shuchin Aeron
+--
+Title: Information theoretic bounds to performance of compressed sensing and sensor networks
+----
+A. K. Fletcher
+S. Rangan
+V. K. Goyal
+--
+Necessary and sufﬁcient conditions on sparsity pattern recovery
+----
+M. J. W. wei wang
+K. Ramchandran
+--
+Information-theoretic limits on sparse signal recovery: Dense versus sparse measurement matrices
+----
+D. Guo
+D. ;Baron
+S. Shamai
+--
+A single-letter characterization of optimal noisy compressed sensing
+----
+W. U. Bajwa
+A. Sayeed
+R. Nowak
+--
+Sparse multipth channels: Modeling and estimation
+----
+D. B. S. Sarvotham
+R. G. Baraniuk
+--
+Measurements vs. bits: Compressed sensing meets information theory
+----
+M. Rudelson
+R. Vershinin
+--
+On sparse reconstruction from fourier and gaussian measurements
+----
+R. Vershinin
+--
+Introduction to the non-asymptotic analysis of random matrices
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\101.pdf
+[[[ LINKS ]]]
+

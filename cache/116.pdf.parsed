@@ -1,0 +1,143 @@
+[[[ ID ]]]
+116
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Codebook and Marker Sequence Design for Synchronization-Correcting Codes
+[[[ AUTHORS ]]]
+Victor Buttigieg
+Johann A. Briffa
+[[[ ABSTR ]]]
+Abstract—We propose a construction based on synchroniza- tion and error-correcting block codes and a matched marker sequence. The block codes can correct insertion, deletion and substitution errors within each codeword. The marker sequence allows the decoder to maintain synchronization at codeword boundaries even at high error rates. An upper bound is given for the performance of these codes over a channel with random substitutions and synchronization errors. It is shown that the performance is largely dependent on the code’s minimum Lev- enshtein distance. The performance of these codes is veriﬁed by simulation and compared to published results. In concatenation with a non-binary outer code we obtain a signiﬁcant improvement in frame error rate at similar overall code rates.
+[[[ BODY ]]]
+The use of coding schemes that can correct synchronization (i.e. insertion and deletion) errors has been considered early in the development of coding theory [1]. Practical schemes have recently received considerable attention, due to the emergence of applications where such codes are necessary, for example in image watermarking [2] and bit-patterned magnetic media [3]. A survey of error-correcting codes for synchronization-error channels can be found in [4]. The most promising schemes use an inner code to regain synchronization and a conventional outer code to deal with substitution errors [5], [6].
+The Davey-MacKay (DM) inner code was introduced in [5] as part of a concatenated scheme that can correct insertion and deletion, as well as substitution errors. In this construction, a random binary marker sequence is used by the decoder to determine synchronization. A sparse representation of the message is then added to this marker sequence; the choice of sparse representation was optimized in [7]. An optimal symbol-level decoding algorithm was presented in [8] for the DM inner code. At the same decoding complexity, the symbol-level decoder sums over each possible sparse symbol when determining synchronization. This has two principal advantages: a) it allows the decoder to make use of a priori information for the sparsely-represented symbols, and b) it allows the use of non-sparse representations of the message. Respectively, these enable iterative decoding between the inner and outer codes, and the use of representations with better distance properties.
+In these constructions the choice of inner codebook has no effect on maintaining synchronization, which depends entirely
+on the marker sequence. We present a novel design where the inner codebook can correct synchronization as well as substitution errors. This fundamentally changes the role of the marker sequence, making it only necessary to maintain synchronization at codeword boundaries for channels with high error rate.
+This paper is organized as follows. Section II begins with a deﬁnition of the channel model. It also deﬁnes our novel synchronization and error-correcting codes and discusses some of their properties. This is followed by the proposed inner code construction and its design rationale in Section III. We also consider the value of the marker sequence for synchronization at codeword boundaries and propose a design that does not affect the performance of the chosen codebook. The decoding of this code is also outlined in this section, together with a comparison with the DM construction. In Section IV we derive an upper bound for the symbol-error performance of the inner code. This is followed by Section V where we give simulation results that corroborate the theoretical arguments. Finally, we conclude and give suggestions for future work in Section VI.
+We refer the reader to the channel model of [5], later called the Binary Substitution, Insertion, and Deletion (BSID) channel. At each time i, one bit enters the channel, and one of four events may happen: insertion with probability P i where a random bit is output; deletion with probability P d where the input is discarded; or transmission with probability 1−P d −P i where the input bit is output with probability 1 − P s or its negation with probability P s . In the case of deletion or transmission, we proceed to time i + 1, otherwise the channel remains at time i and is subject to the same events again. The channel drift at time i is deﬁned as the difference between the number of transmitted bits and the number of received bits before the events of time i are considered. We also follow the notation of [4], referring to insertion and deletion events as synchronization errors.
+The Levenshtein distance between two sequences a and b, denoted by d l (a, b), is the minimum number of insertions, deletions and substitutions necessary to transform a into b
+[9]. Consider a code C with minimum Levenshtein distance d l min , where
+It is easy to show that a minimum Levenshtein distance decoder can correct up to a total of t = d lmin −1 2 	 errors of any type per codeword, provided that the codeword boundaries are known. A good Synchronization and Error-Correcting (SEC) code with parameters (n, q, d l min ), having q codewords of ﬁxed length n, maximizes d l min for the given q and n.
+A linear block code with minimum Hamming distance d h min can be transformed into a coset with the same minimum Hamming distance by adding a modiﬁcation vector to all its codewords. Similarly, the minimum Hamming distance is retained when a modiﬁcation vector is added to a non-linear block code (although in this case the result is not a coset). However, adding a modiﬁcation vector to a SEC code will not necessarily maintain its d l min . In fact, most modiﬁcation vectors will decrease d l min .
+If adding a particular modiﬁcation vector v to a SEC code results in a code with the same d l min then we call v an allowed modiﬁcation vector (AMV). We deﬁne the resultant code as an offset code of the original code.
+Consider a concatenated system with an inner code that can correct synchronization and substitution errors on the BSID channel and an outer code that corrects any residual substitution errors. This paper focuses on the design of a novel inner code, consisting of a SEC code and a corre- sponding marker sequence. The choice of the marker sequence depends on the speciﬁc SEC code used, as shall be seen in Section III-C. The outer code can be any standard soft-input non-binary error-correcting code. Fig. 1 shows the overall system architecture. The outer code has parameters (N, K), taking K symbols as input and emitting a block of N symbols d = (d 0 , d 1 , . . . , d N −1 ). All input and output symbols for the outer code are in F q .
+The SEC code with parameters (n, q, d l min ) then maps each q-ary symbol d ι , 0 ≤ ι < N in d to a binary codeword λ(d ι ) of length n bits. The concatenation of N codewords then forms a codeword sequence c of N n bits, which are added modulo 2 to the marker sequence m (also of length N n bits) to produce the frame f = c + m. The frame f is then transmitted over the BSID channel, resulting in the received frame r of length ρ. Note that ρ is not necessarily equal to N n. The marker sequence m is also available at the inner decoder.
+The main objective of the SEC code is to correct syn- chronization errors at bit level, although it can also correct substitution errors. We have seen previously that a SEC code can correct a particular number of errors per codeword provided that the codeword boundaries are known. Codeword boundaries are identiﬁed by the inner decoder with the help of a marker sequence added to the output of the SEC encoder. This maintains codeword level synchronization.
+In this work we assume that the system is synchronized at frame level. This assumption is justiﬁed in some applications, such as image watermarking, where the frame boundaries are known. In other applications, where the start of frame has to be determined from a continuous stream, it is envisaged that this can be determined using techniques similar to those in [5]. This is currently being studied and will be the subject of future work.
+The inner code resulting from the combination of the SEC code and the marker sequence is decoded using the symbol- level algorithm of [8]. Modifying slightly the notation of that paper, the posterior probabilities for each possible symbol d ∈ F q at each block index 0 ≤ ι < N are obtained using
+α ι (x) = Pr r| nι +x 0 , ς nι = x 	 (3) β ι (x) = Pr r| ρ nι +x | ς nι = x 	 (4)
+where ς nι represents the assumed channel drift at the beginning of the codeword at block index ι. The notation z | b a refers to the sub-sequence (z a , z a +1 , . . . , z b−1 ) of a vector z. Finally, the joint probability of the received and transmitted sequence segments corresponding to block index ι is deﬁned as
+This is calculated recursively from the indicated received and transmitted sequence segments and the channel parameters.
+It can be seen that the forward and backward metrics track the probability of the channel drift at codeword boundaries. These are computed from the drift probabilities at the pre- viously considered boundary and the probabilities of each possible codeword as an explanation for the received bits between these two boundaries. If the channel error rate is low (i.e. the number of errors per codeword is within the capability
+of the SEC code), the forward and backward metrics correctly track the drift at codeword boundaries.
+If the number of errors induced on a codeword by the channel exceeds the capabilities of the SEC code, one of three things may occur:
+1) The decoder may remain synchronized at codeword boundaries but the codeword is decoded incorrectly. This is seen as a substitution error by the outer decoder.
+2) The decoder may lose synchronization by a few bits at both boundaries. This and a number of subsequent codewords may be decoded in error. This is seen as a short burst of errors by the outer decoder.
+3) The errors are such that the decoder either deletes or inserts an entire codeword, maintaining synchronization at subsequent codeword boundaries. The outer decoder sees this as a very long burst of errors, as all subsequent codewords, even if correctly decoded, would be shifted.
+The ﬁrst two error types may be correctable by the outer decoder. However, the third type is likely to lead the outer decoder to fail. In order to address this problem, a marker sequence is added (modulo 2) to the codeword sequence emitted by the SEC coder. The effect of this marker sequence is that if a complete codeword is inserted or deleted by the inner decoder, then subsequent codewords would be positioned incorrectly with respect to the assumed marker sequence. Thus none of the possible codewords would provide a good explanation for the received sequence at this position. This increases the likelihood that the decoder would reject this possibility, and therefore that it retains synchronization at the codeword boundary.
+Similar marker sequences were already previously used in the literature. The ﬁrst such use was in [1] where a pseudo- random sequence was added to the output of a convolutional encoder. A more recent use of a pseudo-random sequence was in [5]. Here, we cannot use such a random sequence. When the marker sequence is added to the SEC code, this is effectively adding modiﬁcation vectors to the code. However, as highlighted in Section II-C, adding a modiﬁcation vector to a SEC code may change its d l min , unless it is an AMV that results in an offset code. So the marker sequence that must be used is one consisting of a sequence of AMVs. Simulation results indicate that a sequential use of these AMVs performs adequately. However, the performance of the system at high error rates is improved as the number of unique AMVs used in the marker sequence is increased.
+We can use any construction that gives a good (n, q, d l min ) SEC code as part of our inner code. It is also desirable, especially at high error rates, that the code has a maximum number of AMVs (and hence offset codes).
+In this work we have used two techniques to construct such codes. The ﬁrst uses Varshamov-Tenegolts codes [10] with the modiﬁcations introduced by Varshsamov [11] and Levenshtein
+[12]. These consist of all the binary vectors of length n satisfying n i =1 i · x i ≡ 0 mod 2n. This construction gives a SEC code with parameters (n, M, 3). In general M will not be equal to the required q; in this case a selection of q codewords are chosen (assuming that M > q). A second technique uses simulated annealing to construct SEC codes with the required parameters. The algorithm described in [13] was modiﬁed by replacing Hamming distance with Levenshtein distance. This was used to construct SEC codes with d l min > 3.
+The construction of good (n, q, d l min ) SEC codes with a maximum number of AMVs is still an open problem. So far we have found the AMVs for a SEC code through an exhaustive search, which is feasible for small n.
+The system described here is similar to the DM construction [5], however its principle of operation is substantially different. In [5] a sparse code consisting of codewords with minimum Hamming weight is used instead of a SEC code. There is there- fore minimal distance (Hamming or Levenshtein) between these codewords. Synchronization is entirely achieved through a pseudo-random marker sequence. If the inner decoder is out of synchronization, there will be a large difference between the received sequence and the known marker sequence. This difference is used by the decoder to track synchronization using a forward-backward algorithm. A good marker sequence in this case therefore has an autocorrelation that is almost zero for any non-zero shift. This explains why a pseudo-random sequence was found to perform best in [5].
+The use of a sparse code in [5] ensures that the encoded data causes minimal changes to the marker sequence, allowing the decoder to recover synchronization. The changes due to the sparse code are treated as substitution ‘errors’ in the marker sequence, in addition to the actual substitution errors from the BSID channel. A sparser code increases the probability that the decoder correctly synchronizes with the marker sequence.
+A principal disadvantage of the DM construction is that the decoder ﬁnds it difﬁcult to distinguish between the sparse codewords due to their poor distance properties. Also, the sparse code is a liability in the synchronization process, in contrast to the SEC code used in our system.
+The inner decoder in the DM construction was replaced in [8] by a symbol-level decoder that is aware of the sparse codebook. Thus, for any given sparse codebook the decoder in [8] always results in a lower symbol-error rate than the one used in [5]. Taking advantage of the symbol-level decoder, the sparse code was replaced in [8] by one with a higher minimum Hamming distance. Although this improved performance, the system still relied on the marker sequence to maintain bit-level synchronization.
+Since the inner decoder feeds the outer one with q-ary symbols, it is of interest to deduce a bound on the symbol error probability of the inner code.
+As we have seen in the previous section, with the use of the marker sequence it is easier for the decoder to maintain synchronization at the codeword boundaries of the SEC code. So assuming that the decoder is synchronized at codeword boundaries we can bound the symbol-error probability by considering the effect of errors on individual codewords.
+Consider an n-bit codeword being transmitted over the BSID channel. Then it can be shown [14] that the probability of having an error pattern with, respectively, n i , n d and n s insertion, deletion and substitution errors is
+Now, there are n +n i −1 n i 	 ways of inserting n i bits (note that no bits are inserted after the last codeword bit, since these, if present, are considered to be inserted at the start of the next codeword). Also, there are n n
+ways of substituting n s bits. The total combinations of having n i , n d and n s errors is given by
+n s . 	 (7) Therefore, the probability of having n i , n d and n s errors anywhere within an n-bit codeword is given by
+P (E) = C n i ,n d ,n s Pr {n i , n d , n s } . 	 (8) Given that the code can correct up to t errors and assuming
+that it cannot correct any error pattern containing more than this number (which could be any combination of insertion, deletion and substitution errors), then the probability of symbol error, P S (E) is bounded by
+Now if P i = P d = P s =: p ≪ 1 we can approximate (9) by P S (E) ≤
+Similarly, with P s = 0 and P i = P d =: p ≪ 1, (9) may be approximated by
+From (10) and (11) one may observe that similar to error- correcting codes for substitution errors, the performance of a SEC code at low error rates mainly depends on its d l min .
+A critical feature of the inner decoder is that it can maintain synchronization at codeword boundaries. At low error rates the SEC code alone should be sufﬁcient; at higher error rates, the use of an appropriate marker sequence is necessary. To demonstrate this we consider an (8, 16, 3) SEC code, which is a small code for which it is possible to ﬁnd a reasonable number of AMVs. We measure the symbol-error rate (SER) performance using the symbol-level decoder for a sequence of
+N = 667 codewords, referred to as the block size. Results are shown in Fig. 2, where the SER is measured using both the conventional Hamming distance (SER h ) and the Levenshtein distance (SER l ). If the decoded sequence contains insertion and deletion errors, SER l < SER h , otherwise SER l ≈ SER h . Comparing results for the code with no marker sequence it is clear that there are symbol-level synchronization errors at high error rates. At low channel error rates SER h and SER l results coincide, indicating that there are only substitution errors at the decoder output. The performance at higher channel error rates improves when using a marker consisting of a repeating sequence of AMVs. Further, when using eight AMVs instead of two, the SER h and SER l results coincide throughout. This shows that the more varied marker sequence is better at maintaining synchronization at codeword boundaries.
+We next consider the effect of varying d l min when codeword synchronization is maintained. This is ensured by using a small block of size N = 50 and assuming correct synchronization at the start and end of the block. Under these conditions the SEC code is able to maintain synchronization at codeword boundaries for all channel error rates considered, so that no marker sequence is needed. The SER h performance for SEC codes with d l min = 3, 5, 7 is shown in Fig. 3, together with the corresponding approximate upper bounds from (11). The choice of codes is such that the code rates are not too different while avoiding the use of long codewords. The results clearly show that codes with a larger d l min have a steeper slope, and therefore better performance. This is explained by the exponent in the bound polynomial, which depends entirely on d l min . Note that the symbol-level decoder performs better than the bound because it is able to correct some events with t + 1 or more errors. For comparison we also show the (7, 8) sparse code of [5] with a random marker sequence. In this case the marker sequence is mandatory for maintaining synchronization. This code has d l min = 1 and therefore t = 0;
+this explains its poor behaviour in comparison with the SEC code of the same size.
+We ﬁnally compare the performance of the (9, 4, 5) SEC code with 40 AMVs in concatenation with non-binary outer codes. The frame-error rate (FER) performance for these codes is shown in Fig. 4, together with the best concatenated codes in [5], [8]. At a similar overall code rate and block size, our new scheme performs signiﬁcantly better than the best published results. With a less powerful outer code, it can still be favourably compared with existing results for a signiﬁcant gain in code rate.
+We have presented a novel construction for channels with synchronization errors, consisting of a SEC code together with a matched marker sequence. This can be used in concatenation
+with a non-binary outer code for very low error rates that improve on previously published results. We have shown theoretically and veriﬁed experimentally that the performance of the inner code at low error rate is mainly dependent on the SEC code’s d l min . We have also shown that at high error rates it is important to have marker sequences consisting of a number of different AMVs. The increase in performance has been achieved without increasing the decoder complexity compared to similar systems [5], [8]. Our construction allows us to directly control the trade-off between code rate, performance and complexity by varying the parameters of the SEC code. Speciﬁcally, to increase d l min one may either increase the codeword size n or reduce the rate log 2 q n .
+We are still investigating the optimal conﬁguration of the concatenated system, in particular the use of iterative decoding between the inner and outer codes. Although we have not presented any results with non-zero P s , we can report that the performance of the system degrades gracefully with increasing P s . This can also been inferred from the upper bound given in (10). Unfortunately, no theoretical capacity measures yet exist for this channel, so it is difﬁcult to assess how close we are to capacity.
+[[[ REFS ]]]
+R. G. Gallager
+--
+Sequential decoding for binary channels with noise and synchronization errors
+----
+D. Bardyn
+J. A. Briffa
+A. Dooms
+P. Schelkens
+--
+Forensic data hiding optimized for JPEG 2000
+----
+J. Hu
+T. Duman
+E. Kurtas
+M. Erden
+--
+Bit-patterned media with written-in errors: Modeling, detection, and theoretical limits
+----
+H. Mercier
+V. Bhargava
+V. Tarokh
+--
+A survey of error-correcting codes for channels with symbol synchronization errors
+----
+M. C. Davey
+D. J. C. MacKay
+--
+Reliable communication over channels with insertions, deletions, and substitutions
+----
+E. A. Ratzer
+--
+Marker codes for channels with insertions and deletions
+----
+J. A. Briffa
+H. G. Schaathun
+--
+Improvement of the Davey-MacKay construction
+----
+J. A. Briffa
+H. G. Schaathun
+S. Wesemeyer
+--
+An improved decoding algorithm for the Davey-MacKay construction
+----
+J. B. Kruskal
+--
+An overview of sequence comparison: Time warps, string edits, and macromolecules
+----
+R. R. Varshamov
+G. M. Tenegolts
+--
+Codes which correct single asymmetric errors
+----
+R. R. Varshamov
+--
+An arithmetic function applicable to coding theory
+----
+V. I. Levenshtein
+--
+Binary codes capable of correcting deletions, inser- tions and reversals
+----
+A. A. E. Gamal
+L. A. Hemachandra
+I. Shperling
+V. K. Wei
+--
+Using simulated annealing to design good codes
+----
+V. Buttigieg
+--
+Using variable-length codes to correct insertion, deletion and substitution errors
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\116.pdf
+[[[ LINKS ]]]
+

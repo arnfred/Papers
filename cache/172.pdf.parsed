@@ -1,0 +1,184 @@
+[[[ ID ]]]
+172
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Index Coding and Error Correction
+[[[ AUTHORS ]]]
+Son Hoang Dau
+Vitaly Skachek
+Yeow Meng Chee
+[[[ ABSTR ]]]
+Abstract—A problem of index coding with side information was ﬁrst considered by Y. Birk and T. Kol (IEEE INFOCOM, 1998). In the present work, a generalization of index coding scheme, where transmitted symbols are subject to errors, is studied. Error- correcting methods for such a scheme, and their parameters, are investigated. In particular, the following question is discussed: given the side information hypergraph of index coding scheme and the maximal number of erroneous symbols δ, what is the shortest length of a linear index code, such that every receiver is able to recover the required information? This question turns out to be a generalization of the problem of ﬁnding a shortest- length error-correcting code with a prescribed error-correcting capability in the classical coding theory.
+The Singleton bound and two other bounds, referred to as the α-bound and the κ-bound, for the optimal length of a linear error-correcting index code (ECIC) are established. For large alphabets, a construction based on concatenation of an optimal index code with an MDS classical code, is shown to attain the Singleton bound. For smaller alphabets, however, this construction may not be optimal. A random construction is also analyzed. It yields another inexplicit bound on the length of an optimal linear ECIC. Finally, the decoding of linear ECIC’s is discussed. The syndrome decoding is shown to output the exact message if the weight of the error vector is less or equal to the error-correcting capability of the corresponding ECIC.
+[[[ BODY ]]]
+The problem of Index Coding with Side Information (ICSI) was introduced by Birk and Kol [1]. During the transmission, each client might miss a certain part of the data, due to intermittent reception, limited storage capacity or any other reasons. Via a slow backward channel, the clients let the server know which messages they already have in their possession, and which messages they are interested to receive. The server has to ﬁnd a way to deliver to each client all the messages he requested, yet spending a minimum number of transmissions. As it was shown in [1], the server can signiﬁcantly reduce the number of transmissions by coding the messages.
+Possible applications of index coding include communica- tions scenarios, in which a satellite or a server broadcasts a set of messages to a set clients, such as daily newspaper delivery or video-on-demand. Index coding with side information can also be used in opportunistic wireless networks [2].
+The ICSI problem has been a subject of several recent studies [3]–[8]. This problem can be viewed as a special case of the Network Coding (NC) problem [9], [10]. In particular, as it was shown in [7], every instance of the NC problem can be reduced to an instance of the ICSI problem.
+In this work, we generalize the ICSI problem towards a setup with error correction. We extend some known results to a case where any receiver can correct up to a certain number of errors. The problem of designing such error-correcting index codes (ECIC’s) naturally generalizes the problem of constructing classical error-correcting codes. We establish an upper bound (the κ-bound) and a lower bound (the α-bound) on the shortest length of a linear ECIC, which is able to correct any error pattern of size up to δ. We also derive an analog of the Singleton bound, and show that this bound is tight. We consider random ECIC’s and obtain an upper bound on their length. Finally, we discuss the decoding of linear ECIC’s. We show that the syndrome decoding succeeds, provided that the number of errors does not exceed the error-correcting capability of the code.
+The problem of error correction for NC was studied in several previous works. However, these results are not directly applicable to the ICSI problem.
+For detailed proofs, we refer the reader to the full version of this paper [11].
+Let F q be the ﬁnite ﬁeld of q elements, where q is a power of prime, and F ∗ q = F q \{0}. Let [n] = {1, 2, . . . , n}. For the vectors u, v ∈ F n q , we use d(u, v) to denote the the Hamming distance between u and v. If u ∈ F n q and M ⊆ F n q is a set of vectors, then this notation can be extended to
+Given q, k, and d, let N q [k, d] denote the length of the shortest linear code over F q which has dimension k and minimum distance d. The support of a vector u ∈ F n q is deﬁned by supp(u) = {i ∈ [n] : u i = 0}. The Hamming weight of u is deﬁned by wt(u) = |supp(u)|. Suppose E ⊆ [n]. We write u E whenever supp(u) ⊆ E.
+We use e i = (0, . . . , 0, 1, 0, . . . , 0) ∈ F n q to denote the unit vector, which has a one at the ith position, and zeros elsewhere. For a vector y = (y 1 , y 2 , . . . , y n ) and a subset B = {i 1 , i 2 , . . . , i b } of [n], where i 1 < i 2 < · · · < i b , let y B denote the vector (y i 1 , y i 2 , . . . , y i b ).
+For an n × N matrix L, let L i denote its ith row. For a set E ⊆ [n], let L E denote the |E| × N matrix obtained from L by deleting all the rows of L which are not indexed by the elements of E. For a set of vectors M , we use notation span(M ) to denote the linear space spanned by the vectors in M . We also use notation colspan(L) for the linear space spanned by the columns of the matrix L.
+Let G = (V, E ) be a graph with a vertex set V and an edge set E . A directed graph G is called symmetric if
+The independence number of an undirected graph G is de- noted by α(G). There is a natural correspondence between undirected graphs and directed symmetric graphs. By using this correspondence, the deﬁnition of independence number is naturally extended to directed symmetric graphs.
+Index Coding with Side Information problem considers the following communications scenario. There is a unique sender (or source) S, who has a vector of messages x = (x 1 , x 2 , . . . , x n ) in his possession. There are also m receivers R 1 , R 2 , . . . , R m , receiving information from S via a broadcast channel. For each i ∈ [m], R i has side information, i.e. R i owns a subset of messages {x j } j∈X i , where X i ⊆ [n]. Each R i , i ∈ [m], is interested in receiving the message x f (i) (we say that R i requires x f (i) ), where the mapping f : [m] → [n] satisﬁes f (i) / ∈ X i for all i ∈ [m]. Hereafter, we use the notation X = (X 1 , X 2 , . . . , X m ). An instance of the ICSI problem is given by a quadruple (m, n, X , f ). An instance of the ICSI problem can also be conveniently described by the following directed hypergraph [8].
+Deﬁnition 3.1: Let (m, n, X , f ) be an instance of the ICSI problem. The corresponding side information (directed) hyper- graph H = H(m, n, X , f ) is deﬁned by the vertex set V = [n] and the edge set E H , where
+We often refer to (m, n, X , f ) as an instance of the ICSI problem described by the hypergraph H.
+Each side information hypergraph H = (V, E H ) can be associated with the directed graph G H = (V, E ) in the following way. For each directed edge (f (i), X i ) ∈ E H there will be |X i | directed edges (f (i), v) ∈ E, for v ∈ X i . When m = n and f (i) = i for all i ∈ [m], the graph G H is, in fact, the side information graph, deﬁned in [3].
+Due to noise, the symbols received by R i , i ∈ [m], may be subject to errors. Assume that S broadcasts a vector y ∈ F N q .
+Let i ∈ F N q be the error affecting the information received by R i , i ∈ [m]. Then R i actually receives the vector y i = y + i ∈ F N q , instead of y.
+Deﬁnition 3.2: Consider an instance of the ICSI problem described by H = H(m, n, X , f ). A δ-error-correcting index code ((δ, H)-ECIC) over F q for this instance is an encoding function
+such that for each receiver R i , i ∈ [m], there exists a decoding function
+If δ = 0, we refer to such E as a non-error-correcting index code, or just H-IC. The parameter N is called the length of the index code. In the scheme corresponding to the code E, S broadcasts a vector E(x) of length N over F q .
+Deﬁnition 3.3: A linear index code is an index code, for which the encoding function E is a linear transformation over F q . Such a code can be described as
+Deﬁnition 3.4: An optimal linear (δ, H)-ECIC over F q is a linear (δ, H)-ECIC over F q of the smallest possible length N q (H, δ).
+Hereafter, we assume that X = (X i ) i∈[m] is known to S. We also assume that the code E is known to each receiver R i , i ∈ [m].
+Deﬁnition 3.5: Suppose H = H(m, n, X , f ) corresponds to an instance of the ICSI problem. Then the min-rank of H over F q is deﬁned as
+Observe that κ q (H) generalizes the min-rank over F q of the side information graph, which was deﬁned in [3]. More specif- ically, when m = n and f (i) = i for all i ∈ [m], G H becomes the side information graph, and κ q (H) = min-rank q (G H ). The min-rank was shown in [3], [4] to be the smallest number of transmissions in a linear index code.
+Lemma 3.1: ( [3], [12]) Consider an instance of the ICSI problem described by H = H(m, n, X , f ) .
+1) The matrix L corresponds to a linear H-IC over F q if and only if for each i ∈ [m] there exists v i ∈ F n q such that v i X i and v i + e f (i) ∈ colspan(L).
+2) The smallest possible length of a linear H-IC over F q is κ q (H).
+For all i ∈ [m], we also deﬁne Y i = [n]\ {f (i)} ∪ X i . Then the collection of supports of all vectors in I(q, H) is given by
+Lemma 4.1: The matrix L corresponds to a (δ, H)-ECIC over F q if and only if
+wt (zL) ≥ 2δ + 1 for all z ∈ I(q, H) . 	 (2) Equivalently, L corresponds to a (δ, H)-ECIC over F q if and only if
+for all K ∈ J (H) and for all choices of z i ∈ F ∗ q , i ∈ K. Proof: For each x ∈ F n q , we deﬁne
+the set of all vectors resulting from at most δ errors in the transmitted vector associated with the information vector x. Then the receiver R i can recover x f (i) correctly if and only if
+B(x, δ) ∩ B(x , δ) = ∅, for every pair x, x ∈ F n q satisfying:
+(Observe that R i is interested only in the bit x f (i) , not in the whole vector x.)
+Therefore, L corresponds to a (δ, H)-ECIC if and only if the following condition is satisﬁed: for all i ∈ [m] and for all x, x ∈ F n q such that x X i = x X i and x f (i) = x f (i) , it holds
+Denote z = x − x. Then, the condition in (4) can be reformulated as follows: for all i ∈ [n] and for all z ∈ F n q such that z X i = 0 and z f (i) = 0, it holds
+Inequality (3) follows from this condition in a straight-forward manner.
+Example 4.1: Let q = 2, m = n = 3, and f (i) = i for i ∈ [3]. Suppose X 1 = {2, 3}, X 2 = {1, 3}, and X 3 = {1, 2}. Let
+1 1 1 0 1 1 0 1 1 0 1 1
+Note that L generates a [4, 3, 1] 2 code, which has minimum distance one. However, the index code based on L can still correct one error. Indeed, let H = H(3, 3, X , f ), we have
+Since each row of L has weight at least three, it follows that wt(zL) ≥ 3 for all z ∈ I(2, H). By Lemma 4.1, L corresponds to a (1, H)-ECIC over F 2 .
+Example 4.2: Assume that m = n and f (i) = i for all i ∈ [m]. Furthermore, suppose that X i = ∅ for all i ∈ [m] (i.e. there is no side information available to the receivers). Let H = H(m, n, X , f ). Then, I(q, H) = F n q \{0}. Hence, by Lemma 4.1, the n × N matrix L corresponding to a (δ, H)- ECIC over F q (for some integer δ 0) is a generating matrix of an [N, n, 2δ + 1] q linear code. Thus, the problem of designing an ECIC is reduced to the problem of constructing a classical linear error-correcting code.
+Let (m, n, X , f ) be an instance of the ICSI problem, and let H be the corresponding side information hypergraph. Next, we introduce the following deﬁnitions for the hypergraph H.
+Deﬁnition 5.1: A subset H of [n] is called a generalized independent set in H if every nonempty subset K of H belongs to J (H).
+Deﬁnition 5.2: A generalized independent set of the largest size in H is called a maximum generalized independent set. The size of a maximum generalized independent set in H is called the generalized independence number, and denoted by α(H).
+When m = n and f (i) = i for all i ∈ [n], the generalized independence number of H is equal to the maximum size of an acyclic induced subgraph of G H , which was introduced in [3]. In particular, when G H is symmetric, α(H) is the independence number of G H . We omit the proof.
+Theorem 5.1 ( α-bound): The length of an optimal linear (δ, H)-ECIC over F q satisﬁes
+Proof: Consider an n × N matrix L, which corresponds to a (δ, H)-ECIC. Let H = {i 1 , i 2 , . . . , i α(H) } be a maximum generalized independent set in H. Then, every subset K ⊆ H satisﬁes K ∈ J (H). Therefore,
+for all K ⊆ H, K = ∅, and for all choices of z i ∈ F ∗ q , i ∈ K. Hence, the α(H) rows of L, namely L i 1 , L i 2 , . . . , L i α(H) , form a generator matrix of an [N, α(H), 2δ + 1] q code. Therefore,
+The following proposition is based on the fact that concate- nation of a δ-error-correcting code with an optimal (non-error- correcting) H-IC yields a (δ, H)-ECIC.
+Proposition 5.2 ( κ-bound): The length of an optimal (δ, H)-ECIC over F q satisﬁes
+The proof of this proposition is omitted due to lack of space. Corollary 5.1: The length of an optimal linear (δ, H)-ECIC
+Example 5.1: Let q = 2, m = n = 5, δ = 2, and f (i) = i for all i ∈ [m]. Assume
+X 1 = {2, 5} , X 2 = {1, 3} , X 3 = {2, 4} , X 4 = {3, 5} , X 5 = {1, 4} .
+Let H = H(5, 5, X , f ). The side information graph G H of this instance is a pentagon. It is easy to verify that α(H) = α(G) = 2. It follows from Theorem 9 in [4] that κ 2 (H) = min-rank 2 (G H ) = 3. Thus, from [13] we have
+N 2 [2, 5] = 8 and N 2 [3, 5] = 10 . Due to Corollary 5.1, we have
+Using a computer search, we obtain that N 2 (H, 2) = 9, and the corresponding optimal scheme is based on
+    
+1 1 1 1 1 0 0 0 0 0 1 0 1 1 0 1 1 0 1 1 0 0 0 1 1 1 0 0 1 1 0 0 1 0 1 1 1 0 1 0 1 0 0 1 1
+    
+It is technical to verify that by Lemma 4.1, L corresponds to (2, H)-ECIC. The length of this ECIC lies strictly between the α-bound and the κ-bound.
+Remark 5.1: Example 5.1 illustrates that over small al- phabets, the concatenation of an optimal linear (non-error- correcting) index code and an optimal linear error-correcting code may fail to produce an optimal linear ECIC.
+Theorem 6.1 (Singleton bound): The length of an optimal linear (δ, H)-ECIC over F q satisﬁes
+Proof: Let L be the n × N q (H, δ) matrix corresponding to some optimal (δ, H)-ECIC. Let L be the matrix obtained by deleting any 2δ columns from L.
+We deduce that the rows of L also satisfy that for all z ∈ I(q, H),
+By Lemma 4.1, L corresponds to a linear H-IC. Therefore, by Lemma 3.1, part 2, L has at least κ q (H) columns. We deduce that
+The corollary below shows that for sufﬁciently large al- phabets, a concatenation of a classical MDS error-correcting code with an optimal (non-error-correcting) index code yields an optimal linear ECIC.
+Corollary 6.1 (MDS error-correcting index code): For q ≥ κ q (H) + 2δ − 1,
+Remark 6.1: There exist hypergraph H, such that G H is the (symmetric) odd cycle of length n, for which the α-bound is at least as good as the Singleton bound.
+Theorem 7.1: Let H = H(m, n, X , f ) describe an instance of the ICSI problem. Then there exists a (δ, H)-ECIC over F q of length N if
+Idea of proof: We construct a random n × N matrix L over F q , row by row. Each row is selected independently of other rows, uniformly over F N q . The result is obtained by bounding from above the probability of the event
+Remark 7.1: The bound in Theorem 7.1 implies a bound on κ q (H), which is tight for some H. Indeed, ﬁx δ = 0. Take m = n = 2 + 1 ( ≥ 2), and f (i) = i for all i ∈ [n]. Let X 1 = [n]\{1, 2, n} and X n = [n]\{1, n − 1, n}. For 2 ≤ i ≤ n − 1, let X i = [n]\{i − 1, i, i + 1}. Take H = H(n, n, X , f ). Then G H is the complement of the (symmetric directed) odd cycle of length n. We have |X i | = 2 − 2 for all i ∈ [n]. Then (8) becomes
+If q > 2 + 1 then we obtain N 3. Observe that in this case κ q (H) = min-rank q (G H ) = 3 (see [8, Claim A.1]), and thus the bound is tight.
+Consider the (δ, H)-ECIC based on a matrix L. Suppose that the receiver R i , i ∈ [m], receives the vector
+where xL is the codeword transmitted by S, and i is the error pattern affecting this codeword.
+In the classical coding theory, the transmitted vector c, the received vector y, and the error pattern e are related by y = c + e. For index coding, however, this is no longer the case. The following theorem shows that, in order to recover the message x f (i) from y i using (9), it is sufﬁcient to ﬁnd just one vector from a set of possible error patterns. This set is deﬁned as follows:
+We henceforth refer to the set L i ( i ) as the set of relevant error patterns .
+1) If R i knows the message x f (i) then it is able to determine the set L i ( i ).
+2) If R i knows some vector ˆ ∈ L i ( i ) then it is able to determine x f (i) .
+We now describe a syndrome decoding algorithm for linear error-correcting index codes. We have
+Let C i = span({L f (i) } ∪ {L j } j∈Y i ), and let H (i) be a parity check matrix of C i . We obtain that
+Observe that each R i is capable of determining β i . This leads us to the formulation of the decoding procedure for R i in Figure 1.
+Theorem 8.2: Let y i = xL + i be the vector received by R i , and let wt( i ) 	 δ. Assume that the procedure in Figure 1 is applied to (y i , x X i , L). Then, its output satisﬁes
+• Step 2 : Find the lowest Hamming weight solution ˆ of the system
+• Step 3 : Given that ˆ x X i = x X i , solve the system for ˆ x f (i) : y i = ˆ xL + ˆ.
+Remark 8.1: It is not impossible that ˆ = i . However, if wt( i ) ≤ δ, it can be shown that ˆ ∈ L i ( i ). Hence, by Lemma 8.1, we have ˆ x f (i) = x f (i) .
+The authors would like to thank the authors of [4] for providing a preprint of their paper. This work is supported by the National Research Foundation of Singapore (Research Grant NRF-CRP2-2007-03).
+[[[ REFS ]]]
+Y. Birk
+T. Kol
+--
+Informed-source coding-on-demand (ISCOD) over broadcast channels
+----
+S. Katti
+H. Rahul
+W. Hu
+D. Katabi
+M. M´edard
+J. Crowcroft
+--
+Xors in the air: Practical wireless network coding
+----
+Z. Bar-Yossef
+Z. Birk
+T. S. Jayram
+T. Kol
+--
+Index coding with side information
+----
+
+--
+Index coding with side information
+----
+E. Lubetzky
+U. Stav
+--
+Non-linear index coding outperforming the linear optimum
+----
+S. El Rouayheb
+M. A. R. Chaudhry
+A. Sprintson
+--
+On the minimum number of transmissions in single-hop wireless coding networks
+----
+S. El Rouayheb
+A. Sprintson
+C. Georghiades
+--
+On the relation between the index coding and the network coding problems
+----
+N. Alon
+A. Hassidim
+E. Lubetzky
+U. Stav
+A. Weinstein
+--
+Broad- casting with side information
+----
+R. Ahlswede
+N. Cai
+S. Y. R. Li
+R. W. Yeung
+--
+Network information ﬂow
+----
+R. Koetter
+M. M´edard
+--
+An algebraic approach to network coding
+----
+S. H. Dau
+V. Skachek
+Y. M. Chee
+--
+Error correction for index coding with side information
+----
+
+--
+Secure index coding with side information
+----
+M. Grassl
+--
+Bounds on the minimum distance of linear codes and quantum codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\172.pdf
+[[[ LINKS ]]]
+

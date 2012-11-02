@@ -1,0 +1,155 @@
+[[[ ID ]]]
+71
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Upper and Lower Bounds on the Minimum Distance of Expander Codes
+[[[ AUTHORS ]]]
+Alexey Frolov
+Victor Zyablov
+[[[ ABSTR ]]]
+Abstract—The minimum distance of expander codes over GF (q) is studied. A new upper bound on the minimum distance of expander codes is derived. The bound is shown to lie under the Varshamov-Gilbert (VG) bound while q ≥ 32. Lower bounds on the minimum distance of some families of expander codes are obtained. A lower bound on the minimum distance of low-density parity-check (LDPC) codes with a Reed–Solomon constituent code over GF (q) is obtained. The bound is shown to be very close to the VG bound and to lie above the upper bound for expander codes.
+[[[ BODY ]]]
+In this work, we consider a family of codes based on expander graphs. The idea of codes on graphs was proposed by Tanner in [1]. Later expander graphs were used by Sipser and Spielman in [2] to obtain asymptotically good codes that can be decoded in time complexity which is linear in the code length. By “asymptotically good codes” we mean codes whose rate and relative minimum distance are both bounded away from zero. In [2] both random and explicit constructions of expander graphs were used. The explicit constructions of expander graphs are called Ramanujan graphs and presented in [3], [4]. In [5] the construction of expander codes where both encoding and decoding time complexities were linear in the code length was presented. Though the decoder of the Sipser- Spielman construction was guaranteed to correct a number of errors that was a positive fraction of the code length, that fraction was small. Improvements were given in [6], where the underlying graph was bipartite, and in [7]. In this work, the distance properties of expander codes are studied.
+There are a lot of works where lower bounds on the minimum distance of families of expander codes are presented (e.g [8]). In these works the method proposed by Gallager in [9, Ch. 2, pp. 13–20] is applied for expander codes. Unfortunately we were unable to ﬁnd a work where an upper bound was derived. In this work a new upper bound on the minimum distance of expander codes over GF (q) is derived. The bound is shown to lie under the Varshamov-Gilbert bound while q ≥ 32.
+It would seem the results of this work contradict the results of [10], where a family of codes is presented (they are also called expander codes) which lie close to the Singleton bound if q is large. Nevertheless the constructions are different and the seeming contradiction is the result of some terminology confusion.
+Let G = (V 1 : V 2 , E) be a bipartite undirected connected graph with a vertex set V = V 1
+∅) and an edge set E. Let deg (u) = ∆ 1 ∀u ∈ V 1 , deg (v) = ∆ 2 ∀v ∈ V 2 , |E| = n, then |V 1 | = b 1 , |V 2 | = b 2 , where b 1 = n ∆
+Let F q be a Galois ﬁeld of the power q. Let us associate each vertex u i ∈ V 1 , i = 1, . . . , b 1 with a linear (∆ 1 , R 1 ∆ 1 ) code C (1) i over F q ; each vertex v j ∈ V 2 , j = 1, . . . , b 2 with a linear (∆ 2 , R 2 ∆ 2 ) code C (2) j . Hereinafter C (i) j will be referred as constituent codes.
+For every vertex u ∈ V , we denote by E (u) the set of edges that are incident with u. We assume an ordering on E. For a word z = (z e ) e ∈E (whose entries are indexed by E), we denote by (z) E(u) the sub-block of z that is indexed by E (u).
+Now we are ready to give a deﬁnition of an expander code: Deﬁnition 1: C is an expander code if
+) ∧ (
+C is a linear code so there is a parity-check matrix cor- responding to it. Let H (1) i be a parity-check matrix of a constituent code C (1) i , H (2) j be a parity-check matrix of a con- stituent code C (2) j , then a parity-check matrix H corresponding to code C is:
+       
+H (i) 1 	 0 · · · 0 0 H (i) 2 · · · 0 .. . . . . . . . .. .
+       
+Remark 1: The size of H is ((1 − R 1 ) + (1 − R 2 )) n × n. Now we will determine the parameters of the obtained code.
+We will use the method similar to the method from [11]. Let C ′ be an expander code. Its parity-check matrix is given by (1). Without loss of generality R 1 ≤ R 2 . The parity-check matrix of C ′ can be transformed to the form:
+Let C be a code corresponding to H. Codes C and C ′ are equivalent hence they have the same distance properties. Now we are ready to prove the theorem:
+Proof: Let us consider a code C of length n = b ′ ∆ 1 , b ′ ∈ N. The parity-check matrix H of the code is shown in Fig. 1. The code C correspond to a subcode C ′′ of C. We just need to add a preﬁx of n − n zeros to the word c of C to obtain the word c ′′ of C ′′ , i.e.
+Let us consider the code C in more detail. The height h of its parity-check matrix and hence the number of check symbols in C are upper bounded with (R 1 − R) n+b ′ (1 − R 1 ) ∆ 1 , so the dimension k of C can be estimated as follows
+For the condition k ≥ 1 to be satisﬁed the following condition is sufﬁcient
+After applying the Plotkin bound to C we obtain the needed result
+Remark 2: In fact we can apply the stronger bound (e.g. the Elias–Bassalygo bound or the MRRW bound) and obtain a tighter bound, but even the Plotkin bound is enough for our purpose.
+Now we will derive an asymptotic form of the new bound. Theorem 2: Let {C i } ∞ i=1 be a sequence of expander codes
+with rates R (C i ) = R and lengths n (C i ) = i × LCM (∆ 1 , ∆ 2 ) 1 then
+i ) n (C i )
+− 1 q
+In this section, we obtain the lower bounds on the minimum distance for three code ensembles. Let us introduce needed notations and prove statements common for all the ensembles.
+Let E be an ensemble of codes of length n. By A (W ) we denote a number of code words of weight W in a code averaged over the ensemble, i.e.
+where A i (W ) is a number of code words of weight W in a code C i ∈ E .
+A i (W ) < |E |, which means that the total number of code words of small weight in E is less than the number of codes in E , therefore there exist a code C ∈ E which does not contain the words:
+ming weight of v), N ( E , v) is a number of codes from E containing v as a code word.
+A. Ensemble E 1 (∆ 0 , b) of expander codes with a Reed– Solomon constituent code
+      
+H 0 0 · · · 0 0 H 0 · · · 0
+      
+where H 0 is a parity-check matrix of a (∆ 0 , R 0 ∆ 0 ) Reed– Solomon code over F q , n = ∆ 0 b. By φ (H b ) we denote the matrix obtained from H b by an arbitrary permutation of
+columns and multiplying them by arbitrary nonzero elements of F q . Then the matrix
+1 (H b ) φ 2 (H b )
+constructed using two matrices as layers, is a sparse parity- check matrix of a code from E 1 (∆ 0 , b).
+Deﬁnition 2: Elements of the ensemble E 1 (∆ 0 , b) are ob- tained by independent choice of permutations π i and nonzero constants c i,j , i = 1, 2; j = 1, 2, . . . , n, by which parity-check matrices of layers are multiplied.
+Remark 4: Each code from E 1 (∆ 0 , b) is an expander code (∆ 1 = ∆ 2 = ∆ 0 , R 1 = R 2 = R 0 ), therefore the upper bound is valid for all of them.
+Lemma 1: A number of code words of weight W in a code averaged over the ensemble E 1 (∆ 0 , b)
+where A 1 (W ) is a number of code words of weight W in the ﬁrst layer.
+Proof: Consider a ﬁxed vector v (W ) of length n, v (W ) = W . In accordance to equation (5) we need to
+ﬁrst (L 1 ) and second (L 2 ) layers separately. If we know the number of layers from L 1 containing v (W ) as a code word (
+2 containing v (W ) as a code word
+it follows from the fact that permutations and nonzero elements are chosen independently. For the same reason L 1 = L 2 , hence
+permutation π 1 , and perform permutations and multiplications by constants over elements of a vector v (W ) but not over columns of a parity-check matrix. Clearly, these problems are equivalent, and since nothing depends on a particular permutation π 1 , we let it be the identity permutation.
+In accordance to properties of φ i there are all possible vectors of weight W among
+and each of them is repeated K times, where
+all the vectors of weight W , hence in accordance to (5) we obtain the needed result.
+Lemma 2: A number of code words of weight W in a code averaged over the ensemble E 1 (∆ 0 , b) can be estimated as follows
+δ = W n , h q (δ) = −δlog q (δ) − (1 − δ) log q (1 − δ) – q-ry entropy function and g 0 (s, ∆ 0 ) is a generating function of weights of code words of constituent code.
+Proof: Note that in each layer the sets of positions occupied by code symbols of constituent codes are disjoint. At the same time, all positions are covered; hence, the generating function of layer G (s) looks like:
+Remark 6: The generating function of weights of code words of a (∆ 0 , R 0 ∆ 0 ) Reed–Solomon code can be estimated as follows:
+Theorem 4: If there exist at least one positive root (with respect to unknown δ) of equation
+such that d (C i ) ≥ (δ 1 − ε) n, where ε is an arbitrary small positive number; δ 1 is a positive root of equation (8).
+The proof is similar to the proof of Theorem 2 in [12]. We omit the proof here.
+B. Ensemble E 2 (∆ 0 , b) of expander codes with a constituent code from an expurgated ensemble of random codes
+In previous section we use a Reed–Solomon code as a constituent code. Unfortunately the length of this code can’t be sufﬁciently large (∆ 0 ≤ q + 1). In this section we will choose a constituent code from an expurgated ensemble of random codes and use it as a constituent code. In this case we don’t have any constraints on the constituent code length.
+Theorem 5: For each ∆ 0 and R 0 there exist a linear (∆ 0 , R 0 ∆ 0 ) code C 0 with such a spectrum
+All the proofs here are analogical to the proofs for E 1 (∆ 0 , b). We will just give the main result.
+Theorem 6: If there exist at least one positive root (with respect to unknown δ) of equation
+such that d (C i ) ≥ (δ 2 − ε) n, where ε is an arbitrary small positive number; δ 2 is a positive root of equation (9),
+C. Ensemble E 3 (∆ 0 , b) of non-binary LDPC codes with a Reed–Solomon constituent code
+      
+      
+constructed using ℓ layers, the notion φ (H b ) was introduced while deﬁning of E 1 (∆ 0 , b) ensemble. The matrix is a sparse parity-check matrix of a code from E 3 (∆ 0 , b).
+Deﬁnition 3: Elements of the ensemble E 3 (∆ 0 , b) are ob- tained by independent choice of permutations π i and nonzero constants c i,j , i = 1, 2, . . . , ℓ; j = 1, 2, . . . , n, by which parity-check matrices of layers are multiplied.
+Remark 7: The deﬁnition is similar to the deﬁnition of ensemble E 1 (∆ 0 , b) but the parity-check matrices here consist of ℓ layers rather than 2 ones.
+Remark 8: The codes are not expander codes and hence the upper bound is not valid for them. They are given here for comparison with expander codes.
+All the proofs here are analogical to the proofs for E 1 (∆ 0 , b). We will just give the main result.
+Theorem 7: If there exist at least one positive root (with respect to unknown δ) of equation
+such that d (C i ) ≥ (δ 3 − ε) n, where ε is an arbitrary small positive number; δ 3 is a positive root of equation (10),
+Results obtained for q = 64 and q = 1024 are shown in Tables I and II, respectively. The result for E 1 , E 2 and E 3 are maximized over ∆ 0 . Note that ∆ 0 ≤ q +1 for E 1 and E 3 . The derived upper bound lies below the Varshamov-Gilbert bound when R ∈ (0.25; 0.89) for q = 64. This interval is widening while q is growing. For q = 1024 we have such an interval (0.05; 0.99).
+A new upper bound on the minimum distance of expander codes is derived. The bound lies below the Varshamov-Gilbert bound while q ≥ 32, hence non-binary expander codes are worse than the best existing non-binary codes. Lower bounds for two ensembles of expander codes are obtained. Both of
+the bounds lie much below the upper bound. A lower bound for LDPC codes with a Reed–Solomon constituent code is obtained. The bound is very close to the Varshamov-Gilbert bound and lies above the upper bound for expander codes.
+[[[ REFS ]]]
+R. Tanner
+--
+A recursive approach to low complexity codes
+----
+M. Sipser
+D. Spielman
+--
+Expander codes
+----
+A. Lubotzky
+R. Phillips
+P. Sarnak
+--
+Ramanujan graphs
+----
+G. A. Margulis
+--
+Explicit group theoretical constructions of combina- torial schemes and their applications to the design of expanders and concentrators
+----
+D. Spielman
+--
+Linear-time encodable and decodable error-correcting codes
+----
+G. Zemor
+--
+On expander codes
+----
+V. Skachek
+R. Roth
+--
+Generalized minimum distance iterative de- coding of expander codes
+----
+A. Barg
+G. Zemor
+--
+Distance properties of expander codes
+----
+R. Gallage
+T. Pres
+--
+Low Density Parity Check Codes
+----
+R. Roth
+V. Skachek
+--
+Improved nearly-mds expander codes
+----
+Y. Ben-Haim
+S. Litsyn
+--
+Upper bounds on the rate of ldpc codes as a function of minimum distance
+----
+A. Frolov
+V. Zyablov
+--
+Asymptotic estimation of the fraction of errors correctable by q-ary ldpc codes
+----
+E. Blok
+V. Zyablo
+--
+Linear Concatenated Codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\071.pdf
+[[[ LINKS ]]]
+

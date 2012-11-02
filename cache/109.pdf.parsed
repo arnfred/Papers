@@ -1,0 +1,133 @@
+[[[ ID ]]]
+109
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Block-Markov LDPC Scheme for Half- and Full-Duplex Erasure Relay Channel
+[[[ AUTHORS ]]]
+Marina Ivashkina
+Iryna Andriyanova
+Pablo Piantanida
+Charly Poulliat
+[[[ ABSTR ]]]
+Abstract—The asymptotic iterative performance of the block- Markov encoding scheme , deﬁned over bilayer LDPC codes, is analyzed. This analysis is carried out for both half-duplex and full-duplex regimes. For the sake of clarity and simplicity, a transmission over the binary erasure relay channel is assumed. To analyze the iterative performance of the coding scheme, the asymptotic threshold boundary γ( 1 , 2 ) is used as a performance measure. It is derived for two sparse-graph ensembles: Block- Markov Bilayer-Expurgated and -Lengthened LDPC ensembles.
+[[[ BODY ]]]
+Cooperative strategies for relay networks have gained con- siderable attention during recent years, mainly, because they improve the throughput and/or the reliability function. The simplest scenario of cooperation consists of a single-relay which helps communication between the encoder (source) and the receiver (destination). Cover and El Gamal [1] developed the main strategies, known as Decode-and-Forward (DF) and Compress-and-Forward (CF), and showed an upper bound referred to as the cut-set bound. These strategies rely on the block-Markov coding scheme, having a ﬁxed rate at the source. Since this work, a lot of references has appeared but capacity is only known for some special cases (see [2] and references therein).
+Although nowadays user cooperation is entering into wire- less communication standards, the code design for cooperative scenarios is only being addressed since several years. The de- sign of efﬁcient sparse-graph codes for relay channels started with works by Razaghi and Yu [3], by Valenti and Zhao [4] and by Jacobsen [5]. The authors proposed particular families of sparse-graph codes for the DF transmission protocol. It should be emphasized that the bilayer structure introduced by [3] has been studied intensively since then. This structure gives rise to various ensembles of bilayer LDPC codes [3], [6] and to bilayer ARA codes [7]. It is also important to mention that the proposed coding schemes have been designed for half-duplex regime.
+In this paper, we analyze the performance of the block- Markov DF scheme, based on sparse-graph codes, in both half-duplex and full-duplex regimes , in the framework of DF transmission protocol. By exploting the block-Markov structure, used in [1], we deﬁne convolutional code structure
+that will be seen by the destination. The structure of one block of the block-Markov coding scheme represents a practical implementation of random coding scheme and can be viewed as a generalized bilayer structure. Assuming sparse-graph codes (in particular, bilayer LDPC codes), we investigate the asymptotic performance of the block-Markov scheme via density evolution. For the sake of simplicity, through this paper we consider only the binary erasure relay channel (BE- RC). However, the presented scheme and its analysis can be generalized to other binary-input symmetric memoryless channels.
+The paper is organized as follows. Section II reviews the necessary background on the block-Markov scheme. Section III introduces the bilayer LDPC structure, modiﬁed for the block-Markov setting. Section IV presents its asymptotic per- formance analysis over the binary erasure relay channel (BE- RC). Section VI concludes the paper.
+Let us ﬁrst review the DF scheme [1]. In this setting, the source node S broadcasts an encoded message X 1 to the helping node (relay R) and the destination node D. Then R receives a noisy version of X 1 , from which R decodes the message and re-encodes it to obtain the relay encoded message X 2 . After this X 2 is sent to the destination end. Hence two transmission scenarios are possible: (i) In the half-duplex scenario, D receives source and relay messages separately, (ii) In the full-duplex scenario, D receives a mix of those two messages. It is assumed that D performs joint decoding of X 1 and X 2 , although other decoding schedules are possible.
+The generation of both messages: X 1 at the source end, and X 2 at the relay end, are based on the block-Markov encoding scheme. Let w i be the i-th information message. At the source end, w i is encoded to X 1 (w i ) using a code C S of length n and rate R. The message, sent by the source, is formed as follows
+X 1 (w i |s i ) = X 1 (w i ) ⊕ X 2 (s i ), 	 (1) where X 2 (s i ) is the so called coset vector. Indeed, X 2 (s i ) itself is a codeword of a code C R of length n and rate R 0 ,
+w 2 w 1 	 w M X 1 (w 1 ) 	 X 2 (s 2 ) X
+generated based on the vector s i . This vector s i represents the bin vector, obtained as follows. Let C S be partitioned into 2 nR 0 bins, each containing 2 n(R−R 0 ) codewords, and let s denote the bin number. Then s i denotes the bin number corresponding to X 1 (w i−1 ).
+The code subspace of the described code structure is given in Fig.1. Large circles are coset codes C S ⊕ X 2 of rate R, the dark-grey region represents the bin in a coset code. Note that there are exactly 2 nR 0 coset codes.
+1) Block-Markov Coding Structure: Let the source transmit M messages w i using the block-Markov relay structure. In this case, the transmission protocol is described as follows:
+- X 1 (w i ) is generated from C S at the source end and X 1 (w i |s i ) is broadcasted;
+- R receives Y 1 (i), a noisy version of X 1 (w i |s i ), es- timates X 1 (w i ) and computes s i+1 . Then X 2 (s i+1 ) is generated from C R and is sent during the next transmission time;
+- at time i, D receives Y (i), based on X 1 (w i |s i ) and on X 2 (s i ).
+• For i = M + 1, R sends X 2 (s M ) and S broadcasts w M +1 = 0.
+In the half-duplex regime, the channel output Y (i) is composed of a couple {Y S (i), Y R (i)}, where Y S (i) and Y R (i) are respective noisy versions of X 1 (w i |s i ) and of X 2 (s i ). In the full-duplex regime, the channel output Y (i) is the output of a multiple-access channel (MAC) with two input messages X 1 (w i |s i ) and X 2 (s i ).
+The above transmission protocol provides the block-Markov coding structure depicted in Fig.2. C S blocks represent the coding scheme at the source end and C R blocks represent the coding scheme at the relay end.
+In what follows, C S and C R are supposed to be sparse- graph codes. We consider a particular example of a C S − C R scheme – bilayer LDPC code, ﬁrst presented in [3]. Note that in [3] it has been assumed that the destination is able to decode the bin of any codeword coming from the relay, i.e. the relay-destination link is error-free. In this case, to describe the coding scheme, one needs to describe C S and only the part of C R , generating the bin of the source’s codeword. [3] proposes two ensembles: the bilayer-lengthened LDPC ensemble (both C S and the part of C R are LDPC codes), and the bilayer- expurgated LDPC ensemble (C S is an LDPC code and the part of C R is an LDGM code).
+The aim of our paper is to analyze the behavior of those bilayer LDPC families in the full-duplex regime, as they are naturally ﬁrst candidates to be considered. Note that, in our case, no assumption on the error-free relay-destination link is made, and one should provide the full description of C R . Without loss of generality, we still call the code structures bilayer-expurgated (BE) and bilayer-lengthened (BL) LDPC codes. Now let us deﬁne them in the block-Markov (BM) setting.
+A. Block-Markov Bilayer-Expurgated LDPC Codes (BM-BE- LDPC)
+The protograph of a BE-LDPC code is given in Fig. 3. Here, the structure given by 1 and 1 represents an LDPC code at the source end (C S LDPC code); the message x 1 (w i−1 ) is its codeword. The structure given by nodes 1 − 2 and 2 is an LDGM code at the relay end, generating the bin message (ﬁrst part of C R ). Finally, nodes 2 − 3 and 3 represent an LDPC code, used to generate the message x 2 (s i ) (second part of C R ). Each edge class of the protograph is described by left and right degree distributions λ(x) and ρ(x).
+Note that Fig.3 is a detailed representation of the ⊕ − C S − C R structure in Fig.2. By putting the BE-LDPC and BM structures together, one obtains a convolutional structure over BE-LDPC codes referred to as a BM-BE-LDPC code.
+B. Block-Markov Bilayer-Lengthened LDPC Codes (BM-BL- LDPC)
+For BL-LDPC codes, the coset vector x 2 of the i-th block is generated based on w i only, which is the information part of the encoded message x 1 (w i ).Thus, BL-LDPC codes can be viewed as a particular case of BE-LDPC codes. The C R code of a BL structure is an LDPC code.
+Fig.4 presents the protograph of the BL-LDPC code. The structure given by 1 , 2 and 1 represents the C S LDPC code ( 1 is the class of variable nodes corresponding to w i ). The structure given by 2 , 3 and 2 is the C R LDPC code. The transmitted source message is generated as x 1 (w i−1 , w i ) = x 2 (w i−1 ) ⊕ x 1 (w i ). In Fig.4, the message x 1 (w i ) is represented as the hatched block.
+Similar to BM-BE-LDPC codes, one obtains a convolutional BM-BL-LDPC structure by putting together the BE-LDPC structure of Fig.3 and the BM structure of Fig.2.
+Let us consider the asymptotic performance of the coding scheme from Section II, using bilayer LDPC codes as codes for each C S − C R block of the BM encoding structure. Both half- and full-duplex cases are considered.
+The analysis is made by assuming the binary erasure relay channel. For simplicity, we assume that the relay always decodes X 1 (w i ) successfully, to make density evolution oper- ations over the block-Markov structure easy to deﬁne.
+In the half-duplex case, one simply assumes Y S (i) to be the output of a binary erasure channel (BEC) with probability
+1 and Y R (i) to be the output of a BEC with probability 2 . For the full-duplex case, the situation is more involved and a MAC model should be deﬁned. As a particular example, we assume the MAC channel it to be sum modulo-2 multiple access channel, as presented in [8]. Clearly, other models of BE-MAC channels are also possible, but the chosen channel model is the closest approximation to the Gaussian MAC channel. Our channel model is given in Fig.5. Here channel input messages are binary and ⊕ is the XOR operation.
+   
+  
+X 1 (w i ), 	 w.p. (1 − 1 )(1 − 2 ); X 1 (w i |s i ), w.p. (1 − 1 ) 2 ; X 2 (s i ), 	 w.p. 1 (1 − 2 ); ?, 	 w.p. 1 2 .
+Proposition 1: An achievable rate of the full-duplex BE-RC is given by
+Proposition 2: An outer bound on capacity of the half- duplex BE-RC is given by
+where is the erasure probability of the source-relay (S − R) link and 0 ≤ α ≤ 1 is a coupling parameter that describes the time division between the source and the relay.
+Consider the code ensemble deﬁned in Section III-A. Let S and R be respective bit erasure probabilities, associated with x 1 (w i−1 ) and x 2 (s i ). S and R are both explicit functions of ( 1 , 2 ), depending on the transmission scenario.
+where R j is the fraction of edges corresponding to y. Then density evolution equations for the BE-LDPC ensemble are 1 :
+u 0 = S λ 1 (1 − ρ 1 (¯ u 0 ))˜ λ 2 (1 − ¯ u 2 ρ 2 (¯ u 1 )); u 1 = S ˜ λ 1 (1 − ρ 1 (¯ u 0 ))λ 2 (1 − ¯ u 2 ρ 2 (¯ u 1 )); u 2 = R ˜ λ 3 (1 − ρ (+) 3 (¯ u 3 , ¯ u 4 ));
+u 3 = R (1 − ¯ u 1 ρ 2 (¯ u 1 ))λ 3 (1 − ρ (+) 3 (¯ u 3 , ¯ u 4 )); u 4 = R λ 3 (1 − ρ (−) 3 (¯ u 3 , ¯ u 4 )),
+where ˜ λ i (x) = λ i (x)x, i = 1, 2, 3. For some ﬁxed S and R , let ˆ u = (ˆ u 0 , . . . , ˆ u 4 ) be the largest solution of this system of
+equations, such that 0 < u i ≤ 1 for all i = 0, . . . , 4. ˆ u( S , R ) is called the ﬁxed point of the density evolution, corresponding to S and R .
+1) Half-Duplex: Let us deﬁne the density evolution for the half-duplex BM-BE-LDPC scheme. In this case, messages x 1 (w i |s i ) and x 2 (s i ) are received separately with erasure probabilities 1 and 2 respectively(see Fig.6). We deﬁne the following scheduling of iterative decoding of the block- Markov structure with M blocks: forward and backward up- dates are performed over the block-Markov structure, and the ﬁnal decision is made for messages x 1 (w i ) for all 1 ≤ i ≤ M after some maximal number K of the updates. Note that the forward/backward update for some block i is based on the ﬁxed point estimation ˆ u i , obtained after an iterative decoding inside the block. Let us deﬁne forward and backward updates: • Initialize f 0 i = 1 for 1 ≤ i ≤ M − 1 and f 0 i = 0. Similarly, initialize b 0 i = 1 for 1 ≤ i ≤ M − 1 and b M i = 0.
+f k i = 	 1 − (1 − 1 )(1 − 2 z), 	 (5) b k i−1 = ˜ λ 1 (1 − ρ 1 (1 − ˆ u 0 ))˜ λ 2 (1 − (1 − ˆ u 2 )ρ 2 (1 − ˆ u 1 )), (6)
+z = R 3 ˜ λ 3 (1 − ρ (+) 3 (1 − ˆ u 3 , 1 − ˆ u 4 ))[1 − (1 − ˆ u 1 )ρ 2 (1 − ˆ u 1 )] + (1 − R 3 )˜ λ 4 (1 − ρ (−) 3 (1 − ˆ u 3 , 1 − ˆ u 4 )), (7)
+where the ﬁxed point ˆ u = (ˆ u 0 , . . . , ˆ u 5 ) at the forward stage is computed for
+We deﬁne the iterative convergence region and the threshold boundary.
+Deﬁnition 1: The iterative convergence region Γ( 1 , 2 ) is the set of all points ( 1 , 2 ) such that min(u ∗ 0 , u ∗ 1 ) = 0.
+Deﬁnition 2: The threshold boundary γ( 1 , 2 ) is the set of points that are located on the boundary of Γ( 1 , 2 ).
+To estimate the error performance of a BM ensemble, one should compare its threshold boundary with the cpacity bound developed in Section IV-A.
+2) Full-Duplex: In this case, a mix of messages x 1 (w i |s i ) and x 2 (s i ) is received. By following the model of the BE- MAC channel of Section IV-A, forward and backward updates for the iterative decoding are described by:
+f k i = 	 1 + (1 − 1 ) 2 z, 	 (10) b k i−1 = ˜ λ 1 (1 − ρ 1 (1 − ˆ u 0 ))˜ λ 2 (1 − (1 − ˆ u 2 )ρ 2 (1 − ˆ u 1 )),(11)
+with z given in (7), where the ﬁxed point ˆ u at the forward stage is computed for
+The threshold boundary γ( 1 , 2 ) for the full-duplex regime is deﬁned exactly as in the previous case.
+Similarly to the case of BM-BE-LDPC codes, let us deﬁne density evolution operations for the BM-BL-LDPC ensemble and to determine Γ( 1 , 2 ).
+First consider some block i. Density evolution equations for a BL-LDPC code as a function of S and R are given by:
+u 1 = S R λ 1 (1 − ρ (+) 1 (¯ u 1 , ¯ u 0 ))˜ λ 2 (1 − ρ (+) 2 (¯ u 2 , ¯ u 3 )); u 2 = S R ˜ λ 1 (1 − ρ (+) 1 (¯ u 1 , ¯ u 0 ))λ 2 (1 − ρ (+) 2 (¯ u 2 , ¯ u 3 )); u 3 = R λ 2 (1 − ρ (−) 2 (¯ u 2 , ¯ u 3 )).
+As before, ˆ u = (ˆ u 0 , . . . , ˆ u 3 ) denotes the ﬁxed point of those equations for some given S and R .
+1) Half-Duplex: Forward and backward updates in the half- duplex case are given by
+f k i = 1 − (1 − 1 )(1 − 2 [R 2 z 	 (14) +(1 − R 2 )˜ λ 2 (1 − ρ (+) 2 (1 − ˆ u 2 , 1 − ˆ u 3 ))]
+and S and R are given by (8) and (9) for the forward and backward case, respectively.
+2) Full-Duplex: The backward update is simply given by (15). The forward update is
+In (17), z is given by (16) and S and R are given by (12) and (13) for the forward and the backward case, respectively.
+One would like now to compare threshold boundaries Γ( 1 , 2 ) for BM-BE-LDPC and BM-BL-LDPC codes with
+capacity bounds in both half- and full-duplex regimes (HD and FD). As the threshold boundaries are difﬁcult to evaluate analytically, numerical evaluations are performed using density evolution equations, as deﬁned in Sections IV-B and IV-C.
+For a simple example, let us ﬁx λ i (x) = x 2 and ρ i (x) = x 5 for all i (i = 1, 2, 3 in the BE case and for i = 1, 2 for the BL case), and let M = 100. Also, ﬁx the number of forward/backward updates to 100.
+Numerical evaluations of threshold boundaries Γ( 1 , 2 ) for block-Markov BE and BL ensembles are given in Fig.7 and Fig.8. Consider Γ( 1 , 2 ) of the BM-BE-LDPC ensemble in Fig.7. One can see that threshold boundaries for bith half- and full-duplex regime are far from capacity bounds. This is due to the presence of the LDGM code with a poor threshold inside each C R block of the block-Markov structure, and the block-Markov structure accentuates the inﬂuence of those LDGM parts. Γ( 1 , 2 ) for the full-duplex case is smoother than Γ( 1 , 2 ) for the half-duplex, which is explained by the difference of two transmission models.
+The main difference between the BE and BL LDPC codes is in the fact that s i = w i−1 and thus, there is no LDGM structure in the C R block. This is beneﬁcial for iterative performance of the scheme – one can see that the threshold boundaries lie closer to outer capacity bounds. Both half- and full-duplex block-Markov threshold boundaries are asymmetric, due to the fact that the source message, corrupted with erasure probability
+1 , is in fact a XOR of two codewords. Hence erasures for the source message degrade more the performance than erasures for the relay message. At two extreme points 2 = 1 and
+2 = 1, which correspond to the absence of relay and to the absence of the source-destination link, the MAC channel acts as an orthogonal channel, and both half-duplex and full-duplex regimes have the same performance.
+We investigated the asymptotic iterative performance of block-Markov BE-LDPC and BL-LDPC codes over the binary erasure relay channel. Working with such a simple channel model allowed us to derive exactly the iterative convergence region and the threshold boundary of the code families for both half-duplex and full-duplex cases. At our knowledge, this is the ﬁrst work analyzing coding structures of the full-duplex case. The subject can be further developed with the aim to ﬁnd optimal code and transmission parameters for this regime.
+The calculation of iterative threshold boundary can be extended to other channel models (e.g. the Gaussian channel), even though only the numerical evaluation of this quantity may be possible. Our analysis has been made in the case of the perfect bin estimation at the relay end (good-quality source- relay link). Note that the calculation can be generalized to the case when the estimation error is non-zero. This case is the subject of our future work.
+[[[ REFS ]]]
+T. Cover
+A. Gamal
+--
+Capacity theorems for the relay channel
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative strategies and capacity theorems for relay networks
+----
+P. Razaghi
+W. Yu
+--
+Bilayer low-density parity-check codes for decode-and-forward in relay channels
+----
+M. Valenti
+B. Zhao
+--
+Distributed turbo codes: towards the capacity of the relay channel
+----
+N. Jacobsen
+--
+Practical cooperative coding for half-duplex relay chan- nels
+----
+M. Azmi
+J. Yuan
+--
+Performance of bilayer-lengthened ldpc codes under joint decoding
+----
+T. V. Nguyen
+A. Nosratinia
+D. Divsalar
+--
+Bilayer protograph codes for half-duplex relay channels
+----
+G. Poltyrev
+J. Snyders
+--
+Linear codes for the sum mod-2 multiple- access channel with restricted access
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\109.pdf
+[[[ LINKS ]]]
+

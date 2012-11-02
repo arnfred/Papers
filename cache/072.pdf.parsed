@@ -1,0 +1,118 @@
+[[[ ID ]]]
+72
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Is Unequal Error Protection Useful?
+[[[ AUTHORS ]]]
+Ozgun Y. Bursalioglu
+Giuseppe Caire
+[[[ ABSTR ]]]
+Abstract—When transmitting source-encoded data, not all information bits are equally important, due to the different sensi- tivity of the source decoder to errors. Unequal Error Protection (UEP) consists of allocating coding redundancy depending on the importance of the information bits. We consider progressive transmission of source-encoded data under three different packet formats where either number of source bits per packet is ﬁxed (ﬁxed-k approach), or packet block length is ﬁxed (ﬁxed-n approach) or both parameters allowed to vary for each block (variable- (n, k) approach). Most existing results are based on some chosen family of channel codes and consider a single- user setting. Thanks to the recent ﬁnite length error probability results by Polyanskiy et al., in this work we investigate the UEP concept using the new ﬁnite-length random coding bounds. In the single-user case, we show that when codes meeting Polyanskiy achievability bounds are used, UEP does not obtain signiﬁcant advantages over Equal-Error Protection (EEP) (advantages dis- appear for the variable- (n, k) case). Based on these results, a low complexity optimization algorithm is proposed for the multiuser (multicast) scenario.
+[[[ BODY ]]]
+While Shannon’s separation theorem makes of bits a univer- sal currency into which any source can be converted in order to be transmitted reliably through a noisy channel, it is well- known that in certain lossy transmission settings “not all bits are created equal”. In particular, analog sources (e.g., video) are typically encoded via an “embedded” successive reﬁne- ment scheme, and transmitted progressively: any additional packet of bits successfully decoded yields an improvement in the reconstruction distortion till the ﬁrst block in error, after which the remaining portion of the sequence is useless to the embedded source decoder. Therefore, the ﬁrst packets in the sequence (fundamental layer) are “more important” than the last ones (reﬁnement).
+In this context, Unequal Error Protection (UEP) consists of allocating coding redundancy over the sequence of progres- sively transmitted packets, depending on the importance of the information bits. The goal is to minimize the expected distortion at reconstruction. Since the minimization of the expected distortion is typically involved, and for most practical sources the embedded source coder operational rate-distortion function is unknown, a widely proposed approach consists of maximizing the expected number of correctly decoded packets up to the ﬁrst packet in error. We shall refer to this optimization criterion as the maximum average rate case.
+This problem has been widely studied in the literature [1], [2], [3], [4]. A packet of size n corresponds to n coded channel symbols that are obtained from a block of k information bits. We consider a memoryless noisy channel, operating on the coded symbols (not on the packets). In literature, mainly two different packet formats have been considered: variable-length channel packets with ﬁxed-length information block (ﬁxed- k approach) [1], ﬁxed-length channel packets with variable length information block (ﬁxed- n approach) [2]. Another version of the UEP problem, not so widely explored, considers variable k, n for different packets (variable-(n, k) approach) [5], see Fig. 1. Most existing results are based on some chosen family of codes (e.g., shortened Reed-Solomon codes). Thanks to recent results by Polyanskiy et al. [6], in this work we investigate the UEP concept using the new ﬁnite length random coding bounds and approximations. We show that when good ﬁnite length codes are used (i.e., codes that meet Polyanskiy achievability bounds), UEP after all does not obtain signiﬁcant advantages over Equal-Error Protection.
+We denote by q k,n the block error probability of codes of length n and rate k/n. 1 In addition to new, generally tighter than what previously known, achievability and converse bounds for the performance of codes at ﬁnite length, [6] also developed the accurate and easy to use approximation:
+where C denotes channel capacity and V denotes channel dispersion [6].
+In [1], [2], [5] (as well as in several other works not referenced here for the sake of brevity), UEP is studied for the single-source single-destination case with the purpose of limiting the effects of residual post-decoding block errors due to ﬁnite block length coding. In fact, if arbitrarily large
+block length and coding complexity could be afforded, cod- ing arbitrarily close to Shannon’s separation limit would be optimal with no need of UEP. Different scenarios including fading channels, multiple sources, and parallel channels have been considered in [3], [7], and [8], respectively. In general, even for the maximum average rate case, optimal UEP rate allocation is obtained as the solution of a rather complicated dynamic program, which is hard to solve in an on-line real- time implementation [1], [2], [5]. Therefore, simpliﬁcations have been sought [3], [4]. Nosratinia et al. worked with an empirical model relating block error probability with Binary Symmetric Channel (BSC) capacity, somehow reducing the complexity of ﬁnding the optimal solution due to the structure of empirical error function. Simulations with fading channels have been also provided where the UEP scheme is designed according to the worst channel condition [3].
+Among many variations of the UEP in literature, the mul- ticast version, i.e., one source sent to different users through channels with different capacity, has not been considered in detail. In this work, for the ﬁxed- k and ﬁxed-n approaches, we show that a suitably optimized EEP scheme, where all packets size and rate are the same, is competitive with the high complexity optimal dynamic programming solution of UEP. We also show that, for the variable- (n, k) case, using a single block is optimal. Based on these result for the single user case, we propose a near-optimal, yet simple, heuristic method for the much more involved UEP multicast problem.
+UEP algorithms presented in the literature focus on rate- based and/or distortion-based optimization. It was observed that for progressive transmission schemes with ﬁxed packet length (ﬁxed- k or ﬁxed-n approaches), the UEP optimization based on rate performs almost as good as the optimization based on distortion and yields lower complexity rate allocation algorithms [1], [2], [9]. This can be explained by observing that these schemes operate with a random number of correctly decoded packets till the ﬁrst error. The number of decoded packets ﬂuctuates around is average. With respect to these (small) local ﬂuctuations, the source coder rate-distortion function is nearly linear, and therefore maximizing the average rate is nearly equivalent to minimizing the average distortion. This may not be true for the case of variable- (k, n), where encoding over large blocks (up to a single large block) is allowed. In this case, for a sufﬁciently convex rate-distortion function with large “Jensen’s inequality penalty”, optimizing the average rate may be signiﬁcantly suboptimal. For the sake of brevity, here we focus on the maximum average rate approach and investigate also the minimum average distortion case in [10].
+The derivations and notations in this section are heavily based on [1]. We consider the general multicast variable- (n, k) problem where a source is transmitted to L users. We assume that the L binary-input channels are degraded versions of the same channel “type” (e.g., they are BSCs with different cross-over probabilities, or Binary Erasure Channels (BECs)
+with different erasure probabilities). Furthermore, the channels are sorted in order of increasing capacity C 1 ≤ · · · ≤ C L . Optimization is performed over all optimal ﬁnite length codes instead of a chosen code family as in previous literature.
+Let π ∆ = {(k 1 , n 1 ) . . . , (k M (π) , n M (π) )} denote a transmis- sion policy with M (π) packets, where M (π) i=1 n i = N , and where N is the total number of channel symbols that we wish to transmit. By the results of [6], we know that there exist codes of block length n with k information bits and block error probability q k,n , approximately obeying relation (1). Let P l i|t−1 (π) denote the probability that the ﬁrst error happened at the (i + 1) th packet given that t − 1 packets are decoded correctly. For simplicity of exposition, we assume L = 2 from now on. Then, P l i|t−1 (π) can be calculated as follows for l ∈ {1, 2}:
+where q (l) k,n is the block error rate for channel l = 1, 2. It is easy to see that
+Packets are transmitted sequentially. Some packets shall be used by both users and some other packets will be used only by the better user, depending on the UEP allocation. For the l th channel, the average number of source symbols received before a packet decoding failure can be written as in (4):
+Then, we can state the multicast variable- (n, k) optimization problem as:
+where α and β are suitable nonnegative “priority” weights that parameterize the tradeoff between the two users.
+Next, a dynamic programming framework is given, follow- ing in the footsteps of [1]. Deﬁne
+(6) then ∆(1, α, β, π) = αV 1 π + βV 2 π . Deﬁne the more general optimization problem:
+Using (3), the relationship between ∆(t, α, β, π) and ∆(t + 1, α, β, π) is given in (8).
+Let ∆ ∗ t (a, b, Z) denote a sequence of recursive functions indexed by t as deﬁned in (9). Note that neither ∆(t, α, β, π) nor N t,π depend on n i , k i for i < t. Hence, ∆(t, α, β, π) is optimized over only n M (π) , . . . , n t and k M (π) , . . . , k t . The solution of the same optimization problem for t + 1 does not depend on n t , k t . Then the optimization of ∆(t, α, β, π) over n t , k t can be done independently from the optimization of ∆(t + 1, α, β, π). This yields that the solution of (7) is equal to ∆ ∗ t (t, a, b, Z) for a = α, b = β and Z = N . Also, note that the dependence on t in (9) is unnecessary due to the form of (9), hence we can actually consider (9) without the parameter t and use the notation ∆ ∗ (α, β, N ) in the rest.
+Dynamic programming solutions to ﬁxed- k /ﬁxed-n single- user ( L = 1) problems as given in [1],[2] and can be obtained as special cases of (9).
+We approximate q k,n by a step function in the (k, n) plane, such that ˜ q k,n = 1 {(k,n) / ∈E} . Notice that this means that in the plane (k, n), ˜ q k,n is zero for (k, n) ∈ E. The region E is chosen such that the actual function q k,n is very small for all pairs (k, n) ∈ E. In Fig. 2, E region’s boundary is plotted for various q k,n threshold values for BEC with erasure rate δ = 0.3. For a ﬁxed threshold value, we deﬁne the boundary of the region as k = f (n), and its inverse function as n = g(k). Since it is possible to have better codes when larger block lengths are used, f (.) is super additive i.e. f (k 1 +k 2 ) ≥ f (k 1 )+f (k 2 )while g(.) is sub additive. Although
+f (.) and g(.) depend on the chosen value for “almost zero” error probability, we do not indicate it explicitly for the sake of notation simplicity. Notice however that the accuracy of
+the approximation depends on the threshold value of the true probability of error q k,n , to be approximated by zero. The usefulness of the threshold approximation comes from the fact that the resulting optimization of the UEP policy π is very simple. Then the threshold error probability is indeed a design parameter. This selection is a task much simpler than the full dynamic programming, and requires only a one-dimensional search.
+Let’s start from the threshold approximation for variable- (n, k) single user problem. The specialization to single user can be derived using a = 1, b = 0, Z = N in (9) as follows where ∆ ∗ (Z) is short-hand notation for ∆ ∗ (1, 0, Z): For N < 1, ∆ ∗ (N ) = 0 otherwise,
+∆ ∗ (N ) = max 0≤k≤n≤N ¯ q k,n [k + ∆ ∗ (N − n)] (10) Next, the threshold approximation is applied to (10). Optimiza- tion solutions using threshold approximation is denoted by Γ ∗ instead of ∆ ∗ . If n < g(k), then ˜ q k,n becomes equal to 1 hence optimization reaches its lower bound. Instead when n ≥ g(k) is considered, the error probability becomes zero at n = g(k). Obviously, any n larger than g(k) cannot be optimal. Then the optimal n is equal to g(k). ∆ ∗ (N ) is simpliﬁed to Γ ∗ (N ) in (11) for N ≥ 1 (Note that Γ ∗ (N ) = 0 for N < 1).
+Γ ∗ (N ) = max 1≤k≤N [k + Γ ∗ (N − g(k))] (11) Using induction on N , i.e. assuming Γ ∗ (N ′ ) = f (N ′ ) for N ′ < N and super additivity of f (.), we conclude that Γ ∗ (N ) = f (N ) which states single block coding is optimal according to the threshold approximation similar to exact analysis in Sec. V.
+Next, we focus on the two-user (L = 2) multicast scenario. We shall see that the threshold approximation yields that we should code using at most two blocks, one decodable by both users, and one decodable by the better user only. Similar to what we have seen with the threshold approximation for single user, here also for ﬁxed k the optimization on n in (9) is solved by only comparing n values found according two points n 2 = g 2 (k) or n 1 = g 1 (k), where g i (.) and f i (.) functions are obtained with respect to i th channel. Note that n 1 ≥ n 2 ≥ k. If n 2 is chosen, the recursive relation (9) sets the weight of the ﬁrst user to zero hence, the dynamic programming can be converted into the single user case. When n 1 is used, both users can decode successfully and their weights are multiplied by 1. Then we write (12) for multicast case analogous to (11):
+The proof is again based on induction on N . For N = 1, the only feasible solution is single block coding. Now for N ′ < N assume that the multicast solution Γ ∗ (α, β, N ′ ) is given by a two-block structure where the ﬁrst k source bits are encoded in the ﬁrst package, again here k is a design parameter. Then the induction hypotheses for N ′ < N is as follows:
+Let’s focus on the second term of the optimization in (12) since the ﬁrst term is already in the single block format, and corresponds to coding only for the second user. Using the induction hypotheses for N ′ < N ,
+max 0≤k≤N [k(α + β) + Γ ∗ (α, β, N − n 1 )] = 	 (14) max [(k ′ + k)(α + β) + βf 2 (N − g 1 (k) − g 1 (k ′ ))]
+We notice that (14) is optimized when k ′ = 0. In order to see this, assume k ′∗ , k ∗ are the optimal values, then compare the objective function evaluated at k ′∗ , k ∗ and 0, k ′∗ + k ∗ . The objective function when k ′ = 0 is greater than the assumed optimal value at k ′∗ , k ∗ , using super additivity of f (.) and subadditivity of g(.). Hence also the second term in (12) results in two single block coding.
+With similar methods one can easily show that threshold approximation gives very simple code structure also for ﬁxed- k and ﬁxed-n cases [10]. For example, in the ﬁxed-k approach, the threshold approximation suggests that the optimal coding is achieved using block sizes of two different size either g 1 (k) or g 2 (k). Once a packet of size g 2 (k) is coded, no following packets of size g 1 (k) are produced.
+In this section, we consider BEC, further results with BSC can be found in [10]. Since the optimal probability of error q k,n is not known in general, we will consider three sets of results, depending whether the achievability (upper bound), normal approximation or converse (lower bound) expression for the ﬁnite block length probability of error are used (see equations (184), (290), (187) of [6]). The corresponding curves shall be denoted with “Ach.”, “Norm.” and “Con.”, respec- tively. Note that ideal performance i.e. assuming capacity achieving code for every block length with zero error prob- ability yields N C successfully decoded information bits in any single-user transmission of N channel uses. For multicast problems, ideal assumption results in simple linear programs as given in Table I.
+Fig. 3 compares the exact dynamic programming with the results obtained by the threshold approximation for the single- user ﬁxed- k case for BEC with C = 0.7. We observe that, there is no signiﬁcant difference between the optimal dynamic programming solution (varying packet size n, UEP) and the solution of the threshold approximation (uniform packet size equal to n = g(k), EEP). In Fig. 3, ∆ ∗ k (N )/k which corresponds average number of correctly decoded packets is plotted for increasing N . We ﬁx k/N ratio to 1/20 and varied
+N between 500 − 20000. Notice that for N = 4000 (hence k = 200) Ach., Norm. and Con. curves become very tight. Due to computational complexity of calculating Ach. and Con. curves for large N , we plot only Norm. curves for N > 4000. The gap between the “ideal” performance (Shannon limit) and Norm. curve is due to the ﬁnite- k constraint. For example, for N = 20000 and k = 1000, (1) computes that q k,n < 10 −6 can be achieved for rate less than 0.65 obviously less than C = 0.7 (similar to rate vs. block length results reported in Fig. 10 and Fig. 11 of [6]). Hence the ﬁnite length curve reaches (N/k)0.65 = 13 in Fig. 3. In Fig. 3, to avoid
+very small k values with short N ≤ 4000 (as dictated by computational complexity of Ach. and Con. curves), we keep a large ratio of k/N in order to show that Ach., Con., and Norm. curves get tighter. But this ratio is very high with respect to sample experiments reported in previous UEP literature using digital images [1]. Next we consider another example with N = 256000 and k = 256 for the same channel where the N and k are selected considering the experiments in [1]. In this case we obtain ∆ ∗ k (N )/k = 606.29 while Γ ∗ k (N )/k = 604.51.
+Dynamic programming of ﬁxed- n and ﬁxed-k approaches are not too complicated for the single user case. On the other hand, the exact dynamic programming UEP optimization for multicast has very high complexity (see [1], [2], and [10] for detailed complexity analysis) and it is not amenable for an on-line implementation. For this reason, we propose a low complexity suboptimal algorithm for multicast ﬁxed- k problem inspired by solution structure of the threshold approximation. As discussed in Sec. III, for an L-user mul- ticast the step analysis suggests that channel packets should be grouped in at most L many equal length packet groups. The optimal single-user value for the l th user, ∆ ∗,l k (Z) is calculated recursively starting with Z = 1 to Z = N and saved for every user as a vector of length N only once at the beginning of the algorithm. Then the low complexity algorithm ﬁrst partitions N bits into L blocks where l th block is of
+size N l . The coding strategies of each partition is decided using single-user dynamic programming independent of each other. The rationale behind this is the fact that optimization of ∆ k (N l ) does not depend on the allocations for previous blocks in average rate case but not in average distortion. Notice that ∆ ∗,l k (N l ) is readily given by the initial calculation as explained but ﬁnding the solution itself requires re-running the optimization (10) for every partition. Concatenation of these individual block solutions forms the transmission policy π. Next for each user V l π is calculated using (4) to obtain the weighted average. The algorithm then chooses the policy with highest weighted average. Notice that ﬁnding single-user optimal solution for every partitioning could be a daunting task due to re-running the optimization (10). Hence, as a surrogate for V l π we propose using l m=1 ∆ ∗,m k (N m ) which is actually its lower bound due to degradedness of the user channels.
+In Fig. 4, we compare the performance of the dynamic programming approach ﬁnding the optimal solutions (curve labeled with Find. Sol.) and dynamic programming approach using the heuristic surrogate (curve labeled with Surr.). Similar algorithms can be also described for multicast- (n, k) and ﬁxed- n problems (see [10] for further results).
+Deﬁne the function S(N ) ∆ = max 1≤k≤N k ¯ q k,N , providing the largest average number of successfully decoded symbols, when we can design the coding rate k/N . In this section, we show that if S(N ) is super-additive, i.e. S(a + b) ≥ S(a) +
+S(b), then coding over a single block is optimal in the single- user variable- (n, k) problem, with respect to the average rate criterion. This amounts to show that ∆ ∗ (N ) in (10) is equal to S(N ).
+The super additivity of S(N ) can be observed numerically when q k,n is obtained using the ﬁnite block length results of [6]. 2 By deﬁnition of optimum, we have that ∆ ∗ (N ) ≥ S(N ) = k N ¯ q k N ,N , where k N is the arg-max of the maxi- mization w.r.t. k that deﬁnes S(N ). Hence, assuming super- additivity, in the following we show that ∆ ∗ (N ) ≤ S(N ) using induction on N . For N = 1 we have trivially k 1 = 1 and ∆ ∗ (1) = S(1). Next, assume that ∆(N ′ ) = S(N ′ ) for all N ′ < N . We rewrite (10) skipping the case of N < 1:
+[[[ REFS ]]]
+V. Chande
+N. Farvardin
+--
+Progressive transmission of images over memoryless noisy channels
+----
+V. Stankovic
+R. Hamzaoui
+D. Saupe
+--
+Fast algorithm for rate- based optimal error protection of embedded codes
+----
+A. Nosratinia
+J. Lu
+B. Aazhang
+--
+Source-channel rate allocation for progressive transmission of images
+----
+M. Fresia
+F. Lavagetto
+--
+Determination of optimal distortion-based protection in progressive image transmission: A heuristic approach
+----
+P. Sherwood
+X. Tian
+K. Zeger
+--
+Channel code blocklength and rate optimization for progressive image transmission
+----
+Y. Polyanskiy
+H. Poor
+S. Verdu
+--
+Channel coding rate in the ﬁnite blocklength regime
+----
+Z. Wu
+A. Bilgin
+M. Marcellin
+--
+Joint source/channel coding for multiple images
+----
+L. Pu
+M. Marcellin
+I. Djordjevic
+B. Vasic
+A. Bilgin
+--
+Joint source-channel rate allocation in parallel channels
+----
+A. Hedayat
+A. Nosratinia
+--
+Rate allocation criteria in source-channel coding of images
+----
+O. Y. Bursalioglu
+G. Caire
+--
+Unequal error protection using optimal ﬁnite block length codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\072.pdf
+[[[ LINKS ]]]
+

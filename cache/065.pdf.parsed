@@ -1,0 +1,123 @@
+[[[ ID ]]]
+65
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+List decoding of product codes by the MinSum Algorithm
+[[[ AUTHORS ]]]
+Alexander Barg ∗
+Gilles Z´emor ∗∗
+[[[ ABSTR ]]]
+Abstract—We introduce a MinSum-based list decoder for product codes and analyze its performance. We show that it can guarantee successful list decoding for decoding radii that lie above half the code’s minimum distance.
+[[[ BODY ]]]
+The concept of list decoding has been a focal point of a large number of research works in coding theory in the last decade, with substantial progress achieved for list decoding of Reed-Solomon codes, algebraic-geometric, and Reed-Muller codes. On the other hand, iterative decoding techniques for the otherwise popular class of codes on graphs, among which product codes and LDPC codes, also produce remarkable achievements, though most often in the probabilistic setting rather than the worst-case. There are results whereby iterative decoding can guarantee correction of any pattern of t errors, but for values of t that seldom reach half the designed distance of the considered codes. Our purpose is to study whether decoding techniques inspired by iterative message- passing algorithms can go beyond this bound, i.e., whether we can construct list decoders of an iterative nature with guaranteed success for some radius above half the code minimum distance. We focus on the class of product codes. There have been some previous efforts in which decoding of product and LDPC codes was considered [4], [5], [8], though in the probabilistic context. Closest to our study is probably the work [3] on list decoding of product codes: its emphasis is on list sizes and radii of product codes however, and decoding into small-sized lists is not considered.
+An inherent problem with list decoding of product and graph codes (as long as we do not involve exhaustive search) is the local processing, which produces a list of candidates that satisfy local constraints (such as a set of parity checks in the neighborhood of one vertex). A major problem that arises is how to combine these candidates to construct a small list of plausible global solutions.
+In this paper we address decoding of product codes into a list of small size. Our main tool is the MinSum algorithm for the processing of rows and columns. The MinSum algorithm [7] has been previously used as a computational simpliﬁcation of the local processing rule for belief-propagation decoding
+of sparse graph codes [6], with not much general analysis available in the literature. One purpose of this paper is to single out this algorithm as an efﬁcient tool for local processing that under certain conditions is amenable to theoretical analysis. We further show that this algorithm is well-suited for list decoding of product codes and that it can guarantee successful list decoding for radii that can lie above the unique decoding radius.
+This paper is partially a development of our earlier work [1] where we used MinSum local decoding of graph codes for the analysis of error exponents of graph codes and as a by-product for adversarial error correction in graph codes. This paper is mostly theoretically motivated in the sense that it strives to ﬁnd some intersection between the hitherto highly separated domains of list-decoding and message passing. It may also have potential for applications. For example MinSum decoding of Product codes of order-1 Reed-Muller codes was used in [2] as an efﬁcient practical solution to error correction for highly noisy (biometric) channels where decodable codes are required with a dimension that prohibits complete decoding.
+Let C 0 [n, k, d] be a linear binary code. Consider the product code C = C 0 ⊗ C 0 whose codewords are all the N = n × n matrices in which both rows and columns are codewords of C 0 . The code C is a linear k 2 -dimensional subspace of the N - dimensional binary space and has minimum distance D = d 2 . Codewords of the code C are elements of the tensor square of the linear space C 0 and as such can be represented in the form
+where x i , x i ∈ C 0 . The smallest number of terms in this representation is called the (tensor) rank of the vector c.
+To describe decoding of the code C, suppose that the transmitted vector is x = 0 and the received vector is y ∈ {0, 1} N . Let y i,· and y ·,j be the ith row and the jth column of the matrix y respectively. The simplest way of decoding the product code proceeds by ﬁrst decoding all the rows with the code C 0 . Upon decoding, the row y i,· is replaced with a codevector c ∈ C 0 or with erasures, or left intact, depending on the speciﬁc procedure for row decoding. The modiﬁed matrix ˜ y is then submitted to the column decoding procedure in which every column ˜ y ·,j is replaced by the output of some decoding algorithm of the code C 0 . Suppose that both
+the row and column decoding use the same decoding mapping ψ that sends a vector z ∈ {0, 1} n to x ∈ C 0 if there exists a codevector x such that d H (z, x) ≤ t := (d − 1)/2 and assigns ψ(z 0 ) = (?? . . .?) (an n-vector of erasures) otherwise. This decoding corrects any combination of errors of weight up to (D − 1)/4 . More errors can be corrected if row decoding passes more information to the column decoders such as the distance from the received to the nonerased decoded row (the “cost” of the row). This procedure, known as Generalized Minimum Distance decoding, enables us to increase the number of correctable errors to (D − 1)/2 .
+Here we describe an alternative way of decoding the product code C to correct ≥ (D − 1)/2 errors based on MinSum decoding. The MinSum algorithm has been discussed earlier in the context of iterative decoding of codes deﬁned on graphs. Viewing product codes as an instance of graph codes, we show that this algorithm applies to their decoding. We also show that the algorithm can be adapted to list decoding of product codes.
+The assumptions and notation are as above. The algorithm relies on a cost function that puts a value on writing a symbol from the input alphabet A = {0, 1} in the ith coordinate a given column of y. The cost function is deﬁned as follows:
+The cost of writing a vector b ∈ C 0 in the ith row of the decoded matrix is obtained by extension of this deﬁnition:
+The MinSum algorithm begins with computing the n × n column cost matrices
+and then performs Row-Decoding Step for each of the n rows. Let θ ≥ d/2. The formal description of the algorithm is given below. Note that the output of erasures is not part of the standard MinSum procedure. The introduction of erasures is what will enable list decoding.
+Algorithm 1 MinSum decoding of product codes (unique decoding)
+if x i 1,j = · · · = x i s,j ? 	 otherwise
+To interpret the processing of this algorithm, note that the cost of a vector b ∈ C 0 in the ith row equals the Hamming distance from the received vector to the nearest n × n binary matrix z such that z i,· = b and all the columns c ·,j , j = 1, . . . , n are codevectors of C 0 whose ith coordinates agree with the vector b. In particular, if there is a vector c ∈ C with d H (c, y) < d 2 2 then every row of c will have cost g < d 2 2 , so MinSum outputs the vector c. In the next proposition we convert these arguments into a formal statement.
+Proposition 1 Suppose that the transmitted vector is 0 and the received vector is y. If w H (y) < d 2 2 then the MinSum algorithm with θ = d/2 returns c = 0. In particular, c contains no erased coordinates.
+Proof : Note that the cost of writing 0 in any row of c satisﬁes g i (0) < d 2 2 . Suppose that for some i there is a nonzero vector b ∈ C 0 such that g i (b) < d 2 /2. Assume that all the errors are located in the columns j such that b j = 0. Consider a matrix z with z i,· = b and some nonzero codewords c j of C 0 written in these columns. The cost of this matrix equals
+which contradicts the assumption. Thus, no nonzero b can be put on the list X i , and so the output matrix c contains no erasures, and is in fact the all-zero codeword.
+Finally, if there are errors in columns outside the support of b, then the cost of the pattern z only increases.
+Remarks. 1. The MinSum algorithm described above starts with the columns of the received vector and then forms deci- sions for the rows. We call this procedure MinSum decoding by rows , RowMinSum, to distinguish it from a close variation of the MinSum algorithm which ﬁrst analyses the rows of y and then makes decisions for the columns. This decoding, which we call MinSum decoding by columns, ColMinSum, applies Algorithm 1 to the transposed matrix y t and, after completing, returns the transposed matrix c t in Step 3.
+2. The MinSum algorithm can return a unique decoding result which is the maximum likelihood decision even if the distance to it from y exceeds the guaranteed error correcting radius.
+If the number of errors exceeds the unique decoding radius of the code C, several candidate codewords may appear in the lists X i . Combining these lists into codewords of the product code is difﬁcult, which is why the MinSum algorithm cannot be used directly for list decoding of product codes. Nevertheless, with some more effort it is possible to rely on it to accomplish list decoding. For that, we perform MinSum by rows and then by columns, combining the results into a matrix
+in which some of the entries are erased. These erasures can be corrected by combining a search with the usual error-and- erasure decoding of the rows and columns with the code C 0 .
+The List Decoding Algorithm of product codes performs the following steps:
+3. For all 1 ≤ i, j ≤ n, if c ij =? and c ij =?, assign c ij ← c ij .
+4. Replace an erased coordinate in c with 0 or 1 and attempt to decode rows and columns correcting errors and erasures.
+An example of this decoding for a product of two simplex codes is given in the Appendix.
+In Step 3 we combine the results of the row MinSum with the uniquely decoded symbols from c , potentially removing some erasures in c . The description of Step 4 is of course in- formal and incomplete. Formalizing it depends on the number of errors that we attempt to correct as well as on the properties of the code C 0 . In what follows we shall show that if the number of initial errors is suitably bounded, then there are no residual errors, i.e. no non-erased coordinate is in error. We shall also bound from above the number of erasures, so that to ﬁnish decoding we are left with a purely erasure decoding problem with a manageable number of erasures.
+Theorem 2 Let ≥ 1 and let ρ be such that any ball of radius ρ in {0, 1} n contains at most codewords of C 0 . Apply to any received vector of {0, 1} n × {0, 1} n the RowMinSum decoding procedure of Algorithm 1 with θ = ρ + 1. Let J be the set of column numbers j for which column j contains an erasure. Then J is a union of supports of u non-zero codewords of C 0 , and if the number of errors is not more than dθ − 1, then
+Sketch of proof: Every time the row decoding procedure outputs an erasure on any row i, it erases a union of supports of codewords for this row, so J is a union of supports of codewords. As before, we assume the zero codeword of C is sent. Since the number of errors is not more than dθ − 1, the cost of putting the zero codeword of C 0 on row i is not more than dθ − 1, so if any position is not erased, its value can only be zero. This proves point 2.
+It remains to prove point 1. For row i, let L i be the (possibly empty) list of non-zero codewords b of C 0 such that g i (b) ≤ dθ − 1. As we have just mentioned we have g i (0) ≤ dθ − 1, so that the set of rows that contain erasures is exactly the set of rows for which L i = ∅ and the set J is the union of the supports of all the codewords of C 0 that belong to some L i and u = | ∪ n i=1 L i |. Now make the assumption (A) that for every erased coordinate (i, j), every non-zero symbol of column j is in the support of the column codeword x that minimizes the cost of putting a 1 in coordinate (i, j). We argue that if we can have u ≥ without satisfying assumption (A) then we can have u ≥ with assumption (A). Furthermore, if there exists a pattern of ≤ dθ − 1 errors for which u ≥ , then there exists a
+pattern of ≤ dθ − 1 errors for which there exists at least one i such that |L i | ≥ . Finally, if there exists such an error vector e of weight ≤ dθ − 1, then there exist + 1 non-zero vectors x, x 1 , x 2 , . . . , x of C 0 such that for every m, 1 ≤ m ≤ ,
+It is readily seen that for this to occur there has to be a vector z ∈ {0, 1} n of weight < θ such that d H (z, x m ) < θ for all m ∈ [1, ]. But this means that there is a list of +1 codewords of C 0 , namely 0, x 1 , . . . , x , in the ball of radius ρ centered on z, a contradiction.
+Of course, Theorem 2 holds for the ColMinSum decoder as well as the RowMinSum decoder, so that the List Decoding Algorithm outputs a set of erasures that is included in a product set or coordinates I × J where both I and J are the union of the supports of at most codewords of C 0 . To ﬁnish decoding it remains to lift the set of erasures. Before we turn to the difﬁculty of the ﬁnal erasure lifting step, we should estimate the number of codewords in the ﬁnal list, and check that the MinSum list decoding procedure does not miss any codewords of C that should be put in the list, i.e. codewords of C that are at distance ≤ dθ − 1 from the received vector y. We do this with an upper bound on allowable values of θ.
+Denote by d 2 the 2nd generalized Hamming distance of the code C 0 , i.e., the size of the smallest support of the union of two nonzero vectors of C 0 . Denote by ρ the list-of- decoding radius of C 0 , i.e., the largest number such that any sphere of radius ρ in the Hamming space {0, 1} n contains at most
+The main question to be addressed is bounding above the size of the list of codewords of C that can arise when the above algorithm is used to correct a given number of errors.
+Proposition 3 Let x and y be two codewords of C such that their sum c = x + y is of rank ≥ 2. Then x and y cannot both be contained in a sphere of radius rd, for any r < d 2 /2.
+Proof : Since c is of rank ≥ 2 there must be two columns j and j such that the jth and j th columns c ·,j and c ·,j of c equal two different non-zero codewords of C 0 . Therefore there are at least d 2 non-zero rows in c, and since every non-zero row of c has weight at least d, the weight of c is at least w H (c) ≥ d 2 d. (see Figure 1 below for a rank 2 example).
+Now let z be any vector of {0, 1} N . By the triangle inequality,
+Therefore we cannot have simultaneously d H (z, x) < dd 2 /2 and d H (z, y) < dd 2 /2 and the radius of a sphere that contains both x and y is at least d 2 d/2.
+Let us assume that the error pattern y is of weight w H (y) < θd, for θ ≤ d 2 /2, for instance, w H (y) < 3d 2 /4, and set the threshold θ = 3d/4. A consequence of the above proposition is that the list of codewords of C that are genuinely at Hamming distance less than dθ from the received vector y
+is a list of rank 1, i.e. of the form x ⊗ x i , for some ﬁxed codeword x ∈ C 0 and a set of codewords x i (or the same with the order of the products reversed). Now it is easy to see that if d H (y, x ⊗ x i ) < dθ, then the MinSum decoding procedure (both the Row and the Column version) will erase the supp(x) × supp(x i ) set of coordinates. This implies that the set of erasures contains a rectangle in which the columns are exactly the coordinates that form the support of x. (For deﬁniteness we assume that the ﬁxed codeword appears as the ﬁrst term in the tensor product, otherwise, our arguments apply for the transposed matrix y). In passing we observe that this implies that the vector x is minimal in the code C 0 , i.e., it does not contain a nonzero codeword of smaller weight. This shows that the ﬁnal list output by the List Decoding MinSum algorithm is exactly the same list as that output by an exhaustive search decoder: the erasure lifting procedure must produce all proper codewords x ⊗ x i , together with the zero codeword. It may produce parasite codewords but these are easily discarded by checking that their distance to the received vector y is more than the decoding radius dθ. Summarizing,
+Proposition 4 Suppose that the number of errors is less than d 2 d/2. Then the size of the list obtained on the output of the List Decoding Algorithm is at most where is the largest number such that ρ < d 2 /2.
+Now if the size of the list is small enough, then a simple trial-and error procedure will produce the whole list relatively quickly. The procedure is illustrated in a worked-out example given in the Appendix. For large , the actual complexity of the erasure lifting process is hard to evaluate. Let us mention the following easy case.
+Corollary 5 Suppose the number of errors is at most d(ρ 2 + 1) − 1 where ρ 2 is list-of-2 radius of C 0 . Then the MinSum List decoding algorithm outputs a list of at most two codewords
+of C with a trivial erasure lifting procedure. The transmitted codeword is included in the list.
+Proof : The previous discussion shows that the set of erasures, if any, is included in the product of the supports of two minimal codewords. Arbitrarily set the value of one erased coordinate (i, j) at ’0’. Then this determines the values of all erased coordinates on row i and column j, and this in turn determines all values of all the other erased coordinates. Repeat by setting coordinate (i, j) at ’1’.
+For any code C 0 such that ρ 2 > d/2 we have a list decoding procedure with guaranteed success for a radius that lies above the unique list decoding radius d 2 /2.
+In the general case the size of the list can be further reduced if MinSum decoding by rows determines the values of some of the erasures obtained from decoding by columns.
+We illustrate our arguments with the example when C 0 is the [n = 2 m − 1, k = m, d = 2 m−1 ] simplex code. All the nonzero codewords are of weight d, so d 2 = 3d/2. The maximum radius of the sphere that contains at most one simplex codeword is of course ρ 1 = d 2 − 1, and spheres of radius one greater can contain 3 codewords. The next value is ρ 3 = 5 8 d − 1, and spheres of radius one greater can contain 5 codewords. One such example for n = 31 is given by the point z that has distance 10 to the codewords x 1 , . . . , x 4 and 0.
+z = 1100000011111100110000000000000 x 1 = 1111111111111111000000000000000 x 2 = 0000000011111111111111110000000 x 3 = 1111000011110000111100001111000 x 4 = 1100110011001100110011001100110
+Lemma 6 Let s ≥ 0, = 2s + 1 The list-of- decoding radius of the simplex code equals
+Proposition 7 Let C 0 be a [2 m − 1, m, 2 m−1 ] binary simplex code and let C = C 0 ⊗C 0 . If the number of errors in the received vector is less than 3d 2 /4, the List Decoding Algorithm outputs a list of at most 7 vectors of the code C, one of them being the transmitted codeword.
+Extending this analysis to error patterns of higher weight becomes more difﬁcult. For instance, for the tensor square of the simplex code it is possible to show that, if the vectors x 1 ⊗ x 1 and x 2 ⊗ x 2 whose sum has rank 2 can be on the list, then the list can also include three vectors whose sum has rank 3. As a consequence, it is harder to obtain an estimate of the list size for the considered algorithm.
+Let C 0 [7, 3, 4] be the simplex code with coordinates arranged in reverse lexicographic order. The code C 0 is formed of the following 8 vectors:
+A. M IN S UM DECODING . Suppose that the vector y received from the channel upon transmitting a vector of C has the form
+This pattern cannot be decoded if the rows and columns are decoded to correct d−1 2 = 1 error because of the 2 × 2 submatrix of ones in the upper left corner. Performing MinSum decoding with threshold θ = d/2 = 2, we ﬁnd that the cost of the vector x 1 as determined by (1) is g i (x 1 ) ≤ 7 for all i = 1, . . . , 7 and that no other codevector has cost less than 9 in any of the 7 rows. Thus, y is decoded to x 1 ⊗ x 1 = 0 upon correcting 7 errors.
+B. L IST DECODING . Now suppose that the received vector is
+We set θ = 3, i.e., the threshold for MinSum is set to 3d 2 /4− 1 = 11. The matrices of column costs (g ij (0)) and (g ij (1)) have the form
+We get candidate vectors x 1 , x 7 , x 8 in rows 1-4 (they all clear the threshold with cost 11), candidates x 1 , x 3 in rows 5,6 and x 1 in row 7. Erasing the coordinates that are not determined uniquely from these results, we obtain the following output of RowMinSum decoding:
+Now let us perform the ColMinSum procedure. The cost matrices, this time computed by the rows, are as follows:
+Computing the cost of codeword candidates and erasing ambiguous coordinates, we obtain the following pattern:
+We observe that erasures in the rows 5 and 6 can be decoded unambiguously, giving the codeword x 1 in both cases. Next, let us intersect the result of this decoding with (2) to obtain the pattern
+This pattern cannot be further decoded unless we lift some of the erasures. We observe that the erased coordinates in row 1 can be replaced with one of the 4 codewords with 0 in position 7, i.e., x 1 , x 2 , x 7 , x 8 . Once this is done, all the columns are uniquely decoded to either x 1 or x 8 , and we end up having a list of the following 4 codevectors of C:
+The vector x 2 ⊗ x 8 is at distance 23 from y and is discarded. Thus, we have decoded y into a list of size 3.
+[[[ REFS ]]]
+A. Barg
+G. Z´emor
+--
+Concatenated codes: Serial and parallel
+----
+J. Bringer
+H. Chabanne
+G. Cohen
+B. Kindarji
+G. Z´emor
+--
+The- oretical and Practical Boundaries of Binary Secure Sketches
+----
+P. Gopalan
+V. Guruswami
+P. Raghavendra
+--
+List decoding tensor products and interleaved codes
+----
+J. Justesen
+T. Høholdt
+J. Hjaltason
+--
+Iterative list decoding of some LDPC codes
+----
+J. Justesen
+--
+Analysis of iterated hard decision decoding of product codes with Reed-Solomon component codes
+----
+
+--
+Recursive decoding of codes on graphs
+----
+M. Schwartz
+P. H. Siegel
+A. Vardy
+--
+On the asymptotic perfor- mance of iterative decoders for product codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\065.pdf
+[[[ LINKS ]]]
+

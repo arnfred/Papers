@@ -1,0 +1,161 @@
+[[[ ID ]]]
+34
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+A New Method for Variable Elimination in Systems of Inequations
+[[[ AUTHORS ]]]
+Farhad Shirani Chaharsooghi
+Mohammad Javad Emadi
+Mahdi Zamanighomi
+Mohammad Reza Aref
+[[[ ABSTR ]]]
+Abstract—In this paper, we present a new method for variable elimination in systems of inequalities which is much faster than the Fourier-Motzkin Elimination (FME) method. In our method, a linear Diophantine problem is introduced which is dual to the original problem. The new Diophantine system is then solved, and the ﬁnal result is calculated by ﬁnding the dual system of inequalities. This new method uses the algorithm Normaliz to ﬁnd the Hilbert basis of the solution space of the given Diophantine problem. We introduce a problem in the interference channel with multiple nodes and solve it with this new method. Next, we generalize our method to all problems involving FME and compare the method with the previous method. Our method has many advantages in comparison to the previous method. It does not produce many of the redundant answers of the FME method. It also solves the whole problem in one step whereas the previous method uses a step by step approach in eliminating each auxiliary variable.
+[[[ BODY ]]]
+The Fourier Motzkin Elimination (FME) Method was ﬁrst introduced by Fourier [1] in 1827 and was rediscovered in Motzkin’s thesis in 1936 [2]. Considering the set of inequali- ties Ax ≤ b, A ∈ R m,n , b ∈ R n the method provides a scheme for determining the existence of a real or integer solution to the given problem. The method uses a step by step algorithm, in which each step reduces the dimension of the answer space by projecting the answer space on a hyperplane. The procedure continues until the dimension is reduced to one; if the one dimensional answer is feasible, then the solution exists. A dual mode for FME was introduced in 1972 by Dantzik [3].
+The FME method is widely used in solving rate region problems since there is often the need to eliminate the auxil- iary variables introduced into the problem from the resulting inequalities and hence reduce the dimension of the solution space by ﬁnding its projection on a given plane. The com- plexity of calculation in each step is of the order of k 2 4 , with k being the number of constraints in the system of inequalities. This complexity makes the method unfeasible for high dimensional problems. There have been many attempts to decrease the calculation time of the method. In 1996, Kebler [4] introduced a parallel computation method which was more efﬁcient for solving the elimination problem on a computer.
+In this paper, we present a new method for eliminating auxiliary variables in inequalities which is much faster than the FME method. In our method, we ﬁrst introduce a linear Diophantine problem which is dual to the original problem. We then proceed by solving this new Diophantine system, next we calculate the ﬁnal result by ﬁnding the dual inequalities system. This new method uses the algorithm Normaliz to ﬁnd the Hilbert basis of the solution space of the given Diophantine problem.
+Normaliz was ﬁrst introduced as a program in 1997 by R. Koch. In 2003, the algorithm was presented in Koch’s thesis [5]. Normaliz was originally introduced to compute the lattice points in a lattice polytope and the integral closure of a monomial ideal. Koch mentions in his thesis that the algorithm may be extended to ﬁnd the Hilbert basis of the solution space of a system of linear Diophantine equations. However, apply- ing the algorithm introduced in [5] to information theoretic problems is still time-consuming. In 2010, Bruns and Ichim [6] introduced a dual algorithm which is much faster when applied to problems with a greater number of constraints than auxiliary variables. Since this is the case in almost all information theory problems, we use this method to ﬁnd the desired Hilbert Basis solution.
+One of the most important fundamental channels in com- munication systems is the Interference Channel (IC). The IC was initiated by Shannon [7]. Simple outer bounds for the IC were established by Ahlswede [8]. Later, Carlieal [9], using superposition encoding and sequential decoding, characterized an achievable rate region for the general discrete memoryless IC. In the IC each receiver is only interested in the message from its corresponding sender. However, it might decode mes- sages from the other senders to reduce the interference effect. Han and Kobayashi (HK) utilized rate splitting techniques, and applied simultaneous superposition coding techniques to establish the largest inner bound introduced for the general IC to date [10]. Computing the capacity region of general IC is still an open problem, but in special cases such as strong interference regime the capacity region has been established, and the region is the same as the HK rate region [11]. In the method used to achieve the HK rate region, the messages are split into two parts, the private and common parts; private messages are decoded only by the corresponding receiver, while the common messages are decoded by all the receivers.
+Rate splitting has become a prominent tool for solving rate region problems. However, there is a drawback to the method in that solving the channel with the new split messages yields a system of inequalities based on the split-rates. Since we are interested in each sender’s total rates, the auxiliary variables must be eliminated. The FME method is needed to eliminate these auxiliary rates.
+The rest of the paper is organized as follows: In Section II, we introduce the model of an l transmitter-receiver interfer- ence channel. In Section III, we introduce a problem in the IC. In this section, we use some simplifying assumptions, since the goal of the section is to explain the new elimination method. In Section IV, we solve the problem with the new method. In Section V, we present a generalized algorithm for the new method which can be applied to any problem involving FME. In Section VI, we present results of applying the new method to several problems which have been previously solved using the FME method. Section VII concludes the paper.
+In this section, we introduce our model of IC. We denote random variables by upper case letters e.g. X, their realizations are presented by lower case letters e.g. x in ﬁnite sets denoted by X . We use x k i to denote the vector x i , x i+1 , ..., x k . We denote x k if i=1, while for i=1 and k=l, we show the vector by x. Also, if i=1 and k=2l, we show the vector by x. Furthermore x n i is the compact form of (x i , x i+1 , ..., x n ) where x i = (x i1 , ..., x il ).
+A discrete Interference Channel, with l senders and l receivers is the 2l +1 tuple ( X , p(y|x), Y ) where X i s are the input alphabets, Y i s are the output alphabets for i=1,2,...,l and p(y|x) is the conditional probability of the channel. Each decoder is only interested in decoding its corresponding sender’s message; however, in order to reduce the interference effect, receivers might decode the message from other senders as well. The channel is memoryless and time invariant in the sense that
+A ((2 nR 1 , 2 nR 2 , ..., 2 nR l ), n) code consists of (i) l message sets W i = 1, 2, ..., 2 nR i , i ∈ [1 : l ], (ii) l encoding functions f u = W u → X n u , u ∈ [1 : l ], (iii)l decoding functions g u (.) where ˆ W u = g u (Y n u ), u ∈ [1 : l ]. We deﬁne the average probability of error for this code as P (n) e = P r{ l i=1 ( ˆ W i = W i )}. A nonnegative rate l -tuple (R 1 , R 2 , ..., R l ) is said to be achievable if there exists a code ((2 nR 1 , 2 nR 2 , ..., 2 nR l ), n) for which P (n) e → 0 as n tends to inﬁnity.
+In this section, we present our coding strategy which is a generalization of the method used in [10]. We describe the problem in solving the resulting inequalities with the conventional FME method. After stating the problem, we introduce the method and compare the results with the former procedure.
+Since the goal in this paper is to introduce an alternative elimination method for the FME method, we use some sim- plifying assumptions in the channel. The channel is assumed to be symmetric in the sense that the ith sender sends the same amount of information to all receivers other than its own corresponding receiver. This allows each sender to send the same common message to all receivers. We split each message W i into common and private parts (W ic , W ip ). The common part of the message is decoded by all receivers while the private part is decoded only by the ith receiver. Another suitable assumption would have been to assume a sense of degradedness between the receivers in the following way: assume that receiver i 1 receives all the common massages sent by sender i; receiver i 2 receives all the common messages received by the receivers other than i 1 , and so on. In this case we had to split the message in each sender to l common parts and one private part in the following way: split the message W i into (W i(1c) , W i(2c) , ..., W i(l c) , W ip ). W i(l c) is decoded by the receiver with the least information about the massage from sender i; the receiver with the second least information about this message decodes W i(l c) , W i((l −1 )c) , and so on. The rest of the solution would stay the same. Clearly, the symmetric case mentioned above is a special case of this latter case. Since the two cases have the same solution, and for the sake of simplicity, we solve the channel for the symmetric case in this paper.
+where Q is the time-sharing variable. Let P 1 denote the set of all joint p.m.fs p 1 on Z 1 , which can be written in the form
+For any p 1 deﬁned above, generate 2 nR ic , i ∈ [1 : l], i.i.d u n ic (w ic ) where w ic ∈ [1 : 2 nR ic ]. For each u n ic (w ic ), generate 2 nR ip , i.i.d x n i (w ip , w ic ). The time-sharing variable has no impact on the rest of the proof and for the sake of brevity; we ignore it until the end of the proof where we bound its cardinality.
+At the beginning of each block, the ith sender picks related (u n ic , x n i ) according to n j=1 p(u ic,j )p(x i,j |u ic,j ) and sends it. Decoding:
+At the end of each block, the ith receiver ﬁnds (x n i , u n 1c , u n 2c , ..., u n lc ) such that:
+Without loss of generality we consider the case where all senders have sent index 1 as their messages. We investigate all possible scenarios in the ﬁrst decoder. The decoder must decode messages (w 1p , w 1c , w 2c , ..., w lc ), the decoding is er- rorless if ˆ w = ( ˆ w 1p , ˆ w 1c ) = (1, 1). Using the same method as in [12] and by the AEP rule, it is clear that the probability of error approaches zero as n → ∞ (e.g. rate l-tuple is
+and U i ∈ U S if α i = 1; also, for α i = 0, we have U i ∈ U S c . We note that R 1 − R 1c = R 1p , substituting into (1) we have
+These are the inequalities for decoder 1. We rewrite the inequalities for all decoders in matrix form:
+                      
+1 0 . . . 0 0 1 0 . . . 0 0 .. . .. . . . . 0 0
+1 0 . . . 0 0 0 1 . . . 0 0 0 1 . . . 0 0 .. . .. . . . . 0 0
+0 1 . . . 0 0 .. . .. . . . . .. . .. . . . .
+0 0 . . . 0 1 0 0 . . . 0 1
+                       
+                          
+                          
+                            
+.. . .. .
+                            
+(2) If we denote A as the matrix whose rows are all possible binary l-tuples starting from (0, 0, ..., 0) in an increasing order, then A i is the matrix formed by multiplying the ith column in A by -1. We show the rate coefﬁcients matrix in (2) with C l . We show the rate vector with R t , and the mutual information vector with I l , so we may write (2) in compact form as C l R t ≤ I l . To clarify the method of forming the above mentioned inequalities, we give the following example, which illustrates the inequalities for a two sender-receiver interference channel:
+          
+1 0 1 0 1 0 1 0 0 1 0 1 0 1 0 1
+0 	 1 −1 0 −1 1
+0 −1 1 	 0
+          
+  
+  
+          
+          
+Note that these are the same inequalities given in [12]. To solve this system with the conventional FME method, one must eliminate all of the variables R ic , i ∈ [1 : l]; this process takes l rounds of applying FME to the matrix. According to [12], the size of the matrix grows at a worst case rate of k 2 4 each
+round. This complexity renders the aforementioned method impractical for l larger than 2, since, after applying FME, one must eliminate the redundant inequalities in the resulting matrix using an exhaustive search. Finding the redundant in- equalities often needs more time than eliminating the auxiliary variables, which itself is a time-consuming process.
+Here, we present a new method for solving (2) which not only requires much less calculation in comparison with the FME but also produces no redundant inequalities assuming the mutual-informations on the right side of the inequalities are independent. Before proceeding with the solution, we present some deﬁnitions. We show the matrixes resulting from l rounds of FME by C ∗ l and I ∗ l , so the resulting inequalities can be written in the form C ∗ l R t ≤ I ∗ l . Note that the second l columns of C ∗ l are zero. It is also clear that if we show the rows of C l by C l(l,α 1 ,α 2 ,...,α l ) , then all rows of C ∗ l and I ∗ l can be represented by
+Let G C l be the solution space of the inequalities in (2) for rates R 1 , R 2 , ..., R l , and let G C ∗
+be the solution space of C ∗ l R t ≤ I ∗ l . Furthermore, we deﬁne the matrix D as the matrix whose rows are formed by all of the linear combinations of C l(i,α 1 ,α 2 ,...,α l ) with positive coefﬁcients and with the property that the second l columns of D are zero. In other words, D is a row of D iff
+We deﬁne G D l as the solution space of the following inequal- ities:
+Proof: The proof is straightforward. Since all rows of D l are linear combinations of rows of C l with positive coefﬁcients, all inequalities in (5) result from inequalities in (2). Hence, we have G C l ⊆ G D l , and by the FME, we know that G C l is equal to G C ∗
+⊆ G D l . On the other hand, since all the rows of C ∗ l are linear combinations of rows of C l with the property that for each row C ∗ , C ∗2l l+1 = 0, any row C ∗ of C ∗ l is a row of D l , and so G D l ⊆ G C ∗
+and the proof is complete. Now, we propose that instead of ﬁnding G C ∗
+, we try to ﬁnd G D l . From (4), we know that for every D in (3) we have
+Now we need to choose inequalities in (5) whose linear combinations with positive coefﬁcients produce all inequalities in (5). Without loss of generality, we consider a j,α 1 ,α 2 ,...,α l ∈ Z + . We give the following deﬁnition as in [13];
+Deﬁnition: We call a set of vectors H, generator vectors of S, if every vector in S can be expressed as a linear combination of vectors in H with positive coefﬁcients and no vector in H may be expressed in such a way by other vectors in H. Such a set of vectors is called the Hilbert Basis of the vector space S.
+The problem of ﬁnding a Hilbert Basis for the solutions of a Diophantine system of equations such as (6) has many solutions. One solution is to use an algorithm called Normaliz introduced by Koch in [5]. We use this method to solve (6). If the set of a j,α 1 ,α 2 ,...,α l , j = 1, ..., l,α i ∈ {0, 1} is an answer for (6), then we have the following inequality for R 1 , ..., R l :
+Since Normaliz provides a Hilbert Basis solution for the equations in (6), and since each solution for (6) represents a unique equation in (5) and adding two answers from (6) with positive coefﬁcients is equivalent to adding two inequalities in (5) with positive coefﬁcients, the resulting inequalities contain all the non-redundant inequalities in (5). Hence, by applying Normaliz, we can calculate the solution to the original prob- lem. Since the dimension of the Diophantine space in (6) is much greater than the number of constraints we have, it is better to use Normaliz Dual as suggested in [6]. Our results for the two sender-receiver IC are the same as HK rate region in [10].
+To this point, we have found the rate region by eliminating the auxiliary variables. Since, in the case of the above channel, all the mutual-informations I l(i,α 1 ,α 2 ,...,α l ) are independent of each other (i.e. they don’t have a clear relation with each other), there are no redundant inequalities in our ﬁnal system of inequalities and so by the Caratheodory theorem [14] Q is bounded by the number of resulting inequalities after applying Normaliz and ﬁnding the dual system.
+The method proposed above may be used in any other problem which could be solved using the FME. The general
+2- Find the inequalities matrix corresponding to the deﬁned schemes.
+5- For each answer vector for the Diophantine problems, write the corresponding inequality.
+Here, we use the method to solve some problems which have been solved using the FME method previously. The simulation results are illustrated in table (I):
+The results are obtained from running Normaliz 2.2 on a 2.4 i5 CPU. The ﬁrst three rows show the results for solving the interference problem explained in past sections for l = 2, 3 and 4 respectively. The next two problems were solved in references 15 and 16 respectively using the FME method. The second column shows the number of initial constraints in the problem. The third column indicates the number of auxiliary variables (i.e. number of variables to be eliminated). The fourth column indicates the number of inequalities resulting from applying our method while the 5th column indicates the number of non-redundant constraints. Note that in cases such as [15] and [16] where there are certain relations between mutual-informations on the right side of the inequalities, there may be redundant answers in our method. However all these redundant answers will be present in the FME case as well. Table (I) shows the efﬁciency of our method in comparison to the FME method. Note that a comparison between the run- times of the new method and FME method could not be given since FME is usually done by hand. There are several features of our method that make it more efﬁcient in comparison with the former method. One feature is that the FME method eliminates one variable at a time, while our method eliminates all variables in one step. Another feature is that our method is much faster compared to the previous method. Another important advantage of the new method is that it doesn’t introduce many of the redundant inequalities present in the FME solution. Note that one of the most time-consuming parts of the FME method is the removal of inequalities which are linear combinations of previous inequalities with positive coefﬁcients. This process uses an exhaustive search and is very
+inefﬁcient. Our method doesn’t introduce any such redundant answers.
+In this paper, we introduced a new method for performing variable elimination in systems of inequalities. We illustrated the implementation of our new method on a special case of IC. A generalization of the method was presented and in the end some simulation results were compared with the actual results after applying FME and removing redundant answers. It was shown that our new method is much faster and more efﬁcient than the FME method. Our method eliminates all variables in one step while the FME method uses a step by step approach. Also, our method produces fewer redundant inequalities in comparison to the FME method.
+We would like to express our appreciation for the ISSL Group of Sharif University of Technology and specially B. Akhbari and M. Mirmohseni for their valuable comments.
+[[[ REFS ]]]
+J. Fourie
+A. Kohle
+--
+J-B
+----
+S. Motzkin
+S. Motzkin: Selected Papers” (D
+B. Gordo
+B. Rothschild
+--
+T
+----
+B. Dantzi
+C. Eave
+--
+G
+----
+C. W. Keble
+--
+Parallel fourier-motzkin elimination”, In Euro-Pat, Vol
+----
+R. Koc
+--
+Afﬁne Monoids, Hilbert Bases and Hilbert Functions”
+----
+W. Brun
+B. Ichim
+J. Algebra 324 (2010
+--
+Normaliz: algorithms for afﬁne monoids and rational cones”,  no
+----
+C. E. Shanno
+--
+Two-way communication channels”, in Proc
+----
+R. Ahlswed
+--
+The capacity region of a channel with two senders and two receivers”, Annals Probabil
+----
+A. B. Carleia
+--
+Interference channels”, IEEE Trans
+----
+T. S. Ha
+K. Kobayash
+--
+A new achievable rate region for the interference channel”,
+----
+R. Etki
+D. Ts
+H. Wan
+--
+Gaussian interference channel capacity to within one bit”, IEEE Trans
+----
+A. El Gama
+Y.-H. Ki
+--
+Lecture notes on network information theory” 
+----
+W. Brun
+J. Gubeladze
+--
+Polytopes, rings, and K-theory”
+----
+C. Carathodor
+--
+Variabilittsbereich der Fourierschen Konstan- ten von positiven harmonischen Funktionen”, Rend
+----
+M. Mirmohsen
+B. Akhbar
+M. R. Are
+--
+On the capacity of causal cognitive interference channel with delay”, submitted to IEEE Trans
+----
+Y. K. Chi
+A. El Gama
+--
+Receiver broadcast channels with com- mon and conﬁdential messages”, IEEE Int
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\034.pdf
+[[[ LINKS ]]]
+

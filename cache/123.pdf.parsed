@@ -1,0 +1,126 @@
+[[[ ID ]]]
+123
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the geometry of wireless network multicast in 2-D
+[[[ AUTHORS ]]]
+Mohit Thakur
+Nadia Fawaz
+Muriel M´edard
+[[[ ABSTR ]]]
+Abstract—We provide a geometric solution to the problem of optimal relay positioning to maximize the multicast rate for low- SNR networks. The network we consider consists of a single source, multiple receivers and the only intermediate and locatable node as the relay. We construct network the hypergraph of the system nodes from the underlying information theoretic model of low-SNR regime that operates using superposition coding and FDMA in conjunction (which we call the “achievable hypergraph model”). We make the following contributions.
+1) We show that the problem of optimal relay positioning maximizing the multicast rate can be completely decoupled from the ﬂow optimization by noticing and exploiting geometric properties of multicast ﬂow.
+2) All the ﬂow maximizing the multicast rate is sent over at most two paths, in succession. The relay position depends on only one path (out of the two), irrespective of the number of receiver nodes in the system. Subsequently, we propose simple and efﬁcient geometric algorithms to compute the optimal relay position.
+3) Finally, we show that in our model at the optimal relay position, the difference between the maximized multicast rate and the cut-set bound is minimum.
+We solve the problem for all (P s , P r ) pairs of source and relay transmit powers and the path loss exponent α ≥ 2.
+[[[ BODY ]]]
+We primarily consider the problem of optimal relay posi- tioning in order to maximize the multicast rate in low-SNR networks consisting of a single source s, a set of multiple receivers T and an arbitrarily locatable relay r, on a 2- D Euclidean plane. In [1], the authors previously addressed this problem under a heavy and complex network ﬂow opti- mization framework. They showed that optimizing the relay position can lead to a strong gain in the multicast rate.
+In [2] the authors introduced equivalent hypergraph models for the low-SNR Broadcast (BC) and Multiple Access channels (MAC). The authors then derived an achievable hypergraph model for the broadcast relay channel (BRC), obtained by concatenating the equivalent BC and MAC hypergraphs. This concatenated model follows from constraining the source and relay to transmit using the optimal schemes for the low-SNR BC and MAC: superposition coding and frequency division, respectively. In this paper, building on this model, we solve geometrically the problem of optimal relay positioning under
+the pretext of multicast rate maximization, which is much simpler and efﬁcient than the solution proposed in [1].
+Most importantly, we establish the fact that for a given low-SNR BRC hypergraph G(N,A), the multicast rate is maximized by sending all the ﬂow through at most two paths in succession, independently of the number of destination nodes. This is a consequence of simply maximizing the multicast min-cut. The dependency of the multicast min-cut on the relay position is essentially through a single path (out of the two), and this motivates a simple geometric interpretation and formulation of the problem. It should be noted that, the “optimal relay position” refers to the position that maximizes the multicast rate over a given achievable hypergraph, but in general the achievable hypergraph model is not necessarily optimal in terms of meeting the cut-set bound for low-SNR networks. On the other hand, the achievable hypergraph model performs closely to the peaky binning scheme in the case of a single destination [3], and enjoys an important practi- cal advantage of being easily scalable to more complicated topologies. Finally, under our model the difference between the maximum multicast rate and the cut-set bound is minimized at the optimal relay position.
+In the proposed geometric approach, we decouple the prob- lem of rate maximization from the problem of computing the optimal relay position. This substantially reduces the complex- ity (compared to the ﬂow optimization based framework in [1]) and also provides a great deal of insight in understanding the nature of such network planning problems. Finally, we show that at the optimal position the difference between the maximum multicast rate and the cut-set bound is minimized under the achievable hypergraph model.
+The paper is organized as follows. We introduce the low- SNR achievable hypergraph model of the BRC in section II. Then we prove certain geometric properties of multicast in section III. The computation of optimal relay position is divided in two parts, section IV for P s = P r and section V for P s = P r . Finally, we conclude in section VI.
+The network topology is given by a hypergraph G(N,A), where N = {s,r,T}, and all nodes except r are ﬁxed on the 2-
+D Euclidean plane. T = {t 1 , .., t n } denotes the set of n = |T| receivers ordered in increasing distance from s. C represents the convex hull of {s,T}. The multicast rate from s to T is deﬁned as R sT min
+(R st ), where R st is the total rate from s to receiver t ∈ T. P s and P r = γP s are the total transmit powers of s and r, respectively, and γ > 0 is their ratio. D uv denotes the Euclidean distance between nodes u and v, and α ≥ 2 the path loss exponent. For a subset Q ⊆ N\r, deﬁne L Q ( C) as the point in C, that minimizes the maximum over the distances between itself and each node in Q, i.e.
+The value of objective function of the output of Program (A) is denoted as D Q .
+In [1], [2], it was shown that concatenating the low-SNR BC (superposition coding) and MAC (FDMA) equivalent hypergraph models results in an achievable hypergraph model for the low-SNR BRC. The rate region of this model is included in the capacity region of the low-SNR broadcast relay channel. In fact, even though superposition coding and FDMA are independently capacity achieving for the low-SNR AWGN BC and MAC channels respectively, their combination in general is not capacity achieving for the low-SNR relay channel, and a fortiori for the low-SNR BRC [3].
+In this section, we brieﬂy recall the equivalent hypergraph models for the low-SNR BC and MAC, and the achievable hypergraph model for the BRC [1]. Note that in the low-SNR regime, BC and MAC are not limited by interference.
+1) Low-SNR BC equivalent hypergraph: Superposition coding is known to achieve the capacity region of the AWGN BC. In the low-SNR regime, the rates achieved by superpo- sition coding boil down to the time-sharing region [4]–[6]. For a given topology with |T| = n receivers, the hypergraph will contain at most n hyperarcs with non-zero capacities [1]. Figures 1(a) and 1(b) illustrate the two-destination case.
+2) Low-SNR MAC equivalent hypergraph: In the low-SNR regime, interference becomes negligible with respect to the noise [1], [2], and all sources can achieve their point-to- point capacity to the common destination, like with frequency division multiple access (FDMA). In the general wideband MAC with n sources, the hypergraph model consists of n hyperarcs of size 1 from each source s i , i ∈ {1,..,n} to
+the destination with non-zero capacity. Figures 1(c) and 1(d) illustrate the two-source case.
+3) Low-SNR BRC achievable hypergraph: We can obtain an achievable hypergraph model of the low-SNR BRC by sim- ply concatenating the BC and MAC equivalent hypergraphs, as shown in Figures 1(e) and 1(f) for the two-destination case. As mentioned before, this achievable hypergraph model is suboptimal in general for the BRC, but the ability to scale easily to larger and complex networks is one of its biggest strength.
+In this section, we derive the geometric properties of the optimal relay position maximizing the multicast rate for the BRC. We ﬁrst focus on the single destination case of the BRC: the relay channel, in Section III-A. Then, these preliminary ob- servations and properties are extended for the general problem with an arbitrary number of destinations, in Section III-B.
+Consider the simple network in Figure 2 (a), with a ﬁxed source s, a ﬁxed receiver t and an arbitrarily positionable relay r, where the multicast rate R st from s to t is to be maximized. Naturally, R st depends on the position of r. The achievable hypergraph in Figure 2 (a) can be broken into two subgraphs, shown in Figures 2 (b) and (c), which are essentially the two disjoint paths from s to t.
+Our claim is that the optimal position of the relay maximiz- ing the multicast rate from s to t lies on the line segment s −t joining s and t, and at this optimal position all the ﬂow R st is sent through a single path consisting of two hyperarcs, namely {(s,r),(r,t)} shown in Figure 2 (c). This holds true for any given pair of power constraints (P
+s , P r ) ≻ 0 and for any path loss exponent α ≥ 2. We prove this claim in Lemmas 1 and 2 hereafter.
+Lemma 1 (Lemma 1 [1]): The optimal position of r maxi- mizing R sT lies inside the convex hull C.
+Here, Lemma 1 simply implies that the optimal position of r lies on the segment s − t.
+The rates over the three hyperarcs {(s,r),(r,t),(s,rt)} = A are given by,
+s s s s s s
+(d) 	 (e) 	 (f ) t t t t t t
+where N 0 is the noise power spectral density. Note that the multicast rate is given by R st = R srt + min(R sr , R rt ).
+Lemma 2: The optimal location of r on the segment s − t for a simple BRC with γ ∈ (0,∞) and α ≥ 2 that maximizes the multicast rate R st satisﬁes,
+In Lemma 2 the starred entities refer the optimal values and for the proof the reader is referred to Appendix A in [7].
+Lemma 2 essentially gives the position of r in terms of how far it is from s and r on the segment s − t. Also, it provides the maximized multicast rate R ∗ st that is achieved at this position. It can be easily seen that the relay position only affects the rate over the path {(s,r),(r,t)}. Since the min-cut of the path {(s,r),(r,t)} is strictly larger than the min-cut of the path {(s,rt)}, i.e. the rate that can be sent for a unit power over the former path is strictly larger than the latter path ( R srt < min(R sr , R rt )), the rate over the path {(s,r),(r,t)} should be maximized ﬁrst by simply maximizing its min- cut min(R sr , R rt ) before allocating any power to the path {(s,rt)}. The min-cut min(R sr , R rt ) is maximized at the position on the segment s − t such that rates over the two
+hyperarcs of the path {(s,r),(r,t)} become equal, and all the ﬂow from s to t is transmitted over this path only. The maximized multicast ﬂow R ∗ st is then simply given by the rates of either of the two hyperarcs.
+Several important conclusions can be drawn from Lemma 2. The multicast ﬂow optimization can be separated from the determination of the optimal relay position that maximizes the multicast ﬂow. Even if the aim is not to maximize the multicast ﬂow (for instance by simply choosing not to use all the source and relay powers), Lemma 2 still gives the most suitable relay position for any feasible multicast rate R st ≤ R ∗ st . At the same time, the algorithmic style intuitive proof arguments in the previous paragraph indicate that upon computing the optimal relay position, the multicast rate maximization problem could be casted as a straightforward linear program resulting in a
+simple power allocation scheme maximizing the multicast rate. This fact will prove handy for the general case with arbitrary number of destinations. On the other hand, we observe the dependency of the optimal relay position on the constants α and γ. If γ = 1 i.e. P s = P r , the optimal relay position is always at the mid-point of the segment s − t for any value of α ≥ 2. When γ = 1, there will be a natural bias on the optimal position of r either towards s or t, depending on the value of γ. This bias will also depend on the value of α. Figure 2(e) and 2(f) show the bias effect.
+In this subsection, we extend the simple geometric insights developed in Section III-A for a single destination to the general case of an arbitrary number of destinations |T| = n.
+Let us ﬁrst note the following. For a given hypergraph G(N,A), and a ﬁxed position of r, we have at most (n+1)+ (n) hyperarcs in the system, i.e. |A| = 2n + 1. The former
+(n + 1) are source hyperarcs, emanating from s to the nodes in N\s and the latter n are the relay hyperarcs, emanating from r to all T . Also, for any given position of r there always exist at least two paths that will span all the receiver set T , namely {(s,T)} (or {s,t 1 ..t n }) and {(s,T 1 ), (r, T 2 ) } (where r ∈ T 1 and T 1 ∪ T 2 = {r,T}).
+Now, consider that each hyperarc (i, J) ∈ A is associated with a continuous function f iJ (P + i , D − iJ ) : R 2 −→ R, that is a monotonically increasing in the transmit node’s power P i and monotonically decreasing in the distance D iJ , where D iJ is the Euclidean distance between the transmit node i and the farthest receiver node j ∈ J (from i) spanned by the hyperarc. Then the following theorem holds true.
+Theorem 1: Given a hypergraph G(N,A) and the associ- ated rate functions f iJ (P + i , D − iJ ) : R 2 −→ R for each hy- perarc in A, at the optimal position maximizing the multicast rate R sT one of the two multicast ﬂow characteristics holds:
+(i) all the optimal ﬂow R ∗ sT goes through at most two paths {(s,T 1 , (r, T 2 ) } and {(s,T)}, in succession. (ii) all the optimal ﬂow R ∗
+sT can be arbitrarily split between the two paths {(s,T)} and {(s,T 1 ), (r, T 2 ) }.
+Theorem 1 partially generalizes Lemma 2. We say partially, because on one hand, Theorem 1 establishes the important multicast ﬂow characteristics at the optimal relay position, but it does not provide a simple numerical result that de- termines the optimal relay location (like Lemma 2). Note that, for a given relay position there could be multiple paths from s, through r, to all T , but in the Theorem 1 by path {(s,T 1 ), (r, T 2 ) } we mean the path from s, through r, to all T that has the highest min-cut among all the paths from s,
+through r, to all T . Intuitively, Theorem 1 states that only those paths will contain the multicast ﬂow from s to the receiver set T that serve all T , namely {(s,T)} and {(s,T 1 ), (r, T 2 ) }. All other path that serve proper subsets of T will carry no ﬂow as they do not contribute to the multicast ﬂow and among all the paths serving all T through r, only the path with the highest
+min-cut will carry the multicast ﬂow. This fact is a simple yet fundamental consequence of the deﬁnition of multicast.
+Theorem 1 reveals a lot about the nature of multicast ﬂow over a hypergraph. The dependence of relay position on the rate of only a single path {(s,T 1 ), (r, T 2 ) } reduces the problem to its core by removing the clutter away. In other words, now we only need to worry about the maximization of the ﬂow over this single path and the relay position that maximizes the ﬂow over this path also maximizes the multicast ﬂow R sT . This result of Theorem 1 motivates a pure geometric interpretation of the problem. If we imagine the two hyperarcs (s, T 1 ) and (r, T 2 ) to be two circles C s and C r centered at s and r with radii π s and π r , respectively, then the optimal relay positioning problem could be stated as: For a given G(N,A), ﬁnd the point in C such that when r is positioned at this point, max( α √γπ s , π r ) is minimized while r ∈ C s and the region of union of two circles C ∪ = C s ∪ C r encompasses all T .
+At ﬁrst, it seems plausible to try a simple (preferably convex) optimization framework to compute such a point, but the condition that the two circles must encompass all N brings in discreteness, which we avoid for obvious reasons. In contrast, we propose a simple (polynomial time) algorithm to compute such point in the next sections. Once the optimal relay position is obtained, obtaining optimal power allocations (for s and r) maximizing the multicast rate boils down to solving a simple linear program involving only two paths. We divide the development of this algorithm into two cases of γ = 1 and γ ∈ (0,∞). The case of γ = 1 is easy to understand and holds importance in its own right. In addition it develops the basic intuition for the proposed algorithm and leaves the extension to the case of all values of γ ∈ (0,∞), as straightforward.
+In this section, we have γ = 1 and α ≥ 2 for a given G(N,A) on the 2-D Euclidean plane. The optimal relay positioning problem stated geometrically in the previous section simply boils down to ﬁnding the point in C such that max(π s , π r ) is minimized while r ∈ C s and C ∪ encompasses all T . We divide the problem in the following two cases based on the topology of the given G(N,A).
+Lemma 3: If r is placed at the mid-point of s − t n such that the hyperarcs C s and C r each with radii D stn 2 span all T , then it is the optimal relay position maximizing R sT .
+The proof of Lemma 3 is a straightforward generalization of Lemma 2 and therefore is omitted. Intuitively, Lemma 3 simply states that since the farthest node (from s) t n is also the limiting node for maximizing R sT , if the rate is maximized only to t n while guaranteeing it to all other nodes in T , then this maximizes R sT as well. This means that if r is placed at the mid-point of the segment s −t n (as this position maximizes the rate to t n only) and if the two hyperarcs of the path {(s,r),(r,t n ) } ({C s , C r }) span all T, then clearly this is the relay position that maximizes R
+In this case we tackle all topologies and case A becomes a special case of it. Recall that, the entity L Q ( C) represents the coordinates of the point which is the argument of the objective function of the output of program (A), and D Q is the value of the objective function of the output of program (A).
+Optimal relay positioning Algorithm (ORP) Given: G(N,A).
+1) Compute l 0 = L {N\r} ( C) and build the set N 0 = {t ∈ T |D st < D l 0 t &D l 0 t > D sl 0 } = {t ′ 1 , .., t ′ m } in increasing order of distance from s. If N 0 = {∅}, declare l 0 as the optimal relay position and quit, else go to step 2.
+2) Build the set N 1 = {N\(r,N 0 ) } and compute the point l 1 = L N 1 ( C). Form the hyperarcs C s and C l 1 of radii D sl 1 and D N 1 , respectively. If C ∪ = C s ∪ C l 1 encompasses all T , output l 1 as the optimal relay position and quit, else go to step 3.
+3) Reform the hyperarc C s of radius D st ′ m and build the set N 2 = {t ∈ T|D st > D st ′ m } and compute l 2 = L N 2 ( C). Declare l 2 as the optimal relay position and quit.
+Algorithm ORP is a straightforward set of basic and intuitive computational steps based on the properties of the point l 0 = L N\r ( C). If there exist no node t ′ ∈ T such that t ′ / ∈ C s and D st ′ < D l 0 t ′ (i.e. set N 0 is empty), that can be directly reached by s rather than by a path through r, then l 0 is certainly the optimal relay position. In contrast, if the set N 0 is not empty, then there exist at least one receiver node in the system that inﬂuences the computation of the optimal relay position but can be served directly by C s . Therefore, either the nodes in N 0 can be removed from the computation of the optimal relay position ( l 1 in Step 2) and max(π s , π r ) can be further reduced or we could reform the hyperarc C s with radius D st ′ m (where, t ′ m is the farthest node in N 0 from s) and then computing the point l 2 for the nodes that were not covered by C s and thus reducing the value of max(π s , π r ). Note that, Algorithm ORP categorizes all possible topologies of the given G(N,A) in three steps and there is no underlying iterative process. This makes algorithm ORP behave like a numerical
+We leave the formal proof that ORP always outputs the optimal relay position maximizing R sT to Appendix C in [7] and extend this simple approach in a straightforward manner to the case of all values of γ ∈ (0,∞) in the next section.
+In this section, we consider γ ∈ (0,∞) for a given G(N,A) and α ≥ 2. Almost all the theory developed in Section IV simply transcends to this section, with certain
+notable differences. Mainly, that when γ = 1 it gives rise to a bias in the positioning of r ( ref. Figure 2(e) and 2(f)). Taking into account the bias while computing the optimal relay position will be the main enhancement in this section. Likewise previously, we ﬁrst consider the s − t n case.
+Lemma 4: Given G(N,A), if r is placed on s − t n at a distance of D sr = D stn 1+ α √γ from s, such that r ∈ C s and C ∪ = C s ∪ C r spans all T , then it is optimal relay position that maximizes R sT .
+The line of argument for the proof of Lemma 3 (using Lemma 2) could be simply generalized for Lemma 4.
+In this case, like in Section IV, we generalize to all topologies. As we know, that the values of γ (when not equal to 1) and α inﬂict the bias on the relay position. The main difference in case of P s = P r is the computation of the point l i = L Q ( C) (i = {0,1}), given by,
+and the computation of the set N 0 = {t ∈ T| α √γD sl 0 > D l 0 t } = {t ′ 1 , .., t ′ m }, in the Algorithm ORP. Program (B) and the set N 0 takes into account the bias induced by the differences in the transmit power of the source and relay and the value of α. The rest of the algorithm remains the same.
+Now that we have an efﬁcient algorithm for computing the optimal relay position, we can be more ambitious to assess the standing of our work in a more theoretical sense. One of the important consequences of this work that signiﬁes its theoretical importance is shown in Figure 3. We computed the difference between the optimal multicast rate R ∗ sT (for a given position of r) and the cut set bound for |T| = 9 receiver nodes network at 21 interesting positions, including the optimal relay position computed by the Algorithm ORP. At the optimal relay position (blue point), this difference is minimized, conﬁrming the fact that the optimal relay position not only results in gains but the maximized multicast rate is theoretically closest to the cut-set bound at the optimal relay position in our framework.
+It is worth mentioning that the theory developed in this paper well transcends to the low-SNR fading channels , which we do not discuss here but can be easily generalized from the results of [2] and [3].
+We list the important deductions from our work in the following points.
+1) The problem of optimal relay positioning to maximize the multicast rate for the achievable hypergraph model of low-SNR networks using superposition coding and FDMA, can be decoupled from ﬂow optimization and casted as a simpler geometric problem, as opposed to a complex network optimization approach of [1].
+2) The geometric properties of multicast are innately simple and provide interesting insights for relay positioning problem. This is largely due to the fact that all the multicast ﬂow is pushed over at most two paths which is a direct consequence of the deﬁnition of the multicast ﬂow, and this results in simple geometric interpretation.
+3) Importantly, the beneﬁts of determining the optimal relay position are substantiated by the fact that the difference between the maximized multicast rate and the cut-set bound at the optimal position is minimized.
+We now outline, what we think are certain important future directions our work could take. The geometric properties of multicast give great insights and are surprisingly easy to work with. This motivates us to ask further, whether is it possible to apply the simple techniques of our work for the optimal relay positioning problem to moderate and high-SNR regimes that are interference limited. Another natural and interesting dimension is to look at the possibility of extending this work to multicommodity ﬂows.
+[[[ REFS ]]]
+M. Thakur
+N. Fawaz
+M. M´edard
+--
+Optimal relay location and power allocation for low snr broadcast relay channels
+----
+M. Thakur
+M. M´edard
+--
+On optimizing low SNR wireless networks using network coding
+----
+N. Fawaz
+M. M´edard
+--
+On the non-coherent wideband multipath fading relay channel
+----
+T. M. Cover
+--
+Broadcast channels
+----
+A. E. Gamal
+T. M. Cover
+--
+Multiple user information theory
+----
+R. McEliece
+L. Swanson
+--
+A note on the wide-band gaussian broadcast channel
+----
+M. Thaku
+N. Fawa
+M. M´edard
+D. [Online]
+--
+On the geometry of wireless network multicast in 2- Available: http://arxiv
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\123.pdf
+[[[ LINKS ]]]
+

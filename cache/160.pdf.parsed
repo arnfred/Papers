@@ -1,0 +1,167 @@
+[[[ ID ]]]
+160
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Analysis of Fast Sparse Superposition Codes
+[[[ AUTHORS ]]]
+Andrew R. Barron
+Antony Joseph,
+[[[ ABSTR ]]]
+Abstract— Sparse superposition codes with a fast adaptive successive decoder for the additive white Gaussian noise channel were introduced last year by the authors, along with presentation of reliability at rates approaching capacity. The present work presents ingredients of the distributional analysis of the decoder.
+[[[ BODY ]]]
+The framework for superposition codes is the formation of speciﬁc forms of linear combinations of a given set of vectors. We have a dictionary X 1 , X 2 , . . . , X N of vectors, each with n coordinates, for which the codeword vectors take the form of superpositions β 1 X 1 + β 2 X 2 + . . . + β N X N . The vectors X j provide the terms or components of the codewords with coefﬁcients β j . By design, each entry of these vectors X j is independent standard normal. The choice of codeword is conveyed through the coefﬁcients, with sum of squares chosen to match a power requirement P . In brief, a codeword takes the form Xβ where X is the matrix whose columns are the vectors X 1 , X 2 , . . . , X N , with a constraint β 2 = P imposed on the coefﬁcient vector β. For a channel with additive white Gaussian noise (AWGN), with superposition coding, what is received is
+a vector of length n, where ε is the noise vector with distribution N(0, σ 2 I).
+For a sparse superposition code the message is conveyed by a choice of L terms for which the coefﬁcients are non-zero, with L/N a small fraction of the dictionary size. Attention is focussed on the case of partitioned codes, in which the dictio- nary is split into B = N/L sections, with one term from each section chosen to be non-zero. Thus there are B L codewords. With B a power of 2, the encoding from an input bit-string u 1 , u 2 , . . . , u K , with K = L log B, consists of partitioning the string into L substrings of length log B which index the terms from the dictionary which are chosen to be included in the codeword. Denote these indices sent = {j 1 , j 2 , . . . , j L }. The coefﬁcient value for the term from section takes the form β j =
+P with 	 P = P . All terms not in sent are assigned zero coefﬁcient value.
+The rate of the code is R = (L log B)/n equal to the ratio of the number of input bits to the number of uses of the channel. The capacity of the AWGN channel is C = (1/2) log(1+snr) where snr = P/σ 2 is the signal-to-noise ratio.
+These sparse superposition codes with partitioning and a fast adaptive successive decoder were introduced by the authors in [3], constituting the ﬁrst practical code for the AWGN with rate arbitrarily close to capacity and error probability proven to be exponentially small.
+Analogous models and algorithms have been used in sparse signal recovery and compressed sensing. Among much work that can be cited, we call attention to [9] where such sparse models are previously considered for communication for the AWGN, and a positive rate is established. However, the rate there and in other previous sparse signal recovery analyses does not approach capacity.
+Our treatment in [3] also included a description of ingre- dients of the ﬁt formed by the decoder, plus deﬁnition of an update function that tracts the accumulation of correct decodings for rates below capacity, as well as a statement of the reliability bounds. A fuller version of the story is in the extended manuscript [4].
+The purpose of the current conference presentation is to focus on the distributional properties of components of the ﬁt that underly that analysis. It is anticipated that this technique may be useful for examination of other related problems of iterative decoding or stepwise regression, including analysis of greedy algorithms and matching pursuit, originating in [7] and [8] and most recently studied in [10].
+To review design and performance aspects of our fast decoder, to get rates approaching capacity, a variable power allocation is used. The P is chosen to be proportional to e −2 C /L , or to slight variants thereof. Such variable power originates with [5] in achieving sum-rate capacity of multi- user Gaussian channels and a recent use of it is in [6].
+Our scheme provides reliable communication for rates R up to a value C B for any B ≥ 2. This C B is near the capacity for B sufﬁciently large compared to 1 + snr, as needed to make small expressions of the form C/ log B that arise in the bounds on the gap from capacity.
+The probability of more than a small fraction of section mistakes is shown to be exponentially small, with exponent of the order (C B − R) 2 L or, with worse constants, of order (C B − R) 2 L
+log B. Here L = nR/ log B. This exponent is within a logarithmic factor of the optimal Shannon-Gallager form of order (C −R) 2 n/V for ﬁxed R near C.
+The ﬁrst step of the decoder is to compute the inner product of the received string Y with each of the terms in the dictionary, and see which of these inner products are above a threshold. Such a set of inner products for a step of the decoder is performed in parallel by a computational unit, e.g. a signal-processing chip with N = LB parallel accumulators, each of which has pipelined computation, so that the inner product is updated as the elements of the string arrive.
+In this basic step, the terms that it decodes are those for which the test statistic is above threshold. The size of the threshold is speciﬁed to keep the fraction of incorrect terms
+above threshold negligible, while allowing a moderate fraction of correct terms to be found above threshold each step. A ﬁt is formed at the end of a step by adding the terms selected.
+Additional steps are used to bring the total fraction decoded up near 1. Each step of the decoder computes updated test statistics, taking inner products of the remaining terms with a vector determined using Y and the previous ﬁt, and sees which are above threshold.
+The decoding algorithm adapts the choice of which sections of terms will be decoded on each step in accordance with which sections have a term with an inner product observed to be above threshold. Thus we have called our class of procedures adaptive successive decoding.
+Analysis involves weighted proportions of events, which are sums across the terms of indicators of events multiplied by weights π j . For terms j in section this weight is set to π j = P /P . With bounded ratio of maximum to minimum power across the sections, such weighted proportions agree with un- weighted proportions to within constant factors.
+The analysis leads us to a function g on [0, 1], called the update function, which depends on the power allocation distribution π and the parameters L, B, snr and R. The idea of this function is that if at the previous step the weighted fraction of correct detections minus the weighted fraction of false alarms is x then the corresponding weighted fraction of correct detections expected for the next step is at least g(x).
+For suitable rates, the function g(x) stays sufﬁciently above x over most of [0, 1] and, consequently, the decoder has a high chance of not more than a small fraction of section mistakes.
+An incorrect term above threshold is a false alarm, while failure of the correct term to provide a statistic value above threshold after a suitable number of steps is a failed detection. Let ˆ δ mis refer to the failed detection rate plus the false alarm rate. It is this ˆ δ mis that our technique controls, providing a small bound δ mis that holds with high probability.
+A section mistake is counted as an error if it arises from a single incorrectly selected term. It is an erasure if no term is selected or more than one term is selected. Let ˆ δ error be the fraction of section errors and ˆ δ erase be the fraction of section erasures. In each section the event indicators satisfy the property that 1 erase + 2 1 error is not more than
+is not more than ˆ δ mis , the failed detection rate plus the false alarm rate.
+Candidate subsets of terms sent could differ from each other in only a few sections. When that is so, the subsets could be difﬁcult to distinguish, so that it would be natural to expect a few section mistakes.
+To permit completion of the task of identifying the terms, arrange sufﬁcient distance between the subsets using composi- tion with an outer Reed-Solomon (RS) code of rate near one. The alphabet of the Reed-Solomon code of size B, a power of 2, is taken to correspond to the indices of the selected terms in each section. Suppose the likely event ˆ δ mis < δ mis holds from the output of the inner superposition code. Then the outer Reed-Solomon corrects the small fraction of remaining
+mistakes so that we end up not only with small section mistake rate but also with small block error probability. If 1−δ is the rate of the RS code, then the section errors and erasures can be corrected, provided δ mis ≤ δ. Furthermore, if R is the rate associated with our inner superposition code, then the total rate after correcting for the remaining mistakes is given by R total = (1−δ)R, using δ = δ mis . So, if ∆ is the relative rate drop from capacity of the inner code, then the relative rate drop of the composite code ∆ total is not more than δ mis + ∆.
+The end result, using our theory for the distribution of the fraction of mistakes of the superposition code, is that for suitable rate up to a value near capacity the block error probability is exponentially small.
+One may regard the composite code as a superposition code in which the subsets are forced to maintain at least a certain minimal separation, so that decoding to within a certain distance from the true subset implies exact decoding.
+A limitation of these practical results is the slow approach of C B to the capacity C, with gap of order C/ log B. Nev- ertheless, a case can be made that the sparse superposition code with adaptive successive decoder is the ﬁrst scheme for the Gaussian noise channel with a practical decoder proven to have exponentially small error probability at any ﬁxed rate below capacity. Recently, in work coauthored by one of us [1], a competing method based on polar codes is adapted to the AWGN, to achieve any rate below capacity, albeit with an error probability exponentially small in
+As desired we turn our focus in the next section to distri- butional analysis of the contributions to the ﬁt formed by the adaptive successive decoder.
+The full manuscript [4] includes in addition to these matters of distributional analysis, discussion of relationship to past work, variants of the algorithm, computational analysis, proof of reliability bounds, tools for analyzing the update function g(x), determination of C B , quantiﬁcation of the contributions of its drop from capacity, quantiﬁcation of the error exponent, and a more complete list of references.
+As we have said, from the received Y , the ﬁrst step of the decoder forms for each term X j of the dictionary, the test statistic Z 1,j = X T j Y / Y , and compares it to a threshold τ =
+2 log B(1 + δ a ). The distribution of this test statistic will be seen to be that of a standard normal plus a shift by a nearly deterministic amount, where the presence of the shift depends on whether j is one of the terms sent. The threshold is set such that very few of the terms not sent will be above threshold. Yet a positive fraction of the terms sent, determined by the size of the shift, will be above threshold and hence will be correctly decoded on this ﬁrst step.
+The output of the ﬁrst step consists of the set dec 1 of terms above threshold and the vector F 1 = j∈dec 1 P j X j which forms the ﬁrst part of the ﬁt. The set of terms J 1 = J investigated in step 1 is the set of all columns of the dictionary, while the set J 2 = J − dec 1 remains for second step consideration.
+In starting an adaptive Gram-Schmidt orthogonalization, we let G 1 = Y and let G 2 be the part of the vector F 1 orthogonal to Y . That is G 2 = F 1 − ˆb 2,1 Y where ˆ b 2,1 = F T 1 Y / Y 2 . Various vectors of interest have representation in terms of such orthogonal vectors. For instance the ﬁrst step residual r 1 = Y − F 1 is a linear combination of G 1 and G 2 . Moreover, each X j has representation as
+where Z k,j = X T j G k / G k and V 3,j is a vector orthogonal to G 1 and G 2 . Here Z 1,j = X T j Y / Y is our ﬁrst step test statistic.
+The second step test statistic Z comb 2,j is assumed to be formed from Z 1,j and Z 2,j . For instance the inner product with the residuals X T j r 1 / r 1 is a linear combination of Z 1,j and Z 2,j with empirically determined weights of combination. The focus of attention in [4] is test statistics Z comb 2,j that take the form
+λ 2 Z 2,j with λ 1 > 0, λ 2 > 0 and λ 1 +λ 2 = 1. The distributional properties of Z 1,j and Z 2,j are used to determine estimates of values of such λ 1 and λ 2 which will maximize the separation between the distributions for terms sent and terms not sent. These weights of combination are advocated as possibly simpler to analyze than the use of the weights associated with inner products with the residuals.
+The second step decoding set dec 2 is a subset of J 2 formed in a similar manner as for the ﬁrst step, by comparing Z comb 2,j
+P j X j , from which one forms G 3 , the part of this ﬁt orthogonal to G 1 and G 2 , and so on.
+Proceed in this manner to perform the following loop of calculations, for k ≥ 2. From the output of previous steps, there is the vectors F k and G k and statistics Z k ,j for k < k. Plus there is a set dec 1,k−1 = dec 1 ∪ . . . ∪ dec k−1 already decoded and a set J k = J − dec 1,k−1 of terms for us to test at step k. Determine the part G k of F k−1 orthogonal to the previous G k and for each j not in dec k−1 compute
+To maximize the separation between the distributions that arise for terms sent and terms not sent, these positive weights are taken of the form λ k ,k = w k /s k , with w 1 = 1, and s k = 1 + w 2 + . . . w k , with w k to be speciﬁed. Accordingly, the combined statistic may be computed by the update
+where λ k = w k /s k . For terms j in J k these statistics are compared to a threshold, leading to events {Z comb k,j ≥ τ }. As quantiﬁed by an analysis of the distribution of the Z k,j , for successive steps there is an increasing separation between the distribution for terms j sent and the others.
+With dec k taken to be {j ∈ J k : Z comb k,j ≥ τ k } the output of step k consists of the vectors G k and F k = j∈dec
+and the statistics Z k,j . Moreover one updates to the set of decoded terms dec 1,k = dec k−1 ∪ dec k and the set J k+1 = J k −dec k of terms remaining for consideration. This completes the actions of step k of the loop.
+On each step k we decode a substantial part of what remains, because of growth of the mean separation between terms sent and the others.
+The algorithm stops when either L terms have been decoded or no terms from J k are found to have statistic above threshold, so that F k is zero and the statistics would remain thereafter unchanged. Analytical stopping conditions are also available. Our best bounds on the closeness of the rate target C B to capacity occur with a total number of steps m not more than an integer part of 2 + snr log B.
+P j X j which is the sum of the pieces from each step f it k = F 1 +F 2 +. . .+F k .
+As to the part G k of F k−1 orthogonal to previous G k , take advantage of two ways to view it, one emphasizing computation and the other analysis.
+For computation of G k from F k−1 apply a standard Gram- Schmidt step. The G 1 , G 2 , . . . , G k−1 are orthogonal vectors, so the parts of F k−1 in these directions are ˆ b k,k G k with ˆ b k,k = F T
+G k / G k 2 for k < k, where if G k = 0 use ˆ b k,k = 0. Accordingly, the new G k is computed by G k = F k−1 − k−1 k =1 ˆ b k,k G k . This computation entails the n−fold sums of products F T k G k for determination of the ˆ b k,k . Then from this computed G k we obtain the inner products with the X j to yield Z k,j = X T j G k / G k for j in J k .
+For analysis, look at what happens to the representation of the individual terms. Each term X j for j ∈ J k−1 has the decomposition
+P j X j it follows that G k has the representation G k = j∈dec
+P j V k,j , from which Z k,j = V T k,j G k / G k , with which the above representation of X j updates. With the initialization V 0,j = X j , these V k+1,j may be thought of as iteratively obtained from the corresponding vectors at the previous step, that is, V k+1,j is V k,j − Z k,j G k / G k . These V do not actually need to be computed, nor do we need to compute its components detailed below, but this representation of the terms X j is used in the proof of the distributional properties of the Z k,j .
+The π j = P j /P sum to 1 across j in sent, and sum to B−1 across j in other. Deﬁne in general ˆ q k = j∈sent∩dec
+π j for the step k correct detections and ˆ f k = j∈other∩dec
+π j for the false alarms.
+π j which may be written as the sum ˆ q 1 + ˆ q 2 +. . .+ ˆ q k . This total may be regarded as the same as the π weighted measure of the union j sent π j 1 {H 1,j ∪...∪H k,j } .
+π j may be written as ˆ f 1 + ˆ f 2 + . . . + ˆ f k which may be expressed as j other π j 1 {H 1,j ∪...∪H k,j } .
+In this section we describe the distributional properties of the random variables Z k = (Z k,j : j ∈ J k ) for each k = 1, 2, . . . , n. In particular we show for each k that Z k,j are location shifted normal random variables with variance near one for j ∈ sent ∩ J k and are independent standard normal random variables for j ∈ other ∩ J k .
+where π j = P j /P and ν = ν 1 = P/(σ 2 +P ). Likewise deﬁne C j,R,B = (C j,R ) 2 log B, which is also C j,R τ 2 with C j,R = C j,R /(1 + δ a ) 2 . It also simpliﬁes to C j,R,B = n π j ν.
+Each step of the decoder will derive beneﬁt from looking at all sections. Nevertheless, it will be seen that C j,R needs to be at least 1 for some sections, to get the decoder to begin successfully, and then not taper too rapidly to allow decodings to accumulate on successive steps.
+For the case of power P j proportional to e −2C /L , we have π j = e −2C( −1)/L (1−e −2C/L )/(1−e −2C ) for each j in section
+, for from 1 to L. Deﬁne ˜ C = (L/2)[1 − e −2C/L ], which is essentially identical to C, for L large compared to C. Then for j in section we have that
+For rates R not more than C, this C j,R is at least 1 in some sections and it tapers at the fastest rate at which we can still accumulate decoding successes.
+We now are in a position to give the lemma for the distribution of Z 1 . Recall J 1 = J is the set of all N indices.
+Lemma 1: Distributional analysis of the ﬁrst step. For each j ∈ J 1 , the statistic Z 1,j can be represented as
+where Z 1 = (Z 1,j : j ∈ J 1 ) is multivariate normal N (0, Σ 1 ) and X 2 n = Y 2 /σ 2 Y is a Chi-square n random variable that is independent of Z 1 . Here recall that σ 2 Y = P + σ 2 is the variance of each coordinate of Y .
+The covariance matrix Σ 1 can be expressed as I − b 1 b T 1 , where b 1 = (b 1,1 , b 1,2 , . . . , b 1,N ) with each b 1,j = β j /σ Y .
+Proof of Lemma 1: Recall that the X j for j in J are inde- pendent N (0, I) random vectors and that Y = j β j X j + ε, where the sum of squares of the β j is equal to P .
+Consider ﬁrst the decomposition of each random vector X j of the dictionary into a vector in the direction of the received Y and a vector U j uncorrelated with Y . That is
+where the coefﬁcient is b 1,j = E[X i,j Y i ]/σ Y = β j /σ Y , which indeed makes each coordinate of U j uncorrelated with each coordinate of Y . These coefﬁcients collect into a vector b 1 = β/σ Y in R N . In the case that the magnitude of the non-zero coefﬁcients is P/L, then for terms j sent, the square of b 1,j
+is equal to ν/L. In any case, since β 2 = P , the sum of squares b 1 2 is equal to
+The subscript 1 on ﬁrst step quantities such as b 1,j is to distinguish them from corresponding values that will arise on the subsequent steps. Likewise, U j = U 1,j .
+are linear combinations of joint normal random variables and so are also joint normal, with zero correlation implying that Y is independent of the collection of U j . The independence of Y and U j facilitates development of distributional properties of the U T j Y . For these purposes we need the characteristics of the joint distribution of the U j across terms j (clearly there is independence for distinct time indices i).
+The coordinates of U j and U j have mean zero and expected product 1 {j=j } − b 1,j b 1,j . For the constant power allocation case, this value is 1 − (ν/L) 1 j sent when j = j and it is a small covariance −(ν/L) 1 j,j sent when j = j. In general, the covariances (E[U i,j U j,j ] : j, j ∈ J ) organize into a matrix
+For any constant vector α = 0, consider U T j α/ α Its joint normal distribution across terms j is the same for any such α. Speciﬁcally, it is a normal N (0, Σ), with mean zero and the indicated covariances.
+Likewise deﬁne the random variables Z j = U T j Y / Y , also denoted Z 1,j when making explicit that it is for the ﬁrst step. Jointly across j, these Z j have the normal N (0, Σ) distribu- tion, independent of Y . Indeed, since the U j are independent of Y , when we condition on Y = α we get the same N (0, Σ) distribution, and since this conditional distribution does not depend on Y , it is the unconditional distribution as well.
+Where this gets us is revealed via the representation of the inner product X T j Y as b 1,j Y 2 /σ Y + U T j Y , which can be written as
+This identiﬁes the distribution of the X T j Y as that obtained as a mixture of the normal Z j with scale and location shifts de- termined by an independent random variable X 2 n = Y 2 /σ 2 Y , distributed as Chi-square with n degrees of freedom.
+Divide through by Y to normalize these inner products to a helpful scale and to simplify the distribution of the result to be only that of a location mixture of normals. The resulting random variables Z 1,j = X T j Y / Y take the form
+√ nb 1,j = √
+nβ j /σ Y which is √ nπ j ν or C j,R,B . This completes the proof of Lemma 1.
+We next present the corresponding result for k ≥ 2. The distribution of Z k,j with j ∈ J k can also be expressed in a manner similar to that above, that is, each Z k,j can be
+expressed as a normal random variable Z k,j plus a location shift depending on whether j is in sent or not.
+We maintain the pattern used in Lemma 1 and use the cali- graphic font Z k,j to denote the test statistics that incorporate the shift for j in sent and the standard font Z k,j to denote their counterpart mean zero normal random variables before the shift.
+We provide in the lemma below characterization of the sequence of conditional distributions of the Z k = (Z k,j : j ∈ J k ) and G k , given F k−1 , for k = 1, 2, . . . n, where
+This determines also the distribution of Z k = (Z k,j : j ∈ J k ) conditional on F k−1 . Initializing with the distribution of Z 1 derived in Lemma 1, we provide the conditional distributions for all 2 ≤ k ≤ n. The algorithm will stop at a k much less than n. The J k is never empty because we decode at most L, so there must always be at least (B−1)L remaining. For an index set which may depend on the conditioning variables, we let N J k (0, Σ) denote a mean zero multivariate normal distribution with index set J k and the indicated covariance matrix.
+Lemma 2: Distributional analysis for subsequent steps. For k ≥ 2, given F k−1 , the conditional distribution P Z k,Jk |F k−1 of Z k,J k = (Z k,j : j ∈ J k ) is normal N J k (0, Σ k ); the random variable X 2 d
+= G k 2 /σ 2 k is a Chi-square distributed, with d k = n−k +1 degrees of freedom, conditionally independent of the Z k , where σ 2 k are positive values depending on F k−1 ; and, moreover, Z k,j has the representation
+The shift increment from this statistic is ˆ w k = ˆ s k −ˆ s k−1 , which are increments of a series with total
+where ˆ q adj j = ˆ q j /(1+ ˆ f j /ˆ q j ), obtained from weighted fractions of correct detections and false alarms on previous steps. Here ˆ s 1 = ˆ w 1 = 1. The covariance Σ k has the representation
+where ν k = ˆ s k ν. That is (Σ k ) j,j = 1 j=j − δ k,j δ k,j , for j, j in J k , where the vector δ k is in the direction β, with δ k,j = ν k P j /P 1 j sent for j in J k .
+The proof of this lemma follows the same pattern as the proof of Lemma 1. For details of the proof see [4].
+To summarize its use, it yields weights λ k = ˆ w k /ˆ s k that provide the ideal combination Z comb k,j = k k =1
+λ k Z k ,j . In the analysis the chi-square random variables divided by their degrees of freedom are bounded by constants near 1 (excepting events of exponentially small probability) and this combined test statistic takes the approximate form
+λ k Z k ,j . Likewise, it is inductively demonstrated that, with very high probability, the ˆ s k in the
+lemma above are not less than a sequence of deterministic values s k = 1/(1 − νx k−1 ) with x k−1 = q adj 1,k−1 , where the q 1,k is a target correct detection rate obtained from k fold application of the function g as speciﬁed below.
+This analysis allows for the λ k to be replaced by cor- responding deterministic w k /s k for k = 1, 2, . . . , k where w k = s k − s k−1 , with which Z comb k,j is jointly normal across terms j. Using the covariance from the above lemma, analysis of the joint normal density of the Z k,j , shows that it has a bounded ratio with respect to the independent standard normal joint density. Accordingly, for determination of events of exponentially small probability, there is no loss to analyze the Z comb k,j as being independent standard normal. With the distribution shifted for j in sent as given above, the probability of Z comb k,j being above threshold is given by
+evaluated at x = x k−1 . It yields the expected weighted fraction above threshold at step k given by g(x) = j sent π j g j (x).
+To examine the behavior of this update function g(x), consider what it would be, denoted g ideal (x), in the case that each g j (x) is replaced by a corresponding indicator
+/(1−xν)>1)} . The use of the recommended variable power allocation with rate R < C with C = ˜ C/(1+δ a ) 2 , leads to g ideal (x) being at least the minimum of x C /R and 1, which stays above x for most of the interval [0, 1]. An approximate odd symmetry of the difference between g j (x) and its indicator approximation, leads to g(x) behaving similarly, also above x for most of the interval [0, 1].
+This is the way in which the distributional properties of the inner product test statistics determine the ingredients of the analysis detailed in [4].
+[[[ REFS ]]]
+E. Abbe
+A. Barron
+--
+Polar Codes for the AWGN.
+----
+R. Barron A. Joseph
+--
+Least squares superposition coding of mod- erate dictionary size, reliable at rates up to channel capacity
+----
+R. Barro
+A. Josep
+--
+A
+----
+R. Barron
+A. Joseph
+--
+Sparse superposition codes: Fast and reliable at rates approaching capacity with Gaussian noise
+----
+M. Cover
+--
+Broadcast channels
+----
+K. Fletcher
+S. Rangan
+K. Goyal
+--
+On-Off Random Access Channels: A Compressed Sensing Framwork.
+----
+L. Jones
+--
+A simple lemma for optimization in a Hilbert space, with application to projection pursuit and neural net training
+----
+S. Malla
+Z. Zhan
+--
+Matching pursuit with time-frequency dictionaries
+----
+J. Tropp
+--
+Just relax: convex programming methods for identifying sparse signals in noise
+----
+T. Zhang
+--
+Adaptive forward-backward greedy algorithm for learning sparse representations
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\160.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,108 @@
+[[[ ID ]]]
+119
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Estimating a Gaussian Random Walk First-Passage Time from Correlated or Delayed Observations
+[[[ AUTHORS ]]]
+Marat Burnashev
+and Aslan Tchamkerten
+[[[ ABSTR ]]]
+Abstract—Given a Gaussian random walk X with drift, we consider estimating its ﬁrst-passage time τ , of a given level , with a stopping time η deﬁned over an observation process Y that is either a noisy version of X, or a delayed version
+of X. For both cases, we provide lower bounds on average moments E|η − τ | p , p ≥ 1, for any stopping rule η, and exhibit simple stopping rules that achieve these bounds in the large threshold regime and in the large threshold large delay regime, respectively. The results immediately extend to the corresponding continuous time settings where X and Y are standard Wiener processes with drift.
+[[[ BODY ]]]
+Suppose X = {X t } t≥0 is a stochastic process and τ a stopping time deﬁned over X. Statis- tician has access to X, sometimes referred to as the primary process, only through corre- lated observations Y = {Y t } t≥0 , and wishes to ﬁnd a stopping η, over Y , that best tracks τ , e.g., so as to minimize some p-moment E|η − τ | p . 1 This problem, recently introduced in [5] as the Tracking Stopping Time (TST) problem, can be seen as a generalization of the well-known Bayesian change-point detec- tion problem whose provenance dates back to the 1930’s, and whose range of applications includes a variety of ﬁelds such as economet- rics, medical diagnosis, and climate modeling (see, e.g., the books [6] and [1] for surveys on the theory and applications of the change- point problem). Recall that in the Bayesian
+change-point problem, there is a random vari- able θ, taking on values in the positive integers, and two probability distributions P 0 and P 1 . Under P 0 , the conditional density function of Y t given Y 1 , Y 2 , . . . , Y t−1 is f 0 (Y t |Y 1 , Y 2 , . . . , Y t−1 ) , for every t ≥ 0. Under P 1 , the conditional density function of Y t given Y 1 , Y 2 , . . . , Y t−1 is f 1 (Y t |Y 1 , Y 2 , . . . , Y t−1 ) , for every t ≥ 0. The observed process is distributed according P θ , which assigns the same conditional density functions as P 0 for all t < θ, and the same conditional density functions as P 1 for all t ≥ θ. The Bayesian change-point problem typically consists in ﬁnding a stopping time η, with re- spect to {Y t }, that minimizes some loss function of the delay η − τ .
+To see that the Bayesian change-point prob- lem can always be formulated as a TST prob- lem, it sufﬁces to deﬁne the primary process X = {X t } t≥0 as X t = 0 for t < θ and X t = 1 for t ≥ θ. The Bayesian change-point problem becomes the TST problem whose goal is to track θ (now deﬁned as a stopping time with respect to X) through Y only.
+The difference between the Bayesian change- point problem and the TST problem is that the change-point problem always satisﬁes P(θ = k|τ > n, y n ) = P(θ = k|τ > n) for k > n. In contrast, this equality need not be satisﬁed
+for the TST problem [5]. In other words, for TST problems past observations are in general useful for predicting the value of the tracked stopping time, whereas for Bayesian change- point problems past observations are useless if the change in distribution hasn’t occurred yet. For speciﬁc applications of the TST problem formulation related to monitoring, communi- cation, and forecasting we refer to [5, Section I].
+In [5], through a computer science approach, a general algorithmic solution is proposed for constructing optimal “trackers” for the situ- ation where X and Y are processes deﬁned over ﬁnite alphabets and where τ is bounded. What motivated an algorithmic approach for the TST problem is that it generalizes the Bayesian change-point problem for which gen- eral closed-form analytical solutions have been reported only for asymptotic settings (see, e.g., [4]). Non-asymptotic solutions have been ob- tained essentially for i.i.d. cases where, condi- tioned on the change-point value, observations are independent with common distribution P 0 and P 1 before and after the change, respectively (see, e.g., [7], [8]). 2
+Practically important TST settings include the cases where the observation process Y is a noisy or delayed version of X. In this paper, we investigate both situations in a Gaussian setting. The primary process X is a Gaussian random walk with drift, i.e., X t = s · t + t i=1 V i with the V i ’s i.i.d.∼ N (0, 1) (zero mean unit variance Gaussian random variables), s ≥ 0, and τ is the ﬁrst time when X reaches some given level . Two observation processes are considered: a noisy process Y t = X t + ε t i=1 W i with ε ≥ 0 and W i ’s i.i.d.∼ N (0, 1), and a de- layed process given by Y t = X t−d for some ﬁxed lag d ≥ 0. For both cases, we establish lower bounds on inf η E|η − τ | p , p ≥ 1, and exhibit stopping rules that achieve these bounds in the large threshold regime and large threshold large delay regime, respectively. The results related to the noisy observation case generalize the results obtained in [2] for p = 1.
+where s ≥ 0 is some known constant, where V 1 , V 2 , . . . are i.i.d.∼ N (0, 1), and consider the ﬁrst-passage time
+Given sequential observations of a process Y = {Y t } t≥0 correlated to X, we consider the optimization problem
+where the inﬁmum is over all stopping times η deﬁned with respect to the natural ﬁltration induced by Y .
+where W 1 , W 2 , . . . are i.i.d.∼ N (0, 1) and where ε ≥ 0 is some known constant (the observation noises {W i } are supposed to be independent of {V i }).
+The following Theorem generalizes [2, Theo- rem 2.3] which considers the case p = 1. We use η(Y ∞ 0 ) to denote an estimator of τ that depends on the entire observation process Y ∞ 0 (hence, such an estimator need not be a stopping time).
+Notice that if ε = 0, X = Y , thus (1) is equal to zero by setting η = τ .
+Theorem 2.1 (Noisy observations). Given 0 < ε < ∞ and 0 < s < ∞, let
+where n = /s − ( /s) q , 3 with q ∈ (1/2, 1), and where
+(2) as → ∞, where N ∼ N (0, 1).
+Note that the very simple stopping rule η ∗ , which depends on the single observation Y n , not only is uniformly optimal over p ≥ 1, but does as well (asymptotically) as the best non- causal estimators of τ which have access to the entire observation process Y . In particular, the simplicity of η ∗ is in contrast with the optimal stopping rule proposed in [2, Theorem 2.3], for p = 1 , which constantly monitors the X process by estimating X t via Y t for t = 1, 2, ... and by stopping as soon as this estimator reaches level .
+The reason for assuming s to be strictly positive in Theorem 2.1 is that, for s = 0, ε > 0, and > 0 , it is impossible to ﬁnitely track τ , even if we have access to the entire observation process Y ∞ 0 :
+Proposition 2.1 ([2], Proposition 2.1.ii.). For s = 0 , ε > 0, > 0 , and p ≥ 1/2, we have
+Theorem 2.2 (Delayed observations). Given s > 0 and p ≥ 1, let
+Similarly as for noisy observations, the case where there is no drift is speciﬁc:
+Proposition 2.2. For s = 0, > 0 , and p ≥ 1/2 inf
+E|η − τ | p = d p = E|η ∗∗ 0 − τ | p where η ∗∗ 0 = inf{t ≥ 0 : Y t ≥ }.
+In other words, it is optimal to wait until we have absolute certainty about X having crossed level . Note that if we use this stopping policy in the case where s > 0, we achieve a delay that is a factor d p/2 larger compared to the best achievable delay (Theorem 2.2).
+It is easy to check from our analysis that Theorems 2.1 and 2.2 remain valid if we replace X and Y by their continuous time counterparts; i.e., X t = s·t+B t and Y t = X t +εW t for the noisy observations, and Y t = X t−d for the delayed observations, where {B t } t≥0 and {W t } t≥0 are independent standard Wiener processes.
+To prove Theorem 2.1 and 2.2 we often use the following Lemma, given without proof in the interest of space, on the concentration of τ around its mean. Claims i. and ii. are obtained via basic large deviations arguments whereas Claim iii. is [3, Theorem 2.5].
+Lemma 3.1 (Large deviation). Let S t = t i=1 Z i where Z 1 , Z 2 , . . . are i.i.d. Gaussian random vari- ables with mean 0 < s < ∞ and variance σ 2 < ∞ . Let 0 < < ∞ and let τ = inf{t ≥ 1 : S t ≥ }. Then,
+(3) for 0 ≤ z < /s, and
+where k ≥ 0 is a constant that depends on p, σ 2 , and s (but not on );
+iii. the distribution of τ − /s converges to the Gaussian distribution N (0, /s 3 ) as → ∞.
+Proof Sketch of Theorem 2.1: Since X t and Y t are jointly gaussian, we can represent X t as 4
+X t d = a · t 1/2 N + e(Y t ) , 	 (6) where
+e(Y t ) = b · Y t + c · t , 	 (7) where N ∼ N (0, 1) is independent of Y ∞ 0 , and where
+(8) From (6) and the fact that N is independent of Y ∞ 0 , it follows that e(Y t ) is the best estimator of X t in the sense that it minimizes E|X t − e| p , p ≥ 1 , among all estimators e that have access to the entire observation process Y ∞ 0 .
+Since τ concentrates around /s (Claim i. of Lemma 3.1), it follows from (6) that with high probability τ takes on values for which
+(9) for the best estimators of τ (whether causal or non-causal).
+From (9) one deduces that for any η = η(Y ∞ 0 ) , E|η − τ | p is lower bounded by the right-side
+of the second equality in (2), by using large deviations arguments to show that atypical events, such as when τ is far from /s, have negligible contribution to the moments.
+For an optimal estimator, and based on the above discussion, it may be tempting to con- sider stopping at time /s, then declare time
+/s + ( − e(Y /s ))/s . However, although this estimator is (asymptotically) optimal, it is not a stopping rule since causality may be violated. To circumvent this problem, it sufﬁces to stop at a time n < /s such that n ≈ /s and P(τ ≥ n) ≈ 1, and declare time n + ( −e(Y n )) + s 	 . This provides an intuitive justiﬁcation for the optimality of η ∗ .
+Proof Sketch of Theorem 2.2: Note the chief difference between the noisy observation and the delayed observation cases. For the noisy observation case, there is always some inherent uncertainty about any X t (t ≥ 1) due to the observation noise. This allowed us to derive a lower bound by considering estimators that have access to the entire observation process. In the delayed observation case instead, the uncertainty about X t vanishes whenever Y t+d is observed.
+We now present the proof’s main idea. The stopping time η ∗∗ is in fact a very natural stopping time to consider since, on average, X t is s · d higher than Y t . Now, the time needed to go from level − s · d to level has (approxi- mately) the Gaussian distribution d + (
+d/s)N by Claim iii. of Lemma 3.1. It then follows that τ − η ∗∗ d ≈ (
+The optimality of η ∗∗ is established essen- tially by using a combination of Lemma 3.1 Claim iii. and the fact (which can be proved) that an optimal stopping rule stops before time
+Proof of Proposition 2.2: We show that for any stopping time η on Y such that P(η < τ + d) > 0 ,
+E(|η − τ | p |Y η , η < τ + d) = ∞ . 	 (10) Hence, if η satisﬁes E|η − τ | p < ∞ , necessarily
+E|η − τ | p = 	 inf η:P(η≥τ +d)=1 E|η − τ | p ≥ d p
+= E|η ∗∗ 0 − τ | p where η ∗∗ 0 = inf{t ≥ 0 : Y t ≥ }.
+We prove (10). Equivalently, we show that for any stopping rule η over X such that P(η < τ ) > 0 ,
+Let {B t } t≥0 be a standard Wiener process start- ing at time η at level B 0 = X η = − h , for some h > 0 . Deﬁne
+where Q(x) = (1/ √ 2π) ∞ x exp(−x 2 /2)dx . Hence,
+[[[ REFS ]]]
+
+--
+Mich`ele Basseville and Igor Nikiforov
+----
+M. V. Burnashe
+A. Tchamkerten
+--
+Tracking a gaussian random walk ﬁrst-passage time through noisy observa- tions
+----
+A. Gut
+--
+On the moments and limit distributions of some ﬁrst passage times
+----
+Z. Lai
+--
+T
+----
+U. Niese
+A. Tchamkerten
+--
+Tracking stopping times through noisy observations
+----
+V. Poo
+O. Hadjiliadis
+--
+H
+----
+A. N. Shiryaev
+--
+On optimum methods in quickest detection problems
+----
+A. N. Shiryayev
+--
+Optimal Stopping rules
+----
+B. Yakir
+--
+Optimal detection of a change in distribution when the observations form a Markov chain with a ﬁnite state space
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\119.pdf
+[[[ LINKS ]]]
+

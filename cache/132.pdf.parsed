@@ -1,0 +1,120 @@
+[[[ ID ]]]
+132
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Error-Free Perfect-Secrecy Systems
+[[[ AUTHORS ]]]
+Siu-Wai Ho
+Terence Chan
+Chinthani Uduwerelle
+[[[ ABSTR ]]]
+Abstract—Shannon’s fundamental bound for perfect secrecy says that the entropy of the secret message U cannot be larger than the entropy of the secret key R shared by the sender and the legitimate receiver. Massey gave an information theoretic proof of this result and the proof does not require U and R to be independent. By adding an extra assumption that I (U ; R) = 0, we show a tighter lower bound on H (R) by proving that the logarithm of the message sample size cannot be larger than the entropy of the secret key. Then we consider that a perfect secrecy system is used multiple times. A new parameter, namely effective key consumption, is deﬁned and justiﬁed. This paper shows the existence of a fundamental tradeoff between the effective key consumption and the number of channel uses for transmitting a ciphertext.
+[[[ BODY ]]]
+Perfect secrecy was studied by Shannon in his seminal paper [1] (see also [2]). A system satisﬁes perfect secrecy if it can encrypt a message U into a ciphertext X such that U and X are statistically independent. Shannon’s fundamental bound for perfect secrecy says that the entropy of the message cannot be larger than the entropy of the secret key R shared by the sender and the legitimate receiver.
+Massey [2] gave an information theoretic proof of this result and the proof does not require that U and R are statistically independent. However, we will prove in this paper that if U and R are independent, Shannon’s fundamental bound is not tight. We will see that the logarithm of the message sample size cannot be larger than the entropy of the secret key. This gives a more restricted requirement because the logarithm of the message sample size is strictly greater than the entropy of the message if the message is generated from a non-uniform source.
+This paper is based on the simple model in Fig. 1. When the distribution of U is non-uniform, one may expect that the optimal encoder should ﬁrst compress U before encryption is done. Roughly speaking, compression can convert the source output into a sequence of independent and identically distributed (i.i.d.) symbols. Theoretically, this can maximize the decoding error probability at the adversary side in some security systems [3, Theorem 3]. Practically, a smaller ﬁle size should require less resources during the encryption process. Since any pre-coding before encryption can be subsumed by Fig. 1, a general case is considered in this paper. We will reveal that compression is not necessary in certain situations.
+Another contribution of this paper is to introduce a new concept – effective key consumption I(R; U X). We will show that H(R) is only good for measuring the initial key require-
+ment . If the system in Fig. 1 is used multiple times, I(R; U X) gives more useful insights and is a system parameter to be optimized. On the other hand, we also want to minimize th e numb er of ch annel uses to transmit X from the source to the legitimate receiver. One can encode the ciphertext X by the Huffman code [4 ]. Then the expected output length (X) is between H(X) and H(X) + 1. Note that for two random variables X and X , it is possible that H(X) < H(X ), but
+(X) > (X ). For example, P X = (0.3, 0.23, 0.2, 0.17, 0.1) and P X = (0.25, 0.25, 0.25, 0.15, 0.1). However, we still use H(X) instead of (X) to measure the number of channel uses because H(X) is a lower bound and in fact a very good estimate for (X). Also, using H(X) makes the problem tractable. We will show that there exists a fundamental tradeoff between the effective key consumption and the number of channel uses.
+In Section II, the system model will be speciﬁed. We will show some new bounds on H(R) and H(X). If the system in Fig. 1 is used only once, requirements for the minimum resource are shown. Then we will consider that the system is used multiple times in Section III. The new parameter I(R; U X) will be justiﬁed to be the expected key consumption. Section IV will focus on minimizing I(R; U X) in different scenarios. The existence of the aforementioned tradeoff will be seen.
+L et U be the secret message and X be the ciphertext. Suppose the sender and the receiver share a secret common randomness R.
+D eﬁnition 1 (E P S system): A cipher system is called an E rror-free P erfect-S ecrecy (E P S ) system if
+I(U ; R) = 0, and 	 (2) H(U |RX) = 0. 	 (3)
+Here, (1) ensures perfect secrecy, and (2) means that the shared secret common randomness R is independent of the
+source message U . Furthermore, (3) ensures that the decoder can perfectly reconstruct U from R and X. Note that (1) and (3) are also used in [2] to prove Shannon’s fundamental bound for perfect secrecy and (2) is the extra constraint added in Deﬁnition 1. In practice, R is usually prepared before U is independently generated. Therefore, it is reasonable to assume (2). Furthermore, Deﬁnition 1 allows the encoder to be probabilistic. It is however sufﬁcient to consider only deterministic decoders because U is a function of R and X from (3). In other words, there exists a function g such that
+If the source distribution is not uniform, H(X) and H(R) are strictly greater than H(U ).
+P U RX (g(r, x), r, x) 	 (13) =
+where (11)–(14 ) follow from (1), (4 ), (2) and (4 ), respectively. Hence, P X (x) ≤ |U| −1 for all x that veriﬁes (5 ).
+Since a uniform distribution with support U always ma- jorizes P X from (5 ), (7 ) can be easily veriﬁed by the theory of majorization [6 ] even X may be deﬁned on a countably inﬁnite alphabet [7 ]. Finally, (6 ) and (8 ) follow from the symmetric roles of X and R in (1)–(3).
+Theorem 2 : No EPS system can be constructed if the source message U has a countably inﬁnite support or a support with unbounded size.
+1) Intuitively, one may expect that H(U ) is the critical quantity affecting the values of H(R) and H(X). How- ever, Theorem 1 shows that H(R) and H(X) can be large as long as the support of U is big regardless how small H(U ) is.
+2) If the source message U is deﬁned on a countably inﬁnite alphabet, no EPS system is possible as shown in Theorem 2. In this case, at least one of the constraints in (1)–(3) must be relaxed to build a secure system.
+The following theorem shows that the lower bounds in (7 ) and (8 ) are achievable.
+Theorem 3 (Achieving the minimum H(X) and H(R)): L et U be the support of U . One-time pad is an EPS system such that the bounds in (7 )–(8 ) are tight (i.e., H(X) = log |U| and H(R) = log |U|).
+Although the minimum H(X) and the minimum H(R) are achieved in Theorem 3, it is unpleasant that an EPS system needs to use a secret key with length H(R) = log 2 |U| bits which may be much larger than H(U ). However, the following example shows that if the EPS system is used multiple times, the actual key consumption should not be measured by H(R) and it is possible to make the consumption close to H(U ).
+E xample 1 (K ey consumption): Consider the following secret transmission scheme. Suppose the sender and the re- ceiver share a secret key R = {B 1 , B 2 , . . . , B n }, where all B i ’s are independent and uniformly distributed over {0, 1}. L et P U (0) = 0.5 and P U (1) = P U (2) = 0.25. Construct a new random variable U such that
+where B n + 1 is generated by the sender such that P B n+1 (0) = P B n+1 (1) = 0.5 and B n + 1 is independent of U and R.
+L et K = (B 1 , B 2 ) and X = U ⊕ K. Upon receiving X, the receiver can decode U from X and K, where K is solely a function of R. In fact, if U = 0, the receiver can further decode B n + 1 . L et R be the “ unconsumed” secret key that is shared by the sender and the receiver. Then
+Note that R is not necessarily a function of R, as new “ shared common randomness” can be generated by a proba- bilistic encoder. In our example, when U = 0, a new random bit is secretly transmitted from the sender to the receiver.
+After the system is used once, the expected key consumption is therefore given by
+This expected value is also equal to I(R; U X). It turns out that this is not merely coincidence. In the following, we will justify that I(R; U X) is indeed a reasonable measure on the amount of key needed to be consumed in an EPS system.
+Suppose the sender uses an EPS system twice to transmit two messages U and V to the receiver secretly and sequen- tially, where U and V are not required to be be independent. In the ﬁrst round, the sender encodes the message U into X and X is transmitted to the receiver as described in Section II (see Fig. 1). In the second round, the sender further encodes V (or more generally both U and V ) into Y , and then Y is transmitted to the receiver (see Fig. 2). In the following theorem, H(U |R, X) = H(V |R, X, Y ) = 0 and I(U, V ; X, Y ) = 0 are assumed for zero-error decoding and perfect secrecy, respectively.
+then the upper bound on the entropy of the second message V conditioning on the ﬁrst message U is given by
+H(U |R, X) + H(V |R, X, Y ) 	 (22) = I(V, Y ; U |R, X) + I(R, U ; Y |X) + I(U ; X) +
+Theorem 4 illustrates the upper bound on the maximum amount of information which can be secretly transmitted in the second round. Since H(R|U X) = H(R) − I(R; U X) and H(R) can be seen as the size of the secret key shared at the beginning, I(R; U X) seems to be the “ amount of key” that has been used during the ﬁrst transmission.
+In the following, we offer an alternative justiﬁcation of I(R; U X) being the amount of key used in an EPS system. In particular, we prove that the size of the key that can be extracted after n uses of the system is related to nH(R|U X).
+To facilitate the discussion, we need to introduce the fol- lowing notation. For any random variables A and B, deﬁne
+In other words, ∆ (A|B) is the subset of the support of B such that if b ∈ ∆ (A|B), then P r(A = a|B = b) is either 0 or 1. When B ∈ ∆ (A|B), the value of A can be determined from B.
+Suppose a sequence of i.i.d. EPS system {(U i , R i , X i ), i = 1, . . .} has been used by a sender and a receiver where (U i , R i , X i ) are i.i.d. with distribution P U RX . From {(U i , R i , X i )} ∞ i = 1 the sender and the receiver aim to construct a new sequence of secret keys S ∞ i = 1 , where S i are i.i.d. with generic distribution P S such that for any m and n,
+In other words, the secret key sequence is independent of {(U i , X i )} n i = 1 for all n. Therefore, it is safe for the sender and receiver to use S ∞ i = 1 in future encryption.
+The performance of an algorithm is measured by a parame- ter M n deﬁned as follows. For {(R i , X i )} n i = 1 = {(r i , x i )} n i = 1 , let M n be the largest integer j such that
+In other words, M n is the number of symbols of S i that can be uniquely determined from {(R i , X i )} n i = 1 . If M n > 0, let S M n = (S 1 , . . . , S M n ) be the part of the key that has been extracted from {(R i , X i )} n i = 1 . If M n = 0, let S M n be a constant. Then it is clearly that
+Therefore, the sender and the receiver can individually gen- erate the same S M n from the shared {(R i , X i )} n i = 1 . The following theorem shows how M n grows with respect to n.
+Theorem 5 (J ustiﬁcation 2 ): Suppose a sequence of i.i.d. EPS systems {(U i , R i , X i )} ∞ i = 1 has been used. We use (U, R, X) to denote the generic random variables. For any algorithm used by the sender and the receiver,
+P roof: The proof is based on a modiﬁed interval algo- rithm [8 ]. See [9 ].
+Roughly speaking, Theorem 5 shows that for a large n, the optimal algorithm can extract approximately
+symbols in the key sequence from {(R i , X i )} n i = 1 . The entropy of the extracted key is thus roughly nH(R|U X) = n(H(R)− I(R; U X)). This justiﬁes why I(R; U X) is the amount of key consumed in an EPS system.
+Theorem 6 (J ustiﬁcation 3 ): In an EPS system, the ex- pected key consumption is always lower bounded by the source entropy, i.e.,
+R emark: Theorems 4 and 5 have justiﬁed that I(R; U X) is the expected key consumption to achieve perfect secrecy. Theorem 6 shows that the expected key consumption cannot be less than the entropy of the source. Recall that Theorem 1 gives the lower bound on the initial key requirement. Therefore, we have distinguished two different concepts – the expected key consumption and the initial key requirement. These are some more reﬁned results comparing with the bound H(R) ≥ H(U ) given in [1][2].
+In the previous section, we have given various justiﬁcations about why I(R; U X) is the amount of key consumed in each use of an EPS system (or equivalently, H(R|U X) is the amount of key that can be extracted after each use of the system). From now on, we call I(R; U X) the effective key consumption of an EPS system. We are interested in EPS systems which have the lowest effective key consumption.
+It is easy to verify that an EPS system achieves the equality in (28 ) if and only if it satisﬁes (1)–(3) together with
+Therefore we are interested in those EPS systems satisfying this extra constraint. In the next example, we show that the effective key consumption in a classic one-time pad system can achieve the lower bound in (28 ) if the source is uniform.
+E xample 2 (Achieving minimum): Suppose U and R are independent and they are uniformly distributed on sets {0, 1, . . . , 2 i − 1} and {0, 1, . . . , 2 j − 1}, respectively, where i ≤ j. In order to derive a coding system satisfying (1)–(3), we can ﬁrst extract i random bits R from R and then X is generated from a bitwise X OR between U and R . Then
+I(R; U X) = H(R) − H(R|U X) 	 (30) = H(R) − H(R|R ) 	 (31)
+= j − (j − i) 	 (32) = H(U ). 	 (33)
+Now, we introduce a coding scheme which generalizes one- time pad and achieve the lower bound in (28 ) for those source distributions containing only rational probability masses.
+D eﬁnition 2 (P artition C ode C(Ψ )): Assume that U is deﬁned on a ﬁnite alphabet with size . L et Ψ = (ψ 1 , ψ 2 , . . . , ψ ) and let θ = i = 1 ψ i . If U = i, A
+ψ i + A − 1, R be uniformly distributed on the set {0, 1, . . . , θ − 1} and X = A + R m od θ.
+It can be proved that the above partition code satisﬁes all the constraints (1)–(3) in an EPS system.
+P U (i) log ψ i together with (34 ). L et Q U be a probability distribution such that Q U (i) = θ −1 ψ i . Then (35 ) can be rewritten as I(R; U, X) = H(U )+D(P U ||Q U ). Consequently, we have the following theorem.
+Theorem 7 : Suppose P U (u) is rational for all u. L et θ be an integer such that θ · P U (u) is an integer for all u. L et Ψ = (ψ i ) with ψ i = θ · P U (u). Then the partition code C(Ψ ) achieves the lower bound in (28 ) (i.e., I(R; U X) = H(U )).
+1) Partition code is not the only method to achieve min- imal effective key consumption. One may also use homophonic code [10][11] to convert any non-uniform message u ∈ U into a uniformly distributed and uniquely decodable stream of symbols, followed by one-time pad.
+2) If P U has irrational probability masses, we have shown in [12] that X and R cannot be deﬁned on ﬁnite alphabets.
+3) One-time pad is a special case of partition code with Ψ = (1, 1, . . . , 1).
+In addition to minimizing I(R; U X), we may want to minimize H(X) simultaneously so that we can minimize the number of channel uses to convey the ciphertext X. The fundamental question here is to identify the tradeoff between the effective key consumption I(R; U X) and the number of channel uses H(X). We now quote a result from [12] to highlight the challenges in characterizing this tradeoff. If (1)– (3) and (29 ) are satisﬁed, then
+P U (u), and 	 (36 ) m ax
+which is a bound tighter than Theorem 1 for this case. Furthermore, consider a simple example that the source is binary but P U (0) is very small and non-zero. In this case, H(X) is very large due to (36 ). Also, the partition code may not give a minimal H(X) as shown in the following example.
+4 ) I(X; R) = 0 so that P XR (xr) = P X (x)P R (r) for all x and r.
+5 ) U is a function of (X, R) such that U = 0 if and only if (i) X = 0 and R = 0, or (ii) R = 0 and X = 0, or (iii) X = R = 0. Consequently, P U |XR (u|x, r) is well-deﬁned.
+It is straightforward to check that, {U, X, R} satisﬁes (1)–(3) and (29 ) and H(X) = H(R) < log 5. However, θ = 5 is the smallest integer such that θ · P U (u) is an integer. In this case, H(X) is smaller than the value given in (34 ).
+In the above, we have illustrated the difﬁculty in charac- terizing the minimum of H(X) if we require the effective key consumption to be minimal (i.e., I(R; U X) = H(U )). Now, we consider another extreme scenario where we aim to minimize I(R; U X) subject to H(X) = log |U| (i.e., when H(X) meets the lower bound given in Theorem 1.
+Using Theorem 3, we can show that by using one-time pad, H(U ) ≤ log |U| = H(X) = H(R) = I(R; U X). (39 )
+Therefore, the effective key consumption I(R; U X) is not minimal when the source U is not uniform. However, the following theorem shows that among all EPS systems which minimize the number of channel uses, one-time pad minimizes the effective key consumption. Together with (36 ), we have illustrated that there exists a fundamental tradeoff between the effective key consumption I(R; U X) and the number of channel uses H(X).
+Theorem 8 : For any EPS system, if H(X) = log |U|, then I(R; U X) = log |U| and H(X|RU ) = 0.
+be the set of possible values of X when R = r and U = u. Due to (4 ), S ri ∩ S rj = ∅ if i = j. Together with (4 0),
+from (2), and hence, |S ru | ≥ 1. Substituting this result into (4 2) shows that |S ru | = 1. Therefore, X is a function of R and U , which veriﬁes
+Together with (1)–(3), it is easy to verify that I(R; U X) = H(X) = log |U|.
+This paper studies perfect-secrecy systems with the assump- tion that the message and the secret key are independent, i.e., I(U ; R) = 0. Under this setup, we have shown a new bound log |U| ≤ H(R) on key requirement which is tighter than the one H(U ) ≤ H(R) given by Shannon’s fundamental bound for perfect secrecy. If the source distribution is deﬁned on a countably inﬁnite support or a support with unbounded size, no security system can simultaneously achieve perfect secrecy and zero decoding error. We have also introduced a new concept called effective key consumption which is a better measure for the amount of key used. If the source distribution is not uniform, we have shown that we cannot minimize both the expected key consumption and the number of channel uses. In other words, there exists a fundamental tradeoff between these two parameters.
+[[[ REFS ]]]
+C. E. Shannon
+--
+ Communication Theory of Secrecy Systems
+----
+
+--
+ An Introduction to Contemporary Cryptology
+----
+S.-W. Ho
+--
+ On the Interplay between Shannon’s Information Measures and Reliability Criteria
+----
+C. G . G iinther
+A. B . B overi
+--
+ A universal algorithm for homophonic coding
+----
+H. J endal
+--
+ An information-theoretic treatment of homophonic substitution
+----
+S.-W. Ho
+T. Chan
+A. G rant
+--
+ Constrained Information Inequalities Involving Three Random V ariables.
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\132.pdf
+[[[ LINKS ]]]
+

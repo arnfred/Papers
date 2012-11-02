@@ -1,0 +1,197 @@
+[[[ ID ]]]
+152
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Linear Extractors for Extracting Randomness from Noisy Sources
+[[[ AUTHORS ]]]
+Hongchao Zhou
+Jehoshua Bruck
+[[[ ABSTR ]]]
+Abstract—Linear transformations have many applications in information theory, like data compression and error-correcting codes design. In this paper, we study the power of linear transfor- mations in randomness extraction, namely linear extractors, as another important application. Comparing to most existing meth- ods for randomness extraction, linear extractors (especially those constructed with sparse matrices) are computationally fast and can be simply implemented with hardware like FPGAs, which makes them very attractive in practical use. We mainly focus on simple, efﬁcient and sparse constructions of linear extractors. Speciﬁcally, we demonstrate that random matrices can generate random bits very efﬁciently from a variety of noisy sources, including noisy coin sources, bit-ﬁxing sources, noisy (hidden) Markov sources, as well as their mixtures. It shows that low- density random matrices have almost the same efﬁciency as high- density random matrices when the input sequence is long, which provides a way to simplify hardware/software implementation. Note that although we constructed matrices with randomness, they are deterministic (seedless) extractors - once we constructed them, the same construction can be used for any number of times without using any seeds. Another way to construct linear extractors is based on generator matrices of primitive BCH codes. This method is more explicit, but less practical due to its computational complexity and dimensional constraints.
+[[[ BODY ]]]
+Randomness plays an important role in many ﬁelds, in- cluding complexity theory, cryptography, information theory and optimization. There are many examples of randomized algorithms, which are faster, more space efﬁcient or sim- pler than any known deterministic algorithms [1]. For such applications, one typically assumes a supply of independent and unbiased random bits that leads to a question: How can we extract randomness from imperfect natural sources, like the voltage noise in electrical systems, user’s operating behaviors or the weather? In this paper, we consider this problem using linear transformations due to its simplicity and efﬁciency. Namely, given an input binary sequence X of length n generated from an imperfect source, we would like to construct an n ×m binary matrix M such that the output of the extractor Y = XM is arbitrarily close to truly random bits. Statistical distance is commonly used to measure the distance between two distributions in randomness extraction. Here, we
+1 2
+where ϵ is arbitrarily small. This condition guarantees that in any applications, if we replace the truly random bits with the sequence Y , the error probability caused by the replacement is at most ϵ. It is stronger than the normalized divergence used in [2] and [3], in which it showed that optimal source codes can be used as universal random bits generators from arbitrary stationary ergodic random sources. It is also much stronger than the problem of constructing small-bias probability spaces studied by J. Naor and M. Naor [4], and the problem of linear correctors studied by Lacharme [5].
+The line of research on extracting randomness from imper- fect sources dates back to von Neumann’s work [6] in 1951, who considered the problem of generating random bits from a biased coin with unknown probability. His beautiful algorithm was later improved by Elias [7]. In 1986, Blum [8] studied the problem of generating random bits from an arbitrary Markov chain, as a correlated source model, by applying the von Neumann scheme. Later, Santha and Vazirani [9] showed how to generate quasi-randomness from a noisy source where the probability of each bit is slightly-unpredictable. A more general weak random source model, with only considering the amount of randomness, was studied by Zuckerman [10] in 1990. It was shown that it is impossible to devise a single function that extracts even one bit of randomness from such a source. This observation led to the introduction of seeded extractors, which using a small number of truly random bits as the seed (catalyst) for randomness extraction. When simulating a probabilistic algorithm, one can simply eliminates the requirement of truly random bits by enumerating all the possible strings for the seed and taking a majority vote. Seeded extractors have a wide range of applications and attracted interests of many researchers in the last two decades. There are a variety of very efﬁcient constructions of seeded extractors, summarized in [11], [12]. Let X be a distribution on {0, 1} n , with a seeded extractor of seed length d = O(log n), one is able to extract almost as many as H min (X) bits of randomness asymptotically from a general weak random source X [13].
+In the last a few years, the concept of seedless (determin- istic) extractors has attracted renewed interests, motivated by the reduction of the computational complexity for simulating probabilistic algorithms as well as some requirements in cryptography. Several speciﬁc classes of sources have been studied, including independent sources, which can be divided into several independent parts consisting certain amount of randomness [14]–[16]; bit-ﬁxing sources, where some bits in a binary sequence are truly random and the remaining bits are ﬁxed [17]–[19]; samplable sources, where the source is generated by a process that has a bounded amount of computational resources like space [20], [21]. Our work is to consider this problem from another aspect while focusing on the simplicity and efﬁciency of generating random bits. Simplicity is certainly an important issue that is why Intel’s random number generator [22] applies the simple scheme of von Neumann [6] rather than the other much more efﬁcient extractors. This motivates us to focus on simple linear con- structions such that the extracting efﬁciency is competitive with the current most efﬁcient constructions for a variety of noisy sources. By using some hardware like FPGAs, linear transformations can be computed very fast, especially when their corresponding matrices are sparse [23].
+In this paper, we demonstrate that random matrices, with each entry being 0 or 1 with probability 1/2, are very powerful for extracting randomness from a variety of weak random sources, including bit-ﬁxing sources, noisy coin sources, noisy (hidden) Markov sources, as well as their mixtures. In addition, we discuss the performance of low-density random matrices and show that they have almost the same efﬁciency as high- density random matrices. This implies that we can improve the implementation complexity of the linear extractors. Another way of constructing linear matrices is to apply the generator matrices of primitive BCH codes. Comparing to the method of low-density random matrices, this method is more explicit, but less practical due to its computational complexity and dimensional constraints.
+In this section, we study a very simple and useful weak random source model, which is presented by Santha and Vazirani [9], Varirani [24], P. Lacharme [5], etc. Here, we generalize it in the following way, namely noisy coin sources: Let X = x 1 x 2 ...x n ∈ {0, 1} n be a sequence generated by ﬂipping a coin. Due to the bias of the coin and the existence of external adversaries, the probability of x i = 1 with 1 ≤ i ≤ n is not a perfect 1 2 . Instead, it is slightly unpredictable but we know that it is constrained in [ 1 2 − e i /2, 1 2 + e i /2] for some constant e i . With this model as a starting point, we study the character of good matrices for extracting randomness.
+Before presenting the results, let’s ﬁrst consider the case that the output length is one, i.e. given a few imperfect random
+bits independent of each other how to construct exactly one bit such that it is as unbiased as possible. It is known that the binary sum operation is very efﬁcient for solving the problem. The following lemma gives the bound of the bias of the bit generated based on the binary sum operation.
+Lemma 1. Let x 1 , x 2 , ..., x n be n independent bits and for all 1 ≤ i ≤ n, P [x i = 1] ∈ [ 1 2 − e i /2, 1 2 + e i /2], then let z = x 1 + x 2 + ... + x n mod 2, we have
+Proof: This lemma can be proved by simple induction. It is a simple generalization of the result in [25].
+To generate multiple random bits, namely m bits instead of a single bit, one way is to divide all the bits into m groups, denoted as S 1 , S 2 , ..., S m such that
+S i = {x 1 , x 2 , ..., x n } and different groups don’t have overlaps with each other. Then for 1 ≤ i ≤ m, the i th output bit, namely y i , is generated by summing up the bits in S i . However, this method is very in- efﬁcient. In fact, we can improve the efﬁciency signiﬁcantly by allowing the overlaps between different groups. In this case, we sacriﬁce a little independence of the output bits but the bias of each bit is reduced greatly. An equivalent way to express this method is to use a matrix, denoted as M , such that M ij = 1 if and only if x i ∈ S j for all 1 ≤ i ≤ n and 1 ≤ j ≤ m, otherwise, M ij = 0. As a result, the output of this method is Y = XM for a given input sequence X.
+In this paper, we use the statistical distance between a random binary sequence Y and the uniform distribution on {0, 1} m to measure the goodness of Y , which is deﬁned as ρ(Y ) = 1 2
+|P [Y = y] − 2 −m |. It is also the max- imal error probability introduced by replacing truly random bits with the sequence Y in any randomized algorithms.
+Lemma 2. Let X = x 1 x 2 ...x n be a binary sequence generat- ed from an arbitrary random source and let M be an n × m matrix with m ≤ n. Then given Y = XM, we have
+Proof: Similar as the idea in [25], for all y ∈ {0, 1} m , we deﬁne function h as h(y) = P (Y = y). For this function, its Fourier transform is denoted by F h , then
+The following theorem provides the upper bound of E[ρ(Y )] when Y is extracted using a random matrix from a noisy coin source.
+Theorem 3. Let X = x 1 x 2 ...x n be an independent sequence such that P [x i = 1] ∈ [ 1 2 − e i /2, 1 2 + e i /2]. Let M be an n × m random matrix such that each entry of M is 0 or 1 with probability 1 2 . Then given Y = XM , we have
+Proof: According to Lemma 1, when u ̸= 0, we have |P X [XM u T = 1] − 1 2 | ≤
+2 	 (4) where (M u T ) i is the i th element of the vector M u T .
+E M [ρ(Y )] ≤ E M [ ∑
+Since M is a random matrix (each entry is either 0 or 1 with probability 1/2), once u ̸= 0, Mu T is a random vector
+with length n such that each element is 0 or 1 with probability 1/2. So for any u ̸= 0, P M [M u T = v T ] = 2 −n .
+For a binary sequence X ∈ {0, 1} n , its min-entropy H min (X) is the maximal amount of randomness that can be extracted using seeded-extractors. In the following corollary, we show that random matrices are also able to extract as many as H min (X) bits of randomness when the sources are noisy coin sources.
+Corollary 4. Let X ∈ {0, 1} n be a raw sequence from a noisy coin source and let M be an n ×m random matrix such that each entry of M is 0 or 1 with probability 1 2 . Assume Y = XM . If m H
+< 1, as n becomes large enough, we have that ρ(Y ) converges to 0 in probability, i.e.,
+The corollary above implies that when the length of the input sequence n is large enough, we can extract random bits from a noisy coin source by simply constructing a random matrix. With probability arbitrarily close to 1 (depending on n), the constructed matrix is able to extract randomness optimally. Here, we need to distinguish between this method and those of seeded extractors, which use some additional truly random bits whenever to extract randomness. In our method, the matrix is randomly generated but the extraction itself is still deterministic, that means we can use the same matrix to extract randomness for any number of times with- out reconstructing it. Namely, our method is a ‘probabilistic construction of deterministic extractors’.
+We see that random matrices with each entry being 0 or 1 with probability 1/2 are very efﬁcient for randomness extraction, but from the point of computational complexity, we prefer low-density matrices rather than those high-density matrices. It is natural to ask whether it is possible to reduce the density of 1’s in the random matrices without affecting the efﬁciency too much? Motivated by this, we study a random matrix M such that each entry of it is 1 with probability p ≪ 1 2 . Surprisingly, such a matrix is still able to extract almost as many as H min (X) bits of randomness when the input sequence is long enough. For simpliﬁcation, we consider a noisy coin source X such that X = x 1 x 2 ...x n with P [x i = 1] ∈ [ 1 2 − e/2, 1 2 + e/2] with a constant e.
+Theorem 5. Let X = x 1 x 2 ...x n be an independent sequence such that P [x i = 1] ∈ [ 1 2 − e/2, 1 2 + e/2]. Let M be an n × m random matrix such that each entry of M is 1 with probability p = w( log n n ). Here, p = w( log n n ) means that p > k log n n for any ﬁxed k when n → ∞. Assume Y = XM. If m n log 2
+< 1, as n becomes large enough, we have that ρ(Y ) converges to 0 in probability, i.e., ρ(Y ) p →0.
+For practical use, we can set some sparsity constraints on each column of random matrices. For example, we can let the number of ones in each column of the randomly generated matrices to be a constant, namely k. We may also use pseudo- random bits instead of truly random bits in constructing such matrices. In coding theory, many good codes are constructed based on randomly generated matrices. Such examples include LDPC (low-density parity-check) codes and network codes. While these codes have very good performance, their decoding procedures are usually a little complex partially due to the introduction of randomness. Comparing to those applications, randomness extraction is a one-way process that we don’t need to (and we cannot) recover the original source from the generated random bits. This feature makes random matrices very attractive in the applications of randomness extraction.
+In the rest of this section, we try to construct good matrices without using any randomness. We show that if the weight distribution of a code is binomial, then its generator matrix is a good candidate to extract randomness from a noisy coin source.
+Theorem 6. Let C be a linear binary code with dimension m and codeword length n. Assume its weight distribution is binomial and its generator matrix is G. Let X = x 1 x 2 ...x n be an independent sequence such that P [x i = 1] ∈ [ 1 2 − e/2, 1 2 + e/2], then given Y = XG T , we have that
+According to the theorem above, as n becomes large e- nough, we can extract as many as n log 2 ( 2 1+e ) random bits from a noisy coin source deﬁned above, by using the generator matrix of a linear code with binomial weight distribution. It turns out that the generator matrices of primitive BCH codes are good candidates. For a primitive BCH code of length 2 k − 1, it is known that the weight distribution of the code is approximately binomial, see Theorem 21 and 23 in [26]. Namely, the number b i of codewords of weight i is
+where a is a constant, and the error term E i tends to zero as k grows.
+In this section, we consider another type of weak random sources, called bit ﬁxing sources, ﬁrst studied by Cohen and Wigderson [17]. Assume a binary sequence X of length n is generated from a bit ﬁxing source, then k bits in X are unbiased and independent and the remaining n − k bits are ﬁxed (or ‘embedded’ copies of the k independent bits). For such sources, under linear transformations, we have two cases about the output sequence Y = XM : (1) All the bits in Y are independent of each other, hence ρ(XM ) = 0. Or (2), there exists one output bit which is ﬁxed or completely depends on the other bits, in this case ρ(XM ) ≥ 1 for all n.
+Now, we demonstrate that the constructions based on ran- dom matrices for noisy coin sources still work for bit ﬁxing
+sources. The following theorem shows that the probability of ρ(XM ) = 0 approaches 1 when M is an n × m random matrix with m − k ≪ 0 such that each entry of M is 0 or 1 with probability 1/2.
+Theorem 7. Let X = x 1 x 2 ...x n be a binary sequence generated from a bit ﬁxing source in which k bits are unbiased and independent, the other n − k bits are ﬁxed or copies of the k independent random bits. Let M be an n × m random matrix such that each entry of M is 0 or 1 with probability
+So by setting m − k ≪ 0, using a random matrix with each entry being 1 with probability p = 1/2, we can generate an independent and unbiased sequence from a bit ﬁxing source with almost probability 1. Similar as noisy coin sources, we prove that low-density random matrices also work for bit ﬁxing sources.
+Theorem 8. Let X = x 1 x 2 ...x n be a binary sequence generated from a bit ﬁxing source in which k bits are unbiased and independent, the other n −k bits are ﬁxed or copies of the k independent random bits. Let M be an n ×m random matrix such that each entry of M is 1 with probability p = w( log n n ). Assume Y = XM . If m k < 1, as n becomes large enough, we have that ρ(Y ) = 0 with almost probability 1, i.e.,
+We see that random matrices are powerful for extracting randomness from bit ﬁxing sources. Now the question is can we construct a ﬁxed linear extractor to extract randomness efﬁciently from all bit ﬁxing sources speciﬁed by n and k? However, the answer is negative. The reason is that it requires XM u T to be an unbiased random bit for all u ̸= 0 (See the proof above). So ∥Mu T ∥ > n − k for all u ̸= 0, otherwise we are able to ﬁnd a bit ﬁxing source X such that XM u T is ﬁxed as follows: Assume X = x 1 x 2 ...x n , if (M u T ) i = 1 we set x i as an unbiased random bit, otherwise we set x i = 0 being ﬁxed. It further implies that if we have a linear code with generator matrix M T , then its minimum distance should be more than n −k. But for such a matrix, its efﬁciency ( m n ) is usually very low. For example, when k = n 2 , we have to ﬁnd a linear code such that its minimum distance is more than n 2 . In this case, the dimension of the code, i.e. m, is much smaller than k.
+Consider the existing physical sources for random number generators, most of them are based on some natural noise, such as thermal noise and avalanche noise. Simply, these sources can be described as noisy (hidden) Markov sources: Let Y = y 1 y 2 ...y n ∈ D n be a sampling of a noise signal such that for all i > 1
+To generate random bits, the noisy sources usually have the following property: For all 1 ≤ i 1 < i 2 < i 3 ≤ n,
+for some constant e. For these noisy (hidden) Markov sources, we have the following lemma.
+Lemma 9. Let X = x 1 x 2 ...x n be a binary sequence gener- ated from a noisy hidden Markov source described above. Let z = x i 1 + ... + x i t mod 2 for 1 ≤ i 1 < i 2 < ... < i t ≤ n with some t, then we have
+Usually, Y = y 1 y 2 ...y n ∈ D n is a time series of real numbers, i.e. D = R, and the function I is a threshold function such that
+i < c 1 if y i ≥ c
+√ e , which is very similar to the result in Lemma 1. If we ignore the constant term, the only difference between them is that e is replaced by
+the results in Section II for noisy coin sources, we can prove the following theorems for noisy hidden Markov sources.
+Theorem 10. Let X = x 1 x 2 ...x n be a binary sequence gen- erated from a noisy hidden Markov source described above. Let M be an n ×m random matrix such that each entry of M is 0 or 1 with probability 1 2 . Then given Y = XM , we have
+Theorem 11. Let X = x 1 x 2 ...x n be a binary sequence gen- erated from a noisy hidden Markov source described above. Let M be an n × m random matrix such that each entry of M is 1 with probability p = w( log n n ). Assume Y = XM .
+Theorem 12. Let C be a linear binary code with dimension m and codeword length n. Assume its weight distribution is binomial and its generator matrix is G. Let X = x 1 x 2 ...x n be a binary sequence generated from a noisy hidden Markov source described above, then given Y = XG T , we have that
+These theorems imply that when n is large enough, we can extract as much as n log 2 2 1+ √ e bits of randomness from a noisy hidden Markov source using linear extractors.
+This work was supported in part by the Molecular Program- ming Project funded by the NSF Expeditions in Computing Program under grant CCF-0832824.
+[[[ REFS ]]]
+R. Motwani
+P. Rgahavan
+--
+Randomized Algorithms
+----
+K. Visweswariah
+S. R. Kulkarni
+S. Verd´u
+--
+Source codes as random number generators
+----
+T. S. Han
+--
+Folklore in source coding: information-spectrum approach
+----
+J. Naor
+M. Naor
+--
+Small-bias probability spaces: efﬁcient construc- tions and applications
+----
+P. Lacharme
+--
+Analysis and construction of correctors
+----
+J. von Neumann
+--
+Various techniques used in connection with random digits
+----
+P. Elias
+--
+The efﬁcient construction of an unbiased random sequence
+----
+M. Blum
+--
+Independent unbiased coin ﬂips from a correlated biased source: - a ﬁnite state Markov chain
+----
+M. Santha
+U. V. Vazirani
+--
+Generating quasi-random sequences from semi-random sources
+----
+D. Zuckerman
+--
+General weak random sources
+----
+R. Shaltiel
+--
+Recent developments in explicit constructions of ex- tractors
+----
+Z. Dvir
+A. Wigderson
+--
+Kakeya sets, new mergers and older extractors
+----
+V. Guruswami
+C. Umans
+S. Vadhan
+--
+Unbalanced expanders and randomness extractors from parvaresh-vardy codes
+----
+A. Rao
+--
+Randomness extractors for independent sources and applica- tions
+----
+R. Raz
+--
+Extractors with weak random seeds
+----
+B. Barak
+R. Impagliazzo
+A. Wigderson
+--
+Extracting randomness using few independent sources
+----
+A. Cohen
+A. Wigderson
+--
+Dispersers, deterministic ampliﬁcation, and weak random sources
+----
+J. Kamp
+D. Zuckerman
+--
+Deterministic extractors for bit-ﬁxing sources and exposure-resilient cryptography
+----
+A. Gabizon
+R. Raz
+R. Shaltiel
+--
+Deterministic extractors for bit- ﬁxing sources by obtaining an independent seed
+----
+L. Trevisan
+S. P. Vadhan
+--
+Extracting randomness from samplable distributions
+----
+J. Kamp
+A. Rao
+S. Vadhan
+D. Zuckerman
+--
+Deterministic extrac- tors for small-space sources
+----
+B. Jun
+--
+The Intel random number generator
+----
+L. Zhuo
+V. K. Prasanna
+--
+Sparse matrix-vector multiplication on FPGAs
+----
+U. V. Vazirani
+--
+Efﬁciency consideration in using semi-random sources
+----
+P. Lacharme
+--
+Post processing functions for a biased physical random number generator
+----
+F. J. Macwilliams
+N. J. A. Sloane
+--
+The theory of error-correcting codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\152.pdf
+[[[ LINKS ]]]
+

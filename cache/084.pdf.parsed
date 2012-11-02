@@ -1,0 +1,200 @@
+[[[ ID ]]]
+84
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Degrees of Freedom of Cooperative Interference Networks
+[[[ AUTHORS ]]]
+V. Sreekanth Annapureddy
+Aly El Gamal
+Venugopal V. Veeravalli
+[[[ ABSTR ]]]
+Abstract—We study the degrees of freedom (DoF) of a Gaus- sian interference network with K transmitters and K receivers, where the transmitters are allowed to cooperate (partially) to transmit information to the receivers.
+[[[ BODY ]]]
+The number of degrees of freedom (DoF), or the multiplex- ing gain, of a point-to-point MIMO channel with K transmit and K receive antennas is equal to K [1], [2]. The same DoF can be achieved in the Multiple Access Channel (MAC) with K receive antennas [3], and in the Broadcast Channel (BC) with K transmit antennas [4], [5], [6]. There is no loss in DoF if either the transmitters or the receivers perform joint processing. On the other extreme, we have the Interference Channel (IC) and the X-Channel with completely distributed processing at both the transmitters and receivers. The DoF number of the Interference Channel equals K 2 [7], and that of the X-Channel equals K 2 2(K−1) [8], [9], [10]. Thus, lack of perfect cooperation at both the transmitters and the receivers can reduce the DoF from K, up to K 2 . The objective of this study is to explore partial transmitter cooperation schemes that bridge the DoF gap between the two extremes of no cooperation and perfect cooperation.
+Consider the Gaussian channel with K transmitters and K receivers, with single antenna at each node,
+where t is the time slot index, and x j (t) ∈ C is the signal transmitted by the transmitter j, y i (t) ∈ C is the signal received by the receiver i, z i i(t) ∈ C is the additive white Gaussian noise at the receiver i, and h ij (t) ∈ C is the channel gain from the transmitter j to the receiver i, and K = {1, 2, · · · , K}. All the transmitters must satisfy the average power constraint
+1 n
+where n is the block length. We assume that the channel coefﬁcients {h ij (t)} are realizations of random variables that
+We assume that each receiver is interested in independent messages, and the transmitters cooperatively transmit these messages to the receivers. We consider the following two techniques for cooperation.
+1) Multi-point (or Joint) transmission: We assume that each message is jointly transmitted by multiple transmitters, mimicking the situation where each transmitter has large number of antennas. In the context of the cellular downlink, the presence of a high capacity backhaul network makes this model practical. (See [11] and references therein.)
+Consider the setup with a total of K messages. The message W i , intended at receiver i, is known at the transmitters in the associated transmit set (T i ⊆ K). Let D Σ ({T i }) denote the DoF of this cooperative interference network. We will refer to this setup as the IC with transmitter cooperation.
+The DoF of the IC with transmitter cooperation assuming a partially connected Wyner’s channel model has been studied previously in [12], [13], [14]. In this paper, we assume a fully connected channel model as in [15], [16]. From the results of [16] for the fully connected model, we infer the following:
+than K − 1, and to achieve K − 1 there must exist K − 1 transmit sets with size not less than K − 1.
+• In both the above cases, Zero-Forcing (ZF) based linear precoding schemes achieve the optimal DoF.
+where the cooperation order (M ) controls the level of coop- eration. Observe that we recover the IC and BC by setting M equal to 1 to K respectively. From [7], [16], [4], [5], [6], we obtain
+2) Message splitting: Suppose the receivers do not care from which transmitters they get their information. Then the message intended for each receiver can be split into multiple pieces, and each piece can be transmitted from a different set of transmitters, as in the X-Channel [8], [9], [10]. For a cooperation order of M , the number of distinct transmit sets is equal to K M . Therefore, each receiver’s message can potentially be split into K M pieces.
+Consider the setup with a total of N = K M K messages. The ﬁrst K M messages are intended for receiver 1, the second intended for receiver 2, and so on. Therefore, the set of messages decoded by receiver r ∈ K is given by
+For i = 1, . . . , N , the message W i is known at the associated transmit set
+and is to be decoded by the receiver in the singleton receive set R i , deﬁned as 3
+The transmit sets T i corresponding to the messages i ∈ W r of any given receiver are all assumed to be distinct. Since this setup is a generalization of the X-Channel, we refer to this cooperative network as the X-Channel with partial transmit cooperation, and use η X (K, M ) to denote the DoF.
+Observe that we recover the X-Channel by setting M = 1, and the BC by setting M = K. From [10], [4], [5], [6], we obtain
+2K − 1 η X (K, K) = K.
+Theorem 1: For the X-Channel with partial transmit coop- eration introduced in Section I-B2, the DoF is outer bounded by
+Theorem 2: For the X-Channel with partial transmit coop- eration introduced in Section I-B2 with a cooperation order of M = K − 1, the DoF is given by
+Specializing the above Theorem to K = 3 and M = 2, and from (8), we obtain
+η X (3, 2) = 18/7 η X (3, 3) = 3
+thus characterizing η X (K, M ) completely for the special case of K = 3.
+Let H denote the K × K channel transfer matrix. For any ordered sets A, B ⊆ K, we use H (B, A) to denote the |B| × |A| submatrix obtained by retaining rows indexed by B and columns indexed by A. Similarly, we use x A to denote the |A| × 1 column vector representing the transmitted signals by the transmitters A; and y B and z B to denote the |B| × 1 column vectors representing the received signals and noise at the receivers B, respectively. We use the notation ∼ (k) to denote the ordered set
+We use the bar notation (¯ x, ¯ y, ¯ z, ¯ H) to emphasize that we are operating over a (T ) symbol extension of the channel. For example, for any ordered sets A, B ⊆ [K], we use ¯ H (B, A) to denote the T |B| × T |A| block diagonal matrix with block t equal to H (B, A) (t), t = 1, 2, · · · , T . The vectors ¯ x A , ¯ y B , ¯ z B are deﬁned in a similar manner.
+We use ⊗ to denote the Kronecker product, and I n to denote the Identity matrix of size n × n.
+In this section, we prove Theorem 1. We will ﬁrst show the following outer bound on the DoF region.
+Theorem 3: Any point (d 1 , d 2 , · · · , d N ) in the DoF region satisﬁes the inequalities
+Proof: This is a straightforward generalization of Theo- rem 1 in [10]. Fix any sets A, B ⊆ K such that |A| = |B|. Deﬁne the sets
+Start with the received signals y B at the receivers in B. It is obvious from the deﬁnition of W B that the messages W B can be decoded from y B . Now, give all the messages W c A ∩ W c B to the receivers as side information. Thus, the only messages unknown are those with indices in W A , i.e., all the messages available at any of the transmitters A c are known. Therefore, the transmit signals x A c can be reconstructed from the known
+messages, and we are left with |A| unknown transmit signals x A . All these unknown signals can be reconstructed from the |B| = |A| linear combinations, available through y B . Thus, we are able to reconstruct the signals x A and hence decode the messages W A also. We showed that the messages W A ∪ W B can be decoded from |B| = |A| received signals, and therefore we get the required inequality.
+Note that we neglected the effect of noise, and this okay to do so for the purpose of obtaining an outer bound on the DoF. See the proofs of Theorem 1 in [10] and Lemma 1 in [17] for a formal justiﬁcation.
+• Every transmit set of size M carries exactly K messages • Each receiver decodes K M messages, and the total num-
+ber of messages (N ) is equal to K M K Fix an integer n, M ≤ n ≤ K. For any
+= n K M
++ (K − n) n M
+Each inequality (15) obtained by taking particular sets A and B satisfying (16) has |W A ∪ W B | terms in the summation on the LHS and the value n on the RHS. Exploiting the symmetry in the model, we may sum the inequalities obtained by considering all possible sets A and B satisfying (16), and divide by the number of repetitions of each term d i to obtain
+In this section, we prove Theorem 2. The outer bound follows immediately from Theorem 1 by observing that the RHS in (9) is equal to K for n = K, and is equal to
+The achievable scheme uses the ideas of ﬁnite symbol extension and vector space interference alignment from [7]. Note that there are K distinct transmit sets of size K − 1. Thus, we have a total of N = K 2 messages, one for every pair of transmit set and receiver. We consider a T = K(K − 1) + 1 symbol extension of the channel, and describe a scheme achieving (K − 1) DoF per message, thus achieving a total of K 2 (K − 1) DoF over K(K − 1) + 1 symbols.
+The transmit and receive sets of the message W i are given by
+The set of indices of the messages decoded by the receiver r is given by
+Since each receiver decodes K messages, and each message requires K−1 dimensions, the signal vectors occupy K(K−1) dimensions out of the available K(K − 1) + 1 dimensions, leaving only one dimension for the interference. The transmit beams must be carefully designed so that all the interference is aligned in one direction.
+1) Transmit beam design: Let ¯ w be the column vector of length T with all entries equal to 1. Reserve the direction ¯ w for interference at all the receivers. The transmit beams are constructed so that the interference appears only along the direction ¯ w. For i = 1, 2, · · · , K 2 , let s i denote the (K − 1) × 1 vector consisting of the information carrying symbols corresponding to the message W i , and ¯ V i denote the corresponding (K − 1)T × (K − 1) precoding matrix modulating s i . The contribution of s i in ¯ x T i is given by
+Note that the columns of ¯ V i are of length (K − 1)T because the message W i is transmitted jointly from (K−1) transmitters over T symbols. Let R c i denote the set of receivers at which the message W i appears as interference:
+Note that the matrix ¯ H (R c i , T i ) is a square matrix with size equal to (K − 1)T , and
+   
+   
+2) Proof that interference occupies one dimension: The contribution of the symbols s [i] in the signals ¯ y R c
+received at the interfered receivers is given by
+We see that the contribution of s [i] at the receiver k ∈ R c i is given by
+where s i is the th element in the vector s i , and 	 ∈ {1, 2, · · · , K − 1} is the index of k in the set R c i . Thus, out of the K − 1 symbols s i1 , s i2 , · · · , s i,K−1 , only one symbol appears at each of the interfered receiver k ∈ R c i , and even that symbol appears along the direction ¯ w. Thus, the proposed scheme manages to align all the interference along the direction ¯ w leaving the other T − 1 = K(K − 1) dimensions for the signal.
+3) Proof that signal can be separated from interference: To complete the proof, we need to show that the signals symbols can extracted without interference at each receiver. Fix the receiver index k ∈ K in the rest of the proof. The messages decoded by the receiver k are {W i : i ∈ W k }, where W k is deﬁned in (22). The contribution of the symbols s i in the signal (¯ y k ) received at receiver k is given by
+where the symbol extended version ¯ G ( ) ki is a T × T diagonal matrix with entries {g ( ) ki (t), t = 1, 2, · · · , T } and g ( ) ki ’s are functions of h pq ’s deﬁned according to the transformation
+Therefore, signal symbols can be extracted free of interference, and hence the proposed scheme works, if the vectors
+4) Linear independence of signal and interference vectors: Since ¯ w is the vector consisting of all ones, the vector ¯ G ( ) ki ¯ w can be expressed as
+    
+    
+Now, suppose the transformation (30) is such that there exist constants
+is identically equal to 0 when expanded in terms of the coefﬁcients {h pq }. Then,
+i.e., the vectors (32) are linearly dependent. So, a necessary condition for the vectors (32) to be linearly independent is that there exist no such constants (34). We prove this neccesary condition in Claim 1. Lemma 1 in Appendix A shows that this necessary condition is also sufﬁcient for the vectors (32) to be linearly independent, thus completing the proof of Theorem 2.
+Claim 1: There exist no constants (34) such that (35) is identically equal to zero when expanded in terms of the coefﬁcients {h pq }.
+for every i = (k − 1)K + t ∈ W k . Therefore, using (30), we see that g ( ) ki is the th element in the row vector
+det H (∼ (k) , ∼ (t)) . 	 (39) Observe that the terms in the numerator and denominator correspond to the (k + , t) and (k, t) cofactors of the matrix H respectively. Therefore, deﬁning ˜ H as the inverse of the matrix H, we get that
+Here we used the notation ± is used to say that the sign is either + or − depending on the the values of i, , k. Note that t varies from 1 to K as i takes values in W k . Therefore, (35) can be written as
+where the index i is related to the index t as i = (k − 1)K + t. We now argue that if any of the constants is non-zero, then the above expression is not identically equal to zero when expanded in terms of the coefﬁcients {h pq }. It is sufﬁcient to exhibit a realization of H where (41) evaluates to a non- zero value. Set ˜ h tk = 1 for all t = 1, 2, · · · , K, choose the other rows of ˜ H at random, and compute the corresponding H = ˜ H −1 . Since ˜ h t,k+ ’s are chosen at random, (41) is not equal to zero at the chosen random realization of H.
+This research was supported in part by the NSF award CCF-0904619, through the University of Illinois at Urbana- Champaign.
+Lemma 1: Suppose h ∈ C n is a random vector with a joint pdf, and g ∈ C m is a derived random vector with
+where f i (h)is a rational function in h. Suppose we generate m instances of h: (h(1), h(2), · · · , h(m)), and deﬁne the m × m matrix M as
+   
+   
+then M is rank deﬁcient with probability 1. If there exists no such c then M is full rank with probability 1.
+Proof: If there exists c = 0 such that g c is equal to 0 when expanded in terms of h, then clearly the matrix M always satisﬁes Mc = 0. Therefore, M is always rank deﬁcient. This proves the ﬁrst part of the Lemma.
+We prove the second part of the Lemma using induction. For m = 1, the matrix M = g 1 (1) = f 1 (h(1)). Since there exists no c = 0 satisfying (44), the function f 1 must be a non- zero function. Hence g 1 (1) = 0, and hence M is full rank with probability 1.
+Now, assuming that the Lemma holds true for m − 1, we will prove it for m. The determinant det M is a multivariate polynomial in the variables {g(1), g(2), · · · , g(m)}. When expanded in terms of h, we get
+for some rational function d. If we can exhibit a realization of (h(1), h(2), · · · , h(m)) making det M = 0, then d must be a non-zero function. Therefore, det M = 0, and hence M is full rank with probability 1. Thus, it is sufﬁcient to exhibit one realization of (h(1), h(2), · · · , h(m)) making M full rank.
+Consider the (m − 1) × (m − 1) submatrix ˜ M obtained by deleting the last row and last column from M. From the induction hypothesis, we know that ˜ M is full rank with probability 1. Therefore, there must exist speciﬁc realizations
+such that the corresponding matrix ˜ M denoted by ˜ M ∗ is full rank. Consider the matrix M ∗ (h) for each h(m) = h ∈ C n . Either M ∗ (h) must be full rank, in which case we are done, or there must exist c(h) = 0 such that
+If the vectors c(h)’s are all collinear, then by choosing c to be any such vector, we can show that (47) implies (44). Therefore, assume that there exist h 1 = h 2 such that c(h 1 ) and c(h 2 ) are
+not collinear. Since they are not collinear, there must exist a linear combination c = β 1 c(h 1 )+β 2 c(h 2 ) such that the last or the m th element of c is equal to 0, and the (L−1)×1 subvector of c, denoted by ˜ c, is a non-zero vector. From our construction of c, M, and from (47), it follows that ˜ M ∗ ˜ c = 0. This is a contradiction because ˜ M ∗ was chosen to be a full rank matrix. Therefore, there must exist h ∈ C n such that M ∗ (h) is full rank. This completes the proof of Lemma 1.
+[[[ REFS ]]]
+E. Telatar
+--
+Capacity of multi-antenna Gaussian channels
+----
+L. Zheng
+D. Tse
+--
+Diversity and multiplexing: A fundamental tradeoff in multiple-antenna channels
+----
+D. Tse
+P. Viswanath
+L. Zheng
+--
+Diversity-multiplexing tradeoff in multiple-access channels
+----
+P. Viswanath
+D. Tse
+--
+Sum capacity of the vector Gaussian broadcast channel and uplink-downlink duality
+----
+S. Vishwanath
+N. Jindal
+A. Goldsmith
+--
+Duality, achievable rates, and sum-rate capacity of Gaussian MIMO broadcast channels
+----
+W. Yu
+J. Ciofﬁ
+--
+Sum capacity of Gaussian vector broadcast channels
+----
+V. Cadambe
+S. Jafar
+--
+Interference Alignment and Degrees of Freedom of the K-User Interference Channel
+----
+M. Maddah-Ali
+A. Motahari
+A. Khandani
+--
+Communication over MIMO X channels: Interference alignment, decomposition, and perfor- mance analysis
+----
+S. Jafar
+S. Shamai
+--
+Degrees of freedom region of the MIMO X channel
+----
+V. Cadambe
+S. Jafar
+--
+Interference alignment and the degrees of freedom of wireless X networks
+----
+D. Gesbert
+S. Hanly
+H. Huang
+S. Shamai
+O. Simeone
+W. Yu
+--
+Multi-cell MIMO cooperative networks: A new look at interference
+----
+A. Lapidoth
+S. Shamai
+M. Wigger
+--
+A linear interference network with local side-information
+----
+A. Lapidoth
+N. Levy
+S. Shamai
+M. Wigger
+--
+A cognitive network with clustered decoding
+----
+M. Wigger
+A. Lapidoth
+N. Levy
+S. Shamai
+--
+Receivers- Transmitters Side-Information Duality in Linear Interference Networks
+----
+V. R. Cadambe
+S. A. Jafar
+--
+Interference Alignment and the Degrees of Freedom for the K User Interference Channel
+----
+A. Lapidoth
+S. Shamai
+M. Wigger
+--
+On cognitive interference networks
+----
+V. Annapureddy
+A. El Gamal
+V. Veeravalli
+--
+Degrees of freedom of the K-user interference channel with transmitter cooperation
+----
+
+--
+Degrees of freedom of interference channels with coordinated multi-point (CoMP) transmissions and reception
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\084.pdf
+[[[ LINKS ]]]
+

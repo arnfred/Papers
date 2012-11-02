@@ -1,0 +1,199 @@
+[[[ ID ]]]
+4
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+LP Decodable Permutation Codes based on Linearly Constrained Permutation Matrices
+[[[ AUTHORS ]]]
+Tadashi WADAYAMA †
+Manabu HAGIWARA ††∗
+[[[ ABSTR ]]]
+Abstract— A set of linearly constrained permutation matrices are proposed for constructing a class of permutation codes. Making use of linear constraints imposed on the permutation matrices, we can formulate a minimum Euclidian distance decoding problem for the proposed class of permutation codes as a linear programming (LP) problem. The main feature of this novel class of permutation codes, called LP decodable permutation codes, is this LP decodability. It is demonstrated that the LP decoding performance of the proposed class of permutation codes is characterized by the vertices of the code polytope of the code. In addition, based on a probabilistic method, several theoretical results for randomly constrained permutation codes are derived.
+[[[ BODY ]]]
+The origin of permutation codes dates back to the 1960s. Slepian [11] proposed a class of simple permutation codes, which is referred to as permutation modulation, and efﬁcient soft decoding algorithms for these codes. This research has been extended and investigated by a number of researchers. Karlof [12] and Ingemarsson [13] investigated the optimization of the initial vector of the permutation modulation. Berger et al. [14] discussed applications of permutation codes to source coding problems.
+There is another thread of researches on a class of per- mutation codes of length n whose codewords contain exactly n -distinct symbols, i.e., any codeword can be obtained by applying a permutation to an initial vector, e.g., (0, 1, . . . , n − 1).
+Some fundamental properties of such permutation codes were discussed by Blake et al. [1]. Vinck [9] proposed appli- cations of permutation codes for power-line communication, which inspired subsequent research on permutation codes. Wadayama and Vinck [10] presented a multi-level construction of permutation codes with a large minimum distance. A number of constructions for permutation codes have been developed, including the construction given in [2] [4].
+Recently, rank modulation codes for ﬂash memory proposed by Jiang et al. [6] [7] generated renewed interest in permuta- tion codes. For example, for ﬂash memory coding, Kløve et al. presented a new construction for permutation codes based on the Chebyshev distance [8], which is an appropriate distance measure for ﬂash memory coding. Barg and Mazumdar [15]
+also investigated fundamental bounds on permutation codes in terms of the Kendall tau distance.
+In the present paper, a new class of permutation codes referred to as LP decodable permutation codes is introduced. An LP decodable permutation code is obtained by applying permutation matrices that satisfy certain linear constraints on an n-dimensional real initial vector.
+Permutation matrices are vertices of the Birkhoff polytope [17], which is the set of doubly stochastic matrices. Thus, a set of linearly constrained permutation matrices can be expressed by a set of linear equalities and linear inequalities. This property leads to the main feature of this class of permutation codes: the LP decodable property. For this class of codes, a decoding problem can be formulated as a linear programming (LP) problem. This means that we can exploit efﬁcient LP solvers to decode LP decodable permutation codes. Further- more, for a combination of this class of codes and its LP decoding, the maximum likelihood (ML) certiﬁcate property can be proved, as in the case of the LP decoding for LDPC codes [5]. This is due to the fact that the LP problem given in the present paper is a relaxed problem of an ML decoding problem.
+In general, a fundamental polytope [16] [5] used for LP decoding of LDPC codes contains a number of fractional vertices, which are a major source of sub-optimality of LP decoding. The constraints corresponding to an LDPC matrix are deﬁned based on F 2 -arithmetics. On the other hand, an LP decoder works on the real number ﬁeld. This domain mismatch produces many undesirable fractional vertices on the fundamental polytope. One motivation of the present study is to establish a coding scheme without this mismatch. In other words, the LP decodable permutation codes are deﬁned on the real number ﬁeld and are decoded using an LP solver working on the real number ﬁeld.
+In the present paper, matrices are represented by capital letters, and vectors are assumed to be column vectors. Let X be an n×n real matrix. The notation X ≥ 0 means that every
+element in X is non-negative. The notation vec(X) represents a vectorization of X given by
+The vector 1 is an all-one vector, the length of which is determined by the context. The norm || · || denotes the Euclidean norm given by ||x|| = (x T x) 1/2 . The trace function
+trace(X) returns the sum of the diagonal elements of X. The sets R and Z are the sets of real numbers and integers, respectively. The set [α, β] denotes the set of consecutive integers from α ∈ Z to β ∈ Z. The symbol is deﬁned by
+The following deﬁnition gives a class of matrices that is crucial to the arguments presented herein.
+) i,j ∈[1,n] ∈ {0,1} n ×n is called a permu- tation matrix if and only if
+∀i,j ∈ [1,n], j ∈[1,n] X i,j = 1, i ∈[1,n] X i ,j = 1. (1) The set of n × n permutation matrices is denoted by Π n . It is also known that an n × n binary matrix is a permutation matrix if and only if the Hamming weights of every column and every row are exactly 1. The cardinality of Π n is n!.
+Removing the binary constraint from the deﬁnition of the permutation matrices, we obtain the deﬁnition of doubly stochastic matrices.
+) i,j ∈[1,n] is called a doubly stochastic matrix if and only if (1) holds.
+The following theorem for a doubly stochastic matrix in- dicates that the set of doubly stochastic matrices is a convex polytope.
+[17]. The Birkhoff–von Neu- mann theorem implies that any vertex (i.e., extreme point) of the Birkhoff polytope is a permutation matrix.
+X ∈ Π n is referred to as the permutation vectors of s, which are given by Λ(s) = {Xs | X ∈ Π n }.
+We next consider the situation whereby a vector of Λ(s) is transmitted to a receiver over an AWGN channel. In such a case, it is desirable to use an ML decoding algorithm to estimate the transmitted vector. The ML decoding rule can be described as ˆx = arg min x ∈Λ(s) ||y − x|| 2 , where y is a received word.
+The following theorem states that the ML decoding for Λ(s) can be formulated as the following LP problem.
+Assume that a vector in Λ(s) is transmitted over an AWGN channel and that y ∈ R n is received at the receiver side. Let X ∗ be the solution of the following LP problem:
+maximize trace(C T X) subject to
+Proof: The linear constraints in the above LP problem imply that X is constrained to be a doubly stochastic matrix.
+On the other hand, the ML decoding rule can be rewritten as follows:
+||y − x|| 2 = (arg max
+trace(C T X))s. Note that
+Since the vertices of the Birkhoff polytope form a permutation matrix, the ML decoding can be formulated as an integer LP (ILP) problem:
+By removing the integral constraint (X is an integral matrix), we obtain the LP problem (2). If the solution of this LP problem is integral, it must coincide with the solution of the above ILP problem.
+It is natural to consider an extension of the LP decoding presented in the previous section. Additional linear constraints imposed on Π n produce a restricted set of Λ(s). A decoding problem of such a set can be formulated as an LP problem, as in the case of the ML decoding of Λ(s).
+The following deﬁnition for linearly constrained permuta- tions gives an LP decodable subset of Λ(s).
+Deﬁnition 3 (linearly constrained permutation matrix): Let m and n be positive integers. Assume that
+and are given. A set of linearly constrained permutation matrices is deﬁned by Π(A, b, ) = {X ∈ Π n | A vec(X) b }.
+Note that A vec(X) b formally represents m additional equalities and inequalities. These additional constraints pro- vide a restriction on permutation matrices.
+From the linearly constrained permutation matrices, LP decodable permutation codes are naturally deﬁned as follows.
+Deﬁnition 4 (LP decodable permutation code): Assume the same set up as in Deﬁnition 3. Suppose also that s ∈ R n is given. The set of vectors Λ(A, b, , s) given by
+Λ(A, b, , s) = {Xs ∈ R n | X ∈ Π(A,b, )} (4) is referred to as an LP decodable permutation code.
+The following example shows a case in which an additional linear constraint imposes a restriction on permutation matrices.
+Example 1: Consider the set of linearly constrained per- mutation matrices that consists of 4 × 4 permutation matrices satisfying the linear constraint trace(X) = 0. This constraint implies that the diagonal elements of the permutation matrices are constrained to be zero. This means that such permutation matrices correspond to permutations without ﬁxed points, which are referred to as derangements. For n = 4, there exist nine derangement permutation matrices. In this case, the triple (A, b, ) is deﬁned by
+The LP decoding of Λ(A, b, , s) is a natural extension of the LP decoding for Λ(s). Assume that a vector in Λ(A, b, , s) is transmitted over an AWGN channel and y ∈ R n is given. The procedure for the LP decoding of Λ(A, b, , s) is given as follows.
+1) Solve the following LP problem, and let X ∗ be the solution.
+A vec(X) 	 b, 	 (6) where C = ys T .
+2) Output X ∗ s if X ∗ is integral. Otherwise, declare a decoding failure.
+Several remarks should be made regarding the LP decoding for Λ(A, b, , s).
+The feasible set of (6) is a subset of the feasible set of (2). All of the matrices in Π(A, b, ) are feasible and permutation matrices that do not belong to Π(A, b, ) are infeasible. This implies that all of the integral points of the feasible set (6) coincide with Π(A, b, ).
+The LP problem (6) is a relaxed problem of the ML decoding problem over AWGN channels:
+minimize ||y − x|| 2 subject to x ∈ Λ(A,b, ,s). (7) This can be easily shown, as in the case (2). As a consequence of the above properties on integral points and on the relaxation, it can be concluded that the LP decoding for Λ(A, b, , s) also has the ML-certiﬁcate property. Namely, if the output of LP decoding is not decoding failure (i.e., X ∗ is integral), then the output is exactly the same as the solution of the minimum distance decoding problem (7). Note that we have always an integral solution if all the vertices of a code polytope are integral.
+The feasible set of the LP problem (6) is the intersection of the Birkhoff polytope and a (possibly unbounded) convex set deﬁned by the additional constraints. The intersection becomes a polytope, which is called a code polytope. The decoding performance of LP decoding is closely related to the code polytope given by the following deﬁnition.
+P(A,b, ) = B n ∩ {X ∈ R n ×n | A vec(X) b} (8) is called the code polytope for Π(A, b, ), where B n is the Birkhoff polytope corresponding to Π n .
+In an LP decoding process, these fractional vertices become possible candidates of an LP solution. Thus, these fractional vertices can be considered to be pseudo permutation matrices, which degrade the decoding performance of the LP decoding.
+In this section, an upper bound on decoding error probability for LP decoding is presented.
+An advantage of the LP formulation of a decoding algorithm is its simplicity for detailed decoding performance analysis. The geometrical properties of a code polytope are closely re- lated to its decoding performance for the LP decoding. We can evaluate the block error probability of the proposed scheme with reasonable accuracy if we have sufﬁcient information on a set of vertices of a code polytope. The bound presented in this section has a close relationship to the pseudo codeword analysis on LDPC codes [3].
+In this section, a set of parameters A, b, , s are assumed to be given. Let V be the set of vertices of the code polytope P(A,b, ,s). In general, V contains fractional vertices.
+The following lemma provides a bridge between a code polytope and the corresponding decoding error probability.
+Assume that a codeword Xs is transmitted to a receiver via an AWGN channel, where X ∈ Π(A,b, ). The additive white Gaussian noise with mean 0 and variance σ 2 is assumed. The receiver uses the LP decoding algorithm presented in the previous section. In this case, the block error probability P LP (X) is upper bounded by
+where the Q-function is the tail probability of the normal Gaussian distribution.
+Example 2: We have performed the following computer experiment using the following two codes:
+1) LP decodable permutation code corresponding to the de- rangements of length 5. The additional linear constraint is trace(X) = 0. A transmitted word (1, 0, 4, 2, 3) T is assumed. The code polytope has 44 vertices, which are all integral vertices.
+2) LP decodable permutation code of length 5 correspond- ing to an additional linear constraint X 1,1 + X 5,5 = 1. A transmitted word (0, 4, 3, 2, 1) T is assumed. The code polytope has 330 vertices. The set of vertices contains 36 integral vertices and 294 fractional vertices.
+An AWGN channel with noise variance σ 2 is assumed. The signal-to-noise ratio is deﬁned by SNR = 10 log 10 1/σ 2 . The LP decoding described in the previous section was used for decoding.
+Figure 1 shows the upper bounds and simulation results on the block error probability of these permutation codes. It is readily observed that the upper bounds presented in this section exhibit reasonable agreement with the simulation results.
+Random linear constraints for permutation matrices are amenable for probabilistic analysis and appear interesting from an information theoretic view. In this section, we investigate a class of LP decodable permutation codes deﬁned based on random constraints.
+Since the LP decodable permutation codes are non-linear codes, in general, the cardinality of a given code cannot be determined directly from the constraints. In the following, we will analyze the cardinality of codes and their Hamming weight distributions.
+The linear constraint assumed here is the equality constraint for two variables, such as X i,j = X k,l . Let S be the set of binary constraint matrices:
+We assign the uniform probability for each A in S. The pair (S, P ) can be considered to be an ensemble of matrices, which becomes the basis of the following probabilistic method.
+A i,j , otherwise. 	 (11) Note that θ(A)vec(X) = 0 corresponds to m equality con- straints of two variables.
+In this section, we focus on the LP decodable permutation code Λ(θ(A), 0, , s), where A ∈ S and = ( m =, = . . . , =) T . Although extensions of the analysis for more general classes of LP decodable permutation codes are possible, we herein focus on the simplest class in order to more easily explain the concept of the present analysis. Throughout this section, we assume that the components of the initial vector s differ from one another.
+B. Probabilistic analysis of the average cardinality of codes The number of codewords in Λ(θ(A), 0, , s) is given by
+where I is the indicator function. The indicator function takes a value of one when the given condition is true, and otherwise takes a value of zero. The following lemma gives the average cardinality of this code.
+Lemma 2 (Average cardinality of codes): The average car- dinality of Λ(θ(A), 0, , s) is given by
+where the operator E denotes the expectation deﬁned on (S, P ).
+Proof: From the deﬁnition of M(A), the expectation of the cardinality M(A) can be written as
+By changing the order of summation, we can further transform this into
+where X is an arbitrary permutation matrix in Π n . The last equality is due to the symmetry of the ensemble. This indicates that the quantity A ∈S I[A vec(X ) 0] does not depend on the choice of X . A simple combinatorial argument yields
+Substituting (16) into (15), we immediately obtain the claim of the lemma.
+The origin o = (o 1 , . . . , o n ) is an arbitrary permutation vector of length n, namely, o ∈ Λ(s). The number of code- words of Λ(θ(A), 0, , s) with Hamming weight w is denoted by L w (A), where the Hamming weight w H (·) is deﬁned by w H (x) = n i=1 I[o i = x i ], where x = (x 1 , . . . , x n ) T . This means that the Hamming weight of x is equal to the Hamming distance between the origin and x. In other words, L w (A) is deﬁned as
+I[w H (x) = w]. The set {L 1 (A), . . . , L n (A)} is referred to as the weight distribution of Λ(θ(A), 0, , s).
+The following lemma gives the ensemble average of the weight distribution.
+Lemma 3: The average weight distribution of the linearly constrained permutation code Λ(θ(A), 0, , s) is given by
+. (17) Note that the origin may not in the codebook of Λ(θ(A), 0, , s).
+The longer version of the present paper (arXiv:1011.6441 [19]) includes an extensive discussion on related topics, such as linear constraints for several structured permutation matri- ces and the properties of their code polytopes, as shown in Table I.
+[[[ REFS ]]]
+I. F. Blake
+G. Cohen
+M. Deza
+--
+Coding with permutations
+----
+C. J. Colbourn
+T. Kløve
+A. C. H. Ling
+--
+Permutation arrays for powerline communication and mutually orthogonal latin squares, 
+----
+D. Forney
+R. Koetter
+R. Kschischang
+A. Reznik
+--
+On the effective weights of pseudocodewords for codes deﬁned on graphs with cycles, 
+----
+C. Ding
+F. W. Fu
+T. Kløve
+V. K. W. Wei
+--
+Constructions of permutation arrays
+----
+J. Feldman
+--
+Decoding error-correcting codes via linear programming
+----
+A. Jiang
+R. Mateescu
+M. Schwartz
+J. Bruck
+--
+Rank modulation for ﬂash memories
+----
+A. Jiang
+M. Schwartz
+J. Bruck
+--
+Error-correcting codes for rank modulation
+----
+T. Kløve
+T. Lin
+S.-C. Tsai
+W. G. Tzeng
+--
+Permutation arrays under the Chebyshev distance
+----
+A. J. H. Vinck
+--
+Coded modulation for powerline communications, 
+----
+T. Wadayama
+A. J. H. Vinck
+--
+A multilevel construction of permu- tation codes
+----
+D. Slepian
+--
+Permutation modulation
+----
+J. Karlof
+--
+Permutation codes for the Gaussian channel
+----
+I. Ingemarsson
+--
+Optimized permutation modulation
+----
+T. Berger
+F. Jelinek
+J. K. Wolf
+--
+Permutation codes for sources
+----
+A. Barg
+A. Mazumdar
+--
+Codes in permutations and error correction for rank modulation
+----
+R. Koetter
+P. O. Vontobel
+--
+Graph covers and iterative decoding of ﬁnite-length codes
+----
+G. Birkhoff
+--
+Three observations on linear algebra
+----
+J. von Neumann
+--
+A certain zero-sum two-person game equivalent to an optimal assignment problem
+----
+T. Wadayama
+M. Hagiwara
+--
+LP decodable permutation codes based on linearly constrained permutation matrices
+[[[ META ]]]
+parsed -> yes
+file -> E:\testDataset\004.pdf
+[[[ LINKS ]]]
+

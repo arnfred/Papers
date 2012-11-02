@@ -1,0 +1,119 @@
+[[[ ID ]]]
+187
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Scaling Behavior of Convolutional LDPC Ensembles over the BEC
+[[[ AUTHORS ]]]
+Pablo M. Olmos
+R¨udiger Urbanke,
+[[[ ABSTR ]]]
+Abstract—We study the scaling behavior of coupled sparse graph codes over the binary erasure channel. In particular, let 2L+1 be the length of the coupled chain, let M be the number of variables in each of the 2L + 1 local copies, let be the number of iterations, let P b denote the bit error probability, and let
+denote the channel parameter. We are interested in how these quantities scale when we let the blocklength (2L + 1)M tend to inﬁnity. Based on empirical evidence we show that the threshold saturation phenomenon is rather stable with respect to the scaling of the various parameters and we formulate some general rules of thumb which can serve as a guide for the design of coding systems based on coupled graphs.
+[[[ BODY ]]]
+Spatially coupled codes [1] provide an entirely new way of approaching capacity. The basic phenomena can be phrased as follows: an ensemble constructed by coupling a chain of (2L + 1) regular (l, r) low-density parity-check (LDPC) ensembles, together with appropriate boundary conditions of the chain, exhibits a belief propagation (BP) threshold close to the maximum-a-posteriori (MAP) threshold of the regular (l, r) ensemble. This phenomenon is known as threshold satu- ration and it has been proved rigorously for the binary erasure channel (BEC) in [1]. It has also been observed empirically for a variety of other channels and other graphical models in [2], [3], [4]. Low-density parity-check convolutional (LDPCC) ensembles, ﬁrst introduced in [5], are the best known example of spatially coupled codes. In [6], the authors reformulate LDPCC ensembles in terms of protographs. The BP threshold for these codes is computed using density evolution (DE) in [3], [1] and it is conjectured that they achieve capacity universally across the set of binary-input memoryless output- symmetric channels [1].
+It is probably fair to state that by now the asymptotic perfor- mance of spatially coupled LDPC codes is well understood. However, much less is known about their scaling behavior [1]. For instance, the DE analysis of LDPCC codes typically assumes that L is kept ﬁxed while M tends to inﬁnity. But, does the threshold saturation phenomena happen even if L grows as a function of M ? In this work, we analyze the ﬁnite- length performance of LDPCC codes and we study how it scales with the coupling dimensions M and L. Our empirical
+observations indicate that the threshold saturation phenomenon happens even when L grows considerably faster than M , which indicates that the threshold saturation phenomenon is very robust. From our simulation results we synthesize some general design rules for these codes. In particular, if the code- length is bounded, how should we chose L and M to have the best performance? And how does this choice affect the decoder complexity (in terms of average number of iterations)? These questions, among others, are of signiﬁcantly practical importance.
+The study of the ﬁnite-length behavior of LDPCC codes is augmented by analyzing their error ﬂoor [7]. In [1], [8], the authors prove that the minimum distance of LDPCC codes is a fraction of M . These studies concern “large” weight codewords. We investigate the occurrence of constant-sized codewords/stopping sets, and in particular their scaling. We prove that the fraction of codes with no error ﬂoor is roughly equal to exp(−cL/M l−2 ), where c only depends on the rate of the code. Hence, for sufﬁciently small ratios L/M l−2 , it is very easy to expurgate the ensemble and to ﬁnd codes with linear minimum distance.
+We deﬁne the LDPCC ensembles using protographs [6]. We start from a collection of (2L + 1) regular (l, r = kl) LDPC protographs with k ∈ N [9] and so that l is odd, as shown in Fig. 1 for (l, r) = (3, 6) and L = 9. The regular (l, r = kl) code is referred to as the underlying code. The associated protograph has k variable nodes of degree l so that, if M is the total number of variables per protograph, each variable node of the protograph represents M/k variables in total. For instance, in Fig. 1, each variable node of the protograph represents M/2 variables. In the following, we say that the LDPCC graph has (2L + 1) sections, one per protograph in Fig. 1.
+Let us now deﬁne the coupled protograph. This graph is constructed by spatially coupling the protographs in Fig. 1: each variable node is connected to its ˆ l check node neighbors on the left and to its ˆ l check node neighbors on the right, where ˆ l = (l − 1)/2 [1]. The coupled protograph is terminated by adding ˆ l extra check nodes on each side. This process is illustrated in Fig. 2 for the case (l, r, L) = (3, 6, 9). In the termination procedure described, the check nodes of
+lower degree on both sides provide better protection for the connected variables. However, there is a price to be payed for this extra protection – the rate is reduced with respect to the rate of the underlying code. The ensemble has n = M (2L+1) variable nodes and (2(L + ˆ l) + 1)M/k check nodes and the design rate is:
+where the ﬁrst term is the rate of the underlying code [1]. To generate a sample of the LDPCC ensemble we now “lift” the coupled protograph in the same manner as this is done for regular ensembles [9]: we make (M/k) copies of the coupled protograph and we connect them by picking for each “edge bundle” a random permutation. In the following we refer to the ensemble as the (l, r, L, M ) (convolutional) ensemble.
+The performance of spatially-coupled ensembles under BP decoding as M goes to inﬁnity is analyzed in [3], [1] using density evolution (DE) [7]. This allows to compute the BP threshold , which deﬁnes the limit of the decodable region. Let us denote the threshold for the BEC by BP (l, r, L). We have
+where P b ( , l, r, L, M ) is the ensemble average bit error probability after decoding rounds:
+Similarly, P B ( , l, r, L, M ) denotes the ensemble average block error probability. One of the key results of the asymp- totic analysis of coupled codes is that BP (l, r, L) is “very close” to MAP (l, r), the MAP threshold of the underlying regular ensemble [3].
+Finite-length scaling investigates the relationship between the performance, the code parameters, and the decoding com- plexity. Any practical design of a LDPCC code starts from a set of constraints on the code rate in (1), the code length, and the number of decoding iterations with the goal of ﬁnding the best choice of parameters. To ﬁrst order, one might wonder for which scaling of L with respect to M the threshold saturation phenomenon occurs. More precisely, if L = f (M ), for what functions f (·) does the limit
+converges to 0 for all < BP (l, r, L) as stated in (2)? In Section IV, we investigate this question by testing the code performance for several scaling functions f (M ) and increasing M values.
+A practical implementation of a message-passing decoder has to set the number of iterations, call it min , which ensures a reliable decoding in most cases. To be precise, assume that we have to design min so that the decoder succeeds with probability higher than δ. In [3], this task is addressed via DE. We have empirically computed the ensemble average distribution of the required number of iterations . It is deﬁned as follows [7](Chapter 3, Section 22):
+provides the probability of successful decoding after 0 itera- tions. Therefore, min is chosen so that Φ( min , , L, M ) ≥ δ.
+It is clear that for < BP (l, r), min is essentially inde- pendent of L and has the same distribution as the distribution for the regular (l, r) code of length M . In this regime all sections can be decoded at the same time and the effect of the boundary condition vanishes once L has become sufﬁciently large. It is easy to give a coarse upper bound on how large L has to be for this to be true. Fix the “gap” BP (l, r) − > 0. We can determine via DE the required number of iterations for the (l, r) ensemble to bring down the error probability to a desired small value. Assume that L is large compared to this number of iterations. Then the effect of the boundary has not reached the middle section of the code by the time it has essentially decoded.
+On the other hand, for 	 ≥ BP (l, r), we expect that the number of required iterations scales linearly in L: the “decoding wave” starts at the boundaries and moves at a constant speed towards the middle [3]. This can be seen in Fig. 3, where we plot the bit error rate (BER) measured in
+each section of a (l = 3, r = 6, L = 20, M = 1024) ensemble after = 5 (a), = 30 (b), = 70 (c) and = 110 (d) iterations for a channel parameter of = 0.44. In Fig. 4 we plot ϕ( , , L, M ) for L = 5, 10, 20, M = 256, 512 and = 0.44. We have averaged over 50 code samples. First observe that the distribution moves to the right with L and we can see that the mean of the distributions scales linearly in L – so the larger L the more iterations we need. Further, as M increases, the distribution concentrates around its mean. This means that for large M most instances decode with a number of iterations which is close to the expected value. However, the distributions are heavy-tailed. I.e., over a large interval the curves are approximately straight lines, which indicates that over this range they follow a power law, i.e., they have the form
+α β for some non-negative constant α and β. Operationally this means that, with non-negligible probability, an instance takes many more iterations to decode as it is typical. The last two conclusions are quite similar to what can be observed for standard LDPC ensembles, see [7]. One strategy to deal with the linear increase of the decoding complexity for very large chain lengths is the application of a windowed decoder [10].
+Let us now investigate for what scalings L = f (M ) the threshold saturation effect appears. We have run a large set of simulations for various scaling functions f (M ) and a regular (l, r) = (3, 6) code has been used to construct the ensembles. The BP and MAP thresholds for this ensemble are, respectively, BP (l, r) ≈ 0.4294 and MAP (l, r) ≈ 0.4815. The BP decoder is run until all messages have converged (which always happens for the BEC). We choose a (l, r) = (3, 6) code to better illustrate the effect of the error ﬂoor in the scaling since regular codes with larger degrees, e.g., a (5, 10) regular ensemble, have much lower error ﬂoors. Our current aim however is not to construct optimal codes but to illustrate some typical effects. For each (L, M ) pair we only consider
+one single sample, randomly taken from the ensemble, as described in Section II. For each value and ﬁxed code, we consider 10 5 transmitted codewords.
+Consider ﬁrst the case of constant f (M ). Since this is the regime used for the DE analysis, we know that the limiting performance M → ∞ is given by (2). We can get a negligible error probability as long as we are operating below the threshold MAP (l, r). In Fig. 5, we represent the bit error probability when L is ﬁxed to 100. As expected, the curves become steeper as we increase M . Note that the curves show an error ﬂoor. As we discuss in more detail in Section V, this error ﬂoor is due to the fact that the ratio L/M l−2 is relatively large for most of these cases.
+Let us now look at the other extreme. i.e., we ﬁx M to some constant M 0 > 0 and let L grow. Clearly, in this regime we do
+not expect to see the same threshold saturation phenomenon. If we consider P =∞ b ( , l, r, L, M 0 ) and if we increase L then we expect this error probability to be monotonically increasing in L since the longer the chain the higher the chance that the “decoding wave” gets stuck before reaching the middle. In Fig. 6, we plot the error probability for the case M 0 = 512. As expected, the error probability is indeed monotonically increasing in L and it seems to converge to a limiting curve. The determination of this limiting curve is an interesting open problem.
+Now where we have investigated the two limiting cases it is of interest to scale both M and L together. At what scaling does the behavior change? In Fig. 7 and Fig. 8, we test the scaling functions L = M/2 and L = (M/2) 2 . In Fig. 8, we have included, in dashed lines, the asymptotic ensemble error ﬂoor derived in Section V. For both scaling functions the performance improves with M , although in Fig. 8 the speed of improvement is slower. Indeed, it seems that in both cases the asymptotic threshold still is MAP (l, r). This illustrates that the threshold saturation phenomenon is quite robust and general. Due to the large L/M l−2 values, we observe large error ﬂoor levels in both cases. Finally, in Fig. 9 we plot the performance of an extreme scenario, where L scales exponentially with M . The performance now worsens with L, similarly to the case considered in Section IV-B. A back of the envelope calculation, proposed to us by Andrea Montanari, suggests that an exponential scaling relationship is exactly the boundary – for a subexponential growth of L as a function of M we expect the threshold phenomenon to happen whereas for super- exponential growths we expect it not to occur.
+Let us summarize. The threshold saturation phenomenon happens emperically over a very wide range of scalings of L with respect to M and far beyond what theory currently can predict. This is of comfort to the code designer in the ﬁeld and a challenge for any theoretician.
+B it E rr o r P ro b a b il it y
+In many of the former simulations, we have seen the occurrence of error ﬂoors. Let us now quickly discuss how this error ﬂoor can be analyzed. To simplify matters, we only consider codewords/stopping sets of weight two since codewords/stopping sets of higher weight vanish (in M ) at a much higher rate.
+Consider an LDPCC ensemble (l, r = kl, L, M ). Let C be a code sample and N H 2 be the number codewords with Hamming weight two in C. Assume that the code is chosen randomly with a uniform probability from the ensemble. Then the distribution of N H 2 converges (in M ) to
+N H 2 ∼ Pois (λ) , λ = k l−2 k 2
+Proof: Note that a codeword of weight two is only formed by two variables in the same section, see Fig. 2, that share the same set of l check nodes. Since there are (M/k) check nodes per section, this happens with probability p = (M/k) −l . In each section, we count k 2 (M/k) 2 pairs of variables that can form a weight two codeword. Therefore, in a graph with (2L+ 1) sections, the expected number of such codewords converges to λ = (2L + 1) k 2 (M/k) 2 p. That the distribution converges to a Poisson distribution follows by standard arguments as in the case of uncoupled LDPC ensembles, see [7].
+Corollary 1 (Fraction of Codes with No Small Codewords): The fraction of codes in the (l, r = kl, L, M ) ensemble with no codewords of weight 2 converges to exp(−λ).
+Proof: The expected fraction of such codes is given by P (N H 2 = 0), which is exp(−λ) by Lemma 1.
+The accuracy of Lemma 1 is illustrated in Fig. 10, where we compare the Poisson distribution in (7) with some exper- imental data, obtained by analyzing 10 4 code samples. We consider an (l = 3, r = 6, L = 100, M = 128) ensemble and we plot the experimental normalized histogram (◦) along with the Poisson distribution in (7) (∗). We can see that both plots ﬁt almost perfectly.
+Corollary 2: The expected error ﬂoor of an (l, r, L, M ) ensemble is given by
+P b ( , l, r, L, M ) = 2 k 2
+Proof: In the error ﬂoor region, we compute the BER as follows:
+M l−1 , 	 (9) where, in step (a), we have assume that the error ﬂoor is due to codewords of weight two. A given sample C has N H 2 of such codewords and in average, 2 N H 2 of them are erased.
+From the above observations we can deduce the following. For a particular scaling of L = f (M ), if λ stays bounded
+from above by a small constant or even tends to 0, then it is easy to expurgate the ensemble and hence to avoid error ﬂoors. This always happens if L grows slower than M l−2 , a condition which is easy to achieve in practice. In order to illustrate the accuracy of analytical error ﬂoor predictions we have on purpose considered ensembles that are hard to expurgate, i.e., for these ensembles most code samples have error ﬂoor, which is predicted by (8). For instance, in Fig. 8, we have plotted in dashed lines the error ﬂoor in (8) for the cases (M = 128, L = 4096) and (M = 256, L = 16384), where we can observe the accuracy of the estimate.
+[[[ REFS ]]]
+S. Kudekar
+T. J. Richardson
+R. L. Urbanke
+--
+Threshold saturation via spatial coupling: why convolutional LDPC ensembles perform so well over the BEC
+----
+R. M. Tanner
+D. Sridhara
+A. Sridharan
+T. E. Fuja
+D. J. Costello
+--
+LDPC block and convolutional codes based on circulant matrices
+----
+M. Lentmaier
+A. Sridharan
+D. J. Costello
+K. Zigangirov
+--
+Iterative decoding threshold analysis for LDPC convolutional codes
+----
+S. Kudekar
+C. Measson
+T. J. Richardson
+R. L. Urbanke
+--
+Threshold Saturation on BMS Channels via Spatial Coupling
+----
+A. J. Feltstr¨om
+K. S. Zigangirov
+--
+Time-varying periodic convolu- tional codes with low-density parity-check matrix
+----
+M. Lentmaier
+G. Fettweis
+K. Zigangirov
+D. J. Costello
+--
+Ap- proaching capacity with asymptotically regular LDPC codes
+----
+T. Richardso
+R. Urbank
+--
+Modern Coding Theory
+----
+M. Lentmaier
+D. G. M. Mitchell
+G. Fettweis
+D. J. Costello
+--
+Asymptotically regular LDPC codes with linear distance growth and thresholds close to capacity
+----
+J. Thorpe
+M. Papaleo
+A. Iyengar
+P. Siegel
+J. Wolf
+G. Corazza
+--
+Low density parity check (LDPC) codes constructed from protographs
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\187.pdf
+[[[ LINKS ]]]
+

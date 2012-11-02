@@ -1,0 +1,212 @@
+[[[ ID ]]]
+150
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Polytope of Correct (Linear Programming) Decoding and Low-Weight Pseudo-Codewords
+[[[ AUTHORS ]]]
+Michael Chertkov
+Mikhail Stepanov
+[[[ ABSTR ]]]
+Abstract— We analyze Linear Programming (LP) decoding of graphical binary codes operating over soft-output, symmetric and log-concave channels. We show that the error-surface, separating domain of the correct decoding from domain of the erroneous decoding, is a polytope. We formulate the problem of ﬁnding the lowest-weight pseudo-codeword as a non- convex optimization (maximization of a convex function) over a polytope, with the cost function deﬁned by the channel and the polytope deﬁned by the structure of the code. This formulation suggests new provably convergent heuristics for ﬁnding the lowest weight pseudo-codewords improving in quality upon previously discussed. The algorithm performance is tested on the example of the Tanner [155, 64, 20] code over the Additive White Gaussian Noise (AWGN) channel.
+[[[ BODY ]]]
+Low-Density Parity Check (LDPC) codes are capacity achieving and are easy to decode via message-passing al- gorithms of the Belief-Propagation (BP) type [1], [2], [3]. However, performance of the efﬁcient decoder on a given ﬁnite code is not ideal, resulting in a sizable difference between optimal (Maximum A-Posteriori) and the subop- timal decoders observed in the asymptotics of Bit-Error- Rates (BERs) at the high Signal-to-Noise-Ratios (SNR), in the error ﬂoor regime [4]. Errors in this extreme regime of the error ﬂoor are mainly due to special conﬁgurations of the channel noise, called instantons [5], correspondent to decoding into pseudo-codewords [6], [7] different from any of the codewords of the code. Analysis of the instantons and pseudo-codewords in the case of LP decoder [8] is of a special interest. LP is a combinatorial version of BP, thus admitting convenient description in terms of the pseudo- codeword polytope [8]. The geometric structure associated with the polytope gave rise to new decoding techniques re- lated to graph covers [9], adaptive processing of the polytope constraints [10], and the concept of LP duality [11]. The succinct combinatorial formulation of the coding was also useful in terms of reducing the gap between the LP and MAP decoders [12], [13], [14], [15], [16].
+In [17] we suggested an LP-speciﬁc heuristic Pseudo- Codeword Search (PCS) algorithm. The main idea of the algorithm was based on exploring the Wiberg relation, from [6], [7], between pseudo-codeword and an optimal noise conﬁguration which lies on the median between the pseudo- codeword and zero-codeword. In essence, the algorithm of
+[17] performs a biased walk over the exterior of the domain of correct LP decoding and arrives at the error-surface in a small ﬁnite number of steps. The algorithm, tested on some number of codes over the AWGN channel, showed excellent performance. For any noise initiation it always approaches the error-surface monotonically in simulations, even though the monotonicity proof was not provided. Latter the algorithm was generalized to the case of discrete-output channel (speciﬁcally Binary Symmetric (BS) channel) in [18], [19], where the monotonicity proof was given. The technique was also extended to discover the most probable conﬁgurations of error-vectors in compressed sensing [20].
+This paper continues the trend of [17] and analyzes the error-surface and the associated low-weight pseudo- codewords. We study the domain of correct decoding, bounded by the error-surface; formulate the problem of ﬁnding the most probable conﬁguration of the noise leading to a failure as an optimization problem; design an efﬁcient heuristic; and illustrate performance of the algorithm on the exemplary Tanner [155, 64, 20] code [21]. The main statements of the manuscript are:
+• The domain of correct decoding is a polytope in the noise space, which is likely to be intractable. [Section III.]
+• The problem of ﬁnding the lowest weight pseudo-codeword of a graphical code over log-concave symmetric (for example AWGN) channel is reduced to maximization of a convex function, associated with the channel, over a polytope, asso- ciated with the code [Section IV.]
+• We suggest Majorization-Optimization Algorithm (MOA), based on majorization-minimization approximation [22]. We show that the pseudo-codeword weight in MOA, as well as in previously introduced PCS, is monotonic. We critically compare MOA and PCS on example of the Tanner code over the AWGN channel. [Section V.]
+We consider LP decoding [8] of binary LDPC code and discuss the problem of ﬁnding the most probable conﬁgura- tion of the noise, so-called instanton, for which the decoding fails [17]. Equivalently stated, this is the problem of ﬁnding the lowest weight pseudo-codeword of the code.
+The technique we discuss here applies to any soft-output, symmetric channels where the transition probability, P (x|σ), from the codeword σ to the channel output x, is a log-convex function of x, i.e., − log( P (x|σ)) is a convex function of x), and it is, ∼ −2s 2 ∑ N i =1 (x i − σ i ) 2 , for our enabling example of the AWGN channel, where s is the signal-to-noise ratio of the noise, σ = (σ i = 0, 1|i = 1, · · · , N), is the binary N-bits long codeword launched into the channel, and x = (x i ∈ R|i = 1, · · · , N) is the real valued signal received by the decoder.
+Maximum Likelihood decoding can be formulated as an LP optimization over the polytope, P , spanned by all the codewords of the code C, min σ ∈ P ∑ i (1 − 2x i )σ i . However, the full codeword polytope is exponentially large in the code size and thus it is not tractable. Trading optimality for efﬁciency the authors of [8] have suggested to relax the full polytope into a tractable one. The relaxation, coined LP-decoding, is based on decomposition of the code into small individual checks based codes thus assuring that the set of original codewords forms a subset of all the corners of the relaxed polytope. The LP-decoding can be formulated in multiple ways. Following [17], we choose to start here with the formulation of LP, correspondent to a version of the Bethe Free Energy approach of [23]:
+   
+  
+   
+  
+where b are beliefs, i.e., proxies for respective marginal prob- abilities. P l is a polytope, which we call large (LP-decoding) polytope. P l only depends on the structure (graph) of the code (and it does not depend on the channel model). There are beliefs of two types associated with two types of nodes in the parity check graph of the code, G , bits i and checks α respectively. σ i = 0, 1 represent values of the bit i, and the vector σ α = (σ i |i ∼ α; s.t. ∑ i σ i = 0 mod 2) stands for one of the allowed local codewords associated with the check α. Of the conditions in the deﬁnition of P l , the ﬁrst two equalities are normalizations (for the beliefs/probabilities), the third equality states consistency between beliefs associated with bits and checks. The two last inequalities in P l ensure that the beliefs (probabilities) are positive. If the channel noise corrupting the zero codeword is sufﬁciently weak, i.e., if |x| 1, the LP p outputs zero, corresponding to successful decoding. However, LP p confuses another pseudo-codeword for the codeword if x is sufﬁciently noisy, then giving a strictly negative output, LP p < 0.
+Description of the LP p (x) in Eq. (1) can be restated in terms of a smaller set of beliefs, only bit beliefs β β β = (β i = b i (1)|i = 1, · · · , N). Then the “small polytope” formulation of Eq. (1) becomes [24], [8]:
+ 
+β i ≤ |I|−1 ∀i : 0 ≤ β i ≤ 1
+ 
+The “large polytope” formulation of the LP-decoding (1) can also be restated in terms of its dual (see e.g. [11])
+where φ = (φ i |i = 1, · · · , N), θ = (θ α |α = 1, · · · , M), λ = (λ iα |(i, α) ∈ G 1 ) are Lagrangian multipliers conjugated to the ﬁrst, second and third conditions in the original LP (1) respectively. According to the main theorem of the convex optimization (see e.g. [25]) the results of the primal problem (1) and the dual problem (3) coincide, LP p = LP d .
+In this manuscript we are mainly concerned with the following practical problem: given a ﬁnite code, log-concave channel (for concreteness and without loss of generality we will consider AWGN channel), and the LP-decoding, to ﬁnd the most probable conﬁguration (instanton) of the channel noise, x, imposed on the zero codeword, σ 0 = 0, which leads to incorrect decoding. Formally, we are solving the following “instanton” problem over the exterior of D int ,
+ 
+∀i, ∀σ i : σ i (1 − 2x i ) − (1 − 2σ i ) ∑ α∼i λ iα ≥ φ i ∀α, ∀σ α : ∑ i ∼α λ iα (1 − 2σ i ) ≥ θ α
+ 
+constructed from the feasibility region of the dual problem, LP d , with the zero cost function constraint added. For any x ∈ D int there obviously exists an extended conﬁguration (x, θ, φ, λ) from F d . On the other hand, if x ∈ D ext , then LP p = LP d < 0, and since LP d is deﬁned as a maximum over an extension of F d (where the ﬁrst condition in F d is removed) there exists no valid (x, θ, φ, λ) from F d in this case. One concludes that D int (x) coincides with the projection of F d on the x variable
+However both F d and its projection to x are polytopes, i.e., D int is also a convex domain, moreover it is a polytope 1 . Note that the projected polytope is most likely non-tractable, in the sense that the number of constraints required to describe the polytope is expected to be exponential in the dimension of x (size of the code).
+Noticing, that Eq. (4) is stated in terms of the exterior domain, D ext , which is a compliment of D int , one attempts to formulate a closely related problem stated in terms of optimization over a convex sub-domain of D int :
+where Ball ε ≡ {ζζζ ∈ R N : ζ ζ ζ 2 ≤ ε} is the ball of radius ε (which is convex by construction). For sufﬁciently small ε any LP(x) = 0 for any x ∈ Ball ε , while a gradual increase in ε will eventually lead, at some ε ∗ , to appearance of the closest to the zero codeword (in terms of the l 2 norm of the AWGN channel) noise conﬁguration, x inst , for which LP(x inst ) ≤ 0. One concludes that the function of a single parameter, Q (ε), jumps from zero at ε < ε ∗ to some negative value at ε = ε ∗ . Then, 4ε 2 ∗ becomes the effective distance of the code (under the LP-decoding), and the optimal value, x ∗ of Q(ε ∗ ), corresponds to the most probable instanton.
+Using primal formulation of LP-decoding from Eq. (2) and combining minimization over x and β β β variables, one reformulates Eq. (6) as the following optimization problem
+One important advantage of this formulation is in the fact that Eq. (7) is stated as an optimization problem, in contrast with the sequential instanton search optimization of [17], where one optimizes over the noise, then evaluates an internal minimization for each conﬁguration of the noise. Note that the cost function in Eq. (7) is quadratic and concave.
+Eq. (7) can be simpliﬁed further. We expect that the extremal value will be achieved (at least for sufﬁciently large ε) “at the surface” of the ball, i.e., at ∑ i x 2 i = ε 2 . Replacing x ∈ Ball ε by this equality and performing optimization over x, we arrive at the following nonlinear optimization problem stated primarily in terms of the beliefs
+This problem can be solved approximately via the majorization-minimization iterative method [22], consisting in upper-bounding the cost function by its linearized expres- sion, minimizing the upper-bound, and iterating by shifting the linearization point to the solution received on the previous step. The linearization at each iterative step is justiﬁed because of the following obvious inequality, hold at any β β β,
+where k = 0, 1, · · · till convergence, β β β (k) is the optimal solution of the optimization found at the k iteration step, and β β β (k+1) becomes the optimal solution at the (k + 1)-th iteration. The optimization problem on the rhs of Eq. (10) is an LP, i.e., it can be solved efﬁciently. We expect that the iterations over k converge fast. The iterative procedure will depend on the initiation at k = 0. Starting from different initial conditions we sample different local optima. Note that ε ∗ , deﬁned as the smallest ε for which Q(ε) becomes negative, allows useful interpretation. Indeed, 4ε 2 ∗ = w(β β β), where according to [6], [7],
+is the weight expressing relation between the direction of the optimal noise and the distance along the direction from the zero codeword to the error-surface.
+To utilize Eq. (8) for ﬁnding the low-weight pseudo- codewords one needs to scan over the values of ε, thus adding one-parametric optimization (over ε) to the optimization contained in Eq. (8). The main result of this Subsection is that this additional degree of freedom in the optimization is unnecessary, thus leading to a simpliﬁcation of Eq. (8).
+Let us ﬁrst show that: the vertex of P s , correspondent to the pseudo-codeword with the lowest weight, is connected by an edge to the vertex correspondent to the zero-codeword . Since the weight-function, w(β β β) from Eq. (11), does not depend on the length of the vector β β β, one considers β β β, as the direction in the respective space pointing from the origin, 0 = (0, · · · , 0), to a point within the polytope P s . It is convenient to parameterize the direction in terms of the projection to the ∑ i β i = 1 plane. Pseudo-codewords correspond to special values of the β β β vector projected to the plane, and to ﬁnd the pseudo-codeword with the minimum weight we will need to minimize the weight, w(β β β) = 1/ ∑ i β 2 i , over the cross-section of the polytope by the plane (projection). One restates the problem as maximization of ∑ i β 2 i , which is also equivalent to ﬁnding β β β maximizing the distance to the central point of the plane within the polytope P s , 1/N = (1, · · · , 1)/N. P s is projected through the origin to the plane, thus forming a polytope too (call it cone polytope)
+  
+  
+(The projection is understood in the standard projective space sense, with a line connecting a point within the polytope with the point of origin, (0, · · · , 0), projecting to the point where the line crosses the plane.) Note that only faces of P s in Eq. (2) with |I| = 1 become faces of the cone polytope, P cone . Further, maximum of ∑ i β 2 i is attained at some vertex of the polytope. By construction this vertex corresponds to an
+edge connecting the point of origin, (0, · · · , 0) with another vertex of the original polytope P s , correspondent to a pseudo- codeword with the lowest weight. All the other vertices of P s , which are not connected to the origin, are projected to interior points of the cone polytope P cone , thus showing a higher value of the weight.
+The choice of the cone cross-section in Eq. (12) is convenient for the purpose of simplifying the optimization problem (8). It guarantees that the ﬁrst term in the objective of Eq. (8) is constant, and thus the term is inessential for the purpose of optimization. In the result, we arrive at the following reduced version of Eq. (8)
+According to the discussion above, solution of Eq. (13) only describes the optimal direction in the noise space, x, and the respective length is reconstructed from the weight relation 4ε 2 ∗ = w(β β β). Thus our ﬁnal expression for the optimal noise (instanton), correspondent to the (optimal) solution of Eq. (13) is, x = β β β(∑ i β i )/(2 ∑ i β 2 i ). The geometrical meaning of the cone construction and of the majorization- minimization procedure is illustrated in Fig. 1.
+Few remarks are in order. First, note that there is some additional freedom in choosing the objective function in the optimization over β β β. For example, one can replace, ∑ i β 2 i , under the sum in Eq. (13) by ∑ i (β i − ∑ j β j /N) 2 , and the resulting optimal β β β stays the same. Second, the majorization- minimization procedure of Eq. (10) for Eq. (8), extends straightforwardly to any appropriate choice of the objective function in the reduced optimization, in particular the choice of Eq. (13), thus resulting in the sequence
+Third, the sequence (14) is monotonic by construction, i.e., the effective distance can only decrease with the iteration number k, thus proving convergence.
+The considerations above suggest the following Majorization-Optimization Algorithm (MOA):
+• Start: Initiate a point β β β (0) inside the cone cross-section P cone with a random deviation from the (1, 1, ..., 1)/N. [The sampling step.]
+• Step 1: Construct a linear function with the gradient vector pointing from (1, 1, ..., 1)/N to β β β (k) , optimize it inside P cone according to Eq. (14), and get the new β β β (k+1) . [The majorization-minimization step.]
+Like PCS of [17], MOA is sensitive to the choice of the initial direction in the β β β space, and this clariﬁes importance of repeating sampling step multiple times. Obviously, an individual sampling event outputs only pseudo-codewords sharing an edge in P s with the zero-codeword, call them “nearest-neighbors”, thus ignoring other pseudo-codewords, for example these which are “next-nearest-neighbors” to the zero codeword, i.e., ones sharing an edge with a pseudo- codeword which shares an edge with the zero-codeword. Even though the effective distance of these “next-nearest- neighbors” may be smaller than the effective distance of some of the “nearest-neighbors”, MOA guarantees that the exact solution of Eq. (13) can only be a “nearest-neighbor”.
+In the remainder of the Section let us brieﬂy compare MOA with PCS. The iterative procedure of PCS is analogous to Eq. (14) and it can be restated as
+Note, that, ∂w(β β β)/∂β β β = (2 ∑ i β i )(∑ i β 2 i ) · h, so clearly, PCS aims to approximate w(β β β), linearly inside the polytope, P s . The function w(β β β) is a homogeneous function of degree 0. MOA takes advantage of this fact and attempts to minimize w (β β β) in the projective space of β β β, indexed by the points of P cone . The value of max in (15) is non-negative, and it is exactly zero at β β β = β β β (k) . If w(β β β) < N, vector ∂w(β β β)/∂β β β points away from the central direction 1, and thus minimization (15) is not going to increase w(β β β), i.e., under this weak condition the PCS is provably monotonic. Also, as β β β · (∂w(β β β)/∂β β β) = 0, PCS, like MOA, always converges to vertices of P s which are the “nearest-neighbors” of the zero-codeword.
+Since PCS works with ∂w(β β β)/∂β β β in standard, not pro- jective way like MOA, it “confuses” w(β β β) for being a homogeneous function of degree 1. Therefore, compared to MOA, PCS has an additional bias away from the cone origin, thus suggesting that its convergence is slower and resulting end-points being further away from the cone origin.
+We tested MOA on the popular example of the Tanner [155, 64, 20] code [21]. The results are shown in Fig. 2. We analyzed effective distance, w, of the pseudo-codewords found in the result of 10 4 trials (different in initial orien- tation). As in the case of the PCS of [17], the probability (frequency), ρ(w), of ﬁnding pseudo-codeword with effective distance smaller than w, grows monotonically with w. Like PCS, MOA result for the smallest effective distance of the code is, w min ≈ 16.4037 < 20, where 20 is the Ham- ming distance of the code. However, we also observe that MOA is sampling the low-weight “nearest-neighbor” pseudo- codewords more efﬁciently than PCS, which is seen in a steeper dependence of ρ(w) as a function of w in Fig. 2. As discussed above, we attribute the better performance of MOA to stronger bias towards the zero codewords convergence, as well as simpler and more homogeneous (in the low weight sector of the pseudo-codewords) initiation procedure.
+The work of MC at LANL was carried out under the auspices of the National Nuclear Security Administration of the U.S. Department of Energy at Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396. MC acknowledges support of NMC via the NSF collaborative grant CCF-0829945 on “Harnessing Statistical Physics for Computing and Communications.” The work of MS is sup- ported by NSF grant DMS-0807592 “Asymptotic Perfor- mance of Error Correcting Codes”.
+[[[ REFS ]]]
+R. G. Gallage
+T. Pres
+--
+Low Density Parity Check Codes
+----
+T. J. Richardson
+R. Urbanke
+--
+The capacity of low-density parity- check codes under message-passing decoding
+----
+T. Richardso
+R. Urbank
+--
+Modern Coding Theory
+----
+T. J. Richardson
+--
+Error ﬂoors of LDPC codes
+----
+M. Stepanov
+V. Chernyak
+M. Chertkov
+B. Vasic
+--
+Diagnosis of weaknesses in modern error correction codes: A physics approach
+----
+N. Wiberg
+--
+Codes and decoding on general graphs
+----
+G. D. Forney
+R. Koetter
+F. R. Kschischang
+A. Reznik
+--
+On the effective weights of pseudocodewords for codes deﬁned on graphs with cycles
+----
+J. Feldman
+M. Wainwright
+D. Karger
+--
+Using linear program- ming to decode binary linear codes
+----
+R. Koetter
+P. O. Vontobel
+--
+Graph covers and iterative decoding of ﬁnite-length codes
+----
+M.-H. Taghavi
+P. Siegel
+--
+Adaptive methods for linear program- ming decoding
+----
+P. O. Vontobel
+R. Koetter
+--
+Towards low-complexity linear- programming decoding
+----
+A. Dimakis
+A. Gohari
+M. Wainwright
+--
+Guessing facets: Poly- tope structure and improved lp decoder
+----
+M. Chertkov
+V. Chernyak
+--
+Loop calculus helps to improve belief propagation and linear programming decodings of low-density- parity-check codes
+----
+M. Chertkov
+--
+Reducing the error ﬂoor
+----
+K. Yang
+X. Wang
+J. Feldman
+--
+Fast ml decoding of spc product code by linear programming decoding
+----
+J. Yedidia
+S. Draper
+Y. Wang
+--
+Multi-stage decoding of ldpc codes
+----
+M. Chertkov
+M. Stepanov
+--
+An efﬁcient pseudocodeword search algorithm for linear programming decoding of ldpc codes
+----
+S. Chilappagari
+M. Chertkov
+M. Stepanov
+B. Vasic
+--
+Instanton- based techniques for analysis and reduction of error ﬂoors of ldpc codes
+----
+S. Chilappagari
+B. Vasic
+M. Stepanov
+M. Chertkov
+--
+Analysis of error ﬂoors of ldpc codes under lp decoding over the bsc
+----
+S. Chilappagari
+M. Chertkov
+B. Vasic
+--
+Worst conﬁgurations (instantons) for compressed sensing over reals: A channel coding approach
+----
+R. M. Tanner
+D. Sridhara
+T. Fuja
+--
+A class of group-structured LDPC codes
+----
+D. R. Hunter
+K. Lange
+--
+A tutorial on mm algorithms
+----
+J. Yedidia
+W. Freeman
+Y. Weiss
+--
+Constructing free-energy approximations and generalized belief propagation algorithms
+----
+M. Yannakakis
+--
+Expressing combinatorial optimization problems by linear programs
+----
+S. Boy
+L. Vandenbergh
+--
+Convex Optimization
+----
+P. O. Vontobel
+R. Koetter
+--
+Graph-cover decoding and ﬁnite-length analysis of message-passing iterative decoding of ldpc codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\150.pdf
+[[[ LINKS ]]]
+

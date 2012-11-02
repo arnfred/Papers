@@ -1,0 +1,123 @@
+[[[ ID ]]]
+117
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Localization from Incomplete Noisy Distance Measurements
+[[[ AUTHORS ]]]
+Adel Javanmard
+Andrea Montanari
+[[[ ABSTR ]]]
+d , using noisy measurements of a subset of pairwise distances. This task has applications in various areas, such as sensor network localizations, NMR spectroscopy of proteins, and molecular conformation. Also, it is closely related to dimensionality reduction problems and manifold learning, where the goal is to learn the underlying global geometry of a data set using measured local (or partial) metric information. Here we propose a reconstruction algorithm based on a semideﬁnite programming approach. For a random geometric graph model and uniformly bounded noise, we provide a precise characterization of the algorithm’s performance: In the noiseless case, we ﬁnd a radius r 0 beyond which the algorithm reconstructs the exact positions (up to rigid transformations). In the presence of noise, we obtain upper and lower bounds on the reconstruction error that match up to a factor that depends only on the dimension d, and the average degree of the nodes in the graph.
+[[[ BODY ]]]
+Consider the random geometric graph model G(n, r) = (V, E) where V is a set of n nodes distributed uniformly at random in the d-dimensional hypercube [−0.5,0.5] d , and E ∈ V ×V is a set of edges that connect the nodes which are close to each other; i.e., (i, j) ∈ E ⇔ d ij = x i − x j ≤ r. For each edge (i, j) ∈ E, ˜ d
+denotes the measured distance between nodes i and j. Denoting by z ij ≡ ˜ d 2 ij − d 2 ij the measurement error, we consider a “worst case model”, in which the errors {z ij } (i,j) ∈E are arbitrary but uniformly bounded |z
+Given the graph G(n, r) and its associated distance mea- surements, ˜ d ij , the localization problem is to reconstruct the positions of the nodes. In this paper, we propose an algorithm for this problem based on semideﬁnite programming and provide a rigorous analysis of its performance.
+Notice that the positions of the nodes can only be deter- mined up to rigid transformations (a combination of rotation, reﬂection and translation) of the nodes, because the inter point distances are invariant to rigid transformations. Therefore, we use the following metric, similar to the one deﬁned in [9], to evaluate the distance between the original position matrix X ∈ R n ×d and the estimation X ∈ R n ×d . Let L = I −(1/n)uu T , where u ∈ R n is the all-ones vector. It is easy to see that LXX T L is invariant under rigid transformations of X. The metric is deﬁned as d(X, X) = 1/n 2 LXX T L −LXX T L 1 . This is a measure of the average reconstruction error per point, when X and X are aligned optimally.
+Remark. Clearly, connectivity of G is a necessary assumption for the localization problem to be solvable. It is a well known
+result that the graph G(n, r) is connected w.h.p if K d r d > (log n+c n )/n, where K d is the volume of the d−dimensional unit ball and c n → ∞ [10]. Viceversa, the graph is with positive probability disconnected if K d r d ≤ (log n + C)/n for some constant C. Hence, we focus on the regime where r = α(log n/n) 1 d for some constant α. We further notice that, under the random geometric graph model, the conﬁguration of the points is almost surely generic, in the sense that the coordinates do not satisfy any nonzero polynomial equation with integer coefﬁcients.
+The following algorithm uses semideﬁnite programming (SDP) to solve the localization problem.
+Algorithm SDP-based Algorithm for Localization Input: dimension d, distance measurements ˜ d ij for (i, j) ∈ E, bound on the measurement noise ∆ Output: estimated coordinates in R d
+1: Solve the following SDP problem: minimize Tr(Q)
+s.t. 	 M ij , Q − ˜ d ij 2 ≤ ∆, (i, j) ∈ E Q 0.
+Here M ij = e ij e T ij ∈ R n ×n , where e ij ∈ R n is the vector with +1 at the i th position, −1 at the j th position and zero everywhere else. Also, A, B ≡ Tr(A T B) . Note that with a slight abuse of notation, the solution of the SDP problem in the ﬁrst step is denoted by Q.
+Let Q 0 := XX T be Gram matrix of the node positions, namely Q 0,ij = x i · x j . A key observation is that Q 0 is a low rank matrix: rank(Q 0 ) ≤ d, and obeys the constraints of the SDP problem. By minimizing Tr(Q) in the ﬁrst step, we promote low-rank solutions Q (since Tr(Q) is the sum of the eigenvalues of Q). Alternatively, this minimization can be interpreted as setting the center of gravity of {x 1 , . . . , x n } to coincide with the origin, thus removing the degeneracy due to translational invariance.
+In step 2, the algorithm computes the eigendecomposition of Q and retains the d largest eigenvalues. This is equivalent to computing the best rank-d approximation of Q in Frobenius norm. The center of gravity of the reconstructed points remains at the origin after this operation.
+Our main result provides a complete characterization of the robustness properties of the SDP-based algorithm. Here and
+Theorem I.1 Let {x 1 , . . . , x n } be n nodes distributed uni- formly at random in the hypercube [−0.5,0.5] d . Further, assume connectivity radius r ≥ α(logn/n) 1 d , with α ≥ 10√d, and K
+the volume of d−dimensional unit ball. Then w.h.p, the error distance between the estimate X returned by the SDP-based algorithm and the correct coordinate matrix X is upper bounded as
+(1) Conversely, w.h.p, there exist adversarial measurement errors
+(2) Here, C 1 and C 2 denote constants that depend only on d.
+A special case of this theorem concerns the case of exact measurements.
+Corollary I.1. Let {x 1 , . . . , x n } be n nodes distributed uni- formly at random in the hypercube [−0.5,0.5] d . If r ≥ 10√d(log n/n) 1 d , and the distance measurements are exact, then w.h.p, the SDP-based algorithm recovers the exact posi- tions (up to rigid transformations).
+The localization problem and its variants have attracted signiﬁcant interest over the past years due to their applications in numerous areas, such as sensor network localization [3], NMR spectroscopy [6], and manifold learning [11], [13].
+Of particular interest to our work are the algorithms pro- posed for the localization problem [9], [12], [3]. In general, few analytical results are known about the performance of these algorithms, particularly in the presence of noise.
+The existing algorithms can be categorized in to two groups. The ﬁrst group consists of algorithms who try ﬁrst to estimate the missing distances and then use MDS to ﬁnd the positions from the reconstructed distance matrix [9], [4]. The algorithms in the second group formulates the localization problem as a non-convex optimization problem and then use different relaxation schemes to solve it. An example of this type is relaxation to an SDP [3], [1]. A crucial assumption in these works is the existence of some anchors among the nodes whose exact positions are known. The SDP is then used to efﬁciently check whether the graph is uniquely d-localizable and to ﬁnd its unique realization.
+This section is a very brief overview of deﬁnitions and results in rigidity theory which will be useful in this paper. We refer the interested reader to [7], [2], for a thorough discussion.
+A framework G X is an undirected graph G = (V, E) along with a conﬁguration X ∈ R n ×d whose i th row x T i ∈ R d is the position of node i in the graph. The edges of G correspond to the distance constraints.
+Rigidity matrix. Consider a motion of the framework with x i (t) being the position vector of point i at time t. Any smooth motion that instantaneously preserves the distance d ij must satisfy d dt x i − x j 2 = 0 for all edges (i, j). Equivalently,
+(x i − x j ) T ( ˙x i − ˙x j ) = 0 ∀(i,j) ∈ E, 	 (3) where ˙x i is the velocity of the i th point. Given a framework G X ∈ R d , a solution ˙ X = [ ˙x T 1 ˙x T 2 ··· ˙x T n ] T , with ˙x i ∈ R d , for the linear system of equations (3) is called an inﬁnitesimal motion of the framework G X . This linear system of equations consists of |E| equations in dn unknowns and can be written in the matrix form R
+(X) ˙ X = 0 , where R G (X) is called the |E| × dn rigidity matrix. It can be seen that for every skew symmetric matrix
+A ∈ R d ×d and for every vector b ∈ R d , ˙x i = Ax i + b is an inﬁnitesimal motion. Notice that these motions span a d(d + 1)/2 dimensional space, accounting d(d −1)/2 degrees of freedom for orthogonal transformations, A, and d degrees of freedom for translations, b. Hence, dim Ker(R G (X)) ≥ d(d + 1)/2 . A framework is said to be inﬁnitesimally rigid if dim Ker(R G (X)) = d(d + 1)/2.
+Stress matrix. A stress for a framework G X is an assignment of scalars ω ij to the edges such that for each i ∈ V ,
+ω ij x j = 0. A stress vector can be rearranged into an n × n symmetric matrix Ω , known as the stress matrix, such that for i = j, the (i, j) entry of Ω is Ω ij = −ω ij , and the diagonal entries for (i, i) are Ω ii = j:j=i ω ij . Since all the coordinate vectors of the conﬁguration as well as the all-ones vector are in the null space of Ω, the rank of the stress matrix for generic conﬁgurations is at most n − d − 1. B. Notations
+v 1 , ··· ,v n to represent the subspace spanned by vectors v i , 1 ≤ i ≤ n. The orthogonal projections onto subspaces V and V ⊥ are respectively denoted by P
+and P ⊥ V . Throughout this paper, u ∈ R n is the all-ones vector and C is a constant depending only on the dimension d, whose value may change from case to case.
+Given a matrix A, we denote its operator norm by A 2 , its Frobenius norm by A F , its 1 -norm by A 1 and its nuclear norm by A ∗ . (the latter is simply the sum of the singular values of A). We also use σ max (A) and σ min (A) to respectively denote the maximum and the minimum nonzero singular values of A.
+Finally, we denote by x (i) ∈ R n , i ∈ {1,...,d} the i th column of the positions matrix X. In other words x (i) is the vector containing the i th coordinate of points x 1 , . . . , x n .
+Throughout the proof we shall adopt the convention of using the notations X, {x j } j ∈[n] , and {x (i) } i ∈[d] to denote the centered positions. In other words X = LX where the rows of X are i.i.d. uniform in [−0.5,0.5] d .
+Let V = u, x (1) , ··· ,x (d) and for any S ∈ R n ×n , deﬁne ˜ S = P V SP V + P V SP ⊥ V + P ⊥ V SP V , S ⊥ = P ⊥ V SP ⊥ V .
+Thus S = ˜ S + S ⊥ . Also, denote by R the difference between the optimum solution Q and the actual Gram matrix Q 0 , i.e., R = Q − Q 0 . The proof of Theorem I.1 is based on the following key lemmas that bound R ⊥ and ˜ R separately.
+Lemma III.1. There exists a numerical constant C = C(d), such that, w.h.p,
+R ⊥ ∗ ≤ C n r 4 (nr d ) 5 ∆ . 	 (4) Lemma III.2. There exists a numerical constant C = C(d), such that, w.h.p,
+(nr d ) 5 ∆. 	 (5) We defer the proof of lemmas III.1 and III.2 to the next section.
+Proof (Theorem I.1): Let Q = n i=1 σ i u i u T i , where u i = 1, u T i u j = 0 for i = j and σ 1 ≥ σ 2 ≥ ··· ≥ 0.
+In the second step of algorithm, Q is projected onto subspace u 1 , ··· ,u d . Denote the result by P d (Q). As pointed out
+before, P d (Q)u = 0 and Q 0 u = 0 . This implies that P d (Q) = LP d (Q)L and Q 0 = LQ 0 L . By triangle inequality,
+Observe that, ˜ Q = Q 0 + ˜ R and Q ⊥ = R ⊥ . Since P d (Q) − ˜Q has rank at most 3d, it follows that P d (Q) − ˜Q 1 ≤ n P d (Q) − ˜Q F ≤ √3dn P d (Q) − ˜Q 2 (for any matrix A,
+A F ≤ rank(A) A 2 ). By triangle inequality, we have P d (Q) − ˜Q 2 ≤ P d (Q) − Q 2 + Q − ˜Q
+Note that P d (Q) − Q 2 = σ d+1 . Recall the variational principle for the eigenvalues.
+Taking H = x (1) , ··· ,x (d) ⊥ , for any y ∈ H, y T Qy = y T P ⊥ V QP ⊥ V y = y T Q ⊥ y = y T R ⊥ y , where we used the fact Qu = 0 in the ﬁrst equality (recall that Qu = 0 because Q minimizes Tr(Q)). Therefore, σ d+1 ≤ max y =1 y T R ⊥ y =
+R ⊥ 2 It follows from Eqs. (6) and (7) that LP d (Q)L − LQ 0 L 1 ≤ 2
+which proves the thesis. For proof of the converse part, we refer to a journal version of this paper [8].
+In this section we provide the proofs of lemmas III.1 and III.2. Due to space limitations, we will omit the proofs of several technical steps, and defer them to [8].
+The proof is based on the following three steps: (i) Con- struct a stress matrix Ω of rank n − d − 1 for the framework; (ii) Upper bound R ⊥ ∗ in terms of σ
+(Ω) and σ max (Ω); (iii) Bound the quantities σ min (Ω) and σ max (Ω).
+form a clique in G). In addition, let S i = {C i } ∪ {C i \k} k ∈C i . Therefore, S i is a set of |C i | + 1 number of cliques. For the graph G, we deﬁne cliq(G) := S
+. Our ﬁrst lemma establishes a simple property of cliq(G). Its proof is immediate and deferred to [8]. Proposition IV.1. If r = 4c√d(log n/n) 1/d with c > 1, the following is true w.h.p. For any two nodes i and j, such that
+A crucial role in the proof is played by the stress matrix of G X . A special construction of such a matrix is obtained as follows
+The proof of the next statement is again immediate and omitted from this version of the paper.
+Proposition IV.2. The matrix Ω deﬁned above is a positive semideﬁnite (PSD) stress matrix of rank n − d − 1 for the framework G
+Proposition IV.3. Let Ω be an arbitrary PSD stress matrix for the framework such that rank(Ω) = n − d − 1. Then,
+Proof: Note that R ⊥ = Q ⊥ = P ⊥ V QP ⊥ V 0. Write R ⊥ = n −d−1 i=1 λ i u i u T i , where u i = 1, u T i u j = 0 for i = j and λ 1 ≥ λ 2 ≥ ···λ n −d−1 ≥ 0. Therefore,
+Here, we used the fact that u i ∈ V ⊥ = Ker ⊥ (Ω). Note that σ min (Ω) > 0, since Ω 0.
+Now, we need to upper bound the quantity Ω, R ⊥ . Any stress matrix Ω = [ω ij ] can be written as Ω =
+≤ 2ω max |E|∆, 	 (10) where (a) follows from the fact that ΩX = 0. Since Ω 0, ω 2 ij ≤ ω ii ω jj = (e T i Ωe i )(e T j Ωe j ) ≤ σ 2 max (Ω), for 1 ≤ i,j ≤
+n . Hence, ω max ≤ σ max (Ω). Combining Eqs. (9) and (10), we get the desired result.
+Claim IV.1. There exists a constant C = C(d), such that, w.h.p,
+σ max (Ω) ≤ C(nr d ) 2 . Proof: For any vector v ∈ R n ,
+|C i |)v 2 j ≤ (Cnr d v ) 2 . The last inequality follows from the fact that, w.h.p, |C j | ≤ Cnr d for all j and some constant C.
+We now pass to lower bounding the smallest non-zero singular value of Ω, σ min (Ω). To prove such an estimate, recall that the Laplacian L of the graph G is the symmetric matrix indexed by the vertices V , such that L
+=degree(i) and L ij = 0 otherwise. It is useful to recall a basic estimate on the Laplacian of random geometric graphs. Remark IV.1. Let L sym denote the normalized Laplacian of the random geometric graph G(n, r), deﬁned as L sym =
+D −1/2 LD −1/2 , where D is the diagonal matrix with degrees of the nodes on diagonal. Then, w.h.p, λ 2 (L sym ), the sec- ond smallest eigenvalue of L sym , is at least Cr 2 . Therefore, λ
+Construct the graph G ∗ as follows. For every element in cliq(G) , there is a corresponding vertex in G ∗ . Also, for any two nodes i and j, such that x i − x j ≤ r/2, every vertex corresponding to an element in S i is connected to every vertex corresponding to an element in S j . The next claim establishes some properties of the graph G ∗ . Its proof is given in [8].
+(i) The degree of the nodes are bounded by C(nr d ) 2 , w.h.p, for some constant C = C(d).
+Proposition IV.4. There exists a constant C = C(d), such that w.h.p, Ω C(nr d ) −3 r 2 L on the space V ⊥ .
+Proof: Due to space limitations, we present the proof for the case d = 1. The general argument proceeds along the same lines, and we defer it to [8].
+Here, ˜x Q i ∩Q j = P ⊥ u Qi∩Qj · x C i ∩C j . The value of γ i,j does not matter to our argument; however it can be given explicitly.
+Claim IV.3. There exists a constant C = C(d), such that, w.h.p,
+We omit the proof of this claim due to space constraint. The argument is closely related to the Markov chain comparison technique [5].
+Using Claim IV.3, v T Lv ≤ Q i ∈cliq(G) C(β 2 i ˜x Q i 2 + w (i) 2 ). Hence, we only need to show
+Since the degree of each node in G ∗ is bound by C(nr d ) 2 , we have
+Applying Chernoff bounds, there exists constants C 1 and C 2 , such that, w.h.p, ˜x Q i ∩Q j 2 ≥ C 1 (nr d )r 2 and ˜x Q i 2 ≤ C 2 (nr d )r 2 for all i and j. Thus, in order to prove (12), we need to show (i,j) ∈E (β j − β i ) 2 ≥ C(nr d ) −1 r 2 n i=1 β 2 i .
+Deﬁne β = (β i ) i ∈V (G ∗ ) . Observe that (i,j) ∈E (β j −β i ) 2 = β T L ∗ β ≥ σ min (L ∗ ) P ⊥ u β 2 . Since v ⊥ x, it can be shown that P ⊥ u β 2 ≥ C(nr d ) −3 β 2 (we omit the details). The proof is completed by using Claim IV.2 (part(ii)).
+We are ﬁnally in position to prove Lemma III.1. As a direct consequence of Proposition IV.4 and Remark IV.1, σ min (Ω) ≥ C(nr d ) −2 r 4 . Using the bounds on σ min (Ω) and σ max (Ω) in Proposition IV.3 implies the thesis.
+The following proposition is a key ingredient in the proof. Its proof is deferred to the next subsection.
+Proposition IV.5. There exists a constant C = C(d), such that, w.h.p,
+The next statement provides an upper bound on ˜ R 1 . We defer its proof to [8].
+Proposition IV.6. There exists a constant C = C(d), such that, w.h.p,
+(S) = [ M ij , S ] (i,j) ∈E . By our assumptions, | M ij , ˜ R + M ij , R ⊥ | = | M ij , Q − M ij , Q 0 |
+≤ 2∆. Therefore, A G ( ˜ R) 1 ≤ 2|E|∆ + A G (R ⊥ ) 1 . Write the Laplacian matrix L as L =
+M ij , R ⊥ = A G (R ⊥ ) 1 . Here, we used the fact that M ij , R ⊥ ≥ 0, since M ij 0 and R ⊥ 0. Hence,
+C(nr d ) 3 r −2 Ω, R ⊥ ≤ C(nr d ) 6 n/r 2 ∆, whence we obtain A G ( ˜ R) 1 ≤ C(nr d ) 6 n/r 2 ∆. The last step is to write A
+( ˜ R) 1 more explicitly. Notice that, A G ( ˜ R) 1 = (l,k) ∈E | M lk , XY T + Y X T + ua T + au T | = 2
+| x l − x k , y l − y k |. The result follows as a direct consequence of proposi- tions IV.5 and IV.6.
+We will focus here on the case d = 2. The general argument proceeds along the same lines and is deferred to [8].
+Deﬁnition 1. A chain G ij is a sequence of subgraphs H 1 , H 2 , ··· ,H k along with the vertices i and j, such that, each H p is isomorphic to K 4 and each two successive H p share one side. Further, i (resp. j) is connected to the two vertices in V (H 1 ) \ V (H 2 ) (resp. V (H k ) \ V (H k −1 )).
+Proposition IV.7. For any two nodes i and j in our random geometric graph G, there exists a chain G ij ⊆ G.
+Proposition IV.8. For any two nodes i and j, there exists a constant C = C(d), such that,
+| x l − x k , y l − y k |. Proof: Assume that |V (G ij )| = m + 1 . Relabel the vertices in the chain such that the nodes i and j have labels 0
+and m respectively. Since both sides of the desired inequality are invariant to translations, without loss of generality we assume that x 0 = y 0 = 0. For a ﬁxed vector y m consider the following optimization problem.
+| x l − x k , y l − y k |. To each edge (l, k) ∈ E(G ij ), assign a number λ lk . For any assignment with max |λ
+where ∂l denotes the set of adjacent vertices to l in G ij . The numbers λ lk that maximize the right hand side should satisfy k ∈∂l λ lk (x l − x k ) = 0, ∀l = 0,m. Thus, Θ ≥
+y m , k ∈∂m λ mk (x m − x k ) . The result follows due to the following Claim whose proof is deferred to [8].
+Claim IV.4. There exist numbers λ lk that satisfy the following three conditions
+Proposition IV.9. Let γ = (G ij ) 1 ≤i=j≤n denote a collection of chains for all n 2 node pairs. Let Γ be the collection of all possible γ. There exists a probability distribution on Γ, such that the maximum expected number of chains that contain any particular edge, is upper bounded by Cr −d−1 , for some constant C.
+Acknowledgment. A. Javanmard is supported by Caroline and Fabian Pease Stanford Graduate Fellowship. This work was partially supported by the NSF CAREER award CCF- 0743978, the NSF grant DMS-0806211, and the AFOSR grant FA9550-10-1-0360. R
+[[[ REFS ]]]
+
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\117.pdf
+[[[ LINKS ]]]
+

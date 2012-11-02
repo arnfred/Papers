@@ -1,0 +1,145 @@
+[[[ ID ]]]
+3
+[[[ INDEX ]]]
+2
+[[[ TITLE ]]]
+Improving the MAC Error Exponent Using Distributed Structure
+[[[ AUTHORS ]]]
+Eli Haim
+Yuval Kochman
+Uri Erez ∗
+[[[ ABSTR ]]]
+Abstract—Structured codes have been utilized in deriving the best known achievable rate regions in certain network scenarios. In this paper we demonstrate that structure can be also beneﬁcial in terms of error exponents even in cases where there is no capacity gain. We use distributed structure, i.e., different users use codes which satisfy a nesting condition. Speciﬁcally, for the scalar Gaussian multiple-access channel we obtain an improvement over the best known achievable exponent, given by Gallager, for certain rate pairs.
+[[[ BODY ]]]
+Structured codes have been known to achieve better rates than random ones in some distributed scenarios. This was ﬁrst discovered by K¨orner and Marton [1], and was extended in recent works, see e.g. [2], [3]. This work sheds new light on the role of structure: even in the case of a Gaussian multiple- access (MAC) channel, where structure is not required in order to achieve the capacity region, the analysis suggests that it is needed in order to improve the error probability, asymptotically measured by the error exponent.
+The error exponent of the additive white Gaussian noise (AWGN) channel was introduced by Shannon, who showed that above the critical rate the exponent is given by the random-coding exponent , i.e., it is achieved by random codes uniformly distributed over the surface of a sphere. Gallager [4] extended this result to general input-constrained channels. Below the critical rate, the random-coding error exponent lower-bounds the error exponent. In an even lower rate region, the error exponent can be improved by using expurgation.
+In order to ﬁnd codes with good error exponent for the Gaussian MAC channel, Gallager [5] derived the error expo- nent of the ensemble of codes where the codebook of each user is uniformly distributed over a spherical shell, similar to the single-user case. Clearly, the sum of such two codebooks does not result in a spherical-shell one. Thus, Gallager’s exponent reﬂects a loss with respect to the single-user case.
+In this work we improve the exponent by considering codebooks that are jointly structured (nested) in a way that their sum, seen as a single-user codebook, has good properties. Speciﬁcally, without structure, standard expurgation, i.e., sim- ply eliminating pairs of codewords, is not possible since the codebooks must be independent. In the distributed structure
+approach introduced in this work, the sum-codebook inher- ently gains the expurgation since it uses lattices. We compare the error exponent of this approach with the spherical-shells code [5], and show that in a certain rate-pair region, it results in a strictly larger error exponent.
+It is worth noting that in a related recent work, Nazari et al. [6] give lower bounds on the error exponents of discrete memoryless MAC channels. In particular, they use expurgation in only one of the codebooks, and show that it is strictly larger than previous known bounds.
+Let us ﬁrst recall some results for a single-user AWGN channel. Consider the following single-user AWGN channel:
+where X is the input to the channel and is subject to the power constraint:
+1 n
+where n is the codeword length. Z ∼ N(0,N) is additive noise, statistically independent of X. The capacity of this channel is given by C(A) = 1 / 2 log(1 + A), where A = P / N is the signal to noise ratio (SNR). The error-exponent of this channel is deﬁned as
+where P n ( E) is the minimal possible error-probability of codes with length n, and R is the rate.
+The best known achievable error exponent of this channel, denoted by E (SU) (R, A), is given as follows: the expurgated error exponent E (SU) ex (R, A) at the expurgation region, and the random-coding error exponent E (SU) r (R, A) at the rest of the region (see [4, Section 7]). The expurgated exponent is larger than the random-coding exponent below some rate R ex (A) (the expurgation region). Above the critical rate R cr (A), the random-coding exponent is known to be optimal.
+where ρ 2 = (1 + A) exp {−2R}. The boundaries ρ 2 = 1, ρ 2 = 2 and ρ 2 = 4 correspond to C(A), R cr (A) and R ex (A), respectively.
+where X 1 , X 2 are the inputs to the channel, and are subject to power constraints as in (2) with powers P 1 and P 2 respectively. The additive noise Z ∼ N(0,N) is independent of the pair (X 1 , X 2 ). Without loss of generality, let P 1 ≥ P 2 .
+We denote the SNRs by A i = P i /N (i = 1, 2). Denote the codebook of user i by C i , and its rate by R i = 1 / n log |C i |.
+The error event E is deﬁned as the event that at least one of the messages from the message pair is decoded in error. The error exponent of the MAC channel is deﬁned as
+where P n ( E) is the minimal possible error probability for codes of length n, when the rate-pair is (R 1 , R 2 ).
+The best known achievable error-exponent of this channel is given by Gallager [5], using spherical shell codebooks. We denote this error exponent by E (G) r (R 1 , R 2 , A 1 , A 2 ). It is given by the minimum between three exponents: two of the exponents, E (G) r1 (R 1 , A 1 ) and E (G) r2 (R 2 , A 2 ) are the single-user random-coding error exponents. The third one, E (G) r3 (R 1 + R 2 , A 1 , A 2 ) reﬂects the exponent of the probability that both codewords are decoded in error. Obviously, the exponent is upper-bounded by any of these three. In the sequel, we upper bound the exponent by E (G) r , given by [5]:
+where R = R 1 + R 2 , and the right-hand expression of (7) is optimized over ρ ∈ [0,1] and over r i for:
+Deﬁnition 1 (Associated single user channel): For a given MAC channel (5), we denote its associated single-user channel by the single-user channel (1)-(2) with P = P 1 + P 2 .
+Any codebook pair ( C 1 , C 2 ) for the MAC channel can be used to construct a corresponding codebook for its associated
+single-user channel, by the Minkowski sum codebook C = C 1 + C 2 . However, not every single-user codebook C can be decoupled in such a manner.
+Therefore, for any given ensemble of codebook-pairs for the MAC channel, a corresponding codebook ensemble can be constructed for its associated single-user channel, both having the same error exponent.
+Thus, the error-exponent of the associated single-user chan- nel upper-bounds the error exponent of the MAC channel:
+The exponent E (G) r (R 1 , R 2 , A 1 , A 2 ) is strictly smaller than the single-user exponent. Moreover, it is strictly smaller than the random coding error exponent.
+In this work, we construct an ensemble of codebook pairs for the MAC channel, such that the corresponding ensemble for the associated single-user channel has a “good” error expo- nent. For a certain range of rate-pairs and SNRs, the ensemble achieves a better error exponent than the error exponent of the spherical-shells ensemble E (G) r (R 1 , R 2 , A 1 , A 2 ). The exponent E (SU) (R 1 + R 2 , A 1 + A 2 ) is used as a benchmark for the error exponent which we obtain. Above the critical rate it is an upper-bound.
+In this section we present the basic idea of distributed structure by a one-dimensional example, and demonstrate how it can result in improved error probability. Suppose that the users transmit using pulse-amplitude modulation (PAM) constellations, where the constellation of the second user has support that is smaller than the distance between any two points of the ﬁrst. Moreover, their Minkowski sum should have a constant distance between every two adjacent points. Specif- ically, C 1 = {±1,±3,...,±(2L 1 − 1)} (where L 1 ∈ N), and C 2 = {0,±2/(2L 2 +1), ±4/(2L 2 +1), . . . , ±2L 2 )/(2L 2 +1) }, where L
+2 ∈ N. The transformation c = c 1 + c 2 where c 1 ∈ C 1 , c 2 ∈ C 2 is bijective, i.e., the codeword pair can be resolved from their sum without ambiguity (see Figure 1). Thus, from the point of view of the receiver, the sum- constellation may have resulted from the transmission of a single user. Indeed, it is a PAM constellation with |C 1 | · |C 2 | points, where the distance between its points is equal to that of C 2 . The error probability can be calculated directly from here.
+Note that if the constellations were designed independently, e.g. by using PAM constellations with distances that do not result in a PAM constellation, some points would have been closer, resulting in higher error probability. In the high- dimensional case we strive to preserve this distance uniformity behavior. We will thus require that the decoding (Voronoi) region of the corresponding single-user codebook, as seen by the receiver, remains the same as the Voronoi region of C 2 .
+Extending this example to higher dimensions will preserve this distance property, but will result in a shaping loss. Therefore, in addition to the distance properties between the codebook points, we want the corresponding codebook of the associated single-channel to have “good” shaping.
+This section presents mathematical background which is required for the code construction and its error-probability analysis. For a more thorough treatment of lattices, the reader may refer to [8] and the references therein.
+A lattice Λ is a discrete subgroup of the Euclidean space R n with the ordinary vector addition operation. A coset of Λ is any translate of it, i.e., x + Λ, where x ∈ R n .
+The fundamental Voronoi region of Λ, denoted by V, is a set of minimum Euclidean norm coset-representatives of Λ. Every x ∈ R n can be uniquely expressed as x = λ + r, where λ ∈ Λ,r ∈ V. The nearest-neighbor quantizer of a point x ∈ R n is deﬁned by:
+We deﬁne two notions of “good” lattices. Let r cov Λ denote the covering radius of Λ, i.e., the radius of the smallest ball containing the Voronoi region V. Let r effec Λ denote the effective radius of the Voronoi region, i.e., the radius of a sphere having the same volume as V. We say that a sequence of lattices Λ (n) ∈ R n , n = 1, 2, . . . , is good for covering if lim inf n→∞ r cov Λ (n) /r effec Λ (n) = 1, for example Rogers-good lattices. Choosing a sequence of Rogers-good lattices with r cov Λ (n) = √nP results in r effec Λ (n) = n(P − ε n ), where ε n −→ n→∞ 0 + . This implies that V ⊂ B n
+dimensional sphere with radius r. Thus 1 / n n i=1 x 2 i ≤ P for any point in x ∈ V.
+A sequence of lattices Λ (n) ∈ R n , n = 1, 2, . . . , is said to be Poltyrev-good if for an n-dimensional vector Z with i.i.d. Gaussian entries with zero mean and power N :
+where V (n) is the Voronoi region of Λ (n) , and ρ Λ (n) is the Voronoi-to-noise ratio:
+The Poltyrev exponent E P (ρ) was deﬁned in (4), and o n (1) → 0 as n → ∞.
+Here we recall nested-lattice codes for a single-user AWGN channel. The construction of codes for the MAC channel is described in Section V.
+We say that a coarse lattice Λ 0 is nested in a ﬁne lattice Λ 1 if Λ 0 ⊆ Λ 1 , i.e., Λ 0 is a sublattice of Λ 1 . We denote their fundamental Voronoi regions by V 0 and V 1 respectively, and the volumes of the Voronoi regions by V 0 and V 1 respectively.
+A shift of Λ 0 by a point of Λ 1 is called a coset of Λ 0 relative to Λ 1 . For every such coset, there is a single point with minimal norm, which is called the coset leader. A nested-lattice code is the intersection of a ﬁne lattice Λ 1 with the fundamental Voronoi region of a sublattice Λ 0 , i.e., C = {Λ 1 ∩ V 0 }. This is equal to the coset leaders of Λ 0 relative to Λ
+1 . Thus, the number of codewords is equal to V 0 /V 1 . We call (V 0 /V 1 ) 1/n the nesting ratio of the lattices. The code rate is thus equal to the logarithm of the nesting ratio: R = 1 / n log(V 0 /V 1 ).
+In this section we describe a code construction for the MAC channel, which is based on distributed structure. It consists of two codebooks, where each is a subset of a lattice, and their Minkowski sum forms a subset of the ﬁne lattice. It has the property that every pair of codewords results in a different point of the ﬁne lattice. In addition, the ﬁne lattice is a good lattice for associated single-user channel. Hence, inherently from the code, the decoding is done jointly for the two users.
+While the code presented here is sub-optimal in terms of the capacity region, for certain rate-pairs it improves on the best known error exponent in [5].
+Recall that P 1 ≥ P 2 . For clarity of derivation, we also assume that P 2 ≥ N. We ignore other case, i.e. P 2 < N , since this results in R 2 = 0 for the proposed construction. That is, this is a degenerate case (under the code presented here), since it forms a single-user channel, as only the ﬁrst user transmits.
+The codebook generation uses a triplet of nested lattices: Λ (n) 0 ⊆ Λ (n) 1 ⊆ Λ (n) 2 , where the covering radii are given by:
+where ˜ N ∈ [N,P 2 ], and V (n) i is the fundamental Voronoi region of Λ (n) i . Each lattice is both Rogers-good and Poltyrev- good. 1 The existence of such good nested lattices for any choice of nesting ratios is shown in [9]. Denote the volume of V (n) i by V (n) i . Since the lattices are Rogers-good, we have:
+V (n) 0 = [2πe(P 1 − ε 1,n )] n/2 , V (n) 1 = [2πe(P 2 − ε 2,n )] n/2 , where ε i,n → 0 + as n → ∞. See Figure 2 for an illustration of the nested lattices.
+The codebook of the second user is given by the coset- leaders of Λ (n) 2 relative to Λ (n) 1 : C (n) 2 = {Λ (n) 2 ∩ V (n) 1 }. The rate of the second user is given by the nesting ratio:
+where α = (log ˜ A 2 )/(log A 2 ) ∈ [0,1], and ˜ A 2 = P 2 / ˜ N . The codebook of the ﬁrst user is constructed by the coset-leaders
+of Λ 1 relative to Λ 0 : C (n) 1 = {Λ (n) 1 ∩ V (n) 0 }. The rate of the ﬁrst user results from the nesting ratio:
+Since Λ (n) 1 and Λ (n) 2 are Rogers-good lattices, as explained in Section IV-A, it follows that C (n) 1 and C (n) 2 satisfy the power constraints P 1 and P 2 respectively. Notice that the Minkowski sum of the two codebooks is a subset of the ﬁne lattice Λ (n) 2 .
+The maximal sum rate achieved by this construction is 1 / 2 log A 1 . This reﬂects a loss in compare with the maximal sum rate of the channel, which is 1 / 2 log(1 + A 1 + A 2 ).
+In the following analysis we make some rather restrictive choices in the encoding-decoding process we consider. Some choices are necessary, while others simplify the derivation. Even with these choices, we improve the best known achiev- able exponent. In Section VII we present an assumption under which the best known achievable single-user exponent may be achieved (and above the critical rate it is optimal).
+We analyze the error probability of the code by averaging over an ensemble of codes, which is described in [9]. This ensemble builds on Construction A [10].
+The Minkowski sum of the codebook pair, which is a subset of the ﬁne lattice Λ (n) 2 , can be interpreted as the corresponding codebook of the associated single-user channel. Thus, we can use a lattice decoder for joint decoding of the message pair. A lattice decoder is simply a lattice quantizer (10). The error- exponent of this ensemble when using lattice decoder is given by the Poltyrev exponent (4) with ρ given by (12) (see [11]):
+We conclude that the error exponent of the code is lower- bounded by:
+Note that the exponent is positive whenever A 2 > 1 (as we assumed).
+In this section we show that the sub-optimal encoding- decoding scheme above outperforms the spherical-shells ex- ponent for some rate pairs.
+For given A 1 , A 2 and R 1 , Figure 3 compares the spherical- shells error-exponent E (G) r3 (7) with the distributed-structure error exponent (15). We can see that below a certain rate R 2 , distributed structure has a strictly larger error exponent than the spherical-shells one. These exponents are also compared with E (SU) (R 1 + R 2 , A 1 + A 2 ), which is used here as a benchmark. Figure 3(a) shows a high SNR case, where the second user has half of the power of the ﬁrst user. The error exponent of the distributed structure code is strictly larger than the one of the spherical-shells codebooks in part of the rate region. Figure 3(b) shows a high SNR case, where the second user is much weaker than the ﬁrst one; therefore it is almost a single user case. Figure 3(c) shows a low SNR case, where the second user looses since it is not equal to the single- user capacity C( ˜ A 2 ). Figure 3(d) shows a case, where the second user is much weaker than the ﬁrst one, and therefore the ﬁrst user looses rate since it is not equal to the single- user capacity C(A 1 ). In the last two cases, the error exponent of the distributed structure code is lower than the one of the spherical-shells code.
+If one is not satisﬁed with the numerical optimization of E (G) r3 (7), an analytical comparison can be carried out by using the following symmetric-powers upper-bound:
+This bound has an explicit expression given in [5, Section II- C, Equation (2.48)-(2.55)]. The distributed structure exponent is even higher than this bound, for some rate pairs.
+While for general (i.e., non-structured) inﬁnite constella- tions, Poltyrev’s exponent (4) in the range of squared Voronoi- to-noise ratio larger than 4 is achieved by expurgation, for (in- ﬁnite) lattices it is inherently achieved by the ensemble, since all codewords have the same error probability [7]. We note that the distributed structure code is superior to the spherical- shells in (part of) the expurgation region of Poltyrev’s exponent ( ρ 2 ≥ 4). This may imply that the “inherent expurgation” of lattices contributes to some of the gain of this code over the spherical-shells one.
+In this section we outline a direction that may allow to establish that a distributed structure approach can be optimal; More speciﬁcally, in order to achieve the single-user error exponent, provided (an assumption that we do not know to
+be true) that a nested-lattice construction with perfect tiling exists. To establish optimality, the following lemma may be of use. We omit the proof in this version.
+Lemma 1: For a single-user AWGN channel, a uniformly random codebook over the fundamental Voronoi region of a Rogers-good lattice achieves the random coding error expo- nent.
+This ensemble is different than Gallager’s one [4, Chapter 7], since here the codewords are distributed uniformly over the entire sphere, and not only over a shell of the sphere.
+It can further be shown that by replacing the uniformly random code with a good ensemble of lattices, E (SU) is achieved. Thus, a nested-lattice codebook can achieve E (SU) .
+In order to achieve a good single-user nested-lattice in a distributive manner, we require a Rogers-good and Poltyrev- good nested triple, such that it satisﬁes perfect tiling: the Voronoi region of each lattice tiles the Voronoi region of the coarser lattice, similar to the one-dimensional example in Section III. If this may be achieved, one obtains a an optimal lattice code, achieving the single-user error exponent E (SU) . Even if perfect tiling is not possible, we expect that the results can be signiﬁcantly improved. Furthermore, in conjunction with rate splitting one can generalize the scheme to achieve any rate-pair in the capacity region.
+[[[ REFS ]]]
+J. K ¨orner
+K. Marton
+--
+How to encode the modulo-two sum of binary sources
+----
+D. Krithivasan
+S. Pradhan
+--
+Lattices for distributed source coding: Jointly gaussian sources and reconstruction of a linear function
+----
+M. P. Wilson
+K. R. Narayanan
+H. D. Pﬁster
+A. Sprintson
+--
+Joint physical layer coding and network coding for bidirectional relaying
+----
+R. G. Gallage
+--
+Information Theory and Reliable Communication
+----
+
+--
+A perspective on multiaccess channels
+----
+A. Nazari
+A. Anastasopoulos
+S. S. Pradhan
+--
+Error exponent for multiple-access channels:lower bounds
+----
+G. Poltyrev
+--
+On coding without restrictions for the AWGN channel
+----
+R. Zamir
+--
+Lattices are everywhere
+----
+D. Krithivasan
+S. S. Pradhan
+--
+A proof of the existence of good nested lattices
+----
+H.-A. Loeliger
+--
+Averaging bounds for lattices and linear codes
+----
+U. Erez
+S. Litsyn
+R. Zamir
+--
+Lattices which are good for (almost) everything
+[[[ META ]]]
+xmlpapertitle -> Improving the MAC Error Exponent Using Distributed Structure
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\003.pdf
+xmlauthors -> Eli Haim, Yuval Kochman, Uri Erez ∗
+xmlroom -> -
+[[[ LINKS ]]]
+

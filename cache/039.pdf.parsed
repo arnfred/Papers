@@ -1,0 +1,144 @@
+[[[ ID ]]]
+39
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Information Theoretic Analysis of Side Channel Information Leakage in FCFS Schedulers
+[[[ AUTHORS ]]]
+Xun Gong †∗
+Negar Kiyavash ‡∗
+Parv Venkitasubramaniam §
+[[[ ABSTR ]]]
+Abstract—The information leakage of a queuing side channel in two-user-shared scheduling system is studied from an information theoretic perspective. In the queueing side channel, a malicious attacker can learn the pattern of jobs from a legitimate user using the queuing delays experienced at the shared buffer. An analytical framework is proposed to quantify information leakage using Shannon’s equivocation, and the information leakage of the standard First-come-First-serve scheduler is studied in a slotted system with geometric arrivals. The analysis of the FCFS scheduler demonstrates that the policy provides “good privacy” when arrival rates are very low; the leaked information increases with the rate of the attacker’s jobs and approaches the maximum retrievable information as the sum-rate of arrivals approaches the boundary of the stability region of the queue.
+[[[ BODY ]]]
+Information leakage exists in systems with shared resources because covert channels and side channels can be created. In a covert channel, one user can send secret information to another by manipulating its own usage of the shared resource, e.g., injecting timing patterns [1], [2]. On the other hand, in a side channel, one user can possibly learn the information pertaining to another user from that user’s usage of the common resource. For example, in a multi-user router system, an attacker can create a queuing side channel to infer the user’s trafﬁc pattern by probing the queue lengths inside the router’s buffer with ICMP [3] requests [4]. To quantify the privacy of the users in systems with shared resources, analysis of information leakage through side channels are required. Speciﬁcally, we are inter- ested in security breaches which utilize timing information. In the literature, current work mainly focuses on covert timing channels [5], [6], [7], [8] and very little work is done on quantifying the leakage in timing side channels.
+In this work, we investigate the achievable privacy in standard queuing side channels. Speciﬁcally, we develop an analytical framework to quantify the information leakage in a packet scheduling system, where a legitimate user and a malicious attacker share the same buffer. In the attack scenario we consider, the attacker samples the queue length in the buffer with a sequence of probe packets and tries to estimate the number of arrivals from the user between two consecutive sam- ple time points. Compromising such information enables the attacker to infer more sensitive privacies, such as ﬁngerprinting
+websites browsed by the user [9]. We characterize the informa- tion leakage with information-theoretic metrics, and analyze the behavior of the ﬁrst-come-ﬁrst-serve (FCFS) scheduling policy, commonly used in DSL routers, under different probe rates. We show that the attacker will learn more information as he sends probe packets more frequently. We also prove that the FCFS policy will reveal the complete information of the user to the attacker when the sum-rate of trafﬁc is equal to the available bandwidth. Intuitively, the FCFS scheduler provides the least protection to information retrieval through a queuing side channel, our result quantiﬁes this information leakage and demonstrates that this intuition is true in the high trafﬁc rate regime. Consequently, better scheduling policies need to be designed that minimize information leakage; the analytical framework we provide sets the platform for this analysis and optimization.
+In the next section, we introduce our system model and deﬁne our privacy metric. In Section III, we analyze the information leakage when the FCFS policy is applied. The behaviors of FCFS under different probe rates are studied analytically in Section IV along with numerical results. We then conclude the paper in Section V.
+We consider a packet scheduler serving packets from two sources: an attacker and a user. Time is assumed to be slotted such that all the arrival and departure events are scheduled at the beginning of time slots. Packets arrive at the scheduler in- dependently from the user and attacker according to Bernoulli processes. The arriving packets enter the shared buffer and the scheduler decides the order in which to serve the stored packets according to a ﬁxed policy, as shown in Figure 1. We assume all the packets have the same sizes. The service time of every packet is proportional to its size; one time slot per packet. Parameters of the system are:
+• λ 1 , λ 2 : the Bernoulli parameters of the attacker and the user’s arriving processes, respectively. As we assume the scheduler can serve one packet per time slot, λ 1 +λ 2 ≤ 1 needs to be satisﬁed to guarantee the stability when non- idle policies are employed.
+• t i : the time when the i th packet from the attacker arrives. We deﬁne the starting time t 0 as 0. In case that the
+attacker and user both have packets arriving during the same time slot, we assume the attacker’s packet arrives prior to the user’s packet for the convenience of analysis. The results in the paper can be adapted easily for the case without this assumption.
+• t i : the departure time of the i th packet from the attacker. Without loss of generality, t 0 = 0.
+• A(t): counting function corresponding to the the user’s arrivals until t. A(t) = 0. Let x i = A(t i ) −A(t i −1 ) be the number of packets from the user between two consecutive packets from the attacker.
+As the buffer resource is shared between the attacker and the user, the attacker can learn information about the user’s trafﬁc by probing the buffer. This is illustrated by the fol- lowing queueing side channel attack. The waiting time of the attacker’s probe packet in the buffer conveys information about the queue length, and consequently the number of arrivals of user’s packets between successive probes. This scenario is depicted in Figure 2; the timings of the attacker’s i −1 th and i th packets, {t i −1 , t i , t i −1 , t i }, are possibly correlated with the amount of user’s arrivals in between, i.e., A(t i ) − A(t i −1 ) or x i −1 . Leveraging this correlation, the attacker’s goal is to infer the user’s arrival pattern x n = {x 1 , x 2 , ··· ,x n } from his observations comprised of his arrival time sequence t n = {t 1 , t 2 , ··· ,t n } and his departure time sequence t n = {t 1 , t 2 , ··· ,t n }. For the evaluation of the performance of scheduling policies
+under the queuing side channel attack, we propose the follow- ing information-theoretic metric. Deﬁne the user’s privacy for the policy ψ as the equivocation.
+Equivocation was shown to be a meaning metric in ana- lyzing the security property in classical communication prob- lems [10]. The limit in (1) characterizes the ‘conditional’ entropy rate of the number of user’s packets that arrive between two consecutive probe packets, thus captures the average behavior of ψ in protecting the user’s privacy over time. If E ψ is small, the attacker has little ambiguity about the user’s arrival pattern, which means the policy performs poorly in protecting user’s privacy. As the scheduler does not know which user is malicious, to study the overall privacy-preserving property of the scheduler, the attacker privacy denoted by ˜ E ψ should also be accounted for. One possible characterization of
+this overall privacy is the metric E ψ + ˜ E ψ . However, due to the symmetry of our system, it is sufﬁcient to examine E ψ as the proposed methodology equally applies to the analysis of ˜ E ψ .
+Considering the fact that the uncertainty in the user’s trafﬁc pattern depends on the parameters of the system, such as the arrival rate of user’s packets, we also look at a normalized metric: the leakage ratio
+Here, H(x n |t n ) denotes the intrinsic uncertainty of the user’s trafﬁc pattern.
+In the rest of this paper, we focus on the information leakage of an scheduler employing the standard FCFS policy. Most current DSL routers in fact use FCFS scheduling. First, we derive the analytical expressions for our privacy metric and then investigate the impact of attacker’s probe rates.
+Consider the scenario where all packets are scheduled in FCFS manner. Note that the scheduler is available to serve the attacker’s i th packet only after it ﬁrst ﬂushes out the i − 1 th packet from him and the user’s packet which have arrived afterwards. Thereby, the attacker’s departure time t i is fully determined by his previous departure time t i −1 and the number of user’s packets between t i −1 and t i .
+We ﬁrst break the entropy in (1) using the entropy chain rule as
+As x i is independent of all the arrivals before t i −1 and after t i , (3) can be simpliﬁed as
+where the second equality holds from the fact that based on {t i −1 , t i −1 , t i , t i }, the queuing delays t i −1 − t i −1 , t i − t i and the time interval t i − t i −1 provide all the useful information
+Lemma 3.1: In FCFS scheduling, the sequence of {(t i −1 − t i −1 , t i −t i , t i −t i −1 ), i = 1, 2, 3, ... } forms an ergodic Markov chain.
+Proof: Recall in FCFS case, the queueing delay of the at- tacker’s i+1 th packet t i+1 −t i+1 is completely determined by t i and the user’s arrival during t i+1 −t i , which is independent of all the arrivals or departures before t i . Hence, conditioned on current state (t i −1 − t i −1 , t i − t i , t i − t i −1 ), the next state (t i −t i , t i+1 −t i+1 , t i+1 −t i ) is independent of all the previous states, which gives the Markovian property.
+First, by the arrival theorem [11], as i grows, P r(t i−1 −t i−1 = x) converges to the equilibrium probability that x − 1 packets are in the buffer queue, whose existence is guaranteed by our assumption that λ 1 + λ 2 < 1. Second, one can easily verify that the conditional probability P r(t i−1 − t i−1 = x, t i − t i = y, t i − t i−1 = z|t i−1 − t i−1 = x) is identical for all i. Thereby, P r(x, y, z) in (5) also converges as i grows, producing the equilibrium distribution for (t i −1 − t i −1 , t i − t i , t i − t i −1 ).
+Proposition 3.2: The user’s privacy of the FCFS scheduling policy can be computed as
+where the conditions follow the equilibrium distribution of the chain (t i −1 − t i −1 , t i − t i , t i − t i −1 ).
+Proof: From Lemma 3.1, each term in the sum in (4) con- verges as i grows. Then, applying Stolz–Ces` aro theorem [12] to (1) and (4), (6) is proved.
+Proposition 3.2 implies that the equilibrium distribution of (t n −1 − t n −1 , t n − t n , t n − t n −1 ) is needed for computing E f cf s . Before trying to ﬁnd this distribution, we divide all the states into two classes and examine the values of H(x n ) on each class. Figure 3 depicts the arrival and departure timings of two consecutive packets from the attacker in these two classes.
+• For the states in class 1, the attacker’s n − 1 th packet is still in the buffer when his next packet enters the queue. In this case, all the user’s packets arriving during (t n −1 , t n ) are wedged between the attacker’s n − 1 th and n th packets. Hence, t n −t n −1 indicates the aggregate service times of these packets. Since the service rate is constant 1, the attacker infers the exact number of user’s packets x n as t n − t n −1 , hence the uncertainty H(x n ) is 0.
+• For the states in class 2, the attacker’s n − 1 th packet already departed when the n th packet arrives at time t n . As in our system, the service rate of the scheduler is 1, larger than the user’s arrival rate p 2 , hence the queue can not grow during (t n −1 , t n ) when there are only user’s packet arriving. If the scheduler is busy at t n (the buffer is not empty), then it must have been busy serving the user’s packets ever since t n −1 . In this case, x n can again be accurately estimated with t n − t n −1 . On the other hand, if the scheduler is idle at t n (the buffer is empty), then the best inference made by the attacker would be that less than t n − t n −1 + 1 packets from the user have arrived during (t n −1 , t n ). In this case, there is uncertainty about the user’s trafﬁc pattern, so H(x n ) is none 0.
+In summary, given the attacker’s observations, the user’s trafﬁc pattern has nonzero entropy only when the state of the chain (t i −1 − t i −1 , t i − t i , t i − t i −1 ) belongs to class 2 and t n − t n = 1. Such states can be represented succinctly by (a, 1, b), a ≤ b, where a,b ∈ Z, and the increment of user’s arrival x n on these states could take any value in {0,1,2,...,b − a} according to a truncated binomial distri- bution:
+Denote the corresponding entropy as H(X a,b ), and let P s (a, 1, b) be the equilibrium probability of the system staying at the state (a, 1, b), then the user’s privacy in (6) can be rewritten as
+Therefore, characterizing the equivocation of E f cf s reduces to calculating P s (a, 1, b) for all 0 ≤ a ≤ b, where a,b ∈ Z.
+Lemma 3.3: In the equilibrium state of the chain (t i −1 − t i −1 , t i − t i , t i − t i −1 ),
+2 (1 − λ 1 − λ 2 ) (1 − λ
+Proof: First, in the chain (t i −1 − t i −1 , t i − t i , t i − t i −1 ), every state that jumps to (a, 1, b) in one step has the form
+of (c, a, d), where c, d ∈ Z. The corresponding one-step transition probabilities are all equivalent, computed as P t (a, b) in (10). Second, for each a, the total probability of the system staying on all the (c, a, d)’s states is equivalent with the probability that a − 1 packets are in the buffer when the attacker’s packet arrives. By the arrival theorem [11], this probability equals to the equilibrium probability that the queue length Markov chain stays on state a − 1, denoted by P Buf (a − 1). Figure 4 depicts this queue length chain, where p = λ 1 λ 2 and q = (1 − λ 1 )(1 − λ 2 ). The equilibrium distribution P Buf (a − 1) can be easily computed as (9).
+Proposition 3.4: The user’s privacy of the FCFS scheduling policy is computed as
+Proof: (11) directly follows by plugging (8) from Lemma 3.3 into (7).
+Combine (11) with (10), (9), E f cf s can be further expressed explicitly in the terms of the user and attacker’s rates λ 1 and λ 2 . The expression for L f cf s can be derived similarly.
+Corollary 3.5: The leakage ratio of FCFS scheduling policy is computed as
+(12) where Y b is the random variable with the distribution of Binom(b, λ 2 ).
+Proof: (12) can be easily obtained by applying Proposi- tion 3.4 to (2).
+Although E f cf s and L f cf s can be viewed as functions of λ 1 and λ 2 by (11) and (12), it is not obvious how the privacy is affected by the change in the arrival rates, especially the rate of the attacker. In the next section, we investigate the properties of the privacy metric with respective to the change of the probe rate λ 1 .
+In this section, we study the effects of the attacker’s arrival rate on E f cf s and L f cf s . We study the behavior of the privacy as the attacker increases his probe rate λ 1 , and, in particular, examine two extremes: λ 1 → 0 and λ 1 → 1 − λ 2 .
+In the queuing side channel attack, the attacker learns information about the user by estimating the queue length in the buffer. Hence, we expect the attacker to gather more information if he probes the buffer queue more often. We verify this by studying the rate of increase of E f cf s with respect to λ 1 . Due to the complexity of the closed form expression in (11), it is hard to directly study the derivative of E f cf s with respect to λ 1 . Instead, we plot the numerical results for E f cf s under different values of λ 1 .
+Figure 5(a) depicts the equivocation against the attacker’s packet rate λ 1 for three ﬁxed user’s packet rates. We can observe that E f cf s decreases monotonically with increasing λ 1 . This is consistent with our analysis in Section III that showed the entropy of the user’s trafﬁc pattern can be nonzero only when the attacker’s packet encounters an empty buffer. As the attacker sends probes more frequently, the scheduler is more likely to be busy. Therefore, the chance of capturing empty buffers becomes smaller, causing the user’s privacy to decrease. Notice that in Figure 5(a), E f cf s does not mono- tonically decreases with increasing user’s rate λ 2 . Although the scheduler also becomes more busier at larger value of λ 2 , the intrinsic uncertainty of the user’s trafﬁc pattern itself also changes in the meanwhile.
+Figure 5(b) depicts the leakage ratio against the attacker’s rate λ 1 . We can observe that L f cf s grows with increasing λ 1 . The reason is the same as we explained above for the decreasing behavior of E f cf s . As the effects of the user’s rate are eliminated by the normalization, L f cf s also monotonically increases when λ 2 increases, comparing the three curves in Figure 5(b).
+Based on our observations from Figure 5, we make the following conjecture: for FCFS scheduling policy, as the attacker increases his probe rates, the uncertainty of the user’s trafﬁc pattern will decrease; i.e., ∂E f cf s ∂λ
+Note that λ 1 takes values form the whole range (0, 1 −λ 2 ). However, due to the limitation of computation accuracy, in Figure 5 we can not plot the curves at the limits: λ 1 → 0 and λ 1 → 1 − λ 2 . Next we investigate the values of E f cf s and L f cf s at these two limits analytically.
+As indicated from Figure 5(a), the information learnt by the attacker should be extremely small when his probe rate is close to 0. If the attacker sends his packets at near zero rate, then the scheduler would always be idle when the attacker’s packet arrives. In this case, the attacker rarely observes queueing delay, hence there is no means for him to learn any information through the queuing side channel; i.e., the scheduler achieves maximum privacy of the user’s trafﬁc pattern.
+Proposition 4.1: The information leakage of the FCFS scheduling policy goes to zero as the attacker’s rate goes to zero; i. e., lim
+Proof: First, when λ 1 is close to 0, the system behaves as there is only one trafﬁc ﬂow arriving, leading to an empty buffer at the asymptotic distribution. One can easily verify that lim
+P buf (k) = 0 for k > 0. In this case, we can approximate (11) as E f cf s ≈
+∞ b=1 P t (1, b)H(X 1,b ). Recall that X 1,b is constructed by truncating Y b , a binomial random variable, at the tail, so we can replace H(X 1b ) with H(Y b |Z = 1) where Z is an indicator function deﬁned as
+Hence, when λ 1 is extremely small, the E f cf s can be approx- imated as
+where (a) follows from the fact that Z is a function of Y b and Y b is deterministic when Z = 0. One can easily show that lim
+∞ b=1 (1 − λ 1 ) b −1 λ 1 H(Z) = 0. Therefore, when λ 1 → 0, E f cf s ≈ ∞ b=1 (1 − λ 1 ) b −1 λ 1 H(Y b ). Plugging this into (11) and (12) gives that lim
+As shown in Figure 5(a), the attacker maximizes the infor- mation he learns when he probes the queue at the maximum rate available; i.e., 1 − λ 2 . In this case, the scheduler remains busy most of the time. Therefore, the chain (t n −1 −t n −1 , t n − t n , t n − t n −1 ) mostly stays at states belonging to class 1 in Figure 3, where the uncertainty about the user’s arrivals is 0.
+Proposition 4.2: For FCFS scheduling policy, the attacker learns complete information about the user’s trafﬁc pattern as he sends probes at the maximum achievable rate; i.e.,
+Proof: As E f cf s is always non-negative, to prove lim
+E f cf s = 0, it is sufﬁcient to show E f cf s ≤ 0 as λ 1 goes to 1 − λ 2 . For this purpose, we ﬁrst bound P t (a, b) and H X a,b in (11) as: P t (a, b) ≤ (1 − λ 1 ) b −1 λ 1 and H(X a,b ) ≤ log (b − a + 1) ≤ b − a, which gives us the following inequality about E f cf s :
+As in (12), ∞ b=1 (1 − λ 1 ) b −1 λ 1 H(Y b ) does not goes to zero as λ 1 → 1 − λ 2 , hence, lim
+In this work, the information leakage in queuing side chan- nels is discussed. By quantifying the leakage with information- theoretic metrics, we develop a methodology to analyze the performance of scheduling policies in preserving user’s pri- vacy. Our study on FCFS reveals the fragility of this policy under side channel attacks as the attacker is able to obtain al- most the full information of the user if he sends probe packets frequently enough. Our next step would be investigating the privacy behaviors of other policies with the long term goal of designing secure scheduling policies against queuing side channels with minimum increase in router delay.
+[[[ REFS ]]]
+J. Wray
+--
+An analysis of covert timing channels
+----
+B. W. Lampson
+--
+A note on the conﬁnement problem
+----
+J. Postel
+--
+Internet control message protocol
+----
+S. Kadloor
+X. Gong
+N. Kiyavash
+T. Tezcan
+N. Borisov
+--
+Low- cost side channel trafﬁc analysis attack in packet networks
+----
+I. Moskowitz
+M. Kang
+--
+Discussion of a statistical channel
+----
+J. Giles
+B. Hajek
+--
+An information-theoretic and game-theoretic study of timing channels
+----
+A. B. Wagner
+V. Anantharam
+--
+Information theory of covert timing channels
+----
+S. Gorantla
+S. Kadloor
+T. Coleman
+N. Kiyavash
+I. Moskowitz
+M. Kang
+--
+Directed information and the nrl network pump
+----
+X. Gong
+N. Kiyavash
+N. Borisov
+--
+Fingerprinting websites using remote trafﬁc analysis
+----
+A. D. Wyner
+--
+The wire-tap channel
+----
+S. Asmusse
+--
+Applied probability and queues
+----
+M. Muresa
+--
+A Concrete Approach to Classical Analysis
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\039.pdf
+[[[ LINKS ]]]
+

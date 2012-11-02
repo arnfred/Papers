@@ -1,0 +1,132 @@
+[[[ ID ]]]
+27
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Low Complexity Two-Dimensional Weight-Constrained Codes
+[[[ AUTHORS ]]]
+Erik Ordentlich
+Ron M. Roth
+[[[ ABSTR ]]]
+Abstract—We describe two low complexity coding techniques for mapping arbitrary data to and from n × n binary arrays in which the Hamming weight of each row and column is at most n/2. One technique is based on ﬂipping rows and columns of an arbitrary binary array until the Hamming weight constraint is satisﬁed in all rows and columns, and the other is based on a certain explicitly constructed “antipodal” matching between layers of the Boolean lattice. Both codes have a redundancy of roughly 2n and may have applications in next generation resistive memory technologies.
+[[[ BODY ]]]
+Consider the set A n of all n × n arrays A = (A i,j ) i,j over the integer subset {0, 1} such that the (Hamming) weight of each row and column is at most n/2; i.e., k A i,k ≤ n/2 and k A k,j ≤ n/2 for each i and j. We are interested in the problem of efﬁciently encoding and decoding arbitrary data to and from (a subset of) A n . Following the usual formal deﬁnitions, an (n, M ) code for this problem consists of a subset C ⊆ A n , an encoder (mapping) f : M → C where
+M = {1, 2, . . . , M }, and a decoder g : C → M such that g(f (u)) = u for all u ∈ M . Of interest are codes for which f and g can be computed with low complexity and M (= |C|) is as large as possible. Obviously, M ≤ |A n | < 2 n 2 , and we shall refer to the gap n 2 − log 2 M as the redundancy of the code.
+Efﬁcient schemes for encoding and decoding data to and from binary arrays with row–column weight precisely n/2 (or any other uniform fraction of n) have been described previously in [1],[2]. In this paper, we take advantage of the more relaxed constraint (i.e., weight at most n/2) and present new codes that have lower encoding and decoding complexity and lower redundancy than the schemes of [1],[2]. In par- ticular, the codes of [1],[2] have redundancies of O(n log n) and have super-linear encoding and decoding complexity while the present codes have redundancies of roughly 2n, linear decoding complexity, and linear encoding complexity in the case of one of the codes. One can compare the achieved redundancy to the best possible redundancy for this constraint, namely n 2 − log 2 |A n |, which is shown to be approximately 1.42515n in the related abstract [3].
+The ﬁrst code is presented in Section II and is based on a bit-ﬂipping procedure and is relatively simple to explain and verify. Its encoding complexity, however, is yet to be tightly characterized (we do conjecture it to be considerably lower than the corresponding encoders of [1],[2]). The second code is more involved and is presented in Section III, which makes up the bulk of this paper. We shall refer to the ﬁrst code as the iterative ﬂipping code and the second as the antipodal matching code, where the names are derived from key algo- rithmic components of the respective codes. A summary of the attributes of the codes is as follows. The iterative ﬂipping code has a redundancy of 2n − 1 for all n, linear decoding complexity, and we have a bound of O(n 3 ) register operations on the worst-case encoding complexity. We conjecture that the true worst-case encoding complexity is c(n)n 2 where c(n) is slowly growing in n (e.g., logarithmically) and would thus be slightly super-linear in the number of encoded bits, which is (n−1) 2 for n × n arrays. The antipodal matching code, on the other hand, is best suited for even values of n, and for such n has a redundancy of 2n and linear encoding and decoding complexity.
+Although our primary purpose here is to study the purely combinatorial problem of efﬁciently coding into the above Hamming weight constraint, we remark that this and similar constraints and the associated codes may be applicable to lim- iting parasitic current in next generation memory technologies based on crossbar arrays of resistive devices (see, e.g., [4]). Bits are stored in these types of memories by “programming” the resistance values of individual devices to high and low states, which can be accomplished by the application of suit- able non-zero voltages to the row and column of the selected device and zero voltage to all other rows and columns. The use of (the above) codes to limit the number of low resistance devices per row and column may serve to reduce current ﬂowing through unselected, or, so called, half-selected devices in the same row and column as the selected device, thereby allowing for larger arrays for a given limit on programming current. For more details on this potential application, see [5].
+As mentioned, the iterative ﬂipping code encodes (n−1) 2 information bits into n × n arrays belonging to A n . Encoding proceeds as in Figure 1.
+The encoding procedure is guaranteed to terminate since each row or column ﬂip strictly reduces the total number of 1’s in the array. 1 Since the procedure terminates only when there is no row or column with weight larger than n/2, the ﬁnal array must belong to A n .
+The (n−1)×(n−1) subarray of information bits U arranged in Step 1 in Figure 1 can be decoded as follows from the encoded array A (hereafter, rows and columns of A are indexed by n ).
+Proposition 2.1: If U and A are respectively the informa- tion bit array and the encoded array from the algorithm of Figure 1, then U i,j ≡ A i,j + A i,n + A n,j + A n,n (mod 2).
+Proof: Any column or row ﬂip involving the array locations (i, j), (i, n), (n, j), (n, n) during encoding ﬂips precisely two of the corresponding array bits, thereby preserving the modulo- 2 sum of these 4 bits. The claim follows since the initial modulo-2 sum is simply U i,j , as the other three bits are initialized to 0.
+Thus, the number of bit operations required for decoding is linear in the number of decoded bits. The true complexity of encoding, on the other hand, is less clear. An upper bound of O(n 2 ) row–column ﬂips (equivalently, O(n 3 ) bit ﬂips) and iterations between rows and columns follows readily from the above noted fact that each row–column ﬂip strictly reduces the number of 1’s in the array. Conversely, we can construct a sequence of binary arrays that provably require Ω(n) row– column iterations under the encoding algorithm of Figure 1 (the details will be provided in the full paper). We conjecture that the true worst-case complexity of the encoder of Figure 1 is much closer to O(n) row–column ﬂips (O(n 2 ) bit ﬂips).
+The highly sequential nature and uncertain complexity of the iterative ﬂipping encoder motivates the consideration of alternative schemes. In this section, we describe the antipodal matching code which has the attributes noted in Section I. The preceding iterative ﬂipping code essentially consists of repeated applications to selected rows and columns of the simple one-to-one mapping between binary sequences that
+ﬂips all 0’s to 1’s and 1’s to 0’s. While this mapping serves to reduce the number of 1’s in the array and, hence eliminate all constraint violations in the long run, it has the drawback that it may create new constraint violations in some columns (rows) when applied to a given row (column). This explains the need for at least Ω(n) (possibly more) row–column ﬂip iterations. The code considered in this section is based on antipodal matchings, a different class of one-to-one mappings on binary sequences, that avoid this drawback. We formally specify their properties in the next subsection. In Subsection III-B, assuming n is even, we present the construction of the 2D an- tipodal matching code based on a general antipodal matching. A speciﬁc, efﬁciently computable antipodal matching is then presented in Subsection III-C, together with a proof sketch that it is one-to-one. This matching can be computed in linear time.
+Let X n denote the set of binary sequences of length n. The Hamming weight of a sequence x ∈ X n will be denoted by w(x). An antipodal matching φ is a mapping from X n to itself with the following properties holding for every x ∈ X n :
+(P2) If w(x) ≥ n/2 then φ(x) has all its 1’s in positions where x has 1’s (note that w(φ(x)) ≤ n/2 by property (P1)). Formally, writing x = (x j ) j and φ(x) = (y j ) j , then y j = 1 implies x j = 1 for each index j.
+From these properties we see that an antipodal matching can be decomposed into a collection of bijective mappings ϕ = ϕ k from {x ∈ X n : w(x) = k} to {x ∈ X n : w(x) = n−k}, k = 0, 1, 2, . . . , n, each of which satisﬁes the covering property (P2) and such that ϕ k = ϕ −1 n−k . The existence of such constituent mappings ϕ k , which will also be referred to as antipodal matchings, is guaranteed by Hall’s theorem [7, pp. 217–218]. In Section III-C, we present efﬁciently com- putable (linear complexity) antipodal matchings ϕ k for all sequence lengths n and all k, which then collectively constitute an efﬁcient antipodal matching in the sense of properties (P1)– (P3).
+There are many ways to build a 2D weight-constrained code out of antipodal matchings and here we describe a particular scheme. As mentioned, the key idea behind the resulting antipodal matching code is that the underlying antipodal matching φ permits iteration-free encoding by not creating new constraint violations. We note that the speciﬁc scheme we describe does make (non-essential) use of bit-ﬂipping, but in a single, non-iterative and parallelizable step, unlike in the iterative ﬂipping code.
+The encoding and decoding algorithms for the antipodal matching code are depicted in Figures 2 and 3. In these ﬁgures, A i j stands for the length-i column sequence formed by the ﬁrst i entries of the jth column of an array A.
+Proposition 3.1: The output array A of the encoder of Figure 2 belongs to A n .
+Proof: We can see that after Step 3, not only do all rows of A have weight at most n/2, but all rows in which the last entry is 0 (i.e., the row was not ﬂipped) have weight strictly smaller than n/2. Additionally, right after Step 4, the weight of A n−1 j 	 (namely, the number of 1’s among the ﬁrst n−1 entries of the jth column) is less than n/2, for each j < n. This means that for j < n, the weight of the jth column, A n j , is at most n/2 even if the last entry, A n,j , becomes 1 in Steps 4a or 5.
+Further, since by design the antipodal matching applied in Step 4a does not introduce 1’s where there were previously 0’s, after Steps 4 and 5, all rows in A will continue to have weight at most n/2, with a strictly smaller weight when the last entry of the row has a 0. This, in turn, means that the ﬂips in Step 6, which might change such last entries to 1’s, will not result in any of these rows violating the n/2 weight constraint. Finally, because n is even, if in Step 6 the last column is found to have weight larger than n/2, at least n/2 of the 1’s in that column will be in the ﬁrst n−1 positions that get ﬂipped. Therefore, after these ﬂips the weight of the last column will be at most 1 + (n−1 − (n/2)) = n/2.
+Proposition 3.2: The (n−1) 2 − 1 information bits in U computed in Decoding Step 3 in Figure 3 coincide with the corresponding input bit array entries created in Encoding Step 1 in Figure 2.
+Proof: Since Encoding Step 6 does not effect entry A n,n , it is easy to see that Decoding Step 1 correctly recovers the last row of A as of just after Encoding Step 4. A 1 in an entry of this row indicates that the antipodal matching was applied to the preceding entries of the corresponding column in Encoding Step 4a. Thus, the application of the antipodal matching in Decoding Step 2, by property (P3) of such a mapping, recovers the preceding entries of each column as of just after Encoding Step 3. So, after Decoding Step 2 we have recovered the ﬁrst n−1 entries of the ﬁrst n−1 columns of A as of just after Encoding Step 3. We next need to determine which rows were ﬂipped in Encoding Step 3 so that they can be ﬂipped back. The entries in the last column carry this information, but these entries might have been ﬂipped in Encoding Step 6. Such a ﬂip, however, is indicated by entries A i 0 ,j 0 and A i 0 ,n , which were both initialized in the encoder to 0 and, therefore, at this point, will differ if and only if the partial column ﬂip was carried out in Encoding Step 6. Thus, for each row, we can combine this information with the last entry of the row to determine if the row was ﬂipped in Encoding Step 3 and thus recover the entries. This is carried out in Decoding Step 3.
+It is easy to see from Figures 2 and 3 that encoding and decoding of the antipodal matching code involves the application of at most n antipodal matchings along with another O(n 2 ) increment/decrement/compare operations over O(log 2 n)-bit integer registers (henceforth “operations” shall have this meaning). In the next subsection, we present a speciﬁc antipodal matching that, in turn, can be computed in O(n) operations (as well as requiring only O(1) registers beyond the sequence). The overall antipodal matching code will thus have O(n 2 ) encoding and decoding complexity, which is linear in the number of encoded bits.
+It will be convenient to present our efﬁcient antipodal matching in terms of sequences over the bipolar alphabet {“+”, “−”} which we shall denote by Φ. Recalling the discussion in Subsection III-A, formally, we will deﬁne the constituent mappings ϕ on bipolar sequences and obtain the mapping ϕ on binary sequences via a pre- and post- application of the symbol-wise mapping b(·) which maps 0 to “−” and 1 to “+”, and its inverse b −1 (·).
+The elements of Φ will be regarded as integers (for the purpose of addition and subtraction), where “+” and “−” stand for 1 and −1, respectively. The sum of entries of a word x ∈ Φ n will be denoted by S x (it is easy to see that S x and n have the same parity: they are both even or both odd).
+For a positive integer n and s ∈ {n−2k : k = 0, 1, . . . , n}, deﬁne
+C(n, s) = {x ∈ Φ n : S x = s} . 	 (1) For any s > 0 in the above range, the two sets C(n, s) and C(n, −s) are referred to as antipodal layers in the Boolean lattice [8].
+Reformulating the discussion in Subsection III-A in terms of the alphabet Φ, for each positive s in the above range,
+an antipodal matching is a bijective mapping ϕ : C(n, s) → C(n, −s). In addition, for every x = (x j ) j ∈ Φ n , the image y = (y j ) j = ϕ (x) can have y j = “+” only if x j = “+”, for any entry index j.
+We are interested here in the problem of ﬁnding antipodal matchings which can be computed efﬁciently. This problem has been studied for the special case of s = 1 (and n odd), primarily in the context of attempting to solve the long- standing problem as to whether there exists a Hamiltonian cycle in the bipartite sub-graph that is induced by the middle levels, C(n, 1) and C(n, −1), of the Boolean lattice; see [9], [10], [11]. We present here efﬁcient antipodal matchings for all s. Our construction can be seen as a generalization of one of the matchings in [11] (yet we point out that some stronger results that are shown in [11] for s = 1, do not seem to generalize for larger s). We point out that our construction can also be inferred from known explicit minimal partitions of {0, 1} n into symmetric chains [9], [12], [13]; our exposition here however will be self-contained, except for two proofs which we omit due to space limitations.
+We borrow some of our notation from [11]. Hereafter, we ﬁx n to be a positive integer and let Z n = Z/nZ be the ring of integer residues modulo n. For distinct i and j in Z n , we denote by [i, j) the subset {i, i+1, i+2, . . . , j−1} of Z n (where addition and subtraction are taken modulo n: namely, to obtain the elements of [i, j) one starts with i and iteratively adds the unity element of Z n until one reaches j−1). For i ∈ Z n , we formally deﬁne [i, i) to be the whole set Z n . The notation (i, j] and (i, j) will stand for the subsets [i+1, j+1) and [i, j) \ {i}, respectively (thus, (i, i) = Z n \ {i} and (i, i+1) = ∅). For any i, j ∈ Z n and ∈ (i, j) we have [i, ) ∪ [ , j) = [i, j) and, in particular (when i = j), [i, ) ∪ [ , i) = Z n .
+We will adopt the convention that entries of words in Φ n are indexed by Z n . For a word x ∈ Φ n and indexes i, j ∈ Z n , we denote by S x [i, j) the sum of the entries of x that are indexed by [i, j). Notation such as S x (i, j] and S x (i, j) will have its obvious meaning (where S x (i, i+1) is deﬁned as 0).
+Given a word x ∈ Φ n , denote by P x the subset of Z n which consists of all minimal indexes i in the sense that
+S x [i, j) > 0 for all j ∈ Z n . 	 (2) Obviously, P x = ∅ only if S x > 0, and i ∈ P x only if x i x i+1 = “++”.
+Example 3.1: Consider the following word of length n = 11 over Φ:
+The next proposition presents a useful characterization of P x . We omit its proof (and the proof of the corollary that follows) due to space limitations.
+Proposition 3.3: Given x ∈ Φ n , let t 0 , t 1 , t 2 , . . . , t s−1 be s (> 0) distinct elements of Z n with their subscripts assigned
+so that the following s subsets form a partition of Z n : [t 0 , t 1 ), [t 1 , t 2 ), . . . , [t s−1 , t s )
+(where t s = t 0 ). The following two conditions are equivalent. (i) P x = {t 0 , t 1 , . . . , t s−1 }.
+(ii) For each m = 0, 1, . . . , s−1: S x [t m , t m+1 ) = 1 and S x [t m , j) > 0 for j ∈ (t m , t m+1 ).
+Corollary 3.4: Let x ∈ Φ n be such that S x > 0. Then |P x | = S x .
+In analogy with the deﬁnition of P x , we have the following deﬁnition which suits words y ∈ Φ n with S y < 0: we deﬁne M y to be the subset of Z n which consists of all indexes i such that S y (j, i] < 0 for all j ∈ Z n (note that here, unlike (2), each index interval (j, i] over which the sum is taken extends to the left of i).
+For a word x = (x j ) j∈Z n over Φ, we deﬁne its conjugate to be the word x ∗ = (−x −j ) j∈Z . Clearly, (x ∗ ) ∗ = x, and it is also easy to see that S x ∗ = −S x and that M x ∗ = −P x = {−t : t ∈ P x }. We can state a counterpart of Proposition 3.3 that characterizes the sets M y for words y ∈ Φ n simply by replacing each word with its conjugate. When we do so, we get the following corollary.
+Corollary 3.5: Let y ∈ Φ n be such that S y < 0. Then |M y | = −S y .
+Let s be a positive integer in {n−2k : k = 0, 1, 2, . . .} and recall the deﬁnition of the sets C(n, ±s) from (1). Let the mapping E s : C(n, s) → C(n, −s) be deﬁned as follows: for every x = (x j ) j∈Z n in C(n, s), the entries of y = (y j ) j∈Z n = E s (x) are given by
+Note that from Proposition 3.3 we have S y = S x − 2|P x | = −S x = −s, so every image of E s is indeed an element of C(n, −s). In addition, it is straightforward to see that y j can be “+” only if x j is, for every j ∈ Z n .
+In a similar manner, we can also deﬁne the mapping D s : C(n, −s) → C(n, s) that maps every word y ∈ C(n, −s) to a word x = D s (y), where
+The next proposition implies that the mapping E s is an antipodal matching.
+Proposition 3.6: For every positive s ∈ {n−2k : k = 0, 1, 2, . . .} and every x ∈ C(n, s),
+Proof: Fix an s = n−2k and let x = (x j ) j∈Z n be in C(n, s). We show that the respective image y = (y j ) j∈Z n = E s (x) satisﬁes M y = P x which, in turn, yields the desired result.
+Write P x = {t 0 , t 1 , . . . , t s−1 }, where the subscripts m of t m are as in Proposition 3.3. Now ﬁx some m ∈ {0, 1, . . . , s−1}, and recall that y j = x j for every j ∈
+(t m , t m+1 ) and y t m+1 = −x t m = “−”. By Proposition 3.3 we have S x [t m , t m+1 ) = 1 and, so,
+S y ∗ [−t m+1 , −t m ) = 1 . 	 (3) In addition, for every j ∈ (t m , t m+1 ) we have
+= −1 − S x [t m , j+1) + x t m = −S x [t m , j+1) < 0 .
+S y ∗ [−t m+1 , i) > 0 for every i ∈ (−t m+1 , −t m ) . (4) Hence, by applying Proposition 3.3 to y ∗ we get from (3)–(4) that −t 0 , −t 1 , . . . , −t s−1 ∈ P y ∗ i.e., P x ⊆ −P y∗ = M y . Equality then follows from the fact that P x and M y are both of the same size s.
+We can thus set ϕ to E s for s > 0 and to D s for s < 0 (ϕ is necessarily the identity for s = 0, n even).
+Figure 4 presents a simple and efﬁcient algorithm for computing the set P x for any given word x ∈ Φ n with s = S x > 0. In the ﬁrst “do–while” loop of the algorithm, an element t = t 0 is found which is the “rightmost” among the elements i that minimize S x (−1, i) over all i ∈ Z n ; namely, S x (−1, t 0 ) < S x (−1, j) for j ∈ (t 0 , 0) and S x (−1, t 0 ) ≤ S x (−1, j) for j ∈ (−1, t 0 ) (we use the notation (−1, ·) instead of [0, ·) to cover correctly also the case where t 0 = 0). Note that at the end of the ﬁrst loop, the value of the variable σ equals s (= S x ). It is easy to see that t 0 is an element of P x : for j ∈ (t 0 , 0) we have
+S x [t 0 , j) = S x (−1, j) − S x (−1, t 0 ) > 0 , and for j ∈ (−1, t 0 ),
+The second “while” loop iterates over t ∈ Z n “backwards,” starting with t = t 0 , and the variable σ at the beginning of iteration t equals σ(t) = S x [t 0 , t). When the “if” condition in that loop is met, the algorithm inserts the respective value, t m , of t into P, for m = s, s−1, . . . , 1, where the ﬁrst element to be inserted is t s = t 0 . The stepwise continuity of i → σ(i) guarantees that the loop indeed terminates, since σ(i) takes all the integer values from σ(t 0 ) = s down to σ(t 0 +1) = 1.
+The next two properties can be easily veriﬁed by induction on m = s−1, s−2, . . . , 1.
+Thus, S x [t m , t m+1 ) = σ(t m+1 ) −σ(t m ) = 1 and S x [t m , j) = σ(j) − σ(t m ) > 0 for j ∈ (t m , t m+1 ]. We can therefore conclude from Proposition 3.3 that P ⊆ P x ; since both P and P x have the same size s = S x , they must be equal.
+The algorithm in Figure 4 has time complexity of O(n) operations over integers in the range {0, ±1, ±2, . . . , ±n}, where the operations are either additions of ±1 or compar- isons. The algorithm can be seen as a simpliﬁed version of a known method [14] for computing the sequence of minima seen in sliding windows of length n of a sequence of length 2n, where we take into account that the sequence is stepwise continuous.
+[[[ REFS ]]]
+E. O RDENTLICH
+M. R OTH
+--
+R
+----
+E. O RDENTLICH
+F. P ARVARESH
+M. R OTH
+--
+R
+----
+B. S TRUKOV
+S. W ILLIAMS
+--
+D
+----
+E. O RDENTLICH
+M. R IBEIRO
+M. R OTH
+G. S EROUSSI
+--
+G
+----
+J. G LAUBER
+J. Mat
+--
+R
+----
+L. B IGGS
+--
+N
+----
+G. H URLBERT
+--
+The antipodal layers problem, Discrete Math
+----
+A. D UFFUS
+A. K IERSTEAD
+S. S NEVILY
+--
+D
+----
+A. K IERSTEAD
+T. T ROTTER
+--
+H
+----
+C. G REENE
+J. K LEITMAN
+--
+D
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\027.pdf
+[[[ LINKS ]]]
+

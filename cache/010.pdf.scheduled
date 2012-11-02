@@ -1,0 +1,140 @@
+[[[ ID ]]]
+10
+[[[ INDEX ]]]
+9
+[[[ TITLE ]]]
+On Equivalence for Networks of Noisy Channels under Byzantine Attacks
+[[[ AUTHORS ]]]
+Mayank Bakshi
+Michelle Effros
+Tracey Ho
+[[[ ABSTR ]]]
+Abstract—We consider the problem of ﬁnding network coding capacities of networks of independent point-to-point channels in the presence of a Byzantine adversary. We assume that the adversary knows all messages, and noise values and the code used to communicate across the network. The adversary controls an unknown subset of edges and can replace the channel output vectors from those edges. We show that ﬁnding the capacity for the above network is equivalent to ﬁnding the capacity of a network that is obtained by replacing each ﬁnite input alphabet point-to-point channel by a noiseless link of the noisy channel capacity. Our result shows the asymptotic optimality of separation between channel coding for each link followed by network coding for the resulting network under the corresponding model of adversarial attack.
+[[[ BODY ]]]
+One common approach for communicating in networks of noisy channels is to separate network coding and channel coding. In this approach, we operate each channel essentially losslessly with the help of a channel code. We then perform network coding on an essentially noise-free network. Indeed, in [1], [2], this approach is shown to be asymptotically optimal when the noise values on the distinct channels of the network are independent of each other. It is also known that when channels corresponding to different links are not independent, operating the channel code for each link independently may be strictly suboptimal (c.f. Example 2, [2]). In these cases, the dependence between the noise values on different links is exploited by ﬁrst creating an appropriate dependence between the transmitted codewords on these channels and then jointly decoding them at the receiver.
+In this work, we consider a network of independent point- to-point channels with the presence of a Byzantine adversary that observes all transmissions, messages, and channel noise values, and can corrupt some of the transmissions by replacing a constrained subset of the received channel outputs. The objective of the adversary is to maximize the probability of decoding error, and the capacity of the network is the set of vectors describing rates at which it is possible to reliably communicate across the network. It is tempting to believe that separation of network coding and channel coding is suboptimal in the case of our adversarial model due to the potential for statistical dependence between the ”noise” observed on edges
+controlled by the adversary. We show, however, that the capac- ity of this network equals the adversarial capacity of another network in which each channel is replaced by a noise-free capacitated link of the same capacity. Thus, it is asymptotically optimal to operate the adversarial network code independently of the channel code in this framework. We do not assume any special structure on the topology of the network, e.g., we allow unequal link capacities and networks with cycles. We also allow arbitrary model of adversarial attack, e.g. edge-based or node-based attack. The result immediately extends previous adversarial network coding capacity results from noise-free networks (e.g. [3], [4], [5], [6], [7]) to that of networks of independent point-to-point channels.
+The proof follows the strategy introduced in [1], [2]. In Section III, we show that the adversarial capacity of a network is same as that of a stacked network comprised of many copies of the same network. In Section IV, we show that replacing one of the channels with a noiseless link of equal capacity does not alter the adversarial network coding capacity of the stacked network. We begin with a formal problem deﬁnition in Section II.
+We deﬁne a network N to be a pair (G, C). Here G = (V, E) is a directed graph with vertices {1, . . . , m} and directed edges E ⊆ V × V. Each edge e ∈ E describes the input and output of a point-to-point channel C e . The full collection of channels is given by C = (C e : e ∈ E).
+For each e ∈ E, channel C e is given by a vector (X (e) , Y (e) , Z (e) , P e , Υ e ), where X (e) , Y (e) , and Z (e) are, respectively, the input, output, and noise alphabets of the channel, P e is the probability distribution of the noise, and Υ e : X (e) × Z (e) → Y (e) is the channel map that determines the channel output as a function of the channel input and noise. The noise distribution P e and mapping Υ e together induces a conditional probability distribution of the channel output given the channel input, here denoted by p e (·|·). Thus, the random variables X (e) , Y (e) , and Z (e) denoting the input, the output, and the noise value of the channel are related as
+For each t ∈ N + and e ∈ E, let X (e) t ∈ X (e) , Y (e) t ∈ Y (e) , and Z (e) t ∈ Z (e) , respectively, be the random variables denoting the transmitted, received, and noise values for edge e at time t. We assume that each transmission on edge e involves a delay of unit time and that the noise on all channels is independent and memoryless. Thus,
+For notational convenience, we adopt the following con- vention to represent collections of random vectors. For every collection of random variables Q 1 , Q 2 , . . . taking values from a set Q, we denote the row vector [Q t , Q t+1 , . . . , Q t+n−1 ] ∈ Q n by Q t:t+n−1 . We specify column vectors by underlining them and the element of a given row from the column vector by parenthesis. Thus, Q ∈ Q N represents the column vector [Q(1), Q(2), . . . , Q(N )] T with Q(i) ∈ Q for all i.
+For each v ∈ V and t ∈ N + , let X (v,∗) t 	 (X (v,w) t : (v, w) ∈ E) and X (∗,v) t 	 (X (u,v) t 	 : (u, v) ∈ E) denote the time- t random variables on edges outgoing from v and incoming to v, respectively; the alphabets for X (v,∗) t 	 and X (∗,v) t 	 are
+denote all transmitted random variables in the network at time t. Similarly, deﬁne Y (v,∗) t , Y (∗,v) t , Z (v,∗) t , Z (∗,v) t , Y t , and Z t for each v ∈ V and t ∈ N + . Let X , X (u,∗) , and X (∗,v) denote the product sets e∈E X (e) , v:(u,v)∈E X (u,v) , and v:(u,v)∈E X (u,v) . Similarly deﬁne Y, Y (u,∗) , Y (∗,v) , Z,
+Let M = {(u, V ) : u ∈ V, V ⊆ V \ {u}} denote the set of possible pairs of source nodes and sink sets. A network coding solution S( N) implemented over n time steps maps is deﬁned by message alphabet W = (u,V )∈M W (u→V ) , the collection of encoder maps {f (u,v) t 	 : (u, v) ∈ E, t ∈ {1, . . . , n}} with
+that determine the transmitted random variable X (u,v) t 	 as a function of the messages (W (u→V ) : V ⊆ V) and received vectors Y (∗,u) 1:t at node u, and the decoder maps {g (u) : u ∈ V } with
+that determine the reconstructed messages ( ˆ W (v→V,u) : (v, V ) ∈ M, v ∈ V, u ∈ V ) as a function of the messages (W (u→V ) : V ⊆ V \ {u}) and received vectors Y (∗,u) 1:t at node u for all t = 1, . . . , n and u ∈ V. Let R = (R(u, V ) : (u, V ) ∈ M) ∈ R |M| . We say that a solution S( N) is a rate R solution if |W (u→V ) | = 2 nR(u,V ) for all (u, V ) ∈ M. Without loss of generality, we assume that all messages are either binary vectors or binary matrices of appropriate dimensions.
+We assume an omniscient Byzantine adversary that observes all messages (W (u→V ) : (u, V ) ∈ M), noise values Z 1:n , and the network code S in operation. Thus, the adversary can deduce all transmitted and received vectors, X 1:n and Y 1:n . The adversary picks a subset σ from the set Σ of permissible attack-sets and replaces the vectors (Y (e) t = Υ(X (e) t−1 , Z (e) t−1 ) : e ∈ σ, t = 1, . . . , n) of channel outputs on these edges with the vector A 1:n = (A (e) 1:n : e ∈ σ) of his own choice. The set Σ is known to the designer of the network code, but the chosen attack set σ ∈ Σ is unknown.
+We say that there is a decoding error if ˆ W (v→V,u) = W (v→V ) for some v ∈ V, V ⊆ V \ {v}, and u ∈ V . For a given solution S( N) that is implemented over n time steps, and for each (u, V ) ∈ M and v ∈ V , ˆ W (u→V,v) is a deterministic function of the messages W = (W (u→V ) : (u, V ) ∈ M), the noise values Z 1:n , the attack-set σ, and the injected vector A 1:n ; let G (u→V,v) S 	 : W × Z n × Σ × Y n → W denote this function. Since the adversary knows W and Z 1:n , he can compute the decoded message for every possible choice of σ and A 1:n . The adversary’s goal is to chose σ and A 1:n to minimize the rate of reliable communication. We deﬁne the set E (S) ⊆ W × Z n as the collection of messages and noise values for which it is possible for the adversary to cause a decoding error for any of the messages, i.e.,
+G (u→V,v) S 	 (w, z 1:n , a 1:n , σ) = w (u,V ) for some (u, V ) ∈ M, v ∈ V, σ ∈ Σ, and a 1:n ∈
+We say that a solution S( N) that is implemented over n time steps is a (λ, R)-solution if |W (u→V ) | = 2 nR(u,V ) for every (u, V ) ∈ M and P E (S) < λ. The capacity region R(N) of a network N is the closure of the set of all rate vectors R for which a (λ, R)-solution exists for every λ > 0.
+Following the proof method employed in [2], we deﬁne the stacked network as follows. Let N = (G, C) be a network with vertex set V = {1, . . . , m} and edge set E.
+For each e ∈ E, let P e be a probability distribution on (Z (e) ) N obtained by forming an N -fold product of P e with itself, i.e., P e (z e ) = N i=1 P e (z e (i)) for all z e ∈ (Z (e)) N . Next, let Υ e : (X (e) ) N × (Z (e) ) N → (Y (e) ) N represent a channel that maps pairs (x e , z e ) ∈ (X (e) ) N × ∈ (Z (e) ) N to Υ e (x e , z e ) = [Υ e (x e (1), z e (1)), . . . , Υ e (x e (1), z e (N ))] T . We deﬁne the N -fold stacked network N derived from N = (G, C) as a pair (G, C), where, G G and C e
+For the network N, we denote the messages correspond- ing to the pair (u, V ) ∈ M by matrix W (u→V ) 1:nR(u,V ) , and the transmitted, received, and noise values for the edge (u, v) ∈ E by matrices X 1:n , Y 1:n , and Z 1:n respectively. Let N(1), N(2), . . . , N(N) be N copies of the network N. For each i = 1, . . . , N , associate vector W (u→V ) 1:nR(u,V ) (i) with the message corresponding to the pair (u, V ) ∈ M, and X 1:n (i), Y 1:n (i), and Z 1:n (i), with the messages, and trans- mitted, received, and noise values, respectively, for the edge (u, v) ∈ E in N(i).
+We visualize N as a stack with layers N(1), N(2), . . . , N(N) and inﬁnite capacity bidirectional edges connecting all N copies a give vertex v ∈ V to each other. Thus, for each v ∈ V and i = 1, . . . , N , the transmitted vector X (v,∗) 1:n (i) may be a function of all messages (W (v→U ) 1:nR(v,U ) : (v, U ) ∈ M) and received vectors Y (∗,v) 1:n .
+The capacity region for the stacked network R(N) is nor- malized by the number of layers N . In [2], it is shown that the capacity regions for N and N are equal when none of the edges are corruptible by the adversary. Even though the presence of adversary changes the network capacity, the arguments of Lemma 1 of [2] extend readily to our setup. We state this in the following Lemma without proof.
+Next, we show that there exists a sequence of solutions to the stacked network such that the error probability decays exponentially with the number of layers. In the non-adversarial case, the mutual independence of (Z(i) : i = 1, . . . , N ) results in independent decoding errors for a solution that operates on each layer independently. Thus, applying a randomly generated error correcting code to all messages (W (u→V ) 1:nR(u,V ) : (u, V ) ∈ M) before they are processed by the network code ensures an exponential decay of error probability [8]. However, in the presence of an adversary, decoding errors may no longer be independent across the layers. We overcome this difﬁculty by ﬁrst designing a solution to the stacked network for which the error probability is maximum when decoding errors are statistically independent across layers, and then showing that, under this condition, the error probability for this solution decays exponentially in the number of layers.
+Theorem 1: Given any R ∈ int( R(N)), there exists a (2 −N δ , R)-solution ˜ S( N) for N for some δ > 0 and for all N large enough.
+Proof: Let λ > 0 and let ρ > H(2λ), where H(·) is the binary entropy function. Let S( N) be a (λ, R)-solution for N with W = (u,V )∈M W (u→V ) = {0, 1} nR(u,V ) . We
+design the solution ˜ S( N) as follows. For each (u, V ) ∈ M, let w (u→V ) 1:nR(u,V ) be a two dimensional binary (1 − ρ)N × nR(u, V ) matrix. We ﬁrst encode w (u→V ) by using a different error correcting code for each column. Next, we transmit each row of the resulting binary matrices ( ˜ w (u→V ) 1:nR(u,V ) : (u, V ) ∈ M) on a different layer using the solution S( N). Finally, we employ nearest-neighbor decoding at each node to reconstruct the messages.
+Code Construction: Fix a pair (u, V ) ∈ M and k ∈ {1, . . . , nR(u, V )}. Consider a binary symmetric channel ˜ C with crossover probability 2λ. Let Ψ (u→V ) k 	 : {0, 1} (1−ρ)N → {0, 1} N and Φ (u→V ) k 	 : {0, 1} N → {0, 1} (1−ρ)N be the encoder and decoder mappings for an error correcting code for ˜ C of blocklength N and rate (1 − ρ) that is designed randomly as follows.
+Select ˜ W (u→V ) k 	 ⊆ {0, 1} N of size 2 (1−ρ)N by indepen- dently picking each element of ˜ W (u→V ) k 	 from {0, 1} N using a uniform distribution. The encoder Ψ (u→V ) k 	 maps each message b ∈ {0, 1} (1−ρ)N to a unique codeword ˜ b ∈ ˜ W (u→V ) k 	 . The decoder Φ (u→V ) k 	 maps each received vector ˆ ˜ b ∈ {0, 1} N to the reconstruction ˆ b ∈ {0, 1} (1−ρ)N that corresponds to the nearest valid codeword. Let where, d H (·, ·) denote the hamming distance between two binary vectors. In other words,
+We construct the solution ˜ S( N) as follows. Let the message alphabet be W = (u,V )∈M W (u→V ) , where W (u→V )
+{0, 1} nR(u,V )×(1−ρ)N is the set of nR(u, V ) × (1 − ρ)N binary matrices. Let w (u→V ) 1:nR(u,V ) ∈ {0, 1, } nR(u,V )×(1−ρ)N be the message intended for the connection (u, V ) ∈ M. The solution ˜ S( N) performs the following sequence of operations.
+2) For each i = 1, . . . , N , communicate messages ( ˜ w (u→V ) 1:nR(u,V ) (i) : (u, V ) ∈ M) using the solution S( N) on N(i). Let (ˆ˜w (u→V ) 1:nR(u,V ) (i) : (u, V ) ∈ M) be the reconstructed messages after operating S( N) on N(i).
+Analysis of error probability: Let (u, V ) ∈ M, v ∈ V and k ∈ {1, . . . , nR(u, V )}. Since ˜ C is symmetrical and the input is uniformly distributed, the decoder Ψ (u→V ) k 	 maps each received vector to the maximum likelihood estimate of the input given the received vector. By previous results on error exponents (c.f.[8]), we know that such a code achieves an error probability of 2 −N ˜ δ for some ˜ δ = ˜ δ(ρ, λ) since
+the rate 1 − ρ is less than the capacity 1 − H(2λ) of the channel ˜ C. Denote the message and the received vector for the code (Ψ (u→V ) k 	 , Φ (u→V ) k 	 ) by random variables B and ˆ ˜ B respectively. B is uniformly distributed on {0, 1} (1−ρ)N ) and
+(B) via the channel ˜ C. Therefore,
+Next, we show that the block error probability for the code (Ψ (u→V ) k 	 , Φ (u→V ) k 	 ) over the channel ˜ C is an upper bound for the block error probability Pr W (u→V ) k 	 = ˆ W (u→V,v) k 	 . Note that by the choice of the solution S( N), Pr(W (u→V ) k 	 (i) =
+for each i = 1, . . . , N . Let w H (·) denote the number of 1’s in a binary vector. For every ˜ b ∈ W (u→V ) k 	 , let π (u→V ) k 	 (˜ b) ⊆ {0, 1} N denote the set of all minimal weight error patterns that are decoded incorrectly by Φ (u→V ) k 	 , i.e.,
+π (u→V ) k 	 (˜ b) {e ∈ {0, 1} N : Φ (u→V ) k 	 (˜ b) = Φ (u→V ) k 	 (˜ b ⊕ e) and Φ (u→V ) k 	 (˜ b) = Φ (u→V ) k 	 (˜ b ⊕ ˜ e) ∀ ˜ e s.t.
+= c} ≤
+The bound in (2) is a consequence of the fact that for each i = 1, . . . , N and k = 1, . . . , nR(u, V ), the event { ˜ W (u→V ) k 	 (i) = ˆ ˜ W (u→V ) k 	 (i)} depends only on the noise values Z 1:n (i) and the messages ˜ W (i) and can occur with probability at most 2λ under all possible adversarial actions. Step (3) follows from the fact that the transition probability for the channel ˜ C is 2λ. Finally, applying a union bound over all values of k and (u, V ), we obtain
+In this section, we prove that ﬁnding the capacity region of the network N is equivalent to ﬁnding the capacity of a
+network ˆ N R where one of the links ˆ e = (1, 2) is replaced by a noiseless links of capacity R = C(ˆ e). Koetter et al [2] prove this by ﬁrst showing that for every R < C(ˆ e), the capacity region of the ˆ N R is a subset of that of N. Next, they show that for every R > C(ˆ e), the capacity region of N is a subset of that of ˆ N R . We follow a similar proof outline for our case. The proof of the ﬁrst part follows the arguments of [2] exactly. We state it without proof in the following Theorem.
+Theorem 2: For the networks N and ˆN R deﬁned above, R( ˆN R ) ⊆ R(N) if R < C.
+Next, to prove that R( ˆN R ) ⊇ R(N) if R > C, Koetter et al argue that a noisy channel may be emulated on the lossless link ˆ e in the stacked network N R by using a randomly generated source code that operates across the layers. Their proof relies on typicality of the vector X (u,v) t , which follows from the statistical independence of random variables corresponding to different layers. This assumption is not true in our case because the adversary may introduce dependence between different layers. To accommodate this possibility, we modify the proof of [2] to use a universal source code that ﬁrst determines the type of the received sequence and then emulates the channel using a source code designed speciﬁcally for the observed type. We assume here that the alphabet X (ˆ e) is ﬁnite.
+Theorem 3: For the networks N and ˆN R deﬁned above, R( ˆN R ) ⊇ R(N) if R > C.
+Proof: First, we design a sequence of universal source codes {(α N,t , β N,t )} t=1,2,... , each at rate ˆ R ∈ (C(ˆ e), R), that operate by describing the type of the input followed by the index of the codeword picked from a codebook designed for that type. Next, we modify a given (2 −N δ , R)-solution S( N) for N to a solution ˆ S( N R ) for N R by emulating the channel on the link ˆ e by the source codes {(α N,t , β N,t )} t=1,2,... . Finally, we conclude that the error probability for the solution ˆ S( N R ) vanishes as N grows without bound.
+Construction of ˆ S( N R ): Let S( N) be a (2 −N δ , R)-solution to N implemented over n time steps and obtained from the solution S( N) by following the construction in Theorem 1. We modify S( N) to obtain a solution ˆ S( N R ) by ﬁrst designing a sequence of universal source codes {α N,t , β N,t } t=1,2,... that operate at a rate ˆ R ∈ (C(ˆ e), R) and next appending the above source code to S( N) to emulate the channel conditional probability p ˆ e on the the channel ˆ C ˆ e in network ˆ N R .
+Design of {α N,t , β N,t } t=1,2,... : Let P N be the set of all strong types of N length sequences from X (ˆ e) . For a vector x ∈ (X (ˆ e) ) N , let ˆ Q(x) ∈ P N denote the empirical distribution of x. Let Q ∈ P N . Let (X Q , Y Q ) be random variables jointly distributed on X ( ˆ e) × Y ( ˆ e) such that Pr(X Q = x) = Q(x) and the conditional distribution of Y Q given X Q is p ˆ e . For each t = 1, . . . , n, select B Q t ⊆ (Y ( ˆ e)) N by choosing 2 N ˆ R elements uniformly at random from A (N ) (Y Q ).
+consist of the pair of maps to (α P , α B ), where, for each x ∈ (X (ˆ e) ) N , α P (x) is the binary description of ˆ Q(x), and α B (x)
+is the index of some vector ˆ y ∈ B ˆ Q(x) t 	 such that (x, ˆ y) ∈ A (N ) (X ˆ Q(x) , Y ˆ Q(x) ). If no such vector ˆ y exists, then α B (x) is set to be 1. Next, let the decoder
+map pairs (x P , x B ) to the vector with index x B in B Q t , where Q is the type described by x P .
+Appending {α N,t , β N,t } t=1,2,... to S( N): The solution ˆ S( ˆ N
+) is identical to S( N) except for the maps at nodes 1 and 2. For (u, v) ∈ V × V, let
+denote the decoder for the messages meant for node u in the solution S( N).
+Let ˆ X (e) 1:n = X (e) 1:n and ˆ Y (e) 1:n = Y (e) 1:n for all e = ˆ e. Let ˆ X (ˆ e) 1:n = f (1,2) (W 1→∗ , ˆ Y (∗,1) 1:n )) and ˆ Y (ˆ e) t 	 = β N,t−1 (α N,t−1 ( ˆ X (ˆ e) t−1 )). Let ˆ S( ˆ N R ) be a solution with en- coder and decoder mappings ( ˆ f (u,v) : (u, v) ∈ E) and (ˆ g (u) : u ∈ V), where,
+         
+        
+if u = 2 and
+    
+   
+Analysis of error probability: Let t = 1, . . . , n. Let Z [ˆ e] 1:n = (Z (e) 1:n : e ∈ E\{ˆ e}) be the noise values on the edges except the edge ˆ e and W = (W (u→V ) : (u, V ) ∈ M) be the messages. Note that for t = 1, . . . , n, ˆ X (ˆ e) 1:t is a deterministic function of W , Z [ˆ e] 1:t−1 , and ˆ Y (ˆ e) 1:t−1 while ˆ Y (ˆ e) 1:t is a random variable due to the random design of ˆ S. Let ˆ p t denote the conditional probability distribution of ˆ Y t given ˆ X t−1 under a random choice of ˆ S as described above. By Lemma 11, [2],
+). Further, since R > C(ˆ e), by stan- dard random coding arguments (e.g. proof of Rate Distortion Theorem, [9]), for large enough N ,
+Next, note that messages w, noise values z [ˆ e] = (z (e) : e ∈ E \ ˆ e), transmitted vector x (ˆ e) 1:n , and received vector y (ˆ e) 1:n result in a decoding error under the solution S if there exists z (ˆ e) such that (w, z [ˆ e] , z (ˆ e) ) ∈ E (S( N)), and y (ˆ e) t = Υ ˆ e (x (ˆ e) t−1 , z (ˆ e) t−1 ). Let ˆ E(S, w, z [ˆ e] ) = {z (ˆ e) : (w, z [ˆ e] , z (ˆ e) ) ∈ E(S( N))}. The expected probability of a decoding error over the choice of ˆ S( ˆ N R ) for given values of z [ˆ e] 1:n and w is given by
+Finally, for a ﬁxed value of n, let < 1/n, and choose N large enough to conclude that R ∈ R( ˆN R ).
+[[[ REFS ]]]
+R. Koette
+M. Effro
+M. M´edard
+--
+On the theory of network equivalence,
+----
+M. Effros R
+M. M´edard
+--
+Koetter and  A theory of network equivalencepart i: Point-to-point channels
+----
+S. Ki
+T. H
+M. Effro
+S. Avestimehr
+--
+New results on network error correction: Capacities and upper bounds
+----
+S. Ki
+T. H
+M. Effro
+S. Avestimehr
+--
+Network error correction with unequal link capacities
+----
+O. Kosu
+L. Ton
+D. Tse
+--
+Nonlinear network coding is necessary to combat general byzantine attacks
+----
+O. Kosu
+L. Ton
+D. Tse
+--
+Polytope codes against adversaries in networks
+----
+S. Jagg
+M. Langber
+S. Katt
+T. H
+D. Katab
+M. Medard
+--
+Resilient network coding in the presence of byzantine adversaries
+----
+R. G. Gallager
+--
+Information Theory and Reliable Communication
+----
+T. M. Cove
+J. A. Thomas
+--
+Elements of Information Theory
+[[[ META ]]]
+xmlpapertitle -> On Equivalence for Networks of Noisy Channels under Byzantine Attacks
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\010.pdf
+xmlauthors -> Mayank Bakshi, Michelle Effros, Tracey Ho
+xmlroom -> -
+[[[ LINKS ]]]
+

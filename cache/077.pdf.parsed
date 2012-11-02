@@ -1,0 +1,188 @@
+[[[ ID ]]]
+77
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Summary Based Structures with Improved Sublinear Recovery for Compressed Sensing
+[[[ AUTHORS ]]]
+M. Amin Khajehnejad
+Juhwan Yoo
+Animashree Anandkumar
+Babak Hassibi
+[[[ ABSTR ]]]
+Abstract—We introduce a new class of measurement matrices for compressed sensing, using low order summaries over binary sequences of a given length. We prove recovery guarantees for three reconstruction algorithms using the proposed measure- ments, including ℓ 1 minimization and two combinatorial meth- ods. In particular, one of the algorithms recovers k-sparse vectors of length N in sublinear time poly(k log N ), and requires at most O(k log N log log N) measurements. The empirical oversampling constant of the algorithm is signiﬁcantly better than existing sublinear recovery algorithms such as Chaining Pursuit and Sudocodes. In particular, for 10 3 ≤ N ≤ 10 12 and k = 100, the oversampling factor is between 5 to 25. We provide preliminary insight into how the proposed constructions, and the fast recovery scheme can be used in a number of practical applications such as market basket analysis, and real time compressed sensing implementation.
+[[[ BODY ]]]
+Despite signiﬁcant advances in the ﬁeld of Compressed Sensing (CS), certain aspects of CS remain relatively im- mature. Thus far, CS has been viewed primarily as a data acquisition technique [1]. As a result, the applicability of CS to other computational applications has not enjoyed commen- surate investigation. In addition, to the best of the authors’ knowledge, there is no uniﬁed CS system that has been imple- mented for practical real-time applications. A few recent works have addressed the former by applying sparse reconstruction ideas to certain inference problems including learning and adaptive computational schemes ( e.g. [2]–[4]). Several other works have addressed the latter by designing hardware, which exploits the fact that CS enables the monitoring of a given bandwidth at a much lower sampling rate than traditional Nyquist-based methods (see e.g., [6]). The motivating factor behind these works is that for a given maximum sampling rate (limited by the poor power consumption scaling with sampling rate) achievable by digitizing hardware, it is possible to either acquire signals over a much greater bandwidth, or with much less power for a given bandwidth. Recent work, inspired by this line of thought, has led to the development of hardware CS encoders (see e.g. [7]–[10]). However, none of the previous works address the problem of real-time signal decoding, which is a critical requirement in many applications.
+Although variant by the nature of the problem and physical constraints, perhaps two fundamental issues in the practical implementations of CS are the following: 1) construction
+of measurement matrices that are provably good, certiﬁable and inexpensive to implement (either as real time sketches or as pre-built constructions), 2) Time efﬁcient and robust recovery algorithms. Our aim is to introduce and provide an analysis of a sparse reconstruction system that addresses the aforementioned problems and allude to the extensions of CS in the less explored directions.
+We introduce a new class of measurement matrices for sparse recovery that are deterministic, structured and highly scalable. The constructions are based on labeling the ambient state space with binary sequences of length n = log 2 N , and summing up entries of x that share the same pattern (up to a ﬁxed length) at various locations in their labeling sequences. The class of corresponding matrices are RIP-less matrices that are congruent with the Basis Pursuit algorithms, which are standard techniques for sparse reconstruction [11]. In addition, we provide two efﬁcient combinatorial algorithms along with theoretical guarantees for the proposed measurement struc- tures. The proposed algorithms are sublinear in the ambient dimension of the signal. In particular, we propose a summa- rized support index inference (SSII) algorithm with a running time of O(poly(k log N)) that requires O(k log N log log N) measurements to recover k-sparse vectors, and has an em- pirical required over-sampling factor signiﬁcantly better than existing sublinear methods. Due to the particular structure of the measurements and decoding algorithms, we believe that the proposed compression/decompression framework is amenable to real time CS implementation, and offers sig- niﬁcant simpliﬁcation in the design of an existing CS en- coder/decoder. Furthermore, observations collected based on the proposed constructions appear as low order statistics or “summaries” in a number of practical situations in which a similar intrinsic labeling of the state space exists. This includes certain inference and discrete optimization problems such as market basket (commodity bundle) analysis, advertising, online recommendation systems, genomic feature selection, social networks, etc.
+It should be acknowledged that there are various results on sublinear sparse recovery in the literature, including [12]– [16]. Unlike most previous works, the constructions of this paper offer sublinear storage requirement and are compatible with the practical scenarios that we consider. The recovery time of the algorithm is sublinear in the signal dimension, and
+the empirical recovery bounds are signiﬁcantly better than the existing sublinear algorithms, such as Chaining Pursuit and Sudocodes, especially for small and moderate sparsity levels and very large signal dimensions.
+We deﬁne a class of structured binary measurement matrices, based on the following deﬁnition
+Deﬁnition 1. Let m,n and d be integers. A (n, d) summary is a pair X = (S, c), where S is a subset of {1, 2, · · · , n} of size d, and c is a binary sequence of length d. A (m, n, d) summary codebook is a collection C = {(S i , c j ) | 1 ≤ i ≤ m, 0 ≤ j ≤ 2 d − 1} of (n, d) summaries, where S i ’s are distinct subsets, and c j is the length d binary representation of the integer j. If m =
+To a given (m, n, d) summary codebook C, we associate a binary matrix A of size M × N where M = 2 d × m, and N = 2 n , in the following way. For every (S, c) ∈ C, there is a row a = (a 1 , . . . , a N ) in A that satisﬁes:
+where b j is the n-bit binary representation of j, and b j (S) is the subsequence of the binary sequence b j , indexed by the entries of the set S 1 . In other words, a has a 1 in those columns ℓ whose binary labeling conform to (S, c). Every column of A has exactly m ones, and each row has exactly 2 n −d ones. For simplicity of explanations, we say that a summary (S, c) “appears” in a binary sequence b if b(S) = c. To clarify the above deﬁnition, we consider the following example illustrated in Figure 1, in which n = 4 and d = 2. Suppose that a summary (S, c) is given with S = {1, 2} and c = 10. All possible binary sequences of length 4 that match (S, c) are listed in Figure 1. To ﬁnd the corresponding indices of the listed labels, we should convert them to decimal values and increase by 1, which gives 9, 10, 11 and 12. The row a of a measurement matrix that includes this summary is a vector of length 2 4 that has a 1 in those indices, as displayed.
+The deﬁned matrices are very well motivated by some practical scenarios. In general, in a situation where the given signal space retains an intrinsic structured labeling similar to the one described, such constructions prove very useful. In particular, we consider the following two motivational
+Resource Optimization. Assume that a set F = {F 1 , F 2 , · · · , F n } of features (or parameters) is available, and assume that certain accumulations or collections of features form ”lucrative” proﬁles (structures). In particular, a lucrative proﬁle can be a subset of features which is representable by a binary sequence b = b 1 b 2 . . . b n , where b i determines the presence of the i’th feature. A practical assumption is that lucrative proﬁles are limited and weighted, meaning that their proﬁtabilities are variable. The vector x = (p 1 , p 2 , . . . , p 2 n ) T formed by the respective proﬁts of all feature collections is thus an approximately sparse vector. Furthermore, the available information about the proﬁtability of proﬁles is often derived from a pool of observations or real world implementations, and are mostly given in the form of summaries. More formally, what can be learned is the average proﬁtability of a certain conﬁguration of only d features. For example, it can be assessed that when F 1 and F 2 are present and F 3 is absent, regardless of all other features, the average proﬁt is some p. The collection of summaries form an observation vector y, that is related to x through a set of linear equations y = Ax, where A has a form similar to those obtained by summary codebooks. This setting arises in many practical applications such as market basket (commodity bundle) analysis, where the objective is to conﬁgure the structure of a market that complies the best with the needs and the behaviors of the customers. To that end, it is essential to understand which market conﬁgurations are winning and what packages of features (e.g. commodities, pricing options, interest rates, etc.) should be offered to customers, and with what percentages . Furthermore, the customers’ behavioral information is often given in terms of high level summaries, e.g. in the lines of the statement “people who buy A and B, are likely to buy C”.
+Compressed Sensing Hardware. There are a few factors that severely limit the scalability of the existing CS hardware designs to larger problem dimensions. One of these factors is the generation of the measurement matrix A. In the simplest existing design, A is typically a pseudo-random matrix generated with a linear feedback shift register (LFSR) [8], [10]. The timing synchronization of a large number of measurements as well as the planar nature of physical implementations is very limiting. Using a more structured matrix may allow considerable simpliﬁcation and reduction of the required hardware easing some of the previously mentioned limitations. The measurement structure deﬁned in this work is potentially highly amenable to the implementation of practical CS hardware, due to the following two reasons. 1) There exist simple sublinear recovery algorithms for the proposed matrices, other than the linear programming method. This will be elaborated in the proceeding sections. 2) Due to the highly structured design, the integration matrix A can be implemented using one single LFSR seed, and a number of asynchronous digital circuits. Due to the lack of space and the irrelevance of the context, we avoid a detailed description of the latter, and postpone this to a future work.
+For the measurement matrices described in the previous section we propose three reconstruction algorithms and pro- vide success guarantees. These algorithms include the Basis Pursuit algorithm (a.k.a ℓ 1 minimization), as well as two fast algorithms that can recover sparse vectors from a sublinear number of measurements and in a sublinear amount of time. The detailed speciﬁcations will be given in the sequel. For the sake of the theoretical arguments that appear in the remainder of this section, we need to deﬁne the following notions:
+Deﬁnition 2. Let n and l be integers with l < n. We deﬁne f S (n, l), f W (n, l, p, ϵ) and f ′ W (n, l, p, ϵ) to be the largest integer k such that when k binary sequences of length n are selected at random, the following happens respectively:
+1) With probability 1, there exists a (n, d) summary that appears in exactly one of the sequences.
+2) With probability at least p, for each of the binary sequences, at least a fraction ϵ of its (n, d) summaries are unique.
+3) With probability at least p, for each of the binary sequences, at least a fraction ϵ of its (n, d) summaries that include the ﬁrst bit are unique.
+It is important to note that the recovery guarantees of the presented combinatorial algorithms are only valid for a class of vectors in which no two disjoint subsets of nonzero coefﬁcients have the exact same sum. For simplicity, we refer to these vectors as “distinguishable” signals. This is not the case for Basis Pursuit.
+The success of the basis pursuit algorithm for recovering sparse signals is certiﬁed by several conditions. Two major classes of conditions are the Restricted Isometry Property (RIP) and the null space property [5], [11]. It is provable that the measurement structures deﬁned in this paper do not maintain the RIP properties, due to the existence of columns with fairly large coherence. This however does not discard the suitability of these constructions for ℓ 1 minimization, since RIP is known to provide a sufﬁcient condition (see e.g., [17]). Instead, we prove that certain null space conditions hold for the considered class of matrices, and therefore provide a sparse signal recovery bound for ℓ 1 minimization. We restrict our attention to nonnegative vectors in this case. The reconstruc- tion method is the following program with the additional nonnegativity constraint.
+minimize ∥x∥ 1 	 (2) subject to Ax = y, x ≥ 0
+The performance of the above program was studied for 0-1 matrices in [18]. In particular, it was shown that a nonnegative vector x can be recovered from (2), if and only if it is the unique nonnegative solution of the linear system of equations, which is stated formally in the following lemma.
+Lemma 1 (from [18]). Suppose A ∈ R m ×n is a matrix with constant column sum, and x 0 ∈ R n ×1 is a nonnegative vector.
+x 0 is the unique solution to (2), if and only if x 0 is the unique nonnegative solution to Ax = Ax 0 .
+Using the above lemma, we can evaluate the performance of the Basis Pursuit algorithm when used with the presented measurement matrices. The following theorem is fundamental to this analysis.
+Theorem 1 (Strong Recovery for Basis Pursuit). Let k ≤ f S (n, d −1) be an integer, and let A correspond to a complete (n, d) summary codebook. Then every k-sparse nonnegative vector x is perfectly recovered by (2).
+The complexity of Basis Pursuit is generally polynomial in the ambient dimension of the signal. Speciﬁcally, one can implement (2) in O(N 3 ) operations, without exploiting any of the available structural information of the measurement matrix. Although there are some advantages to Basis Pursuit, such as robustness to noise, its complexity is impractical for problems where N scales exponentially. In these situations, sublinear time algorithms are preferred.
+The ﬁrst sublinear algorithm discussed in this subsection is called the summarized support index inference (SSII). The algorithm is based on iteratively inferring the nonzero entries of the signal based on one of the distinct values of y and its various occurrences. The method is described below.
+At the beginning of the algorithm, distinct nonzero values of the observations y are identiﬁed, and are separated from the zero values. Due to the distinguishability assumption on x, each distinct nonzero value of y is a sum of a unique subset of nonzeros of x, and can thus be used to infer the position of at least one nonzero entry. The index of a nonzero entry of x is determined by its unique labeling, which is a binary sequence of length n. Therefore, the algorithm attempts to infer all relevant binary sequences. Suppose that a nonzero value of y is chosen that has t occurrences, say without loss of generality, y 1 = y 2 = · · · = y t . Also, let the (n, d) summary which corresponds to the ith row of A be denoted by (S i , c i ) (see equation (1)). The algorithm explores the possibility that y 1 , y 2 , . . . , y t are all equal to a single nonzero entry of x, by trying to build a binary sequence b that conforms to the summaries {(S i , c i ) } t i=1 , i.e., by setting:
+If there is a conﬂict in the set of equations in (3), then that value of y is discarded in the current iteration, and the search is continued for other values. Otherwise, two events may occur. If (3) uniquely identiﬁes b, then one nonzero position and value of x has been determined. It is subtracted, measurements are updated and the algorithm is continued. However, there might be a case where only n 1 < n bits of b are determined by (3). In this case, we use the zero values of y to infer the remaining n − n 1 bits in the following way. Let the set of known and unknown bits of b be denoted by S 1 and S 2 , respectively. We consider the summaries (S, c) which contribute to A, and among all, consider all distinct subsets S. If there is a subset
+4: Construct a binary sequence b by setting b(S π(i) ) := c π(i) , ∀1 ≤ i ≤ t, where (S j , c j ) is the summary corresponding to measurement y j .
+5: If b is fully characterized without conﬂiction from previ- ous step, then a nonzero entry of x has been determined. subtract it, update y and go to step 2. Otherwise, exhaust the following step.
+6: Find a subset S ′ , such that among summaries (S ′ , c) that do not contradict with b, exactly one corresponds to a nonzero of y, say (S ′ , c ′ ), and set b(c ′ ) := S ′ .
+S ′ such that among all the measurements corresponding to (S ′ , c) where c does not conﬂict with b(S ′ ), exactly one of them are nonzero, say (S ′ , c ′ ), then the bits of b over S ′ ∩ S 2 can be uniquely determined by setting b(S ′ ) = c ′ . This procedure is repeated until either b is completely identiﬁed, or all possibilities are exhausted. A high level description of the presented method is given in Alg. 1, for which we can assert the following weak and strong recovery guarantees.
+Theorem 2 (Strong Recovery for SSII). Let k ≤ f S (n, d − 1) be an integer, and let A correspond to a complete (n, d) sum- mary codebook. Then every k-sparse distinguishable vector x is perfectly recovered by Alg. 1.
+Theorem 3 (Weak Recovery for SSII). Let k ≤ f ′ W (n, d, p, ϵ) be an integer, and let A correspond to a random (n, m, d) summary codebook. Then, a random k-sparse distinguishable vector x is recovered by Alg. 1 with probability at least 1 − kn
+The explicit recovery bounds given by above theorem are calculated in Section IV. Alg. 1 can be implemented very efﬁ- ciently, with O(max(poly(M), k log N)) operations, which is sublinear in the dimension of the problem. The computational advantage is owed to the most part to the structural deﬁnition of the measurement matrices which facilitates sublinear search over the column space of the matrix. In addition, we do not require an exponential memory for decoding, since the information about A and the current inferred indices of the unknown vector at each stage can be retained by only storing the corresponding binary indices.
+We describe a third recovery method, which is on the lines of the algorithm proposed in [2] with slight modiﬁcations. The algorithm consists of two subroutines: a value identiﬁcation phase in which the nonzero values of the unknown signal is determined, and a second phase for identifying the support set of x. The method is based on measurements given by y = (y (1)T , y (2)T ) T = (A T 1 , A T 2 ) T x, where only y (1) is used for the ﬁrst phase, and y (2) and A 2 are used in the second phase. For details of this method please refer to [2]. We analyze
+this algorithm for the proposed measurement structures of this paper, which is different from the analysis of [2].
+Find the set Y of nonzero entries of y 1 and set X = ∅. X will determine the set of nonzeros of x. Repeat steps 2,3 until S(X) = Y .
+Find the smallest entry of Y that is not in S(X), and add it to X.
+Initiate zero binary sequences {b x |x ∈ X}, which will determine the labeling of the support indices of x.
+For every nonzero entry of y 2 , ﬁnd the corresponding summary (S, c), and a subset X ′ ⊂ X that sum up to that value of y 2 . Set b x (S) = c, ∀x ∈ X ′ .
+Theorem 4 (Weak Recovery for M&M). Let k ≤ f W (n, d, p, ϵ) be an integer, and A =
+and A 2 correspond to a random (m, n, d) summary codebook, and a complete (n, 1) summary codebook, respectively. Then, a random nonnegative k-sparse distinguishable vector x is re- covered by Alg. 2 with probability at least p (1 − k(1 − ϵ) m ).
+The complexity of Alg. 2 is O(max(poly(M), 2 k )), and thus explodes when k grows.
+We derive recovery bounds for (2) and Alg.’s 1 and 2 by obtaining explicit bounds on the terms of deﬁnition 2 and replacing them in the recovery guarantees of Section III, namely Theorems 1-4. The proof of the following lemma is based on some combinatorial techniques and Chernoff concentration bounds, omitted here for space considerations.
+Lemma 2. Let n, l and k be integers and 0 < α < 1/2. Also, let ϵ = 1 − k
+By exploiting the expressions of the above lemma in Theorems 1-4, we obtain the following bounds for different methods:
+Basis Pursuit. If a complete (n, d) summary codebook is used to build A, then the number of measurements is M = 2 d
+, and every sparsity k ≤ 2 d −1 is guaranteed to be recovered. When put together (recall that n = log 2 N ), an upper bound on the the required number of measurements for recoverable sparsity k is given by:
+In particular, for small values of k, the above bound is comparable with the M = 2k log N bound of ℓ 1 minimization for random Gaussian matrices [19].
+SSII Algorithm. We focus on the weak bound, namely the one obtained from Theorem 3. The general strategy is to take the values of p and ϵ according to Lemma 2 with l = d − 1, and
+choose k and m in such a way that ﬁrstly, ϵ is bounded away from zero, and secondly, the probability of recovery failure approaches zero as n → ∞. Taking k = λ2 −d log 2 (
+for some 0 < λ < 1, a few basic algebraic steps lead to the following:
+It follows that the above expression approaches zero if m = O(n log n). Furthermore, α can be chosen arbitrarily close to zero. Therefore, it follows that an upper bound on the required number of measurements for successful recovery with high probability is given by:
+α/2+1/2) , and ϵ, p according to Lemma 2, it follows that:
+Which asymptotically vanishes if m = Ω(log k). Recall that the number of measurements in this case is determined by the matrix A = [A T 1 , A T 2 ] T described in Theorem 4, which is equal to M = 2 log N + m × 2 d . Therefore, it follows that an upper bound on the required number of measurements for successful recovery with high probability is given by:
+In particular, when k = o(log log N ), this means only O(log N) measurements are required, and the running time of the algorithm is O(log N) (see Section III), both of which are almost optimal.
+Since Alg. 2 is only efﬁcient for very small values of k, we present the empirical performance of Alg. 1. Due to the efﬁciency of the method, it is possible to perform simulations for very large values of N . In Figure 2, the empirical required over-sampling rate for Alg. 2 and the proposed constructions is plotted versus the signal dimension N , for various sparsity levels k. The required criteria here is that the probability of successful recovery be larger than 90%. Note that when N is increased by 9 orders of magnitude, the required number of measurements is increased by a factor of only 5, which is an indication of the logarithmic dependence of M to N . Furthermore, as the signal becomes less sparse (i.e. k increases), the required oversampling factor decreases. For k = 100, this ratio is only about 5 for N = 1024, and about 25 for N = 1.09 × 10 12 . This is signiﬁcantly better than existing sublinear recovery algorithms. Note that the optimal value of d for constructing the measurement matrices for every k, N is found empirically. In Figure 3, the probability of successful recovery is plotted against the sparsity level k for N = 32768, and M = 192, 240, 320. We can see that although the number of measurements has only increased by a factor of 2.3, the recoverable sparsity (given a ﬁxed probability of success) has improved by almost a factor of 4. Numerical evaluations reveal that these curves are comparable with the performance of ℓ 1 minimization over dense matrices (i.i.d. Gaussian), with the
+same number of measurements but with N = 3000, which is an indication of the strong performance of the proposed scheme.
+[[[ REFS ]]]
+
+--
+Compressed Sensing Online Resources, http://dsp
+----
+S. Jagabathul
+D. Sha
+--
+Inferring popular rankings under constrained sensing, NIPS, 2008
+----
+X. Jian
+Y. Ya
+L. Guiba
+--
+Stable Identiﬁcation of Cliques with Restricted Sensing, NIPS 2009
+----
+V. Cevhe
+--
+Learning with Compressible Priors, NIPS 2009
+----
+
+--
+Mihailo Stojnic, Weiyu Xu and Babak Hassibi, Compressed Sensing - Probabilistic Analysis of a Null-space Characterizatio, ICASSP 2008
+----
+Y. Elda
+--
+Compressed Sensing of Analog Signals in Shift-Invariant Spaces, IEEE Tran
+----
+J. Lask
+S. Kirolo
+M. Duart
+T. Raghe
+R. Baraniu
+Y. Mas- sou
+--
+Theory and implementation of an analog-toinformation coverter using random demodulation, ISCAS 2007
+----
+M. Mishal
+Y. C. Elda
+J. of Sel
+--
+From Theory to Practice: Sub-Nyquist Sampling of Sparse Wideband Analog Signals, IEEE  Top
+----
+J. Lu
+--
+Yi Lu and B
+----
+J. Yo
+S. Becke
+E. Cand`e
+--
+Azita Emami, A Random Modula- tion Pre-Integration Receiver for Sub-Nyquist Rate Signal Acquisition, Preprint 2010
+----
+E. J. Cand`e
+T. Ta
+--
+Decoding by linear programming, IEEE Trans
+----
+A. Gilber
+M. Straus
+J. Trop
+R. Vershyni
+--
+One Sketch for All: Fast Algorithms for Compressed Sensing, STOC 2007
+----
+D. Sarvotha
+D. Baro
+R. Baraniu
+--
+Sudocodes - Fast Measure- ment and Reconstruction of Sparse Signals, ISIT 2006
+----
+W. Da
+O. Milenkovi
+--
+H
+----
+G. Cormod
+S. Muthukrishna
+--
+Combinatorial algorithms for com- pressed sensing, CISS 2006
+----
+R. Berind
+A. Gilber
+P. Indy
+M. Karlof
+M. Straus
+--
+Combining Geometry and Combinatorics: a Uniﬁed Approach to Sparse Signal rRecovery, Allerton 2008
+----
+J. Blanchar
+C. Carti
+J. Tanne
+--
+Compressed Sensing: How Sharp Is the Restricted Isometry Property?
+----
+A. Khajehneja
+W. X
+A. G. Dimaki
+B. Hassib
+--
+Sparse Recovery of Positive Signals with Minimal Expansion, IEEE Tran
+----
+V. Chandrasekara
+B. Rech
+P. Parril
+A. Willsk
+--
+The Convex Geometry of Linear Inverse Problems, available at arXiv:1012
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\077.pdf
+[[[ LINKS ]]]
+

@@ -141,6 +141,9 @@ import scala.collection.immutable.List
 					for (i <- 0 to datasetSize -1){
 						//println(i)
 						for (j <- 0 to datasetSize -1){
+						  if(i==j)
+						    cosineSimilarity(i)(j) = 0
+						  else{
 							//May induce some computational time
 							val normVectorI = math.sqrt(dotProduct(tfidfTranspose(i),tfidfTranspose(i)))
 							val normVectorJ = math.sqrt(dotProduct(tfidfTranspose(j),tfidfTranspose(j)))
@@ -154,7 +157,8 @@ import scala.collection.immutable.List
 							cosineSimilarity(i)(j) = scalarProduct(i)(j)/(normVectorI*normVectorJ)
 							//println(cosineSimilarity(i)(j) + " " + scalarProduct(i)(j) + " " + normVectorI + " " + normVectorJ)
 							
-					    }	
+						  }	
+						}
 			         }
 					//return array of scores
 					println("Computing scalar product array: Done...")			
@@ -168,6 +172,7 @@ import scala.collection.immutable.List
 					}
 					//check if rounding is done correctly
 					val maximalWeight = cosineSimilarity.flatten.max
+					println(maximalWeight)
 					val normalizedCosSimilarity = cosineSimilarity.map(col =>{
 					  col.map(weight =>  ((weight*100)/maximalWeight).toInt)
 					})

@@ -1,0 +1,162 @@
+[[[ ID ]]]
+85
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Sum Capacity of K -user Cascade Gaussian Z-Interference Channel
+[[[ AUTHORS ]]]
+Yuanpeng Liu
+Elza Erkip
+[[[ ABSTR ]]]
+Abstract—A K-user cascade Gaussian Z-interference channel is a subclass of the general K-user Gaussian interference channel, where each user, except the ﬁrst one, experiences interference only from the previous user. Under simple Han-Kobayashi schemes assuming Gaussian inputs and no time sharing, it is shown that the maximum sum rate is achieved by each user transmitting either common or private signals. For K = 3, channel conditions under which the achieved sum rate is either equal to or within 0.5 bits to the sum capacity are identiﬁed.
+[[[ BODY ]]]
+Gaussian interference channel (GIC) models a communica- tion scenario where the received signal is not only subject to Gaussian noise but also the interference coming from other transmissions. Despite its simple form, the capacity region of the 2-user GIC is unknown except for some special cases such as the strong interference regime [1]. Additionally the sum capacity in the noisy regime was derived concurrently in [2][3][4]. For a general 2-user GIC the best achievable rate region is given by the Han-Kobayashi (HK) scheme [5] where the information is split into common and private components. However the computation of the general HK rate region is very difﬁcult due to a large degrees of freedom involved and the lack of knowledge of the optimal input distribution. Nevertheless in [6] Etkin, Tse and Wang showed that a Gaussian-input HK scheme without time sharing, where the power of the private information is set to the noise level, sufﬁces to achieve the capacity region of a 2-user GIC to within one bit. Notably all the aforementioned capacity results reside on the class of simple HK schemes (Gaussian inputs, no time sharing) with different power splitting. When one is interested in a K-user GIC (K > 2), it is tempting to consider the generalization of the simple HK scheme in a K-user setup. Unfortunately the simple HK scheme is generally insufﬁcient. As shown in [7] it does not achieve the degree of freedom of a many-to-one GIC, a special case of a general K-user GIC. In this paper, we seek to ﬁnd a subclass of a general K-user GIC where a simple HK scheme achieves the sum capacity.
+Motivated by the fact that the sum capacity of a 2-user one-sided GIC (here we refer it as Gaussian Z-interference channel or GZIC) is known for all channel conditions [8], we consider the generalization of the channel model to the K- user case. Each user, except for the ﬁrst interference-free user, experiences only one interference component coming from the
+previous user. Hence every two adjacent users form a GZIC and all the GZICs connect in a cascade fashion shown in Fig. 2 (in Section II). We refer this channel as cascade Gaussian Z-interference channel (CGZIC). For a physical interpretation, consider a Wyner cellular network [9] where the base stations are linearly aligned and each base station serves one user, which is located at the edge of the cell as shown in Fig. 1. The K-user CGZIC models the downlink channel of such network.
+In this paper, we ﬁrst obtain the sum rate optimal power splitting within a class of simple HK schemes assuming Gaussian inputs and no time sharing. We show that there is no need for information splitting and each user transmits either common or private information depending on a recursively- deﬁned channel condition. Then for a 3-user CGZIC, by providing upper-bounds, we present the sum capacity results in various regimes. For a modiﬁed noisy regime, a class of mixed regimes and the strong interferece regime, the exact sum capacity is derived. For a different class of mixed regimes, the sum capacity to within 0.5 bits is derived. All of the achievable schemes are based on the above optimized simple HK scheme. The generalization to the K-user case (K > 3) is also discussed.
+In related work [10], Zhou and Yu considered a similar channel model named cyclic GIC where the Etkin-Tse-Wang scheme was shown to achieve the capacity region to within some constant number of bits in the weak interference regime. The CGZIC considered in this paper is a special case of a cyclic GIC, where one interference link is removed. In return, the simpliﬁed model allows us to obtain stronger results in terms of rate sum. In particular, the optimized simple HK scheme proposed in this paper achieves a higher sum rate than the Etkin-Tse-Wang scheme when applied to the CGZIC. Furthermore we are able to obtain the exact sum capacity in some regimes, as opposed to the approximation approach
+taken in [10]. Also the simpliﬁed channel allows us to obtain capacity results in a broader range of channel conditions.
+This paper is organized as the follows. Section II formally deﬁnes the channel model. For a class of simple HK schemes, the maximum sum rate is derived in Section III. Section IV presents the sum capacity results for various regimes and Section V concludes the paper by illustration and discussion.
+Notation: C(x) 	 1 2 log 2 (1 + x), C −1 (y) 	 2 2y − 1. X n denotes (X 1 , ..., X n ). Whenever we write Y G , the subscript G is used to denote that the distribution is Gaussian. h( ·) denotes differential entropy. The logarithms are in base 2.
+We consider a general K-user CGZIC with arbitrary channel coefﬁcients and noise variances, which can be transformed into the standard form shown in Fig. 2,
+where Z i is the i.i.d. real Gaussian noise with zero mean and unit variance, i.e. Z i ∼ N (0, 1). Here X i and Y i denote the input and output of user i respectively. We assume the channel input is subject to an average power constraint P i .
+For a given rate tuple (R 1 , ..., R K ) and number of channel uses n, user i maps a message W i , W i ∈ {1, ..., 2 nR i } into a codeword, X n i , via an encoding function such that the power constraint is satisﬁed. Receiver i produces an estimate ˆ W i of message W i based on the channel output Y n i via a decoding function. Rate tuple (R 1 , ..., R K ) is said to be achievable if there exits encoding and decoding functions such that for all i ∈ {1, ..., K}, the average error probability of user i P e,i = E(P r ( ˆ W i ̸= W i )), where the expectation is over all messages, approaches zero as n approaches inﬁnity. The capacity region is deﬁned as the union of all achievable rate tuples.
+Deﬁnition 1: In a simple HK scheme, user i, i = 1, ..., K, employs a Gaussian codebook and splits its power into two parts, the common γ i P i and the private (1 −γ i )P i , 0 ≤ γ i ≤ 1. Receiver i decodes the common part of the interference and its own signal jointly by treating the private part as noise. Hence each scheme in the class is uniquely speciﬁed by the power splitting tuple (γ 1 , ..., γ K ).
+Note that the simple HK scheme, of which the rate region for a given channel is solely determined by the power splitting tuple, is more tractable than the general HK scheme, where besides the power splitting, the characterization of the rate region also depends on input distributions and time-sharing. Previous works summarized in the introduction have focused on tuning the power splitting of the simple HK scheme in such a way that the sum rate coincides (within a constant gap) with the upper-bound and therefore capacity results are obtained. In this section we maximize the sum rate of the simple HK scheme for a K-user CGZIC. In the following section, we provide upper-bounds and establish capacity results.
+Theorem 1: The maximum sum rate of a K-user CGZIC under a class of simple HK schemes is given by
+The optimal power splitting tuple is given by (γ ∗ 1 , γ ∗ 2 , ..., γ ∗ K ), where γ ∗ K is an arbitrary real number in the interval [0, 1] and
+Proof: Suppose R ∗ = (R ∗ 1 , ..., R ∗ K ) is a maximum sum rate achieving rate vector under a class of simple HK schemes. Let Γ ∗ = (γ ∗ 1 , γ ∗ 2 , ..., γ ∗ K ) be the corresponding power splitting tuple. Now consider a new power splitting tuple Γ ′ = (γ 1 , γ ∗ 2 , ..., γ ∗ K ) where
+Note that Γ ′ differs from Γ ∗ only by the ﬁrst element. Let R ′ = (R ′ 1 , ..., R ′ K ) denote the rate vector associated with Γ ′ scheme. Next we will show
+R ∗ i and hence Γ ′ is also sum rate optimal. Then we can proceed repeatedly in a similarly fashion until all γ ∗ i is updated according to (3). Now let r ∗ 1 = C(h 2 1 P 1 ) = C(P 1 ) and for i = 2, ..., K,
+(4) where h i is deﬁned in (2).
+Case 1. If R ∗ 2 < r ∗ 2 , we argue that R ′ = (R ′ 1 , ..., R ′ K ) is achievable under Γ ′ , where
+We need to show that with Γ ′ and rates R ′ , receiver i can reliably decode the signal sent from user i for all i = 1, ..., K.
+Note that rate vector (R ′ 1 , r ∗ 2 ) gives the sum capacity of a 2- user GZIC when the power splitting γ 1 is employed by user 1 [8]. Since R ′ 2 = R ∗ 2 < r ∗ 2 , rate vector (R ′ 1 , R ′ 2 ) lies in the capacity region of the 2-user GZIC formed by user 1 and 2. Hence decoding at receiver 1 and 2 will be successful. Recall that Γ ′ and R ′ differ from Γ ∗ and R ∗ only by the ﬁrst element respectively. Under power splitting Γ ′ , receiver i can reliably decode at the rate R ′ i = R ∗ i for i = 3, ..., K, since we assume R ∗ is achievable with scheme Γ ∗ . By assumption
+R ∗ i , we have R ′ 1 ≤ R ∗ 1 . However, we also have R ′ 1 ≥ R ∗ 1 since R ′ 1 is the point to point capacity of user 1. Therefore
+Case 2. If R ∗ 2 ≥ r ∗ 2 , we argue that R ′ = (R ′ 1 , ..., R ′ K ) is achievable under Γ ′ scheme, where
+The decodability at receiver i, i = 1, 2, 4, ..., K can be shown using the above argument. Now we consider the decodability at receiver 3. For any R ∗ 2 ≥ r ∗ 2 and any decomposition R ∗ 2 = R ∗ 2c + R ∗ 2p , where the subscript c/p denotes com- mon/private information, we can always ﬁnd R ′ 2c and R ′ 2p such that R ′ 2c ≤ R ∗ 2c , R ′ 2p ≤ R ∗ 2p and R ′ 2c + R ′ 2p = R ′ 2 = r ∗ 2 . If receiver 3 can decode the common interference and its own signal at rates (R ∗ 2c , R ∗ 3 ), which is true by the assumption that R ∗ is achievable under Γ ∗ , then rates (R ′ 2c , R ∗ 3 ) are also decodable at receiver 3 for the same power splitting tuple (γ ∗ 2 , γ ∗ 3 ) employed by user 2 and 3. Therefore rate vector R ′ = (R ′ 1 , ..., R ′ K ) is achievable under Γ ′ scheme. Again by assumption
+R ∗ i , we have R ′ 1 + R ′ 2 ≤ R ∗ 1 + R ∗ 2 . However, it is clear that R ′ 1 + R ′ 2 gives the sum capacity of the 2-user GZIC formed by user 1 and 2. Hence R ′ 1 + R ′ 2 = R ∗ 1 + R ∗ 2 , i.e. Γ ′ scheme is sum rate optimal. Note that the maximum sum rate achieving scheme may not be unique. Nevertheless, since we seek to ﬁnd one such scheme, we let R ∗ 1 = R ′ 1 = r ∗ 1 and R ∗ 2 = R ′ 2 = r ∗ 2 .
+We have shown that there exists a maximum sum rate achieving scheme satisfying the following conditions:
+Since we have determined R ∗ 1 , we can safely remove user 1 from the system and focus on the remaining users with an additional rate constraint on R ∗ 2 . We can further drop this con- straint by replacing user 2’s direct link by h 2 , h 2 =
+. Note that R ∗ 2 is upper-bounded by the point to point rate and h i ≤ 1, i = 1, ..., K. Now we are back to the problem for a (K − 1)-user CGZIC starting with user 2 with a modiﬁed direct link. We can apply this procedure repeatedly until all
+users are considered. Notice that since user K does not cause interference to any other users, there is no constraint on the power splitting user K adopts.
+In this section, we consider a 3-user CGZIC and present capacity results in various regimes. Extension to the K-user case is discussed in Section V. One trivial result is that if there exists a very strong interference link, say a 1 ≥
+2 , this interference link could be removed without affecting the capacity region and hence the sum capacity of a 3-user CGZIC in this case reduces to the sum of a point to point AWGN channel capacity and the 2-user GZIC sum capacity. Without loss of generality, we assume no very strong interference link exists, i.e. a i <
+Deﬁnition 2: For a 3-user CGZIC, we say the interference is noisy if the following condition is satisﬁed:
+The following result is a direct application of Theorem 3 in [11] to a 3-user CGZIC.
+Corollary 1: The sum capacity of a 3-user CGZIC in the noisy interference regime is
+Proof: In [11], the authors use c ji to denote the channel coefﬁcient from the jth user to the ith receiver. Speciﬁcally for the 3-user CGZIC considered in this paper, c 13 = c 21 = c 31 = c 32 = 0, c 12 = a 2 1 and c 23 = a 2 2 . Substituting these values into equation (27)(28) in [11], we get the following channel condition under which treating interference as noise achieves sum capacity:
+for some value ρ i ∈ [0, 1], i = 1, 2, 3. Such ρ i always exists if condition (5) holds.
+. According to Theorem 1, treating interference as noise at both receivers achieves the maximum sum rate of the simple HK scheme and Corollary 1 shows that such sum rate is indeed the sum capacity.
+Deﬁnition 3: For a 3-user CGZIC, we say the interference is strong if 1 ≤ a 1 <
+Theorem 2: The capacity region of a 3-user CGZIC in the strong interference regime is given by the set of all nonnegative rate triples (R 1 , R 2 , R 3 ) satisfying the following conditions for i = 1, 2, 3 and j = 1, 2:
+Proof: For the achievability, consider the simple HK scheme with power splitting tuple (γ 1 , γ 2 , γ 3 ) = (1, 1, γ 3 ), where γ 3 is arbitrary in the interval [0, 1]. The converse follows the same argument in [1]. Since a 1 ≥ 1 (a 2 ≥ 1), receiver 2 (3) will be able to decode the interference signal if its own signal is decodable and hence can be removed. Therefore the rates of user 1 (2) and 2 (3) should lie in the capacity region of the multi-access channel at receiver 2 (3) in Theorem 2.
+Using Fourier-Motzkin elimination, we have the following. Corollary 2: The sum capacity of a 3-user CGZIC in the
+In fact since Theorem 2 establishes the optimality of the simple HK scheme, the above sum capacity expression can be directly derived from Theorem 1 using the power splitting tuple (γ 1 , γ 2 , γ 3 ) = (1, 1, γ 3 ), where γ 3 is arbitrary in the interval [0, 1].
+Deﬁnition 4: For a 3-user CGZIC, we say the interference is in mixed regime I if the following conditions hold: a 1 < 1 and
+Theorem 3: The sum capacity of a 3-user CGZIC in the mixed regime I is
+Proof: For the achievability, consider the simple HK scheme with power splitting tuple (γ 1 , γ 2 , γ 3 ) = (0, 1, γ 3 ), where γ 3 is arbitrary in the interval [0, 1]. According to Theorem 1, the following sum rate is achievable:
+R sum = C(h 2 1 P 1 ) + C(h 2 2 P 2 ) + C(h 2 3 P 3 ), = C(P 1 ) + C( P 2 1+a 2
+) + C(h 2 3 P 3 ), 	 (6) = C(P 1 ) + C( P 2 1+a 2
+. The converse follows immediately by recognizing that the ﬁrst two terms gives the sum capacity of the 2-user GZIC formed by user 1 and 2 in the weak interference regime (a 1 < 1).
+Deﬁnition 5: For a 3-user CGZIC, we say the interference is in mixed regime II if the following conditions hold: 1 ≤ a 1 <
+Theorem 4: The sum capacity of a 3-user CGZIC in the mixed regime II satisﬁes the following inequality:
+Lemma 1: Suppose N 1 , N 2 , ..., N n are i.i.d. with an ar- bitrary distribution and X 1 , X 2 , ..., X n ∼ i.i.d. p(x) with E p(x) (X 2 ) ≤ P . Then we have
+Proof: In [12], the authors showed that Gaussian input incurs no more than 0.5-bit loss to the capacity of an additive arbitrarily distributed noise channel. Lemma 1 is a direct consequence of the multi-letter version of their results, i.e.
+The proof of the above inequality follows the exact same lines in [12] except that scalar random variables are now replaced by the corresponding vectors.
+Proof of Theorem 4: For the achievability, consider the simple HK scheme with power splitting tuple (γ 1 , γ 2 , γ 3 ) = (1, 0, γ 3 ), where γ 3 is arbitrary in the interval [0, 1]. Theorem 1 suggests optimality among simple HK schemes with the sum rate, R sum = C(a 2 1 P 1 + P 2 ) + C( P 3 1+a 2
+The genie bounding approach [2] combined with Lemma 1 is used for the converse. If a 1 ≥ 1, I(X 1 ; Y 2 |X 2 ) ≥ I(X 1 ; Y 1 ) for all input distributions since Y 1 is stochastically degraded with respect to Y 2 conditioned on X 2 . As shown in [13], this implies the multi-letter version I(X n 1 ; Y n 2 |X n 2 ) ≥ I(X n 1 ; Y n 1 ). Let S 2 = X 2 +a 1 X 1 +η 2 N 2 denote the signal given to receiver 2 by a genie, where N 2 ∼ N (0, 1) is correlated with Z 2 with correlation coefﬁcient ρ 2 and η 2 is some constant. For some ϵ n such that lim n →∞ ϵ n = 0, we have
+≤ I(X n 1 ; Y n 1 ) + I(X n 2 ; Y n 2 ) + I(X n 3 ; Y n 3 ) ≤ I(X n 1 , X n 2 ; Y n 2 ) + I(X n 3 ; Y n 3 )
+− h(Y n 2 |X n 1 , X n 2 , S n 2 ) + h(Y n 3 ) − h(Y n 3 |X n 3 ) ≤ h(S n 2 ) − nh(S 2G |X 1G , X 2G ) + h(Y n 2 |S n 2 )
+(8) ≤ h(S n 2 ) − nh(S 2G |X 1G , X 2G ) + nh(Y 2G |S 2G )
+(9) where (8) is due to the fact that the channel is memoryless, conditioning reduces entropy and given a covariance con- straint, Gaussian distribution maximizes differential entropy and (9) is due to Lemma 1 in [2]. Let V denote a Gaussian r.v. independent of X 2 and V 2 , V 2 ∼ N (0, a 2 2 (a 2 1 P 1 + η 2 2 )), such that Z 3 = V 2 + V . Note that V exists if a 2 2 (a 2 1 P 1 + η 2 2 ) ≤ 1. Then we have
++ 0.5n − n log a 2 	 (10) = −I(V n ; a 2 X n 2 + V n 2 + V n ) + 0.5n − n log a 2 (11) ≤ −nI(V ; a 2 X 2G + V 2 + V ) + 0.5n − n log a 2 (12) = nh(S 2G ) − nh(Y 3G |X 3G ) + 0.5n,
+where (10) is due to Lemma 1 and the identity h(cX n ) = h(X n ) + n log |c| for a constant c. Also X n 1G has i.i.d. entries. (11) is because V 2 and a 2 (a 1 X 1G + η 2 N 2 ) have the same variance and are both independent of X 2 . (12) is due to the worst case noise result for the additive noise channel [14].
+Due to Lemma 8 in [2], I(X 2G ; S 2G |Y 2G ) = 0 and I(X 1G ; S 2G |Y 2G , X 2G ) = 0 iff η 2 ρ 2 = 1. Therefore we have
+≤ I(X 1G , X 2G ; Y 2G , S 2G ) + I(X 3G ; Y 3G ) + 0.5 = I(X 1G , X 2G ; Y 2G ) + I(X 2G ; S 2G |Y 2G )
++ I(X 1G ; S 2G |Y 2G , X 2G ) + I(X 3G ; Y 3G ) + 0.5 = C(a 2 1 P 1 + P 2 ) + C( P 3 1+a 2
+under the conditions: a 2 2 (a 2 1 P 1 + 1/ρ 2 2 ) ≤ 1 for some ρ 2 ∈ [0, 1]. There always exists such ρ 2 if a 2 ≤
+For a 3-user CGZIC, Fig. 3 shows four regimes for (a 1 , a 2 ). In regimes I, II, III and VI, user 1/ 2 transmitting common/common, private/common, private/private and com- mon/private signals respectively maximizes the sum rate of a class of simple HK schemes using Theorem 1. Speciﬁcally, the gray area in regime I corresponds to the strong interference regime where the sum rate (1) in Theorem 1 is the sum capacity. Likewise, the gray areas in regimes II, III and VI correspond to the mixed regime I, noisy regime and mixed regime II respectively where sum capacity results apply.
+Regarding the generalization of the capacity results for a 3- user CGZIC to the K-user (K > 3) case, similar to Deﬁnition 2, the channel condition for the K-user noisy interference regime can be identiﬁed using Theorem 3 [11], where the sum capacity is achieved by all receivers treating interference as noise. In the K-user strong interference regime, where all interference links are strong, i.e. 1 ≤ a i ≤
+i+1 , i = 1, ..., K − 1, similar to Theorem 2, it can be shown that only transmitting common information achieves the capacity region. We can also make use of the following Lemma to break the K-user CGZIC into smaller CGZICs.
+Lemma 2: Consider a K-user CGZIC with K > 3. Let C j i , 1 ≤ i, j ≤ K and i ≤ j, denote the sum capacity of a (j −i + 1)-user CGZIC obtained by only considering users {i, ..., j}.
+Assume there exists k, k < K, such that C k 1 is achieved by the simple HK scheme. If a k ≥
+k+1 h k with h k deﬁned in (2), then C K 1 = C k 1 + C K k+1 .
+Proof: By providing user k + 1 the genie signal X k , the interference link from user k to user k + 1 can be removed and the original channel can be decoupled into two parts, whose sum capacities are C k 1 and C K k+1 respectively. Hence we have C K 1 ≤ C k 1 + C K k+1 . For the achievability, let the ﬁrst k users and the remaining K −k users employ their respective sum capacity achieving schemes for C k 1 and C K k+1 . If C k 1 is achieved by the simple HK scheme, then C k 1 can be found by Theorem 1. This suggests that if a k ≥
+k+1 h k , user k +1 will be able to decode and hence remove the interference without affecting its own rate. Hence C k 1 + C K k+1 is achievable for the original K-user CGZIC.
+[[[ REFS ]]]
+H. Sato
+--
+The capacity of the Gaussian interference channel under strong interference
+----
+V. S. Annapureddy
+V. Veeravalli
+--
+Gaussian interference networks: sum capacity in the low interference regime and new outer bounds on the capacity region
+----
+A. S. Motahari
+A. K. Khandani
+--
+Capacity bounds for the Gaussian interference channel
+----
+X. Shang
+G. Kramer
+B. Chen
+--
+A new outer bound and the noisy- interference sum-rate capacity for Gaussian interference channels
+----
+S. Han
+K. Kobayashi
+--
+A new achievable rate region for the interference channel
+----
+R. Etkin
+D. N. C. Tse
+H. Wang
+--
+Gaussian interference channel capacity to within one bit
+----
+G. Bresler
+A. Parekh
+D. Tse
+--
+The approximate capacity of the many- to-one and one-to-many Gaussian interference channels
+----
+I. Sason
+--
+On achievable rate regions for the Gaussian interference channel
+----
+A. D. Wyner
+--
+Shannon-theoretic approach to a Gaussian cellular multiple-access channel
+----
+L. Zhou
+W. Yu
+--
+On the capacity of the K-user cyclic Gaussian interference channel
+----
+X. Shang
+G. Kramer
+B. Chen
+--
+New outer bounds on the capacity region of Gaussian interference channels
+----
+R. Zamir
+U. Erez
+--
+Gaussian input is not too bad
+----
+M. Costa
+A. El Gamal
+--
+The capacity region of the discrete memoryless interference channel with strong interference
+----
+S. Diggavi
+T. M. Cover
+--
+Worst additive noise under covariance constraints
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\085.pdf
+[[[ LINKS ]]]
+

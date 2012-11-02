@@ -1,0 +1,149 @@
+[[[ ID ]]]
+55
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Lossless Coding with Generalized Criteria
+[[[ AUTHORS ]]]
+Themistoklis Charalambous
+Charalambos D. Charalambous
+Farzad Rezaei
+[[[ ABSTR ]]]
+Abstract—This paper presents preﬁx codes which minimize various criteria constructed as a convex combination of maximum codeword length and average codeword length, or, a convex combination of the average of an exponential function of the codeword length and the average codeword length. This frame- work encompasses as a special case several criteria previously investigated in the literature, while relations to universal coding is discussed. The coding algorithm derived is parametric resulting in re-adjusting the initial source probabilities via a weighted probability vector according to a merging rule. An algorithm is presented to compute the weighting vector.
+[[[ BODY ]]]
+Lossless ﬁxed to variable length source codes are usually examined under known source probability distributions, and unknown source probability distributions. For known source probability distributions there is an extensive literature which aims at minimizing various pay-offs such as the average codeword length [1], the average redundancy of the codeword length [2], [3], the average of an exponential function of the codeword length [4]–[6], the average of an exponential function of the redundancy of the codeword length [3], [6], [7]. On the other hand, universal coding and universal mod- eling, and the so-called Minimum Description Length (MDL) principle are often examined via minimax techniques, when the source probability distribution is unknown, but belongs to a pre-speciﬁed class of source distributions [2], [8]–[11].
+This paper is concerned with lossless coding problems, in which the pay-offs are the following. 1) A convex combination of the maximum codeword length and the average codeword length, and 2) a convex combination of the average of an expo- nential function of the codeword length and the average code- word length. These are multiobjective pay-offs whose solution bridges together an anthology of source coding problems with different pay-offs including some of ones investigated in the above mentioned references. Moreover, for 1) there is parameter α ∈ [0,1] which weights the maximum codeword length while (1 − α) weights the average codeword length, and as this parameter moves away from α = 0 the initial probability vectors changes to a weighting probability vector and the maximum length of the code is reduced resulting in a more balanced code tree. A similar conclusion holds for 2).
+Consider a source with alphabet X = {x 1 , x 2 , . . . , x |X| } of cardinality |X|, generating symbols according to the probabil-
+Source symbols are encoded into D −ary codewords. A code C = {c(x) : x ∈ X} for symbols in X with image alphabet D = {0,1,2,...,D − 1} is an injective map c : X → D ∗ ,
+where D ∗ is the set of ﬁnite sequences drawn from D. For x ∈ X each codeword c(x) ∈ D ∗ , c(x) ∈ C is identiﬁed with a codeword length l(x) ∈ Z + , where Z + is the set of non- negative integers. Thus, a code C for source symbols from the alphabet X is associated with the length function of the code l : X → Z + , and a code deﬁnes a codeword length vector
+Since a function l : X → Z + is the length function of some preﬁx code if and only if it satisﬁes the Kraft inequality [1], then the admissible set of codeword length vectors is deﬁned by
+On the other hand, if the integer constraint is relaxed by admitting real-valued length vectors l ∈ R |X| which satisfy the Kraft inequality, such as Shannon codes or arithmetic codes, then L(Z |X| + ) is replaced by
+Without loss of generality is it is assumed that the set of probability distributions is deﬁned by
+P( X) = p = p(x 1 ), . . . , p(x |X| ) ∈ R |X| + : p(x |X| ) > 0, p(x i ) ≤ p(x j ), ∀i > j,(x i , x j ) ∈ X,
+Moreover, log( ·) = log D ( ·). The two main problems investi- gated are the following.
+Problem 1. Given a known source probability vector p ∈ P( X) deﬁne the one parameter pay-off
+where α ∈ [0,1] is a weighting parameter. The objective is to ﬁnd a preﬁx code length vector l ∗ ∈ R |X| + which minimizes the pay-off L M O α (l, p) , for ∀α ∈ [0,1].
+The pay-off L M O α (l, p) is a convex combination of the maxi- mum and the average codeword length, and hence α weights how much emphasis is placed on the maximum and the aver- age codeword length. The extreme cases, α = 0 corresponds to the average codeword length, and α = 1 corresponds to the maximum codeword length. To the best of our knowledge the pay-off deﬁned in Problem 1 is not addressed in the literature. Another class of problems which is also not discussed in the literature is the following.
+Problem 2. Given a known source probability vector p ∈ P( X) deﬁne the two parameter pay-off
+where α ∈ [0,1] is a weighting parameter and t ∈ (−∞,∞). The objective is to ﬁnd a preﬁx code length vector l ∗ ∈ R |X| + which minimizes the pay-off L M O t,α (l, p), ∀α ∈ [0,1].
+The two parameter pay-off L M O t,α (l, p) is a convex combination of the average of an exponential function of the codeword length and the average codeword length. For α = 0 or α = 1 the resulting special cases of Problem 2 are found in [2]–[7]). Although, Problem 2 is also deﬁned for t ≤ 0 its solution will be discussed for t ≥ 0.
+Hence, for α = 0 or α = 1 Problem 1 and Problem 2 are related to several problems previously investigated in the literature. The special case L M O t,1 (l, is also the dual problem of universal coding problems formulated as a minimax, in which the maximization is over a class of probability distributions which satisfy a relative entropy constraint with respect to a given ﬁxed nominal probability distribution (see [12]).
+Moreover, for any α ∈ (0,1) Problem 1 and Problem 2 are multiobjective problems; clearly as α moves away from α = 0 more emphasis will be put on minimizing the maximum codeword length for Problem 1, and the exponential function of the codeword length for Problem 2. Relations between Problem 1 and Problem 2 and other pay-offs are established by noticing the validity of the following limits (which can be easily shown).
+Since the multiobjective pay-off L M O t,α (l, p) is in the limit, as t → ∞, equivalent to lim t →∞ L M O t,α (l, p) = L M O α (l, p), ∀α ∈ [0, 1], then the codeword length vector minimizing L M O t,α (l, p) is expected to converge in the limit as t → ∞, to that which minimizes L M O α (l, p).
+The objective of this section is to convert the multiobjective pay-off of Problem 1 into one which is equivalent to a single objective of the form x ∈X w α (x)l(x), in which w α (x), x ∈ X are the new weights which depend continuously on the parameter α ∈ [0,1]. Subsequently, we derive certain prop-
+erties of these weights associated with the optimal codeword lengths. The main issue here is to identify the combination rule of merging symbols together, and how this combination rule will change as a function of the parameter α ∈ [0,1] so that a solution exists over [0, 1]. From these properties the Shannon codeword lengths for Problem 1 will be found.
+l(x), U = x ∈ X : l(x) = l ∗ . Then, the pay-off L M O α (l, p) can be written as
+where the weights w α (x) are functions of α and the source probability p ∈ P(X). A precise deﬁnition of the weights will be provided in Theorem 1. It can be easily veriﬁed that the new weight vector w α = {w α (x) : x ∈ X} is a probability distribution since 0 ≤ w α (x) ≤ 1, ∀x ∈ X and
+w α (x) = 1, ∀α ∈ [0,1]. The next lemma describes how the weight vector behaves as a function of the probability vector p and α ∈ [0,1].
+Lemma 1. Consider pay-off L M O α (l, p). Given any probability distribution P( X) the following hold.
+1. If p(x) ≤ p(y), then w α (x) ≤ w α (y) ∀x,y ∈ X, α ∈ [0,1]. Equivalently, w α (x 1 ) ≥ w α (x 2 ) ≥ ... ≥ w α (x |X| ) > 0, for all α ∈ [0,1].
+2. For y / ∈ U, w α (y) is a monotonically decreasing function of α ∈ [0,1], and for x ∈ U, w α (x) is a monotonically increasing function of α ∈ [0,1].
+1) x, y / ∈ U: then w α (x) = (1 − α)p(x) ≤ (1 − α)p(y) = w α (y), ∀ α ∈ [0,1]; 2) x,y ∈ U: w α (x) = w α (y) = w ∗ α
+min x ∈X w α (x); 3) x ∈ U, y /∈ U (or x /∈ U, y ∈ U): Consider the case x ∈ U and y /∈ U. Then,
+∂α = −p(y) < 0, 	 (6) ∂w α (x)
+According to (6), (7), for y / ∈ U the weight w α (y) decreases, and for x ∈ U the weight w α (x) increases. Hence, since w α ( ·) is a continuous function with respect to α, at some α = α , w α (x) = w α (y) = w ∗ α . Suppose that for some α = α + dα, dα > 0, w α (x) = w α (y). Then, the largest weight will decrease and the lowest weight will increase as a function of α ∈ [0,1] according to (6) and (7), respectively.
+Remark 1. (Special Case) Before deriving the general coding algorithm, consider the simplest case when |U| = 1, that is w α (x |X| ) < w α (x |X|−1 ). Then,
+This formulation is identical to the minimum expected length problem provided α ∈ [0,1] is such that w α (x |X| ) < w α (x |X|−1 ). Hence, for any α ∈ [0,α 1 ) deﬁned by
+the codeword lengths are given by −log w α (x), x ∈ X. For α ≥ α 1 the form of the minimization problem changes, as more weights w α (x) are such that x ∈ U. The merging rule on the weight vector w α for any α ∈ [0,1] so that a solution to the coding problem exists for arbitrary cardinality |U| and any α ∈ [0,1] is described next.
+Consider the general case when |U| ∈ {1,2,...,|X| − 1}. Deﬁne α 0 = 0 and
+α k = min α ∈ [0,1] : w α (x |X|−(k−1) ) = w α (x |X|−k ) , ∆α k = α k+1 − α k , k ∈ {1,...,|X| − 1}.
+That is, since the weights are ordered as in Lemma 1, α 1 is the smallest value of α ∈ [0,1] for which the smallest two weights are equal, w α (x |X| ) = w α (x |X|−1 ), α 2 is the smallest value of α ∈ [0,1] for which the next smallest two weights are equal, w α (x |X|−1 ) = w α (x |X|−2 ), etc, and α |X|−1 is the smallest value of α ∈ [0,1] for which the biggest two weights are equal, w α (x 2 ) = w α (x 1 ). For a given value of α ∈ [0,1], we deﬁne the minimum weight corresponding to a speciﬁc symbol in X by w ∗ α = min x ∈X w α (x).
+Since for k = 0, w α 0 (x) = w 0 (x) = p(x), ∀x ∈ X, is the set of initial symbol probabilities, let U 0 denote the singleton set {x |X| }. Speciﬁcally,
+Similarly, U 1 is deﬁned as the set of symbols in {x |X|−1 , x |X| } whose weight evaluated at α 1 is equal to the minimum weight w ∗ α 1 , i.e.,
+In general, for a given value of α k , k ∈ {1,...,|X| − 1}, we deﬁne
+Lemma 2. Consider pay-off L M O α (l, p). For any probability distribution p ∈ P(X) and α ∈ [α k , α k+1 ) ⊂ [0,1], k ∈ {0,1,2,...,|X| − 1} then w α (x |X|−k ) = w α (x |X| ) = w ∗ α and the cardinality of set U
+Proof: The validity of the statement is shown by perfect induction. At α = α 1 ,
+Suppose that, when α = α 1 + dα, dα > 0, then w α (x |X| ) = w α (x |X|−1 ). Then,
+and the weights would be of the form w α (x) = (1 − α)p(x) and w α (y) = α + (1 − α)p(y) where y ∈ {x |X| , x |X|−1 }. Thus,
+∂α = −p(x) < 0, x /∈ U 	 (10) ∂w α (y)
+∂α = 1 − p(y) > 0, y ∈ U. 	 (11) Hence, the largest of the two would decrease, while the smallest would increase and therefore the two weights would coincide. Note that this statement applies for in- ﬁnitesimally small dα. This contradicts our assumption that w α (x |X| ) = w α (x |X|−1 ) for α > α 1 . Therefore, w α (x |X| ) = w α (x |X|−1 ), ∀α ∈ [α 1 , 1).
+Secondly, in the case that α > α k , , k ∈ {2,...,|X| − 1}, we suppose that the weights
+∂α = −p(x) < 0, x /∈ U 	 (12) |U| ∂w ∗ α ∂α = 1 − k j=0 p |X|−j > 0, k ∈ {2,...,|X| − 1}. (13)
+Finally, in the case that α > α k+1 , k ∈ {2,...,|X| − 2}, if any of the weights w |X|−j (α), ∀j ∈ {0,...,k + 1}, changes differently than another, then, either at least one weight will become smaller than others and give a higher codeword length, or it will increase faster than the others and hence according to (12) it will decrease to meet the other weights. Therefore, the change in this new set of weights should be the same, and the cardinality of U increases by one, i.e., U k+1 = |k + 2|, k ∈ {2,...|X| − 2}.
+The main theorem which describes how the weight vector w α changes as a function of α ∈ [0,1] so that there exist a solution to the coding problem is given in the next theorem.
+Theorem 1. Consider pay-off L M O α (l, p). Given a set of prob- abilities p ∈ P(X) and α ∈ [α k , α k+1 ), k ∈ {0,1,...,|X| − 1 }, the optimal weights
+ 
+Proof: The proof of Theorem 1 follows from Lemma 2 (for the full proof see also [13]).
+This section presents the optimal real-valued codeword length vectors l ∈ L(R |X| + ) of the multiobjective pay-offs stated under Problem 1 and Problem 2, for any α ∈ [0,1] and t ∈ [0,∞).
+Theorem 2. Consider Problem 1. For any probability distri- bution p ∈ P(X) and α ∈ [0,1] the optimal preﬁx real-valued code l ∈ R |X| + minimizing the pay-off L M O α (l, p) is given by
+ 
+Proof: The pay-off to be minimized is given by (5). It can be easily veriﬁed that the new weight vector w α = {w α (x) : x ∈ X} is a probability distribution since 0 ≤ w α (x) ≤ 1, ∀x ∈ X and x ∈X w α (x) = 1, ∀α ∈ [0,1]. Therefore, as in Shannon coding the optimal codeword lengths are given by minus the logarithm of the optimal weights.
+Note that for α = 0 Theorem 2 corresponds to the Shannon solution l sh (x) = −log p(x), while the solution for α = 1 is the same as the solution for all α taking values in interval α ∈ [α |X|−1 , 1] over which the weight vector w α is identically distributed, and hence l † α (x) | α=1 = 1 |X| . The behavior of w α (x) and l † α (x) as a function of α ∈ [0,1] is described in the next subsection via an illustrative example.
+Theorem 3. Consider Problem 2. For any probability distri- bution p ∈ P(X) and α ∈ [0,1] the optimal preﬁx real-valued code l ∈ R |X| + minimizing the pay-off L M O t,α (l, p) is given by
+where {ν t,α (x) : x ∈ X} is deﬁned via the tilted probability distribution
+Proof: By invoking the Karush-Kuhn-Tucker necessary and sufﬁcient conditions of optimality one obtains the follow- ing set of equations describing the optimal codeword lengths.
+Note that the solution stated under Theorem 3 corresponds, for α = 0 to the Shannon code, which minimizes the average codeword length pay-off, while for α = 1 (after manipulations) it is given by
+which is precisely the solution of a variant of the Shannon code, minimizing the average of an exponential function of the codeword length pay-off [5], [6].
+Remark 2. 1. The Limiting Case as t → ∞: The minimization of the multiobjective pay-off L M O α (l, p) obtained in Theorem 2 is indeed obtained from the minimization of the two parameter multiobjective pay-off L M O t,α (l, p) in the limit, as t → ∞. In addition, lim t →∞ L M O t,α (l, p) = L M O α (l, p), ∀l and hence at l = l † . Hence, the solution of Problem 1 can be deduced from the solution of Problem 2 in the limit as t → ∞ provided the merging rule on how the solution changes with α ∈ [0,1] is employed.
+2. Coding Theorems: Although, coding theorems for Problem 1 and Problem 2 are not presented (due to space limitation), these can be easily obtained either from the closed form solutions or by following [4].
+For any probability distribution p ∈ P(X) and α ∈ [0,1] an algorithm is presented to compute the optimal weight vector w α for any α ∈ [0,1].
+It is shown in Section II (see also Figure 1) that the weight vector w α changes piecewise linearly as a function of α ∈ [0, 1]. Therefore, to calculate the weights w ˆ α (x) for a speciﬁc value of ˆ α ∈ [0,1], one is only required to determine the values of α at the intersections by using (15), up to the intersection (see Fig.1) that gives a value greater than ˆ α or up to the last intersection (if all the intersections give a smaller value of α). Thus, one can easily ﬁnd the weights at ˆ α by using (14). The algorithm is depicted under Algorithm 1 below.
+Consider binary codewords and a source with |X| = 4 and probability distribution
+Using the algorithm one can ﬁnd the optimal weight vector w † for different values of α ∈ [0,1] for which pay-off (1) of Problem 1 is minimized. Compute α 1 via (15), α 1 = 1/16. For α = α 1 = 1/16 the optimal weights are w † 3 (α) = w † 4 (α) = (1 − α)p 3 = 1/8, w † 2 (α) = (1 − α)p 2 = 1/4 and w † 1 (α) = (1 − α)p 1 = 1/2. In this case, the resulting codeword lengths correspond to the optimal Huffman code. The weights for all α ∈ [0,1] can be calculated iteratively by calculating α k for all k ∈ {0,1,2,3} and noting that the weights vary linearly with α (Figures 1 and 2).
+Two lossless coding problems with generalized pay-offs are investigated and real-valued codeword length solutions are presented. Relations to problems discussed in the literature are obtained. Huffman algorithms which solve this problem are part of ongoing research.
+The research leading to these results has received funding from the European Community’s Seventh Framework Pro- gramme (FP7/2007-2013) under grant agreement no. INFSO- ICT-223844
+[[[ REFS ]]]
+T. M. Cove
+J. A. Thoma
+--
+Elements of Information Theory, 2nd ed
+----
+M. Drmota
+W. Szpankowski
+--
+Precise minimax redundancy and regret
+----
+M. Baer
+--
+Tight bounds on minimum maximum pointwise redundancy
+----
+L. Campbell
+--
+A coding theorem and R´ enyi’s entropy
+----
+P. Humblet
+--
+Generalization of huffman coding to minimize the prob- ability of buffer overﬂow
+----
+M. Baer
+--
+Optimal Preﬁx Codes for Inﬁnite Alphabets With Nonlinear Costs
+----
+
+--
+A general framework for codes involving redundancy minimiza- tion
+----
+L. Davisson
+--
+Universal noiseless coding
+----
+L. Davisson
+A. Leon-Garcia
+--
+A source matching approach to ﬁnding minimax codes
+----
+C. Charalambous
+F. Rezaei
+--
+Stochastic uncertain systems subject to relative entropy constraints: Induced norms and monotonicity properties of minimax games
+----
+P. Gawrychowski
+T. Gagie
+--
+Minimax trees in linear time with applications
+----
+F. Rezaei
+C. Charalambous
+--
+Robust coding for uncertain sources: a minimax approach
+----
+C. D. Charalambou
+T. Charalambou
+F. Rezae
+--
+Lossless Coding with Generalised Criteria , 2011
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\055.pdf
+[[[ LINKS ]]]
+

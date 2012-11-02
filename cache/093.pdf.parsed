@@ -1,0 +1,190 @@
+[[[ ID ]]]
+93
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Computing the Capacity of Relay Networks in Polynomial Time
+[[[ AUTHORS ]]]
+Farzad Parvaresh
+Ra´ul Etkin
+[[[ ABSTR ]]]
+Abstract—The capacity or approximations to capacity of var- ious single-source single-destination relay network models has been characterized in terms of the cut-set upper bound. In principle, a direct computation of this bound requires evaluating the cut capacity over exponentially many cuts. We show that the minimum cut capacity of a relay network under some special assumptions can be cast as a minimization of a submodular function, and as a result, can be computed efﬁciently. We use this result to show that the capacity, or an approximation to the capacity within a constant gap for the Gaussian, wireless erasure, and Avestimehr-Diggavi-Tse deterministic relay network models can be computed in polynomial time. We present some empirical results showing that computing constant-gap approximations to the capacity of Gaussian relay networks with around 300 nodes can be done in order of minutes.
+[[[ BODY ]]]
+Relay networks, where one or more source nodes send information to one or more destination nodes with the help of intermediate nodes acting as relays, are often used to model communication in wireless sensor networks. In sensor networks, sensor nodes have limited power sources and often require multi-hop communication with the help of intermediate nodes to reach the data aggregation centers. To guide the design of these networks it is of interest to characterize fundamental communication limits such as the capacity, which represents the maximum reliable communication rate.
+Various communication models for relay networks capture in an abstract setting different aspects of practical systems. The wireless erasure network model of [7] captures the effect of packet losses in the wireless setting. The deterministic network model of Avestimehr, Diggavi and Tse (ADT) [3] incorporates broadcast and interference and can be used to gain insights about communication in more complex models that incorporate noise. Among these, of special importance is the Gaussian relay network, which models power limited transmitters and received signals corrupted by additive white Gaussian noise.
+While the capacity of some network models (e.g. wireless erasure and ADT) is well characterized, the capacity of the Gaussian relay network, even in its simplest form with one transmitter, one relay, and one receiver, is in general unknown. The best known capacity upper bound is the so-called cut-set bound . A cut Ω of a network can be considered as a subset of nodes which includes the source node and excludes the destination node. For this cut, the capacity F (Ω) is deﬁned as the maximum rate that information can be transferred form
+the nodes in Ω to the nodes that are not in Ω conditioned on the fact the information on Ω c (the nodes that are not in Ω) is known. The cut-set upper bound is the minimum cut capacity over all the possible cuts.
+In the Gaussian setting, there are several capacity lower bounds based on different communication schemes, such as amplify-and-forward, decode-and-forward, compress-and- forward, quantize-and-forward, etc. [4], [6], [16]. Recently, Avestimehr, et al. [2] made signiﬁcant progress in the capacity characterization of Gaussian relay networks by showing that a quantization and coding communication scheme can achieve a communication rate within a constant gap of the cut-set upper bound, where the gap only depends on the number of nodes in the network (i.e. it is independent of the channel gains and power levels). However, the evaluation of the achievable communication rate, which is necessary to implement the scheme, requires the computation of the cut-set bound for the network. Assuming that for a given cut the cut capacity is easy to compute, ﬁnding the cut-set upper bound can be a challenging problem. For a network with n relay nodes there are up to 2 n many different cuts and a greedy algorithm needs exponential time in the number of relay nodes to compute the cut-set bound.
+In this work we show that the achievable rate of the scheme of [2] for the Gaussian relay network can be computed in polynomial time, and as a result, can be computed efﬁciently. This result is obtained by showing that the cut capacity of a fairly large class of networks under the assumption of independent encoding at the nodes in Ω is a submodular function. Existing results on minimization of submodular functions provide algorithms with polynomial running time O(n 5 α + n 6 ), where α is the time that it takes to compute F (Ω) and n is the number of nodes in the network [18]. In addition, there exist possibly faster algorithms without polynomial time performance guarantees based on Wolfe’s minimization norm algorithm [11]. In Section V, by simu- lations, we show that the cut-set bound for a Gaussian relay network with around 300 nodes can be computed on a laptop computer in about a minute using a MATLAB package for submodular minimization provided in [17].
+Our results, extend and generalize previous results for the ADT model. This model can be seen as a high signal- to-noise-ratio (SNR) approximation of the Gaussian model, incorporating the effects of broadcasting and superposition of signals while de-emphasizing the effects of noise. Amaudruz
+et al. [1] showed that the cut-set bound for a layered 1 ADT model can be computed efﬁciently. They have extended graph ﬂow algorithms such as Ford-Fulkerson’s in a nontrivial way to ﬁnd the maximum possible linearly independent (LI) paths in the network. They showed that the capacity of the network is equal to the maximum number of (LI) paths and can be computed in time O(M · |E| · C 5 ), where M is the maximum number of nodes per layer, |E| is the total number of edges and C is the capacity of the network. Moreover, they showed that the capacity can be achieved by using a very simple one-bit processing at the relay nodes. Later Goemans et al. [12] showed that the deterministic model is a special case of a ﬂow model based on linking systems, a combinatorial structure with a tight connection to matroids. As a by-product, they obtained the submodularity of the cut capacity for layered ADT networks. Using this observation they provided various algorithms related to matroid theory to compute the cut capacity of the layered deterministic model based on ﬁnding intersection or partition of matroids. These results led to faster algorithms to compute the capacity of large layered ADT networks. In addition, there has been other extensions on improving the running time of the current algorithms for computing the capacity of ADT networks [8], [9], [20], [21].
+In addition to showing that the capacity within a constant gap of the Gaussian relay network can be computed in polyno- mial time, our results allow us to compute in polynomial time the capacity of the wireless erasure network. Furthermore, we provide a simple proof for the computability in polynomial time of the capacity of the layered and non-layered ADT networks.
+We obtain these results by considering a general framework to compute the cut-set bound. We assign transmit signal ran- dom variable X i to node i ∈ V and we assume the probability distribution over the signals X 1 , X 2 , . . . , X n to be indepen- dent, i.e p(X 1 , X 2 , . . . , X n ) = p 1 (X 1 )p 2 (X 2 ) · · · p n (X n ). We also assign received signal random variables Y i ’s to each node. The network is deﬁned by the transition probability function f (Y 1 , Y 2 , . . . , Y n |X 1 , X 2 , . . . , X n ). We further as- sume that the transition probability function is of the form f 1 (Y 1 |X 1 , . . . , X n ) · · · f n (Y n |X 1 , . . . , X n ), meaning that the received signals are independent conditioned on the trans- mitted signals in the network. For such networks we show that F (Ω) = I(Y Ω c ; X Ω |X Ω c ) 2 is submodular with respect to Ω. Later we show that for ADT networks, the Gaussian relay network and the wireless erasure network, we can ﬁnd p 1 (X 1 ) · · · p n (X n ) such that min Ω F (Ω) becomes equal to the capacity or the capacity within a constant gap. In other words, the min-cut problem for these networks can be cast as a minimization of a submodular function.
+The paper is organized as follows. In Section III we show that for speciﬁc type of networks the cut value, F (Ω), is a
+submodular function. We then show in Section IV that for many wireless network models such as the ADT deterministic network, Gaussian relay network and wireless erasure network the capacity or an approximation to the capacity can be cast as a minimization of F (Ω). Finally, in Section V we describe results related to solving optimization problems involving submodular functions. We start by introducing the notation used in the rest of the paper.
+Let V denote the set of nodes in the network and |V| its cardinality. For any subset A of nodes we denote by V\A or A c the set of nodes in V that are not in A. We assume V\A ∪ B = V\(A ∪ B). A cut Ω is deﬁned as a subset of nodes in V. A cut splits the nodes in the network into two groups, the nodes that are in Ω and the ones that belong to V\Ω. Random variables are shown in capital letters such as X i and Y i . We use boldface letter for vectors, e.g. x is a constant vector and X is a random vector. We use X Ω to denote (X v 1 , X v 2 , . . . , X v |Ω| ) with v i ∈ Ω. The function I(X; Y |Z) is the mutual information between random variables X and Y conditioned on random variable Z. With a slight abuse of notation we use H(X) to denote either the entropy or differential entropy of the discrete or continuous random variable X [5]. By F p we denote a ﬁnite ﬁeld with p elements. Finally, all the log(·) functions are in base two.
+Submodularity arises in many combinatorial optimization problems and large body of research has been developed on minimizing or maximizing submodular functions under various constraints.
+A submodular function f : 2 V → R is deﬁned as a function over subsets of V with diminishing marginal returns, i.e. if A, B ⊆ V with A ⊆ B and any v ∈ V\B,
+The theorem below establishes the submodularity of the cut capacity function of a general relay network under some special assumptions. This theorem will be used in Section IV to prove that the capacity or an approximation to the capacity of various speciﬁc relay network models can be computed by minimizing a submodular function.
+Theorem 1. Consider a network consisting of nodes in V. Each node sends a message X i , i ∈ V and receives Y i , i ∈ V. If the messages are independent p(X 1 , X 2 , . . . , X |V| ) = p 1 (X 1 )p 2 (X 2 ) · · · p |V| (X |V| ) and conditioned on the sent mes- sages the received messages are independent, then the function
+Proof: To show that F (A) is submodular we show that F (A ∪ a) − F (A) is monotonically non-increasing in A for
+A ) + H(X a |X A ) − H(X a |Y V\A∪a , X V\A∪a ) − H(X A |X a , Y V\A∪a , X V\A∪a )
+=H(X A ) + H(X a |X A ) − H(X a |Y V\A∪a , X V\A∪a ) − H(X A |Y V\A∪a , X V\A )
+where (a) is the deﬁnition of mutual information and (b) is from the chain rule for the entropy function. Therefore,
+=H(X a |X A ) − H(X a |Y V\A∪a , X V\A∪a ) − H(X A |Y V\A∪a , X V\A )
+=H(X a |X A ) − H(X a |Y V\A∪a , X V\A∪a ) − I(X A ; Y a |Y V\A∪a , X V\A )
+=H(X a |X A ) − H(X a |Y V\A∪a , X V\A∪a ) − H(Y a |Y V\A∪a , X V\A )
++ H(Y a |X A , Y V\A∪a , X V\A ) = H(X a |X A )
+nondecreasing in A − H(Y a |Y V\A∪a , X V\A )
+where the last equality follows because Y a is independent of Y V\A∪a conditioned on X V . So, F (A ∪ a) − F (A) is non- increasing in A and thus F (A) is submodular.
+In this section, by applying the result of Theorem 1, we show that the capacity or an approximation to the capacity for the ADT deterministic network, Gaussian relay network, and wireless erasure network can be cast as a minimization of a submodular function.
+We start by brieﬂy describing the network model of [3] 3 . In this model, each link from node i to node j has an associated non-negative integer gain n ij . Each node i ∈ V transmits a signal X i and receives a signal Y i , both in F q p where q = max i,j n ij . At any given time, the received signal at node j is given by
+where d is the destination node, the shifting matrix S is given by
+     
+0 0 	 0 · · · 0 1 0 	 0 · · · 0 0 1 	 0 · · · 0 .. . . . . . . . . . . .. .
+     
+For a given cut Ω of the network, where Ω includes the source node and excludes the destination node, we can stack together the input vectors X i , i ∈ Ω and output vectors Y i , i ∈ Ω c , and deﬁne a transition matrix Λ Ω that gives the input-output relationship of these vectors according to (1). It is shown in [2] that the capacity of the deterministic network is equal to min Ω rank(Λ Ω ). We show next in Theorem 2 that rank(Λ Ω ) is submodular, and hence the capacity can be computed by minimizing a submodular function.
+Proposition 1. Assume an m × n matrix A over F p . Let N be the subspace N def = x ∈ F n p | Ax = 0 , and let G be the set of cosets of N in F n p . Pick ˆ x i to be an element in the ith coset of N for i = 1, 2, . . . , | G |, and set y i = Aˆ x i . Notice that y i = y j if i = j. Now, if we choose x uniformly at random from elements of F n p with probability 1/|F n p |, then the mapping Ax maps x to {y 1 , y 2 , . . . , y | G | } uniformly at random with probability 1/| G |. In addition, the cosets of N form a partition of F n p into p n /|N | sets. Also rank(A) + log p (|N |) = n. Thus, log p | G | = rank(A).
+Theorem 2. For a deterministic model, given a cut Ω assume Λ Ω is the transition matrix form nodes in Ω to nodes in Ω c . Set D(Ω) = rank(Λ Ω ), then D(Ω) is submodular.
+Remark 1. A special case of Theorem 2 for layered ADT networks was proved in earlier works [12], [21].
+Proof: In the network, assume node i sends b i sym- bols x i,1 , x i,2 , . . . , x i,b i with x i,j ∈ F p . We assume x i,j ’s drawn i.i.d. with uniform probability distribution over F p , i.e. p(x i,j = q) = 1/|F p | for all q ∈ F p . From the deﬁnition of transition matrix, Λ Ω , if we assume for the cut Ω, s = (s 1 , s 2 , . . . , s k ) t symbols are being sent from nodes in Ω and r = (r 1 , r 2 , . . . , r ) t symbols are being received by nodes in Ω c then r = Λ Ω s. Then we can write
+Ω c |X Ω c ) =H(Λ Ω s|X Ω c )
+where G is the set of cosets of N where N = {s : Λ Ω s = 0}. Equality (a) is because Y Ω c is a deterministic function of X Ω and (b) is the result of Proposition 1 and the fact the s has uniform probability distribution.
+Notice that for the independent probability distribution on the sources the received signals are independent con-
+ditioned on transmitted signals so, based on Theorem 1, I(X Ω ; Y Ω c |X Ω c ) which is equal to D(Ω) is submodular.
+The Gaussian network model captures the effects of broad- casting, superposition and noise of power constrained wireless networks. In this model, at any time index (which we omit) the received signal at node j ∈ V\{s} is given by
+where X i ∈ C is the transmitted signal at node i, subject to an average power constraint E(|X i | 2 ) 1, h ij ∈ C is the channel gain from node i to node j, and N j ∈ CN (0, 1) is additive white circularly symmetric complex Gaussian noise, independent for different j.
+It has been show in [19, Theorem 2.1] that using lattice codes for transmission and quantization at the relays, all rates R between source {s} and destination {d} satisfying
+can be achieved, where Ω is a source-destination cut of the network and X Ω = {X i , i ∈ Ω} are i.i.d. CN (0, 1). In addition, the restriction to i.i.d. Gaussian input distributions is within |V| bits/s/Hz of the cut-set upper bound [2]. Therefore the rate achieved using lattice codes in the above result is within 2|V| bits/s/Hz of the capacity of the network.
+The following corollary is an immediate consequence of Theorem 1.
+Corollary 1. The function F (Ω) = I(X Ω ; Y Ω c |X Ω c ) with the elements of X Ω being i.i.d. CN (0, 1) is submodular.
+Due to Corollary 1 the minimization in (3) is the minimiza- tion of a submodular function and the resulting optimal value is within 2|V| of the capacity of the network. 4 .
+In [7] the authors introduce a special class of wireless networks, called wireless erasure networks. In these networks, a directed graph G = (V, E ) deﬁnes the interconnections between nodes. To model the broadcast effect of wireless networks, the signals on all outgoing arcs of any given node are equal to each other. There is no interference among multiple arcs arriving at a given node in this model, and the signals on the various arcs are erased independently of each other. We assume binary transmitted signals at each node, i.e. X i ∈ {0, 1}, i ∈ V\{d}, but all the results can be extended to models with larger input alphabets. It has been shown in [7] that the capacity of the network is
+where ij is the probability of erasure when node i is sending information to node j. We show in the following theorem that F (Ω) is submodular.
+equals I(X Ω ; Y Ω c |X Ω c ) where X i are i.i.d. ∼ Bernoulli(1/2) for i ∈ Ω. Therefore, F (Ω) is submodular.
+We used in (a) the independence among X i and the channel erasures, in (b) the fact that for X i ∼ Bernoulli(1/2), H(X i ) = 1, and in (c) the fact that for X i ∼ Bernoulli(1/2), H(X i |Y j = e, j ∈ Ω c ) = 1 and for independent erasures we have p(Y j = e, j ∈ Ω c ) = j∈Ω c ij . Theorem 1 can be applied to conclude that F (Ω) is submodular.
+One approach to solve the submodular minimization prob- lem due to Lov´asz is based on extension of the set function f : 2 V → R to a convex function g : [0, 1] |V| → R that agrees with f on the vertices of the hypercube [0, 1] |V| , with a guarantee that min A⊆V f (A) is equal to min x g(x) for x ∈ [0, 1] |V| . In this section we assume the normalization f (∅) = 0.
+The Lov´asz extension g of any set function f can be deﬁned as follows. For a given x ∈ [0, 1] |V| order the elements of V such that x(v 1 ) x(v 2 ) · · · x(v n ), where x(v i ) is the v i th element of the vector x. Set λ 0 = 1 − x(v 1 ), λ i = x(v i ) − x(v i+1 ), λ n = x(v n ), and
+Deﬁne 1 ∅ = 0 ∈ R n and 1 {v 1 ,v 2 ,...,v i } as an n dimensional vector such that the coordinates v 1 , v 2 , . . . , v i are equal to one and all the other coordinates are equal to zero. Then, it is easy to see that x = n i=0 λ i 1 {v 1 ,v 2 ,...,v i } , n i=0 λ i = 1 and λ i 	 0. So, x is a unique linear convex combination
+of some vertices of the hypercube and g(x) is linear convex combination of values of f on those vertices.
+A key result is that f is submodular if and only if its Lov´asz extension g is a convex function [13], [10]. In addition, ﬁnding the minimum of the submodular function f over subsets of V is equivalent to ﬁnding the minimum of the convex function g in the hypercube [0, 1] |V| . The optimization can be done in polynomial time using Ellipsoid algorithm [13].
+There are other algorithms with faster running time to solve the submodular minimization problem [14], [15], [18]. To the best of our knowledge, the running time of the fastest algorithm is in the order of O(n 5 α + n 6 ), where α is the time that the algorithms takes to compute f (A) for any subset A ⊆ V [18]. For ADT networks, Gaussian relay networks, and erasure networks, α is the time to compute: the rank of n × n matrices, the determinant of n × n matrices, and equation (4), respectively.
+However, for networks of large size, a complexity of O(n 5 α + n 6 ) may still be computationally cumbersome. As a result, in these cases it is desirable to have faster algorithms. Recently, Fujishing [10], [11] showed that the minimization of any submodular function can be cast as a minimum norm optimization over the base polytope of f , B f = P f ∩ {x | i∈V x(i) = f (V)}, where
+Letting x ∗ be the solution of this minimization, the set A ∗ = {v i : x ∗ (v i ) < 0} is the solution to min A f (A). Whether the above optimization problem can be solved in polynomial time is an open problem. However empirical studies [11] have shown that this algorithm has comparable or even faster running times than the other algorithms with polynomial time performance guarantees.
+In our speciﬁc setting, for layered Gaussian relay networks of size up to around 300 nodes with 4 nodes per layer, we were able to ﬁnd the approximate capacity (cf. (3)) in order of minutes on a laptop computer with a 2.8 GHz AMD Dual- Core Processor and 4 GB of memory ( see Figure 1). In order to solve the minimization (5) we used the Matlab package provided in [17].
+[[[ REFS ]]]
+A. Amaudruz
+C. Fragouli
+--
+Combinatorial algorithms for wireless information ﬂow
+----
+A. S. Avestimehr
+S. N. Diggavi
+D. N. C. Tse
+--
+Approximate Capacity of Gaussian Relay Networks
+----
+S. Avestimehr
+N. Diggavi
+D. N C. Tse
+--
+A deterministic approach to wireless relay networks
+----
+E. Schei
+D. dissertatio
+--
+Brett  Distributed coordination in network information theory, Ph
+----
+T. M. Cove
+J. A. Thoma
+--
+Elements of Information Theory, New York: Wiley, 1991
+----
+T. M. Cover
+A. El Gamal
+--
+Capacity Theorems for the Relay Channel
+----
+A. F. Dana
+R. Gowaikar
+R. Palanki
+B. Hassibi
+M. Effros
+--
+Ca- pacity of wireless erasure networks
+----
+J. Ebrahimi
+C. Fragouli
+--
+Combinatorial Algorithms for Wireless In- formation Flow
+----
+E. Erez
+Y. Xu
+E. M. Yeh
+--
+Coding for the Deterministic Network Model
+----
+S. Fujishig
+--
+Submodular functions and optimization,(Second Edition), Annals of Discrete Mathematics, Vol
+----
+S. Fujishig
+T. Hayash
+S. Isotan
+--
+The Minimum-Norm-Point Algorithm Applied to Submodular Function Minimization and Linear Programming, Kyoto University, Kyoto, Japan, 2006
+----
+M. X. Goemans
+S. Iwata
+R. Zenklusen
+--
+An Algorithmic Frame- work for Wireless Information Flow
+----
+M. Groetschel
+L. Lovasz
+A. Schrijver
+--
+The ellipsoid method and its consequences in combinatorial optimization
+----
+S. Iwata
+--
+A faster scaling algorithm for minimizing submodular func- tions
+----
+S. Iwata
+J. B. Orlin
+--
+A simple combinatorial algorithm for submod- ular function minimization
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative strategies and ca- pacity theorems for relay networks
+----
+R. A. Kraus
+--
+Matlab Toolbox for Submodular Function Optimization, http://www
+----
+J. Orlin
+--
+A faster strongly polynomial time algorithm for submodular function minimization
+----
+A. ¨ Ozg¨ur
+S. Diggavi
+--
+Approximately achieving Gaussian relay network capacity with lattice codes
+----
+C. Shi
+A. Ramamoorthy
+--
+Improved combinatorial algorithms for wireless information ﬂow
+----
+S. M. Sadegh Tabatabaei Yazdi
+S. A. Savari
+--
+A combinatorial study of linear deterministic relay networks
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\093.pdf
+[[[ LINKS ]]]
+

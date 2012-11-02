@@ -1,0 +1,205 @@
+[[[ ID ]]]
+96
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Hash-and-Forward Relaying for Two-Way Relay Channel
+[[[ AUTHORS ]]]
+Erhan Yılmaz
+Raymond Knopp
+[[[ ABSTR ]]]
+Abstract —This paper considers a communication network comprised of two nodes, which have no mutual direct communication links, communicating two-way with the aid of a common relay node (RN), also known as separated two-way relay (TWR) channel.
+We ﬁrst recall a cut-set outer bound for the set of rates in the context of this network topology assuming full-duplex transmission capabilities. Then, we derive a new achievable rate region based on hash-and-forward (HF) relaying where the RN does not attempt to decode but instead hashes its received signal, and show that under certain channel conditions it coincides with Shannon’s inner-bound for the two-way channel [1]. Moreover, for binary adder TWR channel with additive noise at the nodes and the RN we provide a detailed capacity achieving coding scheme based on structure codes.
+[[[ BODY ]]]
+Up to now, diﬀerent transmission schemes are proposed for two-way relay (TWR) channels [2]–[11]. However, the capacity region for general TWR channel remains open. The simplest transmission scheme for TWR channel con- sists of four phases where the two nodes transmit their messages to the relay node (RN) successively and then the RN decodes and forwards each mobile’s message in the following two time slots. However, using ideas from network coding (NC) [12], it is shown in [3] that the last two transmissions may be merged into a single transmis- sion, resulting in three time slots, where in the ﬁrst two time slots the mobiles send their messages to the RN in orthogonal time slots, the RN decodes both messages and then combines them by means of the bit-wise XOR operation and retransmits it to the mobiles. There the mobiles are assumed to use the bit-wise XOR operation on the decoded message and the own transmitted message to obtain the message sent from the other mobile. Requiring three time slots, this bit-wise XOR based TWR scheme provides a pre-log factor of 2/3 with respect to the sum- rate.
+Moreover, the number of required time slots for the communication between the two nodes can be reduced even further to two time slots by allowing them to si- multaneously access the RN [7], [8], [13], [14]. In [4], [13], [15] amplify-and-forward (AF), decode-and-forward (DF) and compress-and-forward (CF) based relaying strategies
+consisting only of two time slots are proposed for TWR channel. In [16] an analog network coding (ANC) scheme, where the RN ampliﬁes and forwards mixed received signals, is proposed and compared to the traditional and digital network coding (bit-wise XOR at the RN) schemes in terms of network throughput. In [13] the denoise-and- forward (DNF) relaying is proposed for TWR channel where the RN removes the noise from the combined mobiles’ messages (on the multiple-access channel) before broadcasting and compared with AF, DF based TWR schemes as well as the traditional four phase scheme.
+In this paper, we consider a TWR channel where two separated nodes seek to communicate, and can do so, via a common RN. This kind of scenario can occur in satellite communications where diﬀerent ground stations want to exchange information or in public safety networks where diﬀerent intervening entities (e.g. ﬁre-ﬁghters) want to communicate with each other to gain information about the current status at diﬀerent parts of the disaster area [17].
+Throughout the paper we focus on discrete memoryless TWR channel model assuming full-duplex transmission capabilities at the communicating nodes. A cut-set outer bound for the set of rates in the context of this network topology is recalled and an achievable rate region based on DF relaying is provided where a message-level network
+coding enabling codebook size reduction at the RN is used. Then, a novel achievable rate region based on random binning, i.e. hash-and-forward (HF) relaying, is provided where the RN does not attempt to fully (or partially) decode but rather hashes its received signal so as to reduce the amount of information needed to send in the DL. Finally, we study a binary adder channel with additive noise at the nodes and the RN and show that the outer bound is virtually achievable by physical-layer network coding, using group codes and partial decoding at the RN.
+Consider the discrete-memoryless network in Fig. 1 comprising a pair of nodes communicating two-way via a RN. Node a generates n-dimensional codewords X n ab based on an index W ab ∈ 1, 2, · · · , 2 nR ab where R ab is the information rate in bits/dimension in the direction ab, for a ∈ {1, 2} and b ∈ {1, 2} \ a. Each letter of the transmitted codewords, X ab,i , i = 1, 2, · · · , n belongs to an alphabet X ab and is chosen according to a deterministic en- coding function X ab,i = f ab,i W ab , Y i −1 a 	 which includes the possibility for exploiting the past observations of the relay channel output (downlink 1 ). The RN also uses a deterministic transcoder which generates an n-dimensional output sequence X n R based on the observed noisy multiuser (uplink) channel output Y n R . The transcoding function at the RN is causal and written as X R,i = f R,i Y i −1 R ∈ X R , where X R is the alphabet of the RN transmitter. The multiuser channel is memoryless and successive outputs are identically distributed according to the conditional probability p(y R |x 12 , x 21 ). The observed sequences at the nodes, Y n 1 and Y n 2 , are independent conditioned on the RN output and identically distributed according to the conditional probability p(y 1 , y 2 |x R ) = p(y 1 |x R )p(y 2 |x R ).
+Receiver a decodes its message based on the observed sequence Y n a using a decoding function ˆ W ba = g (Y n a , W ab ) with probability of error P e,a = Pr ˆ W ba = W ba .
+Let us ﬁrst derive an outer-bound on the capacity region from ﬁrst principles. It is shown in [18] that by using Fano’s inequality twice, we have the following outer-bound on achievable rates
+The ﬁrst term (uplink) in (1) corresponds to the outer- bound of the two-way channel with a common output [1] with which no coding strategy is known to coincide, except for additive channels and some special cases [19]. In our system, the achievable rates would be limited to this rate if the DL channels were capable enough to allow the RN to forward a suﬃcient characterization of Y R to the nodes.
+Discussion 1. In the case of a noiseless DL channel, our system boils down to a two-way channel with a common
+output [1]. For a weak DL, the information rates will be limited by the second term in (1). Also, were the uplink channel noiseless, an outer-bound to the achievable rates would be given by the second term.
+At the node-1 and node-2 assuming coding schemes which do not exploit the DL signal in the encoding of the UL data so that the data streams are independent, we now consider coding schemes at the RN which do not attempt to decode or partially decode the transmitted data streams, but rather perform binning (hashing) of the received sequence. UL codebooks are generated randomly at each node according to p(x 12 ) and p(x 21 ). At the RN we will consider two diﬀerent encoding strategies, namely DF and HF. Prior to discussing these further, we ﬁrst look at DL coding for degraded broadcast channels (BCs) with successive reﬁnement which will be needed for the probability of error analysis for data transmission on the DL.
+We consider the case where the DL channel is degraded and a DL channel code where the two users are required to decode the same information but with diﬀerent degrees of reﬁnement (here two). By this we mean that the user with the weaker channel only receives the heavily-protected data stream, while the user with the stronger channel re- ceives both. This is the general BC where there is common information for both users and extra information for the stronger user. We make use of standard multi-level coding [20], and let R R, 1 and R R, 2 denote the information rates of the RN to nodes 1 and 2 respectively, and assume further that R R, 1 ≥ R R, 2 . The random codebook, {X R (i, j), i = 1, 2, · · · , 2 n (R R,1 −R R,2 ) , j = 1, 2, · · · , 2 nR R,2 }, is generated according to the distributions p(u) and p(x R |u) in the standard-way so that the achievable DL rates are given by the convex hull (with respect to the parameter α and p(x R , u)) of
+R R, 2 = I(U ; Y 2 ), 	 (2a) R R, 1 − R R, 2 = I(X R ; Y 1 |U ). 	 (2b)
+In this section, we provide a brief view of the achievable rates for the digital single-relay network with two com- municating nodes, wherein a generalized form of network- coding for discrete-memoryless channels is used.
+The DL channel is a classical BC except for the fact that the decoders have side information to exploit, namely the
+transmitted codeword indices that they themselves sent during the UL portion. For simplicity, we assume that the two channel outputs are conditionally independent so that they can be separated into two transition probabil- ities p(y i |x R ), i = 1, 2. Each node decodes the received sequence y n 1 (y n 2 ) using the side information from its own transmission to yield the estimates ˆ ˆ W 21 ( ˆ ˆ W 12 ). In the following theorem, we provide an achievable rate region for the above channel model.
+Theorem 2. An achievable rate region for the two-user single relay network using DF relaying strategy is given by the closure of the following set of inequalities
+R 12 ≤ min {I(X 12 ; Y R |X 21 ), I(X R ; Y 2 )} , (3a) R 21 ≤ min {I(X 21 ; Y R |X 12 ), I(X R ; Y 1 )} , (3b)
+Proof: The proof which is brieﬂy explained in the following can be found in [18].
+The RN employs a multi-user receiver to decode the transmitted codeword indices yielding the estimates ( ˆ W 12 , ˆ W 21 ) at its output. without loss of generality, we assume R 12 ≥ R 21 . Based on these indices, in the down- link phase, it then encodes the two indices using a two- dimensional codebook X R = {X n R (W (1) R , W (2) R ), W (1) R = 1, . . . , 2 n (R 12 −R 21 ) , W (2) R = 1, . . . , 2 nR 21 }. Here we note that the cardinality of the RN’s codebook is at most 2 nR 12 .
+ˆ W 12 ⊕ ˆ W 21 , where ⌊x⌋ is the ﬂoor operation and x ⊕ y denotes (x + y) mod 2 nR 21 .
+At the receiver 1 (the weak receiver), who has the side information W 12 , the unique ˆ ˆ W 21 is chosen such that
+where A n ǫ,k denotes the set of jointly-typical sequences {x R (w (1) R , w (2) R ), y k }, k = 1, 2. Due to the side information W 12 , W (1) R is known to receiver 1; hence the cardinality of the search space is limited to 2 nR 21 . If none or more than one exist an error is declared. The decoded index is then W 12 ⊕ ˆˆ W 21 .
+At the receiver 2 (the stronger receiver), who has the side information W 21 , the unique ˆ ˆ W 12 is chosen such that
+Note that the cardinality of the search space is 2 nR 12 . If none or more than one exist an error is declared. Due to the side information W 21 , the decoded index at the receiver 2 is given by ˆˆ W 12 2 −nR 21 + ˆ ˆ W 12 ⊕ W 21 .
+If the RN does not attempt to decode the received sequence Y n R , it may still attempt to reduce the amount
+of information needed to convey it to both users, and moreover with a higher degree of reﬁnement for the user with the stronger DL channel. We will proceed similarly to distributed source coding as originally described by Slepian and Wolf in [21]. This was recently referred to as hashing at the RN, resulting in an hash-and-forward (HF) transmission scheme [22].
+Theorem 3. An achievable rate region for the discrete memoryless TWR network with HF relaying strategy is given by the closure of the following set of inequalities
+[I(U ; Y 2 ) − H(Y R |X 1 , X 2 )] + (6a) R 21 ≤ min I(X 21 ; Y R |X 12 ),
+for UL joint probability p(x 12 )p(x 21 )p(y R |x 12 , x 21 ) and the degraded BC with successive reﬁnement deﬁned in Section- IV-A.
+Proof: The set of ǫ−typical sequences Y n R is parti- tioned into 2 nR R,1 bins B ij , i = 1, . . . , 2 n (R R,1 −R R,2 ) , j = 1, . . . , 2 nR R,2 , such that i,j B ij = A n ǫ and B ij B i ′ j ′ = ∅, for i = i ′ or j = j ′ . Let B(y n R ) = (i, j) be a random hash- function which assigns a received sequence to a particular bin.
+Encoding at the RN is done in two steps. First, if y n R ∈ A n ǫ , we hash y n R and let W R, 1 = i and W R, 2 = j. If y n R / ∈ A n ǫ , we set (W R, 1 , W R, 2 ) = (e, e) to indicate an error condition at the RN encoder. Then, we generate the transmitted sequence X n R according to the multilevel- coding strategy for the (degraded) BC.
+Decoder 1 creates a list, L 1 (y n R ) of candidate y n R based on the decoded (ˆi, ˆj). The number of candidates in the list, N 1 (y n R ) is bounded by
+Similarly, decoder 2 has a list based solely on ˆj, L 2 (y n R ), for which the number of elements is bounded by
+Knowing x n 12 , decoder 1 tries to ﬁnd an x n 21 such that (x n 12 , x n 21 , y n ) ∈ A n ǫ for at least one y n ∈ L 1 (y n R ). If more than one x n 21 or none are jointly ǫ-typical, then an error is declared. Decoder 2 proceeds similarly and tries to ﬁnd an x n 12 knowing x n 21 such that (x n 12 , x n 21 , y n ) ∈ A n ǫ for at least one y n ∈ L 2 (y n R ).
+Assuming (W 12 , W 21 ) = (1, 1), the probability of decod- ing error (conditioned on receiving (i, j) without error and i = e, j = e) for decoder 1 is given by
+The ﬁrst element in the sum can be made arbitrarily small by increasing n. The probability in the second term is the probability over the random ensemble of codebooks that an x n 21 (i), i = 1 is jointly ǫ−typical with the true RN output (which is always in L 1 (y n R ) if (i, j) are received without error at the RN) and is given by
+Pr {(x n 12 (1), x n 21 (i), y n R ) ∈ A n ǫ } =
+The probability in the third term reﬂects the event that another y ′ R n ∈ L 1 (y n R ) sequence from the random list of candidates is jointly ǫ−typical with x 12 (1) and x 21 (i). Note that this sequence is independent of both code sequences and thus
+Pr (x n 12 (1), x n 21 (i), y ′ R n ) ∈ A n ǫ =
+Combining the two probabilities and the size of the list in (9) yields
+We now turn to the remaining error event in the overall error probability, namely the event that the bin indices (i, j) for decoder 1 and j for decoder 2 are incorrectly decoded. For the degraded BC with successive reﬁnement (see Section-IV-A) we have the two error probabilities vanish if (2) is satisﬁed.
+Discussion 4. Consider the special case where p(y 1 |x R ) = p(y 2 |x R ), and thus R R, 1 = R R, 2 = I(X R ; Y 1 ) = I(X R ; Y 2 ).
+Assume further the DL channels are very strong in the sense that
+Under these conditions, the overall rate region coincides with Shannon’s inner-bound for the two-way channel [1] with a common output (which is not tight due to the statis- tical independence of the input sequences) and is achievable by binning at the RN in the sense of Slepian-Wolf [21] with the only diﬀerence being that the two destinations now recover Y R without error using their own DL side information from the UL sequences.
+We now restrict our treatment to a speciﬁc additive channel models, namely the binary adder channel. For this channel model, we will provide capacity achieving coding strategy based on linear group codes.
+The input/output relationships for the binary adder channel are given by
+where all variables are binary and x ⊕ y denotes the modulo-2 sum of x and y. The probability of taking on the value 1 for the noise terms are denoted ǫ R , ǫ 1 , ǫ 2 . Here the outer bound from Section-III is
+where the last inequality becomes equality when the input distributions are uniform, i.e., p(x 12 = 1) = p(x ba = 1) = 1/2.
+To show the achievability of (15) we assume that uplink and DL encoding occur in subsequent periods of n output symbols, where n is the length of code sequences. That is to say that after decoding a message from a group of n symbols, the RN transmits the DL message while it receives the next UL message. Suppose without loss of generality that R 12 ≥ R 21 .
+Consider two random codebooks C 12 with rate R 12 −R 21 and C c with rate R ba . C c is the common codebook. We now time-share between both codebooks as shown in Fig. 2 with 0 ≤ α ≤ 1. During the ﬁrst time-slot of duration (1 − α) n dimensions user 1 transmits alone to the RN using C 12 . Call the information sequence X (1) 12 . Using standard random coding arguments, arbitrarily small error
+probability for detection of X (1) 12 is achievable if R 12 − R 21 < (1 − α) I (X 12 ; Y R )
+During the second time-slot of duration αn dimensions, both users transmit their information sequences X (2) 12 and X 21 which are codewords belonging to the same linear code over GF(2), C c . As a result the RN receives the modulo- 2 sum of the two codewords which is itself a codeword in C c . Linear codes achieve the capacity of the BSC (see [23]) and thus an arbitrarily small average error probability for the detection of X (2) 12 ⊕ X 21 is possible if
+The RN encodes with a two-dimensional codebook of cardinality 2 nR 12 , indexed by column and row pair (i, j), i = 1, · · · , 2 n (R 12 −R 21 ) , j = 1, · · · , 2 nR 21 . Column i is used to encode X (1) 12 and row j to encode X (2) 12 ⊕ X 21 . At receiver 1 (weak receiver), X 12 is known and so the col- umn i of the transmitted codeword is known. Arbitrarily small error probability is achievable for detection of j or X (2) 12 ⊕ X 21 (and consequently X 21 ) if
+At receiver 2 (strong receiver) X 21 is known. Arbitrarily small error probability for detection of (i, j) (or X 12 ) is achievable if
+Consider ﬁrst the “strong relay” case where ǫ R ≥ max (ǫ 1 , ǫ 2 ). Here we let α = 1 so that both users can achieve 1−H(ǫ R ). For the “medium relay” case where ǫ 1 ≥ ǫ R ≥ ǫ 2 we choose α = 1−H(ǫ 1 ) 1−H(ǫ
+, so that R 12 = 1 − H (ǫ R ) and R 21 = 1 − H (ǫ 1 ) are achievable. Finally in the “weak relay” case when ǫ 1 ≥ ǫ 2 ≥ ǫ R we choose α = 1−H(ǫ 1 ) 1−H(ǫ
+, resulting in R 12 = 1 − H (ǫ 2 ) and R 21 = 1 − H (ǫ 1 ).
+In this paper, we studied diﬀerent coding strategies for the discrete memoryless TWR channels. Speciﬁcally, a novel relaying strategy based on random binning of the receives signals at the RN, e.g. hash-and-forward relaying, was presented which coincides with Shannon’s inner-bound for the two-way channel under certain channel conditions. For binary adder two-way relay channel, it is shown that the outer bound is achievable by physical-layer network coding, utilizing group codes and partial decoding at the RN. Our current work examines the use of feedback in the coding strategy at the terminals, an issue that was neglected here.
+This work was partially supported by the European Commission’s 7th framework programme under grant agreement FP7-248993 also referred to as LOLA.
+[[[ REFS ]]]
+C. E. Shannon
+--
+Two-way communication channels
+----
+B. Rankov
+A. Wittneben
+--
+Spectral eﬃcient signaling for half-duplex relay channels
+----
+Y. Wu
+P. A. Chou
+S. Kung
+--
+Information exchange in wireless networks with network coding and physical-layer broad- cast
+----
+R. Knopp
+--
+Two-way radio network with a star topology
+----
+P. Larsson
+N. Johansson
+K. E. Sunell
+--
+Coded bi- directional relaying
+----
+S. Katti
+I. Maric
+A. Goldsmith
+D. Katabi
+M. Medard
+--
+Joint relaying and network coding in wireless networks
+----
+S. J. Kim
+P. Mitran
+V. Tarokh
+--
+Performance bounds for bidirectional coded cooperation protocols
+----
+T. J. Oechtering
+C. Schnurr
+I. Bjelakovic
+H. Boche
+--
+Achievable rate region of a two phase bidirectional relay chan- nel
+----
+A. S. Avestimehr
+A. Sezgin
+D. N. C. Tse
+--
+Approximate ca- pacity of the two-way relay channel: A deterministic approach
+----
+D. G¨ und¨ uz
+E. Tuncel
+J. Nayak
+--
+Rate regions for the separated two-way relay channel
+----
+C. Schnurr
+S. Stanczak
+T. J. Oechtering
+--
+Coding theo- rems for the restricted half-duplex two-way relay channel with joint decoding
+----
+R. Ahlswede
+N. Cai
+S. Y. R. Li
+R. W. Yeung
+--
+Network information ﬂow
+----
+P. Popovski
+H. Yomo
+--
+The anti-packets can increase the achievable throughput of a wireless multi-hop network
+----
+S. Zhang
+S. C. Liew
+P. P. Lam
+--
+Physical-layer network coding
+----
+B. Rankov
+A. Wittneben
+--
+Achievable rate region for the two-way relay channel
+----
+S. Katti
+S. Gollakota
+D. Katabi
+--
+Embracing wireless interference: Analog Network Coding
+----
+R. Knopp
+--
+Two-way wireless communication via a relay sta- tion
+----
+E. Yılmaz
+--
+Coding strategies for relay based networks
+----
+A. P. Hekstra
+F. M. J. Willems
+--
+Dependence balance bounds for single-output two-way channels
+----
+T. M. Cove
+J. A. Thoma
+--
+Elements of Information The- ory 
+----
+D. Slepian
+J. Wolf
+--
+Noiseless coding of correlated informa- tion sources
+----
+T. M. Cover
+Y. H. Kim
+--
+Capacity of a class of Deterministic Relay Channels
+----
+R. G. Gallage
+--
+Information theory and reliable communication
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\096.pdf
+[[[ LINKS ]]]
+

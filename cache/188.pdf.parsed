@@ -1,0 +1,180 @@
+[[[ ID ]]]
+188
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Dynamic Scheduling-Aided Decoding Strategies for LDPC Convolutional Codes with Rational Parity-Check Matrices
+[[[ AUTHORS ]]]
+Jian-Jia Weng †
+Mu-Chen Wu †
+Chung-Hsuan Wang †
+Yi-Sheng Su ∗
+Tsung-Cheng Wu
+[[[ ABSTR ]]]
+Abstract—In this paper, decoding of LDPC convolutional codes with rational parity-check matrices (LDPC-CC-RPCM) is investigated. We show that Tanner graph of every LDPC-CC- RPCM can always be transformed into an equivalent one with enlarged girth and ﬁnite memory order suitable for practical pipeline decoder. Based on the transformed graph, a dynamic scheduling-aided decoding scheme with the enhancement of signal perturbation and error cancellation is presented to improve the convergence speed and bit-error-rate performance in both of the waterfall and error-ﬂoor regions. Simulation results also reveal that LDPC-CC-RPCM may outperform ordinary LDPC-CC with polynomial parity-check matrices in some cases under the same code rate and decoding complexity.
+[[[ BODY ]]]
+Low-density parity-check (LDPC) codes are a class of near Shannon-limit error correcting codes, originally invented by Gallager in early 1960s [1]. Due to no suitable decoding strategy at that time, this class of codes were neglected for a long time. Until 1996, it was rediscovered by Mackay and Neal with a graphical representation introduced by Tanner [2]. In their pioneer studies [3], [4], LDPC block codes have been shown to achieve capacity approaching performance with sufﬁciently long block length and iterative decoding based on belief propagation algorithm (BPA), e.g., the sum- product algorithm (SPA) [5]. Recently, a variant class of LDPC codes, called LDPC convolutional codes (LDPC-CC), were proposed in [6], [7]. With quasi-cyclic LDPC codes [8]-[10] as their counterpart, LDPC-CC possess the structural property on their parity-check matrices, which lends themselves well to an efﬁcient hardware implementation. Various algebraic constructions of LDPC-CC were also developed in [10]-[13] to provide signiﬁcant improvement of code performance.
+In the literature, studies on LDPC-CC were focused on LDPC-CC with polynomial parity-check matrices (LDPC-CC- PPCM). To decode this subclass of LDPC-CC, a special type of pipeline decoder based on the Tanner graph corresponding to PPCM suitable for practical implementation was proposed in [12]. In contrast, to our knowledge, there is almost no discussion on LDPC-CC with rational parity-check matrices (LDPC-CC-RPCM), which may be due to the following reasons. First, from the viewpoint of conventional pipeline decoder, LDPC-CC-RPCM will incur an inﬁnite memory order, thereby resulting in unaffordable decoding latency and complexity. Moreover, author in [12] demonstrated that Tanner graph of LDPC-CC-PPCM with trinomial (or higher order) terms will have a girth less than or equal to 6. This result
+implies that rational entries in a parity-check matrix may generate length-4 cycles on the Tanner graph so as to ruin the decoding performance of LDPC-CC-RPCM.
+However, in [14], we observed that Tanner graph of LDPC- CC-RPCM can always be transformed into an equivalent one which keeps the same parity-check constraint speciﬁed by RPCM but has a ﬁnite memory order and excludes the existence of length-4 cycles. Based on the transformed graph, LDPC-CC-RPCM can hence be decoded at an acceptable cost and provide satisfactory bit-error-rate (BER) performance. Although the graph transformation in [14] can mitigate the fatal defects caused by rational entries in RPCM, it does not guarantee that the resulting transformed graph has no other short cycles which may degrade the decoding performance. In this paper, we propose a procedure to further eliminate all undesired cycles on the transformed graph of LDPC-CC- RPCM. The resulting transformed graph with cycle elimina- tion is also guaranteed to have good properties on the stopping sets [15]. In addition, with respect to the transformed graph, an effective decoding scheme is presented for LDPC-CC- RPCM with the aid of three promising techniques: dynamic scheduling, signal perturbation, and error cancellation. Veriﬁed by the simulation results, the proposed decoding scheme can provide a remarkable improvement of decoding performance in both of the waterfall and error-ﬂoor regions compared with BPA with the ﬂooding schedule [5]. An interesting observation from the simulation results also reveals that LDPC-CC-RPCM may outperform LDPC-CC-PPCM in some cases under the same code rate and decoding complexity.
+The rest of this paper is organized as follows. In Section II, previous results on decoding of LDPC-CC-RPCM are sum- marized. To further remove the undesired short cycles on the transformed graph, a procedure performing cycle elimination is given in Section III, where some interesting properties on cycles and stopping sets are also elaborated. In Section IV, the dynamic scheduling-aided decoding scheme is presented. After the simulation results in Section V, a summary is drawn in Section VI to conclude this work.
+Let F be a ﬁnite ﬁeld and F ((D)) be the ﬁeld consisting of all one-sided formal Laurent series of the form i≥w a i D i with the indeterminate D standing for time delay, where w can be any ﬁnite integer and a i ∈ F , ∀ i. The set of all polynomials
+over F is denoted by F [D]. For x(D) ∈ F [D], denote by deg( x(D)) the degree of x(D). Every rational function p(D)/q(D), where p(D), q(D) ∈ F [D] and q(D) = 0, has a unique Laurent series expansion and is called a rational Laurent series. Let F (D) be a subﬁeld of F ((D)) comprising all rational Laurent series. A rate b/c LDPC-CC C over F is deﬁned as the null space of a ( c − b) × c parity-check matrix H(D) which is in general over F (D) and has a sparse scalar form. A vector v(D) = [v (0) (D) v (1) (D) · · · v (c−1) (D)] is said to be a codeword of C if and only if v(D) · H T (D) = 0, where v (i) (D) = t v (i) t D t with v (i) t denoting the i-th coded bit at time- t, ∀ 0 ≤ i < c. For C with PPCM, its parity-check matrix is of the following form:
+⎛ ⎜ ⎜ ⎝
+⎞ ⎟ ⎟
+where h i,j (D) ∈ F [D], ∀ i, j, and the memory order m s is deﬁned by max i,j deg(h i,j (D)). By decomposing H(D) into H 0 + H 1 D + · · · + H m s D m s , where H i is a ( c − b) × c matrix over F , ∀ 0 ≤ i ≤ m s , the parity-check constraint v(D) · H T (D) = 0 implies
+To decode LDPC-CC-PPCM, conventional studies have shown that iterative decoding with BPA on the Tanner graph obtained from (2), denoted by G(H), can achieve remarkable BER performance [11]-[13]. However, such a scheme may face big troubles as LDPC-CC-RPCM are considered for decoding. For example, consider a binary LDPC-CC C 1 with the following
+To decode C 1 , the conventional scheme suggests that (3) is ﬁrst rewritten as
+by expanding D 3 /(1+D 3 ) into the form of Laurent series, i.e., i≥1 D 3·i . BPA is then conducted on G(H 1 ), i.e., the Tanner
+graph based on H 1 (D). Nevertheless, H 1 (D) unfortunately has m s = ∞. Such an inﬁnite memory order implies that the pipeline decoder will require unaffordable decoding delay and hardware complexity. The inﬁnite series in (4) also induces a large number of length-4 cycles on G(H 1 ) so as to severely degrade the decoding performance.
+To resolve the above difﬁculty in decoding LDPC-CC- RPCM, in [14], we did not expand rational entries in RPCM into the form of inﬁnite series but introduced extra virtual coded bits, called dummy bits, for the original code to transform RPCM into an equivalent polynomial form. Not only can the resulting parity-check matrix have ﬁnite memory order, but also the corresponding Tanner graph can avoid possible length-4 cycles due to the direct expansion of rational entries. For instance, recall C 1 with RPCM in (3). For any codeword of C 1 , v 1 (D) = [v (0) (D) v (1) (D) v (2) (D)] with v (i) (D) = t v (i) t D t for i = 0, 1, 2, suppose that we
+deﬁne the dummy bits d t ’s by d t = i≥1 v (2) t−3·i and let d(D) = t d t D t . Then all possible vectors of the form v 2 (D) = [v (0) (D) v (1) (D) v (2) (D) d(D)] will constitute another LDPC-CC C 2 with the following PPCM:
+which has m s = 3 and the girth 6 on G(H 2 ). Since v 1 (D) can always be obtained from v 2 (D) by puncturing d(D) away, i.e., C 1 can be viewed as a child code punctured from the mother code C 2 , C 1 can now be decoded based on G(H 2 ) which is immune from the undesired inﬁnite memory order and the fatal length-4 cycles incurred by H 1 (D).
+As illustrated in Section II, Tanner graph of LDPC-CC- RPCM can always be transformed into an equivalent one which successfully mitigates the fatal defects induced by rational entries. However, there may still exist other undesired short cycles on the transformed graph so as to degrade the decoding performance. For example, consider H 1 (D) and H 2 (D) in (4) and (5), respectively. Although all length-4 cycles on G(H 1 ) have been removed, there still exist length- 6 cycles on G(H 2 ), e.g., the one constituted by the (1, 1)- th, (1 , 2)-th, (2, 1)-th, and (2, 2)-th entries in (5). To further improve the decoding performance of LDPC-CC-RPCM, we propose a procedure to eliminate all undesired short cycles on the transformed graph as follows.
+Given an RPCM H(D), let H eq (D) be the equivalent parity-check matrix without the fatal drawbacks induced by rational entries which is obtained by the graph transformation in [14]. Suppose that H eq (D) has dimension m-by-n and the girth on G(H eq ) is κ. By the below procedure, H eq (D) can be transformed into an equivalent matrix ¯ H(D) which not only satisﬁes the same parity-check constraint as H(D) but also removes all cycles with length less than or equal to γ.
+Step 2. Detect whether there exists any length- l cycle on G(H † ) 1 . If yes, go to Step 3; otherwise, go to Step 4.
+Step 3. Choose a length- l cycle on G(H † ). Suppose that the ( i, j)-th entry of H † (D), denoted by h † i,j (D), is involved in the cycle. Pick a nonzero term, say λD v for some λ ∈ F and non-negative integer v, in h † i,j (D). Let α = (0, · · · , 0
+be an ( m + s) × 1 column vector and β = (0, · · · , 0
+be a 1 ×(n+s+1) row vector, where −1 denotes the additive inverse of 1 in F . Set h † i,j (D) = h † i,j (D) −
+Step 4. Set l = l +2. If l > γ, set ¯ H(D) = H † (D) and stop. Otherwise, go back to Step 2.
+In Step 3, every length- l cycle can be removed by adding extra dummy bits according to (6). Speciﬁcally speaking, we have the following properties during the execution of Step 3:
+Property 1: No extra cycles with length less than or equal to l will be created.
+Property 2: Every length- l cycle on G(H † ) will be trans- formed into a length-( l + 2) cycle.
+To illustrate Procedure 1, consider H eq (D) = H 2 (D) in (5) for example. Suppose we want to remove all length-6 cycles on G(H 2 ). In this case, we have κ = γ = 6, m = 3, and n = 4. Since there exists a length-6 cycle in H † (D) constituted by h † 1,1 (D) = 1 + D, h † 1,2 (D) = D, h † 2,1 (D) = D 3 , and h † 2,2 (D) = D 2 , we choose D in h † 1,1 (D) with λ = 1 and v = 1 in Step 3. To remove the cycle, dummy bits d t ’s are constructed by setting d t = v (0) t−1 , ∀ t. Consequently, we have α = (1, 0, 0) T and β = (D, 0, 0, 0, 1), and h † 1,1 (D) is modiﬁed as (1 + D) − D = 1 such that
+⎛ ⎜ ⎜ ⎝
+⎞ ⎟ ⎟
+by (6). The resulting transformed graph can then be veriﬁed to be free of length-6 cycles.
+Moreover, let Ω be the set comprising all the variable nodes on G( ¯ H) corresponding to the dummy bits created by Procedure 1. Following the deﬁnition in [15], we deﬁne a stopping set S as a subset of all variable nodes on G( ¯ H) such that all neighboring check nodes of S are connected to S at least twice. Then, Procedure 1 implies the following properties on stopping sets:
+Property 3: Any subset of Ω on G( ¯ H) can not be a stopping set.
+Property 4: For any stopping set S of ¯ H(D), we deﬁne a subset S ⊆ S such that
+By Properties 3 and 4, we can show that every stopping set of ¯ H(D) is also a stopping set of H eq (D). In summary, Properties 1-4 guarantee that G( ¯ H) can beneﬁt from not only a larger girth but also good properties on stopping sets after the transformation by Procedure 1. Decoding LDPC-CC-RPCM on G( ¯ H) is thus expected to acquire a better performance in both of the waterfall and error-ﬂoor regions.
+As aforementioned, every LDPC-CC-RPCM can be viewed as a child code punctured from a lower rate mother LDPC- CC-PPCM obtained by the graph transformation. Decoding
+LDPC-CC-RPCM on the transformed graph can hence be regarded as a special case of the decoding of punctured codes. Previous works on decoding punctured LDPC codes suggest that a proper scheduling, rather than the ﬂooding schedule [5] which updates all the messages of variable and check nodes simultaneously at each iteration for decoding, can help BPA to accelerate the convergence speed and improve the BER performance. Among rich studies on scheduling [16]-[18], the efﬁcient dynamic scheduling (EDS) [17] originally invented for LDPC block codes is a promising one which can enhance the decoding performance especially for LDPC codes with algebraic structure, e.g., quasi-cyclic LDPC codes. Therefore, in this paper, EDS is adjusted in a form of suitable for decoding LDPC-CC-RPCM and expected to achieve a better decoding performance. For simplicity, only the discussion on binary LDPC-CC-RPCM is presented. However, all the results can be directly extended to the non-binary case.
+To decode LDPC-CC-RPCM with EDS, consider the window-based decoder based on G( ¯ H) as shown in Fig. 1. The decoder processes only the variable and check nodes inside a decoding window, which is assumed across K(m s + 1) time instants on G( ¯ H) for some positive integer K. By EDS, every variable node ν on G( ¯ H) is associated with the following residual function:
+where Q b (ν) and Q a (ν) are the logarithm of a posterior probability (log-APP) ratios of ν before and after the updating of message by BPA, respectively. Variable nodes with the largest residual value are then in the ﬁrst priority allowed for message updating. Let M(ν) be the set comprising all neighboring check nodes of the variable node ν and N (μ) be the set consisting of all neighboring variable nodes of the check node μ. We also denote the prior information of ν owing to channel output by L ch (ν) and let N be the total number of message updating within each decoding window. Then, the decoding procedure by EDS is summarized as follows.
+Step 1. Initiate the decoding window in the beginning of G(H). For every variable node ν in the decoding window, its residual value R(ν) is initialized by L ch (ν). Set i = 1 and go to Step 3.
+Step 2. For every new incoming variable node ν in the decoding window, initialize its residual value R(ν) by L ch (ν). Set i = 1 and go to Step 3.
+Step 3. Pick a variable node, say ν ∗ , that has the largest residual value. Update each check node μ ∈ M(ν ∗ ) within the decoding window by BPA. Then, for each ν ∈ M(ν ∗ ), update each node ν ∈ N (μ) within the decoding window by BPA. Set R(ν ∗ ) = 0 and compute the residual values for all other updated variable nodes by (8). Set i = i + 1 and go to Step 4.
+Step 4. If i > N , go to Step 5; otherwise, go back to Step 3. Step 5. Slide the decoding window n(m s + 1) time instants
+Step 6. Decode the n(m s +1) variable nodes shifted out from the decoding window based on their log-APP ratios.
+Step 7. Check whether all variable nodes on G( ¯ H) have been decoded. If yes, stop; otherwise, go back to Step 2.
+Based on Procedure 2, the variable nodes which have a larger value of |Q a (ν) − Q b (ν)| or sign change on their log- APP ratios will be frequently updated as to accelerate the convergence of iterative decoding. However, updating those nodes in high priority may induce undesired degradation of the resulting decoding performance. To resolve the above dif- ﬁculty, we thus propose three effective strategies for improving the decoding performance as follows.
+By the original residual function of EDS in (8), we ﬁnd that for those variable nodes with similar values of |Q a (ν) − Q b (ν)|, the nodes which have smaller log-APP ratios will be assigned with larger residual values, which makes the unreliable nodes in a high priority to spread their messages. Unfortunately, in such situation, the reliable nodes with large value of |Q a (ν) − Q b (ν)| may have no chance to help the decoding process and even be inﬂuenced by the unreliable messages so as to degrade the decoding performance, espe- cially in the error-ﬂoor region. To mitigate this negative effect, we propose a new residual function for EDS as follows
+|Q a (ν) + Q b (ν)| · |Q b (ν)|. 	 (9) By (9), for those variable nodes that have similar values of |Q a (ν) − Q b (ν)|, the nodes have larger log-APP ratios will now be updated in a high priority so as to avoid the undesired propagation of unreliable messages.
+For EDS, we observe that some common decoding failures result from the noise patterns which have only a few errors but are unfortunately hard to be corrected even increasing the value of N . In that case, experiments also indicate that the log- APP ratios of those erroneous variable nodes are usually small and can not converge. To mitigate the occurrence of those decoding failures, we reinforce the dynamic scheduling-aided decoding scheme in Procedure 2 with an extra processing, call signal perturbation, which proceeds as follows. Firstly, we partition the decoding window into K non-overlapping blocks. After executing Steps 3 and 4 in Procedure 2, the average of log-APP ratios of variable nodes in each block is evaluated. For those blocks, whose average is smaller than a pre-determined threshold, the corresponding variable nodes are assumed to be trapped by the undesired noise patterns. The received signals corresponding to those nodes are then added by small perturbations and their L ch (ν)’s are modiﬁed accordingly. Here, the perturbation is implemented by an independent Gaussian random number generator with zero mean and small variance. Other sophisticated form of perturbation can also be elaborated for further improvement of decoding performance. Afterwards, the decoding processing is restarted by executing Steps 3 and 4 in Procedure 2 and then the process of signal perturbation is done.
+Besides the decoding failures considered in Section IV-B, we observe that there exist another class of common decod- ing errors which can make our decoding scheme generate legitimate codewords of the LDPC-CC-RPCM but not the one with the maximum likelihood (ML). Since the event that the decoded result deviates from the ML codeword with a small Hamming distance usually occurs in high probability for LDPC-CC, another strategy for improving the decoding performance, called error cancellation, is presented as follows. Firstly, we generate a set of low-weight codewords of ¯ H(D) 2 and regard them as the possible error patterns between the decoded codeword and the ML codeword. Each error pattern is then subtracted from the original decoded result to obtain a new codeword candidate. Among the original decoded codeword and new candidates, the one which has the largest likelihood with respect to the received vector is chosen as the ﬁnal decision. Veriﬁed by the simulation results shown later, such a strategy with a small number of low-weight codewords can obtain a signiﬁcant improvement in the error-ﬂoor region.
+To verify the performance of the proposed decoding scheme, we consider a rate 1 /2 LDPC-CC C 3 with the following RPCM:
+(10) (10) is ﬁrst transformed into an equivalent parity-check matrix, in which the memory order decreases to 203 and all cycles with length 4 and 6 are removed from the corresponding Tan- ner graph. Based on this transformed graph, the BER curves of SPA with the ﬂooding schedule, original EDS, EDS with the modiﬁed residual function, and all three improved strategies in Section IV on additive white Gaussian noise (AWGN) channels are plotted in Fig. 2. For fair comparison, all the schemes are adjusted with a similar decoding complexity. Observed from Fig. 2, EDS attains a better threshold than the ﬂooding schedule in the waterfall region but suffers from an apparent rise in the error ﬂoor due to the defective design of its residual function. Compared with the original EDS, EDS- MRF can effectively lower the error ﬂoor to a similar level to the ﬂooding schedule and achieve a further BER improvement in the waterfall region. Moreover, the dynamic scheduling- aided scheme with EDS-MRF, signal perturbation and error cancellation has the best performance in both of the waterfall and error-ﬂoor regions. To see the effect owing to graph transformation, we also simulate the decoding performance of C 3 based on the Tanner graph obtained by a direct expansion of 1 /(1 + D 20 + D 70 ) in (10). The resulting BER perfor- mance without graph transformation is totally unacceptable as expected.
+Finally, a well-designed LDPC-CC-PPCM C 4 in [12] with the same code rate and memory order as C 3 is simulated for
+comparison. From the performance plots in Fig. 3, C 3 with the proposed dynamic scheduling-aided decoding scheme can provide a signal-to-noise ratio (SNR) gain more than 0 .4 dB at BER 10 −6 than C 4 with the decoding by SPA with ﬂooding schedule. Even though C 4 can also be equipped with our decoding scheme to obtain a further improvement in the BER performance, an SNR gain of C 3 over C 4 about 0 .2 dB at BER 10 −6 is still available.
+In this work, we propose a procedure for LDPC-CC-RPCM to eliminate all undesired cycles on their transformed graphs. Several properties on cycles and the stopping sets are also derived to guarantee that the resulting graph is suitable for conventional pipeline decoder. Furthermore, since the original LDPC-CC-RPCM can be viewed as a child code punctured from the mother code corresponding to its transformed graph, dynamic scheduling is then considered to enhance the decod- ing performance and accelerate the convergence speed. With dynamic scheduling as a base, we further propose a decoding scheme comprising three improved techniques: the EDS-MRF, signal perturbation, and error cancellation. Simulation results reveal that not only can the proposed dynamic scheduling- aided decoding scheme provide satisfactory BER performance in both of the waterfall and error-ﬂoor regions but also LDPC- CC-RPCM can outperform LDPC-CC-PPCM in some cases under the same rate and complexity. At last, though this paper focuses on only LDPC-CC-RPCM, the above results can also be applied to LDPC-CC-PPCM with any higher order terms.
+[[[ REFS ]]]
+R. G. Gallager
+--
+Low-density parity-check codes
+----
+R. M. Tanner
+--
+A recursive approach to low complexity codes
+----
+D. J. C. Mackay
+R. Neal
+--
+Near Shannon limit performance of low- density parity-check codes
+----
+D. J. C. Mackay
+--
+Good error-correcting codes based on very sparse matrices
+----
+F. R. Kschischang
+B. J. Frey
+H.-A. Loeliger
+--
+Factor graphs and the sum-product algorithm
+----
+K. Engdahl
+K. Sh. Zigangirov
+--
+To the theory of low-density convolutional codes I
+----
+A. J. Felstr¨om
+K. Sh. Zigangirov
+--
+Time-varying periodic convo- lutional codes with low-density parity-check matrix
+----
+L. Chen
+J. Xu
+I. Djurdjevic
+S. Lin
+--
+Near-Shannon-limit quasi- cyclic low-density parity-check codes
+----
+H. Tang
+J. Xu
+Y. Kou
+S. Lin
+K. Abedel-Ghaffar
+--
+On algebraic construction of Gallager and circulant low-density parity-check codes
+----
+M. P. C. Fossorier
+--
+Quasi-cyclic low-density parity-check codes from circulant permutation matrices
+----
+R. M. Tanner
+D. Sridhara
+A. Sridharan
+T. E. Fuja
+D. J. Costello
+--
+LDPC block and convolutional codes based on circulant matrices
+----
+A. Sridharan
+--
+Design and analysis of LDPC convolutional codes
+----
+C. J. Wu
+Y. C. Chou
+C. H. Wang
+C. C. Chao
+--
+New construction of LDPC convolutional codes
+----
+J. J. Weng
+C. C. Lai
+C. H. Wang
+--
+Decoding of LDPC convo- lutional codes with rational parity-check matrices from a new graphical perspective
+----
+C. Di
+D. Proietti
+I. E. Telatar
+T. J. Richardson
+R. L. Urbanke
+--
+Finite-length analysis of low-density parity-check codes on the binary erasure channel
+----
+J. Zhang
+M. P. C. Fossorier
+--
+Shufﬂed iterative decoding
+----
+G. Han
+X. Liu
+--
+An efﬁcient dynamic schedule for layered belief- propagation decoding of LDPC codes
+----
+A. .I. V. Casado
+M. Griot
+R. D. Wesel
+--
+LDPC decoders with informed dynamic scheduling
+----
+G. Richter
+--
+Find small stopping sets in the Tanner graphs of LDPC codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\188.pdf
+[[[ LINKS ]]]
+

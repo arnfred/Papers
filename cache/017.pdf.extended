@@ -1,0 +1,110 @@
+[[[ ID ]]]
+17
+[[[ INDEX ]]]
+16
+[[[ TITLE ]]]
+Delay-Optimal Scheduling for Cooperative Networks
+[[[ AUTHORS ]]]
+Ying Cui
+Vincent K. N. Lau
+Edmund M. Yeh
+[[[ ABSTR ]]]
+Abstract— We consider delay-optimal link selection for a two- hop three-node cooperative network with bursty packet arrivals, where both the source node and the half-duplex cooperative node have exogenous arrivals. We consider the problem of minimizing the random sum queue length process subject to link selection constraints under a general bursty bit ﬂow model and obtain a simple closed-form delay-optimal link selection policy, requiring only 1 bit of state information for each queue. Furthermore, using the structure of the delay-optimal link selection policy, we obtain the closed-form average bit delay performance for deterministic and Poisson packet arrival processes, Finally, we derive a new lower bound for the delay penalty incurred by the (throughput- optimal) dynamic backpressure (DBP) link selection algorithm, as compared with the delay-optimal link selection policy.
+[[[ BODY ]]]
+Most of the early work on cooperative communication studied the three-node relay channel from a purely information theoretic perspective. In practice, many applications have bursty arrivals and are delay-sensitive. Therefore, it is very important to take into account the delay aspects of coopera- tive communication networks. Recent studies in cooperative networks have jointly addressed physical layer and network layer issues by considering bursty arrivals and delay-sensitive information ﬂow. Generally speaking, there are two aspects of delay-sensitive cooperative networking:
+Delay-Aware Control Algorithm Design: Both throughput- optimal control and delay-optimal control have been consid- ered in different cooperative networks. Throughput-optimal control, which ensures the stability of the queueing network if the arrival rate vector falls within the stability region, is usually studied using Lyapunov Drift theory. For example, the throughput optimal Dynamic Backpressure Algorithm (DBP) was studied for queueing networks in [1]. On the other hand, delay-optimal control, which focuses on not only stabilizing the system of queues but also minimizing system delay, is a more difﬁcult problem. In [2], delay-optimal link selection was shown for a multi-hop tandem queueing network within a simple discrete time and primary interference model, in which one packet of ﬁxed packet length is delivered in each slot over an active link and two links adjacent to the same node cannot transmit simultaneously.
+Delay Analysis in Cooperative Networks: Most existing work focuses on the analysis of simple algorithms or asymp-
+totic analysis for large delay regime. For example, [3] stud- ied the asymptotic power-delay tradeoff in the large delay regime of the proposed throughput-optimal algorithm in gen- eral queueing networks using Lyapunov Optimization theory.
+Delay-optimal control and the associated delay performance analysis in cooperative networks have not been fully addressed in the existing literature. It is well-known that this is a very difﬁcult problem. Throughput-optimal control, such as DBP, has a closed-form solution without requiring a priori knowledge of arrival rates. However, it cannot guarantee good delay performance in general. Furthermore, it is not clear what the delay penalty of DBP is compared with the optimal delay performance. On the other hand, delay-optimal control using Markov Decision Process (MDP) [4] could optimize the delay performance. However, brute-force solutions for the MDP are usually not viable due to the associated complexity and the curse of dimensionality. Finally, the delay-optimal control in [2] cannot be easily extended to a more general setup (e.g. random packet lengths and non-symmetric transmit powers). In general, delay-optimal control without a priori knowledge of the arrival statistics in the two-hop AWGN cooperative system is still an open problem.
+In this paper, we consider a simple two-hop three-node cooperative AWGN network with one source node (S), one half-duplex cooperative node (R) and one destination node (D). Both S and R are equipped with inﬁnite buffers and have exogenous (random) packet arrivals. R helps S transmit to D. We shall dynamically schedule the link transmissions (S-R link and/or R-D link). We consider delay-optimal link selection to minimize the sum queue length process (under a general bursty bit ﬂow model with general packet arrival processes and packet length distributions) subject to link selection constraints. We ﬁrst establish a generalized conservation law for the random bit ﬂow and derive the delay-optimal link selection policy. Based on the speciﬁc structure of the optimal policy, we obtain the closed-form average bit delay performance for deterministic and Poisson packet arrival processes with i.i.d. packet length distribution, using the theories for renewal processes and random walks. Finally, we study the average bit delay performance under the (throughput-optimal) DBP link selection policy. Using a new reconstruction of packet arrival sample paths, we derive a simple lower bound on the average bit delay penalty of the DBP policy relative to the
+In this section, we shall elaborate on the network topology, the physical layer model and the bursty arrival model. A. Network Topology
+As illustrated in Fig. 1, we consider a simple 2-hop co- operative network with one source node (S), one half-duplex cooperative node (R) and one destination node (D). S cannot deliver packets directly to D due to limited coverage and has to communicate to D with the help of R via the S-R link and the R-D link. R is half-duplex, i.e. R cannot transmit and receive at the same time over the same frequency. We consider a continuous-time model with time denoted by t. Both S and R are equipped with inﬁnite buffers. For instance, the buffer at S is used to hold the exogenous bit arrivals from S. The buffer 1 at R is used to hold both the exogenous bit arrivals from R as well as the cooperative bit ﬂow from S, as illustrated in Fig. 1.
+We assume that both the S-R link and the R-D link are continuous-time AWGN channels with bandwidth W (Hz). Let P S and P R denote the transmit power of S and R, and let the AWGN noise variances be normalized to 1. The maximum transmission rate (bit/s) of the S-R link and the R-D link over W Hz frequency band are given by r S = W log 2 (1 + P S ) and r R = W log 2 (1 + P R ), respectively. Due to the half- duplex restriction, S and R cannot transmit over the same frequency simultaneously. We shall discuss the link selection (which incorporates frequency sharing) policy in Section III- A.
+There are two bit ﬂows in the system. One ﬂow originates at S and is destined for D via R. The other ﬂow originates at R and is destined for D. The buffer at R holds both the exogenous bit arrivals from R as well as the cooperative bit ﬂow from S. Therefore, the simple cooperative network can by modeled by 2 tandem queues. Let N S (t) and N R (t) be the number of accumulated exogenous packet arrivals to the S buffer and the R buffer from time 0 to t, respectively. The total number of accumulated exogenous packet arrivals is denoted by N (t)
+N S (t)+N R (t). Denote the average (exogenous) packet arrival rate to S, R and the system by λ P S lim t→∞ N S (t) t , λ P R
+lim t→∞ N R (t) t and λ P lim t→∞ N(t) t , respectively, if the limits exist w.p.1. Let Z S,k , t S,k and Z R,k , t R,k denote the
+packet length (bits/pck) and the packet arrival epoch of the k- th ( k = 1, 2, · · · ) exogenous packet to the S buffer and the R buffer, respectively. To consider the bit ﬂow, we also introduce A S (t) = N S (t) k=1 Z S,k and A R (t) = N R (t) k=1 Z R,k , which are the number of accumulated exogenous bit arrivals to the S buffer and the R buffer from time 0 to t. Similarly, the total number of accumulated exogenous bit arrivals is denoted as A(t) A S (t) + A R (t). Denote the average (exogenous) bit arrival rate to S, R and the system as λ S lim t→∞ A S (t) t , λ R lim t→∞ A R (t) t and λ lim t→∞ A(t) t , respectively, if the limits exist w.p.1. In Section IV, we consider delay-optimal link selection under general packet arrival process {N S (t)}, {N R (t)} and general packet length distribution {Z S,k } and {Z R,k }, i.e. general bit arrival process {A S (t)} and {A R (t)}. However, in Section V and VI, we focus on the delay analysis under speciﬁc arrival models.
+denote the S, R and joint queue state information (QSI) (number of bits) at time t, respectively, where Q [0, +∞) and Q = Q × Q denote the single and joint QSI state space, respectively. Let S(t) = Q S (t)+Q R (t) denote the sum queue length at time t.
+In this section, we shall elaborate on the link selection policy and queue dynamics. Based on that, we shall formally formulate the delay-optimal link selection problem.
+We allow continuous frequency sharing between the S-R link and the R-D link over the entire spectrum. Let α S (Q, t) ∈ [0, 1] and α R (Q, t) ∈ [0, 1] denote the portion of bandwidth allocated to the S-R link and the R-D link, respectively, when the system state at time t ∈ [0, ∞) is Q. The link selection (i.e. frequency sharing) policy is deﬁned as follows:
+icy α = (α S , α R ) : Q × [0, ∞) → [0, 1] 2 is a mapping from the joint QSI Q and time t to the link selection actions.
+Let φ denote the set of all admissible link selection policies α, which satisfy the following three conditions for any (Q, t):
+Given an initial joint QSI Q(0) and an admissible link selection policy α ∈ φ, the joint QSI under α ∈ φ, i.e. Q α (t), evolves according to the following queue dynamics:
+if the limit exists w.p.1., where S α (t) = Q α S (t) + Q α R (t). By Little’s Law, the average delay under α ∈ φ is given by D α = S α λ w.p.1., if the average sum queue length S α and the average bit arrival rate λ both exist w.p.1.
+For any given initial system state Q(0), any packet arrival process and packet length distribution, we seek to ﬁnd an optimal admissible link selection policy α ∗ ∈ φ to minimize the random sum queue length process {S α (t)} among all α ∈ φ w.p.1. Speciﬁcally, we have
+tion α ∗ ∈ φ to Problem 1 is optimal in a very strong sense. α ∗ ∈ φ uniformly minimizes {S α (t)} for almost every sample path of arrivals. Let S ∗ denote the optimal average sum queue length. If λ exists w.p.1. and S ∗ exists w.p.1., then α ∗ ∈ φ minimizes S α (i.e. D α ) among all the policies α ∈ φ, where φ {α ∈ φ : S α exists w.p.1. } ⊆ φ. Let D ∗ denote the optimal average bit delay.
+the interactions among queues in Klimov’s model [5] incorporate tandem queueing, the situation is different from our model. In Klimov’s model, there is a single server which is completely allocated to one of the two nodes at any given time (no frequency sharing is allowed) and the packet arrival process to each queue is assumed to be a Poisson process. Klimov’s problem considers packet ﬂow and shows that a priority policy minimizes the time average sum queue length (not the sum queue length process as a function of time, which is a stronger result).
+In this section, we shall characterize the joint QSI region under all admissible policies and then obtain the delay-optimal link selection policy. First, we introduce two priority link selection policies.
+α S ∈ φ and α R ∈ φ are two stationary (i.e. time-invariant) priority policies, which give the priority to the bits in the S queue and the R queue, respectively.
+⎧ ⎪ ⎨ ⎪ ⎩
+⎧ ⎪ ⎨ ⎪ ⎩
+(0, 1), Q S ≥ 0, Q R > 0 (f S , f R ), Q S > 0, Q R = 0
+where f S = r R r S +r R and f R = r S r S +r R . (Note that f S r S = f R r R .)
+Next, we summarize the conservation laws for the 2-hop cooperative queueing network.
+Q(0), the random process Q α (t) satisﬁes the following con- servation laws for all α ∈ φ and all t > 0:
+Q α S (t) + f R Q α R (t) ≥ U(t) 	 (5) Q α S (t) ≥ Q α S S (t), Q α R (t) ≥ Q α R R (t) 	 (6)
+Q α S S (t) and Q α R R (t) are given by (1) and (2) under α S and α R , respectively, and 1[·] is the indicator function.
+polyhedron process P(t) {Q α (t) : (5), (6) are satisﬁed}. As illustrated in Fig. 2, Lemma 1 expresses the fact that at any time t, Q α (t) lies inside P(t) for all α ∈ φ. The conservation laws in Lemma 1 are for the instantaneous queue lengths in two-hop tandem queueing systems and are different from the standard conservation laws, which are for the expected remaining service time in single-server multiclass queueing systems [6].
+Given an initial joint QSI Q(0), α R α ∗ minimizes the sum queue length process {S α (t)} among all α ∈ φ, i.e. solves Problem 1.
+Remark 4 (Features of α ∗ ): α ∗ attempts to ﬁrst empty the R queue and then empty the S queue by frequency sharing
+between the S-R link and the R-D link ( f S r S = f R r R ). R bits have shorter service time (one hop) than S bits (two hops). Thus, higher priority is given to R bits. 3 Furthermore, the control policy α ∗ is stationary and very robust as it does not require knowledge of the exogenous arrival statistics or the exact queue lengths at S and R. It simply requires 1 bit of state information (empty or not) from each queue.
+In this section, we shall analyze the average bit delay under α ∗ for two different arrival models.
+Assumption 1: (Deterministic Packet Arrivals and I.I.D. Packet Length Distribution) Exogenous packets arrive at the S buffer and R buffer at regular intervals T , i.e. the k-th arrival epoch is t S,k = t R,k t k = (k − 1)T . The lengths of the S packet and the R packet at the k-th arrival epoch t k , i.e. Z S,k ∈ [ B S , ¯ B S ] (0 ≤ B S ≤ ¯ B S ) and Z R,k ∈ [ B R , ¯ B R ]
+(0 ≤ B R ≤ ¯ B R ), are bounded i.i.d. random variables with means Z S E[Z S,k ] < ∞, Z R E[Z R,k ] < ∞ and second moments Z 2 S 	 E[Z 2 S,k ] < ∞, Z 2 R 	 E[Z 2 R,k ] < ∞. In
+Under Assumption 1, one challenge in analyzing the average bit delay is to quantify the effects of left-over bits due to previous arrivals. We shall ﬁrst use the theory of random walks to study the distribution of the number of left-over bits in the R queue and the S queue, respectively. Based on the distribution of the number of the left-over bits and the packet lengths, we shall then analyze the average sum queue length using renewal theory.
+Under Assumption 1, assume (r S +r R )Z S r S r R T + Z R r R T < 1, then we have S ∗ L ≤ S ∗ ≤ S ∗ U and S ∗ L /λ ≤ D ∗ ≤ S ∗ U /λ w.p.1., where λ = λ S + λ R , λ S = Z S T , λ R = Z R T ,
+(r S + r R ) Z 2 S + 2Z S L S + L 2 S 2r S r R T
+R T + Z 2 R + 2Z R L R + L 2 R 2r
+2/(l ∗ R ) 2 , where l ∗ S > 0 and l ∗ R > 0 are the unique pos- itive roots 4 of the semi-invariant moment generating func- tions γ S (l) = ln E[e (Z S + rS rS+rR Z R − rSrR rS+rR T )l ] and γ R (l) = ln E[e (Z R −r R T )l ], respectively. Furthermore, when T ≥ (r
+When T ≥ (r S +r R ) ¯ B S r S r R + ¯ B R r R , we have l ∗ S = ∞ and l ∗ R = ∞. One S packet and one R packet can be completely delivered to the destination w.p.1., i.e. no left-over bits at S and R at the end of T . It corresponds to the small loading case, in which the general average sum queue length bounds reduce to the exact average sum queue length S ∗ = S ∗ L = S ∗ U .
+Assumption 2: (Poisson Packet Arrival Process and I.I.D. Packet Length Distribution) {N S (t)} and {N R (t)} are Poisson processes with packet arrival rates λ P S and λ P R . The i.i.d. packet length distribution model is the same as that in Assumption 1.
+Under Assumption 2, one challenge in analyzing the average bit delay is that the two bit arrival processes at S and R are no longer Poisson processes, and hence we cannot directly use the property of Poisson Arrivals See Time-Averages (PASTA). However, we shall overcome this difﬁculty by considering packet model in the buffers and bit model in the servers.
+Under Assumption 2, assume (r S +r R )λ P S Z S r S r R 	 + λ P R Z R r R < 1, then D ∗ = λ S λ D ∗ S + λ R λ D ∗ R , where λ = λ S +λ R , λ S = λ P S Z S
+and λ R = λ P R Z R w.p.1., and the S and R average bit delay are given by
+In (10) and (11), the ﬁrst term can be interpreted as the average service time of a bit (including the average waiting time in the server for the bits in front of it in the same packet and its own average service time), while the second term is the average waiting time of a bit in the queue.
+In this section, we shall ﬁrst obtain the DBP link selection policy α DBP and then study the average delay penalty of α DBP compared with α ∗ .
+Using the DBP algorithm [1], the DBP link selection policy α DBP ∈ φ is obtained by solving the following problem:
+⎧ ⎪ ⎪ ⎪ ⎨ ⎪ ⎪ ⎪ ⎩
+(b S , b R ), Q S = θQ R > 0 (0, 0), Q S = Q R = 0
+link selection policy α DBP attempts to equalize r S (Q S −Q R ) and r R Q R , i.e. regulate Q S and Q R so that Q S = θQ R . Furthermore, α DBP is stationary and does not require the exogenous arrival statistics. However, the exact instantaneous queue lengths, Q S (t) and Q R (t) are needed for α DBP .
+By renewal theory and a new reconstruction of arrival sample paths, we have the average delay penalty bound below:
+Theorem 2: (Lower Bound on Average Delay Penalty of α DBP ) For general renewal packet arrival processes and i.i.d. packet length distributions at S and R, assume (r S +r R )λ P S Z S r S r R 	 +
+In the simulation, we consider both the deterministic inter- packet arrival process ( T = 200 ms) and Poisson packet arrival process ( λ P S = λ P R = 5 pck/s, i.e. average inter-arrival interval 200 ms). We consider symmetric discrete uniform i.i.d. packet length distribution ( Z S,k , Z R,k ∈ {50, 100, 150, 200, 250}
+bits/pck). The bandwidth of the AWGN channel is W = 2.5 KHz and the noise variance is normalized to 1. The transmit power for the S node and the R node are the same, i.e. P S = P R = P . Fig. 3 (a) illustrates the average bit delay versus the transmit SNR. For the deterministic inter-packet arrival process, the analytical upper and lower bounds for average bit delay under α ∗ in Lemma 2 are illustrated with dash lines. For the Poisson packet arrival, the analytical average bit delay under α ∗ coincides with the simulation result, which veriﬁes Lemma 3. Fig. 3 (b) illustrates the average bit delay penalty of α DBP versus the transmit SNR. The analytical lower bound in Theorem 2 lower bounds the simulation average bit delay penalty.
+[[[ REFS ]]]
+L. Georgiadis
+M. J. Neely
+L. Tassiulas
+--
+Resource allocation and cross-layer control in wireless networks
+----
+L. Tassiulas
+A. Ephremides
+--
+Dynamic scheduling for minimum delay in tandem and parallel constrained queueing models
+----
+M. J. Neely
+--
+Energy optimal control for time-varying wireless networks
+----
+D. P. Bertseka
+--
+Dynamic Programming and Optimal Control, 3rd ed
+----
+P. Klimov
+--
+Time-sharing service systems I
+----
+D. Bertsima
+--
+Queues: Theory & Applications
+[[[ META ]]]
+xmlpapertitle -> Delay-Optimal Scheduling for Cooperative Networks
+pdf -> E:\testDataset\017.pdf
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\017.pdf
+xmlauthors -> Ying Cui, Vincent K. N. Lau, Edmund M. Yeh
+xmlroom -> -
+[[[ LINKS ]]]
+

@@ -1,0 +1,182 @@
+[[[ ID ]]]
+49
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Network Localized Error Correction: for Non-coherent Coding
+[[[ AUTHORS ]]]
+Ning Cai
+[[[ ABSTR ]]]
+Abstract— In this work we extend localized error correction codes introduced by L. A. Bassalygo et al from point-to-point coding to non-coherent network coding. We have a lower bound and an upper bound of the capacity, which are tight when the sum of two times of the dimension of the codewords and the dimension of error conﬁgurations does not exceed the dimension of the ground space.
+[[[ BODY ]]]
+Localized error correction codes was introduced by L. A. Bassalygo, S. I. Gelfand, and M. S. Pinsker, 1989, ﬁrst in binary case, [1], and then extended and studied in several general cases, e.g., [2]- [4].
+Assumption in standard theory of error-correcting codes is that both the encoder and decoder know the maximum error multiplicity but nothing else. For erasure error correc- tion coding, it is assumed that the receiver knows at which coordinates errors occur as well. Here “localized error” means the third case in that the sender initially knows at which coordinates errors may occur during the transmission but the receiver knows nothing about the doubtful coordinates. Like the classical error correction coding, regardless of its role in transmission and/or storage, the localized error correction coding itself is a beautiful combinatorial problem.
+A code correcting t localized errors is called a t-localized error correction code. It was proven that the transmission rates of binary t-localized error correction codes are upper bounded by Hamming bound and the Hamming bound is asymptotically achievable by binary t-localized error correction codes [1]. This implies that localized side information is helpful since in general Hamming bound is not achievable by t-error correction codes without localized side information.
+To correct the errors caused by link failure in network coding, R. Koetter and M. M´edard introduced static codes [6]. In their model the receivers know which links fail and so it can be considered as a generalization of erasure error correction coding. They assumed that both sender and receivers know the network topology.
+As a generalization of classical error correction coding, network error correction coding was introduced by N. Cai and R. W. Yeung, [7] (also in [8], [9]) in the scenario that both the sender and receivers know the the network topology but none of them knows the error positions. Hamming, Singleton, and Gilbert-Varshamov bounds were derived. Their coding approach sometimes is referred as coherent network error
+correction coding in order to distinguish it from so-called non- coherent error correction coding below.
+Coding for operator channels or non-coherent error correc- tion coding, was introduced by R. Koetter and F. Kschischang [10]. They assumed that neither the sender nor receiver have knowledge of error positions and the network topology.
+Under the assumption a codeword in a non-coherent error correction code is a linear subspace. An erasure/injection error of a codeword is caused by an operator deleting/adding a sub- space from/to the codeword. The distance between codewords X and X is deﬁned as
+= dimX + dimX − 2dim(X ∩ X ). 	 (1) Sphere-packing (Hamming), sphere-covering (Gilbert- Varshamov), and Singleton bounds were derived and a Reed-Solomon-like code was constructed [10]. So far non- coherent error correction coding has been developed as an active and fruitful research area (e.g., see [11]- [14]).
+Boolean lattice and subspace lattice are two important partial order sets in combinatorics. A subset in the former cor- responds to a linear subspace in the latter and the cardinality of a subset is analogue to the dimension of a subspace (e.g., c.f. [15]). Moreover the operators“intersection” and ”union” of subsets are analogue to the operators “intersection” and ”sum” of subspaces respectively. In this sense the coding theory for operator channel can be considered as a coding theory based on subspace lattice, analogue to the classical coding theory, which is based on Boolean lattice (c.f. the next section).
+In this paper we attempt to extend the “classical” localized error correction codes to coding theory of operator chan- nels. For combinatorics interesting, we purely focus on the combinatorial analogy and neglect the practical background of network communication. Recall in the model of binary localized error correction codes [1], the state of the channel is described by a conﬁguration, a subset of coordinates. A bit at a coordinate in the conﬁguration may possibly be ﬂipped during the transmission and no error may occur at outside of the conﬁguration. To contrast it, our error conﬁguration is deﬁned as a subspace of the ground space. A subspace in the intersection of the conﬁguration and codeword may be deleted from the codeword and a subspace in the conﬁguration may be injected to the codeword. Again we assume that the sender knows exactly the conﬁguration before the transmission and the receiver knows nothing about it.
+We derive an upper bound of the capacity and show its achievablity by random coding. The capacity is higher than that of network (non-localized) error correction codes, which implies the side information of error locations is helpful. Due to the limitation of the spaces, we only outline the proof of the direct theorem. The parts skipped by us are mainly verbose calculations and estimations.
+In the next section we formally formulate the problem. The main results are presented in Section III. The proof of direct part of coding theorem is outlined in Section IV whereas the converse part is proven in Section V.
+Throughout the paper we ﬁx an ﬁnite ﬁeld GF (q), where q is an arbitrary prime power, and take an n-dimensional linear space N over GF (q), as the ground space. Denote by V, the set of subspaces of N and for k ≤ n, denote by G(n, k) := {K : X ⊂ N, dimK = k}, the set of k-dimensional subspaces of the ground space, (or a “Grassmannian”). We follow after [10] to assume that codewords of a non-coherent network code are chosen from G(n, x), for an integer x ≤ n 2 . Denote by
+k , the Gaussian coefﬁcient, the numbers of k-dimensional linear subspaces in an n-dimensional linear space over GF (q). As we are mainly interested in the asymptotical behavior of codes, the following lemma is useful for estimations.
+Proof It follows from simple calculation or Lemma 5 [10]. Then by the lemma, the “input alphabet” G(n, x) has
+cardinality n x 	 = q n 2 [ξ(1−ξ)+o(1)] , provided that x n = ξ(1 + o(1)).
+It is well known that the space of binary sequences of length n corresponds to a Boolean lattice and a binary sequence x n = (x 1 , x 2 , . . . , x n ) with Hamming weight w in the space corresponds to the w-subset of {1, 2, . . . n} := [n], S(x n ) := {i : x i = 1}, in the Boolean lattice. Then the Hamming distance between two sequences x n and y n is
+Next Let us take a quick look at the model of binary localized error correction in [1]. Suppose that the state of channel in a binary localized error takes a conﬁguration J and a codeword x n is sent through the channel. Then the bit x j is possibly ﬂipped during the transmission if j ∈ J . This corresponds to that a subset in S(x n ) ∩ J is possibly removed from S(x n ) and a subset in J \ S(x n ) is possibly added to S(x n ) when the codeword x n is sent through the channel. Obviously exactly 2 |J | possible types of errors may occur and this does not depend on the codeword sent through the channel. The set of possible outputs in this case is
+To formulate localized error correction code for network coding analogously we take a linear subspace Z as a conﬁg- uration. Then we assume that a subspace in X ∩ Z may be erased from X and a subspace in X + Z may be injected to the codeword X when a codeword X is sent via a channel with error conﬁguration Z. In this case the possible outputs of the network are exactly in the set
+We are ready to see from (3) that the numbers of possible outputs depend not only on z := dimZ but also on x := dimX and dimX ∩ Z. For example, it is no hard to see that |Y(X, Z)| = z v=0 q (x−z)(z−v) z v if Z ⊂ X and
+|Y(X, Z)| = z w=0 z w if X ∩ Z = {0}. This makes our problem more difﬁcult.
+An (n, m, x, z)-network localized error correction code, or in short an (n, m, x, z)-NLECC, is speciﬁed by its encoding function φ : M × G(n, z) → G(n, x) and decoding function ψ : V → M such that ψ(Y ) = i, for all Y ∈ Y(φ(i, Z), Z), i ∈ M, Z ∈ G(n, z), where M is the message set with the cardinality |M | = m, and Y(X, Z) is deﬁned in (3). A non-negative real number R is (ξ, τ )-achievable if for all
+> 0 and sufﬁciently large n, there exists an (n, q n 2 r , nξ, nτ )- NLECC such that r > R − . Here and throughout the paper, if nξ, nτ ,n 2 r etc are no integers, we take their integer parts. The maximum (ξ, τ )-achievable rate is called (ξ, τ )- capacity of NLECC, denoted by C(ξ, τ ). By (2), we deﬁned here 1 n 2 log |M | as information rates of non-coherent network codes, instead of 1 n log |M | in classical coding theory, here and throughout the paper we take q as the base of logarithms.
+n d
+d z
+n z
+It is immediately follows from Theorem 2, Lemma 1 and the fact that for positive numbers α k , k = 1, 2, . . . , a,
+C(ξ, τ ) ≤ max ξ≤δ≤ξ+τ (1 − δ)(δ − τ ). 	 (7) Notice that for a ﬁxed τ , the maximum value of function
+side of (7) is ξ(1 − (ξ + τ )) if ξ + τ ≤ 1+τ 2 , or equivalently ξ ≤ 1−τ 2 . Consequently the corollary with Theorem 1 yields
+It was shown in [1] that the capacity of binary localized error correction codes is equal to asymptotic Hamming bound (for error correction codes without localized side information). It is interesting for us to compare C(ξ, τ ) to
+The capacity of nξ-dimensional nτ -error correction non- coherent network codes is asymptotically upper bounded by
+Thus η H ≤ µ if ξ ≤ 1 2 − τ 4 . It is surprising that our lower bound beats Hamming (upper) bound in the case that ξ < 1 2 − τ 4 .
+The capacity of nξ-dimensional nτ -error correction non- coherent network codes is asymptotically upper bounded by
+Thus µ ≥ η S for ξ ≤ 1 2 . This is no surprising which implies that the localized side information is helpful, as expected.
+Theorem 1 is proven by random coding. We shall ran- domly generate n codewords X(i, 1), X(i, 2), . . . , X(i, n) from G(n, x) for each message i. It is follows from [1] that, if a codebook is “good”, for any message i and conﬁguration Z, one can always ﬁnd a codeword X(i, j) such that the message can be uniquely decoded when the X(i, j) is sent under conﬁguration Z. We shall show that this can be done by minimum distance decoder if (14) in below holds, or equivalently for no i = i, j ∈ [n], Ξ(Z, X(i , j )) (deﬁned by (12)) contains X(i, j). The probability for a randomly generated codeword to fail in Ξ(Z, X(i , j )) will be given by Lemma 4, which shows that the probability depends on dim(Z ∩ X(i , j )). Thus to have an upper bound p of the probability for a codeword X(i, j) to be “bad” for ﬁxed i, Z, we need to know, for a given λ, the numbers of pairs (i j )’s with dim(X(i , j ) ∩ Z) = λ (with a high probability), which will be obtained via Lemmas 2 and 3. Then by independence of the random codewords, we have an upper bound p n to the probability of that for no j, X(i.j) is good. Finally the proof will be completed by the union bound over all possible i, Z.
+Lemma 2: (Chernoff Bound) Let B 1 , B 2 , . . . , B J be i.i.d. binary random variables with P r(B j = 1) = p for j = 1, 2 . . . J . Let p ≤ p 1 . Then for all α ∈ (0, 1),
+As Chenoff bound appeared in many literatures and the lemma is its special version, we omit its proof.
+For a ﬁxed linear subspace Z with dimension z, denote by Λ(Z, n, x, λ) := {X : X ∈ G(n, x), dim(X ∩ Z) = λ}. (10)
+Lemma 3: Let W 1 , W 2 , . . . , W J be J random subspaces independently and uniformly taking values in G(n, x). Then for all α ∈ (0, 1),
+z λ
+n − z x − λ
+n x
+z λ
+n − z x − λ
+n x
+Then the lemma follows from Chenoff bound for B j := 1 if W j ∈ Λ(Z, n, x, λ) and otherwise 0.
+Lemma 4: Let linear subspaces Z, X ⊂ N , with dimZ := z, dimX := x, and dimX ∩ Z := λ, and
+where θ := λ n , ξ := x n , and τ := z n , provided x ≤ n 2 , z ≤ n 2 . The outline of the proof: We ﬁrst show:
+fact 1: the numbers of d + λ-dimensional linear subspaces D with Z ∩ X ⊂ D ⊂ X are equal to x − λ d 	 := a(d);
+and dimD = d + λ, the numbers of v-dimensional linear subspaces, containing Z, and intersecting with X to D, are equal to q (u−(z+d))(v−(z+d)) 	 n − u v − (z + d) := b(v, d), where u = x + z − λ;
+fact 3: for a linear subspace V with dimV = v ≤ x + z, the numbers of x-dimensional linear subspaces X with X + Z = V are equal to q (v−x)(v−z) 	 z x + z − v := c(v); and
+fact 4: by the facts 1-4, we have |Ξ(Z, X )| =
+Applying (6) to above equality, then the rest part of the proof is by substituting Lemma 1, followed by the calculations and estimations.
+Successful Codebook: The direct theorem is proven by the random selection of the codebook. For a message set M , let {X(i, j) : i ∈ M, j = 1, 2, . . . n}, where X(i, j) ∈ G(n, x), be a outcome of the random codebook. For a conﬁguration Z ∈ G(n, z) and a message i ∈ M , we say that a codeword X(i, j) is good for i and Z if for all i = i, j ∈ [n],
+(where j may and may not be equal to j). A codebook is successful for a message i if for all Z ∈ G(n, z), there exists a codeword X(i, j), j ∈ [n], which is good for i and Z. A codebook is successful if it is successful for all i ∈ M .
+Encoding and Decoding Functions: Suppose that we are given a successful codebook {X(i, j)}. For a given i and Z we choose good codeword X(i, j) for i and Z as the value φ(i, Z). We employ the minimum distance decoder to decode. That is, let ψ(Y ) = i if there is a unique i ∈ M such that there exits a codeword X(i, j) for a j ∈ [n] such that for all i = i, j ∈ [n]
+Next we show that the code can correct localized errors for set of error conﬁgurations G(n.z) by assuming a contradiction. That is, we assume that there exist i, i ∈ M, j ∈ [n], Z ∈ G(n, z), and Y ∈ Y(φ(i, Z), Z) such that d(X(i , j ), Y ) ≤ d(φ(i, Z), Y ). Thus by (1) and (3), we have that
+where by (1) the ﬁrst inequality holds and the second inequal- ity follows from (3) for X = φ(i, Z). On the other hand, by (3) we have that
+dim(Y ∩ φ(i, Z)) + dim(Z ∩ φ(i, Z)) ≥ dimφ(i, Z) = dim(φ(i, Z) + Z) − dimZ + dim(Z ∩ φ(i, Z)),
+i.e., dim(Y ∩ φ(i, Z)) ≥ dim(φ(i, Z) + Z) − z as dimZ = z, which and (16) are followed by dim(X(i , j ) ∩ (φ(i, Z) + Z)) ≥ dim(φ(i, Z) + Z) − z, which is a contradiction since by the deﬁnition, φ(i, Z) is good for Z, i.
+Estimation of the Successful Probability: It remains to show that the probability to generate a successful codebook is positive. We outline the proof.
+Let > 0 be a small positive number to be speciﬁed later, τ < ξ ≤ 1 2 , ξ[1 − (ξ + τ )] − < 1 n 2 log |M | < ξ[1 − (ξ + τ )] − 1 2 , and ˜ X(i, j), i ∈ M, j = 1, 2, . . . n be a random codebook independently generated from G(n, nξ) with the uniform distribution.
+Fix i ∈ M . By Lemmas 1, 3 and simple calculations, one can conclude that, with a probability no exceeding e −q n2 β , for
+> min{q n 2 [(1−(ξ+τ ))(ξ−θ)−θ 2 − 1 3 ] , n(|M | − 1)},(17) where Λ(Z, n, ξ, nθ) is deﬁned in (10), if
+0 < β < 1 2
+Here we use the assumption τ < ξ ≤ 1 2 , which implies that we can choose a sufﬁciently small such that the right hand of (19) is positive. In the other case by directly applying Lemma 2 and simple calculations, one can prove that the probability of
+(20) does not exceed e −q n2 β . Thus, because there are totally at most nτ < n possible dimensions λ = nθ for the intersections, we have
+P r(E c 0 (i)) < ne −q n2 β < e −q n2 β 2 	 (21) if we deﬁne event E 0 (i) as that for no θ satisfying (18),(17) holds and for no θ violating (18),(20) holds.
+Next we estimate the conditional probability of a codeword being good for a ﬁxed Z and i under the condition that E 0 (i) occurs. By Lemmas 1 and 4 we have for any X ∈ G(n, nξ), Z ∈ G(n, nτ ) with dimX ∩ Z = nθ, and j ∈ [n],
+which with the deﬁnition of E 0 (i) and (17) yields that P r{ ˜ X(i, j) ∈ Ξ(Z, ˜ X(i , j ))
+for a ˜ X(i , j ) with dim ˜ X(i , j ) ∩ Z = nθ|E 0 (i)} ≤ exp q {n 2 [((1 − (ξ + τ ))(ξ − θ) − θ 2 − 1
+for all θ satisfying (18). On the other hand, in the case that (18) does not hold for a θ, by (19), (20) and (22), we have that
+for a ˜ X(i , j ) with dim ˜ X(i , j ) ∩ Z = nθ|E 0 (i)} ≤ exp q {n 2 [2β − ((1 − (ξ + τ ))(ξ − θ) − 6 )]}
+where the second inequality follows from (19) and the last inequality holds because θ ≤ τ .
+Notice that by the deﬁnitions, for a ﬁxed j, a random codeword ˜ X(i, j) is good for i and Z if and only if for no i = i, j ∈ [n], ˜ X(i, j) ∈ Ξ(Z, ˜ X(i , j )). Thus by (23) and (24), we have
+= P r{ ˜ X(i, j) ∈ Ξ(Z, ˜ X(i , j )), for a ˜ X(i , j )|E 0 (i)} ≤ nq −n 2 6
+where by (23) and (24) the ﬁrst inequality holds be- cause the choices of values of nθ are at most nτ < n, if n is sufﬁciently large. Therefore by independence of
+˜ X(i, 1), ˜ X(i, 2), . . . , ˜ X(i, n), we conclude that the conditional probability of the event that there is no ˜ X(i, j) good for the given i, Z under the condition that E 0 (i) occurs, is most (q − n2 7 ) n = q − n3 7 . Consequently the conditional unsuccess- ful probability of the message i, under the condition that E 0 (i) occurs, is at most |G(n, nτ )|q − n3 7 < q − n3 8 if n is sufﬁciently large. Thus by (21) the unsuccessful probability for message i is at most
+for a sufﬁciently large n. Consequently with at least probabil- ity
+the random selection is successful if n is sufﬁciently large. Thus our proof is completed.
+In this section we prove Theorem 2. Assume that we are given an (n, m, x, z)-NLECC (φ, ψ). For an i ∈ M and a d with x ≤ d ≤ x + z, denote by
+and B(i, Y ) := {Z : φ(i, Z) + Z = Y }. Then, as for all Z ∈ B(i, Y ), Z ⊂ Y , we have that |B(i, Y )| ≤ d z if Y ∈ A(i, d). Thus, by grouping the error conﬁgurations according to φ(i, Z) + Z for a ﬁxed i ∈ M , we have
+On the other hand, because for all i = i and Z, Z ∈ G(n, z), φ(i, Z) + Z = φ(i , Z ) + Z , we have A(i, d) ∩ A(i , d) = ∅, and therefore
+Finally by summing both sides in (27) over M and then applying (28), we obtain
+n d
+The author would like to thank Prof. L. A. Bassalygo for providing a copy of the pioneer work [1]. This work was partially supported by a grant from the National Natural Science Foundation of China (Ref. No. 60832001).
+[[[ REFS ]]]
+L. A. Bassalyg
+S. I. Gelfan
+M. S. Pinske
+--
+Coding for channels with localized errors, in hoc
+----
+A. Bassalyg
+I. Gelfan
+S. Pinske
+--
+L
+----
+R. Ahlswed
+A. Bassalyg
+S. Pinske
+--
+L
+----
+R. Ahlswed
+A. Bassalyg
+S. Pinske
+--
+L
+----
+S. I. Gelfan
+M. S. Pinske
+--
+Coding for channel with random parameters, Problems of Control and Information Theory, vol
+----
+R. Koette
+M. M´edar
+--
+An Algebraic Approach to Network Coding, IEEE/ACM Transactions on Networking, October 2003
+----
+N. Ca
+R. W. Yeun
+--
+Network coding and error correction, in Proc
+----
+R. W. Yeun
+N. Ca
+--
+Network error correction, part I: Basic concepts and upper bounds, Comm
+----
+N. Ca
+R. W. Yeun
+--
+Network error correction, part II: Lower bounds, Comm
+----
+R. Koette
+R. Kschischan
+--
+F
+----
+S.-T. Xi
+F.-W. F
+--
+Johnson type bounds on constant dimension codes, Designs, Codes, Crypto
+----
+T. Etzio
+A. Vard
+--
+Error-Correcting Codes in Projective Space, ISIT 2008, Toronto, Canada, July 6 - 11, 2008
+----
+A. Khalegh
+F. A. Kschischan
+--
+Projective Space Codes for the Injection Metric, Canadian Workshop on Information Theory, Ottawa, 2009
+----
+R. Ahlswed
+H. Aydinia
+--
+On error control codes for random network coding, the 2009 Workshop on Network Coding, Theory Appl
+----
+H. van Lin
+R. M. Wilso
+--
+J
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\049.pdf
+[[[ LINKS ]]]
+

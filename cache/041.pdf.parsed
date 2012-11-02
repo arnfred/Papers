@@ -1,0 +1,252 @@
+[[[ ID ]]]
+41
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+K -user Interference Channels: General Outer Bound and Sum-capacity for Certain Gaussian Channels
+[[[ AUTHORS ]]]
+Daniela Tuninetti
+[[[ ABSTR ]]]
+Abstract—This paper derives an outer bound on the capacity region of a general memoryless interference channel with an arbitrary number of users. The derived bound is the ﬁrst known outer bound region valid for any memoryless channel besides the cut-set bound, which is loose even in the two-user case. In Gaussian noise, classes of channels for which the proposed bound gives the sum-rate capacity are identiﬁed, including degraded channels and a class of Z-channels.
+Index Terms—Interference channel; Degraded channel; Outer bound; Sum-capacity; Z-channel;
+[[[ BODY ]]]
+Determining the ultimate capacity limits of the general memoryless K-user InterFerence Channel (K-IFC) is an open problem since its inception. The network considered in this work is depicted in Fig. 1: it consists of K source-destination pairs and is deﬁned by input alphabets (X 1 , . . . , X K ), output alphabets (Y 1 , . . . , Y K ), and a channel transition probability P Y 1 ,...,Y K |X 1 ,...,X K . The channel is assumed to be memoryless. Source i, i ∈ [1 : K], wishes to communicate to destination i an independent message W i . A (e nR 1 , . . . , e nR K , n, n ) code consists of K encoding functions [1 : e nR i ] → X n i , K decoding functions W i : Y n i → [1 : e nR i ], such that Pr W i (Y n i ) = W i ≤ n , i ∈ [1 : K]. A rate-tuplet (R 1 , . . . , R K ) is achievable if there exists a family of codes such that n → 0 as n → ∞. The capacity region is the convex closure of the set of achievable rate-tuplet (R 1 , . . . , R K ). The capacity region of the K-IFC is not known in general.
+This paper derives an outer bound on the capacity region of the K-IFC that holds for any memoryless channel (not necessarily Gaussian), any K ≥ 2, and that is tighter than the cut-set bound [1].
+The capacity region of the 2-IFC is known if the interference is strong [2]–[4], if the channel outputs are deterministic and invertible functions of the inputs [5], and if the channel has a special form of degradeness [6], [7]. The largest known inner bound is due to Han and Kobayashi (HK) [8] and uses rate splitting and simultaneous decoding. General outer bounds are due to Sato [2], [9], and Carleial [10] (see also [11, Th.5]).
+For the Gaussian 2-IFC, the capacity region is fully known in strong interference only [4], [12], [13]. The sum-capacity is however known in mixed interference [14], [15], for the Z- channel [16], and in very weak interference [15], [17], [18]. In mixed and weak interference, a simple rate splitting in the HK
+region is optimal to within one bit [19]. The best outer bound may be obtained by intersecting the regions derived by Kramer in [11], by Etkin et al. in [19], and the region independently obtained in [15], [17], [18] and later tighten by Etkin in [20].
+Few results are available for more than two users and/or for non-Gaussian channels. Please refer to [21], and references therein, for a more detailed discussion on past work on the subject. We shall only brieﬂy list in the following few relevant work for sake of space.
+General inner bound regions are lacking. A straightforward generalization of the HK approach, whereby each user has a different message for every possible subset of non-intended receivers, has a super-exponential complexity in the number of users and might be suboptimal in general. In fact, coding schemes that deal directly with the effect of the aggregate interference, rather than with each interferer separately, as with interference alignment and with structured codes, are known to achieve a larger number of degrees of freedom than simple HK schemes for the Gaussian noise channel [22]–[24]. To the best of the author’s knowledge, no outer bounds have been developed for the general (i.e., non-Gaussian) IFC with more than two users other than the cut-set bound [1] (which is however not tight even in the two-user case).
+In Gaussian noise, channels with a special structure have been investigated such as: the “fully symmetric” channel [17], [18], [25], [26], the “cyclic symmetric” channel [27], [28], the three-user channel with “cyclic mixed strong-very strong” interference [29], and the “one-to-many” and the “many-to- one” channel [18], [23], [30]. The Degrees of Freedom (DoF) of the Gaussian K-IFC has received more attention [22], [24], [31]–[33]; the lesson from the DoF analysis is that structured codes appear to outperform purely random codes and that the high-SNR analysis is very sensitive to the way the K 2
+Of direct relevance to this work is the Gaussian 2-IFC outer bound derived by Kramer in [11, Th.1], which we seek to generalize to any memoryless channel with any number of users. The basic idea of [11, Th.1] is to give side information to the receiver(s) in such a way that the resulting bound can be single-letterized, does not involve auxiliary random variables and can be computed for channels of interest, such as the Gaussian channel. An extension of [11, Th.1, ﬁrst proof] to the K-user Gaussian channel, with any K ≥ 2, appeared in [26]; the idea is to provide a group of receivers with sufﬁcient side information so that they can decode a subset of the users as in a Multiple Access Channel (MAC) channel–as also discussed in [25]; the resulting optimization problem however does not appear to have a closed-form solution in general (a closed form result was given in [26] for degraded channels only) and iterative algorithms for its numerical evaluation are discussed in [34].
+In this work, we approach the problem from a different angle than [26]: we generalize [11, Th.1, second/LMMSE- based proof] rather than [11, Th.1, ﬁrst proof]. We show that our derived outer bound can be evaluated in closed-form for Gaussian channels and it gives the sum-rate capacity in some instances.
+The main contributions of this work are as follows. In Section II we derive an outer bound on the capacity region of the general memoryless IFC, i.e., not necessarily Gaussian, with an arbitrary number of source-destination pairs. In Sec- tion III we specialize the bound derived in Section II to the Gaussian channel. In [21], we showed that there exist channel parameters for which our proposed bound is the tightest known for the sum-rate of the Gaussian 3-IFC. Here, we derive the sum-capacity of certain Z-like Gaussian K-IFCs. We also discuss how to generalize this sum-capacity result to non- Z Gaussian channels; in particular we offer two alternative proofs for the sum-capacity of the Gaussian degraded channel originally derived in [26]. Section IV concludes the paper.
+Theorem 1. The capacity region of a general memoryless K- IFC is contained into:
+for some input distributions P X 1 ,...,X K ,Q that factorize as P Q K k=1 P X k |Q , some subsets S of the user-index set [1 : K] and some permutations π of the elements of S. A random variable with subscript π 0 is a constant.
+Proof: The proof can be found in the Appendix. The key idea is to provide the k-th receiver, k ∈ [1 : K], with the side information S k shown in Fig. 2.
+|X 1 ...X
+2) Since the capacity region of a K-user IFC does not depend on the joint transition probability P Y 1 ,...,Y K |X 1 ,...,X K (because the receivers cannot cooperate), but only on the marginal transition probabilities P Y k |X 1 ,...,X K , k ∈ [1 : K], each bound in Th. 1 (one for each pair (S, π)) can be optimized with respect to the joint probability P Y 1 ,...,Y K |X 1 ,...,X K as long as the marginal probabilities are preserved.
+3) The bound in (1) reduces to [11, Th.1] for the Gaussian 2-IFC by setting X j = ∅, j ∈ [3 : K], (see [11, eq.(34)]).
+4) The region in Th. 1 is deﬁned by N (K) = K k=1 K k k! rate bounds. For K = 2, the N (2) = 4 bounds are as in [11, Th.1]. For K ≥ 3, the N (K) − K 2 bounds that involve at least three rates cannot be simply obtained by silencing all but two users and applying [11, Th.1]. These bounds are the novel contribution of this work.
+5) Th.1 can be easily evaluated as it does not involve any auxiliary random variable. For example, the “Gaussian maximizes entropy” principle [1] sufﬁces to guarantee that a jointly Gaussian input maximizes simlutaneously all rate bounds in (1) for Gaussian noise channels.
+6) Th.1 can be extended to other memoryless channels without receiver cooperation. For the K-IFC with gen- eralized feedback, for example, Th.1 must be modi- ﬁed as follows: (a) replace each channel output Y k with the pair (Y k , Y GF,k ), where Y GF,k is the channel output observed at transmitter k, k ∈ [1 : K], (b) consider the union over all possible joint input distri- butions P X 1 ,...,X K (because the generalized feedback enables source cooperation which results in correlated inputs); (c) choose the worst joint transition probabil-
+7) For the Gaussian 2-IFC, besides the bounds in [11, Th.1] that we generalized in Th.1, the following outer bounds are known: [11, Th.2] [15], [17]–[19] and [20]. Some of these bounds are the tightest known in weak interfer- ence. It is left for future work to generalize these two- user Gaussian channel bounds to non-Gaussian channels with more than two users.
+In this section we ﬁrst introduce the Gaussian channel model (subsection III-A). We then show that Th.1 gives the sum- capacity for certain Z-like channels (subsection III-B). We conclude with a discussion on how to extend the result of Subsection III-B to non-Z channels (subsection III-C); in doing so we show that Th.1 gives the sum-rate capacity of degraded channels, thereby providing an alternative proof for the result of [26]; we also offer another proof for the sum-rate capacity of the degraded channel by generalizing an argument originally devised by Sato for the two-user case [9].
+A SISO (single input single output) complex-valued Gaus- sian K-IFC in standard form has outputs:
+with input power constraint E[|X i | 2 ] ≤ 1 and noise Z i ∼ N (0, 1), i ∈ [1 : K]. The correlation among the Gaussian noises is irrelevant since the capacity only depends on the marginal noise distributions. The channel gains are ﬁxed and are known to all terminals. Without loss of generality, the di- rect link gains h i,i , i ∈ [1 : K], can be taken to be real-valued (because receiver i can compensate for the phase of h i,i ) and strictly positive (if |h i,i | 2 = 0 then the SNR at receiver i is zero even in absence of interference, which implies that R i = 0 is optimal, i.e., the system has effectively one less user). The Gaussian K-IFC is completely speciﬁed by the channel matrix H : [H] i,j = h i,j , (i, j) ∈ [1 : K] × [1 : K].
+In the following we adopt the Matlab-like convention that H R,C is the |R| × |C| matrix obtained from H by retaining the rows indexed by R and the columns indexed by C.
+Consider Gaussian K-IFCs with upper triangular channel matrix H. This class of channels can be thought of as the multi-user generalization of the 2-IFC Z-channel [16]. The following theorem establishes the sum-capacity for a subset of Z-channels for which treating interference as noise is optimal:
+Theorem 2. Consider a K × K positive semi-deﬁnite noise covariance matrix Σ K deﬁned recursively as follows: let Σ 1 = [1] and for k = 2, . . . , K let:
+Consider a channel matrix H whose upper triangular part is deﬁned recursively as follows: for k = K, . . . , 2 let:
+while the entries below the main diagonal of H are zero. For the channel deﬁned by (2), the sum-rate capacity is given by (1) and equals:
+Proof: Since every mutual information term in (1) con- tains all the inputs, the “Gaussian maximizes entropy” princi- ple [1] assures that i.i.d. N (0, 1) inputs are optimal. Consider S = [1 : K] with π = (1, . . . , K) in (1) and rewrite the sum-rate as:
+The channel matrix H deﬁned by (2) is such that for each k = K, . . . , 2:
+E[Y 1 , . . . , Y k−1 |Y k , X 1 , . . . , X k−1 , X k ] =E[Y 1 , . . . , Y k−1 |Y k , X 1 , . . . , X k−1 ],
+that is, conditioned on (X 1 , . . . , X k−1 ) the set of outputs (Y 1 , . . . , Y k−1 ) is a degraded version of Y k and thus:
+By summing the rates in (6) over all k ∈ [1 : K] we obtain the sum-rate upper bound in (3). The upper bound in (3) can be achieved by simply treating interference as noise at each receiver (recall that for the Z-channel, the k-th receiver is interfered by (X k+1 , . . . , X K ) only).
+By considering all possible covariance matrices Σ K , Th.2 identiﬁes a novel class of channels for which treating interfer- ence as noise is sum-rate optimal (besides those in [18, Th.4, Th.5, and Th.7] and [35, Th.3]) as shown in the following examples. The correspondence between channel matrices and noise covariance matrices given by (2) is interesting in itself and deserves further investigation.
+Example 1. Th.2 assures that treating interference as noise is optimal for all channels that can be built as in (2) from a covariance matrix of the type:
+   
+   
+The resulting channel has gains h 1,k = v k h k,k , k = 2, . . . , K and zero for the remaining non-diagonal entries; this channel is known as the many-to-one channel [23]. The condition
+|v k | 2 ≤ 1 identiﬁes a subset of many-to-one channels for which treating interference as noise is optimal. The con- dition K k=2 |v k | 2 ≤ 1 is equivalent to [18, Th.4], thus Th.2 generalizes [18, Th.4].
+The relationship between the class of channels identiﬁed by Th.2 and that identiﬁed by [35, Th.3] (of which [18, Th.4 and Th.5] are special cases) is subject of current investigation. We note that [35, Th.3] is obtained from a generalization of [19, Th.1] while Th.2 from a generalization of [11, Th.1], it is thus possible that [35, Th.3] and Th.2 do not imply one another.
+Example 2. Consider channels that can be obtained as in (2) from a rank-one covariance matrix of the type:
+for some (a 1 , . . . , a K ) ∈ C K . The resulting channel has entries h i,j = h j,j a i /a j , j ∈ [i : K] and i ∈ [1 : K], and zero for the remaining non-diagonal entries. For these channels the sum-capacity is:
+In the next subsection we relate the channels considered in Example 2 with the class of degraded channels studied in [26].
+The condition expressed by (2) is only sufﬁcient for the achievability of (3). In general, the expression in (3) is an upper bound to the sum-capacity of channels for which the upper triangular part of H can be expressed as in (2) and the entries below the main diagonal have any arbitrary value. For such channels, the entries below the main diagonal might need to satisfy some extra constraints (besides (2)) in order for (3) to be achievable. The following discusses an example of such extra constraints.
+The expression in (3) suggests the following achievable strategy for non-Z channels: the k-th receiver ﬁrst decodes users 1, . . . , k − 1, then strips them from its received signal, and ﬁnally decodes its intended message by treating the signal of users k + 1, . . . , K as noise; with this “successive decoding strategy” the rate-tuplet (r 1 , . . . , r K ) in (6) is achievable if:
+Theorem 3. The sum-rate in (3) is achievable for a channel H such that the upper triangular part of H can be expressed as in (2) and such that the entries below the main diagonal satisfy:
+Proof: The proof follows from the previous discussion. The achievable region in Th.3 is the intersection of K MAC regions where only the constraints that involve the intended rate have been retained.
+Corollary 4. Degraded channels, that is, channels for which H has rank one, satisfy the assumptions of Th.3.
+Proof: Consider a K-IFC with unit rank channel matrix H = ab H , for some K-length column vectors a and b (notice that these channels have upper triangular part as in Example 2 with b ∗ k = h k,k /a k ). Without loss of generality, assume that the entries of the vector a satisfy |a 1 | ≤ |a 2 |... ≤ |a K |. With this ordering, the channel outputs from a Markov chain:
+For this channel, clearly the k-th decoder can decode all users with index i < k without imposing any rate penalty to these users; thus sum-rate in (3) is achievable.
+Corollary 4 offers a simple proof for the sum-capacity result of [26]; this implies that Th.3 generalizes the result of [26].
+Another proof for the converse part of Corollary 4 can be obtained by generalizing the bound for the degraded Gaussian 2-IFC proposed by Sato in [2]. We have:
+Theorem 5. The capacity of the Gaussian K-IFC with chan- nel matrix H = ab H , such that |a 1 | ≤ |a 2 |... ≤ |a K |, is outer bounded by:
+Proof: By letting the transmitters cooperate, the capacity of the unit-rank K-IFC is outer bounded by the capacity of a K-user degraded SISO Broadcast Channel (BC) with input X eq = K k=1 b ∗ k X k , input power constraint E[X eq | 2 ] ≤ b 2 , and outputs Y k = a k X eq + Z k , k ∈ [1 : K]. The capacity of this degraded K-user BC is given by (8) [1].
+By using the outer bound in Th.5 we have the following very simple proof for the converse part of Corollary 4: by letting β u b 2 = |b k | 2 in (8) we immediately obtain the upper bound in (3), which is equivalent to (7) with b ∗ k = h k,k /a k .
+In this work we developed a framework to derive an outer bound for the general memoryless interference channel with an arbitrary number of source-destination pairs. For the Gaussian channel, we showed that the proposed bound gives the sum- capacity for certain channels, including some Z-channels and degraded channels.
+This work was partially funded by NSF under award number 0643954. The contents of this article are solely the responsibil- ity of the authors and do not necessarily represent the ofﬁcial views of the NSF.
+[[[ REFS ]]]
+T. Cove
+J. Thoma
+--
+Elements of information theory
+----
+H. Sato
+--
+On the capacity region of a discrete two-user channel for strong interference
+----
+M. H. M. Costa
+A. A. E. Gamal
+--
+The capacity region of the discrete memoryless interference channel with strong interference
+----
+A. B. Carleial
+--
+A case where interference does not reduce capacity
+----
+A. A. E. Gamal
+M. H. M. Costa
+--
+The capacity region of a class of deterministic interference channels
+----
+N. Liu
+S. Ulukus
+--
+The capacity region of a class of discrete degraded interference channels
+----
+R. Benzel
+--
+The capacity region of a class of discrete additive degraded interference channels
+----
+T. S. Han
+K. Kobayashi
+--
+A new achievable rate region for the interference channel
+----
+H. Sato
+--
+Two-user communication channels
+----
+A. B. Carleial
+--
+Outer bounds on the capacity of interference channels
+----
+G. Kramer
+--
+Outer bounds on the capacity of gaussian interference channels
+----
+H. Sato
+--
+The capacity of the gaussian interference channel under strong interference
+----
+M. H. M. Costa
+--
+On the gaussian interference channel
+----
+D. Tuninetti
+Y. Weng
+--
+On gaussian mixed interference channels
+----
+A. S. Motahari
+A. K. Khandani
+--
+Capacity bounds for the gaussian interference channel
+----
+I. Sason
+--
+On achievable rate regions for the gaussian interference channel
+----
+X. Shang
+G. Kramer
+B. Chen;
+--
+A new outer bound and the noisy- interference sumrate capacity for gaussian interference channels
+----
+V. S. Annapureddy
+V. V. Veeravalli
+--
+Gaussian interference net- works: Sum capacity in the low-interference regime and new outer bounds on the capacity region
+----
+R. H. Etkin
+D. N. C. Tse
+H. Wang
+--
+Gaussian interference channel capacity to within one bit
+----
+R. Etkin
+--
+New sum-rate upper bound for the two-user gaussian interfer- ence channel
+----
+D. Tuninetti
+--
+A new sum-rate outer bound for interference channels with three source-destination pairs
+----
+V. R. Cadambe
+S. A. Jafar
+--
+Interference alignment and the degrees of freedom for the k user interference channel
+----
+G. Bresler
+A. Parekh
+D. Tse
+--
+The approximate capacity of the many-to-one and one-to-many gaussian interference channel, arxiv:0809.3554
+----
+S. Sridharan
+A. Jafarian
+S. Vishwanath
+S. Jafar
+S. Shamai
+--
+A layered lattice coding scheme for a class of three user gaussan interference channels
+----
+V. R. Cadambe
+S. A. Jafar
+--
+Parallel gaussian interference channels are not always separable
+----
+J. Jose
+S. Vishwanath
+--
+Sum capacity of k user gaussian degraded in- terference channels
+----
+L. Zhou
+W. Yu
+--
+On the symmetric capacity of the k-user symmetric cyclic gaussian interference channel
+----
+B. Bandemer
+G. Vazquez-Vilar
+A. E. Gamal
+--
+On the sum capacity of a class of cyclically symmetric deterministic interference channels
+----
+A. Chaaban
+A. Sezgin
+--
+The capacity region of the 3-user gaus- sian interference channel with mixed strong-very strong interference, arxiv:1010.4911
+----
+A. Jovicic
+H. Wang
+P. Viswanath
+--
+On network interference management
+----
+S. Sridharan
+A. Jafarian
+S. Vishwanath
+S. A. Jafar
+--
+Capacity of symmetric k-user gaussian very strong interference channels
+----
+S. A. Jafar
+S. Vishwanath
+--
+Generalized degrees of freedom of the symmetric gaussian k user interference channel
+----
+R. Etkin
+E. Ordentlich
+--
+On the degrees-of-freedom of the k-user gaussian interference channel
+----
+J. Jose
+N. Prasad
+M. Khojastepour
+S. Rangarajan
+--
+On robust weighted-sum rate maximization in mimo interference networks
+----
+X. Shang
+G. Kramer
+B. Chen
+--
+New outer bounds on the capacity of gaussian interference networks
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\041.pdf
+[[[ LINKS ]]]
+

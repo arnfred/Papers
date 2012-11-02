@@ -1,0 +1,141 @@
+[[[ ID ]]]
+95
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Transmission of Correlated Sources Over Relay Channels
+[[[ AUTHORS ]]]
+Sadaf Salehkalaibar
+Mohammad Reza Aref
+[[[ ABSTR ]]]
+1 Abstract—In this paper, we consider the reliable transmission of correlated sources over the relay channel. The destination wishes to ﬁnd a lossless reconstruction of both sources. We ﬁnd the sufﬁcient conditions under which the relay can partially co- operate with the sender to transmit the sources to the destination. The achievability scheme is based on regular encoding/backward decoding strategy. The proposed region includes the known region for multiple-access channel with correlated sources and the achievable rate of relay channel with partial decode-and- forward strategy, as special cases. A class of deterministic relay channels is considered. It is shown that the error-free transmission of correlated sources is possible over this channel, using the proposed joint source-channel coding scheme.
+[[[ BODY ]]]
+The discrete memoryless relay channel, introduced by van der Meulen [1], consists of a sender X ∈ X , a receiver Y ∈ Y, a relay sender X r ∈ X r , a relay output Y r ∈ Y r , and a conditional distribution p (y, y r |x, x r ). The capacity of the general relay channel is unknown, however there are several works which have characterized the capacity for some special cases. The capacity of the physically degraded relay channel was determined in [2]. Cover and El Gamal [2] pro- posed two coding schemes for the relay channel: Decode-and- Forward (DF), and Compress-and-Forward (CF). They also established the capacity of the relay channel with generalized feedback. El Gamal and Aref [3] found the capacity of the semi-deterministic relay channel, where Y r is a deterministic function of X and X r . They employed the Partial Decode-and- Forward (PDF) strategy, in which the relay partially decodes the transmitted message by the sender. The DF strategy has been used in obtaining achievable regions for different multi- user networks [4]-[5].
+Transmission of correlated sources over a multi user channel is an interesting problem, since the source-channel separation does not hold in general. Cover et. al [6] investigated the transmission of correlated sources over the Multiple-Access Channel (MAC) and obtained an achievable region. Broadcast Channel (BC) with correlated sources was studied by Han and Costa [7]. Lossless transmission of correlated sources over the Interference Channel (IC) was considered in [8]. Gunduz and Ekrip [9] investigated the reliable transmission
+of a single source over the relay channel with correlated side information at the relay and the receiver. The relay channel with arbitrarily correlated sources has been considered in [10]. In [10], the block Markov coding and irregular decoding strategy [2] was employed to ﬁnd the explicit conditions, under which the sources can be reliably transmitted to the receiver.
+In this paper, we study the reliable transmission of the source pair (S 1 , S 2 ) over the relay channel (see Fig. 1). We use regular encoding/backward decoding strategy to ﬁnd the sufﬁcient conditions for reliable transmission of sources. In the proposed scheme, the partial information about the source S 1 can be decoded by the relay. Therefore, the relay partially decodes the message transmitted from the sender, for the pur- pose of cooperation. We use the backward decoder [11] at the receiver. To evaluate the proposed coding scheme, a class of deterministic relay channels is considered. We show that, using our scheme, the error-free transmission of sources is possible for this class of relay channels. Interestingly, the conditions of [10] are not satisﬁed for this class of deterministic relay channels with correlated sources.
+The paper is organized as follows: In Section II, we present a mathematical framework for our work. In Section III, we ﬁnd the conditions under which the sources can be reliably transmitted over the relay channel. In Section IV, a special
+case of the relay channel is studied. In Section V, the analysis of probability of error at receiver is presented. Conclusions are provided in Section VI.
+We denote discrete random variables with capital letters e.g., X, Y , and their realizations with lower case letters x, y. X j i
+indicates a sequence of random variables (X i , ..., X j ). We use H (.) to denote the entropy of a discrete random variable and I (.; .) to denote the mutual information between two discrete random variables. We denote by A n ε (X, Y ), the set of ε- strongly jointly typical sequences of length n, on p (x, y). A random variable X takes values in a set X . Finally, we denote the probability density function of X over X with p(x) and the conditional probability density function of X given Y by p (x|y).
+Deﬁnition 1 : For the lossless transmission of the source pair (s n 1 , s n 2 ) over the discrete memoryless relay channel deﬁned by p (y, y r |x, x r ), a length n joint source channel code consists of an encoder mapping,
+The source pair (s n 1 , s n 2 ) can be reliably transmitted over a relay channel if there exist a sequence of encoders f , g k and decoder h such that P n e → 0 as n → ∞.
+In this section, we desire to transmit the source pair (S 1 , S 2 ) to the receiver. The following theorem is the main result of the paper.
+Theorem 1: The source pair (s n 1 , s n 2 ) can be reliably transmitted over the relay channel if there exist aux- iliary random variables V , V r with joint distribution of all variables factoring as p (s 1 , s 2 , v, v r , x r , x ) = p (s 1 , s 2 )p(v, v r )p(x r |v r , s 2 )p(x|v, v r , s 1 ) such that:
+H (S 1 |S 2 ) ≤I(X, S 1 ; Y |S 2 , V, V r , X r )+ I (V ; Y r |V r )
+H (S 1 , S 2 ) ≤I(Y ; S 1 , S 2 , X, X r |V, V r )+ I (V ; Y r |V r )
+Proof: The sequences s n 1 ∈ S n 1 is randomly partitioned into 2 nR 0 bins. The cell index associated with a given sequence
+plays the role of common information and the index of the source within the cell has the role of private information. The relay chooses a codeword v n r which is utilized in sending the common information. Generate an auxiliary codeword v n for each cell index. The codeword x n is then gener- ated to be superimposed on top of v n that also carries the source index within the cell. Finally, the codeword x n r is chosen according to p (x n r |s n 2 , v n r ) = n i =1 p (x r,i |s 2,i , v r,i ). The decoding strategy at the receiver is backward [11]. The receiver ﬁnds the unique source pair (s n 1 , s n 2 ) such that (s n 1 , s n 2 , v n r , v n , x n , x n r , y n ) ∈ A n (S 1 , S 2 , V r , V, X, X r , Y ).
+• For each (v n r (q), s n 2 ), generate a sequence x n r (s n 2 , q ) according to n i =1 p (x r,i |s 2,i , v r,i (q)).
+• For each v n r (q), generate 2 nR 0 sequences v n (t, q) accord- ing to n i =1 p (v i |v r,i (q)).
+x n (s n 1 , t, q ) according to n i =1 p (x i |s 1,i , v r,i (q), v i (t, q)). (b) Encoding :
+Consider the source pair (s Bn 1 , s Bn 2 ) of length Bn. Partition these sequences into B portions, (s n 1,b , s n 2,b ), b = 1, ..., B. We will transmit a total of Bn source samples over a total of (B + 1)n channel uses. In the ﬁrst block, the source observes s n 1,1 and ﬁnds the corresponding bin index t 1 . In this block, the sender and relay send no private information. s n 1,0 and s n 2,0 are any sequences which allow the Markov scheme start. The sender and relay send x n (s n 1,0 , t 1 , 1) and x n r (s n 2,0 , 1), respectively. Similarly, for block b, b = 2, ..., B, the source transmits the codeword x n (s n 1,b−1 , t b , q b ), in which t b is the bin index of s n 1,b and q b = t b −1 . The relay knows t b −1 from block b −1, it then sends x n r (s n 2,b−1 , q b ), in which q b = t b −1 . In block B +1, the transmitter and the relay send x n (s n 1,B , 1, t B ) and x n r (s n 2,B , t B ), respectively.
+(c) Decoding : At relay :
+In block b, the relay knowing q b , ﬁnds t b such that (v n (t b , q b ), v n r (q b ), y r (b)) ∈ A n . This can be done with arbitrarily small probability of error if,
+Backward decoding : The receiver after receiving the last block starts decoding. Assume that t b has been decoded accurately from block b + 1. For block b, the receiver declares that (s n 1,b−1 , s n 2,b−1 ) is sent if 	 (s n 1,b−1 , s n 2,b−1 , x n (s n 1,b−1 , t b , q b ), v n (t b , q b ), v n r (q b ), x n r (s n 2,b−1 , q b ), y(b)) ∈ A n , where q b is the bin index of s n 1,b−1 . In this strategy, q b and s n 1,b−1 are decoded simultaneously.
+Remark 1: Let V = Y r = V r = 0 in (1), then we have: H (S 1 |S 2 ) ≤ I(X; Y |S 2 , X r ) H (S 2 |S 1 ) ≤ I(X r ; Y |S 1 , X )
+The sufﬁcient conditions of (3) have been obtained for MAC with arbitrarily correlated sources in [6].
+Remark 2: Let S 2 = 0, S 1 = S, V r = X r , and p (s, v, x, x r ) = p(s)p(v, x, x r ) and H(S) = R in conditions of (1). Then, we get the following:
+for joint distribution p (v, x r , x ). The achievable rate of (4) was obtained in [2] using partial decode-and-forward strategy.
+In this section, we study a class of deterministic relay channels. We show that the error-free transmission of sources is possible using the proposed strategy in Theorem 1. Then, we compare our result with the conditions of [10].
+Consider the transmission of the source pair (S 1 , S 2 ) with the distribution P (S 1 = 0, S 2 = 0) = P (S 1 = 0, S 2 = 1) = P (S 1 = 1, S 2 = 1) = 1 3 and P (S 1 = 1, S 2 = 0) = 0 over the relay channel,
+X = X r = {0, 1} Y = X + X r
+where f is a deterministic function. If we use the joint source- channel coding, the error-free transmission of the source pair is possible. To show this, let X = V ⊕ S 1 , X r = V r ⊕ S 2 and p (s 1 , s 2 , v, v r , x, x r ) = p(s 1 , s 2 )p(v, v r ) in (1), where V = V r = {0, 1}. Then, we have the following:
+H (S 1 ⊕ V |S 2 )} 	 (5) H (S 2 |S 1 ) ≤H(S 2 |S 1 ) 	 (6) H (S 1 , S 2 ) ≤ min{H(S 1 + S 2 ) + I(V ; Y r |V r ),
+Clearly, the conditions in (5)-(7) are satisﬁed for the source pair (S 1 , S 2 ). Now consider the sufﬁcient conditions of [10] for all probability distributions of the form, p (s 1 , s 2 ).p(v r ). p (x r |v r ).p(x|v r ),
+H (S 1 , S 2 ) ≤ I(X, X r ; Y ) 	 (8) H (S 1 ) ≤ I(X, V r ; Y ) 	 (9)
+H (S 1 |S 2 ) ≤ I(X; Y r |V r ) 	 (10) H (S 2 |S 1 ) ≤ I(X r ; Y |V r ). 	 (11)
+H (S 1 , S 2 ) ≤ H(S 1 + S 2 ) 	 (12) H (S 1 |S 2 ) ≤ H(Y r |S 2 ). 	 (13)
+The inequality in (13) does not hold because Y r is a determin- istic function of (S 1 , S 2 ). Therefore, the transmission of the source pair (S 1 , S 2 ) is not possible using the scheme of [10].
+We declare an error in block b if one of the following events occurs,
+• E 0b : (s n 1,b−1 , s n 2,b−1 , x n (s n 1,b−1 , t b , q b ), v n (t b , q b ), v n r (q b ), x n r (s n 2,b−1 , q b ), y(b)) ∈ A n .
+• E 3b : 	 There exist 	 ˜ s n 1,b−1 	 = 	 s n 1,b−1 	 and ˜ s n 2,b−1 = s n 2,b−1 such that (˜ s n 1,b−1 , ˜ s n 2,b−1 , v n (t b , q b ), x n (˜ s n 1,b−1 , t b , q b ), x n r (˜ s n 2,b−1 , q b ), v n r (q b ), y(b)) ∈ A n .
+• E 4b : There exists ˜ s n 1,b−1 	 = 	 s n 1,b−1 with the bin index ˜ q b , where ˜ q b 	 = 	 q b such that (˜ s n 1,b−1 , s n 2,b−1 , v n (t b , ˜ q b ), x n (˜ s n 1,b−1 , t b , ˜ q b ), x n r (s n 2,b−1 ,
+• E 5b : There exist ˜ s n 2,b−1 = s n 2,b−1 and ˜ s n 1,b−1 = s n 1,b−1 with the bin index ˜ q b , where ˜ q b = q b such that (˜ s n 1,b−1 , ˜ s n 2,b−1 , v n (t b , ˜ q b ), x n (˜ s n 1,b−1 , t b , ˜ q b ), x n r (˜ s n 2,b−1 ,
+p (s 1 ).p(y|x r , v, v r , s 2 ).p(x r |v r , s 2 ).p(s 2 ). p (v, v r ).p(x|v, v r , s 1 )
+− H(X|V, V r , S 1 ) − H(S 2 ) − H(X r |V r , S 2 ) − H(V, V r ) − I(X, S 1 ; Y |V, V r , X r , S 2 ) − R 0
+− H(X|V, V r , S 1 ) − H(S 2 ) − H(X r |V r , S 2 ) − H(V, V r ) − I(X, S 1 ; Y |V, V r , X r , S 2 ) − R 0
++ H(X|S 1 , X r , V, V r , S 2 ) − H(X|V, V r , S 1 ) − H(S 2 ) − I(X, S 1 ; Y |V, V r , X r , S 2 ) − R 0
+where (a) follows because given (V r , S 2 ), the codeword X r is independent of V . (b) follows because given (V, V r , S 1 ), the codeword X is independent of (X r , S 2 ). (c) follows from the fact that (S 1 , S 2 ) is independent of (V, V r ). Thus, P (E 1b ) → 0 as n → ∞ if
+p (s 2 ).p(y|x, v, v r , s 1 ).p(s 1 ).p(v, v r ).p(x|s 1 , v, v r ). p (x r |v r , s 2 )
+H (S 2 ) + H(S 1 , S 2 , X, X r , V, V r , Y ) − H(S 2 ) − H(S 1 ) − H(Y |V, V r , X, S 1 ) − H(X r |V r , S 2 ) − H(V, V r ) − H(X|S 1 , V, V r )
+= H(V, V r ) + H(S 1 |V, V r ) + H(X|S 1 , V, V r ) + H(X r |S 2 , S 1 , X, V, V r ) − H(V, V r )
++ H(S 2 |S 1 , X, V, V r ) − H(S 1 ) − H(X r |V r , S 2 ) − H(X|S 1 , V, V r ) − I(Y ; S 2 , X r |V, V r , X, S 1 )
+1 |V, V r ) + H(S 2 |S 1 , X, V, V r ) − H(S 1 ) − I(Y ; S 2 , X r |V, V r , X, S 1 )
+where (a) follows because given (V r , S 2 ), the codeword X r is independent of (X, S 1 , V ). Therefore, P (E 2b ) → 0 as n → ∞ if
+(˜ s n 2,b−1 , q b ), v n r (q b ) 	 ∈ A n =
+H (S 1 , S 2 , X, X r , V, V r , Y ) − H(Y, V, V r ) − H(X|V, V r , S 1 ) − H(X r |V r , S 2 ) − R 0
++ H(X|X r , S 1 , S 2 , V, V r ) − H(X|V, V r , S 1 ) − H(V, V r ) − H(X r |V r , S 2 ) − I(Y ; S 1 , S 2 , X, X r |V, V r ) − R 0
+where (a) follows because given (V r , S 2 ), the codeword X r is independent of (V, S 1 ) and also because given (V, V r , S 1 ), the codeword X is independent of (X r , S 2 ). Thus, P (E 3b ) → 0 as n → ∞ if:
+(s n 2,b−1 , ˜ q b ), v n r (˜ q b ) 	 ∈ A n =
+− H(S 1 ) − H(V, V r ) − H(X|V, V r , S 1 ) − H(Y, S 2 ) − H(X r |V r , S 2 )
++ H(X r |V, V r , S 2 , S 1 ) + H(X|X r , V, V r , S 2 , S 1 ) − H(X|V, V r , S 1 ) − H(X r |V r , S 2 ) − H(V, V r )
+1 |S 2 ) + H(V, V r |S 2 , S 1 ) − H(V, V r ) + H(Y |S 1 , S 2 , X, X r , V, V r ) − H(Y |S 2 ) = H(S 1 |S 2 ) − I(Y ; S 1 , X, X r , V, V r |S 2 )
+where (a) follows because given (V r , S 2 ), the codeword X r is independent of (V, S 1 ) and also because given (V, V r , S 1 ), the codeword X is independent of (X r , S 2 ). Therefore, P (E 4b ) → 0 as n → ∞ if
+H (S 1 , S 2 , X, X r , V, V r , Y ) − H(V, V r ) − H(X r |V r , S 2 ) − H(X|V, V r , S 1 ) − H(Y )
+= H(S 1 , S 2 ) + H(V, V r |S 1 , S 2 ) + H(X r |V, V r , S 1 , S 2 ) + H(X|X r , V, V r , S 1 , S 2 ) − H(V, V r ) − H(X r |V r , S 2 ) − H(X|V, V r , S 1 ) − I(X, X r , S 1 , S 2 , V, V r ; Y )
+= H(S 1 , S 2 ) + H(V, V r |S 1 , S 2 ) − H(V, V r ) − I(X, X r , S 1 , S 2 , V, V r ; Y )
+In this paper, we found sufﬁcient conditions for transmission of correlated sources over the relay channel. The achievability scheme is based on regular encoding/backward decoding. The proposed region includes the region of MAC with correlated sources [6] and the achievable rate of the relay channel with PDF strategy [3], as special cases. A class of deterministic relay channels was considered and it was shown that the sources can be reliably transmitted over this channel, using the proposed joint source-channel coding scheme.
+[[[ REFS ]]]
+E. C. van der Meulen
+--
+Three-terminal communication channels
+----
+T. M. Cover
+A. El Gamal
+--
+Capacity theorems for relay channels
+----
+A. El Gamal
+M. Aref
+--
+The capacity of the semi-deterministic relay channel
+----
+S. Salehkalaibar
+L. Ghabeli
+M. R. Aref
+--
+An achievable rate region for a class of broadcast-relay networks
+----
+S. Salehkalaibar
+L. Ghabeli
+M. R. Aref
+--
+An achievable rate region for broadcast-relay networks with partial cooperation between relays
+----
+T. Cover
+A. El Gamal
+M. Salehi
+--
+Multiple access channels with arbitrarily correlated sources
+----
+T. S. Han
+M. H. M. Costa
+--
+Broadcast channels with arbitrarily correlated sources
+----
+M. Salehi
+E. Kurtas
+--
+Interference channels with correlated sources
+----
+D. Gunduz
+E. Ekrip
+--
+Reliable cooperative source transmission with side information
+----
+B. Smith
+S. Vishwanath
+--
+Cooperative Communication in Sensor Networks: Relay Channels with Correlated Sources
+----
+H. F. Chong
+M. Motani
+H. K. Garg
+--
+Generalized backward decoding strategies for the relay channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\095.pdf
+[[[ LINKS ]]]
+

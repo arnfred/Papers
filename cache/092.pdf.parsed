@@ -1,0 +1,161 @@
+[[[ ID ]]]
+92
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On The Capacity Of 2-User 1-Hop Relay Erasure
+[[[ AUTHORS ]]]
+Networks — The Union of Feedback
+Scheduling,
+[[[ ABSTR ]]]
+Abstract—This work studies the capacity of 2-user 1-hop relay networks, for which the sources, destinations, and the common relay are interconnected by broadcast packet erasure channels. In contrast with the existing results, this paper allows (i) transmission from a source being heard directly by its 2-hop- away destination, the so-called opportunistic routing scenario, (ii) instant channel status feedback among all network nodes, and (iii) per-slot scheduling decisions that are functions of the trafﬁc loads and the past channel status. A new pair of inner and outer bounds is provided, and a condition is identiﬁed for the scenario in which the bounds coincide. Numerical experiments show that for commonly encountered scenarios, the gap between the inner and the outer bounds is less than 0.2%, which demonstrates the effectiveness of the proposed bounding techniques.
+[[[ BODY ]]]
+For any positive integer M , deﬁne [M ] ∆ = {1, · · · , M}. We consider a 1-hop relay network with 2 source-destination pairs (s 1 , d 1 ) and (s 2 , d 2 ) and a common relay r interconnected by packet erasure channels (PECs). See Fig. 1(a) for illus- tration. Assume slotted transmission. Within an overall time budget of n time slots, s i would like to convey nR i packets W i ∆ = (W i,1 , · · · , W i,nR i ) to d i for all i ∈ {1, 2}. For each i ∈ {1, 2}, j ∈ [nR i ], the information packet W i,j is chosen independently and uniformly randomly from GF(q).
+For any time t, consider a random 8-dimensional channel status vector for the entire network:
+where “ ∗” and “1” represent erasure and successful reception, respectively. That is, when s 1 transmits a packet X s 1 (t) ∈ GF(q) in time t, relay r receives Y s 1 →r (t) = X s 1 (t) if Z s 1 →r (t) = 1 and receives Y s 1 →r (t) = ∗ if Z s 1 →r (t) = ∗. For simplicity, we use Y s 1 →r (t) = X s 1 (t) ◦ Z s 1 →r (t) as shorthand. To model interference, we further assume that only one node can be scheduled in each time slot. We use σ(t) ∈ {s 1 , s 2 , r } to denote the scheduling decision at time t. For convenience, when s 1 is not scheduled at time t, we simply set Y s 1 →r (t) = ∗. As a result, the scheduling decision can be incorporated into the following expression of Y s 1 →r (t):
+Similar notation is used for all other received signals. For example, Y r →d 2 (t) = X r (t) ◦ Z r →d 2 (t) ◦ 1 {σ(t)=r} is what
+d 2 receives from r in time t, where X r (t) is the packet sent by r in time t.
+We assume memoryless, stationary, erasure networks. Namely, we allow arbitrary joint distribution for the coor- dinates of Z(t) but assume that Z(t) is independently and identically distributed over the time axis t. We also assume Z(t) is independent of the information messages W 1 and W 2 .
+The following notation turns out to be useful. We use brack- ets [ ·] t 1 to denote the collection from time 1 to t. For example, [σ, Z, Y s 1 →d 1 ] t 1 ∆ = {σ(τ), Z(τ), Y s 1 →d 1 (τ ) : ∀τ ∈ [1, t]}. For any S ⊆ {s 1 , s 2 , r }, T ⊆ {r, d 1 , d 2 }, we deﬁne
+For example, Y {s 1 ,r }→{d 1 ,d 2 } (t) is the collection of Y s 1 →d 1 (t), Y s 1 →d 2 (t), Y r →d 1 (t), and Y r →d 2 (t).
+Given the trafﬁc load (R 1 , R 2 ), a joint scheduling and network coding (NC) scheme is deﬁned by n scheduling decision functions
+and 3n encoding functions at s 1 , s 2 , and r, respectively: For all t ∈ [n]
+X s i (t) = f s i ,t (σ(t), W i , [Z] t −1 1 ), ∀i ∈ {1, 2}, (2) X r (t) = f r,t (σ(t), [Y {s 1 ,s 2 }→r , Z] t −1 1 ), 	 (3)
+and 2 decoding functions at d 1 and d 2 , respectively: ˆ W i = f d
+Namely, the scheduling decision at time t is based on the channel status of the entire network in time 1 to (t − 1). Encoding at s i depends on the scheduling decision, the in- formation messages, and past channel status. Encoding at r depends on the scheduling decision, what r received in the past, and past channel status. In the end, d i decodes W i based on the past scheduling decisions, what d i has received, and the past channel status of the entire network.
+This setting models the scenario in which there is a dedi- cated low-rate control channel that can broadcast the schedul- ing decision σ(t) and the previous network status Z(t − 1) causally to all network nodes. The total amount of control information is less than (8 + log 2 (3)) bits per time slot, which is much smaller than the actual content of each packet ≈ 10 4
+bits and thus can be easily implemented by buffering and piggybacking on the data packets.
+Deﬁnition 1: Fix the distribution of Z(t). A rate vector (R 1 , R 2 ) is achievable if for any ϵ > 0, there exists a joint scheduling and NC scheme with sufﬁciently large n and GF(q) such that
+The capacity region is deﬁned as the closure of all achievable rate vectors (R 1 , R 2 ).
+Remark 1: In (1), the scheduling decision σ(t) does not depend on the information messages W i , which means that we prohibit the use of timing channels [1], [7]. Even when we allow the usage of timing channels, we conjecture that the overall capacity improvement is negligible. A heuristic argument is that each successful packet transmission gives log 2 (q) bits of information while the timing information (to transmit or not) gives roughly 1 bit of information. When focusing on sufﬁciently large GF(q), additional gain of timing information is thus likely to be absorbed in our timing- information-free capacity characterization.
+The capacity for the setting of multiple unicast sessions, termed the intersession network coding problem (INC), re- mains largely unsolved. Recently, [10] models the practical INC protocol [4] as a 1-hop relay network interconnected by PECs and studies the corresponding capacity region.
+There are two major differences between the setting of this work and in [10]. First, a deterministic sequential scheduling policy is used in [10], which schedules nodes s 1 , s 2 , and r in strict order. Namely, once we ﬁnish transmission of s 2 , the
+subsequent time slots can only be used for transmitting pack- ets from r. For comparison, our setting allows dynamically choosing the schedule σ(t) for each time slot t. Second, in [10] no feedback is allowed when s 1 and s 2 transmit. More speciﬁcally, suppose jointly s 1 and s 2 take t s 1 + t s 2 time slots to ﬁnish transmission. Then only in the beginning of time (t s 1 + t s 2 + 1) are we allowed to send the channel status [Z] t s1 +t s2 1 	 to r. No further feedback is allowed until time n, the end of overall transmission. For comparison, our setting allows constantly broadcasting network-wide channel status [Z] t −1 1
+to s 1 , s 2 , and r, as discussed in Section I. This setting thus includes the Automatic Repeat reQuest (ARQ) mechanism as a special case [3]. Broadcasting [Z] t −1 1 also eliminates the need of estimating/learning the reception status of the neighbors. Our capacity region thus contains all achievable rates of the COPE protocol [4]. In Table I we use S1 to S3 to highlight the differences of the settings, and use R1 and R2 to highlight the main results.
+Since we allow the schedule σ(t) to depend on the past reception status [Z] t −1 1 , we also include any store-&-forward- based scheduling policies as special cases, such as the back- pressure and the maximal weighted matching schemes (see [6] for references). Our results thus quantify the best achievable rates with jointly designed scheduling and coding policies.
+Remark 2: From the relay’s perspective, the past channel output [Y r →{d 1 ,d 2 } ] t −1 1 is a function of [X r , σ, Z] t −1 1 that can be computed from [Y {s 1 ,s 2 }→r ] t −2 1 and [Z] t −1 1 . As a result, our setting, particularly (3), also includes the setting of channel output feedback [3], [9] as a special example.
+All our results assume a ﬁxed distribution of the channel status vector Z(t), which can be described by specifying the joint probability mass function for the 2 8 possible outcomes. 1 In this work, we use p s →T
+to denote the probability that a packet sent from s is received by all nodes in T 1 but not by any node in T 2 (may or may not by any node outside T 1 ∪T 2 ). For example, p s
+→d 1 rd 2 denotes the probability that a packet sent from s 1 is received by d 1 and r but not by d 2 . Additionally, we use p s;T to denote the probability that a packet sent by s is received by at least one node in T . For example, p r; {d 1 ,d 2 } is the probability that a packet sent by r is received by at least one node in {d 1 , d 2 }. By deﬁnition, p s 2 ;r = p s 2 →r .
+Proposition 1: For any achievable (R 1 , R 2 ), there exist three non-negative scalars t s 1 , t s 2 , and t r satisfying
+t s 1 + t s 2 + t r ≤ 1 	 (5) ∀i ∈ {1, 2}, R i ≤ t s i p s i ; {d i ,r } 	 (6)
+≤ t r (7) ( R
+where ( ·) + ∆ = max(0, ·) is the projection to non-negative reals. Sketch of the proof: For any joint scheduling and NC
+scheme, we choose t s i (resp. t r ) as the normalized expected number of time slots for which s i (resp. r) is scheduled. As a result, (5) must hold. Without loss of generality, we also assume that both the n and GF(q) used by the joint scheduling and NC scheme are sufﬁciently large.
+The intuition behind (6) is the following observation. Only for the time instants with σ(t) = s i can s i convey information directly to d i or indirectly through r. Therefore, the achievable rate R i is upper bounded by t s i p s i ; {d i ,r } , the expected number of distinct packets received by either d i or r. Intuitively, the ﬁrst term of (7) is the amount of time to send those Session- 1 packets that have not been heard by d 1 . The second term corresponds to the Session-2 packets that have been heard by neither d 1 nor d 2 , which thus become interference from d 1 ’s perspective when r broadcasts. The denominator p r; {d 1 ,d 2 } is the broadcast coding gain as observed in [3]. Eq. (8) is symmetric to (7).
+We prove (7) by similar techniques as used in [2], [8]. First add an auxiliary pipe that sends all information available at d 2 directly to d 1 . The decoding function (see (4)) at d 1 becomes
+By taking logarithm with base q and by Fano’s inequality, for some ϵ 1 > 0 that goes to 0 as ϵ → 0 with n → ∞, we have
+≤ I(W 1 ; [σ, Y {s 1 ,s 2 ,r }→{d 1 ,d 2 } , Z] n 1 |W 2 ) + nϵ 1 	 (10) ≤ nϵ 1 + n ∑
+Consider the summation in (11). Since the ﬁrst term is non- zero only when σ(t) = s 1 , it is upper bounded by
+By the independence between W 1 and Y s 2 →{d 1 ,d 2 } (t) when conditioned on Y s 1 →{d 1 ,d 2 } (t) and A t , the second term of the
+summation is zero. Since mutual information is non-negative, ( nR
+where (12) follows from the fact that when conditioned on U (t), W 1 → X r (t) → (Y r →{d 1 ,d 2 } (t), σ(t), Z(t − 1)) form a Markov chain; and (13) follows from the fact that the cardinality of σ(t) and Z(t − 1) are 3 and 2 8 , respectively.
+for some ϵ 2 > 0 that goes to zero when ϵ → 0 with n → ∞. By using q → ∞ to absorb the log q (3) + log q (2 8 ) term and
+focusing on the conditional U (t) given (σ(t), Z(t − 1)), (13) and (14) with ϵ → 0 imply that for any achievable (R 1 , R 2 ), its derived vector
+where U → X r → Y r →{d 1 ,d 2 } form a Markov chain and the conditional distribution P Y r →{d1,d2} |X r follows the same erasure distribution as the PEC faced by r (conditioning on node r is scheduled). We notice that (15) has the same form as the feedback-free erasure channel capacity with success probabilities p r; {d 1 ,d 2 } and p r;d 2 and overall time budget nt r slots. We can thus prove accordingly that
+Eq. (7) can then be obtained by symmetry. The sketch of the proof is complete. Detailed analysis can be found in [5].
+Proposition 2: A rate vector (R 1 , R 2 ) is achievable if there exist three non-negative scalars t s 1 , t s 2 , and t r satisfying
+t s 1 + t s 2 + t r ≤ 1 	 (16) ∀i ∈ {1, 2}, R i < t s i p s i ; {r,d i } 	 (17)
+By comparing Propositions 1 and 2, one can verify that the outer bound and the closure of the inner bound coincide when R i = ˜ R i for i = 1, 2. For example, if we do not allow d 1 to directly hear s 1 , then p s
+→d 1 d 2 r = 0 and thus R 1 = ˜ R 1 . In practice, the relay r and the overhearing node d 2 are generally closer to s 1 than d 1 . The probability p s
+→d 1 d 2 r that a packet sent by s 1 is not heard by any of {d 2 , r } but by d 1 is thus small. Intuitively, the gap between the two bounds would be small as well, which is later veriﬁed in Section IV.
+Sketch of the proof: An inner-bound-achieving scheme is described as follows. For any (R 1 , R 2 ), let t s 1 , t s 2 , and t r be the scalars that satisfy Proposition 2. For any two distinct i ̸= j in {1, 2}, consider 5 different queues Q [i] ∅ , Q [i] d
+. Each of these ﬁve queues is used to store non-zero nR i -dimensional row vectors, and the corresponding operations are described as follows. Removing a vector v from a queue Q means Q ← Q\v. Adding a non-zero vector v to Q means Q ← Q ∪ {v}. Adding a zero vector v = 0 to Q means Q remains unchanged. If Q is empty, then choosing v ∈ Q means setting v = 0. By reversing the roles of i and j, we totally have 10 queues to consider.
+are initialized as empty sets. We let Q [i] ∅ store the nR i elementary basis vectors for the (s i , d i ) session. Namely, each of the nR i vectors in Q [i] ∅ has exactly one coordinate being one and all other coordinates being zero. Our scheme consists of three major phases that are executed in sequence. § Phase 1.1: (s 1 sends uncoded pack- ets.)
+2: 	 In the beginning of time t, arbitrarily choose one v ∈ Q [1] ∅ . s 1 then sends a coded symbol vW T 1 , where W T 1 is the column vector of all s 1 information packets.
+3: 	 In the end of time t, let R t denote the set of des- tinations successfully receiving vW T 1 . We have two cases depending on R t : Case 1: d 1 ∈ R t : remove v from Q [1] ∅ and add it to Q [1] d 1 . We use Q [1] ∅ v Q [1] d 1 as shorthand; Case 2: d 1 / ∈ R t and R t ̸= ∅: do
+§ Phase 1.2: (s 1 sends packets that beneﬁt {r, d 1 } while promoting overhearing at d 2 .)
+. Set v = c 2 v 2 +c r v r where c 2 and c r are chosen independently and uni- formly randomly from GF(q). s 1 then sends vW T 1 .
+3: 	 In the end of time t, there are ﬁve possible actions: Ac- tion 1: Q [1] rd
+; Action 3: Q [1] d
+as shorthand; Action 5: Q [1] rd
+4: 	 Let R t denote the receiving set. We then have six cases depending on R t : Case 1: {d 1 , d 2 } ⊆ R t : do Actions 1 and 4; Case 2: R t = {d 1 , r }: if v r ̸= 0, do Actions 2 and 5, else do Action 3; Case 3: R t = {d 1 }: do Action 4; Case 4: R t = {d 2 , r }: do Actions 1 and 2; Case 5: R t = {d 2 }: do Action 1; Case 6: R t = {r}, do Action 2.
+§ Phase 1.3: (s 1 maximizes overhearing by retransmitting packets heard by r but not by d 1 .)
+1: while s 1 has not used up its allocated time budget nt s 1 time slots do
+. If v r ̸= 0, s 1 sends v r W T 1 ; else s 1 sends v d 2 r W T 1 .
+3: 	 In the end of time t, there are two cases depending on R t : Case 1: d 1 ∈ R t : if v r ̸= 0, do Q [1] rd
+. 4: end while
+§ Phases 2.1 to 2.3 are symmetric versions of Phases 1.1 to 1.3 with reversed roles of (s 1 , d 1 ) and (s 2 , d 2 ).
+3: 	 In the end of time t, there are two cases depending on R t : Case 1: d 1 ∈ R t : do Q [1] rd
+; Case 2: R t = {d 2 }: do Q [1] rd
+. 4: end while
+§ Phase 3.2 is symmetric to Phase 3.1 with reversed roles of d 1 and d 2 .
+§ Phase 3.3: (r mixes overheard s 1 - and s 2 - packets.)
+1: while r has not used up its allocated time budget nt r time slots do
+. r sends v 1 W T 1 + v 2 W T 2 . 3: 	 In the end of time t, for i = 1, 2 and j ̸= i, if d i ∈ R t ,
+The intuition of the proposed scheme is as follows. (i) For any i ̸= j, queues Q [i] d
+, and Q [i] ∅ store the s i -packets (vectors) that are known to d i , known to r but not to {d 1 , d 2 }, known to d j but not to {d i , r }, known to {d j , r } but not known to d i , and known to no nodes, respec- tively. Since each vector removal from a queue is accompanied by a vector addition to another queue, we have (ii) for any time t, the above 5 queues contain totally nR i vectors. By the random linear network coding (RLNC) arguments as used in
+[9], we can prove that (iii) with sufﬁciently large GF(q), these nR i vectors remain linearly independent and form the basis of the information space of s i .
+The main coding parts are in Phases 1.2, 2.2, and 3.3. For example, the goal of Phase 1.2 is two-fold. Firstly, s 1 would like to send packets that are beneﬁcial to both {d 1 , r } so that if d 1 hears it, d 1 can obtain new information; or if r hears it, r can relay it to d 1 in the subsequent phase. One such candidate is those packets in Q [1] d
+, packets that have not been heard by any of {d 1 , r }. Secondly, s 1 would also like to maximize
+since this queue contains those s 1 -packets at r that are overheard by d 2 and thus can later be mixed at r with those s 2 -packets overheard by d 1 (as described in Line 2 of Phase 3.3). To promote overhearing, a good candidate is to send a packet in Q [1] rd
+so that if d 2 receives it, that packet is now heard by both {d 2 , r }. We then use RLNC to achieve these two goals simultaneously and send a linear sum of the packets from Q [1] d
+In addition of (i) to (iii), proving the correctness of our construction also consists of proving the following statements for sufﬁciently large n: (iv) We can ﬁnish Phases i.1 and i.2 of s i within the allocated nt s i time slots for i = 1, 2; (v) We can ﬁnish Phases 3.1 and 3.2 of r within the allocated nt r time slots; (vi) After Phase 3.3, we have Q [i] d
+= nR i for i = 1, 2. Then by (i) and (iii), all basis vectors in Q [i] d
+are known to d i . The information at s i can thus be successfully decoded at d i . Detailed analysis can be found in [5].
+In the numerical experiments, we ﬁrst place the relay r in the center of a unit disk. Then we place the source s i and destination d i uniformly randomly in the disk. To model a practical scenario, we impose a condition that d i must be in the 90-degree pie area opposite of s i . See Fig. 1(b) for illustration. Repeat the node placement for i = 1, 2. See Fig. 1(c) for one realization of our random node placement.
+After node placement, we use the Rayleigh model to decide the packet overhearing probability:
+where α and T ∗ are set to 2.5 and 0.006, respectively, and D is the distance between the sender/receiver pair. See [10] for detailed discussion. We assume the success events between different node pairs are independent.
+Once the success probabilities are determined, we can maximize (R 1 + R 2 ) subject to the outer and inner bounds in Propositions 1 and 2. However, a sum-rate-based scheduler may schedule only the favorable source-destination pair. To enforce fairness, we also impose an additional constraint R i = β min
+from s i to d i assuming no other sessions are transmitting and s i and r are scheduled with the same frequency. We repeat the above process for 1000 times and then take the average of the maximized sum-rate.
+Our capacity characterization can be easily modiﬁed for schemes with different capabilities. More explicitly, we use “OpR” to stand for opportunistic routing. “CSF” stands for instant channel status feedback. “Sch” allows dynamically scheduling different nodes, in contrast with a ﬁxed schedule for which each node is scheduled with frequency 1/3. Table II summarizes the sum-rate capacity for different NC schemes. For schemes equipped with OpR, we list both the inner and outer bounds. For schemes without OpR, our results describe the full capacity. As can be seen, the largest throughput gain follows from allowing OpR. Note that CSF strictly increases the capacity for all cases. Moreover, with CSF the gap between the inner and outer bounds is much smaller (less than 10 −3 ) when OpR is used. When compared to the “NC only” scheme, the joint use of OpR, CSF, and Sch enhances capacity by 45%. This thus illustrates the importance of jointly designing OpR, CSF, and Sch together with the NC solution.
+This paper has provided a pair of inner and outer bounds for the capacity of 2-user 1-hop relay erasure network that allows opportunistic routing, instant channel status feedback, and per-slot scheduling. The conditions for which the outer and inner bounds coincide have been identiﬁed. In our numerical experiments, the gap between the outer and inner bounds is within 0.2%. In the future, we will generalize the results for K-user 1-hop relay erasure networks with arbitrary K values.
+This work was supported in parts by NSF grants CCF- 0845968 and CNS-0905331.
+[[[ REFS ]]]
+N. Anantharam
+S. Verdu
+--
+Bits through queues
+----
+A. El Gamal
+--
+The feedback capacity of degraded broadcast channels
+----
+L. Georgiadis
+L. Tassiulas
+--
+Broadcast erasure channel with feed- back — capacity and algorithms
+----
+S. Katti
+H. Rahul
+W. Hu
+D. Katabi
+M. M´edard
+J. Crowcroft
+--
+XORs in the air: Practical wireless network
+----
+W.-C. Kuo
+C.-C. Wang
+--
+On the capacity of 2-user 1- hop relay erasure networks — the union of feedback, schedul- ing, opportunistic routing, and network coding
+----
+X. Lin
+N. Shroff
+R. Srikant
+--
+A tutorial on cross-layer optimization in wireless networks
+----
+T. Lutz
+G. Kramer
+C. Hausl
+--
+Capacity for half-duplex line networks with two sources
+----
+L. Ozarow
+S. Leung-Yan-Cheong
+--
+An achievable region and outer bound for the Gaussian broadcast channel with feedback
+----
+C.-C. Wang
+--
+Capacity of 1-to-K broadcast packet erasure channels with channel output feedback
+----
+
+--
+On the capacity of wireless 1-hop intersession network coding — a broadcast packet erasure channel approach
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\092.pdf
+[[[ LINKS ]]]
+

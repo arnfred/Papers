@@ -1,0 +1,178 @@
+[[[ ID ]]]
+25
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Exact Free Distance and Trapping Set Growth Rates for LDPC Convolutional Codes
+[[[ AUTHORS ]]]
+David G. M. Mitchell ∗
+Ali E. Pusane †
+Michael Lentmaier ‡
+Daniel J. Costello
+Jr. ∗
+[[[ ABSTR ]]]
+Abstract— Ensembles of (J, K)-regular low-density parity- check convolutional (LDPCC) codes are known to be asymp- totically good, in the sense that the minimum free distance grows linearly with the constraint length. In this paper, we use a protograph-based analysis of terminated LDPCC codes to obtain an upper bound on the free distance growth rate of ensembles of periodically time-varying LDPCC codes. This bound is compared to a lower bound and evaluated numerically. It is found that, for a sufﬁciently large period, the bounds coincide. This approach is then extended to obtain bounds on the trapping set numbers, which deﬁne the size of the smallest, non-empty trapping sets, for these asymptotically good, periodically time-varying LDPCC code ensembles.
+[[[ BODY ]]]
+Low-density parity-check convolutional (LDPCC) codes [1] have been shown to be capable of achieving capacity- approaching performance with iterative message-passing de- coding [2]. The excellent iterative decoding thresholds [3], [4] that these codes display has recently been attributed to the threshold saturation effect [5]. In addition to good threshold performance, it can also be shown that the minimum free distance typical of most members of these LDPCC code ensembles grows linearly with the constraint length as the constraint length tends to inﬁnity, i.e., they are asymptotically good [6]. A large free distance growth rate indicates that codes randomly drawn from the ensemble should have a low error ﬂoor under maximum likelihood (ML) decoding.
+When sub-optimal decoding methods are employed, there are other factors that affect the performance of a code. For example, it has been shown that so-called ‘trapping sets’ are a signiﬁcant factor affecting decoding failures of LDPC codes over the AWGN channel with iterative message-passing de- coding. Trapping sets, graphical sub-structures existing in the Tanner graph of LDPC codes, were ﬁrst studied in [7]. Known initially as near-codewords, they were used to analyse the performance of LDPC codes in the error ﬂoor, or high signal- to-noise ratio (SNR) region, of the bit error rate (BER) curve. In [8], Richardson developed these concepts and proposed a two-stage technique to predict the error ﬂoor performance of LDPC codes based on trapping sets.
+In this paper, we use a protograph-based analysis of ter- minated LDPCC codes to form an upper bound on the free distance growth rate of ensembles of periodically time-varying LDPCC codes. The free distance growth rate can also be
+bounded below by using ensembles of tail-biting LDPCC codes [9], [10]. By comparing and evaluating these bounds we ﬁnd that, for a sufﬁciently large period, the bounds coincide, giving us exact values for the convolutional code free distance growth rates. This approach is then extended to obtain bounds on the trapping set numbers, which deﬁne the size of the smallest, non-empty trapping sets, for these asymptotically good, periodically time-varying LDPCC code ensembles. We also show that the trapping set numbers grow linearly with constraint length. For all the ensembles considered, we ﬁnd that the distance and trapping set growth rates exceed those of corresponding block code ensembles.
+A protograph [11] is a small bipartite graph that is used to derive a larger graph by taking an N -fold graph cover [12], or “lifting”, of the protograph. It is an important feature of this construction that each lifted code inherits the degree distribu- tion and graph neigbourhood structure of the protograph. The protograph can be represented by a base biadjacency matrix B, where B x,y is taken to be the number of edges connecting variable node v y to check node c x . The parity-check matrix H of a protograph-based LDPC block code can be created by replacing each non-zero entry in B by a sum of B x,y permutation matrices of size N × N and each zero entry by the N × N all-zero matrix. The ensemble of protograph-based LDPC block codes with block length n = N n v is deﬁned by the set of matrices H that can be derived from a given protograph by choosing all possible combinations of N × N permutation matrices.
+An ensemble of unterminated LDPCC codes can be de- scribed by a convolutional protograph [4] with base matrix
+   
+B m s .. . . .. B m s . ..
+where m s denotes the syndrome former memory of the convolutional codes and the b c × b v component base matrices B i , i = 0, . . . , m s , represent the edge connections from the b v variable nodes at time t to the b c check nodes at time t + i. An ensemble of (in general) time-varying
+LDPCC codes can then be formed from B [0,∞] using the protograph construction method described above, resulting in the associated parity-check matrix
+A rate R = 1 − N b c /N b v = 1 − b c /b v time-varying LDPCC code with parity-check matrix H [0,∞] is periodically time-varying with period T if H i (t) is periodic, i.e., H i (t) = H i (t + T ), ∀ i, t, and if H i (t) = H i , ∀ i, t, the code is time-invariant. We call ν s = N (m s + 1)b v the decoding constraint length .
+Starting from the base matrix B of a block code ensemble, one can construct LDPCC code ensembles with the same computation trees. This is achieved by an edge spreading procedure (see [4] for details) that divides the edges from each variable node in the base matrix B among m s + 1 component base matrices B i , i = 0, . . . , m s , such that the condition B 0 + B 1 + · · · + B m s = B is satisﬁed. For example, a (3,6)- regular LDPCC ensemble with m s = 2 can be formed from the block base matrix B = [ 3 3 ] by deﬁning the component base matrices B 0 = [ 1 1 ] = B 1 = B 2 .
+Suppose that we start the convolutional code with parity- check matrix deﬁned in (1) at time t = 0 and terminate it after L time instants. The resulting ﬁnite-length base matrix is then given by
+   
+B m s 	 B 0 . .. .. .
+The matrix B [0,L−1] can be considered as the base matrix of a terminated protograph-based LDPCC code ensemble. Termination in this fashion results in a rate loss. The design rate of the terminated code ensemble is given as
+where R = 1 − N b c /N b v = 1 − b c /b v is the rate of the unterminated convolutional code ensemble. Note that, as the termination factor L increases, the rate increases and approaches the rate of the unterminated convolutional code ensemble.
+The convolutional base matrix B [0,∞] can also be terminated using tail-biting [13], [14]. Here, for any λ ≥ m s , the last b c m s rows of the terminated parity-check matrix B [0,λ−1] are removed and added to the ﬁrst b c m s rows to form the λb c × λb v tail-biting parity-check matrix B (λ) tb with tail- biting termination factor λ. Terminating B [0,∞] in such a way preserves the design rate of the ensemble, i.e., R λ = 1 − λb c /λb v = 1 − b c /b v = R, and we see that B (λ) tb has exactly the same degree distribution as the original block base matrix B.
+From a convolutional protograph with base matrix B [0,∞] , we can form a periodically time-varying N -fold graph cover with period T by choosing, for the b c × b v submatrices B 0 , B 1 , . . . , B m s in the ﬁrst T columns of B [0,∞] , a set of N × N permutation matrices randomly and independently to form N b c × N b v submatrices H 0 (t), H 1 (t + 1), . . . , H m s (t + m s ), respectively, for t = 0, 1, . . . , T − 1. These submatrices are then repeated periodically (indeﬁnitely) to form H [0,∞] such that H i (t + T ) = H i (t), ∀i, t. An ensemble of peri- odically time-varying LDPCC codes with period T , rate R = 1−N b c /N b v = 1−b c /b v , and decoding constraint length ν s = N (m s + 1)b v can then be derived by letting the permutation matrices used to form H 0 (t), H 1 (t+1), . . . , H m s (t+m s ), for t = 0, 1, . . . , T − 1, vary over the N ! choices of permutation matrix.
+Consider an ensemble of periodically time-varying LDPCC codes with rate R = 1 − b c /b v and period T constructed from a convolutional protograph with base matrix B [0,∞] as described above. It is known that the average free distance of this ensemble can be bounded below by the average minimum distance of an ensemble of tail-biting LDPCC codes derived from the base matrix B (λ) tb with termination factor λ = T [9], [10]. Here, we show that the average free distance of the convolutional ensemble can also be bounded above by the average minimum distance of the ensemble of terminated protograph-based LDPCC codes derived from the base matrix B [0,L−1] with termination factor L = T .
+Theorem 1: Consider a rate R = 1 − b c /b v unterminated, periodically time-varying LDPCC code ensemble with mem- ory m s , decoding constraint length ν s = N (m s + 1)b v , and period T derived from B [0,∞] . Let d (L) min be the average mini- mum distance of the terminated convolutional code ensemble with block length n = LN b v and termination factor L. Then the ensemble average free distance d (T ) f ree of the unterminated convolutional code ensemble is bounded above by d (L) min for termination factor L = T , i.e.,
+Sketch of proof . There is a one-to-one relationship be- tween members of the periodically time-varying LDPCC code ensemble and members of the corresponding ter- minated LDPCC code ensemble with termination factor L = T . For any such pair of codes, every code- word x = [ x 0 x 1 · · · x LN b v − 1 ] in the terminated code can immediately be seen as a codeword x [0,∞] = [ x 0 x 1 · · · x LN b v − 1 0 · · · ] in the unterminated code. It follows that the free distance d (T ) f ree of the unterminated code can not be larger than the minimum distance d (T ) min of the terminated code. The ensemble average result d (T ) f ree ≤ d (T ) min then follows directly. 	 2
+Since there is no danger of ambiguity, we will henceforth drop the overline notation when discussing ensemble average distances.
+In [15], Divsalar presented a technique to calculate the average weight enumerator for protograph-based block code ensembles. This weight enumerator can be used to test if the ensemble is asymptotically good, i.e., if the minimum distance typical of most members of the ensemble is at least as large as δ min n, where δ min its the minimum distance growth rate of the ensemble and n is the block length.
+For LDPC convolutional codes, conventionally deﬁned as the null space of a sparse parity-check matrix H [0,∞] , it is natural to deﬁne the free distance growth rate with respect to the decoding constraint length ν s , i.e., as the ratio of the free distance d f ree to the decoding constraint length ν s . 1 By bounding d (T ) f ree using (4), we obtain an upper bound on the free distance growth rate as
+(m s + 1) , 	 (5) where ˆ δ (T ) min = d (T ) min /n = d (T ) min /(N T b v ) is the minimum distance growth rate of the terminated LDPCC code ensemble with termination factor L = T and base matrix B [0,T −1] . 2 Similarly, it was shown in [9] that
+(m s + 1) , 	 (6) where ˇ δ (T ) min is the minimum distance growth rate of the tail-biting LDPCC code ensemble with tail-biting termination factor λ = T and base matrix B (λ) tb .
+As an example, we consider the (3, 6)-regular LDPCC code ensemble deﬁned in Section II-A. Since the unterminated convolutional code has rate R = 1/2, we calculate the upper bound on the free distance of the periodically time-varying LDPCC code ensemble as δ (T ) f ree ≤ ˆ δ (T ) min T /3 using (5) for termination factors L = T ≥ 3. Figure 1 displays the mini- mum distance growth rates ˆ δ (L) min of the terminated ensembles deﬁned by B [0,L−1] for L = 3, 4, . . . , 21 that were calculated using the technique proposed in [15] and the associated upper bounds on the convolutional growth rate δ (T ) f ree ≤ ˆ δ (T ) min T /3 for L = T . Also shown are the minimum distance growth rates ˇ δ (λ) min of the tail-biting ensembles deﬁned by base matrix B (λ) tb for λ = 3, 4, . . . , 21 and the associated lower bounds on the convolutional growth rate δ (T ) f ree ≥ ˇ δ (T ) min T /3 for λ = T calculated using (6).
+We observe that the calculated ensemble tail-biting con- volutional code minimum distance growth rates ˇ δ (λ) min remain constant for λ = 3, . . . , 11 and then start to decrease as the termination factor λ grows, tending to zero as λ tends to inﬁnity. Correspondingly, as λ exceeds 11, the lower bound calculated for δ (T ) f ree levels off at δ (T ) f ree ≥ 0.086. The calculated
+terminated convolutional code minimum distance growth rates ˆ δ (L) min are large for small values of L (where the rate loss is larger) and decrease monotonically to zero as L → ∞. Using (5) to obtain an upper bound on the free distance growth rate we observe that, for T ≥ 12, the upper and lower bounds on δ (T ) f ree coincide, indicating that, for these values of the period T , δ (T ) f ree = 0.086, signiﬁcantly larger than the (3, 6)-regular LDPC block code minimum distance growth rate δ min = 0.023. In addition, we note that at the point where the bounds coincide, the growth rates for both termination methods also coincide. Recall that the tail-biting ensembles all have rate 1/2, wheras the rate of the terminated ensembles is a function of the termination factor L given by (3).
+Lower bounds on the free distance growth rates were calculated for a wide variety of (J, K)-regular and irregular LDPCC code ensembles in [17]. Using the technique detailed here, we can form upper bounds on the free distance growth rate that coincide numerically for sufﬁciently large T , giving us exact free distance growth rates. For example, we can bound the convolutional free distance growth rate of the (4, 8)-regular ensemble as 0.1908 ≤ δ (T ) f ree ≤ 0.1908 and the free distance growth rate for the rate R = 2/3, (3, 9)-regular ensemble as 0.0186 ≤ δ (T ) f ree ≤ 0.0186 for sufﬁciently large T (again signiﬁcantly larger than the corresponding block growth rates, see [16]). This general technique can be used to bound the free distance growth rate above and below for any regular or irregular periodically time-varying protograph-based LDPCC code ensemble.
+In [7], MacKay and Postol discovered a “weakness” in the structure of the Margulis construction of a (3, 6)-regular Gallager code. Described as near-codewords, these small graphical sub-structures existing in the Tanner graph of LDPC codes cause the iterative decoding algorithm to get trapped in error patterns. These weaknesses were shown to contribute signiﬁcantly to the performance of the code in the error ﬂoor region of the BER curve. Richardson developed this concept in [8] and deﬁned these structures as trapping sets.
+Deﬁnition 1: An (a, b) general trapping set τ a,b of a bipar- tite graph is a set of variable nodes of size a which induce a subgraph with exactly b odd-degree check nodes (and an arbitrary number of even-degree check nodes).
+In order to calculate ensemble average general trapping set enumerators for protograph-based LDPC block code ensem- bles, we use the combinatorial arguments previously presented in [18]. The technique involves considering a two-part en- semble average weight enumerator for a modiﬁed protograph with the property that any (a, b) trapping set in the original protograph is a codeword in the modiﬁed protograph.
+Let ∆ = b/a = β/α, where α = a/n, β = b/n, and ∆ ∈ [0, ∞). As proposed in [18], we classify the trapping sets as τ ∆ = {τ a,b |b = ∆a}. For each ∆, we deﬁne d ts (∆) to be the ∆-trapping set number, which is the size of the smallest, non-empty trapping set in τ ∆ . The two-part average ensemble average weight distribution can be used to test if the ensemble has the desirable property that the ∆-trapping set number increases linearly with block length n [18]. If this is the case, we can say that, with high probability, a randomly chosen code from the ensemble has a ∆-trapping set number that is at least as large as nδ ts (∆), where δ ts (∆) is called the ∆-trapping set growth rate of the ensemble. If this is true for all ∆ ≥ 0, this implies that, for sufﬁciently large n, a typical member of the ensemble has no small trapping sets.
+B. Trapping set bounds for protograph-based LDPCC code ensembles
+Consider once more the ensemble of periodically time- varying of LDPCC codes with rate R = 1 − b c /b v and period T derived from a convolutional base matrix B [0,∞] and the associated terminated LDPCC code ensemble with base matrix B [0,L−1] and L = T .
+Theorem 2: Consider a rate R = 1 − b c /b v unterminated, periodically time-varying convolutional code ensemble with memory m s , decoding constraint length ν s = N (m s + 1)b v , and period T derived from B [0,∞] . Let d (L) ts (∆) be the average ∆-trapping set number of the terminated convolutional code ensemble with block length n = LN b v and termination factor L. Then the ensemble average ∆-trapping set number d (T ) ccts (∆) of the unterminated convolutional code is bounded above by d (L) ts (∆) for termination factor L = T and any ∆ ≥ 0, i.e.,
+d (T ) ccts (∆) ≤ d (T ) ts (∆) ∀∆ ≥ 0. 	 (7) Sketch of proof . The proof is a straightforward generalisa- tion of the proof of Theorem 1. We ﬁrst show that, for any periodically time-varying LDPCC code and associated terminated LDPCC code with termination factor L = T , and any ∆ ≥ 0, any (a, ∆a) general trapping set in the terminated code is also an (a, ∆a) general trapping set in the convolutional code, i.e., the ∆-trapping set number of the convolutional code d (T ) ccts (∆) is bounded above by the ∆- trapping set number of the terminated code d (L) ts (∆) for L = T and any ∆ ≥ 0. This can be shown by considering a pair of modiﬁed code ensembles where each check node is connected once to a distinct auxiliary variable node (see [18]). Crucially,
+there is a bijective mapping from the set of all (a, b)-general trapping sets in the original code to the set of all codewords in the modiﬁed code, and we can use a minimum distance- type argument to prove the result for the modiﬁed code. The ensemble average result d (T ) ccts (∆) ≤ d (T ) ts (∆) for all ∆ ≥ 0 then follows directly. 	 2
+Again, we will henceforth drop the overline notation when discussing ensemble average ∆-trapping set enumerators. Us- ing (7) and a similar sequence of arguments to those presented in Section IV-B, we can form an upper bound on the ∆- trapping set growth rate δ (T ) ccts (∆) of the periodically time- varying LDPCC code ensemble as
+(m s + 1) , 	 (8) where ˆ δ (T ) ts (∆) is the ∆-trapping set growth rate of the terminated LDPCC code ensemble with termination factor L = T and base matrix B [0,T −1] for any ∆ ≥ 0. Similarly, a lower bound on δ (T ) ccts (∆) was calculated in [19] using tail- biting LDPCC code ensembles as
+(m s + 1) , 	 (9) where ˇ δ (T ) ts (∆) is the ∆-trapping set growth rate of the tail- biting LDPCC code ensemble with termination factor λ = T and base matrix B (T ) tb for any ∆ ≥ 0.
+We continue our analysis of the (3, 6)-regular LDPCC code ensemble described in Section II-A. Since the unterminated convolutional code has rate R = 1/2, we calculate the upper bound on the ∆-trapping set growth rate of the peri- odically time-varying LDPCC code ensemble as δ (T ) ccts (∆) ≤ ˆ δ (T ) ts (∆)T /(m s +1) using (8) for termination factors L = T ≥ 3. For ∆ = 0, 0.01, 0.05, Figure 2 displays the ∆-trapping set growth rates ˆ δ (T ) ts (∆) of the terminated ensembles deﬁned by B [0,L−1] for L = 3, . . . , 18 (calculated using techniques from [18]) and the associated upper bounds on the convolutional ∆-trapping set growth rate δ (T ) ccts (∆) for L = T . Also shown are the ∆-trapping set growth rates ˇ δ (T ) ts (∆) of the tail-biting ensembles deﬁned by B (λ) tb for λ = 3, 6, . . . , 18 and the associated lower bounds on the convolutional growth rates δ (T ) ccts (∆) calculated using (9) that were obtained in [19].
+Note that setting ∆ = β/α = 0 corresponds to the minimum distance growth rate problem discussed in Section IV, and as a result, the curves corresponding to ∆ = 0 match those displayed in Figure 1. For ∆ = 0.01 and ∆ = 0.05 we observe the same behaviour: the ∆-trapping set growth rates of the LDPC block code ensembles deﬁned by B [0,T −1] and B (T ) tb are positive and decrease monotonically to zero as the termination factors tend to inﬁnity. For each ∆, the corresponding upper and lower bounds calculated for δ (T ) ccts (∆) using (8) and (9) (respectively) coincide for T ≥ 12 and decrease as ∆ increases. The empirical data suggests that the bounds will remain equal and constant for T > 18.
+As ∆ ranges from 0 to ∞, the points (δ ts (∆), ∆δ ts (∆)) trace out the so-called zero-contour curve for a protograph- based block code ensemble [18]. The zero-contour curves
+for the (3, 6)-regular LDPC block code ensemble and the periodically time-varing LDPCC code ensemble with T = 12 are shown in Figure 3. 3 The ∆-trapping set growth rates are highlighted for ∆ = 0.01.
+For all ∆ ≥ 0, δ (12) ccts (∆) > 0, indicating that, for each class of (a, b) general trapping set, the size of the small- est non-empty trapping set typical of most members of the ensemble is growing linearly with constraint length. Code ensembles with large ∆-trapping set numbers d (T ) ccts (∆) are the most interesting, since small trapping sets dominate iterative decoding performance in the error ﬂoor [8]. Thus we want the ∆-trapping set growth rate δ (12) ccts (∆) to exist and to be as large as possible, thus guaranteeing good iterative decoding performance in the error ﬂoor. Finally, we note that the convolutional growth rate δ (12) ccts (∆) exceeds the associated block growth rate δ ts (∆) for all ∆ ≥ 0.
+In this paper we showed, using a protograph-based analysis of terminated LDPCC codes, that we can obtain an upper bound on the free distance growth rate of an ensemble of periodically time-varying LDPCC codes. We found that the bounds we obtain coincide with lower bounds previously obtained by analysing the minimum distance of ensembles of tail-biting LDPCC codes. This approach was then extended to obtain upper and lower bounds on the ∆-trapping set growth rates of ensembles of periodically time-varying LDPCC codes. Further, it was shown that the distance and ∆-trapping set growth rates of the LDPCC code ensembles exceed the growth rates of the corresponding LDPC block code ensembles on which they are based. The large minimum distance and trap- ping set growth rates obtained suggest that LDPCC codes will exhibit good iterative decoding performance in the error ﬂoor.
+[[[ REFS ]]]
+A. J. Felstr¨om
+K. Sh. Zigangirov
+--
+Time-varying periodic convolu- tional codes with low-density parity-check matrices
+----
+A. E. Pusane
+R. Smarandache
+P. O. Vontobel
+D. J. Costello
+--
+Deriving good LDPC convolutional codes from LDPC block codes
+----
+M. Lentmaier
+A. Sridharan
+D. J. Costello
+K. Sh. Zigangirov
+--
+Iterative decoding threshold analysis for LDPC convolutional codes
+----
+M. Lentmaier
+G. P. Fettweis
+K. Sh. Zigangirov
+D. J. Costello
+--
+Approaching capacity with asymptotically regular LDPC codes
+----
+S. Kudekar
+T. Richardson
+R. Urbanke
+--
+Threshold saturation via spatial coupling: why convolutional LDPC ensembles perform so well over the BEC
+----
+A. Sridharan
+D. Truhachev
+M. Lentmaier
+D. J. Costello
+K. Sh. Zigangirov
+--
+Distance bounds for an ensemble of LDPC convolutional codes
+----
+D. J. C. MacKay
+M. S. Postol
+--
+Weaknesses of Margulis and Ramanujan-Margulis low-density parity-check codes
+----
+T. J. Richardson
+--
+Error-ﬂoors of LDPC codes
+----
+D. G. M. Mitchell
+A. E. Pusane
+K. Sh. Zigangirov
+D. J. Costello
+--
+Asymptotically good LDPC convolutional codes based on protographs
+----
+D. Truhachev
+K. Sh. Zigangirov
+D. J. Costello
+--
+Distance bounds for periodically time-varying and tail-biting LDPC convolutional codes
+----
+J. Thorpe
+--
+Low-density parity-check (LDPC) codes constructed from protographs
+----
+W. S. Masse
+--
+Algebraic Topology: an Introduction
+----
+G. Solomon
+H. C. A. Tilborg
+--
+A connection between block and convolutional codes
+----
+H. H. Ma
+J. K. Wolf
+--
+On tail biting convolutional codes
+----
+D. Divsalar
+--
+Ensemble weight enumerators for protograph LDPC codes
+----
+D. G. M. Mitchell
+A. E. Pusane
+D. J. Costello
+--
+Minimum Distance and Trapping Set Analysis of Protograph-based LDPC Convo- lutional Codes
+----
+D. G. M. Mitchell
+A. E. Pusane
+N. Goertz
+D. J. Costello
+--
+Free distance bounds for protograph-based regular LDPC convolutional codes
+----
+S. Abu-Surra
+W. E. Ryan
+D. Divsalar
+--
+Ensemble trapping set enumerators for protograph-based LDPC codes
+----
+D. G. M. Mitchell
+A. E. Pusane
+D. J. Costello
+--
+Trapping set analysis of protograph-based LDPC convolutional codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\025.pdf
+[[[ LINKS ]]]
+

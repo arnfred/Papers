@@ -1,0 +1,150 @@
+[[[ ID ]]]
+59
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Decoding by Embedding: Correct Decoding Radius and DMT Optimality
+[[[ AUTHORS ]]]
+Cong Ling
+Shuiyin Liu
+Laura Luzzi
+Damien Stehl´e
+[[[ ABSTR ]]]
+Abstract—In lattice-coded multiple-input multiple-output (MIMO) systems, optimal decoding amounts to solving the closest vector problem (CVP). Embedding is a powerful technique for the approximate CVP, yet its remarkable performance is not well understood. In this paper, we analyze the embedding technique from a bounded distance decoding (BDD) viewpoint. 1/(2γ)- BDD is referred to as a decoder that ﬁnds the closest vector when the noise norm is smaller than λ 1 /(2γ), where λ 1 is the minimum distance of the lattice. We prove that the Lenstra, Lenstra and Lov´asz (LLL) algorithm can achieve 1/(2γ)-BDD for γ ≈ O(2 n/4 ). This substantially improves the existing result γ = O(2 n ) for embedding decoding. We also prove that BDD of the regularized lattice is optimal in terms of the diversity- multiplexing gain tradeoff (DMT).
+[[[ BODY ]]]
+Lattice decoding for the linear multiple-input multiple- output (MIMO) channel is a problem of high relevance in multi-antenna, broadcast, cooperative and other multi-terminal communication systems [1]. Maximum-likelihood (ML) de- coding for a lattice can be realized efﬁciently by sphere de- coding [2], whose complexity can however grow prohibitively with the dimension n. The decoding complexity is especially high in the case of coded or distributed systems, where the lattice dimension is usually larger. Thus, the practical implementation of decoders often has to resort to approximate solutions, which mostly fall under two main strategies. One is to reduce the complexity of sphere decoding, while another is lattice reduction-aided decoding. The latter in essence applies zero-forcing (ZF), successive interference cancellation (SIC) or other suboptimal receivers to a reduced basis of the lattice [3]. It is known that regularized lattice-reduction aided decoding can achieve the optimal diversity and multiplexing tradeoff (DMT) [4].
+However, lattice-reduction-aided decoding exhibits a widen- ing gap to (inﬁnite) lattice decoding [5], and thus there is a strong demand for computationally efﬁcient suboptimal decoding algorithms that offer improved performance. Sev- eral such approaches are emerging, including list decoding, sampling [6] and embedding [7]. It was shown in [6] that the sampling technique can provide a constant improvement in the signal-to-noise ratio (SNR) gain at polynomial complexity. In
+sharp contrast, no theoretic improvement has been proved for embedding, despite its remarkable performance in simulation. This is the motivation of this paper.
+The decoding problem considered in [7] can be viewed as a variant of the CVP known as 1/(2γ)-bounded distance decoding (BDD), where the closest vector is found under the assumption that the noise norm is small compared to the minimum distance λ 1 of the lattice, i.e., no more than λ 1 /(2γ).
+In this paper, we prove that the embedding technique can reduce 1/ (2γ)-BDD to the γ-unique shortest vector problem (uSVP). Note that the problems are harder for smaller values of γ. On the algorithmic side, we show that γ-uSVP for γ = O(2 n/4 ) can be solved by the Lenstra, Lenstra and Lov´asz (LLL) algorithm. This is a new result of independent interest, which is stronger than the usual bound γ = O(2 n/2 ) in literature. Combining the two results, we prove that embedding decoding using the LLL algorithm can solve 1/ (2γ)-BDD for γ ≈ O(2 n/4 ). This is signiﬁcantly better than the bound γ = O(2 n ) proven in [7]. It should be mentioned that these are worst-case bounds; the actual decoding performance is often better.
+Moreover, we prove that the regularized BDD is DMT- optimal. This represents a nontrivial extension of the analysis in [4] for C-approximation algorithms of CVP. Indeed, it is easy to see that C-approximate algorithms are a special case of BDD, because any decoding technique which provides a C- approximate CVP solution is also able to solve 1/(2C)-BDD. However, the converse is not necessarily true.
+The paper is organized as follows: Section II presents the transmission model and lattice decoding. In Section III the decoding radius of embedding decoding is anlayzed. The DMT analysis of BDD is given in Section IV. Section V evaluates the performance by computer simulation.
+Consider an n T × n R ﬂat-fading MIMO system model consisting of n T transmitters and n R receivers
+where X ∈ C n T ×T , Y, N ∈ C n R ×T of block length T denote the channel input, output and noise, respectively, and H ∈ C n R ×n T is the n R × n T full-rank channel gain matrix with n R ≥ n T , all of its elements are i.i.d. complex Gaussian random variables CN (0, 1). The entries of N are i.i.d. complex Gaussian with variance σ 2 each. The codewords X satisfy the average power constraint E[ ∥X∥ 2 F /T ] = 1. Hence, the signal-to-noise ratio (SNR) at each receive antenna is 1/σ 2 .
+When a lattice space-time block code is employed, the QAM information vector x is multiplied by the generator matrix G of the encoding lattice. An n T ×T codeword matrix X is formed by column-wise stacking of consecutive n T - tuples of the vector s = Gx ∈ C n T T . By column-by-column vectorization of the matrices Y and N in (1), i.e., y = Vec(Y) and n = Vec(N), the received signal at the destination can be expressed as
+When T = 1 and G = I n T , (2) reduces to the model for uncoded MIMO communication y = Hx+n. Furthermore, by separating real and imaginary parts, we obtain the equivalent 2n T × 2n R real-valued model [
+ℜy ℑy
+[ ℜH −ℑH ℑH ℜH
+] [ ℜx ℑx
+[ ℜn ℑn
+The QAM constellations C can be interpreted as the shifted and scaled version of a ﬁnite subset A n T of the integer lattice Z n T , i.e., C = a(A n T + [1/2, ..., 1/2] T ), where the factor a arises from energy normalization. For example, we have A n T = {− √ M /2, ..., √ M /2 − 1} for M-QAM signalling.
+Therefore, with scaling and shifting, we consider the generic n × m (m ≥ n) real-valued MIMO system model
+where B ∈ R m ×n , can be interpreted as the basis matrix of the decoding lattice. Obviously, n = 2n T T and m = 2n R T . The data vector x is drawn from a ﬁnite subset A n ⊂ Z n to satisfy the power constraint.
+An n-dimensional lattice in the m-dimensional Euclidean space R m (n ≤ m) is the set of integer linear combinations of n independent vectors b 1 , . . . , b n ∈ R m :
+The matrix B = [b 1 · · · b n ] is a basis of the lattice L(B). In matrix form, L(B) = {Bx : x ∈ Z n }. For any point y ∈R m and any lattice L (B), the distance of y to the lattice is dist(y, B) = min x ∈Z n ∥y − Bx∥. A shortest vector of a lattice L (B) is a non-zero vector in L (B) with the smallest l 2 norm. The length of the shortest vector, often referred to as the minimum distance, of L (B) is denoted by λ 1 (B).
+We now give precise deﬁnitions for the lattice problems that are central to this work.
+Given a lattice L (B), ﬁnd a non-zero vector v ∈ L (B) of norm λ 1 (B).
+Given a lattice L (B) and an approximation factor C ≥ 1, ﬁnd a non-zero vector v ∈ L (B) of norm smaller than Cλ 1 (B).
+Given a lattice L (B) such that λ 2 (B) > γλ 1 (B), ﬁnd a non-zero vector v ∈ L (B) of norm λ 1 (B).
+Given a lattice L (B) and a vector y such that dist(y, B) < 1/(2γ)λ 1 (B), ﬁnd the lattice vector Bˆ x ∈ L (B) closest to y.
+A lattice has inﬁnitely many bases. In general, every matrix ¯ B = BU, where U is an unimodular matrix, i.e., det(U) = ±1 and all elements of U are integers, is also a basis of L (B). The celebrated LLL algorithm [8] is the ﬁrst polynomial-time algorithm of lattice reduction which ﬁnds a vector not much longer than the shortest nonzero vector. Let B = QR be the QR decomposition, where Q has orthogonal columns and R is a an upper triangular matrix with nonnegative diagonal elements r i,i for i = 1, . . . , n. An LLL-reduced basis B has the following properties [8]:
+where α = 1/ (δ − 1/4), 1/4 < δ ≤ 1. We have α = 2 for the most common value δ = 3/4.
+Babai’s nearest plane algorithm [3] or LLL-SIC decoding, combining lattice reduction and SIC, can be viewed as the most basic BDD. The correct decoding radius of SIC is given by [5]
+The core of the embedding technique is that basis matrix B and the received vector y are embedded in a higher dimensional lattice. More precisely, we consider the following (m + 1) × (n + 1) basis matrix [9]
+where t > 0 is a parameter to be determined. The strategy is to reduce CVP to SVP in the following way: for a suitable choice of t and for sufﬁciently small noise norm, v = [(Bx − y) T t] T is the shortest vector in the lattice L(B); thus an
+SVP algorithm will ﬁnd it, and the message x can be easily recovered from the coordinates of this vector in the basis B:
+(9) At the same time, t should not be too small or too large, otherwise [(Bx − y) T t] T might not be the shortest vector.
+Luzzi et al. [7] chose t = 	 1 2 √ 2α n/2 min 1 ≤i≤n r i,i and used the LLL algorithm to ﬁnd the shortest vector in the lattice L(B). Their scheme, under the term augmented lattice reduction (ALR), was shown to achieve the correct decoding radius
+In [10], it is proved that by choosing t = dist(y, B), the embedding technique can reduce 1/ (2γ)-BDD to γ-uSVP. In this subsection, we will show that one can achieve the same correct decoding radius by setting t 	 1 2γ λ 1 (B), thus bypassing the assumption of dist(y, B) in [10].
+Lemma 1: Let B be the matrix deﬁned in (8), and let 0 < t < 1 γ λ 1 (B), with γ ≥ 1. Suppose that
+Proof: Let B be the matrix deﬁned in (8), and let w be an arbitrary nonzero vector in L (B). Any vector in L(B) that is not a multiple of v can be represented by w ′ = w + qv, with q ∈ Z and w ∈ L(B). We will show that ∥w ′ ∥ ≥ γ∥v∥. The norm of w ′ can be written as
+If ∥qn∥ ≤ λ 1 (B), using the triangular inequality, we have the lower bound
+λ 1 (B) 2 − 2qλ 1 (B) ∥n∥ + q 2 ∥n∥ 2 + q 2 t 2 ≥ λ 1 (B) t √
+If ∥qn∥ > λ 1 (B), we can also obtain the same bound because ∥w ′ ∥ ≥ qt > λ 1 (B) t ∥n∥ ≥ λ 1 (B) t √
+We need to make sure that ∥w ′ ∥ > γ ∥v∥, so λ 1 (B) t √
+t − λ 1 (B) 2γ
+Due to the well known fact that the LLL algorithm can solve γ-uSVP with γ = α n/2 for the basis (8) of dimension n + 1 [8], one can obtain the correct decoding radius
+2α n/2 λ 1 (B) 	 (13) by choosing t = t 0 	 1 2α n/2 λ 1 (B). This decoding radius improves the bound (10) from [7]. Yet, there is still room to improve. The reason is that the estimate γ = α n/2 is pessimistic for γ-uSVP. In fact, α n/2 is just the approxima- tion factor for ApproxSVP achieved by LLL. Any algorithm solving γ-ApproxSVP necessarily solves γ-uSVP, while the converse is not true.
+In this subsection, we will show that LLL can in fact solve γ-uSVP with a smaller γ.
+Lemma 2 (LLL for uSVP): The LLL algorithm can solve γ-uSVP for γ = max 1 ≤i≤n−1 {√γ i }α n/4 in an n-dimensional lattice L(B), where γ i is the Hermite constant for i- dimensional lattices.
+Proof: Suppose that B is an LLL-reduced basis, and that λ 2 (B) > max 1 ≤i≤n−1 {√γ i }α n/4 λ 1 (B). We will prove that the ﬁrst vector output by LLL, b 1 , is the shortest vector v. By contradiction, suppose that b 1 ̸= ±v. Note that b 1 cannot be a multiple of v, or B would not be a basis. We may write
+where x i is an integer and k is the largest i such that x i is not zero. Then we have λ 1 (B) = ∥v∥ ≥ r k,k , where B = QR is the QR decomposition of B. Using the assumption that b 1 ̸= ±v, we have that k > 1. On the other hand, we have the following bound for the second minimum λ 2 (B)
+In fact λ 2 (B) must be smaller than the norm of the shortest nonzero vector in the sublattice spanned by {b 1 ,...,b k −1 }, since these vectors are linearly independent with v. The fact that k > 1 ensures that there are non-zero vectors in L([b 1 , ..., b k −1 ]).
+where the inequality r i,i ≤ α (k −i)/2 r k,k for 1 ≤ i < k follows from (5). The reason why we use max 1 ≤i≤n−1 {√γ i } instead of γ n −1 in the last step is that it is not known whether γ i is an increasing function. The last statement is a contradiction be- cause we assumed λ 2 (B) > max 1 ≤i≤n−1 {√γ i }α n/4 λ 1 (B). Therefore, b 1 = ±v.
+This is exponentially better than (10). Since the LLL algorithm has polynomial complexity with respect to n, the embedding decoder also has polynomial complexity (assuming λ 1 (B) has been found in the pre-processing stage).
+In this section we will prove that, similarly to LLL reduction-aided ZF and SIC decoding, BDD (including em- bedding decoding) is optimal from the point of view of DMT [12] when a suitable left preprocessing is employed.
+In the present discussion, we suppose for the sake of simplicity that m = n. Following Jald´en and Elia’s notation in [4], we consider the equivalent normalized channel model where the noise variance is equal to 1:
+∼ N (0, 1), ∀i = 1, . . . , n. Here ρ = 1/σ 2 denotes the SNR. Moreover, we consider the equivalent regularized system
+From the point of view of receiver architecture, this amounts to performing left preprocessing before decoding, by using a maximum mean square error generalized decision-feedback equalizer (MMSE-GDFE). We can show that DMT-optimality holds for all instances of BDD by following the same reason- ing of the original proof in [4].
+Theorem 3: For any constant η > 0, the regularized η-BDD is DMT-optimal.
+Proof: Let d ML (r) be the optimal diversity gain corre- sponding to a multiplexing gain r ∈ {0, . . . , min(n T , n R ) }.
+Using the same notation as [4], we consider the constellation Λ r ∩ R, where the lattice Λ r = ρ − rT n Z n is scaled according to the SNR, and R is a ﬁxed shaping region 1 . Let B ⊂ R be a ball of ﬁxed radius R, where R is chosen in such a way that d 1 + d 2 ∈ R, ∀d 1 , d 2 ∈ B. Let
+1 4
+Let ζ > 0 and choose δ such that 2ζT n > δ > 0. We have Λ r = ρ ζT n Λ r+ζ . As in the original proof, ∃ρ 1 such that ∀ρ ≥ ρ 1 , R ⊆ 1 2 ρ ζT n B. As in Theorem 1 from [4], we want to show that the conditions
+are sufﬁcient for the regularized η-BDD to decode correctly for sufﬁciently large SNR. We need a lower bound for
+1 4
+1 4
+Let φ(ˆ x) = ∥B ′ ˆ x ∥ 2 + ∥ˆx∥ 2 . Let ˆ x ∈ Λ r \ {0} be any lattice point.
+• If ˆ x ∈ 1 2 ρ ζT n B ∩ Λ r = 1 2 ρ ζT n B ∩ ρ ζT n Λ r+ζ , then ˆ xρ − ζT n ∈ 1 2 B ∩ Λ r+ζ and so 1 4 B ′ ˆ xρ − ζT n 2 ≥ 1 since by the hypothesis (16), ν r+ζ ≥ 1. Therefore φ(ˆ x) ≥ ∥B ′ ˆ x ∥ 2 ≥ 4ρ 2ζT n .
+Now consider the transmitted codeword x ∈ Λ r ∩ R. The regularized η-BDD decoder is able to decode correctly provided that ∥y 1 − Rx∥ < ηd R . We have
+where c = max r ∈R ∥r∥ 2 is a constant. Therefore under the conditions (16), the regularized η-BDD decoder is able to decode correctly provided that ρ δ +c < ηkρ 2ζT n . But δ < 2ζT n , so ∃¯ρ such that ∀ρ ≥ ¯ρ, ρ δ +c < ηkρ 2ζT n . Then as in Theorem 1 from [4] we can conclude that
+and the second term is negligible for ρ → ∞. So we can say, similarly to the original proof, that
+In this section we evaluate the performance of embedding decoding proposed in Section III through numerical simula- tions. For comparison purposes, the performances of lattice reduction aided MMSE-SIC decoding and ML decoding are also shown. We assume perfect channel state information at the receiver. Monte Carlo simulation was used to estimate the bit error rate with Gray mapping and LLL reduction (δ=0.75).
+In the simulation, we further enhance embedding decoding by making use of all intermediate lattice vectors during the execution of LLL. Such vectors are generated when size reduction is performed; we can obtain one new vector in each size reduction. We can integrate this into LLL, and the complexity will be of the same order. The size check in LLL is on the lengthes of Gram-Schmidt vectors. It is preferable to choose a bit smaller t so that the last column in (8) can be used as many times as possible. Hence, we choose
+The advantage is that the knowledge of λ 1 is not required, while the performance is actually a little better due to a larger list.
+Fig. 1 shows the bit error rate for an uncoded system with n T = n R = 10, 64-QAM. We found that list MMSE embedding is sufﬁcient to obtain near-optimum performance for uncoded systems with n T = n R = 10; the SNR loss is less than 1.2 dB.
+In summary, we have investigated the decoding radius of embedding decoding through the relation between BDD and uSVP. With the knowledge of λ 1 (B) which may be obtained by pre-processing, this yields a polynomial-complexity algo- rithm achieving a correct decoding radius exponentially larger than previously proved. Moreover, we proved that BDD with MMSE-GDFE left processing is DMT-optimal. Due to space
+limitation, a rigorous approach that does not require the exact value of λ 1 (B) while still retaining polynomial complexity will be reported in the journal version.
+[[[ REFS ]]]
+W. H. Mow
+--
+Maximum likelihood sequence estimation from the lattice viewpoint
+----
+E. Viterbo
+J. Boutros
+--
+A universal lattice code decoder for fading channels
+----
+L. Babai
+--
+On Lov´asz’ lattice reduction and the nearest lattice point problem
+----
+J. Jald´en
+P. Elia
+--
+DMT optimality of LR-aided linear decoders for a general class of channels, lattice designs, and system models
+----
+C. Ling
+--
+On the proximity factors of lattice reduction-aided decoding
+----
+S. Liu
+C. Ling
+D. Stehl´e
+--
+Randomized lattice decoding: Bridging the gap between lattice reduction and sphere decod- ing
+----
+L. Luzzi
+G. R.-B. Othman
+J.-C. Belﬁore
+--
+Augmented lattice reduction for MIMO decoding
+----
+A. K. Lenstra
+J. H. W. Lenstra
+L. Lovasz
+--
+Factoring polynomials with rational coefﬁcients
+----
+R. Kannan
+--
+Minkowski’s convex body theorem and integer programming
+----
+V. Lyubashevsky
+D. Micciancio
+--
+On bounded distance decoding, unique shortest vectors, and the minimum distance problem
+----
+H. Minkowsk
+--
+Geometrie der Zahlen, Leipzig, Germany, 1896
+----
+L. Zheng
+D. Tse
+--
+Diversity and multiplexing: A funda- mental tradeoff in multiple antenna channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\059.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,185 @@
+[[[ ID ]]]
+196
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On essentially conditional information inequalities
+[[[ AUTHORS ]]]
+Tarik Kaced
+Andrei Romashchenko
+[[[ ABSTR ]]]
+Abstract—In 1997, Z. Zhang and R.W. Yeung found the ﬁrst example of a conditional information inequality in four variables that is not “Shannon-type”. This linear inequality for entropies is called conditional (or constraint) since it holds only under condition that some linear equations are satisﬁed for the involved entropies. Later, the same authors and other researchers discovered several unconditional information inequalities that do not follow from Shannon’s inequalities for entropy.
+In this paper we show that some non Shannon-type condi- tional inequalities are “essentially” conditional, i.e., they cannot be extended to any unconditional inequality. We prove one new essentially conditional information inequality for Shannon’s entropy and discuss conditional information inequalities for Kolmogorov complexity.
+[[[ BODY ]]]
+Let (X 1 , . . . , X n ) be jointly distributed random variables on a ﬁnite domain. For this collection of random variables there are 2 n − 1 non-empty subsets and for each subset we have a value of Shannon’s entropy. We call this family of entropies the entropy proﬁle of the distribution (X 1 , . . . , X n ). Thus, to every n-tuple of jointly distributed random variables there corresponds its entropy proﬁle which is a vector of values in R 2 n −1 . We say that a point in R 2 n −1 is constructible if it is a vector of entropies for some distribution.
+All constructible points satisfy different information in- equalities that characterize the range of all entropies for X i . The most known and understood are so-called Shannon-type inequalities, i.e., linear combinations of basic inequalities of type I(U : V |W ) ≥ 0, where U, V, W are any (possibly empty) subsets of the given family of random variables.
+In 1998 Z. Zhang and R.W. Yeung proved the ﬁrst ex- ample of an unconditional non Shannon-type information inequality, which was a linear inequality for entropies of (X 1 , X 2 , X 3 , X 4 ) that cannot be represented as a combination of basic inequalities [5]. Since this seminal paper of Zhang and Yeung was published, many (in fact, inﬁnitely many) non Shannon-type linear information inequalities were proven, see, e.g., [7], [8], [9], [12], [13]. Another very curious piecewise linear information inequality was proven in [15]. These new inequalities were applied in problems of network coding [14], secret sharing [16], etc. However, these inequalities and their ‘physical meaning’ are still not very well understood.
+In this paper we discuss conditional (constraint) information inequalities. That is, we are interested in linear information inequalities that are true only given some linear constraint for entropies. Trivial examples of conditional inequalities can be easily derived from (unconditional) basic inequalities, e.g.,
+if H(X 1 ) = 0 then H(X 1 , X 2 ) ≤ H(X 2 ). However, some conditional inequalities cannot be obtained as a corollary of Shannon-type inequalities. The ﬁrst example of a nontrivial conditional inequality was proven in [4] (even before the ﬁrst example of an unconditional non Shannon-type inequality):
+In [7] it was conjectured that (1) can be extended to some unconditional inequality
+(for some constant κ > 0). In this paper we prove that this conjecture is wrong: for any coefﬁcient κ, inequality (3) is not true for some distributions. So, inequality (1) is “essentially conditional”; it cannot be extended to an unconditional infor- mation inequality. A similar statement can be proven for (2).
+In this paper we also prove one new conditional linear inequality that cannot be extended to any unconditional in- equality. So, now we have three examples of essentially conditional information inequality.
+It is known that the class of unconditional linear infor- mation inequalities are the same for Shannon’s entropy and for Kolmogorov complexity. The situation with conditional inequalities is more complicated: the known technique used to prove constraint information inequalities for Shannon’s en- tropy cannot be directly adapted for Kolmogorov complexity. In fact, it is not even clear how to formulate Kolmogorov’s version of constraint inequalities. However, we prove for Kolmogorov complexities some counterpart of inequality (1); this inequality holds only for some special tuples of words.
+The paper is organized as follows. In Section II we use the technique from [4] and prove one new conditional information inequality. In Section III we prove that this new inequality as well as (1) and (2) cannot be extended to any unconditional in- equalities. In Section IV we prove some version of conditional inequality for Kolmogorov complexities.
+The very ﬁrst example of an inequality that does not follow from basic (Shannon type) inequalities was the following result of Z. Zhang and R. W. Yeung:
+Theorem 1 (Zhang–Yeung, [4]). For all random variables A, B, C, D, if I(A : B|C) = I(A : B) = 0 then
+With the same technique F. Mat´uˇs proved another condi- tional inequality (2), see [6]. Using a similar method, we prove one new conditional inequality:
+Proof: The argument consists of two steps: enforcing conditional independence and elimination of conditional en- tropy . Let us have a joint distribution of random variables A, B, C, D. The ﬁrst trick of the argument is a special trans- formation of this distribution: we keep the same distribution of the triples (A, C, D) and (B, C, D) but make A and B independent conditional on (C, D). Intuitively it means that we ﬁrst choose at random (using the old distribution) values of C and D; then given ﬁxed values of C, D we independently choose at random A and B (the conditional distributions of A given (C, D) and B given (C, D) are the same as in the original distribution).
+More formally, we construct a new distribution ( ˜ A, ˜ B, ˜ C, ˜ D). If Prob[A = a, B = b, C = c, D = d]
+is the original distribution, then the new distribution is deﬁned as follows:
+(with the convention 0 0 = 0 for all values a, b, c, d of the four random variables). From the construction ( ˜ A and ˜ B are independent given ˜ C, ˜ D) it follows that
+Since ( ˜ A, ˜ C, ˜ D) and ( ˜ B, ˜ C, ˜ D) have exactly the same distri- butions as the original (A, C, D) and (B, C, D) respectively, we have
+Notice that the entropies H( ˜ D), H( ˜ A| ˜ D) and H( ˜ B| ˜ D) are equal to H(D), H(A|D) and H(B|D) respectively (we again use the fact that ˜ A, ˜ D and ˜ B, ˜ D have the same distributions as
+A, D and B, D respectively in the original distribution). Thus, we get
+It remains to estimate the value H( ˜ C| ˜ A, ˜ B). We will show that it is zero (and this is the second trick used in the argument).
+Here we will use the two conditions of the theorem. We say that some values a, c (respectively, b, c or a, b) are compatible if in the original distribution these values can appear together, i.e., Prob[A = a, C = c] > 0 (respectively, Prob[B = b, C = c] > 0 or Prob[A = a, B = b] > 0). Since A and B are independent given C, if some values a and b (of A and B) are compatible with the same value c of C, then these a and b are compatible with each other.
+In the new distribution ( ˜ A, ˜ B, ˜ C, ˜ D) values of ˜ A and ˜ B are compatible with each other only if they are compatible with one and the same value of ˜ C; hence, these values must be also compatible with each other in the original distribution (A, B). Further, since H(C|A, B) = 0, for each pair of compatible values of A, B there exists only one value of C. Thus, for each pair of values ( ˜ A, ˜ B) with probability 1 there exists only one value of ˜ C. In a word, in the new distribution H( ˜ C| ˜ A, ˜ B) = 0.
+In [7] it was conjectured that the conditional inequality from Theorem 1 is a corollary of some unconditional information inequality (which was not discovered yet):
+Conjecture 1 ([7]). For some constant κ > 0 inequality (3) is true for all random variables A, B, C, D.
+Obviously, if such an inequality could be proven, it would imply the statement of Theorem 1. Similar conjectures could be formulated for (2) and the conditional inequality from Theorem 2. We prove that these conjectures are false, i.e., these three conditional inequalities cannot be converted into unconditional inequalities:
+Theorem 3. (a) For any κ the inequality (3) is not true for some distributions (A, B, C, D).
+is not true for some distributions (A, B, C, D). Thus, (2) cannot be extended to an unconditional inequality.
+Proof: (a) For all ε ∈ [0, 1] we us consider the following joint distribution of binary variables (A, B, C, D):
+Prob[A = 0, B = 0, C = 0, D = 1] = (1 − ε)/4, Prob[A = 0, B = 1, C = 0, D = 0] = (1 − ε)/4, Prob[A = 1, B = 0, C = 0, D = 1] = (1 − ε)/4, Prob[A = 1, B = 1, C = 0, D = 1] = (1 − ε)/4, Prob[A = 1, B = 0, C = 1, D = 1] = 	 ε.
+For each value of A and for each values of B, the value of at least one of variables C, D is uniquely determined: if A = 0 then C = 0; if A = 1 then D = 1; if B = 0 then D = 1; and if B = 1 then C = 0. Hence, I(C : D|A) = I(C : D|B) = 0.
+Also it is easy to see that I(A : B|C) = 0. Thus, if (3) is true, then I(C : D) ≤ κI(A : B).
+Denote the right-hand and left-hand sides of this inequality by L(ε) = I(C : D) and R(ε) = κI(A : B). Both functions L(ε) and R(ε) are continuous, and L(0) = R(0) = 0 (for ε = 0 both sides of the inequality are equal to 0). However the asymptotics of L(ε) and R(ε) as ε → 0 are different: it is not hard to check that L(ε) = Θ(ε), but R(ε) = O(ε 2 ). From (3) we have Θ(ε) ≤ O(ε 2 ), which is a contradiction.
+(b) For every value of ε ∈ [0, 1] we consider the following joint distribution of binary variables (A, B, C, D):
+Prob[A = 1, B = 1, C = 0, D = 0] = 1/2 − ε, Prob[A = 0, B = 1, C = 1, D = 0] = 	 ε, Prob[A = 1, B = 0, C = 1, D = 0] = 	 ε,
+The argument is similar to the proof if (a). First, it is not hard to check that I(C : D|A) = I(C : D|B) = H(C|AB) = 0
+(c) For the sake of contradiction we consider the following joint distribution of binary variables (A, B, C, D) for every value of ε ∈ [0, 1]:
+Prob[A = 1, B = 1, C = 0, D = 0] = 1/3 − ε, Prob[A = 1, B = 0, C = 1, D = 0] = 1/3 − ε, Prob[A = 0, B = 1, C = 0, D = 1] = 1/3 − ε.
+where I 0 is the mutual information between C and D for ε = 0 (which is equal to the mutual information between A and B for ε = 0). We get a contradiction as ε → 0 .
+The theorem above implies that the set of all linear infor- mation inequalities for 4-tuples must have rather complicated structure. Let us remind that a point a ∈ R 15 is called constructible if there exists a joint distribution (A, B, C, D) such that
+(a consists of entropies of all non-empty tuples of random variables A, B, C, D). Further, a point a is called asymptot- ically constructible if for every ε > 0 in ε-neighborhood of a there exists an constructible point a . In a similar way the set of (asymptotically) constructible points is deﬁned for any number of random variables (in R 2 n −1 for n-tuples of random variables). It is known (see, e.g., [5], [18]) that for every n the set of asymptotically constructible points representable by n-tuples of random variables make a closed convex cone in R 2 n −1 . The dual representation of this cone is the set of all linear information inequalities. We will show that for n ≥ 4 the structure of this cone is not trivial.
+From Theorem 3 we get a new proof of the result by F. Mat´uˇs [9]: the set of linear information inequalities for 4 random variables is not ﬁnitely generated.
+Theorem 4 ([9]). The cone of asymptotically constructible points for 4 random variables is not polyhedral (equivalently, the set of linear information inequalities for 4-tuples of ran- dom variables is not ﬁnitely generated).
+Proof: For the sake of contradiction we assume that the cone in R 15 that consist of all asymptotically constructible points for 4 random variables (A, B, C, D) is polyhedral. The constraints I(A : B) = I(A : B|C) = 0 specify some face (of co-dimension 2) on the boundary of this polyhedron. The cor- responding conditional inequality (from Theorem 1) speciﬁes a non-degenerate linear functionals, which is non-negative on the corresponding faces. Technically, this functional is deﬁned by the linear form g = I(C : D|A) + I(C : D|B) − I(C : D), which is non-negative on this face of the cone. With the standard linear programming technique it can be proven that this functional g can be extended to a linear functional g such that (a) g is non-negative on the entire cone of asymptotically constructible points, and (b) g coincides with g on the subspace of co-dimension 2 deﬁned by the condition I(A : B) = I(A : B|C) = 0 (see Proposition 17 in [1]). In coordinates such a functional g must have form
+g = I(C : D|A) + I(C : D|B) − I(C : D) +d 1 I(A : B) + d 2 I(A : B|C).
+(with some reals d 1 and d 2 ). It follows that g ≥ 0 for all constructible points, so we get (3) (where κ is equal to
+maximum of d 1 and d 2 ). This contradicts Theorem 3, and we are done.
+Kolmogorov complexity of a ﬁnite binary string X is deﬁned as the length of the shortest program that generates X; similarly, Kolmogorov complexity of a string X given another string Y is deﬁned as the length of the shortest program that generates X given Y as an input. More formally, for any programming language L, Kolmogorov complexity K L (X|Y ) is deﬁned as
+and unconditional complexity K L (X) is deﬁned as complexity of X given the empty Y . The basic fact of Kolmogorov complexity theory is the invariance theorem: there exists a universal programming language U such that for any other language L we have K U (X|Y ) ≤ K L (X|Y ) + O(1) (the O(1) depends on L but not on X and Y ). We ﬁx such a universal language U ; in what follows we omit the subscript U and denote Kolmogorov complexity by K(X), K(X|Y ). We refer the reader to an excellent book [10] for a survey of properties of Kolmogorov complexity.
+Kolmogorov complexity was introduced in [2] as an algo- rithmic version of measure of information in an individual object. In some sense, properties of Kolmogorov complexity are quite similar to properties Shannon’s entropy. For example, for the property of Shannon’s entropy H(A, B) = H(A) + H(B|A) there is a Kolmogorov’s counterpart
+(the Kolmogorov–Levin theorem, [3]). This result justiﬁes the deﬁnition of the mutual information, which is an algorithmic version of the standard Shannon’s deﬁnition: the mutual infor- mation is deﬁned as I(A : B) := K(A) + K(B) − K(A, B), and the conditional mutual information is deﬁned as
+From the Kolmogorov–Levin theorem it follows that I(A : B) is equal to K(A) − K(A|B), and the conditional mutual information I(A : B|C) is equal to K(A|C) − K(A|B, C) (all these equations hold only up to logarithmic terms).
+In fact, we have a much more deep and general parallel between Shannon’s and Kolmogorov’s information theories; for every linear inequality for Shannon’s entropy there exists a Kolmogorov’s counterpart:
+Theorem 5 ([11]). For each family of coefﬁcients {λ W } the inequality
+is true for every distribution {α i } if and only if for some constant C the inequality
+is true for all tuples of strings {a i }, N = K(a 1 , a 2 , . . .) (C does not depend on a i ).
+Thus, the class of unconditional inequalities valid for Shan- non’s entropy coincides with the class of (unconditional) inequalities valid for Kolmogorov complexity. What about conditional inequalities?
+In the framework of Kolmogorov complexity we cannot say that some information quantity exactly equals zero. Indeed, even the deﬁnition of Kolmogorov complexity makes sense only up to an additive term that depends on the choice of the universal programming language. Moreover, such a natural basic statement as the Kolmogorov–Levin theorem (6) holds only up to a logarithmic term. So, if we want to prove a sensible conditional inequality for Kolmogorov complexity, the linear constraints must be formulated with some reasonable precision. A natural version of Theorem 1 is the following conjecture:
+Conjecture 2. There exist functions f (n) and g(n) such that f (n) = o(n) and g(n) = o(n), and for all strings A, B, C, D satisfying I(A : B|C) ≤ f (N ), I(A : B) ≤ f (N ) it holds I(C : D) ≤ I(C : D|A) + I(C : D|B) + g(N ) (where N = K(A, B, C, D)).
+There is no hope to prove Conjecture 2 with f (n) and g(n) of order Θ(log n). Indeed, using a counterexample from the proof of Theorem 3(a), we can construct binary strings A, B, C, D such that the quantities I(A : B|C), I(A : B), I(C : D|A), and I(C : D|B) are bounded by O(log N ), but I(C : D) = Ω(
+N log N ). However, even if Conjecture 2 is false in general, similar conditional inequalities (even with logarithmic precision) can be true for some special tuples A, B, C, D. In what follows we show how to prove such an inequality for one natural example of strings A, B, C (and any D).
+Let F n be the ﬁnite ﬁeld of 2 n elements. We consider the afﬁne plane over F n . Let C be random line in this plane, and A and B be two points incident to this line. To specify the triple
+A, B, C we need at most 4n + O(1) bits of information: a line in a plane can be speciﬁed by two parameters in F n ; to specify each point in a given line we need additional n bits of information.
+We take a triple of strings A, B, C as speciﬁed above with maximal possible Kolmogorov complexity, i.e., such that K(A, B, C) = 4n + O(1) (it follows from a simple counting argument that such a triple exists; moreover, there are about 2 4n+O(1) such triples). For these A, B and C we can easily estimate all their Kolmogorov complexities:
+K(A), K(B), and K(C) are equal to 2n + O(1), K(A, C) = 3n + O(1), K(B, C) = 3n + O(1), H(A, B) = 4n + O(1).
+For this triple of strings the quantities I(A : B) and I(A : B|C) are negligible (logarithmic). This condition is very similar to the condition on random variables A, B, C in Theorem 1. So, it is not very surprising that Kolmogorov’s counterpart of Theorem 1 holds for these strings:
+Proposition 1. For the strings A, B, C deﬁned above and for all strings D we have
+This statement can be proven by an argument similar to the proof of Theorem 2. Let us explain this argument in full detail.
+Proof: We may identify C with a linear function c 1 x + c 2 over F n , where c 1 and c 2 are elements of the ﬁeld (since Kolmogorov complexity of C is large, it cannot be a vertical line on the plane). Further, the points A and B in this line can be represented as pairs a 1 , a 2 and b 1 , b 2 such that
+(here a i and b i are also elements of F n ). By assumption, complexity of the pair (A, B) is close to 4n. It means that A = B; hence, a 1 = b 1 . Let i be one of indexes such that the ith bits of a 1 and b 1 are different. W.l.o.g. we assume that the ith bit in a 1 is equal to 0 and the ith bit in b 1 is equal to 1.
+Now we split the afﬁne plane over F n into two halves: P 0 will consist of all points (x, y) such that the ith bit of x is 0, and P 1 will consist of the points (x, y) such that the ith bit of x is 1. So, point A = (a 1 , a 2 ) belongs to P 0 , and B = (b 1 , b 2 ) belongs to P 1 .
+Now we are going to variate the points A and B: we will substitute A and B by their ‘clones’ A and B so that the triples A , B , C remain “similar” to the initial one
+• complexities 	 K(A ), K(A , C), K(A , D), and K(A , C, D) are equal (up to an additive term O(log N )) to the corresponding complexities K(A), K(A, C), K(A, D), and K(A, C, D).
+• complexities K(B ), K(B , C), K(B , D), and K(B , C, D) are equal (up to an additive term O(log N )) to the corresponding complexities K(B), K(B, C), K(B, D), and K(B, C, D).
+From a simple counting argument it follows that there exist 2 K(A|C,D)−O(log N ) different clones of A and 2 K(B|C,D)−O(log N ) clones of B (see, e.g., [11, Lemma 2] or [17, Lemmas 1–2]).
+Let us take a pair of clones A and B with maximal complexity given (C, D). Then
+K(C, D) + K(A |CD) + K(B |CD) + O(log N ) = K(C, D) + K(A|C, D) + K(B|C, D) + O(log N )
+By deﬁnition of clones, complexities K(A |D) and K(B |D) are equal (up to O(log N ) term) to K(A|D) and K(B|D) respectively. Since A and B belong to P 0 and P 1 respectively, they cannot be equal to each other. Hence, A and B uniquely determine line C. So, we get
+This work was partially supported by EMC ANR-09- BLAN-0164-01 and NAFIT ANR-08-EMER-008-01 grants.
+We thank anonymous referees for useful comments that helped us to substantially rework the original manuscript.
+[[[ REFS ]]]
+O. Hustad
+--
+Extension of Positive Linear Functionals
+----
+N. Kolmogorov
+--
+A
+----
+K. Zvonki
+A. Levin
+--
+A
+----
+Z. Zhan
+R. W. Yeung
+--
+A non-Shannon-type conditional information inequality
+----
+Z. Zhan
+R. W. Yeung
+--
+On Characterization of entropy function via information inequalities
+----
+F. Mat´uˇs
+--
+Conditional independences among four random variables III: ﬁnal conclusion
+----
+K. Makaryche
+A. Romashchenk
+N. Vereshchagin
+--
+Yu
+----
+F. Mat´uˇs
+--
+Adhesivity of polymatroids
+----
+F. Mat´uˇs
+--
+Inﬁnitely many information inequalities
+----
+M. L
+P. Vit´anyi
+--
+An introduction to Kolmogorov complexity and its applications, 3rd Edition, Springer-Verlag, 2007
+----
+D. Hamme
+A. Romashchenk
+A. She
+N. Vereshchagi
+--
+In- equalities for Shannon entropy and Kolmogorov complexity, Journal of Computer and Systems Sciences, 60(2000), pp
+----
+R. Doughert
+C. Freilin
+K. Zeger
+--
+Six new non-Shannon infor- mation inequalities
+----
+W. X
+J. Wan
+J. Sun
+--
+A projection method for derivation of non- Shannon-type information inequalities
+----
+T. Cha
+A. Grant
+--
+Dualities Between Entropy Functions and Network Codes
+----
+F. Mat´uˇs
+--
+Piecewise linear conditional information inequality
+----
+A. Beime
+I. Orlov
+--
+Secret Sharing and Non-Shannon Information Inequalities
+----
+A. Romashchenko
+--
+An
+----
+W. Yeung
+--
+R
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\196.pdf
+[[[ LINKS ]]]
+

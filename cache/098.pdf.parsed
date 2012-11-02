@@ -1,0 +1,214 @@
+[[[ ID ]]]
+98
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Analysis of a Block Arithmetic Coding: Discrete Divide and Conquer Recurrences
+[[[ AUTHORS ]]]
+Michael Drmota
+Wojciech Szpankowski
+[[[ ABSTR ]]]
+Abstract—In 1993 Boncelet introduced a block arithmetic scheme for entropy coding that combines advantages of stream arithmetic coding with algorithmic simplicity. It is a variable- to-ﬁxed length encoding in which the source sequence is parti- tioned into variable length phrases that are encoded by a ﬁxed length dictionary pointer. The parsing is accomplished through a complete parsing tree whose leaves represent phrases. This tree, in its suboptimal heuristic version, is constructed by a simple divide and conquer algorithm, whose analysis is the subject of this paper. For a memoryless source, we ﬁrst derive the average redundancy and compare it to the (asymptotically) optimal Tunstall’s algorithm. Then we prove a central limit theorem for the phrase length. To establish these results, we apply powerful techniques such as Dirichlet series, Mellin-Perron formula, and (extended) Tauberian theorems of Wiener-Ikehara.
+[[[ BODY ]]]
+We present a comprehensive analysis of a data compression algorithm due to Boncelet [3] known as Block Arithmetic Coding (BAC). Boncelet’s algorithm is a variable-to-ﬁxed data compression scheme. To recall, a variable-to-ﬁxed length encoder partitions a source string over an m-ary alphabet A into a concatenation of variable-length phrases. Each phrase belongs to a given dictionary of source strings. A uniquely parsable dictionary is represented by a complete parsing tree, i.e., a tree in which every internal node has all m children nodes. The dictionary entries correspond to the leaves of the associated parsing tree. The encoder represents each parsed string by a ﬁxed length binary code corresponding to its dictionary entry. There are several well known variable-to- ﬁxed algorithms; e.g., Tunstall and Khodak schemes (cf. [10], [17], [25]). Boncelet’s algorithm is based on a divide and conquer strategy, and therefore is fast and easy to implement.
+Arithmetic entropy coders have been intensively studied in literature [9], [20], [21]. They are stream coders: an arbitrary long input sequence outputs a corresponding output stream. One disadvantage is that long input blocks are prone to the effect of transmission errors. Furthermore, in some applica- tions the encoding and decoding are too complicated to be done in real time. On the other hand, Tunstall variable-to- ﬁxed length scheme requires searching a codebook to ﬁnd the most probable input sequence for the next splitting. To cir- cumvent these difﬁculties, Boncelet designed a simple divide and conquer scheme that we brieﬂy describe next.
+In its simplest form – to which we restrict ourselves – Boncelet builds a parsing tree by splitting a ﬁxed number n of leaves (codewords) into subtrees of predetermined number of leaves. The number of leaves in each subtree is proportional to the probability of the alphabet symbols. For example, for a binary alphabet with probabilities p 1 and p 2 = 1 − p 1 the expected phrase length d(n) satisﬁes the following recurrence (other parameters such as variance, generating function of the phrase length fulﬁll similar recurrences)
+A question arises how the Boncelet algorithm compares to the (asymptotically) optimal Tunstall algorithm. In Theorem 1 and Corollary 1 we provide an answer by ﬁrst computing the redundancy of the Boncelet scheme (i.e., the excess of code length over the optimal code length) and compare it to the redundancy of the Tunstall code. Then in Theorem 2 we also prove that the phrase length of Boncelet’s scheme obeys the central limit law, as the Tunstall algorithm [10].
+Literature on Boncelet’s algorithm and discrete divide and conquer recurrences is very scarce. To the best of our knowl- edge, there is no precise redundancy analysis for the Boncelet’s algorithm. In [3] some bounds on the average phrase length are derived. The Central Limit Law for the phrase length presented in Theorem 2 is new, too. Furthermore, we believe our contribution goes beyond analyzing precisely Boncelet’s algorithm performance. We accomplish it by developing a methodology for solving general discrete divide and conquer recurrences (cf. [11]). The literature on continuous divide and conquer recurrence is very extensive [1], [6], [5], however, the discrete version of the recurrence has received much less attention. Flajolet and Golin [13] and Cheung et al. [4] use similar techniques to ours, however, their recurrences are much simpler and restricted to p 1 = 0.5 (see also [12], [16]). We apply a combination of methods such as Tauberian theorems and Mellin-Perron techniques.
+Let us start with a succinct description of the Boncelet algo- rithm in terms of its parsing tree. We consider a memoryless source over a general alphabet A of size m with probabilities of symbols denoted as p i for i = 1, . . . , m.
+For ﬁxed n (representing the number of leaves in the parsing tree and hence also the number of distinct phrases or codewords), the algorithm in each step creates m subtrees of predetermined number, n i , of leaves (phrases). This continues recursively until less than m leaves are left. For example, for a binary alphabet, the root n is split into two subtrees with the number of leaves, respectively, equal to n 1 = p 1 n + δ and n 2 = p 2 n − δ for some δ ∈ (0, 1) that satisﬁes 2p 1 + δ < 2.
+Let {v 1 , . . . v n } denote the phrases of the Boncelet code that correspond to the paths from the root to leaves of the parsing tree, and let (v 1 ), . . . , (v n ) be the correspond- ing phrase lengths. Furthermore, if (i 1 , i 2 , . . . , i (v k ) ) (with i j ∈ {1, . . . , m}) encodes the path from the root to phrase v k we set P (v k ) = p i 1 p i 2 · · · p i (vk) . Then P (v 1 ), . . . , P (v n ) sum up to 1 and represent a probability distribution on the phrases that corresponds to the distribution of phrases for a memoryless source. We denote by D n the length of a phrase corresponding to the probability distribution P , that is, P[D n = (v k )] = P (v k ). Its probability generating function is deﬁned as C(n, y) = E y D n = n j=1 P (v j )y (v j ) . For a binary alphabet, the Boncelet splitting procedure leads to the following recurrence on C(n, y) for n ≥ 2
+with initial conditions C(0, y) = 0 and C(1, y) = 1 and some δ. Then the average phrase length, d(n), deﬁned as E D n := d(n) = n j=1 P (v j ) (v j ) = C (n, 1) satisﬁes the following recurrence
+with d(0) = d(1) = 0. In general, for an m-ary alphabet recurrence (2) becomes
+where [x] is the quantized value of x; in our case it is replaced either by the ﬂoor function or the ceiling function.
+These recurrences (1)–(3) are special cases of a general divide and conquer recurrence of the following form: For m ≥ 1, let p 1 , . . . , p m , b 1 , . . . , b m and b 1 , . . . , b m be positive real numbers such that p j < 1 for 1 ≤ j ≤ m. Then given T (0) ≤ T (1) for n ≥ 2 we set
+(4) where (a n ) n≥2 is a known non-negative and non-decreasing sequence. We also assume that 2p j + δ j < 2 and 2p j + δ j ≤ 1 (for 1 ≤ j ≤ m). In the next section we present in Theorem 3 a general solution of (4) as proved in [11]; we note that it’s
+proof requires powerful tools of analytic combinatorics such as Dirichlet series [2], [24] and complex asymptotics [24].
+Our ﬁrst result concerns the average redundancy of Bon- celet’s algorithm. To present it succinctly, we need to introduce some properties of p i .
+Deﬁnition 1: We say that log(1/p 1 ), . . . , log(1/p m ) are rationally related if there exists a positive real number L such that log(1/p 1 ), . . . , log(1/p m ) are integer multiples of L, that is, log(1/p j ) = n j L, n j ∈ Z, (1 ≤ j ≤ m) where gcd(n 1 , . . . , n m ) = 1. Similarly, we say that log(1/p 1 ), . . . , log(1/p m ) are irrationally related if they are not rationally related.
+Example. If m = 1, then we are always in the rationally related case. In the binary case m = 2, the numbers log(1/p 1 ), log(1/p 2 ) are rationally related if and only if the ratio log(1/p 1 )/ log(1/p 2 ) is rational.
+Theorem 1: Consider an m-ary memoryless source with positive probabilities p i > 0 and the entropy rate H =
+p i log(1/p i ). Let d(n) = E D n denote the expected phrase length of the binary Boncelet code.
+H 2 = m i=1 p i log 2 p i , and E (0) and G (0) are the derivatives at s = 0 of the Dirichlet series deﬁned in Section III.A (for a binary alphabet).
+for some η > 0, where Ψ(t) is a periodic function of bounded variation that has usually an inﬁnite number of discontinuities.
+For practical data compression algorithms, it is important to achieve low redundancy deﬁned as the excess of the code length over the optimal code length nH. For variable-to-ﬁxed codes, the average redundancy is expressed as [10], [22]
+R n = log n E D n
+Corollary 1: Let R n denote the redundancy of the Boncelet code.
+We should compare the redundancy of Boncelet’s algorithm to asymptotically optimal Tunstall algorithm. From [10], [22] we know that the redundancy of the Tunstall code is
+for irrational case; in the rational case there is also a periodic term in the leading asymptotics.
+log 3m + 5 2
+5 4
+Finally, we deal with the limiting distribution of the phrase length D n . The proof is presented in the next section.
+Theorem 2: Consider a memoryless source generating a sequence of length n parsed by the Boncelet algorithm. If (p 1 , . . . , p m ) is not uniformly distributed, then the phrase length D n satisﬁes the central limit law, that is,
+− 1 H
+We ﬁrst present a general solution to our general discrete divide and conquer recurrence (4). We use analytic tools, in particular Dirichlet series. For our purpose, we deﬁne the following Dirichlet series
+Recall that a n of (4) is non-negative and non-decreasing and we also assume that b j ≥ 0 and b j ≥ 0. If the sequence a n is constant (for n ≥ n 0 ) we set σ a = −∞. Otherwise we set σ a = inf{σ : a n = O(n σ )}. Then σ a is the the abscissa of absolute convergence σ a of A(s). Furthermore, let s 0 be the unique real solution of the equation
+By using the Arka-Bazzi theorem [1] it follows that T (n) = O(n max{s 0 ,σ a }+ε ) for every ε > 0. This means that the Dirichlet series T (s) converges for (s) > max{s 0 , σ a }. We will prove below that we actually have a representation of the
+form (15) for some entire function G(s) and some analytic function E(s) that is analytic for (s) > max{s 0 , σ a } − 1. For the precise asymptotic analysis, we appeal to the Tauberian theorem by Wiener-Ikehara [7], [19], and an analysis based on the Mellin-Perron formula [2], [24]. Both approaches rely on the singular behavior of T (s). From this representation it is clear that the asymptotic behavior of T (n) will depend on the singular behavior of A(s) and the roots of (10) (that include s 0 ).
+Actually, we have to deal with three different situations. If σ a < s 0 , then the asymptotics of T (n) is driven by the recurrence; in the case σ a = s 0 there is an interaction between the internal structure of the recurrence and the sequence a n (resonance); and in the case σ a > s 0 the asymptotic behavior of a n dominates.
+In [11] we proved a Master Theorem for our general discrete divide and conquer recurrence that we state below in slightly simpliﬁed form.
+the divide and conquer recurrence deﬁned in (4), where b j and b j are non-negative with b j +b j > 0 and the sequence (a n ) n≥2 is non-negative and non-decreasing. Let σ a denote the abscissa of absolute convergence of the Dirichlet series A(s) and s 0 the real root of (10). If σ a ≥ s 0 ≥ 0 assume further that a n is nondecreasing sequence given by a n = Cn σ (log n) α with C > 0 (that is, σ a = σ).
+(i) If log(1/p 1 ), . . . , log(1/p m ) are irrationally related, then T (n) becomes as n → ∞
+if σ a < 0 and s 0 < 0, C 2 log n + C 2 + o(1)
+if σ a < s 0 and s 0 = 0, C 3 (log n) α+1 · (1 + o(1))
+if σ a = s 0 = 0, C 4 n s 0 · (1 + o(1))
+if σ a < s 0 and s 0 > 0, C 5 n s 0 (log n) α+1 · (1 + o(1))
+if σ a = s 0 > 0 and α = −1, C 5 n s 0 log log n · (1 + o(1))
+if σ a = s 0 > 0 and α = −1, C 6 (log n) α (1 + o(1))
+if σ a = 0 and s 0 < 0, C 7 n σ a (log n) α · (1 + o(1))
+where 	 the 	 explicitly 	 computable 	 constants C 1 , C 2 , C 3 , C 4 , C 5 , C 6 , C 7 are positive and C 2 is real. (ii) If log(1/p 1 ), . . . , log(1/p m ) are rationally related, then T (n) behaves as in the irrationally related case with the following two exceptions:
+C 2 log n + Ψ 2 (log n) + o(1) if σ a < s 0 and s 0 = 0, Ψ 4 (log n) n s 0 · (1 + o(1)) 	 if σ a < s 0 and s 0 > 0,
+(12) where C 2 is positive and Ψ 2 (t), Ψ 4 (t) are periodic functions with period L (with usually countably many discontinuities).
+We now brieﬂy summarize the main steps to establish Theorem 3 and then provide a proof of Theorem 2.
+We ﬁrst apply the recurrence relation (4) to ﬁnd the Dirichlet series T (s). To simplify our presentation, we assume that b j = 0, that it, we consider only the ﬂoor function on the right hand side of the recurrence (4). We thus obtain
+for some integer k. For this k we have p j (n + 1) + δ j = k + 1 and p j (n + 2) + δ j = k + 2. For later use we split between k ≤ 0 and k ≥ 1. Hence, setting
+Deﬁning E(s) = m j=1 b j E j (s) and G(s) = m j=1 b j G j (s) we ﬁnally obtain the relation
+The same procedure applies if some of the b j are positive leading to
+T (s) = A(s) + G(s) − E(s) 1 − m j=1 (b j + b j ) p s j
+By our previous assumptions, we know the analytic behav- iors of A(s) and 1 − m j=1 b j p s j
+: A(s) has a pole-like singularity at s = σ a (if σ a ≥ s 0 ) and a proper continuation to a complex domain that contains the (punctuated) line
+(s) = σ a , s = σ a , as discussed in [11]. On the other hand, (1 − m j=1 b j p s j ) −1 has a polar singularity at s = s 0 (and inﬁnitely many other poles on the line (s) = s 0 if the numbers log(1/p j ) are rationally related), and also a meromorphic continuation to a complex domain that contains the line (s) = s 0 . Heuristically, the asymptotic behavior (of the partial sums) of the coefﬁcients of T (s) is reﬂected by the singular behavior of T (s). Recall that T (n) = O(n σ ) implies that the series T (s) converges for (s) > σ. Hence, if s = σ is a singularity of T (s), then we expect that T (n) behaves (more or less) like n σ . Actually there is a very precise correspondence by Tauberian theorems (of Wiener-Ikehara and Delange, see [7], [11], [19]) if σ is the only singularity on the line (s) = σ. Hence, Tauberian theorems can be applied if the log(1/p j ) are irrationally related. In the rationally related case the problem is more subtle but can be handled with the help of the Mellin-Perron formula stated next (Theorem 4).
+In our formulation we use Iverson’s notation [[P ]] which is 1 if P is a true proposition and 0 else.
+Theorem 4 (see [2]): For a sequence c(n) deﬁne the Dirichlet series C(s) = 	 ∞ n=1 c(n)n −s and assume that abscissa of absolute convergence σ a is ﬁnite or −∞. Then for all σ > σ a and all x > 0
+c(n) + c( x ) 2
+Note that the Mellin-Perron formula enables us to obtain precise information about the function c(v) = n≥v c(n) if we know the behavior of 1 s C(s). In our context we have c(n) = T (n + 2) − T (n), that is,
+where T (s) is given by (15). Informally, one shifts the line of integration to the left and collects the contributions from the residues of the (polar) singularities at s = σ a , s = s 0 and s = 0; if the log(1/p j ) are rationally related there are inﬁnitely many polar singularities on the line (s) = s 0 that contribute to the periodic term Ψ(t). Details can be found in [11].
+Finally we indicate the proof of Theorem 2 for the non- symmetric binary case. For simplicity, we shall write p for p 1 and q for p 2 = 1 − p = p 1 .
+We recall that C(n, y) satisﬁes the recurrence (1) with initial conditions C(0, y) = 0 and C(1, y) = 1. It is clear that for every ﬁxed positive real number y we can apply Theorem 3. However, we have to be careful since we need an asymptotic representation for C(n, y) uniformly for y in an interval that contains 1 in its interior. Note that C(n, 1) = 1.
+For the proof of Theorem 2, one has to consider the Dirichlet series
+For simplicity we just consider here the case y > 1. Then C(s, y) converges for (s) > s 0 (y), where s 0 (y) denotes the real zero of the equation y(p s+1 + q s+1 ) = 1. We ﬁnd
+where E(s, y) converges for (s) > s 0 (y) − 1 and satisﬁes ˜ E(0, y) = 0 and ˜ E(s, 1) = 0.
+Then by the Wiener-Ikehara theorem only the residue at s 0 (y) contributes to the main asymptotic leading term. (Recall that we just consider the case y > 1 and the irrationally related case). We thus have
+The essential but non-trivial observation is that this asymptotic relation holds uniform for y in an interval around 1. In order to make this precise we can use the Mellin-Perron formula from Theorem 4
+and apply the methods presented in [11] which can be made uniform in y; this works for the irrationally related case as well as for the rationally related case. Hence we ﬁnd (in all cases)
+2 (1 + o(1)). Hence, we arrive at
+By the convergence theorem for the Laplace transform or Goncharov theorem (see [24]) this proves the normal limiting distribution as n → ∞ and also convergence of (centralized) moments.
+This work was supported in part by the Austrian Science Foundation FWF Grant No. S9604, by NSF Science and Tech- nology Center for Science of Information Grant CCF-0939370, NSF Grants DMS-0800568, and CCF-0830140, NSA Grant
+[[[ REFS ]]]
+M. Akr
+L. Bazz
+--
+On the Solution of Linear Recurrence Equations, Computational Optimization and Applications , 10,195-201, 1998
+----
+T. M. Aposto
+--
+Introduction to analytic number theory, Undergraduate Texts in Mathematics, Springer, New York, 1976
+----
+C. G. Boncele
+--
+Block arithmetic coding for source compression, IEEE Trans
+----
+K. Cheun
+P. Flajole
+M. Goli
+Y. Le
+--
+Y
+----
+V. Cho
+M. J. Goli
+I. Analyses
+--
+Lopsided trees
+----
+T. Corme
+C. Leierso
+R. Rives
+--
+Introduction to Algorithms, MIT Press, Cambridge, Mass
+----
+H. Delang
+--
+G´en´eralisation du th´eor`eme de Ikehara, Ann
+----
+H. Delang
+--
+Sur la fonction sommatoire de la fonction ”Somme des Chiffres
+----
+M. Drmot
+K. Hwan
+W. Szpankowsk
+--
+H- and  Precise Average Redundancy of an Idealized Arithmetic Coding, Data Compression Conference , 222-231, Snowbirds, 2002
+----
+M. Drmot
+Y. Rezni
+W. Szpankowsk
+--
+Tunstall Code, Khodak Variations, and Random Walks IEEE Trans
+----
+M. Drmot
+W. Szpankowsk
+--
+A Master Theorem for Discrete Divide and Conquer Recurrence, Proc
+----
+P. Erdo
+A. Hildebran
+A. Odlyzk
+P. Pudait
+B. Reznic
+--
+The Asymptotic Behavior of a Family of Sequences, Paciﬁc Journal of Mathematics , 126, 227-241, 1987
+----
+P. Flajole
+M. Goli
+--
+Mellin Transforms and Asymptotics: The Mergesort Recurrence, Acta Informatica, 31, 673–696, 1994
+----
+P. Flajole
+X. Gourdo
+P. Duma
+--
+Mellin Transforms and Asymp- totics: Harmonic sums, Theoretical Computer Science, 144, 3–58, 1995
+----
+P. Flajole
+R. Sedgewic
+--
+Analytic Combinatorics, Cambridge Uni- versity Press, Cambridge, 2008
+----
+K. Hwan
+--
+H- Distribution of the number of factors in random ordered factorizations of integers, Journal of Number Theory ,81, 61–92, 2000
+----
+E. Knut
+--
+D
+----
+J. Korevaa
+--
+A Century of complex Tauberian theory, Bull
+----
+G. Langdo
+M. J. Res
+--
+An Introduction to Arithmetic Coding, IB Develop
+----
+J. Rissane
+G. Langdo
+M. J. Res
+--
+Arithmetic Coding, IB Develop
+----
+S. A. Savar
+G. Gallager; Generalized Tunstall codes for sources with memor
+--
+Robert  IEEE Trans
+----
+R. Sedgewic
+P. Flajole
+--
+An Introduction to the Analysis of Algorithms , Addison-Wesley, Reading, MA, 1995
+----
+W. Szpankowsk
+--
+Average Case Analysis of Algorithms on Sequences, Wiley, New York, 2001
+----
+B. P. Tunstal
+D. disser- tatio
+--
+Synthesis of Noiseless Compression Codes, Ph
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\098.pdf
+[[[ LINKS ]]]
+

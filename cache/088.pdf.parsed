@@ -1,0 +1,174 @@
+[[[ ID ]]]
+88
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Distributed Storage Allocations for Optimal Delay
+[[[ AUTHORS ]]]
+Derek Leong
+Alexandros G. Dimakis
+Tracey Ho
+[[[ ABSTR ]]]
+Abstract—We examine the problem of creating an encoded distributed storage representation of a data object for a network of mobile storage nodes so as to achieve the optimal recovery delay. A source node creates a single data object and disseminates an encoded representation of it to other nodes for storage, subject to a given total storage budget. A data collector node subsequently attempts to recover the original data object by contacting other nodes and accessing the data stored in them. By using an appropriate code, successful recovery is achieved when the total amount of data accessed is at least the size of the original data object. The goal is to ﬁnd an allocation of the given budget over the nodes that optimizes the recovery delay incurred by the data collector; two objectives are considered: (i) maximization of the probability of successful recovery by a given deadline, and (ii) minimization of the expected recovery delay. We solve the problem completely for the second objective in the case of symmetric allocations (in which all nonempty nodes store the same amount of data), and show that the optimal symmetric allocation for the two objectives can be quite different. A simple data dissemination and storage protocol for a mobile delay-tolerant network is evaluated under various scenarios via simulations. Our results show that the choice of storage allocation can have a signiﬁcant impact on the recovery delay performance, and that coding may or may not be beneﬁcial depending on the circumstances.
+[[[ BODY ]]]
+Consider a network of n mobile storage nodes. A source node creates a single data object of unit size (without loss of generality), and disseminates an encoded representation of it to other nodes for storage, subject to a given total storage budget T . Let x i be the amount of coded data eventually stored in node i ∈ {1, . . . , n} at the end of the data dissemination process. Any amount of data may be stored in each node, as long as the total amount of storage used over all nodes is at most the given budget T , that is,
+At some time after the completion of the data dissemination process, a data collector node begins to recover the original data object by contacting other nodes and accessing the data stored in them. We make the simplifying assumption that the stored data is instantaneously transmitted on contact; this approximates the case where there is sufﬁcient bandwidth and time for data transmission during each contact. This data recovery process continues until the data object can be
+recovered from the cumulatively accessed data. Let random variable D denote the recovery delay incurred by the data collector, deﬁned as the earliest time at which successful recovery can occur, measured from the beginning of the data recovery process.
+By using an appropriate code for the data dissemination process and eventual storage, successful recovery can be achieved when the total amount of data accessed by the data collector is at least the size of the original data object. This can be accomplished with random linear codes [1], [2] or a suitable MDS code, for example. Thus, if r d ⊆ {1, . . . , n} is the set of all nodes contacted by the data collector by time d, then the recovery delay D can be written as
+Our goal is to ﬁnd a storage allocation (x 1 , . . . , x n ) that produces the optimal recovery delay, subject to the given budget constraint. Speciﬁcally, we shall examine the following two objectives involving the recovery delay D:
+(i) maximization of the probability of successful recov- ery by a given deadline d, or recovery probability P [D ≤ d], and
+The nodes of the network are assumed to move around and contact each other according to an exogenous random process; they are unable to change their trajectories in response to the data dissemination or recovery processes. (The recovery delay could be improved signiﬁcantly if nodes were otherwise allowed to act on oracular knowledge about future contact opportunities [3], for example.)
+Most work on delay-tolerant networking traditionally as- sume that the data object is intended for immediate consump- tion; both the data dissemination and recovery processes would therefore begin at the same time, and the recovery delay would
+be measured from the beginning of the data dissemination process. In contrast, our model more accurately reﬂects the characteristics of longer-term storage where the data object can be consumed long after its creation. Nonetheless, our model can still be a good approximation for short-term storage especially when the data dissemination process occurs very rapidly, as in the case of binary SPRAY - AND - WAIT [4] where the number of nodes disseminating or spraying data grows exponentially over time.
+We also note that in most of the literature involving distributed storage, either the data object is assumed to be replicated in its entirety (see, for e.g., [4]), or, if coding is used, every node is assumed to store the same amount of coded data (see, for e.g., [5]–[9]). Allocations of a storage budget with nodes possibly storing different amounts of data are not usually considered.
+This paper attempts to address the gaps in our understanding of how the choice of storage allocation can affect the recovery delay performance. We formulate a simple analytical model of the problem and show that the maximization of the recovery probability P [D ≤ d] can be expressed in terms of the reli- ability maximization problem introduced in [10]. It turns out that the simple strategies of spreading the budget minimally (i.e. uncoded replication) and spreading the budget maximally over all n nodes (i.e. assigning x i = T n for all i) may both be suboptimal; in fact, the optimal allocation may not even be symmetric (we say that an allocation is symmetric when all nonzero x i are equal). Applying our earlier results [11], we can show that minimal spreading is optimal among symmetric allocations when the deadline d is sufﬁciently small, while maximal spreading is optimal among symmetric allocations when the deadline d is sufﬁciently large.
+For the minimization of the expected recovery delay E [D], we are able to characterize the optimal symmetric allocation completely: minimal spreading (i.e. uncoded replication) turns out to be optimal whenever the budget T is an integer; otherwise, the amount of spreading in the optimal symmetric allocation increases with the fractional part of T .
+Interestingly, our analytical results demonstrate that the optimal symmetric allocation for the two objectives can be quite different. In particular, when the budget T is an inte- ger, we observe a phase transition in the optimal symmetric allocation as the deadline d increases, for the maximization of recovery probability P [D ≤ d]; however, minimal spreading (i.e. uncoded replication) alone turns out to be optimal for the minimization of expected recovery delay E [D].
+We proceed to apply our theoretical insights to the design of a simple data dissemination and storage protocol for a mobile delay-tolerant network. Our protocol generalizes SPRAY - AND - WAIT [4] by allowing the use of variable-size coded packets. Using network simulations, we compare the performance of different symmetric allocations under various circumstances. These simulations allow us to capture the transient dynamics of the data dissemination process that were simpliﬁed in
+the analytical model. Our main result shows that a maximal spreading of the budget is optimal in the high recovery probability regime. Speciﬁcally, maximal spreading can lead to a signiﬁcant reduction in the wait time required to attain a desired recovery probability. Besides validating the predictions made in our theoretical analysis, these simulations also reveal several interesting properties of the allocations under different circumstances.
+Jain et al. [12] and Wang et al. [13] evaluated the delay performance of symmetric allocations experimentally in the context of routing in a delay-tolerant network. Our results complement and generalize several aspects of their work.
+We present a theoretical analysis of the problem in Sec- tion II, and undertake a simulation study in Section III. Proofs of theorems can be found in the extended version of this paper [14].
+We adopt the following notation throughout the paper: n total number of storage nodes, n ≥ 2
+x i amount of data stored in node i ∈ {1, . . . , n}, x i ≥ 0 T total storage budget, 1 ≤ T ≤ n
+The indicator function is denoted by I [G], which equals 1 if statement G is true, and 0 otherwise. We use B (n, p) to denote the binomial random variable with n trials and success probability p. An allocation (x 1 , . . . , x n ) is said to be symmetric when all nonzero x i are equal; for brevity, let ¯ x(n, T, m) denote the symmetric allocation for n nodes that uses a total storage of T and contains exactly m ∈ {1, . . . , n} nonempty nodes, that is,
+The number of contacts between any given pair of nodes in the network is assumed to follow a Poisson distribution with rate parameter λ; the time between contacts is therefore described by an exponential distribution with mean 1 λ . Let W 1 , . . . , W n be i.i.d. random variables denoting the times at which the data collector ﬁrst contacts node 1, . . . , n, respec- tively, where W i ∼ Exponential(λ).
+Let the given recovery deadline be d > 0, and let the subset of nodes contacted by the data collector by time d be r ⊆ {1, . . . , n}. Successful recovery occurs by time d if and only if the total amount of data stored in the subset r of nodes is at least 1. In other words, the recovery delay D is at most d if and only if
+x i ≥ 1. Since the data collector contacts each node by time d independently with constant probability p λ,d , given by
+it follows that the probability of contacting exactly a subset r of nodes by time d is p |r| λ,d (1 − p λ,d ) n −|r| . The recovery probability P [D ≤ d] can therefore be obtained by summing over all possible subsets r that allow successful recovery:
+We seek an optimal allocation (x 1 , . . . , x n ) of the budget T (that is, subject to
+x i ≤ T , where x i ≥ 0 for all i) that maximizes P [D ≤ d], for a given choice of n, λ, d, and T .
+This problem matches the reliability maximization problem of [11] with p λ,d as the access probability; we recall that the optimal allocation may be nonsymmetric and can be difﬁcult to ﬁnd. However, if we restrict the optimization to only symmetric allocations, then we can specify the solution for a wide range of parameter values of p λ,d and T . Speciﬁcally, if λ or d is suf- ﬁciently small, e.g. p λ,d ≤ 1 ⌈T ⌉ , then ¯ x (n, T, m= ⌊T ⌋), which corresponds to a minimal spreading of the budget (i.e. uncoded replication), is an optimal symmetric allocation. On the other hand, if λ or d is sufﬁciently large, e.g. p λ,d ≥ 4 3 ⌊T ⌋ , then either ¯ x
+spond to a maximal spreading of the budget, is an optimal symmetric allocation.
+Rewriting (1) in terms of the underlying random variables gives us the following c.d.f. for the recovery delay D:
+x i ≥ 1 which is necessary for successful recovery, we can compute the expected recovery delay as follows:
+is the n th harmonic number. We seek an optimal allocation (x 1 , . . . , x n ) of the budget T (that is, subject to
+x i ≤ T , where x i ≥ 0 for all i) that minimizes E [D], for a given choice of n, λ, and T . Note that the optimal allocation is independent of λ for the minimization of E [D] but not for the maximization of P [D ≤ d].
+Lemma 1. The expected recovery delay E [D] of an optimal allocation is at least
+We make the following conjecture about the optimal allo- cation, based on our numerical observations:
+Conjecture. A symmetric optimal allocation always exists for any n, λ, and T .
+As a simpliﬁcation, we now proceed to restrict the opti- mization to only symmetric allocations (which are easier to describe and implement, and appear to perform well). For the symmetric allocation ¯ x(n, T, m), successful recovery occurs by a given deadline d if and only if
+more nonempty nodes are contacted by the data collector by time d, out of a total of m nonempty nodes. It follows that the resulting recovery probability is given by P [D ≤ d] = P
+≥ ⌈ m T ⌉] . We therefore obtain the following c.d.f. and p.d.f. for the recovery delay D:
+t f D (t) dt = 1 λ
+1 m −
+Fig. 1 compares the performance of different symmetric allocations over different budgets T , for an instance of n and λ; the value of m corresponding to the optimal symmetric allo- cation appears to change in a nontrivial manner as we vary the budget T . Fortunately, we can eliminate many candidates for
+the optimal value of m by making the following observation (a similar observation was made in the maximization of the recovery probability [11]): For ﬁxed n, λ, and T , we have ⌈
+is decreasing in m for constant λ and k, it follows that E D (λ, T, m) is minimized over each of these intervals of m when we pick m to be the largest integer in the corresponding interval. Thus, given n, λ, and T , we can ﬁnd an optimal m ∗ that minimizes E D (λ, T, m) over all m from among
+Note that when m = ⌊kT ⌋, k ∈ Z + , the expected recovery delay simpliﬁes to the following expression:
+By further eliminating suboptimal candidate values for m ∗ using suitable bounds for the harmonic number, we are able to completely characterize the optimal symmetric allocation for any n, λ, and T :
+Theorem 1. Suppose T = a + 1 − 1 ℓ , where a ∈ Z + , ℓ ≥ 1. If ⌊ℓ⌋ ≤
+always true, and so ¯ x (n, T, m= ⌊T ⌋), which corresponds to a minimal spreading of the budget (i.e. uncoded replication), is an optimal symmetric allocation. However, if the budget T is not an integer (i.e. ℓ > 1), then the amount of spreading in the optimal symmetric allocation increases with the fractional part of T , up to a point at which either ¯ x
+¯ x (n, T, m=n), which correspond to a maximal spreading of the budget, becomes optimal. Minimal spreading (i.e. uncoded replication) therefore performs well over the whole range of budgets T , being optimal among symmetric allocations whenever T is an integer.
+In conclusion, we note that the optimal symmetric allocation for the two objectives can be quite different. In particular, when the budget T is an integer, we observe a phase transition from a regime where minimal spreading is optimal to a regime where maximal spreading is optimal, as the deadline d increases, for the maximization of recovery probability P [D ≤ d]; however, with the averaging over both regimes, minimal spreading (i.e. uncoded replication) alone turns out to be optimal for the minimization of expected recovery delay E [D].
+We apply our theoretical insights to the design of a simple data dissemination and storage protocol for a mobile delay- tolerant network. Our protocol extends SPRAY - AND - WAIT [4] by allowing nodes to store coded packets that are each 1 w the size of the original data object, where parameter w is a positive integer; successful recovery occurs when the data collector accesses at least w such packets. Different symmetric allocations of the given total storage budget T can be realized by choosing different values of w; the original protocol, which uses uncoded replication, corresponds to w = 1.
+The source node begins with a total storage budget of T times the size of the original data object, which translates to wT coded packets, each 1 w the size of the original data object. Whenever a node with more than one packet contacts another node without any packets, the former gives half its packets to the latter. The actual amount of data stored or transmitted by a node never exceeds the size of the original data object (or w packets) since the excess packets can always be generated on demand (using random linear coding, for example). To reduce the total transmission cost incurred, a node can also directly transmit one packet to each node it meets when it has w or fewer packets left; otherwise, these last few packets would be transmitted multiple times by different nodes. The dissemination process is completed when no node has more than one packet.
+We implemented a discrete-time simulation of n = 100 wireless mobile nodes in a 1000 ×1000 grid. A random way- point mobility model is assumed where at each time step, each node moves a random distance L ∼ Uniform[5,10] towards a selected destination; on arrival, the node selects a random point on the grid as its next destination. Each node has a communication range of 20, and the bandwidth of each point- to-point link is large enough to support the transmission of w packets at each time step. A maximal number of transmissions are randomly scheduled at each time step such that (i) a node can transmit to or receive from only one other node in range, and (ii) only one node may transmit in the range of a node receiving a transmission. In addition to this baseline scenario, we also considered the following two scenarios:
+(i) a high-mobility scenario, where the distance traveled by each node is increased to L ∼ Uniform[25,50], and
+(ii) a high-connectivity scenario, where the communication range is increased to 80.
+The recovery delay incurred by the data collector is measured for two cases:
+(ii) when the data recovery process begins at time 2000, i.e. when the data dissemination process is already underway or completed. (This is a more appropriate performance metric for longer-term storage.)
+We ran the simulation 500 times for each choice of budget T ∈ {5,10,20} and parameter w ∈
+scenario, with a random pair of nodes appointed as the source and data collector for each run. C. Simulation Results
+We brieﬂy summarize our ﬁndings here; detailed simulation results can be found in the extended version of this paper [14].
+varies with the desired recovery probability P S , for budget T = 10; these plots essentially describe how much time must elapse before a desired percentage of data collectors are able to recover the data object. The phase transition predicted in the analytical model (Section II-A) is clearly discernible in all the plots, except for the high-connectivity scenario with recovery starting at time 0. The mean recovery delay performance is also consistent with our analysis (Section II-B), with minimal spreading of the budget (w = 1) being optimal.
+We observe that in the high recovery probability regime, maximal spreading of the budget (w = 10) can lead to a signiﬁcant reduction in the required wait time (by as much as 40% to 60% in the baseline and high-mobility scenarios). We also note that the recovery start time appears to have a limited impact on the delay performance for the baseline and high-mobility scenarios: for recovery starting at time 0, the different allocations yield about the same performance in the low recovery probability regime; this can be explained by the similarity of the different allocations in the early stages of the dissemination process, when only a few nodes have been reached by the source directly or indirectly through relays.
+[[[ REFS ]]]
+T. Ho
+M. M´edard
+R. Koetter
+D. R. Karger
+M. Effros
+J. Shi
+B. Leong
+--
+A random linear network coding approach to multicast
+----
+C. Fragouli
+J.-Y. L. Boudec
+J. Widmer
+--
+Network coding: An instant primer
+----
+S. Jain
+K. Fall
+R. Patra
+--
+Routing in a delay tolerant network
+----
+T. Spyropoulos
+K. Psounis
+C. S. Raghavendra
+--
+Spray and Wait: An efﬁcient routing scheme for intermittently connected mobile networks
+----
+S. Aced´anski
+S. Deb
+M. M´edard
+R. Koetter
+--
+How good is random linear coding based distributed networked storage?
+----
+A. G. Dimakis
+V. Prabhakaran
+K. Ramchandran
+--
+Ubiquitous access to distributed data in large-scale sensor networks through decen- tralized erasure codes
+----
+A. Kamra
+V. Misra
+J. Feldman
+D. Rubenstein
+--
+Growth codes: Maximizing sensor network data persistence
+----
+Y. Lin
+B. Liang
+B. Li
+--
+Data persistence in large-scale sensor networks with decentralized fountain codes
+----
+S. A. Aly
+Z. Kong
+E. Soljanin
+--
+Fountain codes based distributed storage algorithms for large-scale wireless sensor networks
+----
+R. Kleinber
+R. Kar
+C. Papadimitrio
+E. Friedma
+R. Kleinber
+A. G. Dimaki
+--
+Personal correspondence between   Oct
+----
+D. Leong
+A. G. Dimakis
+T. Ho
+--
+Symmetric allocations for distributed storage
+----
+S. Jain
+M. Demmer
+R. Patra
+K. Fall
+--
+Using redundancy to cope with failures in a delay tolerant network
+----
+Y. Wang
+S. Jain
+M. Martonosi
+K. Fall
+--
+Erasure-coding based routing for opportunistic networks
+----
+D. Leong
+A. G. Dimakis
+T. Ho
+--
+Distributed storage allocations for optimal delay.
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\088.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,90 @@
+[[[ ID ]]]
+180
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Binary Polar Code Kernels from Code Decompositions
+[[[ AUTHORS ]]]
+Noam Presman
+Ofer Shapira
+Simon Litsyn
+[[[ ABSTR ]]]
+Abstract—Code decompositions (a.k.a code nestings) are used to design good binary polar code kernels. The proposed kernels are in general non-linear and show a better rate of polarization under successive cancelation decoding, than the ones suggested by Korada et al., for the same kernel dimensions. In particular, we construct kernels of sizes 14, 15 and 16 providing polarization rates better than any binary kernel of such sizes.
+[[[ BODY ]]]
+where {Z n } n≥ 0 is the Bhattacharyya random sequence corresponding to Arikan’s random tree process [1].
+In [3], Korada et al. studied the use of alternatives to G 2 for the symmetric B-MC. They gave sufﬁcient con- ditions for polarization when linear binary kernels are used over the symmetric B-MC channels. Furthermore, the notion of the rate of polarization was generalized for polar codes based on linear codes having generating matrix G of dimensions ℓ × ℓ. The rate of polarization was quantiﬁed by the exponent of the kernel E(G), which plays the general role of the threshold (equal 0.5) appearing in (1) and (2) (note that here N = ℓ n ). Korada et al. showed that E(G) ≤ 0.5 for all binary linear kernels of dimension ℓ ≤ 15, which is the kernel exponent found for Arikan’s 2 × 2 kernel, and that for ℓ = 16 there exists a code generator matrix G in which E(G) = 0.51828, and this is the maximum exponent achievable by a binary linear kernel up to this dimension. Furthermore, for optimal linear kernels, the exponent E(G) approaches 1 as ℓ → ∞.
+In [4], Mori and Tanaka considered the general case of a mapping g(·), which is not necessarily linear and binary, as a basis for channel polarization constructions. They gave sufﬁcient conditions for polarization and generalized the exponent for these cases. In [5] they considered non-binary, however linear, kernels based on Reed-Solomon codes and Algebraic Geometry codes and showed that their exponents are by far better than the exponents of the known binary kernels. This is true even for such a small kernel dimension as ℓ = 4 and the alphabet size q = 4, in which E (G) = 0.573120.
+In this paper, we propose designing good binary kernels (in the sense of large exponent), by using code decompositions (a.k.a code nestings). The kernels we suggest show better exponents than the ones considered in [3]. Moreover, we describe binary non-linear kernels of sizes 14, 15 and 16 providing a superior polarization exponent than any binary kernel.
+The paper is organized as follows. In Section II, we describe building kernels that are related to decompo- sitions of codes into sub-codes. Furthermore, by using
+if for each T ∈ T i we have that T is a code of length n i , size 2 k i and minimum distance at least d i .
+If the sub-codes of the decompositions are cosets, then we say that {T 1 , ..., T m } is a decomposition into cosets. In this case, for each T i the sub-code that contains the zero codeword is called the representative sub-code, and a minimal weight codeword for each coset is called the coset leader. If all the sub-codes in the decomposition are cosets of linear codes, we say that the decomposition is linear.
+Example 1: As an example consider ℓ = 4 and the 4 × 4 binary matrix
+1 0 1 0 1 1 1 1
+A partition into cosets, having the following chain of parameters (4, 4, 1) − (4, 3, 2) − (4, 1, 4), can be implied by the matrix. This is done by taking T () 1 = {0, 1} 4 , which is partitioned to the even weight codewords and odd weight codewords cosets, i.e. T (0) 2 = u 4 1 | 4 i =1 u i ≡ 0(mod 2) , T (1) 2 	 =
+u i ≡ 1(mod 2) , these cosets are in turn partitioned to anti podalic pairs, T (0,0) 3 = {0000, 1111}, T (0,1) 3 	 = {1010, 0101}, T (0,2) 3 	 = {1100, 0011},
+( b ∈ {0, 1, 2, 3}). Note, that in order to describe this partition, it sufﬁces to describe the representatives and the coset leaders for the partition of the representatives. A binary transformation can be associated to a code decomposition in the following way.
+Deﬁnition 2: Let {T 1 , T 2 , ..., T ℓ +1 } be a code decom- position of {0, 1} ℓ , such that m i = 2 for each i ∈ [ℓ]. Note that the code T ( b i−1 1 ) i 	 is of size 2 ℓ−i +1 , and speciﬁcally T (b 1 ,b 2 ,...,b ℓ ) ℓ +1 	 contains only one codeword. We call such a decomposition a binary decomposition. The transformation g (·) : {0, 1} ℓ → {0, 1} ℓ induced by this binary code decomposition is deﬁned as follows.
+Following the deﬁnition, we can observe, that a se- quential decision making on the bits of the input to the transformation (u ℓ 1 ), given a noisy observation of the output, is actually a decision on the sub-code to which the transmitted vector belongs to. As such, deciding on the ﬁrst bit u 1 is actually deciding if the transmitted vector belongs to T (0) 2 or to T (1) 2 . Once we decided on u 1 , we assume that we transmitted a codeword of T (u 1 ) 2 and by deciding on u 2 we choose the appropriate
+and generalized in [3]. A random sequence {W n } n≥ 0 is deﬁned such that W n ∈ W (i) ℓ n i =1 with
+where {B n } n≥ 1 is a sequence of i.i.d random variables uniformly distributed over the set {0, 1, 2, ..., ℓ − 1}. In a similar manner, the symmetric capacity correspond- ing to the channels {I n } n≥ 0 = {I(W n )} n≥ 0 and the Bhattacharyya parameters random variables {Z n } n≥ 0 = {Z(W n )} n≥ 0 are deﬁned. Just as in [1, Proposition 8], we can prove that the random sequence {I n } n≥ 0 is a bounded martingale, and it is uniform integrable which means it converges almost surely to I ∞ and that E {I ∞ } = I(W ). Now, if we can show that Z n → Z ∞ w.h.p such that Z ∞ ∈ {0, 1}, by the relations between the channel’s information and the Bhattacharyya param- eter [1, Proposition 1], we have that I ∞ ∈ {0, 1}. But, this means that Pr (I ∞ = 1) = E {I ∞ } = I(W ), which is the channel polarization phenomenon.
+Proposition 1: Let g(·) be a binary transformation of dimension ℓ, induced by a binary code decomposition {T 1 , T 2 , ..., T ℓ +1 }. If there exists u ℓ− 1 1 ∈ {0, 1} ℓ− 1 such that D (ℓ) min (u ℓ− 1 1 ) ≥ 2, then Pr (I ∞ = 1) = I(W ).
+Proof: In [4, Corollary 11], sufﬁcient conditions are given for
+The ﬁrst condition is that there exists a vector u ℓ− 1 1 , indices i, j ∈ [ℓ] and permutations σ(·), and τ (·) on {0, 1} such that
+(u ℓ− 1 1 ) ≥ 2, then the two codewords of the code T (u ℓ−1 1 ) ℓ 	 , c 1 and c 2 , are at Hamming distance at least 2. This means that there exist at least two indices i, j such that c 1,i = c 2,i and c 1,j = c 2,j , therefore g (u ℓ−1 1 ) i 	 (u ℓ ) and g (u ℓ−1 1 ) j 	 (u ℓ ) are both permutations. The second condition is that for any
+∈ {0, 1} ℓ− 1 there exist an index m ∈ [ℓ] and a permutation µ(·) on {0, 1} such that
+This requirement also applies here, by noting that for each v ℓ− 1 1 ∈ {0, 1} ℓ− 1 the two codewords of the set T (v ℓ−1 1 ) ℓ 	 are at Hamming distance at least 1. This means that (4) holds, which implies that I ∞ ∈ {0, 1} almost surely, and therefore Pr (I ∞ = 1) = I(W ). 	 ♦
+(ii) For any β > E(g) lim
+D (i) min ≥ d j where k j +1 < ℓ − i + 1 ≤ k j , j ∈ [m], i ∈ [ℓ], k m +1 = 0.
+In [7, Table 5], the author gives a list of code decompositions for ℓ ≤ 16. Using this list, we can construct polarizing non-linear kernels and get lower bounds on their exponent E(g) (In order to do so, we use Observation 2 and Propositions 1 and 2). Table I contains a list of code decompositions that give lower bounds on E(g) that are greater than 0.5. At the chain description column of the table, the code length equals ℓ for all the sub-codes, and was omitted from the chain for brevity. Note that the second entry of the table has the exponent of the kernel suggested in [3]. It was proven that this is the best linear binary kernel of dimension 16, and that all the linear kernels of dimension < 16 have exponents ≤ 0.5. The ﬁrst entry of the table gives a non-linear decomposition resulting in a non linear kernel having a better exponent. Moreover, this exponent is even better than all the exponents that were recorded in [3, Table 1]. In [6], we developed upper-bounds on the exponent. The lower bounds on the exponents of kernels #1, #3, #4 in Table I equal the upper-bounds per their dimension. This means that kernels #1, #3, #4 are optimal (per their dimension) in the sense of maximum exponent. The appendix contains details about the decompositions in Table I.
+The notion of code decomposition was used for the design of good binary kernels in the sense of the polar code exponent. It should be noted that by using non- binary kernels one can get better exponents, as was demonstrated in [5]. There is an essential loss, when using non-binary code decomposition for designing bi- nary kernels. It seems that if we allow the inputs of the kernel to be from different alphabet sizes, we may gain an additional improvement. This interesting idea is further explored in a sequel paper by the authors [8].
+In this appendix we give details on the decomposi- tions enumerated in Table I. All of the decompositions
+[[[ REFS ]]]
+E. Arikan
+--
+Channel polarization: A method for constructing capacity-achieving codes for symmetric binary-input memoryless channels
+----
+E. Arikan
+E. Telatar
+--
+On the rate of channel polarization
+----
+S. B. Korada
+E. Sasoglu
+R. Urbanke
+--
+Polar codes: Characterization of exponent, bounds, and constructions
+----
+R. Mori
+T. Tanaka
+--
+Performance and construction of polar codes on symmetric binary-input memoryless channels
+----
+
+--
+Non-binary polar codes using reed-solomon codes and algebraic geometry codes
+----
+N. Presman
+O. Shapira
+S. Litsyn
+--
+Binary polar code kernels from code decompositions
+----
+S. Litsy
+--
+Handbook of Coding Theory
+----
+N. Presman
+O. Shapira
+S. Litsyn
+--
+Polar codes with mixed kernels
+----
+A. E. Ashikhmin
+S. N. Litsyn
+--
+Fast decoding algorithms for ﬁrst order reed-muller and related codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\180.pdf
+[[[ LINKS ]]]
+

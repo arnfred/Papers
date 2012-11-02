@@ -1,0 +1,149 @@
+[[[ ID ]]]
+149
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Pseudocodewords of Linear Programming Decoding of 3-Dimensional Turbo Codes
+[[[ AUTHORS ]]]
+Eirik Rosnes †
+Michael Helmling ‡
+Alexandre Graell i Amat §
+[[[ ABSTR ]]]
+Abstract—In this work, we consider pseudocodewords of (relaxed) linear programming (LP) decoding of 3-dimensional turbo codes (3D-TCs), recently introduced by Berrou et al.. Here, we consider binary 3D-TCs while the original work of Berrou et al. considered double-binary codes. We present a relaxed LP decoder for 3D-TCs, which is an adaptation of the relaxed LP decoder for conventional turbo codes proposed by Feldman in his thesis. The vertices of this relaxed polytope are the pseudocodewords. We show that the support set of any pseudocodeword is a stopping set of iterative decoding of 3D- TCs using maximum a posteriori constituent decoders on the binary erasure channel. Furthermore, we present a numerical study of small block length 3D-TCs, which shows that typically the minimum pseudoweight (on the additive white Gaussian noise (AWGN) channel) is smaller than both the minimum distance and the stopping distance. In particular, we performed an exhaustive search over all interleaver pairs in the 3D-TC (with input block length K = 128) based on quadratic permutation polynomials over integer rings with a quadratic inverse. The search shows that the best minimum AWGN pseudoweight is strictly smaller than the best minimum/stopping distance.
+[[[ BODY ]]]
+Turbo codes (TCs) have gained considerable attention since their introduction by Berrou et al. in 1993 [1] due to their near-capacity performance and low decoding complexity. The conventional TC is a parallel concatenation of two identical recursive systematic convolutional encoders separated by a pseudorandom interleaver. To improve the performance of TCs in the error ﬂoor region, hybrid concatenated codes (HCCs) can be used. In [2], a powerful HCC nicknamed 3- dimensional turbo code ( 3D-TC) was introduced. The coding scheme consists of a conventional turbo encoder and a patch, where a fraction λ of the parity bits from the turbo encoder are post-encoded by a third rate- 1 encoder. The value of λ can be used to trade-off performance in the waterfall region with performance in the error ﬂoor region. As shown in [2], this coding scheme is able to provide very low error rates for a wide range of block lengths and code rates at the expense
+of a small increase in decoding complexity with respect to conventional TCs. In a very recent work [3], an in-depth performance analysis of 3D-TCs was conducted. Stopping sets for 3D-TCs were treated in [4].
+Feldman et al. [5] recently considered the use of lin- ear programming (LP) to decode binary linear codes. The obvious polytope for LP decoding is the convex hull of all codewords, in which case LP decoding is equivalent to maximum-likelihood (ML) decoding. However, in general, the convex hull has a description complexity that is exponential in the codeword length. Thus, Feldman et al. [5] proposed a relaxed polytope which contains all valid codewords as vertices, but also additional (nonintegral or fractional) non- codeword vertices. The vertices of the relaxed polytope (both integral and fractional) are basically what the authors called pseudocodewords in [5].
+Relaxed LP decoding of conventional TCs was ﬁrst de- scribed by Feldman in his thesis [6]. In [7], it was shown that the set of points from the relaxed polytope (as described by Feldman in [6]) where all entries are rational numbers is equal to the set of all pseudocodewords of all ﬁnite graph covers of the TC factor graph. Also, a many-to-one correspondence be- tween pseudocodewords and stopping sets for turbo decoding on the binary erasure channel (BEC), as originally deﬁned in [8], was observed. The many-to-one correspondence can be described as follows. The support set of any (graph-cover) pseudocodeword, i.e., the index set of the nonzero coordinates, is a stopping set, as deﬁned in [8], and for any stopping set there is a pseudocodeword with support set equal to the stopping set. We remark that these results are extensions of similar results for low-density parity-check codes in [9].
+Expressions for the pseudoweight on the BEC, the binary symmetric channel (BSC), and the additive white Gaussian noise (AWGN) channel are given in [9, 10]. The pseudoweight is the equivalent of the Hamming weight on the BEC and the BSC, and the equivalent of the squared Euclidean distance on the AWGN channel, when LP decoding and not ML decoding is performed. Computing the exact value of the minimum pseudoweight on any channel (possibly besides the BEC) is very hard, and the exact value is not known even for the well-
+known (155, 64, 20) Tanner code from [11]. The best upper bound is 16.4037, found using the search algorithm from [12].
+In this work, we adapt the deﬁnition of a pseudocodeword for a conventional TC from [7] to 3D-TCs. Furthermore, we show by several examples and by computer search that typically the minimum AWGN pseudoweight, denoted by w AWGN min , is smaller than both the minimum distance d min and the stopping distance h min for these codes.
+A block diagram of the 3D-TC is depicted in Fig. 1. The information data sequence u of length K bits is encoded by a binary conventional turbo encoder. By a conventional turbo encoder we mean the parallel concatenation of two identical rate- 1 recursive convolutional encoders, denoted by C a and C b , respectively. Here C a and C b are 8-state recursive con- volutional encoders with generator polynomial g(D) = (1 + D + D 3 )/(1 + D 2 + D 3 ), i.e., the 8-state constituent encoder speciﬁed in the 3GPP LTE standard [13]. The code sequences of C a and C b are denoted by x a and x b , respectively. We also denote by x TC the codeword obtained by alternating bits from x a and x b . A fraction λ (0 ≤ λ ≤ 1), called the permeability rate , of the parity bits from x TC are permuted by interleaver Π c (of length N c = 2λK), and encoded by an encoder of unity rate C c with generator polynomial g(D) = 1/(1 + D 2 ), called the patch or the post-encoder [2]. This can be properly represented by a puncturing pattern p applied to x TC (see Fig. 1) of period N p containing λN p ones (where a one means that the bit is not punctured). The fraction 1 − λ of parity bits which are not encoded by C c is sent directly to the channel. Equivalently, this can be represented by a puncturing pattern ¯ p , the complement of p. We denote by x c the code sequence of C c . Also, we denote by x ch a and x ch b the sub-codewords of x a and x b , respectively, sent directly to the channel, and by x ch the codeword obtained by alternating bits from x ch a and x ch b . Likewise, we denote by x p a and x p b the sub-codewords of x a and x b , respectively, encoded by C c , and by x p the codeword obtained by alternating bits from x p a and x p b . Finally, the information sequence and the code sequences x ch and x c are multiplexed to form the code sequence x, of length N bits, transmitted to the channel. Note that the overall nominal code rate of the 3D-TC is R = K/N = 1/3, the same as for the conventional TC without the patch. Higher code rates can be
+obtained either by puncturing x ch or by puncturing the output of the patch, x c .
+In [2], regular puncturing patterns of period 2/λ were considered for p. For instance, if λ = 1/4, every fourth bit from each of the encoders of the outer TC are encoded by encoder C c . The remaining bits are sent directly to the channel, and it follows that p = [11000000] and ¯ p = [00111111].
+In this section, we review the deﬁnition of stopping sets for 3D-TCs from [4]. First, we need to deﬁne some concepts related to the support set of a vector and of a set of vectors.
+The support set χ(x) of a binary vector x = (x 0 , . . . , x N −1 ) (of length N ) is the index set of the nonzero coordinates. As an example, with x = (0, 1, 1, 0, 1), χ(x) = {1, 2, 4}. The support set χ(C) of a binary linear code C is the union of the support sets of each codeword in C, and the support vector of C, denoted by ψ(C), is the unique binary vector whose support set is equal to χ(C). In the following, the notation C −1 (c) with a binary vector c will denote the output of a maximum a posteriori decoder for code C when decoding c on the BEC where the 1-symbols in c are treated as erasures.
+We start by reviewing the deﬁnition of a stopping set for a conventional TC, i.e., the 3D-TC without the patch. The following deﬁnition is taken from [8].
+Deﬁnition 1 ([8]). Let C denote a given conventional TC with interleaver Π. A subset S = S(Π) = (S u , S x a , S x b ) ⊆ {0, . . . , N − 1} of the indices of the output sequence (or code- word), where S u , S x a , and S x b are subsets of the codeword indices corresponding to systematic bits, parity bits from C a , and parity bits from C b , respectively, is a stopping set if and only if the following conditions are satisﬁed.
+µ x (·) is the mapping of indices of parity bits from C x to indices of the turbo codeword, x = a, b, and µ s (·) is the mapping of indices of systematic bits to indices of the turbo codeword.
+The deﬁnition above can be adapted to 3D-TCs in a fairly straightforward manner as follows. See also [4].
+Deﬁnition 2. Let C denote a given 3D-TC with interleavers Π and Π c . A subset S = S(Π, Π c ) = (S u , S x ch a , S x ch
+, S x c ) ⊆ {0, . . . , N − 1} of the indices of the output sequence (or codeword), where S u , S x ch a , S x ch
+, and S x c are subsets of the codeword indices corresponding to systematic bits, parity bits from C a sent directly to the channel, parity bits from C b sent directly to the channel, and parity bits from C c , respectively, is a stopping set if and only if the following conditions are satisﬁed.
+1) There exists a linear subcode ˆ C c ⊆ C c , such that µ c (χ( ˆ C c )) = S x c , and
+) is a stopping set of the outer TC, as deﬁned in Deﬁnition 1, where S x p x is the
+set of indices from Π −1 c (χ(C −1 c (ψ( ˆ C c )))) corresponding to parity bits from C x , x = a, b.
+µ c (·) is the mapping of indices of bits from the output of the inner encoder to indices of codewords of the 3D-TC. The size of a stopping set S is its cardinality, and the size of the smallest nonempty stopping set is the stopping distance h min .
+In this section, we consider relaxed LP decoding of 3D- TCs, adapting the relaxation proposed in [6] for conventional TCs to 3D-TCs.
+Let T x = T x (V x , E x ) denote the information bit-oriented trellis of C x , x = a, b, c, where the vertex set V x partitions as V x = ∪ I x t =0 V x,t , which also induces the partition E x = ∪ I x −1 t =0 E x,t of the edge set E x , where I x is the trellis length of T x . In the following, the encoders C x (and their corresponding trellises T x ) are assumed (with some abuse of notation) to be systematic, in the sense that the output bits are preﬁxed with the input bits. Thus, C x is regarded as a rate- 1/2 encoder, and the trellis T x has an output label containing two bits, for x = a, b, c. Now, let e ∈ E x,t be an arbitrary edge from the tth trellis section. The ith bit in the output label of e is denoted by c i (e), i = 0, . . . , n x,t − 1, the starting state of e as s S (e), and the ending state of e as s E (e). Deﬁne the polytope
+where φ x (t, i) = t −1 j =0 n x,j +i, and ρ x (·) denotes the mapping of codeword indices of constituent encoder C x to codeword indices of the overall codeword of the 3D-TC appended with the 2λK parity bits from encoders C a and C b which are sent to the patch. Note that Q x is very similar to a network ﬂow polytope (only the last type of constraints breaks this).
+Next, deﬁne the following projection onto the ﬁrst N variables of ˜ y
+((y, ˆ y ), f ) ∈ Q x } and the polytope
+Relaxed LP decoding (on a binary-input memoryless channel) of 3D-TCs can be described by the linear program
+c l is the lth codeword bit, and r l is the lth component of the received vector. If instead of ˙ Q Π,Π c we use the convex hull of the codewords of the 3D-TC, then solving the linear program in (2) is equivalent to ML decoding.
+The notion of a proper and C-symmetric polytope was intro- duced in [6, Ch. 4] where the author proved that the probability of error of LP decoding is independent of the transmitted codeword on a binary-input output-symmetric memoryless channel when the underlying code is linear and the polytope is proper and C-symmetric.
+Lemma 1. Let C denote a given 3D-TC with interleavers Π and Π c . The polytope ˙ Q Π,Π c is proper, i.e., ˙ Q Π,Π c ∩{0, 1} N = C and C-symmetric, i.e., for any y ∈ ˙ Q Π,Π c and c ∈ C it holds that |y − c| ∈ ˙ Q Π,Π c .
+Lemma 1 can be proved using the same arguments as for a conventional TC. The formal proof is omitted for brevity.
+When decoding 3D-TCs by solving the linear program in (2), a vertex point of the polytope ˙ Q Π,Π c is always returned by the decoder. Furthermore, any vertex point is a pseudocode- word, and the pseudoweight on the AWGN channel of a nonzero pseudocodeword ω is deﬁned as [9, 10]
+Lemma 2. Let C denote a given 3D-TC with interleavers Π and Π c . For any pseudocodeword ω, the support set χ(ω) of ω is a stopping set according to Deﬁnition 2. Conversely, for any stopping set S = S(Π, Π c ) of the 3D-TC there exists a pseudocodeword ω with support set χ(ω) = S.
+As a consequence of Lemma 2, it follows that w AWGN min of C is upper-bounded by the h min of C.
+We remark that the d min can be computed exactly by solving the (integer) program in (2) with λ l = 1 for all l, with integer constraints on all the ﬂow variables f in (1), i.e., f l ∈ {0, 1} for all l, and with the constraint N −1 l =0 y l ≥ 1 to avoid obtaining the all-zero codeword. The exact d min of 3D-TCs has not been computed before in the literature. For instance, in [3], only estimates of the d min were provided. Finally, note that the exact h min can be computed in a similar manner using extended trellis modules in T x (see [8] for details).
+In this section, we present some numerical results when the interleaver pair (Π, Π c ) is taken from the set of all possible interleaver pairs, and when it is taken from the set of pairs of quadratic permutation polynomials (QPPs) over integer rings. Permutation polynomial based interleavers over integer rings for conventional TCs were ﬁrst proposed in [14]. These inter- leavers are fully algebraic and maximum contention-free [15],
+which makes them very suitable for parallel implementation in the turbo decoder. QPP-based interleavers for conventional TCs were recently adopted for the 3GPP LTE standard [13]. We remark that for all the results below, λ = 1/4 and the regular puncturing pattern p = [11000000] are assumed. As shown in [3], λ = 1/4 gives a suitable trade-off between performance in the waterfall and error ﬂoor regions. Finally, we emphasis that all the numerical estimates of the d min and w AWGN min given below are actually also upper bounds on the exact values.
+In Fig. 2, we present the exact d min and an estimate of w AWGN min (which is also an upper bound), denoted by
+ˆ w AWGN min , of unpunctured 3D-TCs with K = 128 and with 100 randomly selected pairs of interleavers (Π, Π c ) (green plus signs). The corresponding results with QPP-based interleaver pairs (and with no constraints on the inverse polynomials) are also displayed (blue x-marks). For all codes, except 11, the estimated w AWGN min is at most equal to the d min . The values of w AWGN min were estimated using the algorithm from [12], adapted to 3D-TCs, with a signal-to-noise ratio (SNR) of 2.0 dB and 500 evaluations of the algorithm, while the d min was computed exactly by solving (2), augmented with the constraint N −1 l =0 y l ≥ 1 (to avoid obtaining the all-zero codeword), with integer constraints on the ﬂow variables f in (1). Note that when the d min is strictly smaller than the estimated w AWGN min (points above the red line), the estimation algorithm from [12] was unable to provide an estimate that beats the trivial upper bound provided by Lemma 2. From the ﬁgure, it follows that QPPs give better codes (can provide a higher d min and a higher ˆ w AWGN min ), and that w AWGN min is strictly lower than the d min for most codes when the d min is large.
+In this subsection, we present the results of a computer search for pairs of QPPs with a quadratic inverse for K = 128
+and 256 for unpunctured R = 1/3 3D-TCs. The objective of the search was to ﬁnd pairs of QPPs giving a large w AWGN min , estimated using the algorithm from [12], adapted to 3D-TCs, with an SNR of 1.7 dB and 500 evaluations of the algorithm. To speed up the search, an adaptive threshold on the minimum AWGN pseudoweight w AWGN min was set in the search, in the sense that if a pseudocodeword of AWGN pseudoweight smaller than the threshold was found, then this particular candidate pair of QPPs was rejected.
+For K = 128, we performed an exhaustive search over all 2 17 pairs of QPPs (with a quadratic inverse). In Fig. 3, we plot the exact d min (red circles), the exact h min (green x-marks), and ˆ w AWGN min (blue plus signs) of the 75 3D-TCs with the best ˆ w AWGN min . For each point in the ﬁgure, the x- coordinate is the sample index (the results are ordered by increasing d min ), while the y-coordinate is either the exact d min , the exact h min , or ˆ w AWGN min . From the ﬁgure, we observe that the best w AWGN min (which is at most 30.2139) is strictly smaller than the best possible d min / h min . The best possible d min was established to be 38 (exhaustive search), and for this particular code h min = 36, but the estimate of w AWGN min is not among the 75 best; it is only 29.6042 (see Table I). For K = 256, only a partial search has been conducted. The largest found value for ˆ w AWGN min , after taking about 180000 samples, which is close to 17% of the whole space, is 43.0335.
+We also performed an exhaustive/random search optimizing the d min for pairs of QPPs with a quadratic inverse for selected values of K for unpunctured R = 1/3 3D-TCs. For K = 128, 160, 192, and 208, the search was exhaustive, in the sense that each pair of interleavers was looked at. In the search, the d min was estimated using the triple impulse method [16]. The results are given in Table I for selected values of K, where f (x) = f 1 x + f 2 x 2 (mod K) generates the TC interleaver, ˜ f (x) = ˜ f 1 x+ ˜ f 2 x 2 (mod N c ) generates the permutation in the patch, and ˆ d min , d LB min , and ˆ w AWGN min denote the estimated d min , a lower bound on the d min based on an ensemble analysis,
+and the estimated w AWGN min , respectively. The estimates of w AWGN min were obtained by using the algorithm from [12], adapted to 3D-TCs, with SNR and number of evaluations of the algorithm given in the tenth and eleventh column of the table, respectively. Note that the number of evaluations of the algorithm indicates its reliability. The lower bound on the d min given in the eighth column should be interpreted in the following manner. When picking random pairs of interleavers for the 3D-TC, the d min will be at least equal to the value of the bound with probability 1/2. Finally, we remark that the codes in the ﬁrst and second rows, for K = 128 and 160, are d min -optimal, in the sense that there does not exist any pair of QPPs (with a quadratic inverse) giving a d min strictly larger than 38 and 42, respectively, for the unpunctured 3D-TC.
+In [3], a pair of QPPs for K = 512 giving an estimated d min of 67 for R = 1/3 was tabulated in Table IV. Also, estimated minimum distances of 38, 17, and 15, for nominal code rates R = 1/2, 2/3, and 4/5, respectively, obtained by using optimized puncturing patterns, were tabulated. By using the algorithm from [12], adapted to 3D-TCs, we found pseudocodewords of AWGN pseudoweights 45.5872, 28.8257, 19.1668, and 10.1984, for nominal code rates 1/3, 1/2, 2/3, and 4/5, respectively.
+In this work, we considered pseudocodewords of (relaxed) LP decoding of 3D-TCs, generalizing the LP relaxation pro- posed by Feldman in his thesis for conventional TCs. We showed that the support set of any pseudocodeword is a stopping set, and presented a numerical study of small block length 3D-TCs, which showed that typically w AWGN min is smaller than both the d min and the h min for these codes. It is expected that the w AWGN min will dominate performance for high SNRs.
+[[[ REFS ]]]
+C. Berrou
+A. Glavieux
+P. Thitimajshima
+--
+Near Shannon limit error-correcting coding and decoding: Turbo-codes
+----
+C. Berrou
+A. Graell i Amat
+Y. Ould-Cheikh-Mouhamedou
+Y. Saouter
+--
+Improving the distance properties of turbo codes using a third component code: 3D turbo codes
+----
+E. Rosnes
+A. Graell i Amat
+--
+Performance analysis of 3-D turbo codes
+----
+A. Graell i Amat
+E. Rosnes
+--
+Stopping set analysis of 3-dimensional turbo code ensembles
+----
+J. Feldman
+M. J. Wainwright
+D. R. Karger
+--
+Using linear program- ming to decode binary linear codes
+----
+J. Feldman
+--
+Decoding error-correcting codes via linear programming
+----
+E. Rosnes
+--
+On the connection between ﬁnite graph covers, pseudo- codewords, and linear programming decoding of turbo codes
+----
+E. Rosnes
+--
+Turbo decoding on the binary erasure chan- nel: Finite-length analysis and turbo stopping sets
+----
+P. O. Vontobel
+R. Koetter
+--
+Graph-cover decoding and ﬁnite- length analysis of message-passing iterative decoding of LDPC codes
+----
+G. D. Forney
+R. Koetter
+F. R. Kschischang
+A. Reznik
+--
+On the effective weights of pseudocodewords for codes deﬁned on graphs with cycles
+----
+R. M. Tanner
+D. Sridhara
+T. Fuja
+--
+A class of group-structured LDPC codes
+----
+M. Chertkov
+M. G. Stepanov
+--
+An efﬁcient pseudocodeword search algorithm for linear programming decoding of LDPC codes
+----
+
+--
+3rd generation partnership project; technical speciﬁcation group radio access network; evolved universal terrestrial radio access (E-UTRA); multiplexing and channel coding (release 8)
+----
+J. Sun
+O. Y. Takeshita
+--
+Interleavers for turbo codes using permu- tation polynomials over integer rings
+----
+O. Y. Takeshita
+--
+On maximum contention-free interleavers and permu- tation polynomials over integer rings
+----
+S. Crozier
+P. Guinand
+A. Hunt
+--
+Computing the minimum distance of turbo-codes using iterative decoding techniques
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\149.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,173 @@
+[[[ ID ]]]
+134
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Capacity of Less Noisy Relay Channels
+[[[ AUTHORS ]]]
+Si-Hyeon Lee
+Sae-Young Chung
+[[[ ABSTR ]]]
+Abstract—In this paper, we characterize the capacity of two new classes of relay channels, which we call more capable and less noisy relay channels. In these relay channels, the channel seen by the relay is stronger than that seen by the destination in a certain sense, which resembles the conditions for the more capable and less noisy broadcast channels. In more capable relay channels, decode-and-forward (DF) is shown to be optimal. The more capable relay channel includes as special cases several examples in the literature where DF is shown to be optimal. In less noisy relay channels, partial decode-and-forward (PDF) is shown to achieve the capacity. This is the third class of relay channels where PDF is shown to be optimal, where two previously known classes are the semideterministic relay channel and the relay channel with orthogonal components at the source. By using the deﬁnition of less noisy relay channel, we can easily construct many examples where DF is strictly suboptimal but PDF is capacity achieving.
+[[[ BODY ]]]
+The relay channel was introduced by van der Meulen in [1], [2], where a source wants to send messages to its destination with the help of a relay. Studying such a simple model would be helpful for understanding larger networks. Nevertheless, the capacity of the relay channel is not known in general. For the relay channel, many coding strategies were introduced by Cover and El Gamal in [3]. In decode-and-forward (DF), the relay decodes the message and forwards it to the destination. This strategy is known to be optimal for physically degraded channels [3]. It is sometimes a strong requirement that the relay decodes the message. Instead, in partial decode-and- forward (PDF), the relay decodes only a part of the message and forwards it to the destination. PDF is shown to achieve the capacity for the semideterministic relay channel [4] and the relay channel with orthogonal sender components [5]. DF and PDF can be optimal if we can control what the relay sends without loss of optimality. To be able to do so, however, the source-to-relay channel would have to be strong enough.
+In this paper, we deﬁne two new classes of relay channels in which the channel seen by the relay is stronger than that seen by the destination in a certain sense. The ﬁrst class is called more capable relay channel and DF is shown to be optimal for the class. This new class of more capable relay channels includes as special cases the following previously known classes of relay channels for which DF is optimal under the more capable condition.
+• Discrete memoryless relay channel (DM-RC) with or- thogonal receiver components [6].
+• Additive white Gaussian noise relay channel (AWGN- RC) with orthogonal receiver components [7].
+• AWGN-RC with uniform phase or Rayleigh fading with channel state information (CSI) available only at re- ceivers [8], [9].
+The other class is called less noisy relay channel and PDF is shown to achieve the capacity. This is the third class of relay channels in which PDF is shown to be optimal. By using the deﬁnition of less noisy relay channels, we can easily construct many examples where DF is strictly suboptimal but PDF is capacity achieving.
+The outline of this paper is as follows. More capable and less noisy classes are studied for the DM-RC in Sections II-IV and for the AWGN-RC in Section V. In Section II, a DM- RC model is presented. In Section III, more capable and less noisy DM-RCs are deﬁned and DF and PDF are shown to be optimal respectively for these classes. Examples of these classes of DM-RCs are illustrated in Section IV. In Section V, we deﬁne the more capable and less noisy classes for AWGN- RCs and show some examples.
+A DM-RC (X 1 , X 2 , p (y 2 , y 3 |x 1 , x 2 ) , Y 2 , Y 3 ) consists of ﬁnite sets X 1 , X 2 , Y 2 , Y 3 and a collection of conditional prob- ability distributions p (y 2 , y 3 |x 1 , x 2 ) as shown in Fig. 1. A
+2 nR , n code consists of a message set W = {1, . . . , 2 nR }, an encoding function at the source that maps each message w ∈ W to a codeword x n 1 (w) ∈ X n 1 , a processing function at the relay that maps each past received symbols y i− 1 2 ∈ Y i− 1 2
+to a symbol X 2,i (y i− 1 2 ) ∈ X 2 , and a decoding function at the destination that maps each received sequence y n 3 ∈ Y n 3 to a message ˆ w.
+The source chooses an index w uniformly from the set W and sends x n 1 (w). The average probability of error for a (2 nR , n ) code is given as P (n) e 	 Pr ˆ W = W . A rate R is said to be achievable if there exists a sequence of (2 nR , n ) codes such that P (n) e → 0 as n → ∞. The capacity C is the supremum of all achievable rates.
+In this section, we introduce more capable and less noisy DM-RCs and show some properties.
+Deﬁnition 1 (More capable DM-RC): A DM-RC is called more capable if
+Note that C ≤ C M AC clearly. Because DF [3] can achieve min{I(X 1 ; Y 2 |X 2 ), I(X 1 , X 2 ; Y 3 )} for any p(x 1 , x 2 ), C M AC can be achieved using DF for a more capable DM-RC. This leads to the following.
+Theorem 1: The capacity of the more capable DM-RC is C M AC and is achieved by using DF.
+Deﬁnition 2 (Less noisy DM-RC): A DM-RC is called less noisy if
+for some p (u, x 1 , x 2 ) that satisﬁes I(X 1 , X 2 ; Y 3 ) = C M AC where |U| ≤ |X 1 | · |X 2 |.
+Since choosing U as X 1 in (2) gives (1), we can establish the following proposition.
+Proposition 1: If a DM-RC is more capable, then it is less noisy.
+In Section IV, we provide some examples of less noisy DM-RC that are not more capable. For a physically degraded DM-RC, however, such an example does not exist, i.e., a less noisy DM-RC is more capable if it is physically degraded.
+Proposition 2: If a DM-RC is physically degraded, i.e., p (y 2 , y 3 |x 1 , x 2 ) = p(y 2 |x 1 , x 2 )p(y 3 |x 2 , y 2 ), and less noisy, then it is more capable.
+Proof: Assume that a DM-RC is physically degraded and less noisy. The capacity C of a physically degraded DM-RC [3] is given as
+Since the DM-RC is assumed to be less noisy, C = C M AC , which implies
+C M AC ≤ I(X 1 , X 2 ; Y 3 ) 	 (3) C M AC ≤ I(X 1 ; Y 2 |X 2 ) 	 (4)
+for some p ∗ (x 1 , x 2 ). The inequality (3) requires p ∗ (x 1 , x 2 ) to satisfy I (X 1 , X 2 ; Y 3 ) = C M AC , and, for such p ∗ (x 1 , x 2 ), the inequality (4) should hold. Hence, the DM-RC is more capable.
+From the following lower bound on the achievable rate of the PDF [3], it can be shown that the PDF can achieve C M AC for a less noisy DM-RC.
+where |U| ≤ |X 1 | · |X 2 |. Hence, we obtain the following theorem.
+Theorem 2: The capacity of the less noisy DM-RC is given by C M AC and is achieved by using PDF.
+Let us consider a special case where the relay-to-destination link is separate and has capacity R 0 , which is called discrete memoryless primitive relay channel (DM-PRC). Let C d denote the capacity of the direct link, i.e., C d = max p (x 1 ) I (X 1 ; Y 3 ). For the DM-PRC, more capable and less noisy conditions are given as follows.
+Deﬁnition 3 (More capable DM-PRC): A DM-PRC is called more capable if
+for some p (x 1 ) that satisﬁes I(X 1 ; Y 3 ) = C d . Equivalently, a DM-RC is more capable if
+In [6], DF was shown to be optimal under the the condition (6). Therefore, our deﬁnition of more capable RC includes the result in [6] as a special case.
+Deﬁnition 4 (Less noisy DM-PRC): A DM-PRC is called less noisy if
+for some p (u, x 1 ) that satisﬁes I(X 1 ; Y 3 ) = C d where |U| ≤ |X 1 |.
+The conditions for more capable and less noisy DM-PRCs have similarities with those for more capable and less noisy discrete memoryless broadcast channels (DM-BCs), respec- tively. For a DM-BC where a sender X 1 wants to send private messages W 2 and W 3 to receivers Y 2 and Y 3 , respectively, a more capable DM-BC and a less noisy DM-BC are deﬁned as follows.
+Deﬁnition 5 (More capable DM-BC): A DM-BC is called more capable if
+Deﬁnition 6 (Less noisy DM-BC): A DM-BC is called less noisy if
+For the more capable DM-BC and less noisy DM-BC, the superposition coding is known to be optimal [10], [11]. Let us compare the more capable and less noisy conditions for DM- PRC with those for DM-BC. First, (5) and (7) have R 0 term due to the relay-to-destination link in DM-PRC, but is absent in DM-BC. Second, the inequalities (5) and (7) for DM-PRC need to hold for some joint distributions that satisfy a certain condition whereas the inequalities (8) and (9) for DM-BC are
+required to hold for all joint distributions. 1 This results in the fact that a more capable DM-RC is less noisy whereas a less noisy DM-BC is more capable. The relationship is illustrated in Fig. 2. We can see that if a DM-RC is physically degraded and more capable, then it is less noisy as stated in Proposition 2.
+Another interesting observation can be obtained from the following equivalent condition for the less noisy DM-PRC
+R ∗ 0 has similarity with the secrecy capacity of a discrete memoryless wiretap channel (DM-WTC) where a sender X 1 wants to send a message W to the receiver Y 2 while keeping it secret from the eavesdropper Y 3 . The secrecy capacity of the DM-WTC [13] is given as
+where |U| ≤ |X 1 |. An interpretation is that the PDF is optimal when R 0 is smaller than or equal to R ∗ 0 , which is the maximum rate of information from the source to the relay without revealing it to the destination while the source is communicating with the destination at the maximum rate C d .
+In this section, we provide some examples of more capable and less noisy DM-RCs. The following example illustrates a DM-PRC that is not more capable for any R 0 and is less noisy for some range of R 0 .
+Example 1: Consider a DM-PRC in Fig. 3 where X 1 = {0, 1, 2}, Y 2 = {0, 1}, Y 3 = {0, 1}, and the channel distribu- tion p (y 2 , y 3 |x 1 ) is given as follows.
+• If X 1 = 2, Y 2 is 0 or 1 with equal probabilities, i.e., p (y 2 = 0|x 1 = 2) = p(y 2 = 1|x 1 = 2) = 0.5, and Y 3 = 1.
+Note that this DM-PRC is not physically degraded, not in- cluded in the semideterministic cases [4], [14], and not more capable for all R 0 .
+0 0
+1 1
+1 2
+One can easily check for the above p (u, x 1 ), I(X 1 ; Y 3 ) = C d = 1 bit. Hence, the capacity is C M AC = 1 + R 0 bits for R 0 ≤ I(U ; Y 2 ) − I(U ; Y 3 ) = 1 − H(0.25) ≈ 0.1887. See Fig.
+Next, we present an example of a DM-PRC that is more capable for a range of R 0 and is less noisy but not more capable for some other range of R 0 .
+Example 2: Consider a DM-PRC in Fig. 5 where X 1 = Y 2 = {0, 1}, Y 3 = {0, 1, ε}, p(y 2 , y 3 |x 1 ) = p(y 2 |x 1 )p(y 3 |x 1 ), the source-to-relay channel is the binary symmetric channel with transition probability p, and the source-to-destination channel is the binary erasure channel with erasure probability e.
+Because I (X 1 ; Y 3 ) is maximized when p(X 1 = 0) = p (X 1 = 1) = 0.5, this channel is more capable if R 0 ≤ (1 − H(p)) − (1 − e) = e − H(p).
+p (X 1 = 0|U = 0) = 1 − q, p(X 1 = 1|U = 0) = q p (X 1 = 0|U = 1) = q, p(X 1 = 1|U = 1) = 1 − q
+One can easily check for the above p (u, x 1 ), I(X 1 ; Y 3 ) = C d and I (U ; Y 2 ) − I(U ; Y 3 ) = 1 − H(p + q − 2pq) − (1 − e)(1 − H (q)). Hence, this DM-PRC is less noisy if R 0 ≤ R ∗ 0 (p, e)
+max 0≤q≤0.5 1 − H(p + q − 2pq) − (1 − e)(1 − H(q)). For example, when e = 0.5 and H(p) = 0.45, the channel is
+e e
+more capable for R 0 ≤ 0.05 and less noisy and not more capable for 0.05 < R 0 ≤ 0.0732. See Fig. 6.
+Now, we provide an example of DM-RC that can be more capable or less noisy according to channel parameters.
+Example 3: In this example, we consider a DM-RC where X 1 = X 2 = Y 2 = {0, 1}, Y 3 = {0, 1, ε}, and
+p (y 2 , y 3 |x 1 , x 2 ) = p(y 2 |x 1 )p(y 3 |x 1 , x 2 ). As in Example 2, the source-to-relay channel is the binary symmetric channel with transition probability p. Suppose that, if X 2 = 0, the source-to- destination channel is the binary erasure channel with erasure probability e, and, if X 2 = 1, the channel output at the destination is erased, i.e., Y 3 = ε. Without loss of generality, we assume p ≤ 0.5. See Fig. 7.
+We pick the same p (u, x 1 ) as in Example 2, which satisﬁes I (X 1 ; Y 2 , Y 3 ) = C M AC for this example. Followed by similar steps as in Example 2, we can obtain Table I that represents some ranges of e and p that result in more capable and less noisy cases.
+In this section, we study more capable and less noisy classes for AWGN-RCs with multiple antennas. In an AWGN-RC with multiple antennas, the channel input X k for k = 1, 2 is a t k ×1
+p p
+e e
+complex vector and the channel output Y i for i = 2, 3 is given as
+where H ik is an r i × t k complex channel matrix that is either random (fading) or ﬁxed (no fading) and Z i is the additive white complex Gaussian noise at node i with zero mean and unit variance. If H ik for i = 2, 3, k = 1, 2, k = i is ﬁxed (no fading), we assume CSI available at both senders and receivers. Otherwise (fading), we assume CSI available only at receivers. For two random vectors L and M , let Σ LM denote E[LM ∗ ]. We assume that Σ X i X i ∈ P i for i = 1, 2 where P i is a set of covariance matrices that satisfy some power constraints. For notational convenience, we deﬁne X T 	 X T 1 X T 2 , H 3
+E H 3 [|I +H 3 KH ∗ 3 |]. Now we are ready to deﬁne more capable and less noisy AWGN-RCs.
+Deﬁnition 7 (More capable AWGN-RC): An AWGN-RC is called more capable if
+Deﬁnition 8 (Less noisy AWGN-RC): An AWGN-RC is called less noisy if
+for some F (u, x 1 , x 2 ) such that X 1 and X 2 are jointly Gaussian with zero mean and covariance matrix K 0 such that E H 3 [|I + H 3 KH ∗ 3 |] = C M AC .
+In the same way as for the more capable and less noisy DM-RCs, we have the following capacity theorems.
+Theorem 3: The capacity of the more capable AWGN-RC is C M AC and is achieved by using DF.
+Theorem 4: The capacity of the less noisy AWGN-RC is C M AC and is achieved by using PDF.
+Let us give some examples of more capable and less noisy AWGN-RCs.
+Example 4: Consider an AWGN-RC with t 1 = t 2 = r 2 = 1, r 3 = 2 such that Y 3 = (Y ′ 3 , Y ′′ 3 ), Z 3 = (Z ′ 3 , Z ′′ 3 ), Y 2 = h 21 X 1 + Z 2 , Y ′ 3 = h 31 X 1 + Z ′ 3 , and Y ′′ 3 = h 32 X 2 + Z ′′ 3 with
+no fading. The power constraints are given as P 1 = {Σ X 1 X 1 : tr[Σ X 1 X 1 ] ≤ P 1 } and P 2 = {Σ X 2 X 2 : tr[Σ X 2 X 2 ] ≤ P 2 }. The
+which is the same as the condition for the optimality of DF in [7].
+of channel matrix H ik for i = 2, 3, k = 1, 2, i = k, 1 ≤ m ≤ r i , and 1 ≤ n ≤ t k is given as e jθ (m,n) ik d α/2
+where d ik is the distance between nodes k and i, α ≥ 2 is the path-loss exponent, and θ (m,n) ik is independently and uniformly distributed over [0, 2π]. The power constraints are given as P 1 = {Σ X 1 X 1 : tr[Σ X 1 X 1 ] ≤ P 1 } and P 2 = {Σ X 2 X 2 : tr[Σ X 2 X 2 ] ≤ P 2 }.
+For this channel, K that achieves C M AC is given as Σ X 1 X 1 = P 1 t 1 I, Σ X 2 X 2 = P 2 t 2 I, Σ X 1 X 2 = 0, and Σ X 2 X 1 = 0
+as shown in [8]. Thus, this AWGN-RC becomes more capable if
+Note that the condition (11) is the same as that for the optimality of DF in Theorem 8 in [8], and thus our deﬁnition of more capable DM-RC includes this as a special case. 2
+Example 6: In this example, we consider an AWGN-RC with t 1 = 2, t 2 = r 2 = r 3 = 1 such that X 1 = (X ′ 1 , X ′′ 1 ) and
+P 2 = {Σ X 2 X 2 : tr[Σ X 2 X 2 ] ≤ P 2 }. The more capable and less noisy conditions are given as follows according to the channel fading.
+• If we have no fading, then the AWGN-RC is more capable if
+In this case, the less noisy condition is the same as the more capable condition.
+for i = 2, 3, k = 1, 2, i = k where d ik is the distance between nodes k and i, α is the path-loss exponent, and θ ik is independently and uniformly distributed over [0, 2π]. As in Example 5, C M AC is achieved when X ′ 1 and X 2 are independent Gaussian input with zero mean and variances P ′ 1 and P 2 , respectively. Then, the AWGN-RC becomes more capable if
+This research was supported in part by the MKE ITRC under grant no. NIPA-2011-(C1090-1111-0011).
+[[[ REFS ]]]
+E. C. van der Meulen
+--
+Transmission of information in a T-terminal discrete memoryless channel
+----
+
+--
+Three-terminal communication channels
+----
+T. M. Cover
+A. El Gamal
+--
+Capacity theorems for the relay channel
+----
+A. El Gamal
+M. Aref
+--
+The capacity of the semideterministic relay channel
+----
+A. El Gamal
+S. Zahedi
+--
+Capacity of a class of relay channels with orthogonal components
+----
+Z. Zhang
+--
+Partial converse for a relay channel
+----
+A. El Gamal
+M. Mohseni
+S. Zahedi
+--
+Bounds on capacity and minimum energy-per-bit for AWGN relay channels
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative strategies and capacity theorems for relay networks
+----
+B. Wang
+J. Zhang
+A. Høst-Madsen
+--
+On the capacity of mimo relay channels
+----
+J. K ¨orner
+K. Marton
+--
+Comparison of two noisy channels
+----
+A. El Gamal
+--
+The capacity of a class of broadcast channels
+----
+C. Nair
+--
+Capacity regions of two new classes of two-receiver broadcast channels
+----
+I. Csisz´ar
+J. K ¨orner
+--
+Broadcast channels with conﬁdential mes- sages
+----
+Y.-H. Kim
+--
+Capacity of a class of deterministic relay channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\134.pdf
+[[[ LINKS ]]]
+

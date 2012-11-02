@@ -1,0 +1,152 @@
+[[[ ID ]]]
+153
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Capacity of Abelian Group Codes Over Discrete Memoryless Channels
+[[[ AUTHORS ]]]
+Aria G. Sahebi
+S. Sandeep Pradhan
+[[[ ABSTR ]]]
+Abstract—For most discrete memoryless channels, there does not exist a linear code which uses all of the channel’s input symbols. Therefore, linearity of the code for such channels is a very restrictive condition and there should be a loosening of the algebraic structure of the code to a degree that the code can admit any channel input alphabet. For any channel input alphabet size, there always exists an Abelian group structure deﬁned on the alphabet. We investigate the capacity of Abelian group codes over discrete memoryless channels and provide lower and upper bounds on the capacity.
+[[[ BODY ]]]
+Approaching information theoretic performance limits of communication systems using structured codes has been an area of great interest in recent years [2], [5], [6], [8], [11], [14]. The earlier attempts to design fast encoding and decoding algorithms resulted in injection of algebraic structures to the coding scheme so that the channel input alphabets are replaced with algebraic ﬁelds and encoders are replaced with matrices. It is well-known that binary linear codes achieve the capacity of binary symmetric channels [7]. More generally, it has also been shown that q-ary linear codes can achieve the capacity of symmetric channels [6] and linear codes can be used to compress a source losslessly down to its entropy [10]. Optimality of linear codes for certain communication problems motivates the study of structured codes in general.
+In 1979, Korner-Marton showed that for multiterminal com- munication problems, the asymptotic average performance of linear code ensembles can be superior to that of the standard code ensembles traditionally used in information theory. In the recent past, such gains have been shown for a wide class of problems [11]–[13]. Hence information-theoretic character- izations of performance of such structured code ensembles for various communication problems have become important.
+The algebraic structure of the code, however, imposes certain restrictions on the encoder. Linear codes are highly structured and for certain communication problems such codes cannot be optimal. Moreover, they can only be constructed on alphabets of certain size (prime power). Group codes are a class of algebraic-structured codes that are more general because we can construct such codes over any alphabet, and they have been shown to outperform unstructured codes in certain communication settings [11]. Group codes were ﬁrst studied by Slepian [16] for the Gaussian channel. In [1], the
+capacity of group codes for certain classes of channels has been computed. Further results on the capacity of group codes were established in [2], [3]. The capacity of group codes over a class of channels exhibiting symmetries with respect to the action of a ﬁnite Abelian group has been investigated in [5].
+In this work, we focus on the point-to-point channel coding problem over general discrete memoryless channels. The chan- nel input alphabet is equipped with the structure of an Abelian group. We characterize the performance of asymptotically good Abelian group codes over general discrete memoryless channels. In particular, we derive lower and upper bounds on the capacity of Abelian group codes for communication over such channels. We use a combination of algebraic and information-theoretic tools for this task.
+The paper is organized as follows. In section II, we in- troduce our notation and develop the required background. Section III presents the lower and upper bound on the ca- pacity of Abelian group codes. In section IV we present two special cases, namely, linear codes over arbitrary channels and arbitrary Abelian group codes over symmetric channels where the two bounds match.
+1) Group Codes: Given a group G, a group code C over G with block length n is any subgroup of G n [4], [8]. A shifted group code over G, C + v is a translation of a group code C by a ﬁxed vector v ∈ G n .
+2) Source and Channel Models: We consider discrete mem- oryless and stationary channels used without feedback. We associate two ﬁnite sets X and Y with the channel as the channel input and output alphabets. These channels can be characterized by a conditional probability law W (y|x) for x ∈ X and y ∈ Y. The set X admits the structure of a ﬁnite Abelian group G of the same size. The channel is speciﬁed by (G, Y, W ). Assuming a perfect source coding block applied prior to the channel coding, the source of information generates messages over the set {1, 2, . . . , M } uniformly.
+3) Achievability and Capacity: A transmission system with parameters (n, M, τ ) for reliable communication over a given channel (G, Y, W ) consists of an encoding mapping and a decoding mapping e : {1, 2, . . . , M } → G n , f : G n →
+1 M
+Given a channel (G, Y, W ), the rate R is said to be achievable if for all 	 > 0 and for all sufﬁciently large n, there exists a transmission system for reliable communication with parameters (n, M, τ ) such that 1 n log M ≥ R − , τ ≤ .
+If there is no constraint on the encoder, the maximum achiev- able rate is called the (Shannon) capacity of the channel and is denoted by C |G| which is known to be equal to max p X I(X; Y ). |G| denotes the cardinality (size) of the set G. We use this notation since only the size and not the structure of the channel input alphabet determines the quantity C |G| . In this paper, the encoder is constrained to be afﬁne and therefore the code is a shifted group code. We denote the maximum achievable rate of such codes by C G . If the distribution of X is conﬁned to be uniform over G, we deﬁne C U |G| = I(X; Y ). The capacity of shifted group codes over H which is itself a subgroup of a larger group G is denoted by
+4) Typicality: Consider two random variables X and Y with joint probability density function p X,Y (x, y) over X × Y. Let n be an integer and be a positive real number. The sequence pair (x n , y n ) belonging to X n × Y n is said to be jointly -typical with respect to p X,Y (x, y) if
+and none of the pairs (a, b) with p X,Y (a, b) = 0 occurs in (x n , y n ). Here, N (a, b|x n , y n ) counts the number of occur- rences of the pair (a, b) in the sequence pair (x n , y n ). We denote the set of all jointly -typical sequence pairs in X n ×Y n by A n (X, Y ).
+Given a sequence x n ∈ X n , the set of conditionally -typical sequences A n (Y |x n ) is deﬁned as
+In our notation, O( ) is any function of 	 such that lim →0 O( ) = 0.
+It is a standard fact (see [9] and [4] for example) that any Abelian group G can be decomposed into Z p r groups in the form G ∼ = I i=1 Z p i ri for some integers r i and primes p i for i = 1, 2, · · · , I with the possibility of repetitions. Deﬁne R i = Z p i ri to get G ∼ = I i=1 R i . This means that any element g in the group G can be represented by an I-tuple (g 1 , g 2 , · · · , g I ) where g i ∈ R i = {0, 1, · · · , p r i i − 1} and this representation preserves the group structure of G. For a subgroup H ≤ G, the set of all cosets of H in G is denoted by C(G, H).
+Theorem III.1. A lower bound on the Capacity of group codes over the group G ∼ = I i=1 R i for a discrete memoryless channel (G, Y, W ) is given by:
+|H| |G|
+w i for H ∼ = I i=1 p θ i i R i and C U |S| is the mutual information between the channel input and output when the input distribution is uniform over the subset S of G.
+Proof: We construct an ensemble of homomorphic encoders over G with block length n and put a uniform distribution over the ensemble. Then we calculate the expected average probability of error over the ensemble and observe that for rates less than C G , the average probability of error can be made arbitrarily small by increasing the block length.
+1) Construction of the ensemble of codes: Let w i , i = 1, 2, · · · , I be a set of nonnegative rational weights assigned to each module R i such that I i=1 w i = 1 and let k be a nonnegative integer such that w i k is integer for all i. For each set of weights, we deﬁne an ensemble of codes by taking into account all homomorphisms ϕ : I i=1 R w i k i → G n . It is known that the image of a homomorphism is a subgroup of the target group [9]; Therefore any such homomorphism deﬁnes a group code C over G. We add a random dither v to the code to construct a random shifted group code.
+Let m = 1, 2, · · · , M be the set of messages. Let k be large enough so that a unique message representative u(m) from the set I i=1 R w i k i can be assigned to each message m. The encoding rule is given by e(m) = ϕ(u(m)) + v where ϕ is an arbitrary homomorphism from I i=1 R w i k i to G n and v is a random vector in G n .
+At the decoder, after receiving the channel output y, decode it to the message m if m is the unique message such that u(m) and y are jointly -typical. Otherwise declare error.
+is the multi- plicative identity of R i . Deﬁne e iK to be the generator for the Kth R i in I i=1 R w i k i for i = 1, · · · , I and K = 1, · · · , w i k. Any element a ∈ I i=1 R w i k i can be represented uniquely as a = i,K a iK e iK where a iK ∈ R i . This decomposition will help us characterizing homomorphisms from I i=1 R w i k i to G n .
+Lemma III.2. Any homomorphism ϕ : I i=1 R w i k i → G n can be represented as ϕ = (ϕ 1 , ϕ 2 , · · · , ϕ n ) where each ϕ N , N = 1, · · · , n is given by:
+The lemma above facilitates the construction of the ensem- ble of codes as follows: Take random elements g N iK from the group G for n = 1, · · · , N , i = 1, · · · , I and k = 1, · · · , w i K and construct the homomorphism ϕ as mentioned in the lemma. Also take a random vector v from G n and use the encoding rule e(m) = ϕ(u(m)) + v.
+R = k n
+w i log |R i | = k n
+2) Error Analysis: The expected value of the average probability of word error is given by:
+Lemma III.3. For arbitrary messages m and ˜ m and arbitrary vectors x, ˜ x ∈ G n , deﬁne a = u(m) − u( ˜ m) and h = x − ˜ x. Deﬁne θ(m, ˜ m) = (θ 1 , θ 2 , · · · , θ I ) where θ i is the smallest number in {0, 1, · · · , r i − 1} such that there exists an index K ∈ {1, 2, · · · , w i k} with the property a iK ∈ p θ i i R i \p θ i +1 R i . Then,
+; 0 	 otherwise .
+Moreover, for a ﬁxed m, let T θ (m) be the set of all ˜ m with θ(m, ˜ m) = (θ 1 , θ 2 , · · · , θ I ), then
+Lemma III.4. Let y ∈ Y n be an arbitrary channel output sequence. For any x ∈ A n (X|y), we have
+where X i is the ith component of the channel input random variable X. i.e. X ←→ (X 1 , X 2 , · · · , X I ) where X i ∈ R i and the random variable [X i ] θ i takes values from the set of cosets of p θ i i R i in R i .
+The following lemma presents an upper bound on the average probability of error.
+Lemma III.5. The average probability of error over the ensemble is bounded above by:
+Each random variable X i can be represented by a tuple ([X i ] θ i , [ ˆ X i ] θ i ) where [X i ] θ i indicates the coset selection and [ ˆ X i ] θ i the value selection in the subgroup p θ i i R i of R i . Note that [X i ] θ i and [ ˆ X i ] θ i are independent. We get,
+Therefore, the probability of error can be made arbitrarily small if for all θ,
+Let X be a uniform random variable over G and let H be the subgroup of G isomorphic to I i=1 p θ i i R i . The variable X can be thought of as a uniform variable over a random coset of H in G. Random selection of the coset is due to the random dither and we prove in Lemma III.7 that the uniformity of the distribution over the coset is due to the group structure of the code. The variable X can be represented by two random variables [ ˆ X] H and [X] H where [ ˆ X] H is uniform over H and [X] H has a uniform distribution over cosets of H in G and represents the coset selection. The variable [ ˆ X] H itself can be represented by a tuple ([ ˆ X 1 ] θ 1 , · · · , [ ˆ X I ] θ I ) where for each i the random variable [ ˆ X i ] θ i is a uniform variable over p θ i i R i and [ ˆ X i ] θ i ’s are independent from each other and from [X] H . Similarly, the random variable [X] H can be represented by a tuple ([X 1 ] θ 1 , · · · , [X I ] θ I ) where for each i the random variable [X i ] θ i is a uniform variable over cosets of p θ i i R i in R i and [X i ] θ i ’s are independent from each other and from [ ˆ X] H .
+The rate of the code is given by R = k n I i=1 w i r i log p i . Therefore, this condition is equivalent to
+Since this condition must be satisﬁed for every subgroup H and the weights w i are arbitrary, we conclude that the rate
+|H| |G|
+|H| |G|
+w i . Here we have replaced w i ’s with w i ’s for simplicity of notation. B. Upper bound
+Deﬁnition III.1. The coset S of H that achieves the maximum value of C U |S| , is called the optimal subchannel corresponding to the subgroup H and is denoted by H ∗ .
+Deﬁnition III.2. A subgroup H of G is called maximal for the channel (G, Y, W ) if for all subgroups K of H, C U |H ∗ | ≥ C U |K ∗ | . We denote this by H G.
+Theorem III.6. An upper bound on the capacity of group codes over the group G ∼ = I i=1 R i for a memoryless channel (G, Y, W ) is given by:
+w i for H ∼ = I i=1 p θ i i R i and C U |S| is the mutual information between the channel input and output when the input distribution is uniform over the subset S of G.
+1) Converse channel coding theorem: Shannon’s inverse channel coding theorem asserts that for rates R > I(X; Y ) lossless communication is not possible. For i = 1, 2, · · · , n, let X i be the random variable representing the N th component of the codewords and Y i be the corresponding channel output. The rate is bounded above by R < 1 n n i=1 I(X i , Y i ).
+This theorem admits the generalization to the case where the single letter distribution of X is constrained by the structure of the code. For the case of shifted group codes, the single letter distribution of X can only be uniform on cosets of subgroups of the underlying group.
+2) Uniform single letter distribution over cosets: In the case of linear codes, the single letter distribution over the channel input symbols is conﬁned to be uniform. This holds for group codes also; However, for group codes, it can be uniform over any subgroup of the channel input alphabet.
+Lemma III.7. For any group code C ≤ G n where G is an arbitrary group, uniform multiletter distribution over messages induces a uniform single letter distribution over subgroups of G. i.e. the components of the channel input sequence are uniformly distributed over some subgroup of G which may vary for different components.
+Proof: Without loss of generality we prove that the nth components of the codewords form a subgroup H of G and the uniform distribution over codewords induces a uniform distribution over H. Let {c 1 , c 2 , · · · , c M } be the set of codewords and let P [n,n] (C) = {c 1n , c 2n , · · · , c M n } be the set of the nth components of the codewords. It has been shown in [8] that P [n,n] (C) is a subgroup of G. Set H = P [n,n] (C) to conclude the ﬁrst part of the claim.
+Next, we need to show that the single letter distribution over H is uniform. Let H = {h 1 = 0, h 2 , · · · , h |H| }; then the lemma claims that the number of occurrences of each h i in the sequence c 1n , c 2n , · · · , c M n is the same. Let C [1,n−1] be the set of all codewords that are zero at the nth component. It is known that C [1,n−1] forms a normal subgroup of C and C/C [0,n−1] ∼ = P [n,n] (C) = H [8]. Therefore, |C| |C [1,n−1] | = |H|. The number of occurrences of h 1 = 0 in the sequence c 1n , c 2n , · · · , c M n is equal to | C [1,n−1] |. For each h ∗ ∈ H, there exists a codeword c ∗ ∈ C ending with h ∗ , and since C is a group code, it is closed under addition and therefore c ∗ +C [1,n−1] is a subset of C. Since the codewords are distinct, the set c ∗ +C [1,n−1] contains | C [1,n−1] | codewords ending with h ∗ . We conclude that for each h ∗ ∈ H the existence of at least | C [1,n−1] | codewords ending with h ∗ is guaranteed. The equality |C| |C
+= |H| imposes the number of occurrences of each h ∗ to be equal to | C [1,n−1] |. i.e. the single letter distribution over H is uniform in the nth position.
+Lemma III.8. For any shifted group code C + v over G, uni- form multiletter distribution over messages induces a uniform single letter distribution over cosets of subgroups of G.
+R i be an Abelian group and let H ∼ = I i=1 p θ i i R i be a subgroup of G and let S be the corresponding optimal subchannel. Using standard arguments we can show that for any shifted group code C + v where C ∼ = I i=1 R k i i and v is an optimal coset selection vector, we have
+Lemma III.9. For a maximal subchannel H of the channel (G, Y, W ), C H,G ≤ C U H ∗
+where X i ’s have uniform distributions over cosets of sub- groups of H. Since H is maximal, all of these distributions result in a mutual information less than C U |H ∗ | . Therefore, the average is also less than C U H ∗ . Conclude that R < C U H ∗ .
+. This proves the theorem.
+The capacity of linear codes has been studied in [2]. We show that for the case of linear codes over F q , the upper and lower bounds are tight and are equal to the capacity given in [2]. Let C be a group code over the ﬁeld F q for some prime number q. Since the only subgroups of F q are the trivial subgroup and the group F q itself, the lower bound reduces to
+; And since F q is maximal in itself, the upper bound also reduces to C U |F
+. Therefore the capacity of linear codes over F q is given by C F q = C U |F
+= I(X; Y ) where X has a uniform distribution over the input alphabet.
+For a symmetric channel, uniform input distribution over cosets of an arbitrary subgroup H of G results in the same mutual information with the channel output; This means all of the cosets of H are optimal and we can pick H ∗ = H. The lower bound reduces to
+Since all of the subgroups are maximal for a symmetric channel, the lower bound also reduces to the same expression. i.e. the capacity of group codes over symmetric channels is given by:
+w i for H ∼ = 	 I i=1 p θ i i R i . The capacity of Abelian group codes over symmetric channels given in [5] coincides with the new result.
+In this paper, we investigated the performance limits of Abelian group codes over discrete memoryless channels. Up- per and lower bounds on the capacity of such codes have been computed and we presented two special cases where the bounds match. Our results unify the known results on the capacity of structured codes for the point to point channel cod- ing problem and states the information theoretic performance limits of structured codes based on the algebraic structure of the underlying group.
+[[[ REFS ]]]
+
+--
+Group codes do not achieve Shannons’s channel capacity for general discrete channels
+----
+R. Ahlswede
+--
+Bounds on algebraic code capacities for noisy channels I
+----
+R. Ahlswede
+--
+Bounds on algebraic code capacities for noisy channels II
+----
+
+--
+Abstract Algebra With Applications
+----
+G. Como
+--
+The capacity of ﬁnite abelian group codes over symmetric memoryless channels
+----
+
+--
+Asymptotic optimality of group and systematic codes for some channels
+----
+
+--
+Coding for noisy channels
+----
+G. D. Forney Jr
+--
+The dynamics of group codes: State spaces, trellis diagrams, and canonical encoders
+----
+
+--
+The Theory of Groups
+----
+J. Korner
+--
+How to encode the modulo-two sum of binary sources
+----
+D. Krithivasan
+--
+Distributed source coding using abelian group codes
+----
+B. A. Nazer
+--
+Computation over multiple-access channels
+----
+T. Philosof
+A. Kishty
+U. Erez
+--
+Lattice strategies for the dirty multiple access channel
+----
+S. S. Pradhan
+--
+Distributed source coding using syndromes (DISCUS): Design and construction
+----
+A. G. Sahebi
+--
+On the capacity of abelian group codes over discrete memoryless channels
+----
+
+--
+Group codes for for the Gaussian channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\153.pdf
+[[[ LINKS ]]]
+

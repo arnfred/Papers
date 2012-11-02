@@ -1,0 +1,137 @@
+[[[ ID ]]]
+122
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Cooperative Strategies for Interference-Limited Wireless Networks
+[[[ AUTHORS ]]]
+Andr´es Altieri
+Leonardo Rey Vega
+Cecilia G. Galarza
+Pablo Piantanida
+[[[ ABSTR ]]]
+Abstract—Consider the communication of a single user aided by a nearby relay involved in a large and dense wireless network where the nodes form an homogeneous Poisson point process. We assume that the network is working in the interference-limited regime. In this case the asymptotic error probability is bounded from above by the outage probability experienced by the user. We investigate the outage behavior for the well-known cooperative schemes, namely, decode-and-forward (DF) and compress-and- forward (CF). In this setting, the outage events are induced by both fading and the spatial proximity of neighbor nodes who generate the strongest interference and hence the worst communication case. Upper and lower bounds on the asymptotic error probability which are tight in some cases are derived. It is shown that there exists a clear trade-off between the network density and the beneﬁts of user cooperation. These results are useful to evaluate performance and to optimize relaying schemes in the context of large wireless networks.
+[[[ BODY ]]]
+Spatial models for large wireless networks where nodes are not assumed to have much interference management have received much attention in recent years. An elegant and com- prehensive analysis framework for these networks has been developed through the use of stochastic geometry and random graphs (see [1] and references therein). Performance metrics such as transport capacity [2], outage probability (OP) and transmission capacity [3], [4] have been introduced to evaluate performance and scaling laws of the mentioned networks.
+In terms of traditional Shannon theory, these novel metrics essentially rely on a fundamental result in information theory known as Feinstein’s Lemma [5]. This applies to any network, providing an upper bound on the error probability for the communication of each user. Hence, when the block-length of the codes used is long enough, the probability of “unsuccessful communication”, as stated in [6], turns to be an asymptotic upper bound on the error probability for the communication between any pair of nodes in the network. Similarly, from [7] it can be shown that such probability also gives an asymptotic lower bound on the error probability. It is clear that under homogeneous processes and Gaussian codebooks the error probability of users behaves as the OP, where for spatial
+networks user mobility, fading and interference induce these outage events.
+The main limiting factor of self-organizing and mobile ad hoc networks is the average distance between sources and their destinations. Such networks are not assumed to have much interference management which results in a constant capacity per link. However this assumption is not quite realistic; while coordination can be light, all real networks need some control if they wish to stay operational for some time. The sim- plest scenario of cooperation consists of a single-relay which helps communication between the transmitter (source) and the receiver (destination). Cover and El Gamal [8] developed the main strategies, namely, Decode-and-Forward (DF) and Compress-and-Forward (CF), and showed an upper bound referred to as the cut-set bound. Capacity is only known for some special cases (see [9] and references therein).
+In this work, we investigate how performance, measured in terms of OP, behaves when a transmitter in a large wireless network is aided by a nearby relay. We model the network as an independently marked Poisson point process and assume that the network is interference-limited, that is, the perfor- mance is limited by the signal-to-interference ratio (SIR). The signal attenuation is assumed to occur both through path- loss and fading, and the encoder uses either the DF or CF coding schemes. The SIR-based outage events are determined from the information-theoretic achievable rates [8]. Users send Gaussian symbols at a ﬁxed rate and hence an outage is declared whenever node distribution or fading causes this rate to be higher than the achievable rate [8]. Closed-form expressions for the OP of both protocols under Rayleigh fading are derived. For the DF scheme, the OP can be calculated exactly in terms of the Laplace functional of the process [10] while in the CF case, we managed to develop an upper bound which is tight for small network densities. For the DF scheme, optimal correlation between source and relay signals is discussed. Finally the performance of both protocols is compared against direct transmission [6] and the cut-set bound, which provides a lower bound on the OP of any coding scheme.
+Our planar network is modeled as an independently marked Poisson point process:
+• The set of transmitters constitutes a homogeneous Pois- son point process Φ = { x i } of intensity λ.
+• We assume that a transmitter node located at the origin attempts to communicate to a destination at location d = ( D, 0) with the aid of a relay located at r and working in a full-duplex fashion. The relay position r, known by the transmitter, can be parameterized without loss of generality as r = kD (cos θ, sin θ) with θ ∈ [0; 2π) and k > 0. We also assume that the other transmitting nodes have no associated relays. Although this hypothesis is restrictive it simpliﬁes considerably the mathematical developments.
+• All users transmit with constant unit power. The power received at y by a transmitter at x is |h xy | 2 l(|x − y|) where:
+– l(|x − y|) is the spherically symmetric path-loss between x and y. For our numerical results we shall work with the usual simpliﬁed path-loss function l(x, y) = |x − y| −α with α > 2. For shortness we shall sometimes write l xy := l(|x − y|).
+– | h xy | 2 is the power fading coefﬁcient associated with the channel between points x and y. We consider Rayleigh fading, i.e. the power fading coefﬁcients are independent identically distributed exponential random variables with unit mean.
+• The marks h x i r and h x i d model the fading coefﬁcient between each transmitting node in the network and the nodes relay and destination corresponding to the trans- mitter located at the origin, respectively. In addition we include another fading coefﬁcient h rd with the same distribution as h x i r and h x i d , independent of ˜ Φ, which models the fading between the relay and destination corresponding to the transmitter at the origin.
+In dealing with the relay channel we have to work simulta- neously with the interference produced by all the sources at two different points in space. We deﬁne the interference at the destination and relay end as:
+Notice that although the corresponding fading coefﬁcients are independent, the interferences at these two locations are not. We also deﬁne analogous ﬁelds I 0 d and I 0 r whose expressions are the same as I d and I r respectively, which do not include the node at the origin in the summation.
+The DF strategy allows the relay to decode the messages sent by the source, re-encode them, and forward them to the destination. In this setting, the encoder cannot optimize the
+rate R since it is unaware of the instantaneous interference and fading coefﬁcients involved in the different channels. Thus the error probability is dominated by the OP.
+Consider the achievable rate for the DF scheme [8] and specialize it to our channel. Given a rate R we shall consider the outage event: A DF ∪ B DF , where:
+The event A DF means that the relay is in outage and the event B DF means that the destination is in outage. T = 2 R − 1 and ρ is the complex correlation coefﬁcient between the symbols transmitted by the source and the relay. (·) ∗ denotes complex conjugation and (·) denotes the real part of a complex number.
+To determine the outage probability P out,DF for the DF protocol we need to evaluate the following expression:
+where P 0 is the Palm probability of the stationary marked point process having a point at the origin. Using Slivnyak’s Theorem [10] this can be rewritten as:
+l sr (1 − | ρ| 2 ) , |ˆ h sd | 2 l sd + |ˆ h rd | 2 l rd + 2
+where ˆ h sr , ˆ h sd and ˆ h rd have the same distribution as h sr , h sd and h rd but are independent of ˜ Φ. Deﬁning: V := |ˆ h sd | 2 l sd + |ˆ h rd | 2 l rd + 2
+l sd l rd ( ρˆ h sd ˆ h ∗ rd ), and considering that ˆ h sr and V are independent of each other and of ˜ Φ we have that:
+where F V (·) is the complementary distribution function of V . For Rayleigh fading it is straightforward to show that:
+ 
+µ 2 − µ 1 	 µ 1 = µ 2 (6) (1 + s/µ 1 ) e −s/µ 1 	 µ 1 = µ 2 (7)
+Since µ 1 = µ 2 only if ρ = 0 and k = 2 cos(θ) we focus our attention to the case µ 1 = µ 2 . Replacing (6) in (5) and rearranging the terms gives:
+where µ 3 = l sr 1 − | ρ| 2 and L I d ,I r (· , ·) is the joint Laplace transform of the interference at the relay and at the destination [10]. For the simpliﬁed path loss function it is straightforward to show that:
+α 	 (12) f (ω 1 , ω 2 ) =
+and Γ( z) = ∞ 0 t z−1 e −t dt is the Gamma function. It is important to note that function f (ω 1 , ω 2 ) condenses the sta- tistical dependence between I d and I r . An interesting remark is that although we have considered unit mean, the DF outage probability is in fact independent of the fading mean, as in the direct transmission case [6].
+For the DF protocol we need to choose the appropriate value of the correlation coefﬁcient ρ which minimizes the outage probability. Notice that the outage probability is dependent only on the absolute value of ρ and not on its phase. Moreover, the outage probability is actually a monotone increasing func- tion of | ρ| in the interval [0, 1]. The optimal choice in terms of outage probability is therefore ρ = 0. For space limitations, we skip the proof of this statement.
+The CF strategy allows the relay to compress the received signal and forward it to the destination without decoding the messages. Wyner-Ziv coding is used for optimal compression. Optimization of the rate R is not possible since the source is unaware of the instantaneous interference and fading. Thus the error probability is dominated by the OP.
+Consider the achievable rate for the CF scheme [8] and specialize it to our channel. Given a rate R = log(1 + T ) we shall consider the outage event: A CF ∪ B CF , where:
+|h rd | 2 	 . (15) The event B CF means that relay-destination link cannot sus- tain the rate needed to transmit the compressed version of the received signal, while W c denotes the power of the noise added to compress the channel output of the relay and send it to the destination.
+To compute the outage probability P out,CF we have to evaluate the reduced Palm probability of A CF ∪ B CF . By using a similar argument as the one used for the DF case, we obtain the expression:
+where once more ˆ h sr , ˆ h sd and ˆ h rd have the same distribution as h sr , h sd and h rd respectively but are independent of ˜ Φ. The outage event for this case is more involved than the one for the DF case, so instead of ﬁnding the actual outage probabilities we provide an upper bound which is tight when the node distribution is sparse ( λ small). In terms of A CF and B CF we can write:
+where ¯ (·) denotes set complement. The probability P(A CF ) can be upper bounded to a desired degree of accuracy. A simple bound would be to take:
+In this bound we cover the set A CF by a square of side T . Such bound can be tightened as desired by partitioning the set A CF further and covering it by disjoint rectangles, yielding:
+which can be written in a straightforward manner in terms of the Laplace transform of the interference. Taking N = 1 gives (18), which is useful theoretical purposes, while higher values of N provide tighter upper bounds for numerical results.
+where the expectation is taken with respect to |ˆ h sr | 2 and |ˆ h sd | 2 . By using this bound we avoid working with the product of the interference at the relay and the destination, which complicates the evaluation of P(B CF ) signiﬁcantly. In addition, notice that when all the distances remain ﬁxed and for sufﬁciently small λ, the product term will be small and its contribution will not be signiﬁcant in comparison with the
+other terms. Discarding the term f (ω 1 , ω 2 ) in (11) we further bound:
+Since the Laplace transform of the interference is known in closed form for the simpliﬁed path loss function (take ω 1 = 0 in (11)), these expectations can be calculated numerically without difﬁculty. Extensive simulations have shown that (20) is practically the same as (19). This is possibly due to the fact that the values of |ˆ h sr | 2 and |ˆ h sd | 2 for which f (x, y) is large with respect to the other terms in (11) have a small probability of occurrence, and therefore they have little impact on the expected value of the Laplace transform.
+To evaluate the performance of the upper bound on P out,CF we can develop a lower bound on the outage probability by simply lower bounding P(A CF ). The bound is obtained in a similar fashion as the upper bound, lower bounding A CF by disjoint rectangles.
+The numerical results were obtained with the simpliﬁed path loss function only. In order to establish the outage performance of the analyzed protocols we consider the direct transmission case whose outage probability P out,DT is known to be [6]:
+We use the cut-set upper bound [8] to establish the overall performance of the protocols, i.e., a lower bound on the outage
+probability of any arbitrary coding scheme. Using Slivnyak’s theorem, we write this bound in terms of the SIR as:
+The event in the ﬁrst term is the same as (14) taking W c = 0 and replacing T by T /(1 − |ρ| 2 ). Therefore, it can be bounded to any degree of accuracy in the same way. The second event is similar to the second event in (4) and can be evaluated in a similar fashion as the DF outage probability.
+In all simulations we set D = 10 and a path loss exponent α = 4. For the DF protocol we always take ρ = 0 which minimizes the OP, while for the CF protocol and the cut-set bound we numerically optimize for each value of λ the values of W c and ρ respectively. To compare the outage probabilities for different network densities we present a case in which the relay is close to the source and another in which the relay is close to the destination. In both cases we take T = 3 and for simplicity we consider that the relay, source and destination are aligned, that is, θ = 0. For CF we plot both the upper bound for P out,CF and the lower bound for P(A CF ) to asses how close the upper bound is to the true CF performance.
+In Fig. 1 we consider the case in which the relay is closer to the source by taking k = 0.2. First notice that in this case the outage probabilities for DF are very close to the cut-set bound, which conﬁrms that DF is optimal when the relay is close to the source. This is identical to the behaviour reported in [9] where only Gaussian background noise and no interference was considered. On the other hand, for CF notice that the upper and lower bounds are almost the same, which indicates that the upper bound is tight and hence it becomes the asymptotic
+error probability. Since in this case the relay-destination link is as bad as the source-destination link, W c is high, which means that the relay is transmitting very little information, and hence the overall performance of the channel is very close to direct transmission.
+In Fig. 2 we consider the case in which the relay is closer to the destination by taking k = 0.9. In this case, DF performance is signiﬁcantly degraded with respect to the cut-set bound while for small values of λ CF performance is much closer to it. Notice that the upper and lower bounds for CF are close, specially for small λ, which means that the upper bound is close to actual CF performance. On the other hand, when the node density grows CF starts to lose performance. This is due to the fact that increasing node density reduces the quality of the relay-destination link.
+Now we analyze the maximum rates for each protocol given an outage probability. We ﬁx P out = 10 −3 and λ = 10 −5 and evaluate the maximum values of T that can be achieved by each protocol for different values of k and considering linear geometry ( θ = 0). In Figure 3 we can see the maximum rates R max = log 2 (1 + T max ) that can be achieved by each protocol in comparison to the cut-set bound and the direct transmission case. We observe that DF is preferred when the relay is closer to the source and CF is preferred when the relay is very close to the destination.
+Finally in Fig. 4 we plot the regions in space in which DF, CF or direct transmission are preferred over the others. To do this we compare the outage probabilities of each protocol for λ = 10 −4 and chose the one who has the smallest value. We can see that DF is better than the other protocols for a large area around the source, while CF is better when the relay is closer to the destination. Again, this was already reported in [9].
+In this paper we studied the performance, measured in terms of OP, of a user in a large wireless network when transmitting
+with the aid of a nearby relay. We studied both DF and CF, the main communication strategies for the relay channel as deﬁned in [8]. The performances of DF and CF strategies are directly related to the distance between the relay and the destination. In other words, DF scheme performs better than CF when the relay is near to the source while CF scheme is preferable when the relay is near to the destination.
+As future work, it would be of interest to extend the results in the present work to the scenario where all the transmitting nodes have aiding relays, the source is oblivious to the relying strategy and to the presence of the relay (as investigated in [11]) and to other than Rayleigh fading characteristics.
+[[[ REFS ]]]
+M. Haenggi
+J. Andrews
+F. Baccelli
+O. Dousse
+M. Franceschetti
+--
+Stochastic geometry and random graphs for the analysis and design of wireless networks
+----
+P. Gupta
+P. Kumar
+--
+The capacity of wireless networks
+----
+S. Weber
+X. Yang
+J. Andrews
+G. de Veciana
+--
+Transmission capacity of wireless ad hoc networks with outage constraints
+----
+S. Weber
+J. Andrews
+N. Jindal
+--
+An overview of the transmission capacity of wireless networks
+----
+A. Feinstein
+--
+A new basic theorem of information theory
+----
+F. Baccelli
+B. Blaszczyszyn
+P. Muhlethaler
+--
+An aloha protocol for multihop mobile wireless networks
+----
+S. Verd´u
+T. S. Han
+--
+A general formula for channel capacity
+----
+T. Cover
+A. Gamal
+--
+Capacity theorems for the relay channel
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative strategies and capacity theorems for relay networks
+----
+D. J. Dale
+D. Vere-Jone
+--
+An introduction to the theory of point processes
+----
+A. Behboodi
+P. Piantanida
+--
+Broadcasting over the relay channel with oblivious cooperative strategy
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\122.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,165 @@
+[[[ ID ]]]
+91
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Fixed-length lossy compression in the ﬁnite blocklength regime: discrete memoryless sources
+[[[ AUTHORS ]]]
+Victoria Kostina
+Sergio Verd´u
+[[[ ABSTR ]]]
+Abstract—This paper studies the minimum achievable source coding rate as a function of blocklength n and tolerable distortion level d. Tight general achievability and converse bounds are derived that hold at arbitrary ﬁxed blocklength. For stationary memoryless sources with separable distortion, the minimum rate achievable is shown to be closely approximated by R(d) + q V (d) n Q −1 ( ), where R(d) is the rate-distortion function, V (d) is the rate dispersion, a characteristic of the source which measures
+its stochastic variability, Q −1 (·) is the inverse of the standard Gaussian complementary cdf, and is the probability that the distortion exceeds d. The new bounds and the second-order approximation of the minimum achievable rate are evaluated for the discrete memoryless source with symbol error rate distortion. In this case, the second-order approximation reduces to R(d) + 1 2 log n n if the source is non-redundant.
+Index Terms—Shannon theory, lossy source coding, rate distor- tion, memoryless sources, ﬁnite blocklength regime, achievability, converse.
+[[[ BODY ]]]
+The rate-distortion function characterizes the minimal source coding rate compatible with a given distortion level, either in average or excess distortion sense, provided that the blocklength is permitted to grow without limit. However, in some applications relatively short blocklengths are common both due to delay constraints and the coding complexity which increases with blocklength. It is therefore of critical practical interest to assess the unavoidable backoff from the rate-distortion function required to sustain the desired ﬁdelity at a given ﬁxed blocklength. Neither the coding theorem nor the reliability function, which gives the asymptotic exponential decay of the probability of exceeding a given distortion level when encoding at a ﬁxed rate, provide an answer to that question.
+This paper presents a new achievability upper bound and a new converse lower bound to the minimum rate sustainable as a function of blocklength and excess probability, valid for general sources and general distortion measures. In addition, for stationary memoryless sources with separable distortion,
+we show that the ﬁnite blocklength coding rate is well ap- proximated by
+is the probability of distortion exceeding d, and V (d) is the rate dispersion. The new bounds are particularized for the stationary discrete memoryless source with symbol error rate distortion (DMS). In the equiprobable DMS case, the rate- dispersion function turns to zero, and the ﬁnite blocklength coding rate is well approximated by
+Section II sets up the problem and introduces a few deﬁni- tions. Section III reviews the few existing ﬁnite blocklength achievability and converse bounds for lossy compression. Section IV shows the new general upper and lower bounds to the minimum rate at a given blocklength. Second-order asymptotic analysis is given in Section V. Section VI focuses on the DMS.
+In the standard model of ﬁxed-to-ﬁxed (block) compression, the output of a general source with alphabet A and source distribution P X is mapped to one of the M codewords from the reproduction alphabet B. A lossy code is a pair of mappings f : A → {1, . . . , M } and c : {1, . . . , M } → B. A distortion measure d : A × B → R + is used to quantify the performance of a lossy code. Given decoder c, the best encoder simply maps the source output to the closest (in the sense of the distortion measure) codeword, i.e. f(x) = arg min m d (x, c(m)). The average distortion over the source statistics is a popular per- formance criterion. A stronger criterion is also used, namely, the probability of exceeding a given distortion level (called excess-distortion probability). The following deﬁnitions abide by the excess distortion criterion.
+Deﬁnition 1. An (M, d, ) code for {A, B, P X , d : A × B → R + } is a code with |f| = M such that P [d (X, c(f(X))) > d] ≤ .
+If A and B are the n−fold Cartesian products of alphabets A and B, an (M, d, ) code for {A n , B n , P X n , d n : A n × B n → R + } is called an (n, M, d, ) code.
+Deﬁnition 2. Fix , d and blocklength n. The minimum achievable code size and the ﬁnite blocklength rate-distortion function (excess distortion) are deﬁned by, respectively,
+Returning to the general setup of Deﬁnition 1, the basic general achievability result can be distilled from Shannon’s coding theorem for memoryless sources:
+Theorem 1 (Achievability, [1], [2]). Fix P X , a positive integer M and d ≥ 0. There exists an (M, d, ) code such that
+denotes the information density of the joint distribution P XY at (x, y) ∈ A × B.
+Theorem 1 is the most general achievability result known. For three related scenarios, we can cite the achievability bounds of Goblick [3], Pinkston [4] and Sakrison [5]: DMS with ﬁnite alphabet and separable distortion measure [3]; variable-rate compression of DMS with ﬁnite alphabet and separable distortion measure [4]; variable-rate quantization of Gaussian i.i.d. source with mean-square error distortion [5].
+As for the existing ﬁnite blocklength converse results, for DMS with ﬁnite alphabet with bounded separable distortion measure, a ﬁnite blocklength converse can be distilled from Marton’s paper on the error exponent [6]. However, it turns out that it results in rather loose lower bounds on R(n, d, ) unless n is very large, in which case the rate-distortion function already gives a tight bound. For variable-rate quantization, strong achievability and converse bounds can be obtained from the “lossy AEP” [7]. Second-order reﬁnements of the lossy AEP were studied in [8], which also presents a nonasymptotic converse for variable-rate lossy compression that parallels Barron’s converse for lossless compression.
+Considerable attention has been paid to the asymptotic behavior of the redundancy, i.e. the difference between the av- erage distortion D(n, R) of the best n−dimensional quantizer and the distortion-rate function D(R). For ﬁnite-alphabet i.i.d. sources, Pilc [9] showed that D(n, R) − D(R) ≤ O log n n . Zhang, Yang and Wei [10] reﬁned the work of Pilc and showed that for memoryless sources with ﬁnite alphabet, D(n, R) − D (R) = − ∂D (R) ∂R log n 2n + o log n n . For stationary Gaussian sources with mean-square error distortion, using a variant of
+the classical achievability result in (5), Wyner [11] showed that D (n, R) − D(R) ≤ O 	 log n n . Linder, Lugosi and Zeger [12] analyzed (5) using Hoeffding’s inequality and established the O 	 log n n convergence rate for bounded i.i.d. sources with mean-square error distortion, thereby extending Wyner’s result to non-Gaussian sources. In [13], Linder and Zeger were able to drop the bounded support requirement and showed the O 	 log n n 	 upper bound for memoryless real sources with ﬁnite sixth moment. The main step of the proof in [13] is the application of the Berry-Esseen central limit theorem (CLT) to (5). Note that the results of [11]–[13] rely on (5), which, as we will show, is far from tight in the ﬁnite blocklength regime. On the other hand, as the average overhead over the distortion-rate function is dwarfed by its standard deviation, the more accurate analyses of [9], [10] are likely to be overly optimistic since they neglect the stochastic variability of the distortion.
+In this section we give an achievability result and a converse result for any source and any distortion measure. When we apply these results in Sections V and VI, the source becomes an n−tuple (X 1 , . . . , X n ).
+Theorem 2 (Achievability). There exists an (M, d, ) code with
+where the inﬁmization is over all random variables deﬁned on B , independent of X.
+Proof: Let the codebook be (c 1 , . . . , c M ). Upon seeing the source output x, the optimum encoder chooses arbitrarily among the members of the set
+The indicator function of the event that the distortion exceeds d is
+Suppose that (c 1 , . . . , c M ) are drawn independently from P Y . Averaging over both the input and the choice of codewords, we get
+where we have used the fact that Y 1 , . . . , Y M are independent even when conditioned on X. Since there must exist at least one code with excess-distortion probability lower than the average over the code ensemble, the existence of a code satisfying (7) follows.
+While the right side of (7) gives the exact performance of random coding, Shannon’s random coding bound (Theorem 1) was obtained by upper bounding the performance of random coding. As a consequence, the result in Theorem 2 is tighter than Shannon’s random coding bound, but it is also harder to compute.
+Our converse result is based on binary hypothesis testing. The optimal performance achievable among all randomized tests P Z |X : A → {0, 1} between probability distributions P and Q on A is denoted by (1 indicates that the test chooses P ) 1 :
+Theorem 3 (Converse). Let P X be the source distribution. Any (M, d, ) code must satisfy
+where the supremum is over all distributions on A. Proof: Let (f, c) be an (M, d, ) code. Write
+where (13) is due to the fact that Z = 1 {d(X, c(f(X))) ≤ d} deﬁnes a (not necessarily optimal) hypothesis test between P X and Q with P [Z = 1] ≥ 1 − .
+Suppose for a moment that X has ﬁnite alphabet, and let us further lower bound (11) by taking Q to be the equiprobable distribution on A, Q = U . Let us consider the set Ω ⊂ A that has total probability 1 − and contains the most probable source sequences, i.e. for any source sequence x in Ω, there is no sequence outside of Ω having probability greater than P X (x). For any x ∈ Ω, the optimum binary hypothesis test between P X and Q must choose P X . Thus the numerator of (11) evaluated with Q = U is proportional to the number of elements in Ω, while the denominator is proportional to the number of elements in a distortion ball of radius d. Therefore (11) evaluated with Q = U yields a lower bound to the minimum number of d-balls required to cover Ω.
+In the spirit of [14], we introduce the following deﬁnition. Deﬁnition 3 (rate dispersion). Fix d ≥ 0. The rate-dispersion function (squared information units per source symbol) is deﬁned as
+Fix d, 0 < < 1, η > 0. Suppose the target is to sustain a probability of exceeding distortion d bounded by at rate R = (1 + η)R(d). As (1) implies, the required blocklength scales linearly with rate dispersion:
+−1 ( ) η
+where note that only the ﬁrst factor depends on the source, while the second depends only on the design speciﬁcations.
+The proof of the following result (see [15]) relies on our new bounds as well as the results on the asymptotic behavior of distortion d-balls developed in [7], [8], [10].
+Theorem 4 (Second-order approximation). Fix stationary memoryless source {X i } with alphabet A and separable distortion measure. Under the following technical conditions,
+(i) For all x ∈ A with positive probability, min y ∈B d (x, y) = 0, and the acceptable distortion level satisﬁes 0 < d < d 0 , where d 0 = min{d : R(d) = 0}.
+(ii) The random variable log E [exp{λ d(X, Y)}|X] has ﬁnite third moment, where Y is independent of X, and its distribution is the marginal of P X P Y |X , where P Y |X achieves
+where Y, λ are as in (ii), and the remainder term in (20) satisﬁes
+Note that the rate-distortion achieving random variable Y is unique [2], so there is no ambiguity in (21). Moreover, if R (d) is differentiable, λ is equal to the slope of R(d) at d,
+λ = R (d) 	 (23) The equivalence of characterizations (19) and (23) was ﬁrst noticed by Berger [16].
+the rate-distortion function is equal to the expectation of the random variable whose variance we take in (21), thereby drawing a pleasing parallel with the channel coding results in [14].
+This section particularizes the bounds in Section IV to the stationary m−ary memoryless source with Hamming dis- tortion measure. For convenience, we denote the number of strings within Hamming distance k from a given string by
+The following achievability result follows from Theorem 2 by letting P X and P Y in (7) be equiprobable on A n .
+Theorem 5 (Achievability, EDMS). There exists an (n, M, d, ) code for the m−ary equiprobable source with symbol error rate distortion measure such that
+The following converse result follows by weakening (11) with the speciﬁc choice Q = P X n , namely, equiprobable.
+Theorem 6 (Converse, EDMS). For the m−ary equiprob- able source with symbol error rate distortion measure, any (n, M, d, ) code must satisfy:
+An asymptotic analysis of the bounds in (26) and (27) yields the following strengthening of the approximation offered by Theorem 4
+Theorem 7 (Second order, EDMS). For the stationary memo- ryless m−ary equiprobable source with symbol error rate dis- tortion measure, the minimum achievable rate at blocklength n satisﬁes
+R (d) = log m − h(d) − d log(m − 1) 	 (29) as long as 0 ≤ d < m −1 m .
+• type of the string: k = [k 1 , . . . , k m ], k 1 + . . . + k m = n • probability of type k: p k = p k 1 1 . . . p k m q
+• previous and next types: j − 1 and j + 1, respectively • multinomial coefﬁcient: n k = 	 n ! k
+Theorem 8 (Achievability, DMS). Let {X i } be a stationary discrete memoryless source with m letters and symbol error
+rate distortion measure. Fix n and 0 ≤ d < (m − 1)P X (m). There exists an (n, M, d, ) ﬁxed composition code with
+n t
+In (33) and (34), [·] denotes rounding off to a neighboring integer so that
+and among all possible choices the one that results in the largest value for (33) is adopted.
+The following converse result follows from Theorem 3 by choosing Q in (11) to be equiprobable on A n .
+Theorem 9 (Converse, DMS). Let {X i } be a stationary discrete memoryless source with m letters and symbol error rate distortion measure. Fix 0 ≤ d < d 0 = 1 − P X (1) and n. Any (n, M, d, ) code must satisfy
+Particularizing Theorem 4 to the DMS and applying Theo- rem 9 to further reﬁne it, we obtain the following result.
+Theorem 10 (Second order, DMS). Let {X i } be a stationary discrete memoryless source with m letters and symbol error rate distortion measure. Fix 0 ≤ d < d 0 = 1 − P X (1) and n. The minimum achievable rate at blocklength n satisﬁes
+where R(d) and V (d) can be parametrically characterized in the following manner:
++ (m η − 1)η log η 	 (40) V (d) = Var [log Z η (X)] 	 (41)
+and the remainder in (39) satisﬁes (22). In particular, if 0 ≤ d < (m − 1)P X (m),
+and the remainder term in (39) satisﬁes the following stronger condition than that in (22):
+A numerical comparison of Shannon’s achievability bound, the new bounds for DMS and the second-order approximation in Theorem 10 is presented in Fig. 1.
+To estimate the minimum rate required to sustain a given ﬁdelity at a given blocklength, we showed a new achievability and a new converse bound that apply in full generality and
+that are tighter than existing bounds. For stationary memo- ryless sources with separable distortion, the rate dispersion (along with the rate-distortion function) serves to give tight approximations to the fundamental ﬁdelity-rate tradeoff unless the blocklength is small. The bounds and the second-order approximation are reﬁned in the case of discrete memoryless sources with symbol error rate distortion. The application of our approach to the ﬁnite-blocklength analysis of Gaussian sources with mean-square error distortion is included in the extended version [15]. Furthermore, corresponding results for average distortion can be obtained from our excess distortion bounds.
+Useful discussions with Dr. Yury Polyanskiy are gratefully acknowledged. In particular, Theorem 3 arose from discus- sions with him.
+[[[ REFS ]]]
+C. E. Shannon
+--
+Coding theorems for a discrete source with a ﬁdelity criterion
+----
+S. Verd´u
+--
+ELE528: Information theory lecture notes
+----
+T. Goblick Jr
+--
+Coding for a discrete information source with a distortion measure
+----
+J. Pinksto
+--
+Encoding independent sample information sources
+----
+D. Sakrison
+--
+A geometric treatment of the source encoding of a Gaussian random variable
+----
+K. Marton
+--
+Error exponent for source coding with a ﬁdelity criterion
+----
+A. Dembo
+I. Kontoyiannis
+--
+The asymptotics of waiting times between stationary processes, allowing distortion
+----
+I. Kontoyiannis
+--
+Pointwise redundancy in lossy data compression and universal lossy data compression
+----
+R. Pil
+--
+Coding theorems for a discrete source channel pairs
+----
+Z. Zhang
+E. Yang
+V. Wei
+--
+The redundancy of source coding with a ﬁdelity criterion
+----
+A. D. Wyner
+--
+Communication of analog data from a Gaussian source over a noisy channel
+----
+T. Linder
+G. Lugosi
+K. Zeger
+--
+Rates of convergence in the source coding theorem, in empirical quantizer design, and in universal lossy source coding
+----
+T. Linder
+K. Zeger
+--
+On the cost of ﬁnite block length in quantizing unbounded memoryless sources
+----
+Y. Polyanskiy
+H. Poor
+S. Verd´u
+--
+Channel coding rate in ﬁnite blocklength regime
+----
+V. Kostina
+S. Verd´u
+--
+Fixed-length lossy compression in the ﬁnite blocklength regime
+----
+T. Berge
+--
+Rate distortion theory
+----
+W. Szpankowski
+S. Verd´u
+--
+Minimum expected length of ﬁxed- to-variable lossless compression without preﬁx constraints: memoryless sources
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\091.pdf
+[[[ LINKS ]]]
+

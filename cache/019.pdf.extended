@@ -1,0 +1,199 @@
+[[[ ID ]]]
+19
+[[[ INDEX ]]]
+18
+[[[ TITLE ]]]
+Coordination Limits in MIMO Networks
+[[[ AUTHORS ]]]
+Ali Tajer
+Xiaodong Wang
+H. Vincent Poor
+[[[ ABSTR ]]]
+Abstract—Communication quality in interference-limited wireless net- works depends heavily on the collective coordination among the users for mitigating the interference. Coordinating the users, viable through information exchange across the network, consumes communication resources and, therefore, is desired to be free of redundancy. This paper focuses on dense multi-cell multi-antenna networks and assesses the minimum coordination level that ensures achieving the optimal scaling law of the downlink sum-capacity of the network. It is demonstrated that exchanging a ﬁnite number of bits across the network, in the form of feedback and cooperation, sufﬁces to achieve the optimal capacity scaling. This coordination level is considerably less than those required by the existing coordination strategies which necessitate exchanging inﬁnitely many bits across the network. A constructive proof is provided.
+[[[ BODY ]]]
+Interference management is a fundamental challenge in interference-limited wireless networks. As the users impose interference on each other, achieving a network-wide optimality necessitates establishing some level of coordination among the users in order to reduce their disruptive interfering effects. implementing coordination, often viable through information exchange among the users, consumes communication resources, which in large networks can be physically prohibitive. It therefore becomes necessary to determine the minimum level of coordination required in order to avoid from redundant coordination and its associated information exchange.
+In this paper we focus attention on cooperative multi-antenna networks [1]–[5] and aim to assess the information content of the minimum level of coordination required for achieving the optimal downlink sum-rate capacity scaling rate. Coordination in such net- works involves two levels of information exchange: feedback from the users to their designated base-stations, and cooperation among the base stations through the backbone channels. We ﬁnd that in the asymptote of dense networks such information content can be described by a ﬁnite number of bits.
+We remark that the rich literature on multi-antenna broadcast and cooperative multi-antenna networks offers a wide range of downlink scheduling strategies, each with certain merits that balances the achievable throughput and the required load of information exchange (feedback and cooperation). These scheduling strategies require ex- changing real numbers across the network for achieving the opti- mal sum-rate scaling. Some representative references discussing the interplay among the sum-rate scaling law, precoding, and feedback mechanisms include [6]–[12] and [12]–[15]. Real numbers, which have inﬁnite-rate precision in their nature, give rise to an inﬁnite-rate content for the coordination messages.
+Consider a network consisting of N cells each containing one base- station and K users. The base-stations are equipped with M transmit
+antennas and the receivers have one receive antenna. We use the shorthand B n and U k m for referring to base n and user k in cell m, respectively. Let x n ∈ C M ×1 denote the signal transmitted by B n and h k m,n ∈ C 1×M denote the channel from B n to U k m . The signal received by user U k n in a downlink transmission is the superposition of the signals broadcast by all the base-stations and is given by
+where z k m ∈ C denotes the additive noise distributed as N C (0, 1) and γ k m,n accounts for signal path-loss and shadowing. We consider a het- erogeneous network where different users experience different path- losses. We consider linear precoding at each base-station for serving M users simultaneously through spatial multiplexing. Speciﬁcally, B m employs the set of beamformers {ω r m } M r=1 that are generated randomly according to an isotropic distribution (random beamform- ing) [6]. By deﬁning x r m as the information symbol that B m transmits along the beamformer ω r m , the signal vector transmitted by B m is
+Deﬁne ρ = P M , where P is the average power per base-station. We assume that the users are equipped with single-user decoders, i.e., they suppress all the intra-cell interference (from the designated base-station) and inter-cell interference (form the neighboring base- stations) via linear ﬁltering. Therefore, when B m embeds the message intended to U k m in the information symbols x r m and transmits it along the beamformer ω r m for some r ∈ {1, . . . , M }, the user U k m recovers this message with the signal to-interference-plus-noise ratio (SINR) SINR k m (r) equal to
+The entries of h k m,n are independent and identically distributed (i.i.d.) as N C (0, 1). By invoking the statistical independence of {h k m,n } and the fact that the SINRs inherit their randomness from their constituent channels we provide the following two remarks.
+Remark 1: Different users across the network have statistically independent and non-identical SINRs. In other words, the terms SINR k m (r) and SINR k m (r ) for (k, m) = (k , m ) have non-identical distributions as they experience different path-losses. However, they are statistically independent as their characterizations do not have any channel vector in common. Note that the beamformers are generated randomly and are channel-independent. Therefore, couplings through the common beamformers does not introduce any correlation between SINR k m (r) and SINR k m (r ) for (k, m) = (k , m ).
+Remark 2: The SINRs that each user observes from different beamformers are statistically correlated with identical distributions.
+In other words, SINR k m (r) and SINR k m (r ) for r = r are distributed identically as they share the same path-losses and are not independent as some correlation is introduced by the common channel vectors.
+Given the two remarks above, we denote the cumulative distribu- tion function (CDF) of SINR k m (r) by
+Finally, we assume the combined effect of channels and beamform- ers are known perfectly to the receiver, i.e., receiver U k m knows
+Coordination in multi-cell networks has two aspects: the informa- tion fed back by the users to their respective base stations, and the information exchanged among the base-stations for enabling base- station cooperation. We develop a coordination model that identiﬁes and activates M users in each cell.
+This coordination model exhibits some similarities with some existing scheduling procedures developed for downlink transmission in single-cell systems and meanwhile exhibits major distinctions from them. Nevertheless, the major contribution of this paper is the pertinent capacity scaling analysis provided in Section IV. We demonstrate that the sum-rate throughput achievable based on this coordination model scales identically to the optimal rate (Section IV) and at the same time imposes exchanging only a ﬁnite number of bits across the network (Section V). The coordination model is formalized as follows.
+There exists a unique solution for β k m as F k m (x) is a CDF and is strictly monotonic in x.
+2) Note that each user U k m can be served along any arbitrary precoding vector of base-station B m . Among all the precoders, we identify the most favorable one for the user U k m , as the one yielding the highest SINR for U k m , i.e.,
+Note that since receiver U k m knows h k m,m ω r m 2 for all r ∈ {1, . . . , M } it can compute the related SINR values.
+3) If SINR k m (r ∗ m,k ) ≥ β k m , then user U k m feeds back the index r ∗ m,k to B m . This requires feeding back log M information bits.
+1) At each base station B m we construct the sets H r m for r ∈ {1, . . . , M } such that H r m contains the indices of the users that declared r as the index of their most favorite precoding vector, i.e.,
+2) Base station B m randomly selects one user from each set H r m for r ∈ {1, . . . , M } and embeds the information signal intended for this user in the information symbol x r m . Note that the sets {H 1 m , . . . , H M m } are mutually disjoint and as a result, it is guaranteed that a user will not be receiving information from more than one beam.
+If we allow full cooperation among the base stations, the multi-cell network can be effectively viewed as a larger single-cell multiple- antenna broadcast channel with N M transmit antennas and N K users. For such downlink systems, for ﬁxed transmission power and for increasing K, the sum-rate capacity scales as [6]
+We next analyze the sum-rate throughput scaling of the network when the coordination procedure described in Section III is used and prove that it scales identically to the optimal scaling rate given in (6). The core part of the proof relies on order statistics analysis [16].
+Before providing the scheme of the proof we brieﬂy describe the technical differences between analyzing the situations with inﬁnite- rate information exchange (unquantized SINR) and ﬁnite-rate in- formation exchange (quantized SINR). When the true values of the SINRs are known to the base stations, each base-station can maximize its rate by selecting the user with the highest SINR for each beamformer [6]. In such a situation, analyzing the rate supported by ω r m requires the statistical distribution of the largest order statistics of the set
+On the other hand, when the base-stations can acquire only quantized values of the SINRs (as in our coordination model) they are not guaranteed to identify the largest SINR. Instead, they can identify a group of users (as characterized by H r m in our model) that are known to have their SINRs above some certain threshold. Randomly selecting one of these users (i.e., one member of H r m in our model) provides that all users have the chance to be selected as the active users. Therefore, analyzing the rate supported by ω r m requires the statistical distributions of all order statistics of the set in (7). Incorporating the impact of all order statistics on the sum-rate analysis lies at the core of our analysis.
+In the sequel, we ﬁrst formulate the rate that the beamformer ω r m sustains as a weighted average of all order statistics of the rates related to the SINRs given in the set (7) and then, analyze the asymptotic scaling rate of this weighted average. For this purpose let us deﬁne R m as the sum-rate throughput achieved in cell m. Therefore, clearly
+Furthermore, deﬁne R r m as the rate supported through the transmis- sion along the beamforming vector ω r m . Also let us construct the set
+Conditioned on ¯ H m , the sum-rate in cell m is the sum of the rates that can be sustained along its individual precoders, i.e.,
+As designated by the user selection procedure, for each r ∈ {1, . . . , M } one of the members of the set H r m is chosen randomly to be served along the beamforming vector ω r m . Hence, each user with its index in H r m will be selected with probability |H r m | −1 . As a result, given the set of candidate users ¯ H m , the expected value of
+the rate sustained by the beamformer ω r m is equal to the arithmetic average of the rates of these candidate users when they communicated along the beamformer ω r m , i.e.,
+(10) where (10) holds by noting that when the transmission along the beamformer ω r m is intended for user U k m we have R r m = log(1 + SINR k m (r)). The next lemma is instrumental for analyzing the scaling rate of interest.
+Lemma 1: If β k m ≥ 1 for all m ∈ {1, . . . , M } and for all k ∈ {1, . . . , K}, then
+E h [R r m | H r m ] ≥ R r m (|H r m |) , 	 (11) where
+and SINR (j) m (r) denotes the j th largest element of the set {SINR 1 m (r), . . . , SINR K m (r)} .
+Equations (9)-(12) establish that if ∀k, m the normalizing factors satisfy the constraints β k m ≥ 1, then we have
+Note that the rates R r m (|H r m |) are identical for all different sets H r m that have the same cardinality. Therefore, R r m (|H r m |) depends on H r m only through its cardinality, which can be any member in {0, . . . , K}. Next, note that (13) is a weighted sum of the rates R r m (b) for r ∈ {1, . . . , M }, and b ∈ {1, . . . , K}. In order to further simplify (13) we need to ﬁnd the weighting coefﬁcients of R r m (b). For this purpose we rearrange all the relevant terms that contribute to R r m (b) and ﬁnd that, for b ∈ {1, . . . , K},
+Therefore, combining (13) and (14) indicates that if the constraints β k m ≥ 1 are satisﬁed ∀k, m, then
+By setting q 0 m (r) = P (|H r m | = 0) we ﬁnd that for any ﬁxed m the set
+1 k
+Now, we assess the scaling behavior of ¯ R m which in turn provides a lower bound on the throughput scaling of our coordination model. For this purpose we need the distributions of the order statistics
+for m = 1, . . . , N and r = 1, . . . , M . As mentioned in Remark 1, SINR terms
+while being independent, are not identically distributed. Therefore, characterizing the distributions of their corresponding sequence of order statistics is not tractable. For tractability purposes, correspond- ing to each (r, m) we construct another set which consists of lower bounds on {SINR 1 m (r), . . . , SINR K m (r)}. We deﬁne
+Based on these deﬁnitions ∀m, k, r we deﬁne the following lower bound on SINR k m (r):
+Lemma 2: The elements of the set {S 1 m (r), . . . , S K m (r)} are i.i.d. with CDF
+Assessing the scaling of ¯ R m as deﬁned in (16) requires the knowl- edge of the distributions of the order statistics {SINR (j) m (r)} K j=1 . Next we establish how SINR (j) m (r) is related to the j th order statistics of the random variables {S k m (r)} K k=1 denoted by S (j) m (r).
+By invoking Lemma 3, from (16) we ﬁnd the following lower bound on ¯ R m :
+From the properties of the order statistics [16] we know that the CDF of S (j) m (r), which we denote by F (j) S (x; m), is given by
+As state earlier, {q j m (r)} K j=0 is a valid PMF which consequently provides that
+We take one more step in order to ﬁnd another lower bound on the right-hand side of (21). For this purpose we deﬁne G(x) as the CDF of a unit-mean exponential distribution, i.e., G(x) = 1 − e −x . Also let G (j) (x) denote the CDF of the j th order statistic of a statistical space with K members and the parent distribution G(x). Also deﬁne
+Based on this deﬁnition and the distribution of S k m (r) given in (17), in the following lemma we ﬁnd a lower bound on the right-hand side of (21), which will in turn provides another lower bound on ¯ R m .
+Lemma 4: If β k m ≥ 1 for all m ∈ {1, . . . , M } and for all k ∈ {1, . . . , K}, then
+Equations (21)-(22) together give rise to the following lower bound on ¯ R m :
+As the ﬁnal step, we assess the scaling of the bound given in (23). The next lemma is instrumental for analyzing the scaling of interest.
+Lemma 5: For a sequence of K i.i.d exponentially distributed random variables with CDF G(x) and for any arbitrary valid PMF {Q j } K j=1 if the condition
+By using the lower bound on ¯ R n given in (23) and Lemma 5 we state the main result of this paper in the next theorem.
+Theorem 1: The sum-rate throughput of the multi-cell network with the proposed scheduling algorithm scales as
+Proof: We start by showing that ∀m ∈ {1, . . . , N } and ∀r ∈ {1, . . . , M }, the choice of Q j = q j m (r) for j ∈ {1, . . . , K}, where q k m (r) is deﬁned in (15), fulﬁls the condition (24) of Lemma 5. From (15) we have
+It can be readily veriﬁed that the probability that each of users in the cell m expresses interest in ω r m by feeding back its index is 1 K as
+P (k ∈ H r m ) = P SINR k m (r) ≥ β k m = 1 − F k m (β k m (r)) (3) = 1 K
+Since |H r m | counts the number of users in cell m that have expressed interest in beamformer ω r m (which do that independently of each other), we have
+Therefore, the set {q 1 m (r), . . . , q K m (r)} satisﬁes the condition in Lemma 5 and Lemmas 4 and 5 together provide
+Using this inequality above indicates that for ﬁxed M, N, ρ, η max m and η min m and for increasing K we have
+On the other hand, from (6) we know that the sum-rate throughput cannot scale faster than N M log log N K, which in conjunction with (27) establishes the desired result.
+Simulation results in Fig. 1 depict the sum-rate throughput achieved by the proposed scheduling scheme and show that it varies linearly with the number of cells N and transmit antennas M and double logarithmically with the number of users K.
+So far we have obtained the sum-rate throughput scaling. In this section we evaluate the expected content of the coordination model. This essentially provides an upper bound on the minimum required amount of information exchange in the network. As discussed in Section III, if a user meets the criterion to be considered as a candidate for being selected and scheduled, it will feed back log M
+bits and otherwise will remain silent indicating that it is not a candidate for being scheduled.
+Note that the normalization factors β k m change adaptively with varying K. Therefore, as the number of users per cell increases, the chance that each individual user satisﬁes the SINR constraint becomes slimmer. In other words, the choices of β k m guarantee that as the network becomes denser, the aggregate feedback load is controlled via enforcing a more stringent constraint on each user for participating in the feedback phase. In the next theorem we quantify the aggregate feedback and show that the expected aggregate feedback is a constant independent of the number of users in the network.
+Theorem 2: For downlink transmission in a multiple-input multiple-output (MIMO) network with N cells each equipped with M transmit antennas, serving K single-antenna users, by deploying the proposed scheduling procedure, the aggregate feedback in the net- work in the asymptote of large K is upper bounded by N M log M .
+Proof: The probability that user U k m is a candidate to be served by one of the M beamformers of its designated base-station, is upper bounded by
+Therefore, by taking into account that if a user satisﬁes the normal- ization constraint, it will feed back log M bits, we ﬁnd that the aggregate number of feedback in the cell m, denoted by E[R FB m ], in the asymptote of large K is
+which provides that the expected aggregate number of feedback bits in the network (N cells) does not exceed N M t log M .
+Interference management in multiuser wireless networks necessi- tates coordinating the users for enabling a collaborative design of communication strategies. Coordinating the users, which can be in the form of user feedback and base-station cooperation, consumes energy resources. We have provided an upper bound on the mini- mum coordination level required for achieving the optimal downlink capacity scaling in multi-cell networks. We have speciﬁcally shown that for a network of N cells, each with K users and one base- station equipped with M transmit antennas, for achieving the optimal downlink capacity scaling rate of N M log log N K, the content of the required coordination across the network is upper bounded by N M log M , which is ﬁnite. This is signiﬁcantly smaller than the coordination required by existing coordination models which require the exchange of inﬁnite-rate messages (real-valued numbers).
+[[[ REFS ]]]
+H. Huang
+M. Trivellato
+A. Hottinen
+M. Shaﬁ
+P. Smith
+R. Valen- zuela
+--
+Increasing downlink cellular throughput with limited network MIMO coordination
+----
+D. Gesbert
+S. Hanly
+H. Huang
+S. Shamai (Shitz)
+O. Simeone
+W. Yu
+--
+Multi-cell MIMO cooperative networks: A new look at interference
+----
+D. Gesbert
+M. Kountouris
+R. W. Heath
+C.-B. Chae
+T. Salzer
+--
+Shifting the MIMO paradigm
+----
+H. Zhang
+N. B. Mehta
+A. F. Molisch
+J. Zhang
+H. Dai
+--
+Asyn- chronous interference mitigation in cooperative base station systems
+----
+J. Zhang
+R. Chen
+J. G. Andrews
+A. Ghosh
+R. W. Heath
+--
+Net- worked MIMO with clustered linear precoding
+----
+M. Sharif
+B. Hassibi
+--
+On the capacity of MIMO broadcast channel with partial side information
+----
+
+--
+A comparison of time-sharing, DPC, and beamforming for MIMO broadcast channels with many users
+----
+P. Viswanath
+D. N. C. Tse
+R. Laroia
+--
+Opportunistic beamforming using dumb antennas
+----
+N. Jindal
+--
+MIMO broadcast channels with ﬁnite-rate feedback
+----
+P. Ding
+D. J. Love
+M. D. Zoltowski
+--
+Multiple antenna broadcast channels with shape feedback and limited feedback
+----
+T. Yoo
+N. Jindal
+A. Goldsmith
+--
+Multi-antenna downlink channels with limited feedback and user selection
+----
+K. Huang
+R. W. Heath
+J. G. Andrews
+--
+Space division multiple ac- cess with a sum feedback rate constraint
+----
+C. Swannack
+E. Uysal-Biyikoglu
+G. W. Wornell
+--
+Finding NEMO: Near mutually orthogonal sets and applications to MIMO broadcast scheduling
+----
+K. Huang
+J. G. Andrews
+R. W. Heath
+--
+Performance of orthogonal beamforming for SDMA with limited feedback
+----
+W. Choi
+A. Forenza
+J. G. Andrews
+R. W. Heath
+--
+Opportunis- tic space division multiple access with beam selection
+----
+B. C. Arnol
+N. Balakrishna
+H. N. Nagaraj
+--
+A First Course in Order Statistics 
+[[[ META ]]]
+xmlpapertitle -> Coordination Limits in MIMO Networks
+pdf -> E:\testDataset\019.pdf
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\019.pdf
+xmlauthors -> Ali Tajer, Xiaodong Wang, H. Vincent Poor
+xmlroom -> -
+[[[ LINKS ]]]
+

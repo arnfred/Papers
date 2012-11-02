@@ -1,0 +1,149 @@
+[[[ ID ]]]
+21
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Encoding of Multivariate Stimuli with MIMO Neural Circuits
+[[[ AUTHORS ]]]
+Aurel A. Lazar
+Eftychios A. Pnevmatikakis
+[[[ ABSTR ]]]
+Abstract—We present a general MIMO neural circuit architec- ture for the encoding of multivariate stimuli in the time domain. The signals belong to the ﬁnite space of vector-valued trigono- metric polynomials. They are ﬁltered with a linear time-invariant kernel and then processed by a population of leaky integrate-and- ﬁre neurons. We present formal, intuitive, necessary conditions for faithful encoding and provide a perfect recovery (decoding) algorithm. We extend these results to multivariate product spaces and apply them to video encoding with MIMO neural circuits. We demonstrate that our encoding circuits can serve as measurement devices for compressed sensing of frequency sparse signals. Finally, we provide necessary spike density conditions for the decoding of inﬁnite-dimensional vector valued bandlimited functions encoded with MIMO neural circuits.
+Index Terms—time encoding, spiking neurons, MIMO sam- pling, video encoding, compressed sensing.
+[[[ BODY ]]]
+The wide availability of multi-electrode recordings as well as functional imaging techniques that operate at the cellular level has shifted the focus towards population-centric ap- proaches to neural encoding. Multi-input multi-output (MIMO) time encoding machines (TEMs) encode vector-valued analog stimuli into a population of spike trains. Examples of MIMO models abound in the system neuroscience literature (e.g., the antennal lobe in insects). Such models have also been used in brain-machine interfaces [1] as well as silicon retinas and related hardware applications [2].
+In this paper we investigate conditions for the faithful rep- resentation of analog video with MIMO TEMs. The canonical input stimulus is an M -dimensional vector-valued trigonomet- ric polynomial. Such stimuli are a natural discretization of bandlimited functions in the frequency domain. The stimulus is passed through a linear ﬁlter (kernel) whose output is fed to a population of N spiking neurons. For simplicity we consider here neurons of leaky integrate-and-ﬁre (LIF) type. Faithful encoding with spiking neurons has a simple geometric interpretation. The circuit projects the input stimulus onto spike dependent functions that span the space of input signals.
+We reduce the recovery problem to the solution of a system of linear equations and derive necessary conditions on the number of spikes and the structure of the ﬁltering kernel that are required for the existence of a solution. Since the canonical input space is ﬁnite dimensional, these conditions can be reduced to certain matrix rank conditions that are analytically
+tractable. We postulate that these necessary conditions are also sufﬁcient. MIMO TEMs were ﬁrst investigated in [3]; however, the problem of perfect reconstruction was not addressed.
+We extend our results to multivariate spaces that are con- structed by the tensor product between the space of trigonomet- ric polynomials and an arbitrary ﬁnite Hilbert space. We focus on the space of space-time video signals and show that MIMO TEMs can be used for the encoding of video signals within a neural modeling framework. We present several examples for vector-valued and video signals. By using the standard l 1 - norm relaxation algorithms from compressed sensing, we also demonstrate that MIMO TEMs can be used for sub-Nyquist sampling of frequency sparse video signals. These insights demonstrate that MIMO TEMs provide a sensing mechanism suitable for a wide range of applications while at the same time leverage the advantages of an asynchronous, temporal code. Finally, we extend our results to multivariate stimuli deﬁned with inﬁnite-dimensional bandlimited temporal components and provide conditions for MIMO generalized sampling.
+In this section we introduce the space of stimuli and describe their representation by the two stages of MIMO TEM architec- ture: the ﬁltering kernel and the ensemble of spiking neurons.
+The stimuli of interest are assumed to belong to the space of vector-valued trigonometric polynomials. The latter consists of functions that are simultaneously bandlimited with bandwidth Ω (in rad/sec) and periodic with period T = 2πS/Ω, where S is a positive integer that denotes the order (resolution) of the space. An element u of the space (denoted by H M S ) is of the form u = [u 1 , . . . , u M ] , with
+where ω S = Ω/S. The space H 1 S is a natural discretization of the space of bandlimited functions in the frequency domain. The exponentials in (1) have a line Fourier spectrum at the
+points sω S with s = −S,...,S. By letting S → ∞, this spectrum becomes dense in [−Ω,Ω]. We assume, wlog, that all the input components have the same bandwidth and the
+1 M
+Under (2), the set of functions (e i s ), i = 1, . . . , M, s = −S,...,S, whose i-th component is equal to exp (jsω S t) /√T and zero, otherwise, constitutes an orthonormal basis (ONB) for H M S .
+an ensemble of N neural circuits. The latter, in their most general form, are characterized by piecewise linear dynamics and spike-triggered feedback (pulse coupling) [3]. Here, for simplicity we assume that each neural circuit consists of a single LIF neuron.
+. .
+. .
+. .
+ji (t). We assume that any ﬁlter h ji , j = 1, . . . , N, i = 1, . . . , M, of the kernel belongs to H 1 S and can be written in the form of (1) with coefﬁcients h ji
+s , s = −S,...,S. Each ﬁlter of the kernel receives input from one of the M component inputs and its output is additively coupled into a single neuron (see Fig. 1). Filtering u with H leads to a signal v = [v 1 , v 2 , . . . , v N ] in H N S where
+H s a s = v s , 	 (4) where H s is a N × M matrix with [H s ] ji = h ji s , a s = [a 1 s , a 2 s , . . . , a M s ] and v s = [v 1 s , v 2 s , . . . , v N s ] . Regardless of the spiking behavior of the neural circuits, a trivial necessary condition for stimulus recovery, is that (4) has a solution for
+every s. Equivalently, H s has rank M. A necessary condition for the latter is N ≥ M, i.e., the number of neurons is greater or equal to the number of inputs.
+The neural model that we employ here is the LIF neuron. The stimulus v biased by a constant background current b is fed into a LIF neuron with threshold δ, resistance R and capacitance C. Assume that after each spike the neuron is reset to zero. The operation of the neuron is described by the piecewise linear differential equation
+Let (t k ), k = 1, 2, . . . , n + 1, denote the output spike train of the LIF neuron. By solving the equation between two consecutive spike times, we obtain the t-transform equations
+The measurements of (5) can be written in the inner product form
+v, χ k = q k , q k = Cδ −bRC 1 − exp − t k+1 −t k RC 	 (6) and the sampling functions χ k , k = 1, 2, . . . , n, can be expressed as χ k = |s|≤S b s,k e s , where the coefﬁcients b s,k are given by
+Proof: The matrix B can be written as a product of an upper-triangular, a Vandermonde and a diagonal matrix, all of which are of full rank.
+In this section we discuss the problem of perfect recovery of the input vector-valued stimulus from the set of spike times. We provide necessary conditions regarding the spiking density of the neurons and the frequency support of the ﬁltering matrix H . Finally we present an algorithm that can perfectly recover the stimulus.
+We assume that every LIF neuron j ﬁred a total of n j + 1 spikes, j = 1, 2, . . . , N. Using (3), the t-transform equation
+(8) Writing (8) for all k = 1, 2, . . . , n j , we obtain in matrix form
+with q j = [q j 1 , . . . , q j n j ] , a = [a −S ; a −S+1 ; . . . ; a S ]. The matrices B j and ˜ H j have dimensions n j × (2S + 1) and (2S + 1) × M(2S + 1), respectively, and are given by
+obtain the system of equations   B 1 0 . . . 0 0 B 2 . . . 0 ..
+(10) with F = B ˜ H . In order to recover the vector a, the matrix F has to be of rank equal to the dimension of a, i.e., M (2S + 1). Lemma 2. The matrices B and ˜ H have rank, respectively,
+Proof: Since B is block-diagonal its rank equals the sum of the rank of its blocks and the result follows from Lemma 1. By rearranging the rows of ˜ H , we obtain the block- diagonal matrix H ∗ = diag(H −S , H −S+1 , . . . , H S ) and the result follows.
+Proof: Since F = B ˜ H , we have that r(F) ≤ min(r(B), r( ˜ H )) [4]. By applying Lemma 2 we obtain
+Combining (13) and (14) and noting that r( ˜ H j ) ≤ 2S + 1 for all j = 1, 2, . . . , N we get
+(12) follows by noting that the recovery condition is r(F) = M (2S + 1) and r(H s ) ≤ M for all s = −S,...,S.
+Remark 1. The intuitive full rank condition r(H s ) = M for every frequency s is naturally embedded into (12). Moreover, (12) shows that the number of linear independent measure- ments that each neuron contributes is equal to the number of frequency components that its ﬁltering vector supports. The
+condition substantially improves upon the ones presented in [5], where separated loose conditions were presented for the ﬁltering kernel and the spiking densities.
+Remark 2. Condition (12) is also sufﬁcient if (14) holds with strict equality. In practice this always holds as long as the matrices ˜ H j and the LIF neurons satisfy some ‘linear independence condition’. The exact conditions will be pursued elsewhere.
+To solve the system of complex equations (10) we ﬁrst reduce it to a system of real equations. This can be achieved by noting that a and F have a special structure and can be written in the following form
+where each submatrix F s has dimensions j n j ×M and each sub-vector a s has dimensions M × 1. With that in mind, (10) can be written in the form F r a r = q with
+where (·) and (·) denote the real and imaginary part. We now present an algorithm that can perfectly recover the stimulus.
+Algorithm 1. If r(F) = M (2S + 1), then u can be recovered as
+with the entries of the vector a r given by a r = F r+ q , where F r+ denotes the pseudoinverse of the matrix F r .
+1) Example: Delay Filter Bank: We present the realization of the recovery algorithm for a ﬁltering kernel that induces arbitrary, but known, delays and weights on the stimulus. The kernel models dendritic tree latencies in sensory neurons (motor, olfactory) or, in general, delays and synaptic weights between groups of pre- and postsynaptic neurons. Each ﬁlter h ji is the form h ji (t) = w ji δ(t − d ji ) with d ji ≥ 0, for all j = 1, 2 . . . , N , and all i = 1, 2, . . . , M . When projected onto H M S we obtain h ji (t) = S s=−S w ji e −jsω S d ji e s (t). The vector valued signal u(t) was chosen to have four trigonometric components (M = 4) all with Ω = 2π · 80 Hz and S = 20 deﬁned on the interval [0, 0.25]sec. In total, 16
+ideal IAF neurons were used to encode the signal (N = 16). The delays were drawn from an exponential distribution with mean π/3Ω. The weights, biases and thresholds were drawn from uniform distributions on the intervals [0.5, 1], [1.3, 2.3] and [1.4, 2.4], respectively. Finally, C j = 0.01 for all neurons.
+The 16 neurons respectively produced 13, 18, 29, 31, 14, 13, 17, 25, 13, 27, 20, 15, 20, 23, 13 and 18 spikes.
+Fig. 2 shows the SNR of the recovery of each stimulus component when 4, 5, . . . , 16 neurons are used. Overall, as more neurons are added, the SNR increases, eventually reach- ing very high values (> 60 [dB]). This occurs for the ﬁrst 12 neurons that have a total of 203 samples, i.e., have a total number of samples above the perfect recovery bound of M (2S + 1) = 163 spikes.
+2) Applications to Compressed Sensing: MIMO TEMs (and more generally TEMs) can also be used as measurement devices for sub-Nyquist sampling of sparse signals and related compressed sensing applications [6], [7]. In our setup a sparse vector-valued stimulus in H M S corresponds to sparsity in the frequency domain. We investigated whether such sparse
+stimuli can be recovered from the spike times even when the necessary rank conditions are not satisﬁed by solving the standard l 1 -norm optimization problem
+We considered an example with a vector-valued stimulus with 4 components (M = 4) and S = 30, Ω = 2π · 30. Several vector-valued stimuli were constructed with levels of sparsity
+that ranged from 5% up to 35%. 6 neurons were used to encode the stimulus. The ﬁlters of the ﬁltering kernel were random with coefﬁcients drawn from a standard complex normal distribution. The neurons were of LIF type and their parameters were chosen in such a way that the total number of spikes approximately ranged from 20% up to 90% of the required rank M (2S + 1) given by Theorem 1. The recovery results were obtained with the l 1 -magic toolbox [8]. For each combination of sparsity level and total number of spikes 100 repetitions were run with different stimuli and ﬁltering kernels. Fig. 3 shows the probability of perfect recovery (deﬁned as reconstruction with SNR > 40 [dB]) as a function of the number of spikes normalized by the required rank (Nyquist rate equivalent), plotted separately for each sparsity level.
+The example shows that the solution of (17) achieves perfect recovery for each sparsity level checked, provided that the number of total spikes is sufﬁciently high (although that is always below the dimensionality of the system M (2S + 1)). The example suggests that, in addition to generalized sampling under Nyquist-type conditions, TEMs are a natural real-time
+measurement (sampling) device suitable for compressed sens- ing and analog-to-information conversion [9].
+The results of Theorems 1 and 2 (see Appendix A) can be easily extended to the case of video TEMs [10]. Let (f i (x, y)), (x, y) ∈ R 2 , i = 1, . . . , M , be an ONB for an image space V. Then the set of functions (e s f i ), s = −S,...,S,i = 1, . . . , M , is an ONB for the product video space V ⊗H
+Similarly, the spatio-temporal receptive ﬁeld (STRF) of the neuron j, j = 1, . . . , N , can be written as
+with h ji (t) deﬁned similarly (again h ji −s = h ji s ). In the case of video TEMs (and visual neurons), the ﬁltering is performed by multiplication in the spatial domain and convolution in the time domain. Therefore the output v j of the STRF of the j-th neuron is a temporal signal given by
+that has exactly the same form as (3). Therefore, Theorem 1 can be directly applied to video TEMs and, in general, TEMs encoding multivariate signals. Note that this result generalizes the ones presented in [10], since it allows neurons to ﬁre an arbitrary number of spikes.
+As an example we demonstrate, how a video stimulus can be faithfully represented in a compressed form by a MIMO TEM in the spike domain. For the image space we used again the
+space of trigonometric polynomials with resolution (deﬁned in a similar way as in the pure temporal case) S x = S y = 7. For the temporal domain we had S = 11 (total dimensionality 5,175). The input video used was constructed by randomly picking 938 coefﬁcients and assigning them a nonzero value (ending in 18% sparse signal in the frequency domain). The signal was sensed from 600 LIF neurons with appropriate parameters that produced a total of 3,362 spikes, signiﬁcantly below the total dimensionality of the stimulus. Using the same L 1 minimization algorithm, we are able to reconstruct the video stimulus with a total SNR= 64.97 [dB]. Three representative frames of the reconstruction are shown in Fig. 4.
+We introduced the concept of MIMO TEMs for the repre- sentation of multivariate stimuli in the time domain. MIMO TEMs can serve as models for video neural population en- coding. We showed how information is represented in the time domain and provided necessary, and practically sufﬁcient, conditions on the spike density as well as on the structure of the ﬁltering kernel that guarantee the representation to be reversible. Interestingly, our MIMO architecture can also serve as a measurement circuit for sub-Nyquist sampling of sparse signals in the frequency domain. The work presented here raises a number of theoretical questions (e.g., frames for vector-valued bandlimited functions, bounds on the number of spikes needed for compressed sensing) and practical issues (e.g., modeling of more complex dendritic tree mechanisms or accounting for other forms of sparsity). These and other issues including neural circuits with random elements [11] will be addressed elsewhere.
+of bandlimited functions. In what follows we denote by Π a subset of the set {1,2,...,N}, and by Π c its complement. Moreover for a matrix A let A
+and ˆ H denotes the Fourier transform of H. Since the number of spikes becomes inﬁnite, we denote by D j = lim S→∞ n j /T the average ﬁring rate (spike density) of neuron j.
+Theorem 2. A necessary condition for perfect recovery is that for every subset Π ⊆ {1,2,...,N},
+where R(Π) 1 2π Ω −Ω r( ˆ H Π (ω))dω. Proof: We ﬁrst note that
+r(H Π c s ). (19) By dividing both sides by T and letting S → ∞ (18) follows. These conditions improve the ones derived in [12] as the latter
+Remark 3. A case that is of particular interest to neuroscience is when N 	 M . Let Π be a subset with |Π| < N − M. Assuming that the matrix H Π c is of full rank for all ω, then
+the right side of (18) becomes 0. This suggests that if the population of neurons is very large, then small subsets of the population do not require an actual minimum density.
+[[[ REFS ]]]
+P. Donoghue
+--
+Connecting cortex to machines: recent advances in brain interfaces
+----
+J. Costas-Santos
+T. Serrano-Gotarredona
+R. Serrano-Gotarredona
+B. Linares-Barranco
+--
+A Spatial Contrast Retina With On-Chip Calibra- tion for Neuromorphic Spike-Based AER Vision Systems
+----
+A. Lazar
+A. Pnevmatikakis
+--
+Consistent Recovery of Sen- sory Stimuli Encoded with MIMO Neural Circuits
+----
+D. Meye
+--
+C
+----
+A. Lazar
+A. Pnevmatikakis
+--
+Faithful Representation of Stimuli with a Population of Integrate-and-Fire Neurons
+----
+J. Romberg
+T. Tao
+--
+Robust uncertainty principles: Ex- act signal reconstruction from highly incomplete frequency information
+----
+
+--
+Compressed sensing
+----
+E. Candes
+J. Romberg
+--
+l1-magic: Recovery of sparse signals via convex programming
+----
+S. Kirolos
+J. Laska
+M. Wakin
+M. Duarte
+D. Baron
+T. Ragheb
+Y. Massoud
+R. Baraniuk
+--
+Analog-to-information conversion via random demodulation
+----
+A. Lazar
+A. Pnevmatikakis
+--
+Video Time Encoding Machines
+----
+A. Lazar
+A. Pnevmatikakis
+--
+Reconstruction of Sensory Stimuli Encoded with Integrate-and-Fire Neurons with Random Thresholds
+----
+R. Venkataramani
+Y. Bresler
+--
+Multiple-input multiple-output sampling: necessary density conditions
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\021.pdf
+[[[ LINKS ]]]
+

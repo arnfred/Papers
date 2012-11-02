@@ -1,0 +1,184 @@
+[[[ ID ]]]
+20
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+SINR Distribution of MIMO MMSE Receiver
+[[[ AUTHORS ]]]
+Aris L. Moustakas
+[[[ ABSTR ]]]
+Abstract—Linear MMSE reception offers a low complexity option for multi-antenna communication systems. Understanding the outage behavior of the corresponding signal-to-interference- and-noise ratio (SINR) and per-antenna throughput r is im- portant in a quasistatic mobile environment. In this paper we introduce a large deviations method, valid nominally for large antenna numbers N, which calculates the probability density of the SINR and r of Gaussian channel MIMO MMSE receivers, with arbitrary transmission power proﬁles and in the presence of transmitter antenna correlations. This approach extends the Gaussian approximation of the SINR, valid only very close to the center of the distribution, demonstrating the non-Gaussian tails of the distribution. Our methodology allows us to calculate the correct leading order ( O(N)) of the SINR distribution and showcase the deviations from approximations that have appeared in the literature (e.g. the Gaussian or the generalized Gamma distribution). We are also able to calculate next-to-leading order corrections to the distribution, thereby making the approximation quite accurate even for the smallest antenna arrays ( 2 × 2).
+Index Terms—Gaussian approximation, information capacity, large-system limit, multiple-input multiple-output (MIMO) chan- nels.
+[[[ BODY ]]]
+asymptotic analysis of the signal to interference and noise ratio (SINR) for the MMSE receiver in the limit of large antenna numbers using tools from random matrix theory. This effort was initially spearheaded in the context of DS-CDMA where the effective channel consists of the matrix of pseudorandom codes. In this direction the ﬁrst breakthrough was made by [7], [8] who showed that in the inﬁnite matrix size limit the SINR of a ﬁxed random channel realization converges to its mean. Later, similar results were obtained for more general channels [9], [10]. More recently, the effectiveness of linear receivers were analyzed in terms of the total throughput from all transmitting nodes in the asymptotic limit [11]–[13].
+Nevertheless, often one needs to assume that the fading channel is “quasi-static”, i.e. varies in time much more slowly than the typical coding delay. In this case the channel matrix has to be considered as a random constant and the SINR as a random variable. In this regime, the relevant performance metric is the “rate (or SINR) versus outage probability” tradeoff [14], captured by the cumulative distribution function of the SINR. This situation is especially valid in the context of multi-antenna channels, when the number of antennas is usually much smaller than the size of the CDMA codes.
+In a seminal work [15] the authors proved the asymptotic normality of the SINR for the MMSE and zero-forcing (ZF) receivers when all transmitters have equal power. The normal- ity of the SINR was later extended to the normality of the multiple access interference (MAI) of CDMA channels [16] and a variety of linear receivers [17]. More recently, [18], [19] showed the normality of the MMSE SINR, including the case of the mismatched receiver. Interestingly, [18] showed a nor- mality also for the log SIN R. Unfortunately and in contrast to the total mutual information, the Gaussian approximation for the SINR behaves badly unless the number of channels is quite large. As a result, inspired by the fact that the SINR for the equal power MIMO ZF receiver has a Gamma distribution [15], [20], several works were devoted in approximating the SINR statistics with other distributions, notably the Gamma and generalized Gamma probability densities [21], [22], by matching the ﬁrst three moments or the Beta distribution for the SINR of the CDMA ZF receiver [23]. Nevertheless, this methodology, although perhaps providing closer agreement under certain conditions is ad-hoc and does not offer any intuition on the SINR statistics.
+In this paper, we take a different approach. Instead of trying to prove Gaussian behavior close to the peak of the distribution of SINR, we develop a large-deviations methodology, which allows us to calculate the distribution of the SINR arbitrarily far from its most probable, ergodic value. The success of our method relies on two basic concepts of the model. First, chan-
+matrix M. Our objective is to evaluate the probability density function of γ k . We start with a very useful ﬁrst result:
+Lemma 1 (MGF of γ k ). The moment generating function of γ k (2) can be written in the following form
+As mentioned in the Introduction, ΔI(is, H k ) is a differ- ence of two mutual informations with different, s-dependent noise. When the number of antennas is large, ΔI(is) is asymptotically a Gaussian variable, as the difference of two (correlated) Gaussian variables, i.e. the mutual informations in the ﬁrst and second line of (5). As a result, the average over H k can be performed straightforwardly in this limit.
+Proposition 2 (PDF of γ k ). In the limit of large antenna numbers the probability density of γ k (2) can be expressed as
+In the above equation, I erg (s 0 ) is the ergodic mutual infor- mation given by
+I erg (s 0 ) = tr ln [ I M + R(p k s 0 + r s )] 	 (7) + tr ln [ I N 1 + P −k t s ] − N 1 r s t s
+I N 1 + P −k t s 	 (9) Setting s 0 = 0 in the above equations of I erg , t s , r s gives us I erg (0), as well as two new handy variables t 0 , r 0 , respectively. The variable s 0 in the above is evaluated through the equation
+γ = p k t s (s 0 ) 	 (10) v 1 = V ar(ΔI(s 0 , H k )) is the variance of the random quantity ΔI(s 0 , H k ) in (5). Finally, the quantity v 3 can be written in a compact way as (see Appendix B for full expressions of v 1 ,
+The evaluation of the probability density above is asymp- totic in N , however, it has been evaluated to order O(1), i.e. the corrections to the above formula are o(1) in N . The ﬁrst three terms in the exponent of (6) are O(N ). It is remarkable that P (γ) can be written as a difference between two mutual
+Corollary 3. The probability distribution of the rate r k = log 2 (1 + γ k ), P r (r k ) can be directly obtained from above:
+We may also obtain the distribution of the SINR for the ZF receiver, by taking the appropriate ρ → ∞ limit.
+Corollary 4. In the case of equal power transmit antennas P −k = ρ I N 1 and uncorrelated receiver antennas R = I N 1 , the result simpliﬁes and, to leading order in N takes the
+where the quantity ΔI(is, H k ) is exactly (5). In the large N limit ΔI(is, H k ) and therefore g(is) will be analytic away from the asymptotic empirical spectrum of the matrix
+To prove this proposition, we ﬁrst observe that ΔI(is, H k ) = I(is, H k ) − I(0, H k ) is a difference of two mutual informations, both of which, for large N are asymptotically (correlated) Gaussian random variables. As a result, ΔI(is, H k ) becomes itself a Gaussian random variable with mean E ΔI(is, H k ) = I erg (is) − I erg (0) where I erg (is) is the ergodic mutual information as deﬁned in (7). Its variance can be evaluated straightforwardly using the methodology from [25] as follows:
+v 1 (s 0 ) = var(I(s 0 , H k )) + var(I(0, H k )) 	 (16) − 2 cov(I(s 0 , H k ), I(0, H k ))
+= − log |1 − M t1 M r1 | − log |1 − M t2 M r2 | + 2 log |1 − M t3 M r3 |
+where the coefﬁcients t s , r s and t 0 , r 0 are evaluated from (8), (9), with non-zero and zero s 0 respectively.
+Therefore the expectation over H k in g(is) can be written as [26], [27]
+We now need to evaluate asymptotically the s integral. The key here is that the ﬁrst three terms in the exponent of (19) are proportional to N 1 for large antenna numbers. As a result,
+0 ) nf (z 0 )
+[[[ REFS ]]]
+G. J. Foschini
+M. J. Gans
+--
+On limits of wireless communications in a fading environment when using multiple antennas
+----
+I. E. Telatar
+--
+Capacity of multi-antenna Gaussian channels
+----
+
+--
+Draft Standardization Document, IEEE P802.11n/D2.00
+----
+R. R. M¨uller
+S. Verd´u
+--
+Design and analysis of low-complexity interference mitigation on vector channels
+----
+P. W. Wolniansky et al.
+--
+V-BLAST: an architecture for realizing very high data rates over the rich-scattering wireless channel
+----
+G. Caire
+G. Colavolpe
+--
+On low-complexity space-time coding for quasi-static channels
+----
+D. N. Tse
+S. V. Hanly
+--
+Linear multiuser receivers: Effective interference, effective bandwidth and user capacity
+----
+S. Verd´u
+S. Shamai
+--
+Spectral efﬁciency of CDMA with random spreading
+----
+M. J. M. Peacock
+I. B. Collings
+M. L. Honig
+--
+Uniﬁed large- system analysis of MMSE and adaptive least squares receivers for a class of random matrix channels
+----
+J. C. W. Hachem
+P. Loubaton
+--
+Asymptotic analysis of optimum and sub-optimum CDMA downlink MMSE receivers
+----
+C. Artigue
+P. Loubaton
+--
+On the precoder design of ﬂat fading MIMO systems equipped with MMSE receivers: A large system ap- proach
+----
+M. R. McKay
+I. B. Collings
+A. M. Tulino
+--
+Achievable sum rate of MIMO MMSE receivers: A general analytic framework
+----
+K. R. Kumar
+G. Caire
+A. L. Moustakas
+--
+Asymptotic performance of linear receivers in MIMO fading channels
+----
+E. Biglieri
+J. Proakis
+S. Shamai
+--
+Fading channels: Information- theoretic and communications aspects
+----
+D. N. Tse
+O. Zeitouni
+--
+Linear multiuser receivers in random environments
+----
+J. Zhang
+E. K. P. Chong
+D. N. C. Tse
+--
+Output MAI distribution of linear MMSE multiuser receivers in DS-CDMA systems
+----
+D. Guo
+S. Verdu
+L. K. Rasmussen
+--
+Asymptotic normality of linear multiuser receiver outputs
+----
+Y.-C. Liang
+G. Pan
+Z. D. Bai
+--
+Asymptotic performance of mmse receivers for large systems using random matrix theory
+----
+A. Kammoun et al.
+--
+A central limit theorem for the SINR at the LMMSE estimator output for large dimensional systems
+----
+D. Gore
+R. W. Heath
+A. Paulraj
+--
+On performance of the zero forcing receiver in presence of transmit correlation
+----
+P. Li et al.
+--
+On the distribution of SINR for the MMSE MIMO receiver and performance analysis
+----
+A. Kammoun et al.
+--
+BER and outage probability approximations for LMMSE detectors on correlated MIMO channels
+----
+R. R. M¨uller
+P. Schramm
+J. B. Huber
+--
+Spectral efﬁciency of CDMA systems with linear interference suppression
+----
+A. L. Moustakas et al.
+--
+Performance of MMSE MIMO receivers: A large N analysis for correlated channels
+----
+A. L. Moustakas
+S. H. Simon
+A. M. Sengupta
+--
+MIMO capacity through correlated channels in the presence of correlated interferers and noise: A (not so) large N analysis
+----
+W. Hachem et al.
+--
+A new approach for capacity analysis of large dimen- sional multi-antenna channels
+----
+W. Hachem
+P. Loubaton
+J. Najim
+--
+A CLT for information-theoretic statistics of Gram random matrices with a given variance proﬁle
+----
+C. M. Bende
+S. A. Orsza
+--
+Advanced Mathematical Methods for Scientists and Engineers
+[[[ META ]]]
+parsed -> yes
+file -> E:\testDataset\020.pdf
+[[[ LINKS ]]]
+

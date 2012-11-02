@@ -1,0 +1,90 @@
+[[[ ID ]]]
+64
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Concentration of Measures for LDPC Code Ensembles
+[[[ AUTHORS ]]]
+Igal Sason
+Ronen Eshel
+[[[ ABSTR ]]]
+sason@ee.technion.ac.il reshel@gmail.com Department of Electrical Engineering
+[[[ BODY ]]]
+Abstract—This work considers the concentration of measures for low-density parity-check (LDPC) code ensembles. The two results derived in this paper follow from Azuma’s inequality for Doob martingales with bounded differences. The ﬁrst result is a tightened concentration inequality for the conditional entropy (originally derived by M´easson et al.), and the second result is a concentration inequality for the cardinality of the fundamental systems of cycles of a bipartite graph from the ensemble.
+Index Terms—Azuma’s inequality, concentration of measures, low-density parity-check (LDPC) codes, martingales.
+[[[ REFS ]]]
+K. Azuma
+--
+Weighted sums of certain dependent random variables
+----
+F. Chung
+L. Lu
+--
+Concentration inequalities and martingale inequal- ities: a survey
+----
+D. P. Dubash
+A. Pancones
+--
+Concentration of Measure for the Analysis of Randomized Algorithms, Cambridge University Press, 2009
+----
+T. Etzion
+A. Trachtenberg
+A. Vardy
+--
+Which codes have cycle-free Tanner graphs ?
+----
+M. Ledou
+--
+The Concentration of Measure Phenomenon, Mathematical Surveys and Monographs (AMS), vol
+----
+M. G. Luby
+M. Mitzenmacher
+M. A. Shokrollahi
+D. A. Spielman
+--
+Efﬁcient erasure-correcting codes
+----
+C. M´easson
+A. Montanari
+R. Urbanke
+--
+Maxwell construction: The hidden bridge between iterative and maximum apposteriori decoding
+----
+A. Montanari
+--
+Tight bounds for LDPC and LDGM codes under MAP decoding
+----
+P. Oswald
+A. Shokrollahi
+--
+Capacity-achieving sequences for the erasure channel
+----
+T. Richardso
+R. Urbank
+--
+Modern Coding Theory, Cambridge University Press, 2008
+----
+J. S. Rosentha
+--
+A First look at Rigorous Probability Theory, World Scientiﬁc Publishes, second edition, 2006
+----
+I. Sason
+--
+On universal properties of capacity-approaching LDPC code ensembles
+----
+I. Sason
+--
+On the fundamental system of cycles in the bipartite graphs of LDPC code ensembles
+----
+A. Shokrollahi
+--
+Capacity-achieving sequences
+----
+M. Talagrand
+--
+Concentration of measure and isoperimteric inequalities in product spaces
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\064.pdf
+[[[ LINKS ]]]
+

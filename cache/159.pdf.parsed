@@ -1,0 +1,135 @@
+[[[ ID ]]]
+159
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Detrimental Effect of Assuming a Linear Model for Non-Linear AWGN Channels
+[[[ AUTHORS ]]]
+Jihad Fahs
+Ibrahim Abou-Faycal
+[[[ ABSTR ]]]
+Abstract— In communication theory, one of the best understood and commonly adopted channel model is the average-power con- strained linear AWGN channel, the capacity of which is given by the expression 1 2 log(1 + SNR). But what if the channel is not linear? How bad is it to adopt a linear model for a non-linear channel?
+In this paper, we answer these questions by considering generic deterministic memoryless non-linear channel models. We study these models under an even-moment, a peak or a mixture input constraint. We prove that for the majority of the studied channels, the capacity- achieving input distributions are of a discrete nature with a ﬁnite number of mass points. The linear model under the average power constraint and other “equivalent channels” being the only exceptions. We establish our results using Hermite bases in a standard Hilbert space decomposition of some relevant information quantities in channels affected by AWGN.
+We present numerical results for two sample sub-linear channels. We determine their optimal inputs and plot their capacity curves showing that adopting a linear model for slightly non-linear channels will have serious implications on achievable rates and their achieving distributions.
+[[[ BODY ]]]
+A quick survey of the literature indicates that for nearly all channels subject to Additive White Gaussian Noise (AWGN), the dependency of the output on the input is assumed to be linear, whether the channel is deterministic or not and whether it is memoryless or not [1]–[6]. When it comes to non-linear dependencies, the literature is to the authors knowledge non-existent. The reason behind shying away from adopting such non-linear models may be due to the inaccuracy of these models in representing real scenarios, but it is also probably due to the fact that non-linear channels are less well understood and potentially harder to analyze.
+When it comes to input constraints, communication limits over these “linear” AWGN channels were extensively treated under the average power constraint [1]–[6], and occasionally under peak-power constraints, or even a combination of both as done by Smith [7] for example. These average and peak- power constraints may be considered to be special cases of even-moments and/or input-support constraints in general.
+In this paper we conduct an information-theoretic study of a class of basic non-linear channels under a variety of input constraints and characterize their optimal input distribu- tions. More speciﬁcally, we consider the real and memoryless
+where the noise is assumed to be independent of the input and Gaussian distributed, and the input is distorted according to a deterministic and potentially non-linear continuous function of the form:
+for all α ∈ R ∗ , β ∈ R and p,q ∈ N ∗ . With the appropriate scaling of Y and constants α and β, we assume without loss of generality that the additive noise has unit variance and β = 0, and we impose on the input an even-moment constraint, a compact-support † constraint or a combination of both.
+We prove that, under the various types of cited constraints, the capacity-achieving distributions for all the considered channels are generally of a discrete nature, except for the well-known linear case under average power constraint, and some “equivalent” channels. Also the number of mass points is proven to be ﬁnite in the majority of the cases. From this perspective, our results indicate that the optimality of a continuous input to a continuous channel is a special case rather than the norm.
+We develop a numerical computational package to compute the channel capacity of the non-linear AWGN channels pre- sented above, and we showcase the results for sample cases. We analyze the growth rate of the obtained numerical values of these capacities under an average power constraint, and try to quantify how these rates vary with the Signal-to-Noise Ratio (SNR). Since for the classical average-power constrained linear AWGN channel a Gaussian input distribution achieves capacity and the resulting achievable rate is 1 2 log 2 (1 + SNR) bits per channel use, we compare this expression to the growth rate of the obtained capacities, and to that of the achievable rates when a Gaussian input is used instead of the optimal one. In some sense we answer the question of “how bad is it to assume a linear AWGN model?”
+The rest of the paper is organized as follows: We ﬁrst study in Section II a “core channel model” and we present our main results in Section III. Numerical computations of capacity and its achieving distributions are presented in Section IV and Section V concludes the paper.
+We ﬁrst consider a “core” channel model from which all models under consideration may be derived. Speciﬁcally, we consider the real discrete-time memoryless channel:
+where α ∈ R ∗ and n ∈ N ∗ . We denote by Y the channel output and by X its input which is assumed to have an alphabet S ⊆ R . The random variable N is independent of X and Gaussian distributed with zero-mean and unit-variance. Equivalently,
+Furthermore, we subject the input to an even-moment con- straint: E X 2k ≤ a for some a > 0, where k ∈ N ∗ and is such that 2k > n. For the remainder of this paper, we say that the core channel is parametrized by n and 2k.
+We study in this section the information-theoretic capacity of this core channel model (2) and proceed in a manner that parallels the steps used in [4]:
+ity of an input law F ∗ [1]–[7] may be expressed as follows: There exists a non-negative multiplier γ such that,
+γ (x 2k − a) + C − p(y|x)ln p (y|x) p (y; F ∗ ) dy ≥ 0, ⇔ s(x) ˆ= γ(x 2k − a) + C + 1 2 ln(2πe)
+for all x ∈ R, with equality if x is a point of increase ‡ of the optimal input distribution F ∗ , where p (y; F ∗ ) is the induced output law and C is the channel capacity.
+functions that are square-integrable with respect to e − x2 2 [8], using the Fourier-Hermite series expansion,
+Also, the generating function of Hermite polynomials [8] is,
+m ! H m (y). The application of Parseval’s theorem yields,
+We extend the left hand term of equation (3) to the complex domain, and deﬁne
+The left-hand term in (4) is entire and so is s (z), by virtue of the fact that both f (z) and the exponential are entire.
+On the real axis, the KKT condition (3) states that the function is equal to zero whenever z is a point of increase of F ∗ .
+By identifying the polynomials of equation (5), one can determine the values of the coefﬁcients {c m } and therefore p (y; F ∗ ). We distinguish between three cases:
+The case k = n: Identifying the polynomials of equa- tion (5) yields,
+The output distribution is therefore Gaussian (since c 2 ≤ 0), and the KKT conditions (3) are satisﬁed, whenever the induced output is Gaussian distributed. It remains to check whether such an output may be induced by an appropriate input probability law. This is only feasible when k (equal to n) is odd, and the optimal input PDF is
+where σ 2 = ( 1 2γ − 1 α 2 ), which is positive whenever 2γ < α 2 . The case 2k n = l ∈ N ∗ \ {1,2}: Equation (5) dictates that,
+where l ≥ 3. Identifying the polynomials in z yields, p (y; F ∗ ) = e c 0 e − γ αl H l (y) .
+If γ α l ≤ 0, this function is not a valid PDF. Otherwise and since l ≥ 3, this function is clearly O e −Ay 2 ‡‡ for all A > 0, which is impossible by virtue of the following lemma:
+Lemma 1. Let X be a real-valued zero-mean and variance σ 2 Gaussian random variable, and let Y be a real random variable that is independent of X. The PDF of the random variable Z = Y + X is such that,
+Proof: Since X and Y are independent, the characteristic function of Z is,
+by Hardy’s theorem [10], the only such function is identically zero, i.e., p Z (z) = 0 which in turn is not a valid PDF.
+The case 2k n = l ∈ N ∗ : Identity (5) is possible only in the case γ = 0. Consequently, the function p(y; F ∗ ) = e c 0 = K, which is not a valid PDF.
+In conclusion, except for the case k = n and is odd, F ∗ could not have an accumulation point and the set of points of increase is therefore countable, i.e. X ∗ is discrete.
+Assume the opposite and denote by {x i } the points of increase of F ∗ (x). Since on any bounded interval their number is ﬁnite (for the closure of the interval is compact), then necessarily the |x i |’s are arbitrarily large. Deﬁne p i = Pr(X = x i ) > 0. The output probability density is hence,
+which implies that the left hand term of the KKT condition (3) can be lower-bounded for all i ≥ 0 and for all x ∈ R by,
+= γ(x 2k − a) + C + lnp i − 1 2 f (x) − f(x i ) 2 = γ x 2k + o(x 2k ).
+For any γ > 0, this bound diverges to inﬁnity as |x| goes to inﬁnity. However, s (x j ) = 0 for all points of increase x j , which are arbitrarily large. By contradiction, this is only possible if γ = 0, which is not sensible and can be formally ruled out [4].
+In conclusion, X ∗ is necessarily discrete with a ﬁnite number of mass points whenever k > n.
+Finally, note that if an additional non-negative support con- straint is imposed on the input X, the presented methodology and results hold almost verbatim, with the exception that the capacity-achieving input is necessarily discrete for all 2k > n. It has a ﬁnite number of mass points whenever k > n.
+We turn our attention now to the generic non-linear chan- nels described by (1) subject to the even-moment constraint E X 2k ≤ a. Performing a suitable change of variables of the form U = sgn(X) |X| 1/q , we note that when U is viewed as the input, the channel model reduces to that of the core channel (2) with parameters p and 2kq, with potentially a non-negative support constraint when p is even. The previous analysis establishes therefore the following theorem:
+Theorem 1. Subject to an even-moment constraint, the capacity-achieving input for channel (1) when 2kq > p is:
+- Absolutely continuous, whenever p = kq and k is odd. Its PDF is of the form:
+- Discrete with a ﬁnite number of mass points whenever kq > p.
+When the input is compactly supported (with or without imposing an even-moment constraint), one can note that the previous methodology may be adopted in a similar fashion. The primary difference lies in applying an appropriate KKT condition for each case. The argument based on the existence of an accumulation point, the extension to the complex domain and the corresponding conclusions on the optimal output PDF are nevertheless identical. Therefore, one may state the following theorems:
+Theorem 2. Subject to a compact-support constraint, the capacity-achieving input for channel (1) is discrete with a ﬁnite number of mass points.
+Theorem 3. Subject to an even-moment and compact-support constraints, the capacity-achieving input for channel (1) is discrete with a ﬁnite number of mass points.
+We emphasize that when a compact-support constraint is imposed, it is not necessary to have 2kq > p nor kq > p for the optimal input to be discrete with a ﬁnite number of mass points.
+Having characterized the nature of the capacity-achieving input distribution we conduct numerical computations in order to ﬁnd these optimal inputs. Using a developed generic numer- ical Matlab package, we compute the channel capacity and its achieving input at low and high SNR’s for two channels that
+are rather insightful. Namely, we present the computational results obtained for the following channels:
+We study both channels under an average input power con- straint a, and we quantify our results function of the “normal- ized” SNR = α 4 a σ 4
+At low SNR and as expected the two channels achieve their respective capacities when the input has two equiprobably antipodal mass points. As the SNR increases, the behavior of the respective optimal inputs starts to differ.
+In fact, for channel C-1 with the lowest exponent, the range where two points are optimal extends to approximately 6.5 dB whereas for the channel C-2 where the exponent is 0.9, two points are not enough for an SNR as low as −1 dB. Furthermore, the need for additional input mass points to achieve capacity grows much slower for the lower exponent channel versus the higher exponent one; For channel C-1 three points were found to be enough for SNR’s up to 10 dB, while for C-2, twelve points were needed. This increase in required number of mass points for a given SNR is expected, since as the exponent increases the channel “approaches” the linear one where the optimal input has inﬁnite (see uncountable) number of mass points.
+In Figure 1 we draw the positions and probabilities of the non-negative mass points of the optimal input of channel C-2, as the negative ones are their symmetric with respect to the origin. At low SNR and when two mass points are optimal, the position of the positive one increases with SNR conserving a probability of 0.5 until a second point appears at about −1 dB. The numerical results indicate that the second point seems to appear ﬁrst at “inﬁnity” with a negligible probability as was observed in [4] for the memoryless Rayleigh channel. In the SNR ranges where the optimization was numerically successful, we indeed see that the position starts to initially de- crease before switching behavior and slowly increasing when the corresponding probability becomes substantial. While the positions of newly added mass points eventually start to slowly decrease again, they seems to rather “stabilize” in value as the SNR increases.
+We emphasize that some irregularities were observed in the early stages of appearance of a new mass point. Indeed, for the “transition” range between 4 and 6 points for example, 4 points were not found to be optimal and the numerical package was not successful in ﬁnding a 6-points solution. We suspect that the problem is due to the very low values of the probabilities of the newly appearing points. As the SNR increases, the required number of points is higher and new mass points start to appear as they “arrive from inﬁnity” with negligible probabilities. This behavior restricts our numerical computations to a certain limit since it requires a non available accurate numerical tools. This phenomena is nevertheless deemed of low consequences
+since the probabilities of the newly appearing points are negligible and the numerical evaluation of the achievable rates are arbitrarily close to capacity.
+As for the probabilities of the mass points, that of the ﬁrst point starts to decrease as soon as additional points appear, the respective probabilities of which increase slowly with SNR. The probabilities’ behavior is also illustrated in Figure 1.
+Having obtained the optimal input distributions, we analyze in what follows the capacity versus SNR curves and try to compare their general behavior to that of the well-known linear Gaussian channel.
+In Figure 2 we draw the capacities of the channels C-1 and C-2 function of SNR.
+The graphs show that the capacity curves are lower than that of the linear channel as expected. It is also apparent that the capacity curve approaches 1 2 log(1 + SNR) as the exponent p q gets closer to unity. More interestingly, it seems that capacity tends to have a certain systematic behavior: In both cases, it is upperbounded by 1 2 log(1 + SNR p q ), with the bound becoming tighter as the exponent ratio gets closer to 1 where they coincide. As Figure 2 suggests, the capacity of channel C-1 with exponent 0.5 can be approximated by the closed-form expression of 1 2 log(1 + SNR 2 5 ) and that of C-2 by 1 2 log(1 + SNR 87 100 ).
+These bounds have a rather signiﬁcant impact when adopt- ing a linear channel model for an (even slightly) non-linear one. In fact a small non-linear shift has a double effect both on capacity and its achieving distribution:
+q ) and therefore less than that of the linear model. For example at high SNR, if the model were “linearized” one would expect scaling the SNR by 4 to increase capacity by 1 bit. However, if the “true” model were non-linear, it will be increased by less than p q bits.
+• When it comes to the input distribution, the result is even stronger since a continuous input cannot be optimal, and a discrete one with a ﬁnite number of mass points should be used with the immediate consequence of simplicity for the system designer. For channel C-2 for example, only ten points were needed at approximately 10 dB and where the last two can be neglected due to their diminishing probabilities, without any considerable loss in rates.
+Adopting therefore a linear channel model when the channel is not might have serious implications. In fact, the “expected” capacity will not be achieved simply because the real one is smaller. Also, one might wonder about the additional detri- mental effect of using the incorrect channel input distribution. In other terms, what is the total “cost” that the system designer is paying when thinking that the channel has a linear model rather than a non-linear one? A Gaussian input will be used instead of the optimal one, and the expression of
+log(1 + SNR) will be assumed to be describing capacity instead of the (lower) values that can be computed in a manner akin to what is presented above.
+In Figure 3, we draw for channel C-1 (with exponent 0.5) the achievable rates when a Gaussian input is used for a range of SNR’s up-to 20 dB.
+As seen from the ﬁgure, the cumulative detrimental effect of assuming a “linear” model for this channel yields a capacity expression effectively as off as 360% from the actual value for an SNR of 20 dB. Also the use of a Gaussian input instead of the optimal one is especially hurtful at low SNR’s.
+In this paper, we considered basic deterministic non-linear AWGN channels. Subject to various types of input constraints,
+we proved that the capacity-achieving distributions are gener- ally of a discrete nature with ﬁnite number of mass points. Numerical tools were developed and computations show that even slightly non-linear channels differ drastically from the linear one with numerous implications for adopting a linear model for non-linear channels. Finally, we provided a closed- form approximation expression that upperbounds the capacity of these channels putting into question the use of the well- known expression 1 2 log(1 + SNR).
+The results presented in this paper may be extended, albeit in a more involved fashion, to channels where f (X) is a piecewise continuous function of a ﬁnite number of pieces, each of the form provided in (1). Results show once more that the discrete nature of the optimal input is conserved except when f (·) is a “single linear piece” or its equivalent.
+[[[ REFS ]]]
+C. E. Shannon
+--
+A mathematical theory of communication, parts i & ii
+----
+R. Gallage
+--
+Information Theory and Reliable Communication
+----
+W. Hirt
+J. Massey
+--
+Capacity of the Discrete-Time Gaussian Chan- nel with Intersymbol Interference
+----
+I. Abou-Faycal
+M. D. Trott
+S. Shamai
+--
+The capacity of discrete- time memoryless Rayleigh-fading channels
+----
+C. Luo
+--
+Communication for wideband fading channels: on theory and practice
+----
+M. Katz
+S. Shamai
+--
+On the capacity-achieving distribution of the discrete-time noncoherent and partially coherent AWGN channels
+----
+J. G. Smith
+--
+The information capacity of peak and average power constrained scalar Gaussian channels
+----
+N. Wiene
+--
+The Fourier Integral and Certain of its Applications
+----
+H. Silverma
+E. M. Stei
+R. Shakarch
+--
+Complex Variables
+----
+I. Abou-Faycal
+M. D. Trott
+S. Shamai
+--
+Correction to the capacity of discrete-time memoryless rayleigh-fading channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\159.pdf
+[[[ LINKS ]]]
+

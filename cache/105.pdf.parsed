@@ -1,0 +1,114 @@
+[[[ ID ]]]
+105
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+   
+[[[ AUTHORS ]]]
+
+[[[ ABSTR ]]]
+Abstract—We propose a space-time coding scheme for efficient  transmission  over  multiple-input  multiple-output  (MIMO)  channels  without  channel  state  information  at  the  transmitter  (CSIT). The proposed scheme involves linear precoding (LP) at the  transmitter  and  iterative  linear  minimum  mean-square  error  (LMMSE)  detection  at  the  receiver.  We  develop  a  procedure  to  jointly optimize the forward-error-control (FEC) coding and LP,  taking  into  consideration  of  the  iterative  detection  process.   Our  analysis shows that the proposed scheme can perform close to the  outage capacity of MIMO channels.  
+[[[ BODY ]]]
+This  paper  is  concerned  with  space-time  coding  for  multiple-input  multiple-output  (MIMO)  systems  without  channel  state  information  at  the  transmitter  (CSIT).  The  information-theoretic  measure  in  this  case  is  the  outage  capacity [1]. A coding technique is said to be universal if it can  achieve the outage capacity. The solutions of  universal codes  are  abundant  for  the  multiple-input  single-output  (MISO)  systems  [2]-[5],  such  as  those  based  on  algebraic  techniques  [3][4]. Capacity-approaching quasi-random techniques [5] are  also available for MISO channels. 
+A key difference between a MISO channel and a more general  MIMO channel is that the former has only one eigenmode while  the  latter  has  multiple  eigenmodes.  For  MIMO  channels,  the  Bell-Laboratories-Layered-Space-Time (BLAST) scheme [6] is  widely  studied.  Theoretically,  BLAST  can  asymptotically  achieve outage capacity if universal codes designed for fading  parallel channels are employed. However, the design of good  universal codes in realistic channel conditions (i.e., with a finite  SNR instead of an infinite SNR as in [7]) still remains an open  problem. For this reason, there is a considerable gap between  the simulated performance of a practical BLAST system and the  outage capacity. 
+Linear  precoding  (LP)  [8][19]  has  been  studied  as  an  alternative to algebraic space-time coding. The available work  is  mostly  on  achieving  diversity  gain  measured  by  the  asymptotic  slope  of  the  performance  curve.  The  related  LP  schemes  usually  perform  far  away  from  the  outage  capacity.  One  major  reason  is  that  those  schemes  employ  sub-optimal  detection methods (such as linear minimum mean-square error  (LMMSE)  estimation  [19]).  LP  in  general  introduces  inter-symbol interference (ISI). The residual interference at the  output of the detector may cause significant performance loss.  FEC coding is unable to resolve this problem completely if the  residue interference is simply treated as noise. 
+In  this  paper,  we  propose  an  LP-based  space-time  coding  scheme for MIMO systems. We consider an iterative receiver,  in which the decoder feedback is used to gradually eliminate the 
+residual interference from the output of the LMMSE estimator.  A main contribution of this paper is to develop a procedure to  jointly design the FEC coding and LP, taking into account the  iterative process. 
+The proposed scheme has several distinguished advantages. It  can  provide  performance  close  to  the  outage  capacity,  as  demonstrated by both analysis and simulation results. It is very  flexible and can be applied to an arbitrary number of antennas. It  can also be implemented in a distributive way due to its random  nature, and thus is well suited for ad hoc and relay applications. 
+A MIMO Gaussian channel with N transmit antennas and M  receive antennas is generally modeled as 
+           r i  =  Hu i  +  ηηηη i                             (1)  where  r i  is an N-by-1 received signal vector at the ith channel  use,  H is an  N-by-M channel transfer matrix, u i  is a transmit  signal vector,  ηηηη i   ∼  ( 0,  σ 2 I) is an additive noise vector, and I  is an identity matrix of a proper size. 
+We  assume  that  the  channel  is  quasi-static.  It  remains  unchanged  in  a  frame  consisting  of  K  channel  uses  and  is  independent  from  frame  to  frame.  The  transmission  power  is  normalized as N −1 tr{ Q} = 1, where Q = E[u i u i H ] is the channel  input  covariance  matrix.  Perfect  channel  knowledge  at  the  receiver is assumed. 
+For  Gaussian  signaling,  the  channel  input-output  mutual  information per transmit antenna is given by 
+Let R be the transmission rate per transmit antenna. The outage  capacity given an outage probability  ε  is defined as 
+         outage ( ) max C 	 R ε = Q                        (3a)  s.t.        Pr{ ( , ) } C 	 R ε < ≤ H Q 	 .                   (3b) 
+The  problem  in  (3)  is  in  general  difficult  to  solve.  It  is  conjectured in [8] that, without CSIT, independent transmission  with  equal  power  allocation  is  optimal,  i.e.,  the  optimal  Q  is  given by 
+We will assume that (4) is true throughout this paper.  C. Transmitter Structure 
+The  coding  scheme  proposed  in  this  paper  is  illustrated  in  Fig.1. At the transmitter side, the data is  encoded by an  FEC  encoder (ENC), producing a codeword  x. A transmission frame 
+   
+u (with the length denoted by L = K×N) is produced by applying  a  linear  transform  Π Π Π Π P  (referred  to  as  a  space-time  linear  precoder (STLP))  to x, i.e. 
+             u =  Π Π Π Π Px.                            (5)  The  STLP  consists  of  two  matrixes:  Π Π Π Π   and  P.  Π Π Π Π   is  an  L×L  permutation  matrix  and  P  is  a  block-diagonal  matrix  with  K  identical diagonal  blocks,  i.e.,  P = diag(F, F, …, F) = I⊗F,  where “ ⊗” is the Kronecker product, and each block F is an  N×N normalized DFT matrix with the (i, k)th entry given by 
+          	 1/ 2 ( , ) 	 exp( 2 / ) F i k N 	 j ik N π − = 	 − 	 .             (6)  We divide  x into K blocks as x = {x 0 ,  x 1 , …  x K −1 }, and define 
+          v i  = Fx i , for i = 0, 1, …, K −1.                   Correspondingly,  u is equi-partitioned into K blocks: u = [u 0 T ,  u 1 T ,  ...,  u K −1 T ] T .  Each  block  is  used  for  transmission  over  the  channel in (1): 
+           r i  =  Hu i  +  ηηηη i  ,   i = 0, 1, ..., K −1.                 (7)  From our earlier assumption that the channel remains static for  K blocks, (7) can be rewritten as 
+where  r = [r 0 T ,  r 1 T , ...,  r N −1 T ] T ,  H BD  = diag( H, H, ..., H) = I⊗H  (with  the  subscript  meaning  block-diagonal),  and  ηηηη   =  [ ηηηη 0 T ,  ηηηη 1 T , ...,  ηηηη N −1 T ] T .  
+(i)  For each index i, no two entries of  v i  are transmitted at a  same channel use (so that the entries of  v i  do not interfere  with each other at the receiver side); and 
+(ii) No two entries of  v i  are transmitted at a same antenna (so  that  v i  experiences all the channel fading conditions). 
+The choices of  Π Π Π Π  satisfying conditions (i) and (ii) are plentiful.  An example for K = N = 4 is illustrated in Fig.1. The precoding  matrices  P  and  Π Π Π Π   ensure  that  the  behavior  of  the  iterative  receiver  can  be  characterized  by  single-variable  transfer  functions, as detailed in Section III. 
+              y = H x + n                         (9a)  with           H =H BD Π Π Π Π P.                        (9b)  The equivalent channel  H′ introduces ISI in the received signal  y.  Iterative  detection  is  used  for  efficient  interference  cancellation, as described next. 
+As illustrated in the lower half of Fig. 1, the iterative receiver  [12]  consists  of  two  local  operators,  namely,  the  elementary 
+signal estimator (ESE) and the decoder (DEC).  The two local  operators are executed iteratively to suppress interference. The  DEC follows standard soft-in soft-output decoding, and so only  the ESE is discussed in detail below. 
+The ESE estimates  x following the LMMSE principle [9][10].  Let  x PRI   and  v ΙΙΙΙ ,  respectively,  be  the  a  priori  mean  and  covariance matrix of  x seen by the ESE. 1  Note that  x PRI  =  0 and  v  =  1  at  the  first  iteration,  meaning  that  no  information  is  available from the DEC. The well-known LMMSE estimator of  x given y in (9) is given by 
+Note that the last step above follows from (9b) and the fact that  both  P and  Π Π Π Π  are unitary matrices. The extrinsic mean  EXT i x  and  variance  EXT i v  of  each  x i   are  calculated  by  excluding  the  contribution  of  the  a  priori  mean  and  variance  from  the  a  posteriori message as (cf., (34) in [10]) 
+i i v v Ω = 	 − .                      (11b)  Finally, the ESE outputs the likelihood function  	 EXT ( | ) i i p x x  for  each  x i ,  calculated  by  treating  EXT i x as  an  observation  from  an  equivalent AWGN channel with SNR  ρ i   =  EXT 1 i v [10]. 
+The complexity of the above LMMSE approach is dominated  by the inversion of  R. From (10c), R is a block-diagonal matrix  with block size M-by-M and overall size KM-by-KM. Thus, the  complexity involved in inverting  R is only O(KM 3 ). 
+In  this  section,  we  analyze  the  performance  of  the  STLP  scheme using the signal-to-interference-plus-noise-ratio (SINR)  -variance transfer chart proposed in [9]. 
+In the SVT chart analysis, the behaviors of the ESE and DEC  can be characterized by single-variable SVT functions, i.e. 
+           ρ  =  φ (v)      for the ESE,  and          v =  ψ ( ρ )      for the DEC. 
+In the above, v is the input variance of the ESE (i.e., the output  extrinsic  variance  of  the  DEC),  and  ρ   is  the  output  extrinsic  SNR of the ESE (i.e., the input SNR of the DEC). 
+With  φ  and  ψ  described above, the iterative process of the  ESE and DEC can be tracked by a recursion of  ρ  and v. Let q be  the iteration number. Based on (4) and (5), we have 
+The recursion continues and converges to a point v *  satisfying        	 1 ( ) 	 ( ) v 	 v φ 	 ψ ∗ − ∗ = 	  and 	 1 ( ) 	 ( ) v 	 v φ ψ − > 	 , for v  ∈ (v * , 1].   
+   
+where  ψ −1 ( ⋅)  is the inverse  of  ψ ( ⋅), which exists since  ψ ( ⋅)  is  monotonic (cf., [16] for the monotonicity). In particular, v *  = 0  implies that the transmit signal can be perfectly recovered at the  receiver side. Thus, we say that the system performs error-free  decoding and the corresponding rate is achievable if v *  = 0, or  equivalently, 
+1 ( ) 	 ( ) v 	 v φ 	 ψ − > 	 , for v  ∈ (0, 1].               (12)  B. SVT Function of the ESE 
+We next show that the ESE outputs can be characterized by a  single SINR. Let  λ n  be the nth eigenvalue of  HH H . Our main  result is presented below. 
+Proof: With (9b) and  H BD  =  I⊗H, we can rewrite (10b) as          	 H H 	 H ( ) = 	 ⊗ 	 = P I B P P P      with     	 2 H 	 H 2 1 ( 	 ) v v v 	 σ − = − 	 + B I H HH 	 I H . 
+We  can  express  	 H ( ) = 	 ⊗ I B  in  a  block-wise  form  with  each block of size N-by-N. Let  D i  be the ith diagonal block of  Φ Φ Φ Φ .  Every  D i  has the following properties: 
+The  first  property  above  is  ensured  by  condition  (i)  of  Π Π Π Π   in  Section  II.C;  and  the  second  property  by  condition  (ii).  Together with  P = I⊗F, we obtain 
+diag{ 	 } diag{ }
+diag{ 	 } N − =
+v i i 	 v 	 v N 	 N 	 N v
+and step (b) from the fact that the ith eigenvalue of  B is given by              	 2 	 2 1 ( 	 ) n n v v v λ λ σ − − 	 + . 
+Substituting (14) into (11a) and noting 	 EXT 1 i 	 i v ρ = 	 , we arrive at  (13).                                                
+Now consider the DEC module. Let C be the FEC codebook  employed by the DEC. From the discussions in Section II.D and  Lemma 1, the DEC decodes  x based on  EXT EXT { } i x ≡ x 	 which can  be modeled as observations from an equivalent AWGN channel  with SNR =  ρ . The output extrinsic variance of each x i  is defined  as [10] 
+where  EXT ~i x represents  the  subset  obtained  by  removing EXT i x   from EXT x . Clearly, v is a function of  ρ . Thus, the SVT function  of the DEC can be obtained from (15a) by varying  ρ . 
+       	 2 EXT 1 ( ) E E[ | , 	 ] mmse 	 C N ρ = 	 − 	 ∈ x x x x 	 .     (15b)  Compared  with  (15a),  the  MMSE  in  (15b)  is  obtained  by  excluding the contribution of  EXT i x in estimating x i .  
+We next establish a relationship between  ψ ( ρ ) and the code  rate (denoted by R) by assuming that  x is Gaussian distributed  and the decoding output can be modeled as observations from  an equivalent AWGN channel. Based on the Gaussian-message  combining rule (cf., (9) in [10]), mmse( ρ ) and  ψ ( ρ ) are related  as [10] 
+         	 ( 	 ) 1 1 ( ) mmse ψ ρ ρ − − = 	 + .                  (16)  From [14, Lemma 1], we can express the code rate R as            	 1
+= 	 ⋅ = 	 + .           (17)  The rate in (17), though derived based on some unjustified 
+assumptions, is indeed approachable using superposition coded  modulation (SCM), as stated in the proposition below. Denote  by L n  an n-layer SCM code with rate R n . Let  ψ n ( ρ ) be the SVT  function of L n . 
+Proposition 2: Assume that  ψ ( ρ ) is first-order differentiable  and monotonically decreasing in  ρ , and that 
+= 	 < ∞ + 	 .                (18)  There exists  	 1 { } n n L ∞ =  such that: (i)  ψ n ( ρ )  ≤  ψ ( ρ ) for any index n  and  ρ   ≥ 0; and (ii) R n   → R as n→ ∞. 
+The  proof  of  Proposition  2  is  omitted  here  due  to  space  limitation;  the  details  can  be  found  in  [18].  This  proposition  says  that,  for  an  arbitrary  ψ ( ρ )  (satisfying  some  regularity  conditions), we can construct an SCM code to approximately  approach the rate in (18). Later, we will see that (18) plays an  important  role  in  analyzing  the  performance  of  the  proposed  STLP scheme. 
+We next consider  the optimization of the STLP scheme  by  assuming perfect CSIT. We will show that the proposed scheme  is potentially information lossless. 
+         	 1 ( ) 	 ( ) v 	 v φ ψ − = 	 , for v  ∈ (0, 1].               (19)  Note that:  φ (1) > 0 since the ESE  output always contains the  information  from  the  channel  even  if  there  is  no  information  from the DEC; and that  φ (0) <  ∞ since the ESE cannot resolve  the  uncertainty  introduced  by  the  channel  noise  even  if  the  messages  from  the  DEC  are  perfectly  reliable.  Then,  we  can  equivalently express the curve-matching condition (19) as 
+      	 1 ( ) ( (1)) 1 ψ ρ φ φ − = 	 = ,  for 0 ≤  ρ  <  φ (1);           (20a)        	 1 ( ) ( ) ψ ρ φ ρ − = 	 ,       for  φ (1)  ≤  ρ  <  φ (0);        (20b) 
+   
+      ( ) 0 ψ ρ = ,           for  φ (0)  ≤  ρ  < + ∞.         (20c)  We are now ready to present the following result. 
+Proposition 3: The maximum achievable rate of the proposed  STLP scheme is given by 
+= 	 + ,                   (21)  which is achieved when the ESE and DEC are matched. 
+1 	 1 d 	 d 1 ( ( ))
+1 	 ( )d log(1 (1)) ( )
+d ( ) ( ) d log (1) ( )
+curve-matching condition in (20), (b) by substituting  ρ  =  φ (v), (c)  from the fact that 
+          	 2 2 d ( ) d ( )d 	 ( ) v v v v 	 v v ω φ 	 ω ′ = − 	 +   with  ω (v) defined as 
+= 	 = 	 + + 	 ,  and (d) from the fact that 
+Note  that  the  rate  in  (21)  is  the  channel  input-output  mutual  information with  Q = I (cf., (2)). From the Shannon’s channel  coding  theorem,  any  reliable  transmission  cannot  exceed  this  rate (given  Q = I), hence the proof of Proposition 3.             
+From the above proof, we see that the proposed STLP scheme  is  information  lossless  if  the  ESE  and  DEC  are  matched.  However, perfect curve-matching requires full CSIT. We next  discuss the design of the STLP scheme with no CSIT. 
+The design of  exactly  matched  FEC  code  for  the  proposed  STLP scheme is not feasible if the CSIT contains uncertainty  (since then the ESE transfer curve is not perfectly known by the  transmitter).  Instead,  we  can  design  a  fixed  FEC  code  that  statistically  best  matches  the  distribution  of  the  ESE  transfer  curves, which is our focus below. 
+Consider  an  FEC  code  with  the  SVT  function  denoted  by  ψ ( ρ ).  Let  H  be  a  random  channel  realization,  with  the  corresponding  SVT  function  φ (v)  given  by  (13).  The  system  cannot perform error-free decoding if  φ (v) falls below  ψ −1 (v) for 
+any v  ∈ (0, 1] (or equivalently, (12) is not met). Thus, we say  that the system is in outage if (12) is not met. 
+We  optimize  ψ ( ρ ) to maximize the  achievable rate given  a  target  outage  probability  ε .  This  problem  can  be  formulated  using (18) as: 
+s.t.      { 	 } 1 Pr ( ) 	 ( ),for  (0,1] 1 v 	 v v φ ψ 	 ε − > 	 ∈ 	 ≥ − .       (22b)  Note that the probability in (22b) is defined on the distribution  of  H as  φ (v) in (13) is a function of the channel  H. 
+The  problem  in  (22)  is  in  general  difficult  to  solve.  To  simplify the problem, we first discretize the probability space of  H by random sampling. Let S be a set of random realizations of  H. Denote by H i  the ith channel realization in S, and by  φ i (v) the  corresponding ESE SVT function. Let S ε  be a subset of S with  size |S ε |  ≤  ε |S|, and S 1- ε  be the complementary set of S ε . Then, we  formulate the following problem: 
+                   (23a)  s.t.      	 1 	 1 ( ) 	 ( ),for  (0,1],   i 	 i v 	 v v 	 S ε φ ψ − 	 − > 	 ∈ 	 ∀ ∈ H 	 .      (23b) 
+Based on the law of large numbers, the empirical distribution of  { H i } converges to the probability distribution of  H. Thus, (23)  converges to (22) as |S| tends to infinity.  In practice,  we may  choose a sufficiently large |S|, so as to ensure that (23) is a good  approximation of (22). 
+Now  consider  solving  (23).  The  constraint  in  (23b)  can  be  equivalently rewritten as 
+Together  with  the  fact  that  the  objective  function  in  (23a)  is  monotonically increasing in  ψ ( ⋅), the optimal  ψ ( ⋅) for a given  S 1- ε  can be expressed as 
+= H 	 ,   for  [0, ) ρ ∈ ∞ .  (24)  Then, the optimization problem in (23) reduces to           
++ .                (25)  The number of different choices of S 1- ε  is exponential in |S|. A  brute-force search for the optimal solution to (25) involves high  complexity even for a moderate |S|. Here, we introduce a greedy  algorithm to search for a suboptimal solution. Let T be a set of  channel realizations. Define 
+The  greedy  algorithm  works  as  follows.  Denote  by  S (q)   the  remaining subset of S at the qth round of recursion. Initialize S (0)   =  S.  Each  S (q+1)   is  constructed  by  removing  one  channel  realization  from  S (q)   such  that  R(S (q+1) )  is  maximized.  The  recursion continues until q =  ε |S|. Finally, we obtain S 1- ε  = S ( ε|S|)   and the optimized  	 1 ˆ ( ) ( ; ) S ε ψ ρ ψ ρ − = 	 . 
+We  next  demonstrate  by  numerical  results  that  the  above  algorithm yields a good choice of  ψ ( ρ ). Consider a block-fading 
+   
+4 ×4  MIMO  channel.  The  channel  coefficients  are  i.i.d.  circularly  complex  Gaussian  random  variables;  they  remain  unchanged for every 512 channel uses. Each transmission frame  consists of 2048 symbols. The system throughput is 4 bits per  channel use. The receiver performs iterative LMMSE detection.  The optimized  ψ ( ρ ) is obtained by solving (23) using the greedy  algorithm with |S| = 5000 and  ε  = 0.01. The performance limit of  the proposed STPL scheme is then obtained by calculating the  outage probability of the optimized  ψ ( ρ ). 
+To  approach  the  above  performance  limit,  we  consider  the  design of irregular LDPC codes that matches the predetermined  ψ
+( ρ ) (obtained by solving (23)), following the design method  proposed in [15]. The optimized degree distributions are given  by  λ (x)  =  0.3315x+0.1872x 2 +0.0215x 14 +0.2764x 15 +0.1555x 76  +0.0279x 77  and  ρ (x) = x 7 . The code rate is 0.50. For comparison,  we also consider the irregular LDPC code optimized for AWGN  channel (with the degree distributions given by the last column  of Table I in [17]). The coded bits from the LDPC encoder are  Gray-mapped into QPSK symbols in transmission. 
+Fig.3  demonstrates  the  simulated  FER  performance  of  the  proposed STLP scheme. At FER = 10 -2 , the performance limit  of the proposed scheme is only 0.3 dB away from the outage  capacity.  We  see  that  the  optimized  irregular  LDPC  code  achieves a gain of 0.8 dB over the LDPC code in [17], but there  is still a gap of 1.3 dB compared with the performance limit.  This gap is mainly caused by the binary constraint of the LDPC  code used. We will explore the possibility of narrowing this gap  in our future work.  
+In  this  paper,  we  propose  an  STLP  scheme  for  efficient  transmission over MIMO channels without CSIT. We establish  an analytical tool to characterize the performance limit of the  proposed  scheme.  Numerical  results  show  that  the  optimized  STLP  scheme  can  potentially  perform  close  to  the  outage  capacity of a MIMO channel within a marginal gap. 
+This  work  has  been  performed  in  the  framework  of  the  ICT  project ICT-248894 WHERE2, which is partly funded by the  European Union. 
+[[[ REFS ]]]
+
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\105.pdf
+[[[ LINKS ]]]
+

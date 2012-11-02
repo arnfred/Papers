@@ -1,0 +1,153 @@
+[[[ ID ]]]
+139
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Results on the Redundancy of Universal Compression for Finite-Length Sequences
+[[[ AUTHORS ]]]
+Ahmad Beirami
+Faramarz Fekri
+[[[ ABSTR ]]]
+Abstract—In this paper, we investigate the redundancy of universal coding schemes on smooth parametric sources in the ﬁnite-length regime. We derive an upper bound on the probability of the event that a sequence of length n, chosen using Jeffreys’ prior from the family of parametric sources with d unknown parameters, is compressed with a redundancy smaller than (1 − ) d 2 log n for any > 0. Our results also conﬁrm that for large enough n and d, the average minimax redundancy provides a good estimate for the redundancy of most sources. Our result may be used to evaluate the performance of universal source coding schemes on ﬁnite-length sequences. Additionally, we precisely characterize the minimax redundancy for two–stage codes. We demonstrate that the two–stage assumption incurs a negligible redundancy especially when the number of source parameters is large. Finally, we show that the redundancy is signiﬁcant in the compression of small sequences.
+[[[ BODY ]]]
+Recently, there has been a tremendous increase in the amount of data being stored in the storage systems. The re- dundancy present in the data may be leveraged to signiﬁcantly reduce the cost of data maintenance as well as data transmis- sion. In many cases, however, the data consists of several small ﬁles that need to be compressed and retrieved individually, i.e., a ﬁnite-length compression problem. Moreover, different data sets may be of various natures, hence little a priori assumptions may be made regarding the probability distribution of the data, i.e., universal compression. This necessitates the study of the universal compression of ﬁnite-length sequences.
+In this paper, we investigate the universal compression of smooth parametric sources. Denote A as a ﬁnite alphabet. Let C n : A n → {0, 1} ∗ be an injective mapping from the set A n of the sequences of length n over A to the set {0, 1} ∗ of binary sequences. We use the notation x n = (x 1 , ..., x n ) ∈ A n to present a sequence of length n. Let θ = (θ 1 , ..., θ d ) be a d- dimensional parameter vector. Denote µ θ as the parametric information source with d unknown parameters, where µ θ deﬁnes a probability measure on any sequence x n ∈ A n . De- note P d as the family of sources with d-dimensional unknown parameter vector θ. Let H n (θ) be the source entropy given parameter vector θ, i.e.,
+In this paper log(x) always denotes the logarithm of x in base 2. Let l(C n , x n ) = l n (x n ) denote the length function that describes the codeword length associated with the sequence x n . Denote L n as the set of all regular length functions on an input sequence of length n.
+Denote R n (l n , θ ) as the expected redundancy of the code on a sequence of length n, deﬁned as the difference between the expected codeword length and the entropy,
+R n (l n , θ ) = El n (X n ) − H n (θ). 	 (2) The expected redundancy is always non-negative. For a code that asymptotically achieves the entropy rate with length func- tion l n , 1 n R n (l n , θ ) → 0 as n → ∞ for all θ. The maximum expected redundancy for a length function of a code with length function l n is given as R n (l n ) = max θ∈ Θ d R n (l n , θ ), which may be minimized over all codes to achieve the mini- max expected redundancy [1]–[3]
+R n (l n , θ ). 	 (3) The leading term in the average minimax redundancy is asymptotically d 2 log n. Rissanen demonstrated that for the uni- versal compression of the family P d of the parametric sources with parameter vetcor θ, the redundancy of the codes with regular length functions l n is asymptotically lower bounded by R n (l n , θ ) ≥ (1− ) d 2 log n [4]–[6], for all > 0 and almost all sources. This asymptotic lower bound is tight since there exist coding schemes that achieve the bound asymptotically [5], [7]. This result was later extended in [8]–[10] to more general classes of sources. In [11], we extended Rissanen’s proba- bilistic treatment of redundancy to the universal compression in ﬁnite-length memoryless sources for the family of two–stage codes. However, the two–stage code assumption is restrictive and incurs an extra redundancy.
+In this paper, we extend our previous work to the family of parametric sources. We also relax the two–stage codeing constraint by considering conditional two–stage codes so that the coding scheme is optimal in the sense that it achieves the minimax redundancy. Further, we derive the extra redundancy incurred of two–stage codes. The rest of this paper is organized as follows. In Section II, after a review of the previous work, we formally state the problem of redundancy for ﬁnite-length universal compression of parametric sources. In Section III, we present our main results on the compression of conditional two–stage and two–stage codes. In Section IV, we demonstrate the signiﬁcance of our results through several examples.
+In this section, after a brief review of the previous work, we state the ﬁnite-length redundancy problem. Let l θ n denote the (non-universal) length function induced by a parameter θ ∈ Θ d . Denote l n as the length function on the input sequence of length n. Denote R n (l n , θ ) as the expected redundancy of the universal compression of source µ θ ∈ P d using the length function l n . Let I n (θ) be the Fisher information matrix for parameter vector θ and a sequence of length n,
+(4) Fisher information matrix quantiﬁes the amount of informa- tion, on the average, that each symbol in a sample sequence of length n from the source conveys about the source parameters.
+In this paper, we assume that the following conditions hold: 1) Θ d forms a compact set.
+3) All elements of the Fisher information matrix I n (θ) are continuous in Θ d .
+5) The family P d has a minimal representation with the d -dimensional parameter vector θ.
+Rissanen proved an asymptotic lower bound on the universal compression of an information sources with d parameters as [5], [6]:
+Fact 1: For all parameters θ, except in a set of asymptoti- cally Lebesgue volume zero, we have
+log n ≥ 1 − , ∀ > 0. 	 (5) While Fact 1 describes the asymptotic fundamental limits of the universal compression of parametric sources, it does not provide much insight for the case of ﬁnite-length n. Moreover, the result excludes an asymptotically volume zero set of parameter vectors θ that has non-zero volume for any ﬁnite n.
+In [1], Clarke and Barron derived the expected minimax redundancy ¯ R n for memoryless sources, later generalized in [12] by Atteson for Markov sources, as the following:
+Fact 2: The average minimax redundancy is asymptotically given by
+The average minimax redundancy characterizes the maximum redundancy over the space Θ d of the parameter vectors. However, it does not say much about the rest of the space of the parameter vectors. It is known that if µ θ (x n ) is a measurable function of θ for all x n , the average minimax redundancy is equal to the capacity of the channel between the parameter vector θ and the sequence x n , i.e., ¯ R n = sup p I p (Θ; X n ), where p(·) is a probability measure on the space of the parameter vector θ [8], [13]. The average minimax redundancy is obtained when the parameter vector θ follows
+the capacity achieving prior, which is Jeffreys’ prior in the case of parametric sources. Jeffreys’ prior is given by [2]
+In a two–stage code, to encode the sequence x n the com- pression scheme attributes m bits to identify an estimate for the unknown source parameters. Then, in the second stage of the compression, it is assumed that the source with the esti- mated parameter has generated the sequence. In this case, there will be 2 m possible estimate points in the parameter space for the identiﬁcation of the source. Let Φ m = {φ 1 , ..., φ 2 m } denote the set of all estimate points with an m-bit estimation budget. Note that for all i, we have φ i ∈ Θ d [14], [15].
+Denote l 2p n as the two–stage length function for the com- pression of sequences of length n. For each sequence x n , there exists an estimate point in the set of the estimate points, i.e., γ = γ(x n , m ) ∈ Φ m , which is optimal in the sense that it minimizes the code length and the average redundancy. In other words, γ is the maximum likelihood estimation of the unknown parameter in the set of the estimate parameters, i.e.,
+The two–stage universal length function for the sequence x n is then given by
+l 2p n (x n ) = m + l γ n (x n ), 	 (9) where l γ n denotes the length function induced by the parameter γ ∈ Φ m . Let L 2p n be the set of all two–stage codes that could be described as in (9). Further denote µ γ (x n ) as the probability measure induced by γ.
+Increasing the bit budget m for the identiﬁcation of the unknown source parameters results in an exponential growth in the number of estimate points, and hence, smaller l γ n (x n ) on the average due to the more accurate estimation of the unknown source parameter vector. On the other hand, m directly appears as part of the compression overhead in (9). Therefore, it is desirable to ﬁnd the optimal m that minimizes the total expected codeword length, which is El 2p n (X n ) = m + El γ n (X n ).
+In this paper, we ignore the redundancy due to the integer constraint on the length function. Thus, we use the Shannon code for each estimated parameter to bound the average redundancy of two–stage codes. Thus, ignoring the integer constraint on the codeword length we have
+Further, let ¯ R 2p n denote the average minimax redundancy of the two–stage codes, i.e.,
+In a two–stage code, we already have some knowledge about the sequence x n through the optimally estimated parameter γ (x n ) (maximal likelihood estimation) that can be leveraged
+for encoding x n using the length function l γ n (x n ). The two– stage length function in (9) deﬁnes an incomplete coding length, which does not achieve the equality in Kraft’s inequal- ity. Thus, it is not optimal in the sense that it does not achieve the optimal compression among all length functions. Further, it does not achieve the average minimax redundancy [11], [15]. Conditioned on γ(x n ), the length of the codeword for x n may be further decreased [14].
+Let S m (γ) be the collection of all x n for which the optimally estimated parameter is γ, i.e.,
+(12) Further, let A m (γ) denote the total probability measure of all sequences in the set S m (γ), i.e.,
+Thus, the knowledge of γ(x n ) in fact changes the probability distribution of the sequence. Denote µ γ (x n |x n ∈ S m (γ)) as the conditional probability measure of x n given γ is known to be such that x n ∈ S m (γ), i.e., the probability distribution that is normalized to A m (γ). That is
+A m (γ) . 	 (14) Note that µ γ (x n |x n ∈ S m (γ)) ≥ µ γ (x n ) due to the fact that A m (γ) ≤ 1. Let l γ n (x n |x n ∈ S m (γ)) be the codeword length corresponding to the conditional probability distribu- tion, which is decreased to E log A m (γ(X n )) µ γ (X n ) . Denote l c 2p n as the conditional two–stage length function for the compression of sequences of length n using the normalized maximum likelihood, which is given by
+l c 2p n = m + l γ n (x n |x n ∈ S m (γ)). 	 (15) Therefore, the average redundancy of the conditional two– stage scheme is given by
+µ γ (X n ) 	 − H n (θ). (16) Denote L c 2p n as the set of the conditional two–stage codes
+that are described using (15). Let ¯ R c 2p n denote the average minimax redundancy of the conditional two–stage codes, i.e.,
+Rissanen demonstrated that this conditional version of two– stage codes is in fact optimal in the sense that it achieves the average minimax redundancy [16]. In other words, ¯ R c 2p n =
+In this section, we present our main results on the com- pression of parametric sources. The proofs are omitted due to the lack of space. We derive a lower bound on the proba- bility of the event that a parametric source P is compressed with redundancy greater than the redundancy level R 0 , i.e.,
+P[R n (l n , θ ) > R 0 ]. This bound demonstrates the fundamental limits of the universal compression for ﬁnite-length n. The following is our main result:
+Theorem 1: Assume that the parameter vector θ follows Jeffreys’ prior in the universal compression of the family of parametric sources P d . Let be a real number. Then,
+2π n
+This theorem is derived for the conditional two–stage length functions. Note that Fact 1 is readily deduced from Theorem 1 by letting n → ∞.
+Next, we characterize the redundancy of two–stage codes. Let l 2 n p be the two–stage length function as deﬁned in (9). Further, denote R 2 n p (l 2p n , θ ) as the expected redundancy of the universal compression for the source P ∈ P d with parameter vector θ using l 2p n . The following theorem sets a lower bound on the redundancy of two–stage codes.
+Theorem 2: Consider the universal compression of the fam- ily of parametric sources P d with the parameter vector θ that follows Jeffreys’ prior. Let be a real number. Then,
+d en
+where C d is the volume of the d-dimensional unit ball, which is
+Γ d 2 + 1 . 	 (20) Further, we precisely characterize the extra redundancy due
+Theorem 3: In the universal compression of the family of parametric sources P d , the average minimax redundancy of two–stage codes is obtained by
+n . 	 (21) Here, ¯ R n is the average minimax redundancy deﬁned in (6) and g(d) is the two–stage penalty term given by
+In this section, we elaborate on the signiﬁcance of our results. In Section IV-A, we demonstrate that the average min- imax redundancy underestimates the performance of source coding in the small to moderate length n for sources with small d. In Section IV-B, we compare the performance of two–stage codes with conditional two–stage codes. We show that the penalty term of two–stage coding is negligible for sources with large d as well as for the sequences of long n. In Section IV-C, we demonstrate that as the number of source parameters grow, the minimax redundancy well estimates the performance of the source coding.
+In Figures 1 and 2, the x-axis denotes a fraction P 0 and the y-axis represents a redundancy level R 0 . The solid curves demonstrate the derived lower bound on the average redun- dancy of the conditional two–stage codes R 0 as a function of the fraction P 0 of the sources with redundancy larger than R 0 , i.e., P[R n (l c 2p n , θ ) ≥ R 0 ] ≥ P 0 . In other words, the pair (R 0 , P 0 ) on the redundancy curve means that at least a fraction P 0 of the sources that are chosen from Jeffreys’ prior have an expected redundancy that is greater than R 0 . Note that the unknown parameter vector is chosen using Jeffreys’ prior.
+First, we consider a ternary memoryless information source denoted by M 3 0 . Let k be the alphabet size, where k = 3. This source may be parameterized using two parameters, i.e., d = 2. In Fig. 1, our results are compared to the average minimax redundancy, i.e., ¯ R n from (6). Since the conditional two–stage codes achieve the minimax redundancy, ¯ R n is in fact the average minimax redundancy for the conditional two–
+stage codes ( ¯ R c 2p n ) as well. The results are presented in bits. As shown in Fig. 1, at least 40% of ternary memoryless sequences of length n = 32 (n = 128) may not be compressed beyond a redundancy of 4.26 (6.26) bits. Also, at least 60% of ternary memoryless sequences of length n = 32 (n = 128) may not be compressed beyond a redundancy of 3.67 (5.68) bits. Note that as n → ∞, the average redundancy approaches the average minimax redundancy for most sources.
+Next, let M 2 1 denote a binary ﬁrst-order Markov source (d = 2). We present the ﬁnite-length compression results in Fig. 2 for different values of sequence length n. The values of n are chosen such that they are almost log(3) times the values of n for the ternary memoryless source in the ﬁrst example. This choice has been made to equate the amount of information in the two sequences from M 3 0 and M 2 1 allowing a fair comparison.
+Figure 2 shows that the average minimax redundancy of the conditional two–stage codes for the case of n = 12 is given as ¯ R 12 ≈ 2.794 bits. Comparing Fig. 1 with Fig. 2, we conclude that the average redundancy of universal compression for a binary ﬁrst-order Markov source is very similar to that of the ternary memoryless source, suggesting that d is the most important parameter in determining the redundancy of ﬁnite-length sources. This subtle difference becomes even more negligible as n → ∞ since the dominating factor of redundancy for both cases approaches to d 2 log n.
+As demonstrated in Figs. 1 and 2, there is a signiﬁcant gap between the known result by the average minimax redundancy and the ﬁnite-length results obtained in this paper when a high fraction P 0 of the sources is concerned. The bounds derived in this paper are tight, and hence, for many sources the average minimax redundancy overestimates the average redundancy in universal source coding of ﬁnite-length sequences where the number of the parameters is small. In other words, the compression performance of a high fraction of ﬁnite-length sources would be better than the estimate given by the average minimax redundancy.
+We now compare the ﬁnite-length performance of the two– stage codes with the conditional two–stage codes on the class of binary memoryless source M 2 0 with k = 2 (d = 1). The results are presented in Figure 3. The solid line and the dotted line demonstrate the lower bound for the two–stage codes and the conditional two–stage codes, respectively. As can be seen, the gap between the achievable compression using two–stage codes and that of the conditional two–stage codes constitutes a signiﬁcant fraction of the average redundancy for small n. For a Bernoulli source, the average minimax redundancy of the two–stage code is given in (21) as
+2 ≈ ¯ R n + 1.048. 	 (23) The average minimax redundancy of two–stage codes for the case of n = 8 is given as ¯ R 2p 8 ≈ 2.86 bits while that of the conditional two–stage codes is ¯ R 8 ≈ 1.82. Thus, the two– stage codes incur an extra compression overhead of more than 50% for n = 8.
+In Theorem 3, we derived that the extra redundancy g(d) in- curred by the two–stage assumption. We further use Stirling’s approximation for sources with large number of parameters in order to show the asymptotic behavior of g(d) as d → ∞. That is, asymptotically, we have
+Note that o(1) denotes a function of d and not n here. Finally, we must note that the main term of redundancy in ¯ R n is
+log n, which is linear in d, but the penalty term g(d) is logarithmic in d. Hence, the effect of the two–stage assumption becomes negligible for the families of sources with larger d.
+The results of this paper can be used to quantify the signiﬁ- cance of redundancy in ﬁnite-length compression. We consider a ﬁrst-order Markov source with alphabet size k = 256.
+We intentionally picked this alphabet size as it is a common practice to use the byte as a source symbol. This source may be represented using d = 256 × 255 = 62580 parameters. In Figure 4, the achievable redundancy is demonstrated for four different values of n. Here, again the redundancy is measured in bits. The curves are almost ﬂat when d and n are very large validating our results that the average minimax redundancy provides a good estimate on the achievable compression for most sources. The sequence length in this example is pre- sented in bytes (B). We observe that for n = 256kB, we have R n (l n , θ ) ≥ 100, 000 bits for most sources. Further, the extra redundancy due to the two–stage coding g(d) ≈ 8.8 bits, which is a negligible fraction of the redundancy of 100, 000 bits. If the source has an entropy rate of 1 bit per source symbol (byte), the compression overhead is 38% and 1.7% for sequences of lengths 256kB and 16MB, respectively. Hence, we conclude that redundancy may be signiﬁcant for the compression of small low entropy sequences. On the other hand, redundancy is negligible for sequences of higher lengths.
+[[[ REFS ]]]
+B. Clarke
+A. Barron
+--
+Information-theoretic asymptotics of Bayes methods
+----
+Q. Xie
+A. Barron
+--
+Minimax redundancy for the class of memoryless sources
+----
+L. Davisson
+A. Leon-Garcia
+--
+A source matching approach to ﬁnding minimax codes
+----
+J. Rissanen
+--
+Universal coding, information, prediction, and estimation
+----
+
+--
+Complexity of strings in the class of Markov sources
+----
+
+--
+Stochastic complexity and modeling
+----
+F. Willems
+Y. Shtarkov
+T. Tjalkens
+--
+The context-tree weighting method: basic properties
+----
+N. Merhav
+M. Feder
+--
+The minimax redundancy is a lower bound for most sources
+----
+M. Feder
+N. Merhav
+--
+Hierarchical universal coding
+----
+M. Weinberger
+N. Merhav
+M. Feder
+--
+Optimal sequential prob- ability assignment for individual sequences
+----
+A. Beirami
+F. Fekri
+--
+On the ﬁnite-length performance of universal coding for k-ary memoryless sources
+----
+K. Atteson
+--
+The asymptotic redundancy of bayes rules for markov chains
+----
+L. Davisson
+--
+Universal noiseless coding
+----
+J. Rissanen
+--
+Strong optimality of the normalized ML models as univer- sal codes and information in data
+----
+P. D. Grunwal
+--
+The Minimum Description Length Principle
+----
+J. Rissanen
+--
+Fisher information and stochastic complexity
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\139.pdf
+[[[ LINKS ]]]
+

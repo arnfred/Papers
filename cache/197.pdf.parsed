@@ -1,0 +1,167 @@
+[[[ ID ]]]
+197
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Further Results on Geometric Properties of a Family of Relative Entropies
+[[[ AUTHORS ]]]
+Ashok Kumar M.
+Rajesh Sundaresan
+[[[ ABSTR ]]]
+PAPER AWARD. This paper extends some geometric properties of a one-parameter family of relative entropies. These arise as redundancies when cumulants of compressed lengths are consid- ered instead of expected compressed lengths. These parametric relative entropies are a generalization of the Kullback-Leibler divergence. They satisfy the Pythagorean property and behave like squared distances. This property, which was known for ﬁnite alphabet spaces, is now extended for general measure spaces. Existence of projections onto convex and certain closed sets is also established. Our results may have applications in the R´enyi entropy maximization rule of statistical physics.
+[[[ BODY ]]]
+Relative entropy or Kullback-Leibler divergence I(P Q) between two probability measures is a fundamental quantity that arises in a variety of situations in probability, statistics, and information theory. It serves as a measure of dissimilarity or divergence between two probability measures P and Q on a given measure space. In information theory, it is well known that I(P Q) is the penalty in expected compressed length, i.e., its gap from Shannon entropy H(P ), when the compressor assumes that the (ﬁnite-alphabet) source probability measure is Q instead of the true probability measure P .
+R´enyi entropies H α (P ) for α ∈ (0, ∞) play the role of Shannon entropy when the normalized cumulant of compres- sion length is considered instead of expected compression length. Indeed, Campbell [1] showed that
+for an independent and identically distributed (iid) source with marginal P . The minimum is over all compression strategies that satisfy the Kraft inequality, α = 1/(1+ρ), and ρ > 0 is the cumulant parameter. We also have lim α→1 H α (P ) = H(P ), so that R´enyi entropy may be viewed as a generalization of Shannon entropy.
+If the compressor assumed that the true probability measure had marginal Q, instead of P , then the gap in the normalized cumulant’s growth exponent from the optimal value (R´enyi entropy) is an analogous parametric divergence quantity (in- troduced by Blumer and McEliece [2] and studied further by Sundaresan [3]), which we shall denote I α (P, Q). The same quantity also arises when we study the gap from optimality
+of mismatched guessing exponents (see Arikan [4] as well as Sundaresan [3]). All these results are applicable to more general non-iid sources.
+As one might expect, it is known that (see for example, Johnson and Vignat [5, A.1]) lim α→1 I α (P, Q) = I(P Q), so that we may think of relative entropy as I 1 (P, Q), and therefore I α as a generalization of relative entropy, i.e., an α-relative entropy. Furthermore, for probability measures on a ﬁnite alphabet set, I α behaves like squared Euclidean distance, and satisﬁes a “Pythagorean property” [3] like relative entropy and squared Euclidean distance. One purpose of this paper is to extend this property to probability measures on a general measure space with some common dominating measure.
+The maximum entropy principle is a well-known selection rule, in the presence of uncertainty, in statistics. For a source alphabet X with ﬁnite cardinality, by noting that I(P U ) = log |X| − H(P ) with U taken as the uniform measure on the ﬁnite alphabet set X, the maximum entropy principle is the same as the minimum relative entropy principle, an idea that goes back to Boltzmann, and one which is supported by the theory of large deviations. Indeed, suppose that certain ensemble average measurements can be made on a realization of a sequence of iid random variables (mean, second moment, etc.). The resulting realization must have an empirical measure that obeys the constraints placed by the observations. In particular, the empirical measure belongs to a convex (and possibly closed) set. Large deviations theory tells us that, amongst the measures that respect the constraints, the one that minimizes relative entropy is exponentially more likely than the others. The resulting measure is called I-projection and was extensively studied by Csisz´ar [6], [7], and more recently by Csisz´ar and Mat´uˇs [8]. I-minimization arises similarly in the contraction principle of large deviations theory (see for example Dembo and Zeitouni’s [9, p.126]).
+As a natural alternative selection principle, the maximum R´enyi entropy principle has been recently considered. This principle is equivalent to maximizing the Tsallis entropy, which is a monotone function of the R´enyi entropy. See for example Jizba and Arimitsu [10], and references therein. More interestingly, Jizba and Arimitsu [10] indicate that max- imum R´enyi entropy principle may be viewed as a maximum Shannon entropy principle with multifractal constraints. This
+selection principle has been of recent interest in statistical physics settings because R´enyi entropy maximizers under a covariance constraint are distributions with a power-law decay (when α > 1). See Costa et al. [11] or Johnson and Vignat [5]. Several empirical observations in naturally arising physical and socio-economic systems possess a power- law decay. Without going into these aspects, we remark that I α (P, U ) = log |X|−H α (P ), so that both the maximum R´enyi entropy principle and the maximum Tsallis entropy principle are equivalent to a minimum α-relative entropy (minimum I α ) principle. Thus one needs to ﬁnd amongst empirical measures that meet the observation constraints, the one that minimizes I α . We shall call this the I α -projection. While existence and uniqueness of I α -projection was proved by Sundaresan [3] for the ﬁnite alphabet case, the second purpose of this paper is to extend these results to more general measure spaces.
+It is known (see for example [3]) that I α (P, Q) is the more commonly studied R´enyi divergence of order 1/α, not of the original measures P and Q, but of their tilts P and Q , where P (x) = P (x) α /Z(P ), and Z(P ) is the normalization that makes P a probability measure. Q is similarly deﬁned. While the R´enyi divergences arise naturally in hypothesis testing problems (see for example Csisz´ar [12]), I α arises more naturally as a redundancy for mismatched compression.
+I α is also a certain monotone function of Csisz´ar’s f - divergence between P and Q . As a consequence of the appearance of the tilts, the data-processing property satisﬁed by f -divergences does not hold for the α-relative entropy. Surprisingly though, the Pythagorean property holds.
+The rest of the paper is organized as follows. In section II, we provide the deﬁnitions and demonstrate the existence of I α projections on certain closed and convex sets. In section III, we extend the Pythagorean property to general measure spaces (with a common dominating measure), and identify the consequences with respect to iterated projections. In section IV, we summarize our results.
+We ﬁrst formalize the deﬁnition of α-relative entropy to a general probability space.
+Let P and Q be two probability measures on a measure space (X, X ). Let α ∈ (0, ∞) with α = 1. By setting α = 1/(1 + ρ) we have the reparameterization in terms of ρ with −1 < ρ < ∞ and ρ = 0. Let µ be a dominating σ-ﬁnite measure on (X, X ) with respect to which P and Q are both absolutely continuous, denoted P µ and Q µ. We denote p = dP/dµ and q = dQ/dµ and assume that they are in the complete metric space L α (µ) with metric
+even though it is not a norm for α < 1. (The dependence of this quantity on α should be borne in mind). The R´enyi entropy of P of order α (with respect to µ) is given by
+Consider the tilted measures P and Q given by dP
+q α dµ . P and Q are also dominated by µ. With
+Csisz´ar’s f -divergence [13] between two measures P and Q, both absolutely continuous with respect to µ, is given by
+Since f is strictly convex when ρ = 0, by Jensen’s inequality, I f (P, Q) ≥ f (1) with equality if and only if P = Q.
+Abusing notation a little, when speaking of densities, we shall some times write I α (p, q) for I α (P, Q).
+We now summarize the anticipated properties of α-relative entropy.
+2) Under certain regularity conditions, lim α→1 I α (P, Q) = I(P Q).
+3) Let X = R n and let µ be the Lebesgue measure on R n . For α > n/(n + 2) and α = 1, deﬁne the constant b α = (1−α)/(2α−n(1−α)). With C a positive deﬁnite covariance matrix, the function
+with [a] + := max{a, 0} and Z α the normalization constant, is the density function of a probability measure on R n whose covariance matrix is C. Furthermore, if g is the density function of any other random variable with covariance matrix C, then
+Consequently g α,C is the density function of the R´enyi en- tropy maximizer among all R n -valued random vectors with covariance matrix C.
+4) Let |X| < ∞ and let U be the uniform probability mass function on X. Then I α (P, U ) = log |X| − H α (P ).
+Proof: We only give an outline here. Statement 1) follows by an application of H¨older’s inequality by considering the H¨older conjugates α and α/(α − 1), and the functions p/ p
+and (q/ q ) α−1 . Statement 2) follows by an application of L’Hˆopital’s rule and some conditions that enable interchange of differentiation with respect to the parameter α and integra- tion with respect to µ. Statement 3) was proved by Lutwak
+et al. [14]. See also Johnson and Vignat [5]. For relative entropy, the analog of (1) under a covariance constraint would be I(g φ) = H(φ) − H(g), where H is differential entropy and φ is the Gaussian distribution with the same covariance as g. The last statement follows from the deﬁnition.
+We next prove an inequality relating f -divergences. This yields parallelogram identity for relative entropy (α = 1) [6].
+Lemma 2: Let α < 1. Let P 1 , P 2 , R be probability mea- sures that are absolutely continuous with µ, and let the corresponding Radon-Nikodym derivatives p 1 , p 2 , and r be in L α (µ). Assume 0 ≤ λ ≤ 1. We then have
+Proof: We brieﬂy outline the steps. Let r 1,2 = dR 1,2 /dµ. Observe that since I f (·, ·) ≥ f (1), a consequence of Jensen’s inequality indicated earlier, all terms within square brackets are nonnegative. The left-hand side of inequality can be expanded to
+r r
+r r
+r r
+Applying Minkowski’s inequality in (3) with α < 1, we get λ
+This inequality gets reversed when α > 1, again by a version of Minkowski’s inequality. Since I f (R 1,2 , R ) − f (1) ≥ 0, the lemma follows.
+Deﬁnition 3: If E is a set of probability measures on (X, X ) such that I α (P, R) < ∞ for some P ∈ E, a measure Q ∈ E satisfying
+Let E be a set of probability measures on (X, X ). Let µ be a common (σ-ﬁnite) dominating measure for E. Write
+We are now ready to state our main result on the existence of I α -projection.
+Theorem 4: Let α ∈ (0, ∞) and α = 1. Let E be a set of probability measures with dominating σ-ﬁnite measure µ such that the subset of functions E is convex and closed in L α (µ). Let R be a probability measure and suppose that I α (P, R) < ∞ for some P ∈ E. Then R has an I α -projection on E.
+Remark 1: The closure of E in L α (µ), for α = 1, would be closure in the total variation metric, which is one of the hypotheses in Csisz´ar’s [6, Th.2.1]. The proof ideas are different for the two cases α < 1 and α > 1. The proof for α < 1 is a modiﬁcation of Csisz´ar’s approach in [6]. The proof for α > 1 exploits properties of sets that are convex and closed under the weak topology. We are indebted to Pietro Majer for suggesting some key steps on the mathoverflow.net forum.
+Proof: (a) We ﬁrst consider the case α < 1. Pick a sequence P n ∈ E such that I f (P n , R ) < ∞ and
+on account of the convexity of E. Rearranging (6) and using I f (·, ·) ≥ f (1) = 1, we get
+1 ≤ λI f (P m , R m,n ) + (1 − λ)I f (P n , R m,n ) ≤ λI f (P m , R ) + (1 − λ)I f (P n , R )
+Take the limit as m, n → ∞. The expression on the right-most side is at most 1 because I f (P m , R ) and I f (P n , R ) approach the inﬁmum value, and I f (R m,n , R ) is at least this inﬁmum value for each m and n. Since we also have I f (P m , R m,n ) ≥ 1 and I f (P n , R m,n ) ≥ 1, it follows that
+From [13, Th. 1], a generalization of Pinsker’s inequality, we get that the total variation metric, denoted |P − Q|, is small if I f (P, Q) − 1 is small. This fact and the above limit imply that
+which, together with the triangle inequality for the total variation metric, yields
+i.e., the sequence {p n } is a Cauchy sequence in L 1 (µ). It must thus converge to some g in L 1 (µ), i.e.,
+There is then a subsequence, over which one gets a.e.[µ] convergence. Reindexing to operate on this subsequence, we get
+We will now demonstrate that an I α -projection, say Q, is in E and has µ-density proportional to g 1/α .
+we can apply the generalized Dominated Convergence Theo- rem [15, Ch.2, Problem.20] to get
+Suppose not; then working on a subsequence if needed, we have p n := M n → ∞. As p n dµ = 1, given any > 0,
+and hence g n → 0 in [µ]-measure, which would be a contra- diction to the fact that g n dµ = 1 for all n. Thus (8) holds, and so we can ﬁnd a subsequence that converges to some c. Reindex and work on this subsequence to get p n → cg 1/α in L α (µ). Since E is closed in L α (µ), we obtain cg 1/α = q for some q ∈ E, c = q , and g = q α / q α ∈ E . Let Q be the probability measure in E with dQ/dµ = q.
+To complete the proof, we need to demonstrate that I α (P , R ) ≥ I α (Q , R ) for every P ∈ E. To see this, note that (7) implies that p n → q in L 1 (µ), and by a change of measure, p n /r → q /r in L 1 (R ), and hence in [R ]- measure. But f is continuous, and so f (p n /r ) → f (q /r ) in [R ]-measure. Fatou’s lemma then implies
+Since Q ∈ E, equality must hold, and Q is an I α -projection of R on E. This completes the proof for the case when α < 1.
+(b) We next consider the case when α > 1. Note that ρ is negative, and so the inf in (4) becomes a sup as follows. The I α -projection Q must satisfy (4) which can be rewritten as
+p p
+r r
+and g = (r/ r ) α−1 , an element of the dual space (L α (µ)) ∗ . We now claim that
+Assume the claim. Since L α (µ) is a reﬂexive space, the closed and convex set ˆ E is closed under the weak topology. Since ˆ E is also contained in the unit sphere in L α (µ), the unit sphere being compact in the weak topology in a reﬂexive space, ˆ E must be compact in the weak topology. The supremum is thus of a bounded linear functional over the weakly compact set ˆ E. It is therefore attained in ˆ E. Since the linear functional increases with s, the supremum is attained with s = 1. Thus the supremum in (10) over p ∈ E is attained.
+We now proceed to show the claim (11). To see convexity, let p 1 , p 2 ∈ E and 0 < s 1 , s 2 , λ < 1. Then
+by the convexity of E . From Minkowski’s inequality (for α > 1), we also have
+To see that ˆ E is closed in L α (µ), let {g n } ⊂ ˆ E be a Cauchy sequence in L α (µ). Then g n = s n p n / p n , with p n ∈ E and 0 ≤ s n ≤ 1, converges to some g in L α (µ). By taking norms, we see that g n = s n → g ≤ 1. If g = 0 a.e.[µ], then g ∈ ˆ E by taking s = 0, and we are done. Otherwise we can assume that g n > 0 for all n by focusing on a subsequence if needed, and that g > 0. We can thus conclude that p n / p n = g n / g n → g/ g in L α (µ). Since g = 0, the same argument that showed (8) shows that p n is bounded, and by focusing on a subsequence, we may assume that it converges to some constant c. Hence p n → cg/ g in L α (µ). Since E is closed, we must have cg/ g = p for some p ∈ E, c = p , and g = g p/ p . Since we already established that g ≤ 1, it follows that g ∈ ˆ E. This completes the proof.
+We close this section with a result on the continuity or the lower semicontinuity of α-relative entropy.
+Proposition 5: For a ﬁxed q, consider p → I α (p, q) as a function on L α (µ). This function is continuous for α > 1 and lower semicontinuous for α < 1.
+Proof: Let us ﬁrst consider the case when α > 1. Let p n → p in L α (µ). Then p n → p and so p n / p n → p/ p in L α (µ). As mentioned in the proof of Theorem 4(b), I α (p, q) is a monotone function of a bounded linear functional in p/ p . Hence I α (p, q) is continuous in p. For α < 1(ρ > 0) we write
+Let p n → p in L α (µ). Then p n → p and since |p α n −p α | ≤ |p n | α +|p| α , the generalized Dominated Convergence Theorem yields
+i.e., p n → p in L 1 (µ). This is the same as saying p n /q → p /q in L 1 (Q ), and thus in [Q ]-measure. Hence it follows that (p n /q ) 1+ρ → (p /q ) 1+ρ in [Q ]-measure. By Fatou’s lemma,
+As increasing function of a lower semicontinuous function is lower semicontinuous, the result is established for α < 1.
+In this section, we state the Pythagorean property for α- relative entropy. We deﬁne the I α -sphere with center R and radius r as S(R, r) = {P : I α (P, R) < r}, 0 < r ≤ ∞.
+Theorem 6: Let α > 0 and α = 1. Let µ be a common dominating σ-ﬁnite measure.
+1) If I α (P, R) and I α (Q, R) are ﬁnite, “the segment joining P and Q” does not intersect the I α -sphere B(R, r) with radius r = I α (Q, R), i.e., I α (P λ , R) ≥ I α (Q, R) for
+and I α (Q, R) is ﬁnite, then the segment joining P and S does not intersect B(R, r) with r = I α (Q, R), if and only if I α (P, R) = I α (P, Q)+I α (Q, R) and I α (S, R) = I α (S, Q) + I α (Q, R).
+For the proof, we proceed as in [3] where it is proved for the ﬁnite alphabet case, with appropriate functional analytic justiﬁcations for the general alphabet case.
+Once Theorem 6 is established in generality, the proofs of the following results are exactly as in [3].
+1) (Projection) A Q ∈ E ∩ S(R, ∞) is an I α -projection of R on the convex set E iff every P ∈ E satisﬁes (12). If the I α - projection is an algebraic inner point of E then E ⊂ S(R, ∞) and (12) holds with equality.
+2) (Uniqueness of I α -projection ) If I α -projection exists, it is unique.
+3) (Iterative projection) Let E and E 1 ⊂ E be convex sets of probability measures, let R have I α -projection Q on E and Q 1 on E 1 , and suppose that (12) holds with equality for every P ∈ E. Then Q 1 is the I α -projection of Q on E 1 .
+We studied a parametric extension of relative entropy I α for α > 0 and α = 1. These arose naturally as redundancies under mismatched compression and when normalized cumulants of compression lengths are considered (0 ≤ α ≤ 1). We ﬁrst studied I α minimization problems and showed that projections exist on convex and closed sets (in L α (µ)) when the sets are dominated by a σ-ﬁnite measure µ. We then extended the Pythagorean property to general measure spaces. As a consequence, one also gets an iterated projections property. Axiomatic characterizations that lead to I α minimization and R´enyi entropy maximization are currently under investigation.
+The ﬁrst author was supported by a Council for Scientiﬁc and Industrial Research (CSIR) fellowship. The work was supported in part by the University Grants Commission by Grant Part (2B) UGC-CAS-(Ph.IV).
+[[[ REFS ]]]
+L. L. Campbell
+--
+A coding theorem and R´enyi’s entropy
+----
+A. C. Blumer
+R. J. McEliece
+--
+The R´enyi redundancy of generalized Huffman codes
+----
+R. Sundaresan
+--
+Guessing under source uncertainty
+----
+E. Arikan
+--
+An inequality on guessing and its application to sequential decoding
+----
+O. T. Johnson
+C. Vignat
+--
+Some results concerning maximum R´enyi entropy distributions
+----
+I. Csisz´ar
+--
+I-divergence geometry of probability distributions and minimization problems
+----
+
+--
+Sanov property, generalized I-projection, and a conditional limit theorem
+----
+I. Csisz´ar
+F. Mat´uˇs
+--
+Information projections revisited
+----
+A. Demb
+O. Zeitoun
+--
+Large Deviations Techniques and Applica- tions , 2nd ed
+----
+P. Jizba
+T. Arimitsu
+--
+The world according to R´enyi: thermodynamics of multifractal systems
+----
+J. Costa
+A. Hero
+C. Vignat
+--
+On solutions to multivariate maximum-entropy problems
+----
+I. Csisz´ar
+--
+Generalized cutoff rates and R´enyi’s information measures
+----
+
+--
+Information-type measures of difference of probability distribu- tions and indirect observations
+----
+E. Lutwak
+D. Yang
+G. Zhang
+--
+Cramer-Rao and moment-entropy inequalities for R´enyi entropy and generalized Fisher information
+----
+G. B. Follan
+--
+Real Analysis: Modern Techniques and their Applications, 2nd ed
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\197.pdf
+[[[ LINKS ]]]
+

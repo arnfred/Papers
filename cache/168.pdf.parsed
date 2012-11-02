@@ -1,0 +1,154 @@
+[[[ ID ]]]
+168
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Broadcasting on the Grassmannian: Enhancing the Multiplexing Gain
+[[[ AUTHORS ]]]
+Yang Li
+Aria Nosratinia
+[[[ ABSTR ]]]
+Abstract— It is known that in multiantenna broadcast channels without transmitter-side channel state information (CSIT), time- sharing (orthogonal transmission) achieves the maximum mul- tiplexing gain if perfect receiver-side channel state information (CSIR) is available to all receivers, or if no receiver has CSIR. We show that orthogonal strategies are not optimal in cases where some receivers have more CSIR than others. A superposition signaling is proposed to transmit to two receivers simultaneously on Grassmannians, achieving higher multiplexing gain compared with orthogonal transmissions. The information for the two receivers is conveyed by the row and column spaces of the transmitted matrix, respectively, which is constructed from a product of two matrices that each lie on different Grassmannians. This multiplicative superposition allows the two receivers to be interference-free from the other’s signals even without CSIT.
+[[[ BODY ]]]
+In MIMO broadcast channels without transmitter-side channel-state information (CSIT), the optimal strategy is known both for perfect receiver-side channel-state information (CSIR) as well as when there is no CSIR. With no CSIT and perfect CSIR, time-sharing (TDMA) is optimal [1], [2], [3]. With neither CSIT nor CSIR, again time-sharing achieves the full multiplexing gain [2], [4]. Although time-sharing is optimal if all receivers have either full CSIR or no CSIR, the results of this paper show that when some receivers have CSIR and some do not, strategies exist that is strictly better than TDMA, and in fact capture higher multiplexing gain (degrees of freedom) than that is possible with time-sharing.
+The study of broadcast channels with varying CSIR is mo- tivated by downlink scenarios where receivers have different mobilities. The low-mobility receivers have opportunity to reliably estimate their channels and maintain CSIR, while the high-mobility receivers do not have quite the same opportunity.
+We propose a signaling structure that transmits to one low-mobility receiver and one high-mobility receiver simu- lateneously. This signaling method increases the multiplexing gain of the low-mobility receiver, and maintains the same multiplexing gain for the high-mobility receiver. The informa- tion for either the high or low mobility receiver is conveyed by the row and column spaces of the transmitted signals, which are constructed from a product of two signals that lie on different Grassmannianns. Under this multiplicative superposition, the signals for the two receivers do not interfere with each other even without CSIT, which is different from traditional superposition broadcasting [1], [5].
+We consider a broadcast channel with an M-antenna trans- mitter and two receivers. One of the receivers has N 1 antennas with a short channel coherence time; we refer to it as the dy- namic receiver. Another receiver has N 2 antennas with a long channel coherence time; we refer to it as the static receiver. Denote the channel coefﬁcient matrix from the transmitter to the dynamic and static receivers by H 1 and H 2 , respectively. We assume that H 1 is block-faded with coherence interval T , and H 1 is unknown at the dynamic receiver (no CSIR). For the purpose of this paper, we assume that H 2 varies slowly enough to be approximated with a constant matrix that is perfectly known by the static receiver (full CSIR).
+Over T c time-slots (symbols), each transmitter antenna sends a T c -dimensional vector x i ∈ C 1×T c , i = 1, · · · , M; X = [x 1 , · · · , x M ] t is the transmitted signals. The normalized received signals at the dynamic and static receivers are
+respectively, where each row of Y 1 ∈ C N 1 ×T c and Y 2 ∈ C N 2 ×T c corresponds to the received signals at an antenna of the two receivers over T c time-slots, respectively. The additive noise W 1 ∈ C N 1 ×T c and W 2 ∈ C N 1 ×T c have i.i.d. entries with distribution CN (0, 1). The transmitter has an average power constraint ρ. Normalizing the average transmit power (per symbol) to be 1, we have
+Throughout this paper, all entries of H 1 are i.i.d. CN (0, 1). The transmitter has no channel-state information.
+We brieﬂy present ideas of non-coherent communication on the Grassmannian (see [6] for more details). Consider the point-to-point communication between the transmitter and the dynamic receiver that does not have CSIR. At the high SNR (large ρ), since the additive noise is negligible, we have Y 1 ≈ H 1 X. Because X is multiplied by a random and unknown H 1 , the dynamic receiver cannot decode the particular X. Nevertheless, the multiplication of H 1 does not affect the subspace speciﬁed by X because for any non-singular H 1 , Y 1 spans the same row space as X. This indicates that the row space of X can be used to carry information without knowing H 1 , i.e., by letting row vectors of X span different subspaces we can send different codewords.
+Conveying information via subspaces can be viewed [6] as communication on the Grassmann manifold [7] where each distinct point in the manifold represents a different subspace. The set of all k-dimensional subspaces of C n ( n > k) constitutes the (complex) Grassmannian G(n, k), which is equivalently the quotient space of the Stiefel mannifold F(n, k) (the set of all n × k unitary matrices) with the equivalence relation:
+The dimension of G(n, k) is dim G(n, k) = k(n − k); each point in G(n, k) has a neighborhood that is equivalent (homeomorphic) to a ball in the Euclidean space of (complex) dimension k(n − k). Intuitively, k(n − k) complex parameters specify a k-dimentional subspace of C n . This dimension is equal to the maximum multiplexing gains of a non-coherent point-to-point MIMO channel [6].
+In non-coherent communications, codewords can be repre- sented by distinct points in the Grassmannian [6], which differs from coherent communications that map each codeword into one point in a vector space [8]. The design of an optimal codebook can be viewed as sphere packing over Grassman- nians [6]. At high SNR, the optimal signals are isotropically distributed unitary matrices [9], [6]. In addition, the optimal number of transmit antenna depends on the length of channel coherence time: for a short coherence interval, using fewer antennas may lead to a higher capacity. 1 For example, for the point-to-point communication between the transmitter and the dynamic receiver, the optimal number of transmit antennas is
+Therefore, the optimal signals are a K × T unitary matrix, i.e., activating K out of M antennas with each transmitting an equal-energy and mutually orthogonal vector over T time- slots. Such unitary matrices reside in G(T, K) and achieve the maximum multiplexing gain, or degrees of freedom, K(1− K T ).
+Decoding in the non-coherent regime is different from the standard coherent decoding [11], because the information is embedded in the subspaces instead of the constellation matri- ces. Thus, as long as two matrices span the same subspace, they correspond to the same message. In maximum-likelihood decoding, the message is chosen whose representation is the closest (based on a certain metric) to the row space spanned by the received signals. For example in [12], the received signals are projected on the subspaces spanned by different codewords, and then the one is chosen with the maximum projection energy. More precisely, for the transmitted signals X i ∈ C K×T from a unitary codebook X , and the received signals Y ∈ C K×T , the ML detector is
+Here, the transmitter communicates with the two receivers via TDMA. When transmitting to the dynamic receiver, the transmitter ﬁrst sends pilots for channel estimation and then transmits data coherently [13]. When transmitting to the static receiver, the transmitter transmits data directly since the chan- nel is already known at the receiver.
+Under this scheme, the maximum rate achieved by the dynamic receiver is found by [6], [13]:
+where K is given by (4). The maximum rate achieved by the static receiver is [14]
+When broadcasting to receivers with different mobilities, training-based schemes are inherently inefﬁcient because of different training demands of receivers. Assume two receivers have coherence intervals T 1 and T 2 T 1 . Effectively estimat- ing the dynamic receiver’s channel requires a training update every T 1 symbols, while the other receiver only needs training every T 2 symbols. The time and power used to train the dynamic receiver is essentially wasted on the slower receiver. For clarity of exposition, we assume very large T 2 so that the associated channel is considered static in this paper.
+Unlike training-based methods, no channel estimation is required by unitary signaling for non-coherent communica- tions [6], [12], thus avoiding the waste and increasing overall throughput. The proposed method is motivated partly by this intuition. We will show that the gains achieved by following this intuition can be signiﬁcant, and in fact higher degrees of freedom can be obtained compared with simple TDMA approaches.
+We illustrate the basic ideas of the proposed scheme via a simple example. Consider M = N 2 = 2, N 1 = 1 and T = 2. Over 2 time-slots, the transmitter sends X = x 2 x t 1 ∈ C 2×2 , where x 1 = [ x (1) 1 x (1) 2 ] t and x 2 = [ x (2) 1 x (2) 2 ] t are signals for the dynamic receiver and the static receiver, respectively. Furthermore, x 1 and x 2 are of unit-norm and are respectively from codebooks X 1 and X 2 that lie on G(2, 1). The signals received at the dynamic receiver are
+where h (1) 1 and h (1) 2 are channel coefﬁcients between the dynamic receiver and two transmit antennas, and ˜ h (1) is the equivalent (and unknown) channel coefﬁcient seen by the dynamic receiver, which is still i.i.d. CN (0, 1). The multi- plexing gain achieved by the dynamic receiver is 1 2 per time- slot, which is optimal even in a point-to-point non-coherent channel [6]. Therefore, at high SNR, the rate of the dynamic receiver is unaffected by multiplying x 2 , the signal for the static receiver.
+Now, consider the received signals of the static receiver (with two antennas) at time slot 1:
+Because the static receiver knows H 2 , it can invert the chan- nel 2 as long as H 2 is non-singular:
+This is an equivalent system for the static receiver, where the equivalent channel is x (1) 1 , part of the signals for the dynamic receiver, which is unknown to the static receiver. So the static receiver also needs to communicate “non-coherently”. For the sake of an intuitive argument we assume the Gaussianity of x (1) 1 and whiteness of equivalent noise for a moment, making the equivalent channel of the static receiver identical to that of the dynamic receiver, which leads to an achievable degree of freedom of 1 2 . Of course these two assumptions are not exactly valid; a comprehensive analysis is presented in the sequel, showing that 1 2 degrees of freedom for the static receiver is achievable in general.
+In the proposed scheme, even if the dynamic receiver oper- ates at the maximum degrees of freedom 1 2 , the static receiver still achieves 1 2 degrees of freedom “for free”. Combined with time-sharing the degrees of freedom region achieved by the proposed scheme is
+1 2
+which is strictly larger than the region achieved by purely TDMA (baseline) schemes, as shown in Figure 2.
+Remark 1: Several observations are in order. First, the information for the dynamic receiver and the static receiver is carried by the directions of x 1 and x 2 , respectively. Second, x 1 and x 2 are superimposed by multiplication, i.e., x 2 x t 1 , instead of addition as in traditional broadcast channels [1]. Third, the multiplication of x 2 does not change the row space spanned by x 1 , and even does not change the channel statistics seen by the dynamic receiver if x 2 has unit norm.
+Based on the previous example, we design a general signal- ing method with two properties: (1) the information is carried by subspaces and (2) the signals are superimposed multiplica- tively so that the their row (or column) space is unaffected. For brevity, in this preliminary work we consider N 2 > N 1 and only N 2 active transmit antennas, which is motivated by the fact that extra transmit antennas do not increase multiplexing gain for non-coherent MIMO channels [6]. 3
+Our approach is that N 2 transmit antennas send X ∈ C N 2 ×T over each T coherent interval (T c = T ):
+where X 1 ∈ C T ×N 1 and X 2 ∈ C N 2 ×N 1 are signals for the dynamic receiver and the static receiver, respectively. Moreover, both receivers communicate on Grassmannians (via subspaces): X 1 is from a codebook X 1 ⊂ G(T, N 1 ) and X 2 is from a codebook X 2 ⊂ G(N 2 , N 1 ). Here, T N 1 is a normalizing factor to satisfy the power constraint.
+Remark 2: The multiplicative superposition structure of X 1 and X 2 is critical: X 1 is multiplied by X 2 from the left, which does not change the constellation point that X 1 corresponds to, i.e., X 2 X 1 and X 1 span an identical row space as long as X 2 is non-singular. This invariant property of Grassmannian enables us to convey information to the static receiver via X 2 without interfering the dynamic receiver. In addition, because
+X 2 X 1 span the same column space as X 2 , the static receiver will decode the information carried by the column space of X 2 even without knowing X 1 .
+Now, we brieﬂy discuss the design of codebooks X 1 and X 2 . First, we choose X 2 to be a set of isotropically distributed uni- tary matrices. This choice is optimal at high SNR for a point- to-point MIMO channel without CSIR. Moreover, a unitary matrix does not affect the statistics of the (equivalent) channel seen by the dynamic receiver (see Remark 3), which makes the static receiver transparent to the dynamic receiver and simpliﬁes the dynamic receiver’s decoding. Once designing X 2 to be unitary matrices, the communication between dynamic receiver and the transmitter is equivalent to a non-coherent point-to-point MIMO channel. Hence, to maximize the rate of the dynamic receiver at high SNR, X 1 must also be a collection of isotropically distributed unitary matrices (see Section III).
+Under this scheme, the achievable rate region is given by the following theorem.
+Theorem 1: A transmitter with M antennas broadcasts to the dynamic receiver and the static receiver, each with N 1 and N 2 antennas ( M ≥ N 2 > N 1 ). The channel of the dynamic receiver has a coherence time interval T symbols while the channel of the static receiver remains constant. Grassmannian Superposition Signaling achieves a rate region
+where ρ is the transmit power and t is a time-sharing variable. Compared with the rate region achieved by the TDMA
+baseline, the static receiver attains the following amount of extra rate for free:
+The normalized received signals at the the dynamic receiver are
+where Y 1 ∈ C N 1 ×T and H 1 ∈ C N 1 ×N 2 have i.i.d. CN (0, 1) entries, and W 1 ∈ C N 1 ×T is additive Gaussian noise. Let H eq 1 = H 1 X 2 and rewrite (16) as
+In the above, H eq 1 is the N 1 × N 1 equivalent channel seen by the the dynamic receiver. Because H 1 is isotropically distributed (right rotation invariant), and X 2 is unitary, each entry of H eq 1 is still i.i.d. CN (0, 1) [9] (thus once again isotropically distributed). The capacity of the above equivalent channel is found by [6], and from which we have the rate for the the dynamic receiver:
+This achieves the maximum multiplexing gain for the dynamic receiver even if it were in a point-to-point link.
+Remark 3: Once chosen to be unitary, X 2 becomes trans- parent to the dynamic receiver. In the absence of receiver 2, the optimal signaling for the dynamic receiver is to transmit, with N 1 antennas, a unitary matrix at the transmitter, which leads to the same channel and noise statistics as (17). Therefore, multiplying the static receiver’s signals does not affect the capacity or decoding of the dynamic receiver. This allows us to decouple and simplify the design of codebooks and decoders for both receivers.
+The signals received at the static receiver are Y 2 = T N
+where Y 2 ∈ C N 2 ×T and H 2 ∈ C N 2 ×N 2 have i.i.d. CN (0, 1) entries, and W 2 ∈ C N 1 ×T is additive Gaussian noise. Denote the signals received at any N 1 time-slots as Y 2 , i.e., any N 1 columns of Y 2 . We write
+where Y 1 is the corresponding sub-matrix of Y 1 , and W 2 is still i.i.d. Gaussian noise. The mutual information between Y 2 and X 2 is lower bounded by:
+Σ 2 = diag( λ 1 , · · · , λ N 2 ) 	 (23) with the order of |λ 1 | ≥ · · · ≥ |λ N 2 |. Since H 2 is known by receiver 2 and is non-singular with high probability, receiver 2 applies H −1 2 to rotate and scale the received signals:
+where W 2 is colored Gaussian noise. The columns of W 2 are mutually independent and have the same correlation
+R W = V † 2 diag( |λ 1 | −2 , · · · , |λ N 2 | −2 ) V 2 . 	 (25) = V † 2 Σ −2 2 V 2 . 	 (26)
+Because mutual information is independent of the choice of coordinates, we have
+I(Y 2 ; X 2 ) = I(H −1 2 Y 2 ; X 2 ) 	 (27) = h(H −1 2 Y 2 ) − h(H −1 2 Y 2 |X 2 ) 	 (28)
+From [15, Thm. 2.1.5], for given X 1 the Jacobian of the transformation from X 2 to T N 1 X 2 X 1 is:
+Now, we upper bound h(H −1 2 Y 2 |X 2 ). h(H −1 2 Y 2 |X 2 ) ≤ N 1
+where y 2,i is the column i of H −1 2 Y 2 . In the above, the equality holds if and only if y 2,i is mutually independent for i = 1, · · · , N 1 . From (24) and (26), the covariance of y 2,i is
+where x 1,i is the column i of X 1 with the covariance R 1,i . Since the differential entropy is maximized if y 2,i is multi- variate normal distribution [5], we have
+Note that [16] V 2 X 2 R 1,i X † 2 V † 2 has the same non-zero eigen- values as R 1,i = X † 2 V † 2 V 2 X 2 R 1,i (recall that X 2 is a N 2 ×N 1 unitary matrix). Denote the ordered eigenvalues of R 1,i as γ 1,i ≥ · · · ≥ γ N 1 ,i ; the eigenvalues of V 2 X 2 R 1,i X † 2 V † 2 are
+From [16, Theorem 4.3.1], the right hand side of (37) is less than: 	 N
+where |λ j | −2 is in ascending order. Therefore, h(y 2,i |X 2 ) ≤ N 1
+for all i and j. From (33) and (40), we have: h(H −1 2 Y 2 |X 2 ) ≤ N 1 N 1
+We have shown that broadcasting on the Grassmannian attains a higher multiplexing gain compared with TDMA schemes in the presence of two receivers. For more than two receivers, one can divide them into two groups, a static group and a dynamic group, choose one receiver from among each group, and simultaneously broadcasts to the two chosen receivers on the Grassmannian.
+A practical implication of this work is that for high-mobility receivers, using unitary signaling to send data non-coherently, rather than transmitting data coherently after training, provides opportunities to obtain additional multiplexing gain for low- mobility receivers, which may signiﬁcantly increases the over- all throughput.
+[[[ REFS ]]]
+G. Caire
+S. Shamai
+--
+On the achievable throughput of a multiantenna gaussian broadcast channel
+----
+S. Jafar
+A. Goldsmith
+--
+Isotropic fading vector broadcast chan- nels:the scalar upper bound and loss in degrees of freedom
+----
+C. Huang
+S. A. Jafar
+S. S. (Shitz)
+S. Vishwanath
+--
+On degrees of freedom region of MIMO networks without CSIT
+----
+U. Salim
+D. Slock
+--
+Broadcast channel: Degrees of freedom with no CSIR
+----
+T. M. Cove
+J. A. Thoma
+--
+Elements of Information Theory
+----
+L. Zheng
+D. N. C. Tse
+--
+Communication on the grassmann manifold: a geometric approach to the noncoherent multiple-antenna channel
+----
+W. M. Boothb
+--
+An introduction to differentiable manifolds and Rie- mannian geometry
+----
+J. G. Proaki
+--
+Digital communications
+----
+T. L. Marzetta
+B. M. Hochwald
+--
+Capacity of a mobile multiple- antenna communication link in rayleigh ﬂat fading
+----
+T. L. Marzetta
+--
+BLAST training: Estimating channel characteristics for high-capacity space-time wireless
+----
+M. Brehler
+M. K. Varanasi
+--
+Asymptotic error probability analysis of quadratic receivers in rayleigh-fading channels with applications to a uniﬁed analysis of coherent and noncoherent space-time receivers
+----
+B. M. Hochwald
+T. L. Marzetta
+--
+Unitary space-time modulation for multiple-antenna communications
+----
+B. Hassibi
+B. M. Hochwald
+--
+How much training is needed in multiple-antenna wireless links?
+----
+E. Telatar
+--
+Capacity of multi-antenna gaussian channels
+----
+R. J. Muirhea
+--
+Aspects of multivariate statistical theory
+----
+R. A. Hor
+C. R. Johnso
+--
+Matrix analysis
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\168.pdf
+[[[ LINKS ]]]
+

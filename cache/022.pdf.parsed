@@ -1,0 +1,183 @@
+[[[ ID ]]]
+22
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Trapping Sets of Structured LDPC Codes
+[[[ AUTHORS ]]]
+Qin Huang
+Qiuju Diao
+Shu Lin
+Khaled Abdel-Ghaffar
+[[[ ABSTR ]]]
+PAPER AWARD. This paper analyzes trapping set structure of binary regular LDPC codes whose parity-check matrices satisfy the constraint that no two rows (or two columns) have more than one place where they both have non-zero components, which is called row-column (RC) constraint. For a (γ,ρ)-regular LDPC code whose parity-check matrix satisﬁes the RC-constraint, its Tanner graph contains no (κ, τ ) trapping set with size κ ≤ γ and number τ of odd degree check nodes less than γ. For several classes of RC-constrained regular LDPC codes constructed alge- braically, we show that their Tanner graphs contain no trapping sets of sizes smaller than their minimum weights.
+[[[ BODY ]]]
+LDPC codes [1] perform amazingly well with iterative decoding based on belief propagation. However, with iterative decoding, most LDPC codes have a common severe weakness, known as error-ﬂoor. The error-ﬂoor of an LDPC code is characterized by the phenomenon of an abrupt decrease in the slope of the code’s error performance curve from the moderate SNR water-fall region to the high SNR ﬂoor region, i.e., the error probability of a code in the high SNR region suddenly drops at a rate much slower than that in the region of low to moderate SNR (or even stops to drop). Ever since this phenomenon became known [2], a great deal of research effort has been expended in ﬁnding its causes and methods to resolve or mitigate it. For the AWGN channel, the error- ﬂoor of an LDPC code is mostly caused by an undesirable structure, known as trapping-set [3], in the Tanner graph of the code based on which the decoding is carried out.
+Deﬁnition 1. Let G be the Tanner graph of a binary LDPC code C given by the null space of an m × n matrix H over GF(2). For 1 ≤ κ ≤ n and 0 ≤ τ ≤ m, a (κ,τ ) trapping set, denoted by T (κ, τ ), is deﬁned as a set of κ variable-nodes (VNs) in G which induce a sub-graph of G with exactly τ odd-degree check-nodes (CNs) and an arbitrary number of even-degree CNs [3]. An elementary ( κ, τ ) trapping set [4] is a trapping set for which all CNs have degree one or two, and there are exactly τ degree-one CNs.
+Suppose, in transmission of a codeword in C, an error pattern e with κ errors at the locations of the κ VNs of a (κ, τ ) trapping set occurs. This error pattern will cause τ parity- check failures (nonzero check-sums). In this case, for iterative decoding, another decoding iteration must be carried out to
+correct the failed check-sums. Iterative decoding algorithms, such as the SPA and the MSA, are very susceptible to trapping sets of a code. In each decoding iteration, we call a CN a satisﬁed CN if it satisﬁes its corresponding check-sum con- straint (i.e., zero check-sum), otherwise, call it an unsatisﬁed CN. During the decoding process, the decoder undergoes state transitions from one state to another until all the CNs satisfy their corresponding check-sum constraints or a predetermined maximum number of iterations is reached. The ith state of an iterative decoder is represented by the hard-decision decoded sequence obtained at the end of the ith iteration. In the process of a decoding iteration, the messages from the satisﬁed CNs try to reinforce the current decoder state, while the messages from the unsatisﬁed CNs try to change some of the bit decisions to satisfy their check-sum constraints. The decoder will succeed in correcting the errors in T (κ, τ ) if the messages coming from the unsatisﬁed CNs connected to the VNs in T (κ, τ ) are strong enough to overcome the messages coming from the satisﬁed CNs. However, this may not be the case if τ is small compared to κ. As a result, the decoder may not converge to a valid codeword even if more decoding iterations are performed and this non-convergence of decoding results in an error-ﬂoor.
+Extensive study and simulation results show that the trap- ping sets which result in high decoding failure rates and contribute signiﬁcantly to high error-ﬂoors are those with small values κ and small ratios τ /κ [2] - [14] (see [14] for more references). These trapping sets are commonly called small trapping sets. Furthermore, from extensive computer simulations reported in the literature, it has been observed that most trapping sets that exert a strong inﬂuence on the error- ﬂoor are of the elementary trapping sets with τ /κ < 1. Besides small trapping sets and their distributions, undetected errors caused by a small minimum weight of a code also contribute considerably to the error-ﬂoor of the code. If there are no trapping sets with size κ smaller than the minimum weight of an LDPC code, then the error-ﬂoor of the code is dominated by the minimum weight of the code.
+The notion of a small trapping set given above is loosely deﬁned. A more quantitative deﬁnition of small trapping sets was given by L¨andner and Milenkovic [4].
+Deﬁnition 2. A (κ, τ ) trapping set in the Tanner graph of an LDPC code of length n is said to be small if κ ≤
+n and τ ≤ 4κ, i.e., the ratio τ /κ ≤ 4.
+A regular binary LDPC code [1] is given by the null space of a sparse parity-check matrix H over GF(2) that has constant column weight γ and constant row weight ρ. Such an LDPC
+code is said to be (γ, ρ)-regular. In almost all of the proposed constructions of LDPC codes, the following constraint on the rows and columns of H is imposed: no two rows (or two columns) can have more than one place where they both have non-zero components . This constraint on the rows and columns of H is referred to as the row-column (RC)-constraint. This RC-constraint ensures that the Tanner graph of the LDPC code given by the null space of H has a girth of at least 6 and that the minimum weight of the code is at least γ + 1 [15], [16]. This bound on minimum weight is tight for regular LDPC codes whose parity-check matrices have large column weights, such as ﬁnite geometry (FG) LDPC codes [15] and ﬁnite ﬁeld QC-LDPC codes constructed in [14], [17]-[19].
+In this paper, we present an analysis of trapping set structure of regular LDPC codes whose parity-check matrices satisfy the RC-constraint. We show that the Tanner graph of an RC-constrained (γ, ρ)-regular LDPC code contains no (κ, τ ) trapping set with κ ≤ γ and τ < γ. More precisely, any trapping set (κ, τ ) with κ VNs, if κ ≤ γ, then the number of odd-degree CNs is at least γ + 1, i.e., τ > γ. This is to say that for an RC-constrained (γ, ρ)-regular LDPC codes, there is no harmful trapping set with size smaller than γ. Finite geometry codes given in [15] and ﬁnite ﬁeld QC-LDPC codes given in [14], [17] - [19] are all RC-constrained LDPC codes and whose parity-check matrices have large column weights γ (also high row redundancies). Hence they don’t have harmful tapping sets with size smaller than γ.
+Let C be a binary (γ, ρ)-regular LDPC code of length n given by the null space of an RC-constrained m × n matrix H = [h i,j ] 0 ≤ i < m, 0 ≤ j < n over GF(2) with column and row weights γ and ρ, respectively. For 0 ≤ i < m, let h i = (h i,0 , h i,1 , ..., h i,n−1 ) be the ith row of H. An n-tuple v = (v 0 , v 1 , ..., v n−1 ) over GF(2) is a codeword in C if and only if v · H T = 0. The condition v · H T = 0 gives m constraints on the bits of the codeword v, c i = v · h i = v 0 h i,0 + v 1 h i,1 + ... + v n−1 h i,n−1 = 0 for 0 ≤ i < m, where v · h i is the inner product of v and h i . The m sums of code bits, c i with 0 ≤ i < m, are called check-sums. The m check-sums equal to 0 are the constraints that the code bits of any codeword must satisfy. For 0 ≤ j < n, if h i,j = 1, then the jth code bit v j is contained in the ith check-sum c i . In this case, we say that the ith check-sum c i checks on the jth code bit v j of v. Since H has constant column weight γ, there are γ check-sums checking on v j . Since H satisﬁes the RC-constraint, no two different code bits, v j 1 and v j 2 , are simultaneously checked by two different check-sums, c i 1 and c i 2 .
+Suppose a codeword v = (v 0 , v 1 , ..., v n−1 ) in C is transmit- ted. Let z = (z 0 , z 1 , ..., z n−1 ) be the hard-decision received sequence. Let e = (e 0 , e 1 , ..., e n−1 ) = (z 0 , z 1 , ..., z n−1 ) + (v 0 , v 1 , ..., v n−1 ) = (z 0 + v 0 , z 1 + v 1 , ..., z n−1 + v n−1 ) where, for 0 ≤ j < n, e j = z j + v j and “+” is modulo-2 addition. If z j = v j , then e j = 1 otherwise e j = 0. Therefore, the positions in e where the components equal to “1” are the erroneous positions. The n-tuple e is called the error pattern contained in z [16].
+For any decoding algorithm (soft or hard), the ﬁrst step is to compute the syndrome of z [16], s = (s 0 , s 1 , ..., s m−1 ) = z · H T , where s i = z · h i = z 0 h i,0 + z 1 h i,1 + ... + z n−1 h i,n−1 with 0 ≤ i < m, which is called a syndrome-sum of z. If s = 0, then the received bits in z satisfy all the m check-sum constraints and z is a codeword. In this case, the receiver assumes that z is the transmitted codeword and accepts it as the decoded codeword. If s = 0, the received bits in z do not satisfy all the m check-sum constraints and z is not a codeword. In this case, we say that errors in z are being detected. Since z = v + e and v · h i = 0, each syndrome-sum is a sum of a set of error bits, s i = e · h i = e 0 h i,0 +e 1 h i,1 +...+e n−1 h i,n−1 . If z is error-free, s i = c i = 0 for 0 ≤ i < m. If z is not error-free but the error pattern e happens to be identical to a nonzero codeword in C, all the m syndrome-sums will be equal to 0. In this case, the received sequence z contains an undetected error pattern and decoding results in an incorrect decoding. Decoding process is initiated (or continues in iterative decoding) only if not all the syndrome-sums are equal to zero.
+A syndrome-sum s i is equal to “1” if and only if the number of nonzero error digits checked by s i is odd. Let e be an error pattern with κ nonzero error bits which cause τ nonzero (failed) syndrome-sums. Construct a sub-graph G(κ, τ ) of the Tanner graph G of the code with a set T (κ, τ ) of κ VNs. These κ VNs correspond to the κ nonzero error bits in e and are connected to τ CNs which correspond to the τ failed syndrome-sums and/or connected to some CNs which correspond to zero syndrome-sums but are adjacent to the VNs in T (κ, τ ). In this sub-graph, the CNs corresponding to the failed syndrome-sums have odd degrees and the other CNs have even-degrees. This sub-graph G(κ, τ ) is said to be induced by the detectable error pattern e and the set T (κ, τ ) is a trapping set.
+A syndrome-sum s i that contains an error bit e j is said to check on e j . Since each column of the parity-check matrix H has weight γ, there are γ syndrome-sums checking on every error bit e j , i.e., every error bit is checked by γ syndrome- sums. Since H satisﬁes the RC-constraint, no two error bits can be checked simultaneously by two syndrome-sums .
+For 0 ≤ i < m and 0 ≤ j < n, deﬁne the following two index sets : N i = {j : 0 ≤ j < n, h i,j = 1} and M j = {i : 0 ≤ i < m, h i,j = 1}. Since H satisﬁes the RC-constraint, it is clear that: 1) for 0 ≤ i 1 , i 2 < m and i 1 = i 2 , N i 1 and N i 2 have at most one index in common; and 2) for 0 ≤ j 1 , j 2 < n and j 1 = j 2 , M j 1 and M j 2 have at most one index in common. Since H has constant column weight γ and constant row weight ρ, |M j | = γ for 0 ≤ j < n and |N i | = ρ for 0 ≤ i < m. For 0 ≤ j < n, deﬁne the following set of rows of H : A (j) = {h i : i ∈ M j }. Then it follows from the RC- constraint on H that A (j) has the following properties: 1) every row h i in A (j) has 1-component at the jth position; 2) any 1- component at a position other than the jth position can appear in at most one row in A (j) ; and (3) for 0 ≤ j 1 , j 2 < n, and j 1 = j 2 , A (j 1 ) and A (j 2 ) can have at most one row in common. The rows in A (j) are said to be orthogonal on the jth code bit v j . For 0 ≤ j < n, deﬁne the following set of syndrome- sums: S (j) = {s i = e · h i : h i ∈ A (j) }. Then, the jth error
+bit e j of the error pattern e is checked by every syndrome- sum in S (j) and any error bit other than e j is checked by at most one syndrome-sum in S (j) . The γ syndrome-sums in S (j) are said to be orthogonal on the error bit e j and are called orthogonal syndrome-sums on e j . The RC-constraint on the parity-check matrix H (or property-3 of A (j) ) ensures that any two different orthogonal sets S (j 1 ) and S (j 2 ) can have at most one syndrome-sum in common .
+In this section, we analyze the trapping set structure of RC- constrained regular LDPC codes based on the structure of their orthogonal parity-check sums. We ﬁrst use error patterns with one, two and three errors to illustrate how they induce trapping sets of sizes one, two and three. Then, we analyze the structure of trapping sets of an (γ, ρ)-regular LDPC code induced by error patterns with t or fewer errors with t ≤ γ.
+Consider an error pattern e = (e 0 , e 1 , ..., e n−1 ) with a single error at jth position with 0 ≤ j < n, i.e., e j = 1. For this single error pattern, all the syndrome-sums in S (j) orthogonal on e j are equal to “1”. Since e j is checked only by the syndrome-sums in S (j) , all the syndrome-sums in any other orthogonal syndrome set are error free and equal to zero. Consequently, the trapping set corresponding to this single error pattern is a (1, γ) trapping set T (1, γ) with one VN and γ CNs of degree 1. It is an elementary trapping set.
+Next, we consider an error pattern e with two errors at positions, j 1 and j 2 , i.e., e j 1 = e j 2 = 1. Then all the syndrome-sums in the orthogonal set S (j 1 ) check on e j 1 and all the syndrome-sums in the orthogonal set S (j 2 ) check on e j 2 . If S (j 1 ) and S (j 2 ) are disjoint, then all the syndrome- sums in S (j 1 ) and all the syndrome-sums in S (j 2 ) are equal to “1”. In this case, the trapping set corresponding to the error pattern e with double errors is a (2, 2γ) elementary trapping set T (2, 2γ) with 2 VNs and 2γ CNs of degree 1. If S (j 1 ) and S (j 2 ) are not disjoint, then they have exactly one common syndrome-sum which checks on both e j 1 and e j 2 and hence this common syndrome-sum is zero. In this case, the trapping set corresponding to the error-pattern e with double errors is a (2, 2(γ − 1)) elementary trapping set with 2 VNs, 2(γ − 1) CNs of degree 1 and one CN of degree 2. The above analysis shows that the trapping set corresponding to an error pattern with two errors has at least 2(γ − 1) CNs of odd degrees.
+Consider an error pattern e with three errors at the positions, j 1 , j 2 and j 3 . The trapping set corresponding to this error pattern has several possible conﬁgurations depending on the locations of the three errors. The ﬁrst possible conﬁguration is such that the three errors are checked separately by three mutually disjoint orthogonal sets, S (j 1 ) , S (j 2 ) and S (j 3 ) . In this case, the trapping set corresponding to the error pattern e is a (3, 3γ) elementary trapping set with 3 VNs and 3γ CNs of degree 1, no CN with even degree. The second possible conﬁguration is such that two orthogonal sets, say S (j 1 ) and S (j 2 ) , have a common syndrome-sum and the third orthogonal set S (j 3 ) is mutually disjoint with S (j 1 ) and S (j 2 ) . In this case, error bits, e j 1 and e j 2 , are jointly checked by a common syndrome-sum in S (j 1 ) and S (j 2 ) and the error bit
+e j 3 is checked only by the syndrome-sums in S (j 3 ) . Then, the trapping set corresponding to this triple-error pattern e is a (3, 3γ − 2) elementary trapping set with three VNs, 3γ − 2 CNs of degree 1 and one CN of degree 2. The third possible conﬁguration is such that all three errors are checked by a syndrome-sum which is contained in all three orthogonal sets, S (j 1 ) , S (j 2 ) and S (j 3 ) . In this case, all the syndrome-sums in each of the orthogonal sets, S (j 1 ) , S (j 2 ) , and S (j 3 ) , are nonzero. The common syndrome-sum in these three orthogonal sets contains the three errors, e j 1 , e j 2 , e j 3 , and all the other syndrome sums contain only one of these three errors. Consequently, the trapping set corresponding to e is a (3, 3γ − 2) tapping set with 3γ − 3 CNs of degree 1 and one CN of degree 3 (no CN with even degree). The fourth possible conﬁguration is that S (j 1 ) and S (j 2 ) have a common syndrome sum checking on e j 1 and e j 2 , S (j 1 ) and S (j 3 ) have a common syndrome sum checking on e j 1 and e j 3 , and S (j 2 ) and S (j 3 ) are disjoint. For this conﬁguration, the trapping set is a (3, 3γ − 4) elementary trapping set, with 3γ − 4 CNs of degree-1 and two CN of degree-2. The ﬁfth possible conﬁguration is such that the pair of errors, (e j 1 , e j 2 ), is checked by the common syndrome-sum in S (j 1 ) and S (j 2 ) , the pair (e j 1 , e j 3 ) is checked by the common syndrome-sum in S (j 1 ) and S (j 3 ) , and the pair (e j 2 , e j 3 ) is checked by S (j 2 ) and S (j 3 ) . Corresponding to this conﬁguration, the trapping set is a (3, 3(γ − 2)) elementary trapping set with 3(γ − 2) CNs of degree 1 and 3 CNs of degree 2. In all possible conﬁgurations of three errors, any trapping set has at least 3(γ − 2) odd- degree CNs. If γ > 3, the number of odd-degree CNs in a trapping set corresponding to a triple-error pattern is greater than γ. If γ > 6, then the trapping sets corresponding to all possible conﬁgurations of three errors are not small trapping sets of the type deﬁned by Deﬁnition 2. Among all possible conﬁgurations of errors, the last one has the smallest number of CNs of odd degree. For this conﬁguration, the 3 errors are uniformly distributed in pairs among the three sets of orthogonal syndrome-sums. This distribution maximizes the number of CNs of degree-2 and hence minimizes the number of degree-1.
+For 1 ≤ t ≤ γ and 0 ≤ j 1 , j 2 , ..., j t ≤ γ, consider an error pattern of t errors at positions j 1 , j 2 , ..., j t . For large t and γ, to analyze all the possible conﬁgurations of trapping sets with t VNs is very hard if not impossible. However, a lower bound on the minimum number of odd-degree CNs can be derived. A conﬁguration that results in a minimum number of odd-degree CNs is such for 0 ≤ r, s ≤ t, every pair {e j r , e j s } of errors is checked by a common syndrome-sum in S (j r ) and S (j s ) . That is, the t errors are uniformly distributed in pairs among the t orthogonal syndrome-sums, S (j 1 ) , S (j 2 ) , ..., S (j t ) . This conﬁguration maximizes the number of CNs with even degrees (all degree 2) and results in a (t, t(γ−(t−1))) trapping set T (t, t(γ −(t−1))) with t(γ −(t−1)) CNs of degree 1 and t(t − 1)/2 CNs of degree 2. It is an elementary trapping set. Any other conﬁgurations (or distributions) of t errors would result in a trapping set with larger number of odd-degree CNs with possibly multiple odd-degrees. For t ≤ γ, a trapping set with t VNs in the Tanner graph of an RC-constrained (γ, ρ)- regular LDPC code has at least t(γ − (t − 1)) CNs of odd-
+degrees. For 1 < t < γ, the number of odd-degree CNs is greater than γ. For t = γ, the number of odd-degree CNs is at least γ.
+Based on the above analysis and deﬁnitions of small trap- ping sets, we have the following two theorems on the trapping set structure of RC-constrained LDPC codes.
+Theorem 1. For an RC-constrained (γ, ρ)-regular LDPC code with γ > 1, its Tanner graph contains no trapping set of size smaller than γ + 1 for which the number of odd-degree CNs is smaller than γ.
+Theorem 2. Let γ be a positive integer such that γ > 3. For an RC-constrained (γ, ρ)-regular LDPC code of length n, if γ ≤
+n, then its Tanner graph contains no small trapping set (based on Deﬁnition 2) of size smaller than γ − 3.
+If we follow the commonly used deﬁnition for small trap- ping sets, i.e., small κ and ratio τ /κ < 1, Theorem 1 simply says that for an RC-constrained (γ, ρ)-regular LDPC code with γ > 1, its Tanner graph contains no small trapping set with size smaller than γ + 1. If Deﬁnition 2 of a small trapping set is used, then the Tanner graph of an RC-constrained (γ, ρ)- regular LDPC code of length n and γ ≤
+It is important to note that a trapping set induced by an error pattern does not necessarily prevent decoding to converge unless the error pattern is uncorrectable by the decoder. Only trapping sets induced by error patterns that are uncorrectable by the decoder may prevent decoding to converge (or fail) and cause an error-ﬂoor. Hence, the term, trapping set is actually misnamed. Extensive simulations in literature did observe that in general, trapping sets of small size (relative to the minimum weight w min of the code) with small number of odd-degree CNs are the most harmful ones. If the minimum weight w min of an LDPC code is small, trapping sets induced by uncorrectable error patterns that correspond to the minimum weight codewords also contribute signiﬁcantly to the error- ﬂoor. In general, a code has a lower error-ﬂoor if it does not have small trapping sets (relative to the minimum weight) with small numbers of odd-degree CNs and its minimum weight is reasonable large.
+Over last ten years, several large classes of RC-constrained LDPC codes have been constructed. These classes of codes are constructed based on either ﬁnite geometries [15], [20] or ﬁnite ﬁelds [15], [17] - [19], [14]. Since the check-sums of codes in these classes have the orthogonal structure, they have the trapping set structure as described in Section III. Codes in these classes are either cyclic or quasi-cyclic (QC) and their encoding can be implemented with simple shift registers [16]. Every class of these codes contains a special subclass of codes which have large minimum weights. In this following, we present 4 special subclasses of RC-constrained LDPC codes and describe their trapping set structures.
+The ﬁrst class of RC-constrained LDPC codes constructed algebraically is the class of codes constructed based on ﬁnite
+geometries [15]. It consists of two subclasses, Euclidean geometry (EG) and projective geometry (PG) LDPC codes. Since the parity-check matrices of both EG- and PC-LDPC codes satisfy the RC-constrained, their Tanner graphs have the trapping set structure as described in Section III. For illus- tration, we consider two special cases. First, we consider the EG-LDPC code C EG constructed based the two-dimensional (2-D) Euclidean geometry EG(2, 2 s ) over the ﬁeld GF(2 s ). The parity-check matrix H EG of this EG-LDPC code C EG is a (4 s − 1) × (4 s − 1) circulant over GF(2) whose rows are the incidence vectors of all the lines in EG(2, 2 s ) not passing through the origin. The column and the row weights of H EG are both equal to 2 s . The rank of H EG is 3 s − 1 [15], [16]. Note the parity-check matrix H EG has 4 s − 3 s redundant rows. For s ≥ 3, H EG has a large row redundancy. Large row redundancy of the parity-check matrix of an LDPC code makes iterative decoding to converge faster. C EG is a cyclic LDPC code with the following parameters: 1) length n = 4 s − 1; 2) dimension k = 4 s − 3 s , and 3) minimum distance d min = 2 s + 1 (exact). Since H EG satisﬁes the RC- constraint, the Tanner graph of this code has a girth at least 6. It follows from the trapping set analysis given in Section III that any trapping set corresponding to an error pattern with 2 s or fewer errors will induce a subgraph of the code’s Tanner graph which contains at least 2 s CNs of odd degrees. This is to say that the code has no (κ, τ ) trapping set of size κ smaller than 2 s + 1 with the number τ of odd-degree CNs smaller than 2 s . This implies that for κ ≤ 2 s , there is no (κ, τ ) trapping set with the ratio τ /κ < 1. If the (commonly used) requirements of small value of κ and τ /κ < 1 are used to deﬁne a small trapping set, then the 2-D cyclic EG-LDPC code C EG has no trapping set of size smaller than 2 s + 1 (the minimum weight of the code). Since the length of the code is n = 4 s − 1,
+n ≈ 2 s . For 1 < κ < 2 s − 3, it follows from the trapping set analysis given in the last section that for a (κ, τ ) trapping set, the number τ of CNs of odd-degree is at least κ(2 s − (κ − 1)) > 4κ which implies that τ /κ > 4. Then, the code has no small trapping set of the type deﬁned by Deﬁnition 2 with size smaller than 2 s − 3. As an example, consider the cyclic (4095,3367) EG-LDPC code constructed based on EG(2,2 6 ) [15]. This code has minimum weight 65 whose Tanner graph contains no small trapping set of size smaller 65 with number of odd degree CNs smaller than 64.
+Next, we consider the trapping set structure of a cyclic PG-LDPC code C P G constructed based on the 2-D projective geometry PG(2,2 s ) over GF(2 s ) [15]. The parity-check matrix H P G of this code is a (2 2s + 2 s + 1) × (2 2s + 2 s + 1) circulant over GF(2) with both column and row weights equal to 2 s + 1 and rank equal to 3 s +1. H EG also has a large row redundancy for s ≥ 3. The null space of H P G gives a cyclic PG-LDPC code C P G of length n = 4 s + 2 s + 1 and minimum weight at least 2 s +2, whose Tanner graph has a girth of at least 6. Since the H P G satisﬁes the RC-constraint and its column weight is 2 s + 1, then the Tanner graph of C EG contains no trapping set of size κ smaller than the minimum distance 2 s + 2 with the number τ of odd degree CN smaller than 2 s + 1. The square root of the length of the code is
+n ≈ 2 s . For κ < 2 s − 2, C P G has no trapping set of the type deﬁned by Deﬁnition 2
+with size smaller than 2 s − 2. The results on trapping sets of the 2-D cyclic PG-LDPC code are exactly the same as that obtained in [4] derived with a different approach.
+Major classes of binary RC-constrained LDPC codes con- structed based on ﬁnite ﬁelds are given in [17]-[19], [14]. Codes in most of these classes are QC-LDPC codes whose parity-check matrices are arrays of circulant permutation matrices (CPMs) . Since the parity-check matrices of these codes satisfy the RC-constraint and their syndrome-sums have orthogonal structure, their Tanner graphs have trapping set structure as described in Section III. In the following, we single out two special classes of these QC-LDPC codes for illustration.
+First special class considered is a subclass of of QC-LDPC codes constructed by the ﬁrst method given in Section V of [17]. Consider the parity-check matrix H (1) given by Eq. (5) in [17, p. 2432]. Let q = 2 s . Then H (1) is a (2 s − 1) × (2 s − 1) array of CPMs of size (2 s − 1) × (2 s − 1), which is constructed based on the ﬁeld GF(2 s ). It is an RC-constrained (2 s − 1) 2 × (2 s − 1) 2 matrix over GF(2) with both column and row weights equal to 2 s −2. Using the technique given in [19], we can show that the rank of H (1) is 3 s − 3. H (1) also has large row redundancy. The null space of this matrix gives a QC-LDPC code with the following parameters and structures: 1) length n = (2 s − 1) 2 ; 2) dimension k = (2 s − 1) 2 − 3 s + 3; 3) minimum weight at least 2 s − 1; 4) girth at least 6; 5) any trapping set T (κ, τ ) with κ ≤ 2 s − 2 must have more than 2 s −3 CNs of odd-degrees; and 6) no small trapping set (based on Deﬁnition 2) of size less than 2 s − 5.
+The second special class of QC-LDPC codes considered is a subclass of QC-LDPC codes constructed based on the Latin squares over ﬁnite ﬁelds given in [19]. For every ﬁnite ﬁeld GF(q), there is a Latin square of order q. Based on this Latin square, an RC-constrained q × q array H of CPMs of size (q − 1) × (q − 1) can be constructed (see [19], Eq. (13), p. 3129). For q = 2 s , H is a 2 s (2 s − 1) × 2 s (2 s − 1) matrix over GF(2) with both column and row weights equal to 2 s − 1. The rank of H is also 3 s − 1. The null space of H gives a QC-LDPC code C with following parameters: 1) length n = 2 s (2 s − 1); 2) dimension k = 2 s (2 s − 1) − 3 s + 1; 3) minimum weight at least 2 s ; and 4) girth at least 6. It follows from the trapping set analysis given in Section III that any trapping set corresponding to an error pattern with 2 s − 1 or fewer random errors will induce a sub-graph of the Tanner graph of the code which contains at least 2 s − 1 CNs of odd degrees. If τ /κ < 1 is the required ratio used to deﬁne a small trapping set, then the QC-LDPC code C has no small trapping set of size smaller than 2 s − 1. From Theorem 2, the code has no small trapping set (based on Deﬁnition 2) of size less than 2 s − 4. Consider the code constructed based on the Latin square of order 32 over GF(2 5 ) which is an RC-constrained (992,750) QC-LDPC code with minimum distance at least 32. Extensive computer search found no trapping sets of sizes smaller than 36 that trap the decoder.
+In this paper, we have analyzed the trapping set structure of regular LDPC codes whose parity-check matrices satisfy the
+RC-constraint. We have shown that several classes of ﬁnite geometry and ﬁnite ﬁeld LDPC codes do not have harmful trapping sets of sizes smaller than the minimum weights of the codes. The codes in these classes have large minimum weights. Consequently, codes in these classes have very low error-ﬂoors (see references [14], [17] - [19]).
+[[[ REFS ]]]
+R. G. Gallager
+--
+Low Density Parity-check codes
+----
+D. MacKay
+M. S. Postol
+--
+Weaknesses of Margulis and Ramanujan- Margulis low-density parity-check codes
+----
+T. Richardson
+--
+Error ﬂoors of LDPC codes
+----
+S. L¨andner
+O. Milenkovic
+--
+Algorithmic and combinatorial analysis of trapping sets in structured LDPC codes
+----
+M. Stepano
+M. Chertkov
+--
+Instanton analysis of low-density parity- check codes in error-ﬂoor regime
+----
+Z. Zhang
+L. Dolecek. B. Nikoli´c
+V. Anantharam
+M. Wainwright
+--
+Investigation of error ﬂoors of structured low-density parity-check codes by hardware emulation
+----
+S. L¨andner
+O. Milenkovic
+--
+LDPC codes based on Latin squares: Cycle structure, stopping set, and trapping set analysis
+----
+L. Dolecek
+Z. Zhang
+V. Anantharam
+M. Wainwright
+B. Nikoli´c
+--
+Analysis of absorbing sets for array-based LDPC codes
+----
+M. Ivkovi´c
+S. K. Chilappagari
+B. Vasi´c
+--
+Eliminating trapping sets in low-density parity check codes by using Tanner graph covers
+----
+Y. Han
+W. E. Ryan
+--
+Low-ﬂoor decoder for LDPC codes
+----
+E. Cavus
+C. L. Haymes
+B. Daneshrad
+--
+Low BER performance estimation of LDPC codes via application of importance sampling to trapping sets
+----
+L. Dolecek
+Z. Zhang
+V. Anantharam
+M. J. Wainwright
+B. Nikoli´c
+--
+Analysis of absorbing sets and fully absorbing sets of array-based LDPC codes
+----
+S. K. Chilappagari
+D. V. Nguyen
+B. Vasic
+M. W. Marcellin
+--
+On trapping sets and guaranteed error correction capability of LDPC codes and GLDPC codes
+----
+Q. Huang
+Q. Diao
+S. Lin
+K. Abdel-Ghaffar
+--
+Cyclic and quasi-cyclic LDPC codes on constrained parity-check matrices and their trapping sets
+----
+Y. Kou
+S. Lin
+M. P. C. Fossorier
+--
+Low density parity-check codes based on ﬁnite geometries: A rediscovery and new results
+----
+S. Li
+D. J. Costell
+--
+Jr
+----
+L. Lan
+L. Zeng
+Y. Y. Tai
+L. Chen
+S. Lin
+K. Abdel-Ghaffar
+--
+Construction of quasi-cyclic LDPC codes for AWGN and binary erasure channels: A ﬁnite ﬁeld approach
+----
+J. Kang
+Q. Huang
+L. Zhang
+B. Zhou
+S. Lin
+--
+Quasi-cyclic LDPC codes: An algebraic construction
+----
+L. Zhang
+Q. Huang
+S. Lin
+K. Abdel-Ghaffar
+--
+Quasi-cyclic LDPC codes: An algebraic construction, rank analysis, and codes on Latin squares
+----
+N. Kamiya
+--
+High-rate quasi-cyclic low-density parity-check codes derived from ﬁnite afﬁne planes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\022.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,156 @@
+[[[ ID ]]]
+29
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Irreducible Polynomial Remainder Codes
+[[[ AUTHORS ]]]
+Jiun-Hung Yu
+Hans-Andrea Loeliger
+[[[ ABSTR ]]]
+Abstract—A general class of polynomial remainder codes is considered. These codes are very ﬂexible in rate and length and include Reed-Solomon codes as a special case. In general, the code symbols of such codes are polynomials of different degree, which leads to two different notions of weights and of distances.
+The notion of an error locator polynomial is generalized to such codes. A key equation is proposed, from which the error locator polynomial can be computed by means of a gcd algorithm. From the error locator polynomial, the transmitted message can be recovered in two different ways, which may be new even when specialized to Reed-Solomon codes.
+[[[ BODY ]]]
+Polynomial remainder codes, constructed by means of the Chinese Remainder Theorem, were proposed by Stone [2], who also pointed out that these codes include Reed-Solomon codes [1] as a special case. Variations of Stone’s construction were studied in [3]–[5]. In [2] and [3], the focus is on codes with a ﬁxed symbol size, i.e., the moduli are relatively prime polynomials of the same degree. Mandelbaum proposed a generalized encoding rule [4] and pointed out that using moduli of different degrees can be advantageous for burst error correction [5]. Although the codes in [2]–[5] can, in principle, correct many random errors, no efﬁcient decoding algorithm for random errors was proposed in these papers. In 1988, Shiozaki [6] proposed an efﬁcient decoding algorithm for Stone’s codes [2] using Euclid’s algorithm, and he also adapted this algorithm to decode Reed-Solomon codes. However, the algorithm of [6] is restricted to codes with a ﬁxed symbol size, i.e., ﬁxed-degree moduli.
+There is also a body of work on Chinese remainder codes over integers, cf. [7], [8]. However, the results of the present paper are not directly related to that work.
+In this paper, we revisit polynomial remainder codes and propose a practical decoding algorithm. In contrast to most prior work, we explicitly allow moduli of different de- grees (i.e., variable symbol sizes) within a codeword. In consequence, we obtain two different notions of distance— Hamming distance and degree-weighted distance—and the corresponding minimum-distance decoding rules. By admit- ting moduli of different degrees, we can, e.g., lengthen a Reed- Solomon code by adding some higher-degree symbols without increasing the size of the underlying ﬁeld.
+The proposed decoding algorithm consists of two steps: in the ﬁrst step, an error locator polynomial is computed by means of a gcd algorithm; in the second step, the message is recovered, for which we propose two different methods. When
+applied to Reed-Solomon codes, the ﬁrst step is standard but the second step may be new.
+The paper is organized as follows. In Section II, we re- call the Chinese Remainder Theorem and deﬁne irreducible polynomial remainder codes. In Section III, we introduce two types of minimum distance decoders as well as basic error and erasure correction bounds. In Section IV, we introduce error locator polynomials and we present a key equation as well as two additional theorems. In Section V, we describe a modiﬁed Euclidean algorithm for solving the key equation. The resulting practical decoding algorithm is summarized in Section VI. A extension of this algorithm is outlined in Section VII. Section VIII concludes the paper.
+The theorems and decoding algorithms of this paper are stated without proofs; for the proofs, we refer to [9].
+Let R = F [x] be the ring of polynomials over some ﬁeld F . For any monic polynomial m(x) ∈ F [x], let R m denote the ring of polynomials over F of degree less than deg m(x) with addition and multiplication modulo m(x).
+We will need the Chinese Remainder Theorem [2] in the following form.
+Theorem 1 (Chinese Remainder Theorem). For some integer n > 1, let m 0 (x), m 1 (x), . . . , m n −1 (x) ∈ R be rel- atively prime polynomials, and let M n (x) = n −1 i =0 m i (x) . The mapping
+a(x) → ψ(a) = ψ 0 (a), . . . , ψ n −1 (a) 	 (1) with ψ i (a) = a(x) mod m i (x) is a ring isomorphism. The inverse mapping is
+denotes the inverse of b(x) in R m i . 2 We will henceforth assume that m 0 (x), . . . , m n −1 (x) are
+Deﬁnition 1. For different monic irreducible polynomials m 0 (x), . . . , m n −1 (x) and some ﬁxed integer k, 1 ≤ k ≤ n, an irreducible polynomial remainder code is the image of ψ as in (1) of polynomials a(x) of degree less than deg M k (x) with M k (x) = k −1 i =0 m i (x) , i.e.,
+C = (c 0 , . . . , c n −1 ) = ψ(a) for some a(x) ∈ R M k . (4) 2
+The components c i = ψ i (a) in (1) and (4) will be called symbols. Note that each symbol is from a different ring R m i ; these rings need not have the same number of elements.
+Let N = deg M n (x) = n −1 i =0 deg m i (x) and K = deg M k (x) = k −1 i =0 deg m i (x) . The number of codewords of a code C as in (4) is |F | K . By the rate of the code, we mean the quantity
+(5) In the special case where all the moduli m 0 (x), . . . , m n −1 (x) have the same degree, we have K/N = k/n.
+In the special case where all moduli m 0 (x), . . . , m n −1 (x) are (different) monic polynomials of degree one, all symbols are in F and the code is a Reed-Solomon code. By adding some moduli of degree 2, we can lengthen a Reed-Solomon code without increasing the size of the underlying ﬁeld.
+We will usually assume that the moduli m i (x) in Deﬁni- tion 1 satisfy the Ordered-Degree Condition
+For any a(x) ∈ R M n , the Hamming weight of ψ(a) (i.e., the number of nonzero symbols ψ i (a) , 0 ≤ i ≤ n − 1) will be denoted by w H (ψ(a)) . For any a(x), b(x) ∈ R M n , the Hamming distance between ψ(a) and ψ(b) will be denoted by d H (ψ(a), ψ(b)) = w H (ψ(a) − ψ(b)) . The minimum Hamming distance of a code C will be denoted by d minH (C) .
+Theorem 2. Let C be a code as in Deﬁnition 1 satisfying (6). Then the Hamming weight of any nonzero codeword ψ(a) (a(x) ∈ R M k , a(x) = 0) satisﬁes
+w H (ψ(a)) ≥ n − k + 1 	 (7) and
+d minH (C) ≥ n − k + 1. 	 (8) 2
+Deﬁnition 2. For any a(x) ∈ R M n , the degree weight of ψ(a) = ψ 0 (a), . . . , ψ n −1 (a) is
+For any a(x), b(x) ∈ R M n , the degree-weighted distance between ψ(a) and ψ(b) is
+d D (ψ(a), ψ(b)) = w D (ψ(a) − ψ(b)). 	 (10) 2
+Moreover, the minimum degree-weighted distance of an irre- ducible polynomial remainder code C is
+Theorem 3. Let C be a code as in Deﬁnition 1. Then the degree weight of any nonzero codeword ψ(a) (a(x) ∈ R M k , a(x) = 0 ) satisﬁes
+d minD (C) ≥ N − K + 1. 	 (13) 2
+In the special case where the moduli m 0 (x), . . . , m n −1 (x) all have the same degree, the two triples (N, K, d minD ) and (n, k, d minH ) coincide up to a scale factor.
+Let C be a code as in Deﬁnition 1 that satisﬁes (6). The receiver sees y = c + e, where c ∈ C is the transmitted codeword and e is an error pattern. A minimum Hamming distance decoder is a decoder that produces
+A minimum degree-weighted distance decoder is a decoder that produces
+then the rule (15) produces ˆc = c. 	 2 In general, the decoding rules (14) and (15) produce different estimates ˆc [9].
+Theorem 5 (Erasures Correction Bound). Let C be a code as in Deﬁnition 1. For e = (e 0 , . . . , e n −1 ) , assume that the indices i where e i = 0 are known. If
+then the message polynomial a(x) ∈ R M k can be recon- structed from y = ψ(a) + e. 	 2
+Decoding Reed-Solomon codes can be reduced to solving a key equation that involves an error locator polynomial [11]. We now propose such an approach for polynomial remainder codes.
+Let C be a code as in Deﬁnition 1 satisfying (6). The receiver sees y = c + e, where c ∈ C is the transmitted codeword and e is an error pattern. Let Y (x) = a(x) + E(x) denote the pre-image ψ −1 (y) of y, where a(x) = ψ −1 (c) is the transmitted message polynomial and where E(x) denotes the pre-image ψ −1 (e) of the error e.
+Λ(x) mod m (x) = 0 if and only if e = 0 	 (19) for 0 ≤ ≤ n − 1. 	 2 Clearly, the polynomial
+of deg Λ e (x) = w D (e) is the unique monic error locator polynomial of the smallest degree.
+Theorem 6 (Key Equation). The error locator polynomial (20) satisﬁes
+A(x)M n (x) = Λ e (x)E(x) 	 (21) for some polynomial A(x) ∈ F [x] of degree smaller than deg Λ e (x) . Conversely, if some polynomial G(x) ∈ F [x] satisﬁes
+A(x)M n (x) = G(x)E(x) 	 (22) for some A(x) ∈ F [x], then G(x) is a multiple of Λ e (x) . 2 Theorem 7 (Error Locator-based Interpolation). If G(x) is a multiple of Λ e (x) with
+deg G(x) ≤ N − K, 	 (23) then
+Y (x)G(x) mod M n (x) = a(x)G(x) 	 (24) 2
+Note that (24) amounts to a closed formula for computing a(x) from Y (x) and G(x) by dividing the left-hand side of (24) by G(x). In contrast to most other statements in this paper, Theorem 7 appears to be new even when specialized to Reed- Solomon codes (where we usually have M n (x) = x n − 1 ).
+Let N zero (G) denote the number of indices i ∈ {0, . . . , n − 1} such that G(x) mod m i (x) = 0 . Note that N zero (Λ e ) = w H (e) .
+Theorem 8 (Error Locator Test). Let y = ψ(a)+e as above. For some polynomial G(x) and
+assume that the following conditions are satisﬁed: 1) w H (e) ≤ t H
+Then G(x) is a multiple of Λ e (x) and Z(x) = a(x)G(x). 2 Note that the conditions in the theorem are satisﬁed for G(x) = Λ e (x) .
+Let gcd(a, b) denote the greatest common divisor (gcd) of a, b ∈ R = F [x] , not both zero.
+For Reed-Solomon codes, the use of an extended gcd algorithm to compute an error locator polynomial is standard [10], [11]. We now adapt this approach to solve our key equation (22). We prefer the following gcd algorithm (but Euclid’s algorithm could also be adapted to our purpose).
+In this subsection, we assume that E(x) is fully known; in the next subsection, we state the modiﬁcations that are required when E(x) is only partially known.
+Output: polynomials ˜r(x), s(x), t(x) ∈ F [x] where ˜r(x) = γ gcd(M n (x), E(x)) for some γ ∈ F and where s(x) and t(x) satisfy s(x) · M n (x) + t(x) · E(x) = 0 .
+9 	 (r(x), ˜ r(x)) := (˜ r(x), r(x)) 10 	 (s(x), ˜ s(x)) := (˜ s(x), s(x)) 11 	 (t(x), ˜ t(x)) := (˜ t(x), t(x))
+In this algorithm, r i ∈ F denotes the coefﬁcient of x i in r(x) and ˜r j ∈ F denotes the coefﬁcient of x j in ˜r(x). For polynomials over F = GF (2), the scalar division in line 16 disappears.
+The standard loop invariant [11] holds also for this gcd algorithm:
+r(x) = s(x) · M n (x) + t(x) · E(x) 	 (26) holds throughout the algorithm (as stated above) and the condition
+deg M n (x) = deg ˜ r(x) + deg t(x) 	 (27) holds between lines 21 and 22. 	 2
+The algorithm terminates when r(x) = 0 and returns ˜ r(x), s(x) , and t(x). Since M n (x) consists of monic irre- ducible polynomials m 0 (x), . . . , m n −1 (x) , we then have
+˜ r(x) = γ gcd(M n (x), E(x)) 	 (28) = γ
+(30) (for some nonzero γ ∈ F ) with deg ˜r(x) = deg M n (x) − deg Λ e (x) . It then follows from (27) that
+deg t(x) = deg Λ e (x). 	 (31) With r(x) = 0, (26) becomes
+s(x) · M n (x) + t(x) · E(x) = 0. 	 (32) We then conclude from the second part of Theorem 6 that t(x) is a multiple of Λ e (x) . Finally, we conclude from (31) that t(x) = ˜γΛ e (x) for some scalar ˜γ ∈ F .
+Recall that Y (x) = a(x)+E(x) is the pre-image ψ −1 (y) of the received message y where E(x) = N −1 =0 E x is the pre- image of the error pattern e. Since deg a(x) < K, the receiver knows the coefﬁcients E K , E K +1 , . . . , E N −1 of E(x), but not E 0 , . . . , E K −1 . With the following modiﬁcations, the extended gcd algorithm as described above can still be used to compute the error locator polynomials Λ e (x) .
+be the corresponding upper part of M n (x) = N =0 (M n ) x . Modiﬁed Extended GCD Algorithm
+Input: M U (x) and E U (x) with deg M U (x) > deg E U (x) . Output: s(x) and t(x), cf. Theorem 10 below.
+The algorithm is the same as the extended gcd algorithm of Section V-A except for the following changes:
+• Line 1: r(x) := M U (x) . • Line 2: ˜r(x) := E U (x) .
+• Line 22: if deg r(x) < deg t(x) begin 	 2 Theorem 10. If w D (e) (= deg Λ e (x) ) satisﬁes
+deg Λ e (x) ≤ (N − K)/2, 	 (35) then the modiﬁed gcd algorithm of this section returns the same polynomials s(x) and t(x) (after the same number of iterations) as the gcd algorithm of Section V-A. 	 2 We thus obtain Λ e (x) = t(x)/˜ γ for some scalar ˜γ ∈ F as in Section V-A.
+The computation of the polynomials s(x) and ˜s(x) may actually be unnecessary (see Section VI). In consequence, lines 3, 5, 10, and 18 of the gcd algorithm may be deleted.
+Let us summarize the proposed decoding algorithm and add some details.
+The receiver sees y = c + e where c ∈ C is the transmitted codeword and e is an error pattern. We thus have Y (x) = a(x) + E(x) where Y (x), a(x), and E(x) are the images of y , c, and e under ψ −1 and where deg a(x) < K. The ﬁrst step of our decoding algorithm is to compute Y (x) = ψ −1 (y) . If deg Y (x) < K , we conclude E(x) = 0 and a(x) = Y (x).
+For erasures-only decoding (i.e., if the positions of the errors are known), we can directly compute the error locator polynomial Λ e (x) (20) and compute a(x) from (24) with G(x) = Λ e (x) . The only condition for this to work is deg Λ e (x) ≤ N − K .
+Otherwise (i.e., for decoding errors in unknown positions), we form
+We then run the modiﬁed gcd algorithm of Section V-B, which yields the error locator polynomial Λ e (x) provided that w D (e) ≤ (N − K)/2 . (If the polynomial t(x) returned by the gcd algorithm has degree larger than (N − K)/2, we declare a decoding failure.)
+From Λ e (x) , we can compute a(x) from (24) with G(x) = Λ e (x) . Alternatively, we can compute E(x) from (32) and obtain a(x) = Y (x) − E(x). In the special case of Reed- Solomon codes, both methods do not seem to be readily available in the literature and are perhaps new.
+The described algorithm is guaranteed to correct all errors e with w D (e) ≤ t D (17). If the code satisﬁes the Ordered- Degree Condition (6) as well as the additional condition
+deg m k (x) = · · · = deg m n −1 (x), 	 (37) then the algorithm is guaranteed to correct also all errors e with w H (e) ≤ t H (16).
+Assume that the code satisﬁes the Ordered-Degree Condi- tion (6) but not the additional condition (37). In this case, we can still correct all errors e with w H (e) ≤ t H by the following procedure, which, however, is practical only in special cases. Decoder with List of Special Error Positions
+First, run the gcd decoder of the previous section. If it succeeds, stop. Otherwise, let S Λ be a precomputed list of candidate error locator polynomials G(x) with N zero (G) ≤ t H and deg G(x) > (N −K)/2. Check if any G(x) ∈ S Λ satisﬁes all conditions of Theorem 8. If such a polynomial G(x) exists, we conclude that it is a multiple of the error locator polynomial and we compute a(x) from (24). 	 2
+Such a decoder corrects all error patterns e with either w D (e) ≤ t D or w H (e) ≤ t H .
+We have revisited polynomial remainder codes explicitly al- lowing moduli of different degrees, i.e., variable symbol sizes within a codeword. In consequence, we have two different notions of distance—Hamming distance and degree-weighted distance—and the corresponding minimum-distance decoding rules. We have adapted gcd-based decoding for such codes, which is guaranteed to correct all error patterns of degree- weight less than half the minimum degree-weighted distance. (We also give an extension that allows to correct up to half the minimum Hamming distance, but this extension may not be practical.)
+As second step of the decoding algorithm (or as main step in erasures-only decoding), we have proposed two different methods to recover the message from the error locator poly- nomial. These methods are nonstandard (and perhaps new) even when specialized to Reed-Solomon codes.
+[[[ REFS ]]]
+I. S. Reed
+G. Solomon
+--
+Polynominal codes over certain ﬁnite ﬁelds
+----
+J. J. Stone
+--
+Multiple-burst error correction with the Chinese Remainder Theorem
+----
+D. C. Bossen
+S. S. Yau
+--
+Redundant residue polynomial codes
+----
+D. Mandelbaum
+--
+A method of coding for multiple errors
+----
+D. Mandelbaum
+--
+On efﬁcient burst correcting residue polynomial codes
+----
+A. Shiozaki
+--
+Decoding of redundant residue polynomial codes using Euclid’s algorithm
+----
+O. Goldreich
+D. Ron
+M. Sudan
+--
+Chinese remaindering with errors
+----
+V. Guruswami
+A. Sahai
+M. Sudan
+--
+Soft-decision decoding of Chi- nese remainder codes
+----
+J.-H. Yu
+H.-A. Loeliger
+--
+On polynomial remainder codes
+----
+Y. Sugiyama
+M. Kasahara
+S. Hirasawa
+T. Namekawa
+--
+A method for solving key equation for decoding Goppa codes
+----
+R. M. Rot
+--
+Introduction to Coding Theory
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\029.pdf
+[[[ LINKS ]]]
+

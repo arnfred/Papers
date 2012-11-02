@@ -1,0 +1,127 @@
+[[[ ID ]]]
+66
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The approximate maximum-likelihood certiﬁcate
+[[[ AUTHORS ]]]
+Idan Goldenberg
+	 David Burshtein,
+[[[ ABSTR ]]]
+Abstract—A new property which relies on the linear pro- gramming (LP) decoder, the approximate maximum-likelihood certiﬁcate (AMLC), is introduced. When the belief propagation decoder outputs a codeword, this property is satisﬁed if this codeword is close to the LP solution. Using upper bounding techniques, it is demonstrated that the conditional frame error probability given that the AMLC holds is, with some degree of conﬁdence, below a threshold. In channels with low noise, this threshold is several orders of magnitude lower than the simulated frame error rate, and our bound holds with very high degree of conﬁdence. In contrast, showing this error performance by simulation would require very long Monte Carlo runs. When the AMLC holds, our approach thus provides the decoder with extra error detection capability, which is especially important in applications requiring high data integrity.
+[[[ BODY ]]]
+Linear programming (LP) decoding has emerged in recent years as a potential candidate algorithm for approximating maximum-likelihood (ML) decoding. One reason for this is that it has been shown [1] that the LP decoding algorithm has the ML certiﬁcate property, i.e., that if the decoder outputs a valid codeword, it is guaranteed to be the ML codeword.
+In this paper we propose a new application for using the LP decoder by introducing a new concept, the approximate ML certiﬁcate (AMLC), a tool which can improve the error detection capability of the belief propagation (BP) decoder. We show that if the BP decoder output satisﬁes the AMLC property (in particular, it is a codeword), then there is a high degree of certainty that it is the correct codeword. It is demonstrated that, when applying this technique within the error ﬂoor region, the frame error rate implied by the AMLC is several orders of magnitude lower than the average rate; ascertaining this level of reliability directly using Monte Carlo simulation would require very long simulation runs. This makes the AMLC especially useful in applications where a high level of data integrity is required. Due to space limitations, we defer some proofs to the full version paper [2].
+This paper is organized as follows. Section II provides some background material, related primarily to the LP decoder. In section III, we present our main result concerning the approximate ML certiﬁcate. In Section IV numerical examples are provided.
+Consider an LDPC code C described by a Tanner graph with N variable nodes and M check nodes. A codeword
+c ∈ C is transmitted over a discrete memoryless binary-input, output-symmetric (MBIOS) channel described by a probability transition function Q(y | c), where c is the transmitted code- bit and y is the channel output (we will also use the vector notation Q(y | c) where y is the channel output vector and c is the transmitted codeword, the meaning will be clear from the context). Following the notation in [1], let I and J be the sets of variable and constraint nodes, respectively, such that |I| = N and |J | = M . Deﬁne the set N i to be the set of neighbors of variable node i ∈ I. Similarly, N j is the set of neighbors of check node j ∈ J . Denote by C j the constituent binary single parity check code corresponding to node j ∈ J . Let 0 ∈ C denote the all-zero codeword.
+The LP decoder [1] solves the following optimization prob- lem.
+(i.e., λ is the optimal c-vector and λω is the optimal ω-vector) subject to
+| 1) is the log-likelihood ratio (LLR). All logarithms are natural.
+An important observation is that the LP decoder has the ML certiﬁcate [1] in the sense that if the solution λ is integer (in fact an integer λω implies that λ is also integer by (4)) then it is the ML decision.
+Let the binary LDPC code C be selected uniformly from an ensemble of LDPC codes C 0 (e.g., the ensemble of all (c, d)- regular codes) and assume C has M codewords. Let c m ∈ C, m ∈ {1, . . . , M } be the codeword selected for transmission over a MBIOS channel, and suppose that the channel output vector is y. The received vector y is decoded by a standard belief propagation (BP) decoder, which outputs an estimate ˆ c
+which may or may not be a valid codeword. Let P(λ) be the optimal value of the LP problem.
+By the fact that c m is a codeword and hence feasible in the LP we have
+and that the decoder output ˆ c is a valid codeword. We call this event the approximate ML certiﬁcate and the constant δ the proximity gap. Formally, the AMLC happens if and only if
+When δ = 0 the AMLC coincides with the standard ML certiﬁcate of [1], since in this case the codeword ˆ c is the ML solution. By (5)-(6) we conclude that
+Now, consider the transmission of a code chosen at random from C 0 . The transmitted codeword c m is also selected at random from the chosen code. If the AMLC holds, then the word error probability given that c m was transmitted can be upper bounded as
+m trans. ≤ Pr ∃c ∈ C c = c
+where in the ﬁrst inequality we used (9), and in the equality we used the fact that P(c) = log Q (y | 0) Q (y | c) and P(c m ) = log Q (y | 0) Q (y | c m ) . Note that in (10), the numerator depends on the channel probability transition function and the code chosen, while the denominator depends on the channel, the code, and also on the decoding algorithm. We can further upper bound the expression (10) by upper-bounding the numerator and lower-bounding the denominator. In the process of doing so, we eliminate the dependence on the transmitted message m.
+Consider the denominator in (10). The following lemma asserts its independence of the transmitted codeword.
+Lemma 1: Consider the vector λ which is output by the LP decoder. Also assume that c m is the transmitted codeword and that the BP decoder is used. Then the expression
+is independent of m, and in particular it can be assumed in (11) that the all-zero codeword is transmitted.
+To get a lower bound on (11), one could run Monte Carlo simulations. Consider a series of experiments conducted to estimate η ∆ = Pr (ˆc ∈ AMLC(δ) | 0 trans.). In each experi- ment we draw a code at random from C 0 , transmit the all- zero codeword over the noisy channel and decode. Suppose that we run L experiments and ﬁnd that ˆ c ∈ AMLC(δ) in L 1 experiments. If the channel is low-noise then we would expect to have L 1 = L(1−ǫ) with small ǫ, and in particular we would expect to have ǫ < 0.5, which (for large L) would imply η > 0.5. Since η is a deterministic but unknown parameter, we cannot claim that η > 0.5, even if ǫ is small; rather, this situation falls under the framework of non-bayesian hypothesis testing, so the series of experiments does allow us to say something about η with some degree of conﬁdence. Consider the hypothesis
+since the RHS is an upper bound on the tail of a binomial distribution. Now suppose that in a Monte Carlo simulation we get L 1 = L(1 − ǫ) with ǫ < 0.5. By (13) we observe that if ǫ is very small, then the RHS of (13) is very low, and thus we can reject H 0 with a high degree of conﬁdence. Conversely, if in our simulation ǫ is close to 0.5, we cannot reject H 0 with high conﬁdence.
+Given the Monte Carlo result discussed above, one may conclude that
+(15) which reﬂects the assertion η > 0.5. This assertion holds with conﬁdence level ξ(L, ǫ). Note that for ﬁxed ǫ, the likelihood that the bound (15) does not hold decays exponentially with L.
+The standard approach to estimating the frame error rate performance is to use a Monte Carlo simulation. The result is a conﬁdence interval on the actual error rate. In our method
+we also use a Monte Carlo simulation. However, in the following we derive an analytic bound on the RHS of (15) which, combined with the simulation, enables us to obtain extremely large conﬁdence levels for very small frame error rates whenever the AMLC holds.
+Consider now the RHS of (15) (disregarding the constant 2). Recalling that C is chosen at random from C 0 , one may write
+m trans. · Pr (C = C i | c m trans. )
+(16) Clearly, Pr (C = C i | c m trans. ) = Pr (C = C i ) as the selec- tion of the message is independent of the selection of the code. In addition, we have the following result regarding the independence of the inner expression in the sum (16) on m.
+Due to Lemma 2, we can assume without loss of generality that the all-zero codeword 0 is transmitted and rewrite (16) as
+(18) Sason and Shamai [3] have proposed a tight upper bound on the ML decoding error probability using the generalized second version of the Duman-Salehi bound, referred to as the DS2 bound. Using a slightly modiﬁed version of this bound, we can ﬁnd an upper bound on the RHS of (18), which, after plugging back the constant 2 from (15), gives the overall bound
+h   ρ (20) in which λ ≥ 0, 0 ≤ ρ ≤ 1, A
+h is the average distance spectrum of the ensemble, and ψ(·) is a probability measure
+on the channel output, which together with λ and ρ, is subject to optimization. Technical details related to the derivation of the bound (19)-(20) can be found in [2].
+C. Application of the AMLC to expurgated LDPC ensembles In this subsection we consider the application of the upper
+bound on the error probability given the AMLC to expurgated ensembles of LDPC codes. The expurgated ensemble C γ is obtained from the original ensemble C 0 by removing all codes with minimum distance γ or less. The reason for dealing with this ensemble rather than C 0 is that the decoding error probability over C 0 is dominated [4] by a small set of “bad” codes with small minimum distance; we will show that if we can avoid these “bad” codes, then the occurrence of the AMLC implies very low error rates.
+Let A γ h denote the average distance spectrum over C γ . It was shown [4] that if γ > 0 is selected small enough, then with probability 1 − o(1), a randomly-selected code from C 0 is also in C γ ; this implies that for large enough N , so that less than half the codes are expurgated, the following bound holds:
+When using the DS2 bound we can plug A γ h instead of A h in (20). In practice, when applying the Monte Carlo procedure outlined in Section III-A, we draw codes at random from C 0 and thus we need to test whether these codes are also in C γ . To do this, we use the procedure described in [5, Section 5] which obtains a lower bound LB(C 1 ) on the minimum distance of the randomly-drawn code C 1 . If LB(C 1 ) > γ, then C 1 ∈ C γ . Note, however, that the converse is not necessarily true, i.e., we could have C 1 ∈ C γ but with LB(C 1 ) ≤ γ. Deﬁne the ensemble
+then clearly ˜ C γ ⊆ C γ . Let ˜ A γ h be the average distance spectrum over ˜ C γ . We will obtain an upper bound on ˜ A γ h which is similar to (21) using a Monte Carlo approach, similar to the argument made in Section III-A. Suppose we run L experiments. In each experiment we randomly pick a code C ∈ C 0 and calculate LB(C). Now suppose that in L 2 = L(1 − ǫ 2 ) experiments we obtain that LB(C) > γ, and ǫ 2 < 0.5 is small. From this set of experiments, we conclude as we did in Section III-A that
+0, 	 h ≤ γ 	 (23) with high conﬁdence level.
+Consider the following procedure for obtaining a bound on the conﬁdence level of (19)-(20) when ˜ A γ h (upper-bounded in (23)) is used as the distance spectrum. The conﬁdence level output by this algorithm is a combination of the conﬁdence level associated with η ≥ 0.5 (see Section III-A) and the statement (23). That is, the null hypothesis in this case is
+Algorithm 1: Given an ensemble of codes C 0 , a channel probability distribution Q(·|·) and number of trials L, do:
+• Pick a code C uniformly from C 0 . • Calculate LB(C).
+• If LB(C) ≤ γ, E ← E + 1 and skip to the next loop iteration.
+• Transmit the all-zero codeword through the channel. • Decode using the BP decoder and the LP decoder. • If the BP decoder output ˆ c is not a codeword, or if
+3) Output conﬁdence level of bound: Deﬁne ǫ ∆ = E/L. If ǫ < 0.5, output ξ(L, ǫ) deﬁned in (14). Otherwise, output “error”.
+Algorithm 1 is introduced for the purpose of jointly assess- ing the possibility of rejecting the hypothesis (12), and the validity of (23) as an upper bound on the distance spectrum using the same conﬁdence level-based Monte Carlo based method from Section III-A. The algorithm counts the number of failed attempts E out of L experiments, where a failure consists of either having a code C not pass the test LB(C) > γ, or, having passed this test, getting a BP decoder output which does not satisfy the AMLC. The algorithm is correct because if the null hypothesis (24) holds, then in any single experiment we would have a probability of failure at least 0.5. If the total number of failures E is small (i.e., less than half the total number of experiments) then the conﬁdence level, following the derivation in Section III-A, is output. On the other hand, if E ≥ 0.5L, the result is deemed unreliable.
+Theorem 1: Consider the transmission of a codeword from an LDPC code drawn at random from the ensemble C 0 over an MBIOS channel. Fix the proximity gap δ > 0 and the expurgation depth γ > 0. Then the probability of frame error with BP decoding given that the AMLC (7)-(8) holds is upper-bounded by (19)-(20). This bound holds with conﬁdence level ξ(L, ǫ) which can be obtained using the L Monte Carlo experiments, as detailed in Algorithm 1.
+Figure 1 shows a comparison between the frame error rate (FER) obtained by a simulation of the BP decoder over the binary symmetric channel (BSC) and the DS2 bound (19), calculated for various values of δ. In this example, we consider the ensemble C 0 of (3,4)-regular LDPC codes with block length N = 1000. For the calculation of the DS2 bound and the distance spectrum we use γ = 20 as the expurgation depth.
+We conducted two experiments to determine the conﬁdence level of the bound, using Algorithm 1. In the ﬁrst experiment, 150 randomly-generated codes were tested over a BSC with crossover probability p = 0.14. In the second experiment, 600 randomly-generated codes were tested over a BSC with
+p = 0.1. In both experiments, all the codes belonged to the ensemble C γ . The results of the ﬁrst experiment are summarized in Table I. These results indicate that in this case, the null hypothesis (24) can be rejected with very high conﬁdence level even for δ = 0. Consequently, the conditional frame error probability given that the the AMLC holds for δ = 0, is (with very high conﬁdence) lower than 3·10 −5 , which is about 1000 times lower than the simulated frame error rate at p = 0.14. In the second experiment, both the BP and LP decoders succeeded in decoding all transmissions, and thus in Algorithm 1 we get ǫ = 0. This puts the conﬁdence level of all the DS2 bound curves in Figure 1 at an extremely high level of ξ(600, 0) = 1 − 2 −600 In this case, the conditional frame error probability given that the AMLC holds is more than 7 orders of magnitude smaller than the simulated frame error rate (the difference between the BP curve and the δ = 0 curve for p = 0.1). The conﬁdence level in this case is also much higher than in the ﬁrst experiment. Due to the high conﬁdence levels observed in the ﬁrst experiment with p = 0.14, the conﬁdence level result of the second experiment with p = 0.1 is not surprising, and in general we expect the conﬁdence level to increase as the channel noise level decreases.
+The strength of this result is that it demonstrates that the LP decoder can provide the BP decoder with extra error detection capability. This capability is especially useful in applications where a codeword should be rejected unless it is decoded correctly, and rejection should occur with high probability (as in data applications requiring high reliability). Achieving
+codeword reliability results of this order via simple Monte Carlo simulation would require very long simulation runs. In fact, our technique for upper bounding the frame error rate given that the AMLC property holds, has a common feature with the importance sampling method, since both attempt to alleviate the computational burden associated with simple Monte Carlo simulation. We also note that in both experiments described above, the AMLC was satisﬁed in a large percentage of the trials, implying that it is not only capable of increasing the reliability of the decoder output, but it also does so very frequently . Using the AMLC provides an alternative to external error-detection codes, such as cyclic redundancy checks, which cause some coding rate loss. This comes at the expense of extra processing, in the shape of an LP decoder at the receiver. We note that this decoder can be implemented in linear time [6]. There is also a one-time task of computing the conﬁdence level, which can be performed off-line. The computational complexity of calculating the lower bound [5] on the minimum distance LB(C) is quadratic in the block length. Thus the task of obtaining a conﬁdence level using Algorithm 1 is performed with complexity O(N 2 L), where L is the number of simulated blocks. We also note the following points.
+• It is possible to tune the AMLC result to obtain different error rates and conﬁdence levels by varying the value of the proximity gap δ and the expurgation depth γ. Higher values of δ will produce higher values of the DS2 bound (this is evident from Figure 1), but on the other hand will increase the conﬁdence level (as can be seen in Table I), as the requirement (6) becomes more lax. Higher values of γ will yield lower values of the DS2 bound. This, however, comes at the expense of a lower conﬁdence level because while running Algorithm 1 more codes will be rejected as having low minimum distance.
+• One may observe that in the example above, the AMLC result is applied to a random selection of a code from an ensemble . In many applications, it would be desirable to apply the AMLC result to a speciﬁc code rather than an ensemble. The difﬁculty is that while ensemble averages of distance spectra are typically known or can be easily upper-bounded, for speciﬁc codes this is not the case in general. Naturally, if one obtains for a speciﬁc code the exact distance spectrum (or an upper bound), it is straightforward to plug it in the DS2 bound (19)-(20). Another alternative is to use known concentration results [7] for the distance spectrum which enable one to give upper bounds on the distance spectrum of a speciﬁc code, which themselves hold with some conﬁdence level. This conﬁdence level can be integrated with our conﬁdence bound ξ(L, ǫ). The result would be a looser bound (as compared to (19)-(20)) which applies with conﬁdence level worse than ξ(L, ǫ), but it would apply to speciﬁc codes.
+• Application of the AMLC result is not restricted to the BP decoder. The result extends trivially to any decoder
+where (−1) c m is a vector of ±1 corresponding to the codeword c m , the multiplication (−1) c m · y is compo- nentwise, and ˆ c i (resp. c m,i ) is the i’th bit of ˆc (resp. c m ). In particular, this condition is fulﬁlled by standard message-passing algorithms, e.g., min-sum, Gallager-A, Gallager-B.
+• In a more general context, the AMLC result can be applied to any LP formulation. In particular, the LP program proposed by Feldman [9] for general Turbo codes can be used to achieve better error detection under standard iterative decoding schemes 1 . The same goes for nonbinary LDPC codes when represented using the LP formulation proposed by Flanagan et al. [10].
+Finally, it may be observed that our bound can be improved by any method which tightens the LP relaxation, e.g., the check node merging technique [5], lifting methods [1], and others. By using any of these methods, we can obtain a vector λ such that P(λ) is larger than that obtained by the standard LP decoder, essentially because the optimization (1) is performed over a smaller domain. The result is that for any BP-decoded codeword ˆ c , we can use a smaller value of δ in the AMLC (8), which gives an exponential improvement in the DS2 bound, as can be clearly seen in (19)-(20).
+This research was supported by the Israel Science Founda- tion, grant no. 772/09.
+[[[ REFS ]]]
+J. Feldman
+M. J. Wainwright
+D. R. Karger
+--
+Using linear programming to decode binary linear codes
+----
+I. Goldenberg
+D. Burshtein
+--
+The approximate maximum-likelihood certiﬁcate
+----
+S. Shamai
+I. Sason
+--
+Variations on the Gallager bounds, connections, and applications
+----
+D. Burshtein
+G. Miller
+--
+Asymptotic enumeration methods for analyzing LDPC codes
+----
+D. Burshtein
+I. Goldenberg
+--
+Improved linear programming decod- ing of LDPC codes and bounds on the minimum and fractional distance
+----
+D. Burshtein
+--
+Iterative approximate linear programming decoding of LDPC codes with linear complexity
+----
+V. Rathi
+--
+On the Asymptotic Weight and Stopping Set Distribution of Regular LDPC Ensembles
+----
+T. Richardson
+R. Urbanke
+--
+The capacity of low-density parity- check codes under message-passing decoding
+----
+J. Feldman
+--
+Decoding Error-Correcting Codes via Linear Program- ming
+----
+M. F. Flanagan
+V. Skachek
+E. Byrne
+M. Greferath
+--
+Linear- programming decoding of nonbinary linear codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\066.pdf
+[[[ LINKS ]]]
+

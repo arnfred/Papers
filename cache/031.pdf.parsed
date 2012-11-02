@@ -1,0 +1,224 @@
+[[[ ID ]]]
+31
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The discrete Fourier transform over a ﬁnite ﬁeld with reduced multiplicative complexity
+[[[ AUTHORS ]]]
+Sergei V. Fedorenko
+[[[ ABSTR ]]]
+Abstract—A novel method for computation of the discrete Fourier transform over a ﬁnite ﬁeld with reduced multiplicative complexity is described. The theorem about the multiplicative complexity coincidence of the Goertzel and cyclotomic algorithms is proved.
+[[[ BODY ]]]
+The Reed-Solomon codes are used to correct errors in digital storage and communication systems, and for many other applications. The discrete Fourier transform (DFT) over a ﬁnite ﬁeld can be applied for encoding and decoding of the Reed-Solomon codes.
+Let us consider a + b (or a × b) to be an addition (a multiplication) only if both summands (factors) lie in the original ﬁeld [3]; i.e., operations in the prime ﬁeld are ne- glected [2]. The main problem in this paper is to reduce the multiplicative (primarily) and additive (secondarily) complex- ity of the DFT computation over a ﬁnite ﬁeld. In previous author’s publications [7], [17], [8], [9] the new methods of the DFT computation (the cyclotomic and recurrent algorithms) are introduced. There are several papers with reduced additive complexity of the cyclotomic DFT (for example, [6]). In the present paper a novel method with reduced multiplicative complexity of the DFT computation is ﬁrst proposed. This novel method is based on replacing a cyclic convolution (or a set of cyclic convolutions) by a multipoint evaluation when using additive properties of a ﬁnite ﬁeld.
+The discrete Fourier transform of length n of a vector f = (f i ), i ∈ [0, n − 1], n | (2 m − 1), in the ﬁeld GF (2 m ) is the vector F = (F j ),
+where α is an element of order n in GF (2 m ) (a transform kernel). Let us write the DFT in matrix form:
+where W = (α ij ), i, j ∈ [0, n−1], is a Vandermonde matrix. Every vector f is associated with a polynomial f (x) = ∑
+Consider the set of cyclotomic cosets modulo n over GF (2):
+where c i ≡ c i 2 m i (mod n), i ∈ [0, l − 1], c i is a generator element of the ith cyclotomic coset, m i is a cardinality of the ith cyclotomic coset, m i | m, and l is the number of cyclotomic cosets modulo n over GF(2).
+A circulant matrix, or a circulant, is a matrix each row of which is obtained from the preceding row by a left (right) cyclic shift by one position. Denote by L k an m k × m k circulant whose ﬁrst row is a normal basis. We call it a basis circulant:
+   
+γ 2 0 	 γ 2 1 . . . γ 2 mk−1 γ 2 1 	 γ 2 2 . . . 	 γ 2 0 . . . 	 . . . . . . 	 . . .
+  
+We consider the Blahut modiﬁcation for the DFT computa- tion over ﬁnite ﬁelds [2] of Goertzel’s algorithm [13].
+The ﬁrst step of the Goertzel algorithm is a long division of f (x) by each minimal polynomial M k (x):
+    
+deg r k (x) < deg M k (x) = m k , k ∈ [0, l − 1],
+The matrix form for the ﬁrst step is    
+(r j,0 ), 	 j ∈ [0, m 0 − 1] (r j,1 ), 	 j ∈ [0, m 1 − 1]
+  
+The second step of the Goertzel algorithm is to evaluate the remainder at each element of the ﬁnite ﬁeld: {
+The matrix form for the second step is ( (F
+∈ [0, m k − 1] ) = V k ( (r i,k ), i ∈ [0, m k − 1] ) , k ∈ [0, l − 1],
+, i, j ∈ [0, m k − 1], is a Vandermonde matrix.
+The Goertzel algorithm can be written in matrix form [10], [5] as follows:
+    
+  
+is an n × n block diagonal matrix composed of Vandermonde matrices V k , k ∈ [0, l − 1].
+The cyclotomic algorithm [17] is based on representing the initial polynomial f (x) as a sum of linearized polynomials (cyclotomic decomposition of the polynomial), ﬁnding their values in a set of base points (cyclic convolution), and com- puting the resulting vector as a linear combination of these values with coefﬁcients from a prime ﬁeld (multiplication of a binary matrix by a vector).
+where A is an n × n binary matrix, Πf is a permutation of the initial vector f , and L is an n × n block diagonal matrix
+    
+  
+Multiplication of the block diagonal matrix L by the vector Πf reduces to the computation of l cyclic convolutions of small lengths m k , k ∈ [0, l − 1].
+D. The relation between the Goertzel and cyclotomic algo- rithms
+Lemma 1: Let β be an arbitrary nonzero element in GF (2 m ) whose minimal polynomial has degree m k . Then (
+Proof: The proof is similar to the proof from [15, Chapter 4, Property (M4)].
+trix M k as follows:      
+    
+      
+    
+Note that the m k × m k matrix M k is binary and nonsingular. The relation between the Vandermonde matrix V k and the
+basis circulant L k is V T k = M k L k . We obtain V k = L T k M T k = L k M T k , L k = V k (M T k ) −1 . For m 1 = m k , we get L 1 = L k and
+Theorem 1: The multiplicative complexity of the Goertzel and cyclotomic algorithms is the same.
+Proof: The block diagonal matrix V (2) from the Goertzel algorithm (1) is factorized into a product of the block diagonal matrix L (4) from the cyclotomic algorithm (3) and a binary block diagonal matrix
+    
+  
+This means that the multiplicative complexity of the Goertzel and cyclotomic algorithms is the same.
+E. Reduced complexity of the Goertzel algorithm computation Consider an intermediate divisor in the Goertzel algorithm
+The multipoint evaluation for the polynomial t(x) and the point set {α j | j ∈ J}, is computation t(α j ), j ∈ J [12, Chapter 10.1]. We can construct a subproduct tree for the multipoint evaluation algorithm [12, Figure 10.1]. The idea of the evaluation algorithm is to split the point set {α j | j ∈ J}, into several parts and to proceed recursively with each part. If each subproduct polynomial in the subproduct tree has a small number of coefﬁcients in GF (2 m ) \GF (2) (almost all coefﬁcients are 0 or 1), then the number of operations can be reduced using this evaluation algorithm.
+The next Lemma [14], [11] can be used in the multipoint evaluation.
+Lemma 2: Suppose we need to calculate the remainders in the ﬁeld GF (2 m ) of a long division polynomial a(x) by two divisors b 1 (x) and b 2 (x) = b 1 (x) + 1, and deg a(x) < 2 deg b 1 (x). Then for the calculation of the second remainder the multiplications are not required.
+Consider the DFT of length n = 15 over the ﬁeld GF (2 4 ). The ﬁnite ﬁeld GF (2 4 ) is deﬁned by an ele- ment α, which is a root of the primitive polynomial x 4 + x + 1. Let us take the primitive element α as a trans- form kernel. Cyclotomic cosets modulo 15 over GF (2) are (0), (1, 2, 4, 8), (3, 6, 12, 9), (7, 14, 13, 11), (5, 10).
+f (x) = 	 (x + 1)q 0 (x) + r 0 (x) f (x) = 	 (x 4 + x + 1)q 1 (x) + r 1 (x) f (x) = (x 4 + x 3 + x 2 + x + 1)q 2 (x) + r 2 (x) f (x) = 	 (x 4 + x 3 + 1)q 3 (x) + r 3 (x)
+r 0 (x) = 	 r 0,0 r 1 (x) = r 3,1 x 3 + r 2,1 x 2 + r 1,1 x + r 0,1 r 2 (x) = r 3,2 x 3 + r 2,2 x 2 + r 1,2 x + r 0,2 r 3 (x) = r 3,3 x 3 + r 2,3 x 2 + r 1,3 x + r 0,3
+r 0,1 = f 0 + f 4 + f 7 + f 8 + f 10 + f 12 + f 13 + f 14 r 1,1 = f 1 + f 4 + f 5 + f 7 + f 9 + f 10 + f 11 + f 12 r 2,1 = f 2 + f 5 + f 6 + f 8 + f 10 + f 11 + f 12 + f 13 r 3,1 = f 3 + f 6 + f 7 + f 9 + f 11 + f 12 + f 13 + f 14 r 0,2 = 	 f 0 + f 4 + f 5 + f 9 + f 10 + f 14 r 1,2 = 	 f 1 + f 4 + f 6 + f 9 + f 11 + f 14 r 2,2 = 	 f 2 + f 4 + f 7 + f 9 + f 12 + f 14 r 3,2 = 	 f 3 + f 4 + f 8 + f 9 + f 13 + f 14 r 0,3 = 	 f 0 + f 4 + f 5 + f 6 + f 7 + f 9 + f 11 + f 12 r 1,3 = f 1 + f 5 + f 6 + f 7 + f 8 + f 10 + f 12 + f 13 r 2,3 = f 2 + f 6 + f 7 + f 8 + f 9 + f 11 + f 13 + f 14 r 3,3 = f 3 + f 4 + f 5 + f 6 + f 8 + f 10 + f 11 + f 14 r 0,4 = 	 f 0 + f 2 + f 3 + f 5 + f 6 + f 8 + f 9 + f 11
++f 12 + f 14 r 1,4 = 	 f 1 + f 2 + f 4 + f 5 + f 7 + f 8 + f 10 + f 11
+F 1 = r 1 (α 1 ) = 	 r 3,1 α 3 + r 2,1 α 2 + r 1,1 α 1 + r 0,1 F 2 = r 1 (α 2 ) = 	 r 3,1 α 6 + r 2,1 α 4 + r 1,1 α 2 + r 0,1 F 4 = r 1 (α 4 ) = 	 r 3,1 α 12 + r 2,1 α 8 + r 1,1 α 4 + r 0,1 F 8 = r 1 (α 8 ) = 	 r 3,1 α 9 + r 2,1 α 1 + r 1,1 α 8 + r 0,1 F 3 = r 2 (α 3 ) = 	 r 3,2 α 9 + r 2,2 α 6 + r 1,2 α 3 + r 0,2 F 6 = r 2 (α 6 ) = 	 r 3,2 α 3 + r 2,2 α 12 + r 1,2 α 6 + r 0,2 F 12 = r 2 (α 12 ) = 	 r 3,2 α 6 + r 2,2 α 9 + r 1,2 α 12 + r 0,2 F 9 = r 2 (α 9 ) = 	 r 3,2 α 12 + r 2,2 α 3 + r 1,2 α 9 + r 0,2 F 7 = r 3 (α 7 ) = 	 r 3,3 α 6 + r 2,3 α 14 + r 1,3 α 7 + r 0,3
+F 13 = r 3 (α 13 ) = r 3,3 α 9 + r 2,3 α 11 + r 1,3 α 13 + r 0,3 F 11 = r 3 (α 11 ) = 	 r 3,3 α 3 + r 2,3 α 7 + r 1,3 α 11 + r 0,3 F 5 = r 4 (α 5 ) = 	 r 1,4 α 5 + r 0,4 F 10 = r 4 (α 10 ) = 	 r 1,4 α 10 + r 0,4 .
+Let K(x) = M 1 (x) = x 4 + x + 1 be the intermediate divisor. Hence, J = {1, 2, 4, 8}. The multipoint evaluation for the polynomial t(x) = t 3 x 3 + t 2 x 2 + t 1 x + t 0 and the point set {α j | j ∈ J} = {α 1 , α 2 , α 4 , α 8 } = {{α 1 , α 4 }, {α 2 , α 8 }}, is computation t(α j ), j ∈ J.
+Let us write the multipoint evaluation in matrix form:    
+  
+   
+t(α 1 ) t(α 2 ) t(α 4 ) t(α 8 )
+  
+   
+   
+   
+   
+   
+  
+x 4 + x + 1 = (x 2 + x + α 5 )(x 2 + x + α 10 ) =
+Taking into account α 5 + α 10 = α 1 + α 4 = α 2 + α 8 = 1, we obtain
+x 4 + x + 1 = (x 2 + x + α 5 )(x 2 + x + (α 5 + 1)) =
+The upper level of divisions is t 3 x 3 +t 2 x 2 +t 1 x+t 0 = (x 2 + x+α 5 )q(x)+u(x) = (x 2 +x+α 5 )
+1 x+u 0 , where u 1 = t 1 + t 3 α 5 + (t 2 + t 3 ), u 0 = t 0 + (t 2 + t 3 )α 5 ; and using Lemma 2, we get t 3 x 3 +t 2 x 2 +t 1 x+t 0 = (x 2 +x+(α 5 + 1))q(x)+u(x) = (x 2 +x+(α 5 +1))
+1 x+u 0 , where u 1 = u 1 + t 3 , u 0 = u 0 + (t 2 + t 3 ).
+The lower level of divisions is F 1 = u(α 1 ) = u 1 α 1 + u 0
+F 4 = u(α 4 ) = u 1 (α 1 + 1) + u 0 = u 1 α 1 + u 1 + u 0 F 2 = u(α 2 ) = u 1 α 2 + u 0
+The factorization of the matrix V 1 can be seen in (6) at the top of the next page, where P 1 is a matrix of preadditions.
+   
+1 0 0 0 0 1 0 0 1 0 1 0 0 1 0 1
+   
+   
+0 0 1 α 2 0 1 0 0 0 0 0 1
+   
+   
+   
+   
+0 0 1 α 5 0 1 0 0 0 0 0 1
+   
+   
+1 0 0 0 0 0 1 1 0 1 1 1 0 0 0 1
+   
+   
+   
+1 0 0 0 0 0 1 1 0 1 1 1 0 0 0 1
+  
+1) a cyclic convolution: a(x) = b(x)c(x) mod x m − 1 (a multiplication by a circulant matrix);
+2) a normalized cyclic convolution: a(x) = b(x)c(x) mod x m − 1, if
+b i = 1 (a multiplication by a basis circulant matrix);
+3) a multiplication by a Vandermonde matrix: a = V 1 c = L 1 (M T 1 c), where V 1 = SP 1 is a Vandermonde matrix, L 1 is a basis circulant matrix, M 1 is a basis transforma- tion matrix, and P 1 is a matrix of preadditions.
+The complexity of 4-point cyclic convolutions computation is shown in Table I.
+where P k , k ∈ [1, 3], is a matrix of preadditions, and M k , k ∈ [1, 3], is a basis transformation matrix.
+The multiplication of the 2 × 2 Vandermonde matrix V 4 by the vector is very simple:
+     
+     
+     
+     
+     
+     
+where I 2 is a 2 × 2 identity matrix, and P is the binary block diagonal matrix of combined preadditions.
+and seen in (9) at the top of the next page, where D, S, V 4 are deﬁned in formulas (8), (6), and (7).
+The algorithm of the DFT computation consists of three parts:
+1) triple multiplication by matrix S (by the Vandermonde matrix V 1 = SP 1 without preadditions): 3 × 4 = 12 multiplications and 3 × 8 = 24 additions;
+2) multiplication by matrix V 4 : 1 multiplication and 2 additions;
+3) multiplication of the binary matrix P R by the vector f (using a heuristic algorithm [19]): 44 additions.
+The complexity of some methods of the 15-point DFT computation is shown in Table II.
+A novel method for computation of the DFT over a ﬁnite ﬁeld with reduced multiplicative complexity is described. The method is applicable for any DFT length but reducing the multiplicative complexity is achieved not for all lengths. For the DFT computation of length n = 2 2 s − 1 in the ﬁeld GF (2 2 s ) the exact formula for the number of multiplications is analytically obtained. The theorem about the multiplicative complexity coincidence of the Goertzel [13], [2], [5] and
+                         
+                         
+                         
+                         
+                         
+                         
+cyclotomic [17] algorithms is proved. This theorem means that if the implementation of the algorithm is constructed for one of the methods (the Goertzel algorithm [13], [2], [5], the cyclotomic algorithm [17], the recurrent algorithm [8]), there are implementations for the other methods with the same number of multiplications. All the algorithms described in the paper belong to a class of semifast algorithms [2], [4], [5] and have a complexity proportional to n log n multiplications and less than 2n 2 / log n additions [1] over elements of GF (2 m ).
+The author would like to thank the Alexander von Humboldt Foundation for the many years’ support of his research.
+[[[ REFS ]]]
+A. Ah
+J. Hopcrof
+J. Ullma
+--
+The Design and Analysis of Computer Algorithms
+----
+R. E. Blahu
+--
+Theory and Practice of Error Control Codes
+----
+R. E. Blahu
+--
+Fast Algorithms for Digital Signal Processing
+----
+R. E. Blahu
+--
+Algebraic Codes on Lines, Planes, and Curves: An Engineering Approach
+----
+R. E. Blahu
+--
+Fast Algorithms for Signal Processing
+----
+N. Che
+Z. Yan
+--
+Cyclotomic FFTs with reduced additive complex- ities based on a novel common subexpression elimination algorithm
+----
+S. Fedorenk
+P. Trifonov
+--
+On computing the fast Fourier transform over ﬁnite ﬁelds
+----
+S. V. Fedorenko
+--
+A method for computation of the discrete Fourier transform over a ﬁnite ﬁeld
+----
+S. V. Fedorenk
+--
+Fast algorithms for decoding of linear block codes
+----
+S. V. Fedorenko
+--
+On semifast Fourier transform algorithms
+----
+J. von zur Gathe
+J. Gerhard
+--
+Arithmetic and Factorization of Polynomials over F 2 
+----
+J. von zur Gathe
+J. Gerhar
+--
+Modern computer algebra
+----
+G. Goertzel
+--
+An Algorithm for the Evaluation of Finite Trigonometric Series
+----
+V. V. Kvashenniko
+--
+Methods for adaptive correction of the parameters of error correcting code and their application in advanced radio systems
+----
+F. J. MacWilliam
+N. J. A. Sloan
+--
+The Theory of Error-Correcting Codes
+----
+D. M. Mandelbaum
+--
+Reducing the Number of Operations in Certain Finite-Field Transforms
+----
+P. V. Trifono
+S. V. Fedorenko
+--
+A method for fast computation of the Fourier transform over a ﬁnite ﬁeld
+----
+P. Trifono
+--
+
+----
+P. Trifonov
+--
+Matrix-vector multiplication via erasure decoding
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\031.pdf
+[[[ LINKS ]]]
+

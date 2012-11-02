@@ -1,0 +1,180 @@
+[[[ ID ]]]
+112
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+DNA Codes for Generalized Stem Similarity
+[[[ AUTHORS ]]]
+A. Dyachkov
+Ju. Volkova
+N. Polyanskii
+[[[ ABSTR ]]]
+Abstract—The concept of a generalized stem similarity function and the corresponding DNA codes are introduced. We give parameters for some optimal constructions called maximum dis- tance separable DNA codes and obtain bounds on the maximum size of DNA codes.
+[[[ BODY ]]]
+We consider the concept of combinatorial coding theory called an additive [?]-[?] (non-additive [?]-[?]) b-stem similar- ity between two quaternary n-sequences, or DNA sequences of length n ≥ b ≥ 2, which is calculated as the maximal number of common blocks of length b, or b-stems, containing adjacent symbols in their common Hamming subsequences (in their common subsequences). For b = 2, the 2-stem similarity and the corresponding 2-stem distance are used to describe a mathematical model of thermodynamic similarity called the nearest-neighbor similarity [?] that adequately reﬂects the ”hybridization potential” of two DNA sequences, or DNA strands.
+A DNA code of length n for additive (non-additive) b-stem similarity is a collection of n-sequences, or codewords, which is invariant under the Watson-Crick transformation and if a pair of its codewords does not form the Watson-Crick duplex, then the thermodynamic similarity between these codewords is ≤ n − (b − 1) − D, where D = 1, 2, . . . , n − (b − 1), is a ﬁxed level called a b-stem distance of the DNA code.
+In Sect. II, we will discuss parameters of optimal construc- tions based on linear DNA codes for additive b-stem similarity. These constructions extend maximum distance separable DNA codes for additive 2-stem distance presented in [?]. In Sect. III, we give some bounds and constructions for DNA codes based on non-additive b-stem similarity.
+The symbol denotes deﬁnitional equalities and the symbol [n] {1, 2, . . . , n} denotes the set of integers from 1 to n. Single DNA strands are represented by oriented sequences with elements from DNA alphabet A {A, C, G, T }. The reverse complement , or the Watson-Crick transformation, of a DNA strand is deﬁned by ﬁrst reversing the order of the letters and then substituting each letter x for its complement ¯ x, namely: A for T, C for G and vice-versa. For example, the reverse complement of AACG is CGTT.
+For strand x (x 1 x 2 . . . x n−1 x n ) ∈ A n = {A, C, G, T } n , n ≥ 2, its reverse complement is
+If y = x, then x = y. If x = x, then x is called a self reverse complementary DNA sequence. If x = x, then a pair x , x
+is called a pair of mutually reverse complementary DNA sequences. Note that ¯ x = x for any x ∈ A. Hence, if n is odd, then the set A n does not contain self reverse complementary DNA sequences and A n is the collection of 4 n /2 pairs of mutually reverse complementary DNA sequences. If n is even, then the set A n contains 4 n/2 self reverse complementary DNA sequences and the rest 4 n − 4 n/2 DNA sequences is the collection of (4 n − 4 n/2 )/2 pairs of mutually reverse complementary DNA sequences.
+Let x (j) (x 1 (j)x 2 (j) . . . x n (j)) ∈ A n , x (j) = x(j ), j = j ∈ [N ], be distinct codewords of a code X
+{x(1), x(2), . . . , x(N )} of length n and even size N . We will say that code X is a DNA code if X is invariant under reverse complement transformation and doesn’t contain self reverse complementary codewords, i.e., for any integer j ∈ [N ], there exists j ∈ [N ], j = j, such that x(j ) = x(j) = x(j). In other words, DNA code X is a collection of distinct N/2 pairs x (j), x(j) of mutually reverse complementary DNA sequences.
+Deﬁnition 1. For x ∈ A n and y (y 1 y 2 . . . y n ) ∈ A n , the number
+is called an additive b-stem similarity between x and y and the number
+It is easy to see, that (??) and (??) are symmetric functions, i.e., for any x , y ∈ A n ,
+Obviously, H(x, y) D 1 (x, y) is the Hamming distance [?] deﬁned as the number of positions in which words x and y
+differ from each other. In addition, for any x , y ∈ A n and any integer b ∈ [n − 1], the additive (b + 1)-stem distance
+For instance, if n = 5, then the additive 3-stem distance between x = (A, A, C, T, T ) and x = (A, A, G, T, T ) is D 3 (x, x) = 3 while D 2 (x, x) = 2 and the Hamming distance is H(x, x) = 1.
+Let b, 2 ≤ b ≤ n, and D, D ∈ [n − (b − 1)], be arbitrary integers.
+Deﬁnition 2. A DNA code X is called a DNA code of distance D ∈ [n − (b − 1)], for additive b-stem similarity (??), (brieﬂy, a (n, D) b -code ), if the minimal additive b-stem dis- tance of code X is
+Let N b (n, D), D ∈ [n − (b − 1)], denote the maximal size of (n, D) b -codes for distance (??). For b = 2, (n, D) 2 - codes were introduced in [?]-[?] where asymptotic bounds on N 2 (n, D) were obtained.
+The following conventional inequality called the Singleton- type bound [?] takes place
+of size N , length n and additive b-stem distance D. We state that for any j = j ∈ [N ], there exists i ∈ [n−D+1] such that x i (j) = x i (j ). By contradiction: let there exist j = j ∈ [N ] and
+Hence, in virtue of deﬁnitions (??)-(??), the additive b-stem similarity
+This contradicts (??). The above statement means that in the ﬁrst n − D + 1 positions, all N codewords of X have distinct
+”tails” and, therefore, N ≤ 4 n−D+1 . Thus, the bound (??) is proved. In addition,
+holds. To prove the recurrent inequality (??), consider an arbitrary DNA code X = {x(1), . . . , x(N )} of size N , length n and b-stem distance D ∈ [n − (b − 1)]. For each codeword
+deﬁne the shorten codeword x (j) 	 (x 2 (j), . . . , x n−1 (j)). One can easily see that X 	 {x (1), . . . , x (N )} is a DNA code of size N , length n − 2 and additive b-stem distance D − 2 ∈ [(n − 2) − (b − 1)]. This leads to (??).
+Let D = 2i + 1, i.e., i (D − 1)/2. Applying i times (??) and taking into account (??), we obtain
+The given inequality and (??) yield (??). Theorem 1 is proved.
+We will say that a (n, D) b -code X is a maximum distance separable (MDS) code for the additive b-stem distance (??) if its size N attains (??).
+Theorem 2 generalizes the results presented in [?] for the particular case b = 2.
+Theorem 2. Let b ≥ 2. 1.) If D = 2, 3, . . . 2b, then for any n ≥ D + (b − 1), there exist MDS (n, D) b -codes, i.e., the maximal size
+2 	 if 	 n-even, D-odd, 4 n−D+1 , 	 otherwise .
+2.) If D ≥ 2b + 1, then there exists a number n b (D) such that for any n ≥ n b (D), the maximal size N b (n, D) doesn’t attain bound (??). For instance, if b = 2 and D = 5, then n 2 (5) = 77.
+By symbol z = (z 1 , z 2 , . . . , z ) ∈ A , ∈ [n], we will denote a common subsequence [?] of length |z| 	 between x and y. The empty subsequence z of length |z| 	 0 is a common subsequence between any sequences x and y.
+Let 1 ≤ b ≤ r ≤ n be arbitrary integers. A DNA r- sequence a = (a 1 a 2 . . . a r ) ∈ A n is called a common block for sequences x and y (brieﬂy, common (x, y)-block) of length r if sequences x and y (simultaneously) contain a as a subsequence consisting of r consecutive elements of x and y. We will say that a common (x, y)-block a yields r − (b − 1) common b-stems a i , a i+1 , . . . , a i+(b−1) , i ∈ [r − (b − 1)],
+containing b adjacent symbols of the given common (x, y)- block.
+Let 1 ≤ b ≤ ≤ n be integers. A common subse- quence z = (z 1 z 2 . . . z ) ∈ A is called a common b-block subsequence of length |z| 	 between x and y if z is an ordered collection of separated common (x, y)-blocks and the length of each common (x, y)-block in this collection is ≥ b. Let Z b (x, y) be the set of all common b-block subsequences between x and y. For any z ∈ Z b (x, y), we denote by k(z, x, y), 1 ≤ k(z, x, y) ≤ |z|/b , the minimal number of common (x, y)–blocks which constitute the given subsequence z.
+Obviously, the deﬁnition of common 1-block subsequence between x and y could be considered as a deﬁnition [?] of non-empty common subsequence between x and y, i.e., Z 1 (x, y) is the set of all common subsequences between x and y. In addition, if b ≥ 2, then Z b (x, y) ⊆ Z b−1 (x, y).
+Example 1. Let n = 8. Consider the following two DNA sequences:
+If 4 ≤ b ≤ 8, then Z b (x, y) = ∅ and if 1 ≤ b ≤ 3, then Z b (x, y) = ∅. For instance, the DNA sequence
+is a common 3-block subsequence of length |z| = 6 between DNA sequences (??) and the number k(z, x, y) = 2. Each of two common (x, y)–blocks has length 3. The ﬁrst common (x, y)–block is
+and two common 3-stems z 3 1 and z 6 4 containing adjacent symbols in common (x, y)-blocks constituting z ∈ Z 3 (x, y).
+Note that for any integer b, 2 ≤ b ≤ n, the difference |z| − (b − 1) k(z, x, y), 	 z ∈ Z b (x, y),
+is a total number of common b-stems containing adjacent symbols in common (x, y)-blocks constituting z ∈ Z b (x, y).
+Deﬁnition 3. For any ﬁxed integer b, 2 ≤ b ≤ n, and any DNA sequences x , y ∈ A n we deﬁne
+If Z b (x, y) = ∅, then we will say that S b (x, y) 0. The number
+is called a non-additive b-stem distance between DNA se- quences x , y ∈ A n .
+For b ≥ 2, the concept of non-additive b-stem similarity and its biological motivation were suggested in [?]-[?].
+Example 2. For DNA sequences (??) and b = 2, 3, the corresponding b–stem similarities are
+where the maximal values are attained for 3-block subse- quence z deﬁned by (??).
+The following evident properties of non-additive b-stem similarity (??) and non-additive b-stem distance (??) take place
+where S b (x, y) and D b (x, y) are additive b-stem similarity and distance deﬁned by (??)-(??).
+Let b, 2 ≤ b ≤ n, and D, D ∈ [n − (b − 1)], be arbitrary integers.
+Deﬁnition 4. A DNA code X is called a DNA code of distance D based on non-additive b-stem similarity (??), (brieﬂy, (n, D) b -code ) if min
+Let N b (n, D) be the maximum size of (n, D) b -codes. If d, 0 < d < 1, is a ﬁxed number, then
+Theorems 3-5 generalize the results obtained in [?] for the particular case b = 2.
+Theorem 3. If 2 ≤ D ≤ n/2, then for any b ≥ 2, the maximal size of (n, D) b -codes satisﬁes inequalities
+Theorem 4. If D = 2 and n = 4m, where m = 1, 3, 5, . . . is an arbitrary odd number, then for any b ≥ 2, the upper bound of Theorem 3 is attained, i.e.,
+Theorem 5. If D = 2 and n is even, then for any b ≥ 2, the maximal size of (n, 2) b -codes satisﬁes inequality
+i.e., for even n and D = 2, the difference between upper bound of Theorem 3 and N b (n, 2) doesn’t exceed 2.
+(ii). Let d b , 0 < d b < 1, be the unique root of equation 1 − d = E b (d). If 0 < d < d b , then the rate R b (d) > 0 and
+For the particular case b = 2, Theorem 6 was proved in [?]. We will say that the number d b , 0 < d b < 1, is a critical relative distance for the random coding bound R b (d).
+Thus, the partial derivative of (??) is ∂F b (v, u)
+one can easily check that (??) can be rewritten in the form ∂F b (v, u)
+Therefore, for any u, 0 < u < 1, equation ∂F b (v,u) ∂v 	 = 0 is equivalent to equation
+Let v = v(u) be the unique root of (??). This means that the function
+If we substitute parameter v for w 	 u/v > b − 1, then equation (??) takes the form
+Hence, the root v = v(u) can be calculated using the following recurrent method: w 1 b and for m = 1, 2, . . . , the number
+The numerical values of critical relative distance d b along with the corresponding optimal parameters
+d b 	 0.4792 0.6676 0.7931 0.8768 0.9299 v(d b ) 0.1903 0.1166 0.0744 0.0461 0.0272
+Let b, 2 ≤ b ≤ n, and s, 0 ≤ s ≤ n − (b − 1), be arbitrary integers. Introduce the following sets
+Proof of Lemma 1. Let M ≥ 1 and B ≥ 1 be arbitrary integers. For M ≥ B, denote by W 1 (M ; B) the number of all ways to distribute M indistinguishable marbles in B boxes provided that all B boxes are nonempty. Denote by W 2 (M ; B) the number of all ways to distribute M indistin- guishable marbles in B boxes if empty boxes are accepted. It is well-known that
+Consider an arbitrary pair (x, y) ∈ A n × A n for which S b (x, y) = s. Then there exists a subsequence z ∈ Z b (x, y), |z| ≤ n, and the integer k = k(z, x, y) ≤ |z|/b for which the following equalities
+take place. It follows that for any z ∈ Z b (x, y), the number k = k(z, x, y) satisﬁes inequalities
+Obviously, the number of all ways to distribute |z| indistin- guishable marbles in k boxes provided that each of k boxes contains ≥ b marbles is
+In addition, the number of all ways to distribute n − |z| = n − s − (b − 1)k indistinguishable marbles in k + 1 boxes if empty boxes are accepted is
+Applying the similar arguments, one can prove Lemma 2. The size
+Inequalities (??)-(??) and the random coding method of [?] lead to Theorem 6.
+[[[ REFS ]]]
+A. G. D’yachko
+A. N. Voronin
+--
+DNA Codes for Additive Stem Similarity,” Probl
+----
+N. Voronin
+--
+A
+----
+A. G. D’yachko
+A. N. Voronin
+A. J. Macul
+T. E. Ren
+V. V. Ryko
+--
+On Critical Relative Distance of DNA Codes for Additive Stem Similarity,” in 2010 IEEE Int
+----
+A. G. D’yachko
+A. J. Macul
+W. K. Pogozelsk
+T. E. Ren
+V. V. Ryko
+D. C. Torne
+--
+A Weighted Insertion–Deletion Stacked Pair Thermodynamic Metric for DNA Codes”, in Proc
+----
+A. J. Macul
+A. Schlie
+M. A. Bisho
+T. E. Ren
+--
+New, Improved, and Practical k-Stem Sequence Similarity Measures for Probe Design,” Journal of Computational Biology , vol
+----
+M. A. Bisho
+A. G. D’yachko
+A. J. Macul
+T. E. Ren
+V. V. Ryko
+--
+Free Energy Gap and Statistical Thermodynamic Fidelity of DNA Codes,” Journal of Computational Biology, vol
+----
+A. G. D’yachko
+A. J. Macul
+T. E. Ren
+V. V. Ryko
+--
+Random Coding Bounds for DNA Codes Based on Fibonacci Ensembles of DNA Sequences,” in 2008 IEEE Int
+----
+J. SantaLuci
+--
+A Uniﬁed View of Polymer, Dumbbell, and Oligonu- cleotide DNA Nearest-Neighbor Thermodynamics,” Proc
+----
+A. D’yachko
+A. Voronin
+A. Aleksee
+D. Sharono
+--
+Ju
+----
+F. J. MacWilliam
+N. J. A. Sloan
+--
+The Theory of Error-correcting Codes , Amsterdam, The Netherlands: North Holland, 1977
+----
+A. G. D’yachko
+A. J. Macul
+D. C. Torney D
+P. A. Vilenki
+P. S. Whit
+I. K. Ismagilo
+R. S. Sarbaye
+--
+C
+----
+V. I. Levenshtei
+J. Comb
+--
+Efﬁcient Reconstruction of Sequences from Their Subsequences and Supersequences,”  Th
+----
+A. D’yachko
+A. Voronin
+N. Polyanski
+--
+Ju
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\112.pdf
+[[[ LINKS ]]]
+
