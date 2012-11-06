@@ -1,0 +1,168 @@
+[[[ ID ]]]
+90
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Update Efﬁcient Codes for Distributed Storage
+[[[ AUTHORS ]]]
+Ankit Singh Rawat
+Sriram Vishwanath
+Abhishek Bhowmick
+Emina Soljanin
+[[[ ABSTR ]]]
+Abstract—This paper determines mechanisms for distributed storage that are simultaneously repair and update efﬁcient. Repair efﬁciency demands that minimum information be down- loaded from surviving nodes to reconstruct failed storage nodes. Update efﬁciency desires that changes in the original data require minimal updates at the storage nodes. These two requirements can be seen as counteracting one another, as the latter imposes a sparsity constraint on the encoding process that is not desirable for the former. In this paper we establish the existence of the codes that meet both requirements: require only logarithmic updates when data changes, while simultaneously minimizing repair bandwidth for exact reconstruction. To show this, we use a combination of KG codes for update efﬁciency with interference- alignment strategies for distributed storage.
+[[[ BODY ]]]
+Efﬁcient and resilient distributed storage has gained consid- erable importance, given the need to put away vast volumes of data being generated, processed and analyzed today. The main issue faced by distributed storage systems (DSS) is that of node failure, which causes data stored on them to be lost permanently. A coded DSS employs a code that simul- taneously provides error resilience while ensuring efﬁciency in the storage process (as apposed to repeating the stored data at multiple locations). Many codes in existing error- correcting coding literature can be used for the purpose of error resilience. However, DSS present a challenge that is unique to them - we also require that it be possible for a failed node to be regenerated from the surviving nodes. In order to make this recovery possible, the total amount of data that must be downloaded from the surviving nodes is referred to as repair bandwidth of the code. Overall, we desire codes for DSS that minimize this repair bandwidth [1]. In [1], Dimakis et. al. develop information-theoretic lower bounds on the repair bandwidth for functional repair, and establishes a trade-off between the amount of data stored in each storage node and the repair bandwidth of the code.
+Achievability arguments for repair bandwidth efﬁcient codes were initially established for functional repair [2], [3], practical constraints may require that nodes be regenerated exactly. One scenario where exact regeneration might be desirable is when the code employed for data storage is systematic. In this setting, exact repair maintains the systematic nature of the code, which makes data retrieval simple from the end user’s perspective. In [4], [5], and [6], it was shown for different restrictive settings (e.g., k < max(3, n/2)) that the additional
+constraint of exact repair does not entail a higher repair bandwidth. Recently, [7] and [8] extended this result to all possible settings by showing the existence of the codes that perform exact repair achieving the lower bound, suggested in [1] and [2], asymptotically (i.e., where the amount of data to be stored is sufﬁciently large) with the help of interference alignment.
+A vast majority of research on DSS has focused on storage versus resilience, with the aim of optimizing bandwidth efﬁ- ciency under different regeneration paradigms. An additional desirable feature for storage systems is update efﬁciency. In most present day storage systems, the information to be stored is never static, and undergoes periodic changes. Thus, a DSS code design must enable easy updation in addition to efﬁcient regeneration and error resilience. Recently, an analytical framework for update efﬁcient codes was introduced in [9].
+The update complexity of a code is characterized by the number of non-zero elements in the maximum hamming weight column of the encoding matrix: the fewer such ele- ments, the lower the complexity of updation when a data bit gets changed. An illustration of the idea of update complexity for the [7, 4, 3] Hamming code is presented in Figure 1. A code is said to be update efﬁcient if its update complexity is sub-linear with respect to the code length.
+In this paper, we bring together the notion of update efﬁ- ciency with that of repair bandwidth efﬁciency for DSS. We do this through the framework of Kolchin-Generator (KG) codes [9]. In general, update efﬁciency and resilience & bandwidth efﬁciency are counteracting goals - update efﬁciency requires a sparse encoding matrix, while bandwidth efﬁciency requires a fairly dense dependency between the encoded blocks. In essence, we show that these seemingly opposing notions of efﬁciency can indeed be incorporated into one DSS.
+1) For rates arbitrarily close to 1 − p e (when the code is designed to tolerate failure of p e fraction of storage nodes, i.e., p e -tolerant), we show that both update and bandwidth efﬁciency are simultaneously possible.
+2) We show this by using a combination of KG codes with interference alignment arguments for exact node regeneration.
+Note that the previously proposed MDS codes for storage (e.g., X-code [10], B-codes [11], asymptotically optimal MDS
+regenerating codes [7], [8]) are not update efﬁcient in the sense that these codes fail to have sub-linear update complexity when they are designed to tolerate linear number of erasures.
+The rest of this paper is organized as follows. Section II proposes an update efﬁcient code ensemble. In Section III, we prove certain properties that codes in the ensemble have with high probability (whp), which make them amenable for interference alignment techniques, and state Schwartz-Zippel lemma. Section IV studies the proposed codes, and uses the interference alignment scheme proposed in [7] to show the existence of codes which are both update and bandwidth efﬁcient.
+A quick note on notation. We use boldface upper case letters for block matrices and boldface lower case letters for row vectors. A(i, j) represents j th element in i th row of a matrix A. A(i, :) denotes i th row of A. A T is used to represent transpose.
+Let M be size of the ﬁle that needs to be stored in an n- node DSS. In order to encode the ﬁle, it is split into k blocks x 1 , x 2 , ..., x k n , each of size M/k n . These k n data blocks are then encoded into n encoded blocks y 1 , y 2 , ..., y n as follows:
+These n encoded blocks are stored on n distinct storage nodes. The entire encoding process can be represented with the help of nM/k n × M generator matrix G:
+  
+  
+Let C represent the random ensemble of codes that contains our encoding matrix G. Each matrix C ∈ C is generated in the following way:
+l n 	 (3) where {l n } and {d n } are unbounded sequences of n, which we specify later in Sec. III. Choice of this particular probability of having 1 at (i, j) th position is similar to that of ‘KG codes’ [9], which are motivated by Kolchin’s result on rank of sparse random matrices [12].
+2) Substitute each zero entry in C 2 with an M/k n ×M/k n zero matrix, and substitute each 1 in C 2 with an M/k n × M/k n random diagonal matrix which has all its diagonal entries chosen independently and uniformly distributed over F q \{0}.
+For random ensemble C, the update complexity is deﬁned by the expected number of non-zero elements in a column of G. Note that the update complexity of C is O (n(log l n + d n )/l n ).
+First, we state the Schwartz-Zippel lemma which will prove useful in further analysis:
+Schwartz-Zippel Lemma: Let f (x 1 , x 2 , . . . , x n ) be a non- zero polynomial of total degree d in the polynomial ring F q [x 1 , x 2 , . . . , x n ]. If q is large enough (particularly greater than the total degree of f ), then for a random vector (Z 1 , Z 2 , . . . , Z n ) that has its all coordinates chosen in- dependent of each other and uniformly from S ⊆ F q , P{f (Z 1 , Z 2 , . . . , Z n ) = 0} ≥ 1 − d/|S|.
+Next, we prove the following lemma which helps us state high probability statement regarding the bandwidth efﬁciency of the codes that we generate according to process speciﬁed in Sec. II.
+Lemma 1: If an n×k n random matrix C q is generated over F q in the following manner
+Then whp, for each row of C q (i.e., C q (r, :) ∀r ∈ {1, ..., n}), there exists a k n × k n nonsingular sub-matrix S r containing C q (r, :) such that all cofactors in S r corresponding to C q (r, :) are nonzero.
+Proof: Let E r be the event that there exists a k n × k n sub-matrix S r of C q such that:
+3) There exist a vector a = (a 1 , a 2 , · · · , a k n ) ∈ (F q \{0}) k n such that k n j=1 a j S r (i, j) = 0 	 ∀i ∈ {1, ..., k n }\{i ∗ }.
+Note that the third requirement is enforced to make sure that all cofactors in S r corresponding to C q (r, :) are nonzero. Let Q r is the set of all n−1 l
+ 
+ 
+ 
+ 
+that do not contain C q (r, :). Next, deﬁne another event F r that there exists an l n − 1 × k n sub-matrix U t r ∈ Q r (for some t ∈ {1, · · · , |Q r |) such that
+2) There exists a vector a = (a 1 , a 2 , · · · , a k n ) ∈ (F q \{0}) k n such that k n j=1 a j U t r (i, j) = 0 ∀i ∈ R, where R is the set of indices of k n − 1 rows of U t r that are linearly independent and k n j=1 a j C q (r, j) = 0.
+We compute the probability of F 1 . The calculation for any other index is similar. In what follows, l n = (1 − p e )n and k n = (1 − )l n . Note that F 1 = ( n−1 ln−1 ) t=1 A t ∩ B t where A t is the event that is true when condition 1 is true for the t th element of Q 1 and B t is the event that is true when condition 2 is satisﬁed for the t th element of Q 1 .
+Given A 1 , there are ζ = (q − 1) k n −1 ways of choosing a because once k n − 1 coordinates are set, the k th n coordinate is already determined.
+Let B 1 |A 1 = ζ i=1 B 1i |A 1 where B 1i |A 1 is true when condition 2 is satisﬁed for the i th choice of vector a. Note that the events B 1i |A 1 are disjoint because of the conditioning on A 1 . Next, we write (4) as
+Next, we compute the probabilities involved in the above expression. P{B 1i |A 1 } is expressed in (6). The ﬁrst term in (6) follows from Theorem 3.3 in [13] and the second term uses conditioning of the linear polynomial being the zero polynomial and then being a non zero polynomial (using Schwartz-Zippel lemma for the second case).
+Let T be a transformation that transforms a matrix A which has its elements drawn from a ﬁnite ﬁeld F q to a matrix A 2 over F 2 by replacing each nonzero element in A by 1 and leaving all zero elements as it is. Using T , we transform C q to C 2 , which is a matrix over F 2 . The probability of an element of C 2 being 1 is p n . Let H 2 = T U 1 1 . From appendix A,
+P{rank(H 2 ) ≥ k n − 1} ≥ 1 − O 1/n ρ−2 	 (7) Let H sym represent the symbolic matrix corresponding to
+of H 2 by a symbolic character representing an element in a ﬁeld. Given that rank of H 2 is at least k n − 1, we know that there exists a k n − 1 × k n − 1 nonsingular sub-matrix M 2 over F 2 . This implies that determinant of the corresponding k n − 1 × k n − 1 sub-matrix M sym of H sym is a nonzero polynomial g(α) of total degree at most k n − 1. Here α represents the vector containing all symbolic elements in M sym . Let R, deﬁned in the deﬁnition of F r , be the set of indices of k n − 1 rows that generate M 2 . Note that,
+where α 0 represents the nonzero elements in k n − 1 × k n − 1 sub-matrix of U 1 1 corresponding to M 2 . Note that given these elements are nonzero, they are independent and uniformly distributed over F q \{0}. It follows from the Schwartz-Zippel lemma and (7) that,
+where q is such that q − 1 ≥ n ρ−1 . Using union bound, we get
+Next, we construct M/k n matrices G 1 , G 2 , . . . , G M/k n from the encoding matrix G (see (1) and (2)) as follows:
+    
+    
+for m = 1, 2, . . . , M/k n . Here A (m) i,j denotes m th diagonal element of A i,j . Note that T G 1 = T G 2 = . . . = T G M/k n = G 2 (output of the ﬁrst step of generation of a random code in C as deﬁned in Sec. II). Let g m (α) denote the polynomial in (8) when C q = G m in Lemma 1 (Here α represents the vector containing symbolic characters corresponding to
+  
+  
+  
+  
+  
+  
+nonzero elements in G, which are independent and uniformly distributed over F q \{0}). Deﬁne
+Note that h(α) is a nonzero polynomial with probability 1 − O( 1 n ρ−2 ) from appendix A (as all G m s get transformed
+≥ 1 − O 1/n ρ−2 (1 − M/(q − 1)) 	 (13) Given h(α) evaluates to a non zero element of F q , it
+follows from (6) that we can ﬁnd a k n M/k n × k n M/k n nonsingular block sub-matrix S 1 of G containing row partition corresponding to 1 st storage node with probability at least (14). Using (13) and (14), the probability that such an S 1 exists is at least 1 − O 1 n ρ−2 for large enough q (i.e., q = Mn ρ−2 ). From a union bound, it follows that every node r has such an S r with probability at least 1 − O 1 n ρ−3 .
+This implies that with very high probability, there exists a systematic representation for each storage node (i.e., each stor- age node stores a systematic part in at least one representation) with ρ ≥ 4 and large enough q.
+Without loss of generality, we assume that 1 st storage node fails. Now we ﬁnd a k n M/k n × k n M/k n nonsingular block sub-matrix S 1 of encoding block matrix G such that besides being nonsingular, this block sub-matrix contains generator matrices of the failed node (A 1,j s) as its ﬁrst row partition, and second row partition onwards, all k n blocks of each row parti- tion satisfy a vector linear constraint similar to that deﬁned in the third requirement of event E 1 in proof of Lemma 1. This block sub-matrix will be used to make our code systematic in a new basis. Before proceeding further we re-index all the storage nodes in such a way that the failed node gets index 1 and other systematic nodes in the new representation get indices from 2 to k n . Let B i,j represents blocks of the block encoding matrix in this new systematic representation. Since the code is systematic in the new representation,
+B i,j s, for i = k n + 1, . . . , n and j = 1, . . . , k n , satisfy (15). Let
+   
+.. . 	 .. . . . . .. . ˆ A k
+   
+be the inverse of A 1...k n , which is deﬁned in (16). Since each block of A 1...k n is either a zero matrix or a diagonal matrix, each ˆ A i,j is also either a zero matrix or a diagonal matrix (it is a function of A i,j s). Note that
+where CF 1,j is the co-factor of A 1,j in A 1...k n . We have chosen A 1...k in such a manner that CF 1,j is a non zero polynomial of α for j = 1, . . . , k n (from Lemma 1). Let α m i,j , γ m i,j , and ˆ α m i,j represent the m th diagonal entry of A i,j , B i,j , and ˆ A i,j respectively. With these notations, (16) can also be written as
+for i = k n + 1, . . . , n, j = 1, . . . , k n , and m = 1, . . . , M/k n . Since each ˆ α m i,j is a nonzero polynomial of α, γ m i,1 would be a zero polynomial iff A i,j = 0, ∀j = 1, . . . , k n . But for d n = (ρ − 1) log l n this happens with probability at most O(1/n ρ ). Deﬁne a nonzero polynomial
+Now Schwartz-Zippel lemma states that for large enough ﬁeld size q, there exist an assignment of α ∈ F |α| q such that Θ(α) is nonzero. This leaves us with a systematic represen- tation of our code, where B i,1 = 0 for i = k n + 1, . . . , n. Our aim is to exactly regenerate the failed storage node (1 st node in this case) in a bandwidth efﬁcient manner by downloading minimum possible data from n − 1 surviving nodes. In order to perform exact regeneration we employ the interference alignment (IA) scheme presented by Cadambe et al. in [7]. A newcomer node downloads V T y T i from surviving systematic nodes (i.e., i = 2, . . . , k n ) in the new representation
+ 
+ 
+ 
+ 
+and ˆ V T k n j=1 B i,j y T j from the remaining n − k n surviving storage nodes (i.e., i = k n + 1, . . . , n). Here V and ˆ V are M/k n × β repair matrices corresponding to systematic and parity storage nodes respectively. Note that we are interested in recovering y 1 , which is present in the data downloaded from parity nodes, linearly combined with the data stored in other k n − 1 systematic node. In other words, y i s for i = 2, . . . , k n are present along with y 1 in the data downloaded from parity nodes and serve as interference in our task of recovering y 1 . Careful selection of V and ˆ V aligns interfering data (i.e., contribution of y i , for i = 2, . . . , k n ) present in the data downloaded from parity nodes with the data received from other systematic nodes. This enables us to cancel out the contribution of the interfering data. Following the IA scheme proposed in [7], set of nonzero columns of V and ˆ V are deﬁned in (20) and (21) respectively. In the aforementioned equations, w is a 1 × M/k n vector which has its entries chosen uniformly at random from F q \{0} and independent from α, and Z ⊆ {k n + 1, . . . , n} × {2, . . . , k n } such that (i, j) ∈ Z iff B i,j = 0 M/k n ×M/k n . In (20) and (21), |Z| coding matrices (B i,j s) are involved; therefore total number of nonzero columns in V and ˆ V are (∆ + 1) |Z| and ∆ |Z| respectively. With these parameters and M = k n (n−k n )∆ |Z| , a newcomer downloads RB = (n−1)(β) = (n−1)(∆+1) |Z| symbols which implies that the repair bandwidth per symbol of repaired data for the proposed code with IA is
+which implies that the with large enough alphabet, there exist an encoding matrix G ∈ C, which is both update and bandwidth efﬁcient. Due to space constraints, we do not provide further details and analysis of the IA scheme. Interested readers may refer to [7] and reference therein to understand the details.
+Consider an l n − 1 × k n − 1 matrix W over F 2 that has each of its element 1 with probability p n . Let r(W ) and s(W ) represent the rank and nullity of W respectively. We use s 0 (W ) to denote the number of all zero columns of W . Note that,
+For d n = (ρ − 1) log l n , ﬁrst term in (23) is O 1 n ρ−1 . For the same value of d n , second term in (23) can be shown to be O( 1 n ρ−2 ) (using Lemma 3.3.2 in [12] with an additional Markov inequality). Note that ρ can be chosen any constant without affecting the logarithmic update complexity of the code ensemble.
+We thank Prasanth Anthapadmanabhan for valuable discus- sions.
+[[[ REFS ]]]
+A. G. Dimakis
+P. Godfrey
+M. Wainwright
+K. Ramachandran
+--
+Network coding for distributed storage system
+----
+Y. Wu
+A. G. Dimakis
+K. Ramchandran
+--
+Deterministic regenerating codes for distributed storage
+----
+Y. Wu
+--
+Existence and construction of capacity-achieving network codes for distributed storage
+----
+Y. Wu
+A. G. Dimakis
+--
+Reducing repair trafﬁc for erasure coding- based storage via interference alignment
+----
+N. Shah
+K. Rashmi
+P. Kumar
+K. Ramchandran
+--
+Explicit codes minimizing repair bandwidth for distributed storage
+----
+C. Suh
+K. Ramchandran
+--
+Exact-repair MDS codes for distributed storage using interference alignment
+----
+V. Cadambe
+S. Jafar
+H. Maleki
+--
+Minimum repair bandwidth for exact regeneration in distributed storage
+----
+C. Suh
+K. Ramchandran
+--
+On the existence of optimal exact-repair MDS codes for distributed storage
+----
+N. Anthapadmanabhan
+E. Soljanin
+S. Vishwanath
+--
+Update-efﬁcient codes for erasure correction
+----
+L. Xu
+J. Bruck
+--
+X-code: MDS array codes with optimal encoding
+----
+L. Xu
+V. Bohossian
+J. Bruck
+--
+Low density MDS codes and factors of complete graphs
+----
+V. F. Kolchi
+G.-C. Rot
+--
+Random graphs, ser
+----
+J. Bl¨omer
+R. Karp
+E. Welzl
+--
+The rank of sparse random matrices over ﬁnite ﬁelds
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\090.pdf
+[[[ LINKS ]]]
+

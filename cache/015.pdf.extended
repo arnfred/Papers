@@ -1,0 +1,253 @@
+[[[ ID ]]]
+15
+[[[ INDEX ]]]
+14
+[[[ TITLE ]]]
+Sidon Sequences and Doubly Periodic Two-Dimensional Synchronization Patterns
+[[[ AUTHORS ]]]
+Tuvi Etzion
+[[[ ABSTR ]]]
+Abstract—Sidon sequences and their generalizations have found during the years and especially recently various applica- tions in coding theory. One of the most important applications of these sequences is in the connection of synchronization pat- terns. A few constructions of two-dimensional synchronization patterns are based on these sequences. In this paper we present sufﬁcient conditions that a two-dimensional synchronization pattern can be transformed into a Sidon sequence. We also present a new construction for Sidon sequences over an alphabet of size q(q − 1), where q is a power of a prime.
+[[[ BODY ]]]
+Let A be an abelian group and let D = {a 1 , a 2 , . . . , a m } ⊆ A be a subset of m distinct elements of A. D is a Sidon sequence (or a B 2 -sequence) over A if all the sums a i 1 + a i 2 with 1 ≤ i 1 ≤ i 2 ≤ m are distinct (if i 1 < i 2 in the deﬁnition the sequence is called a weak Sidon sequence ). Sidon sequences have found many applications in coding and communication. For example, weak Sidon sequences are used for construction of constant weight codes with minimum Hamming distance 6 [1], and constructions of location-correcting codes [2]. Sidon sequences were used in constructions of two-dimensional synchronization patterns [3], [4]. There is a generalization to B h sequences (all sums of h elements are distinct) and they applied for example in multihop paths related to wireless sensor networds [5] and error-correcting codes for rank modulation [6]. A comprehensive survey on B 2 -sequences and their generalizations was given by O’Bryant [7]. Even though in a Sidon sequence all sums of pairs of elements from D (not necessarily distinct elements) are distinct there is a trivial connection to a set in which all differences of ordered pairs of elements are distinct.
+Theorem 1: A subset D = {a 1 , a 2 , . . . , a m } ⊆ A is a Sidon sequence over A if and only if all the differences a i 1 − a i 2 with 1 ≤ i 1 = i 2 ≤ m are distinct in A.
+A Sidon sequence with m elements over an abelian group with n elements is called optimal if all Sidon sequences over an abelian group with n elements have at most m elements. In view of Theorem 1 bounds on the size of a Sidon sequence (on the number of elements m) can be derived by considering differences and not sums. This is important since the number of distinct sums is m 2 +m = m 2 +m 2 while the number of distinct differences is considerably higher, m(m − 1) = m 2 − m. This yields a better upper bound on m. A Sidon sequence D is a set of m elements. If the abelian
+group is Z n then D can be represented as a binary cyclic sequence s = [s 0 , s 1 , · · · , s n−1 ], where s i = 1 if i ∈ D.
+One-dimensional synchronization patterns were ﬁrst intro- duced by Babcock in connection with radio interference [8]. Other applications are discussed in details in [9] and some more are given in [10], [11]. The two-dimensional applica- tions and related structures were ﬁrst introduced in [12] and discussed in many papers, e.g. [13], [14], [15], [16], [17]. Recent new application in keys predistribution for wireless sensor networks [18] led to new related two-dimensional problems concerning these patterns [3], [5]. Difference pat- terns and Sidon sequences have an important role in the construction of synchronization patterns.
+Some of the applications of Sidon sequences is due to the difference properties implied by Theorem 1. This property is also the basis of the applications to two-dimensional synchronization patterns. There are various papers, e.g. [3], [4], [17] in which an one-dimensional sequence (as a Sidon sequence or a ruler) is transformed into a two-dimensional synchronization pattern. The main goal of this paper is to establish the inverse transformation, in which a two- dimensional synchronization pattern is transformed into a Sidon sequence, which is a one-dimensional sequence. A somewhat less efﬁcient transformation of a Costas array into a ruler was suggested in [19].
+The rest of this paper is organized as follows. In Section II we deﬁne what is a period in a two-dimensional array and as a result we obtain a deﬁnition for a cyclic two- dimensional array. In Section III we discuss various types of two-dimensional synchronization patterns. In particular we discuss periodic two-dimensional synchronization patterns. In Section IV we present two operations, namely, folding and unfolding. Folding generates a two-dimensional array from an one-dimensional sequence. Unfolding is the inverse operation and it generates an one-dimensional sequence from a two-dimensional array. In particular we will prove that these operations relate periodic sequences to periodic two- dimensional arrays and vice-versa. Moreover, they relate an one-dimensional synchronization sequence to a two- dimensional synchronization array and vice-versa, if the two- dimensional array is periodic. As a consequence we obtain the main result of the paper that two-dimensional periodic synchronization arrays which can be unfolded are equivalent to Sidon sequences over Z n , where n is the size of one period in the array. In Section V we present a construction
+of optimal Sidon sequences with q −1 elements over a group with q(q − 1) elements, where q is a power of a prime. This generalizes a similar result where q is a prime. Section VI contains conclusions and problems for further research.
+It is very simple to deﬁne the periodicity for one- dimensional sequences. An inﬁnite sequence S = . . . s −1 , s 0 , s 1 , s 2 , . . . is periodic if there exists an integer π such that s i+π = s i for each i ∈ Z. If π is the smallest integer for which the sequence has this property then we say that π is the period of the sequence and write the sequence as [s 0 , s 1 , . . . , s π−1 ], and say that the sequences is a cyclic sequence or a cycle. It is well known that
+Theorem 2: If π is the period of a sequence S, and there exists an integer ρ such that s i+ρ = s i for each i ∈ Z, then π divides ρ.
+Usually, an inﬁnite two-dimensional array A is said to be doubly periodic if there exists two integers κ and η such that for each i, j ∈ Z we have A(i+κ, j) = A(i, j+η) = A(i, j). But, it appears that this deﬁnition is too restricted. A generalized deﬁnition, which gives more information, is as follows. An inﬁnite two-dimensional array A is doubly periodic if there exists two linearly independent integer vectors (π 1 , π 2 ) and (ξ 1 , ξ 2 ) such that each i, j ∈ Z satisfy A(i+π 1 , j + π 2 ) = A(i + ξ 1 , j + ξ 2 ) = A(i, j). How we can deﬁne the smallest vectors with this property? What is the period of the array? and what is a cyclic two-dimensional array? These questions will be answered after two necessary deﬁnitions, of tiling and lattices, will be presented.
+Tiling is one of the most basic concepts in combinatorics. We say that a two-dimensional shape S tiles the two- dimensional square grid Z 2 if disjoint copies of S cover Z 2 . This cover of Z 2 with disjoint copies of S is called a tiling of Z 2 with S. For each shape S, in the tiling, we distinguish one of the points of S to be the center of S. Each copy of S in a tiling has the center in the same related point. The set T of centers in a tiling deﬁnes the tiling, and hence the tiling is denoted by the pair (T , S). Given a tiling (T , S) and a grid point (i 1 , i 2 ) we denote by c(i 1 , i 2 ) the center of the copy of S, S , for which (i 1 , i 2 ) ∈ S . We will also assume that the origin is a center of a copy of S. The ﬁrst lemma given in [4] can be easily veriﬁed.
+Lemma 1: For a given tiling (T , S) and a point (i 1 , i 2 ) the point (i 1 , i 2 ) − c(i 1 , i 2 ) belongs to the shape S whose center is in the origin.
+One of the most common types of tiling is a lattice tiling . A two-dimensional lattice Λ is a discrete, additive subgroup of the real two-dimensional space R 2 . W.l.o.g., we can assume that
+where v 1 , v 2 are two linearly independent vectors in R 2 . A lattice Λ deﬁned by (1) is a sublattice of Z 2 if and only if {v 1 , v 2 } ⊂ Z 2 . We will be interested solely in sublattices of Z 2 . The vectors v 1 , v 2 are called basis for Λ ⊆ Z 2 , and the 2 × 2 matrix
+having these vectors as its rows is said to be the generator matrix for Λ.
+The volume of a lattice Λ, denoted V (Λ), is inversely proportional to the number of lattice points per unit volume. More precisely, V (Λ) may be deﬁned as the volume of the fundamental parallelogram Π(Λ) in R 2 , which is given by
+There is a simple expression for the volume of Λ, namely, V (Λ) = | det G|.
+We say that Λ induces a lattice tiling of S if the lattice points can be taken as the set T to form a tiling (T , S).
+We are now in a position to deﬁne the period of a doubly periodic array and to deﬁne cyclic two-dimensional arrays. Let A be a doubly periodic two-dimensional array. Let (π 1 , π 2 ) and (ξ 1 , ξ 2 ) be two linearly independent vectors such that each i, j ∈ Z satisfy A(i + π 1 , j + π 2 ) = A(i+ξ 1 , j +ξ 2 ) = A(i, j). Let s be the volume of the lattice formed from (π 1 , π 2 ) and (ξ 1 , ξ 2 ). Let (π 3 , π 4 ) and (ξ 3 , ξ 4 ) be two linearly independent vectors for which, each i, j ∈ Z satisfy A(i + π 3 , j + π 4 ) = A(i + ξ 3 , j + ξ 4 ) = A(i, j). Let s be the volume of the lattice formed from (π 3 , π 4 ) and (ξ 3 , ξ 4 ). If s ≥ s for each such pair of linearly independent vectors then we say that {(π 1 , π 2 ), (ξ 1 , ξ 2 )} is the period of A and s is the volume of A. The period in the one- dimensional case has the role of the period and the volume in the two-dimensional case.
+Clearly, the period of a two-dimensional array is not unique. The volume of the array is unique and can be calculated from the given period. We have a theorem in the two-dimensional case which is akin to Theorem 2.
+Theorem 3: Let A be a doubly periodic array with period {(π 1 , π 2 ), (ξ 1 , ξ 2 )}. Let (π 3 , π 4 ) and (ξ 3 , ξ 4 ) be two linearly independent vectors for which, each i, j ∈ Z satisfy A(i + π 3 , j + π 4 ) = A(i + ξ 3 , j + ξ 4 ) = A(i, j). Let s be the volume of the lattice formed from (π 3 , π 4 ) and (ξ 3 , ξ 4 ). If s is the volume of the lattice formed from (π 1 , π 2 ) and (ξ 1 , ξ 2 ) then s divides s .
+A shape S will be called cyclic if there is a lattice tiling Λ for S. In a cyclic sequence the order of the elements, in the sequence, is obvious. It is less obvious for a two-dimensional shape. We will discuss this order in Section IV.
+Several types of two-dimensional synchronization arrays are deﬁned in the literature. We start with a general deﬁnition which was given in [3], [5]. Let S be a given shape, on the square grid, with m dots on grid points. S is called
+a distinct difference conﬁguration (DDC) if the m 2 lines connecting dots are distinct either in their length or in their slope. Several types of DDCs were deﬁned in the literature. The main focus of research which was done on this topic is related to Costas arrays. A Costas array is an m × m permutation array, i.e. it has exactly one dot in each row and each column. Some results on Costas arrays are given in [12], [13], [20], [21], [22].
+We now present a deﬁnition for a doubly periodic DDC. A doubly periodic S-DDC is a doubly periodic two- dimensional array A with period {(π 1 , π 2 ), (ξ 1 , ξ 2 )} such that the following three properties are satisﬁed.
+• The lattice formed by (π 1 , π 2 ) and (ξ 1 , ξ 2 ) is a lattice tiling for S.
+• Each copy of S on the two-dimensional arrays A is a DDC.
+• In each two copies of S in the tiling, the positions of the dots are the same.
+Doubly periodic DDCs and in particular Costas arrays were considered in the past, e. g. [4], [23], [24]. There are two essential constructions for Costas arrays, both of them form doubly periodic DDCs. The ﬁrst construction is due to Welch and the second construction is due to Golomb (with a variant of Lempel) [12], [13], [20]. We will present both of them in their doubly periodic version.
+Let α be a primitive root modulo a prime p and let A be the square grid. For any integers i and j, there is a dot in A(i, j) if and only if α i ≡ j mod p.
+Theorem 4: Let A be the array of dots from the Periodic Welch Construction. Then A is a doubly periodic S-DDC with period {(0, p), (p−1, 0)} and S is a p×(p−1) rectangle. The periodic Golomb Construction:
+Let α and β be two primitive elements in GF(q), where q is a prime power. For any integers i and j, there is a dot in A(i, j) if and only if α i + β j = 1.
+Theorem 5: Let A be the array of dots from the Periodic Golomb Construction. Then A is a doubly periodic S-DDC with period {(0, q −1), (q −1, 0)} and S is a (q −1)×(q −1) square.
+There are many important questions concerning Costas arrays. A few of them are related to the periodicity of the arrays. In particular we have the following two question:
+1) Does the Welch construction generate all singly pe- riodic Costas arrays? where a singly periodic Costas array of order n is an n × ∞ array in which each n × n sub-array is a Costas array. Welch Construction has this property for n = p − 1.
+2) Are there more constructions for Costas arrays with any periodicity property?
+The conjecture is YES for the ﬁrst question and NO for the second question. Some evidence that this conjecture is true is given in [25]. In fact it should be said that is very likely that most if not all Costas arrays (periodic or non- periodic) are known since they derived from the known constructions [26]. In what follows we will offer more evidence for the difﬁculty of producing new doubly periodic
+S-DDCs with many dots, different from those constructed by folding [4].
+Costas arrays are only one family of DDCs, and doubly periodic DDCs. Two other families which were considered in the literature, are the sonar sequences [12], [15], [23], [27], and the Golomb rectangles [14], [17].
+This section is devoted to a transformation of a periodic sequence into a doubly periodic array and a transformation of a doubly periodic array into a periodic sequence. The two transformations will be called folding and unfolding, respec- tively, and as one might expect these two transformations are inverse of each other. As a consequence of the deﬁnition of folding we will be able to deﬁne the order of the elements in a cyclic shape. We will give the known theorems on the necessary and sufﬁcient conditions that a folding exists. Based on these results we will deﬁne the inverse operation of unfolding. This will lead to the main theorem which will state when a doubly periodic two-dimensional DDC (or a cyclic DDC) is able to be unfolded into a Sidon sequence.
+The deﬁnition of folding involves a lattice tiling (T , S), where S is the shape on which the folding is performed. A direction is a nonzero integer vector (d 1 , d 2 ), where d 1 , d 2 ∈ Z.
+Let S be a two-dimensional shape and let δ = (d 1 , d 2 ) be a direction. Let Λ be a lattice tiling for a shape S, and let S 1 be the copy of S, in the related tiling, which includes the origin. We deﬁne recursively a folded-row starting in the origin. If the point (i 1 , i 2 ) is the current point of S 1 in the folded-row, then the next point on its folded-row is deﬁned as follows:
+• If the point (i 1 + d 1 , i 2 + d 2 ) is in S 1 then it is the next point on the folded-row.
+• If the point (i 1 +d 1 , i 2 +d 2 ) is in S 2 = S 1 whose center is in the point (c 1 , c 2 ) then (i 1 + d 1 − c 1 , i 2 + d 2 − c 2 ) is the next point on the folded-row (by Lemma 1 this point is on S 1 ).
+The deﬁnition of folding is based on a lattice Λ, a shape S, and a direction δ. The triple (Λ, S, δ) deﬁnes a folding if the deﬁnition yields a folded-row which includes all the elements of S. It appears that only Λ and δ determines whether the triple (Λ, S, δ) deﬁnes a folding. The role of S is only in the order of the elements in the folded-row; and of course Λ must deﬁne a lattice tiling for S.
+The ﬁrst two lemmas proved in [4] are an immediate consequence of the deﬁnitions and provide us with concise conditions for whether the triple (Λ, S, δ) deﬁnes a folding.
+Lemma 2: Let (T , S) be a lattice tiling deﬁned by the two-dimensional lattice Λ and let δ = (d 1 , d 2 ) be a direction. (Λ, S, δ) deﬁnes a folding if and only if the set {(i · d 1 , i · d 2 ) − c(i · d 1 , i · d 2 ) : 0 ≤ i < |S|} contains |S| distinct elements.
+Lemma 3: Let (T , S) be a lattice tiling deﬁned by the two-dimensional lattice Λ and let δ = (d 1 , d 2 ) be a direction. (Λ, S, δ) deﬁnes a folding if and only if (|S| · d 1 , |S| · d 2 ) − c(|S| · d 1 , |S| · d 2 ) = (0, 0) and for each i, 0 < i < |S| we have (i · d 1 , i · d 2 ) − c(i · d 1 , i · d 2 ) = (0, 0).
+The next theorem determines precisely when the triple (Λ, S, δ) deﬁnes a folding.
+Theorem 6: Let Λ be a lattice whose generator matrix is given by
+where all the entries of G are nonzeroes. Let d 1 and d 2 be two positive integers and τ = g.c.d.(d 1 , d 2 ). If Λ deﬁnes a lattice tiling for the shape S then the triple (Λ, S, δ) deﬁnes a folding
+• with the direction δ 	 = 	 (+d 1 , +d 2 ) if and only if g.c.d.( d 1 v 22 −d 2 v 21 τ 	 , d 2 v 11 −d 1 v 12 τ 	 ) = 1 and g.c.d.(τ, |S|) = 1;
+• with the direction δ 	 = 	 (+d 1 , −d 2 ) if and only if g.c.d.( d 1 v 22 +d 2 v 21 τ 	 , d 2 v 11 +d 1 v 12 τ 	 ) = 1 and g.c.d.(τ, |S|) = 1;
+• with the direction δ = (+d 1 , 0) if and only if g.c.d.(v 12 , v 22 ) = 1 and g.c.d.(d 1 , |S|) = 1;
+• with the direction δ = (0, +d 2 ) if and only if g.c.d.(v 11 , v 21 ) = 1 and g.c.d.(d 2 , |S|) = 1.
+G is taken in a way that the parameters in the term “g.c.d.(·, ·)” are nonzero for the related direction.
+A direction δ for which (Λ, S, δ) deﬁnes a folding also deﬁnes the order of the elements in a cyclic shape S. This order is exactly the order of the elements in the folded- row. It is easy to verify that only |S| − 1 directions should be considered for the existence of a folding. The order of elements on S is clearly not unique as it was proved in [4] that if one direction deﬁnes a folding then φ(|S|) directions deﬁne a folding (and they come in pairs of reverse order), where φ is the Euler totient function.
+The unfolding operation is deﬁned directly from the fold- ing operation. Let Λ be a lattice tiling for a two-dimensional shape S and a let δ be a direction, for which (Λ, S, δ) deﬁnes a folding. Then the folded-row is the unfolded sequence generated from the shape S. In the folding, the folded-row indicates to which position of the array, each element of a given one-dimensional sequence will be assigned. In the unfolding, the folded-row is actually an unfolded-row and it indicates to which position of the sequence, each element of the array is assigned. These deﬁnitions are completely natural and there is no surprise. What is more interesting is the following theorem which connects two-dimensional doubly periodic S-DDCs with Sidon sequences.
+Theorem 7: Let A be a two-dimensional doubly periodic S-DDC with period {(π 1 , π 2 ), (ξ 1 , ξ 2 )}. Let Λ be the lattice tiling of S formed from (π 1 , π 2 ) and (ξ 1 , ξ 2 ). If δ is a direction for which (Λ, S, δ) deﬁnes a folding then the folded-row generated by the unfolding of S is a Sidon Sequence.
+Proof: We will give a sketch of the proof. A proof with all the details will appear in the full version of this work. We assign colors to the points of the square grid as follows. The points of the shape S whose center is in the origin (say S 0 ) are assigned colors by the order of the folded-row, where the origin is assigned with a zero. Each other copy of S in
+the tiling is assigned with the same colors as S 0 in the same related positions.
+Assume the contrary, that the folded-row is not a Sidon sequence. It follows that there exists two distinct pairs of integers (i 1 , i 2 ) and (i 3 , i 4 ), where i 1 , i 2 , i 3 , and i 4 , are positions with dots on the folded-row, such that i 4 − i 3 ≡ i 2 − i 1 (mod n), where n = |S|. Let S j , 1 ≤ j ≤ 4, a copy of S on the grid in which a point colored with i j is the center. It can be shown that in one of these four copies the two pair of lines which connects the points colored with i 1 and i 2 ad those colored with i 3 and i 4 are equal in length and slope. A contradiction to the assumption that A is a two-dimensional doubly periodic S-DDC.
+Theorem 8: Let Λ be a lattice tiling for a two-dimensional shape S, n = |S|, and let δ be a direction. Let B be a Sidon sequence with m elements over Z n . If (Λ, S, δ) deﬁnes a folding then there exists a two-dimensional doubly periodic S-DDC A with m dots in each copy of S of A.
+In view of Theorems 7 and 8 it is tempting to prove that “a Sidon sequence over Z n with m elements exists if and only if a two-dimensional doubly periodic S-DDC with m dots in each copy of S exists”. But, this claim is not correct. As we will conclude from the following discussion, which applies Theorem 7 on the known doubly periodic constructions for Costas arrays.
+Example 1: The following 7 × 6 array was obtained by the periodic Welch Construction for p = 7 and the primitive root 3 modulo 7.
+• •
+• •
+By using unfolding with direction (1, 1), where the lower left dot is taken on the origin we obtain the Sidon sequence {0, 8, 10, 11, 33, 37} modulo 42.
+Remark 1: A construction such as the periodic Golomb Construction cannot produce any Sidon sequence since the shape S is a square and there is no direction which deﬁnes a folding when S is a square.
+The two celebrated constructions of optimal Sidon se- quences are the ones of Singer [28] and Bose [29]. Let q be a power of a prime number. Singer’s construction, which is based on projective planes, produces a Sidon sequence with q + 1 elements over Z q 2 +q+1 . Bose’s construction, which is based on afﬁne planes, produces a Sidon set with q elements over Z q 2 −1 . The construction of Ruzsa [30] generates optimal Sidon sequences with p−1 elements taken modulo p 2 − p, where p is a prime number. In this section we generalize this construction to obtain a Sidon sequence with q − 1 elements taken over (q − 1)×GF(q), where q is any power of a prime. Given a power of a prime q and
+a primitive element α in GF(q), we construct the set A q,α deﬁned by
+Proof: We have to prove that given four integers i 1 , i 2 , i 3 , and i 4 , 0 ≤ i 1 , i 2 , i 3 , i 4 ≤ q − 2, such that i 1 = i 3 and i 2 = i 3 then the two pairs (i 1 + i 2 , α i 1 + α i 2 ) and (i 3 + i 4 , α i 3 + α i 4 ) are not equal. Assume the contrary, that for four such integers we have
+i 1 +i 2 ≡ i 3 +i 4 (mod q −1), α i 1 +α i 2 = α i 3 +α i 4 . (2) Let t ≡ i 1 − i 3 ≡ i 4 − i 2 (mod q − 1), where clearly we can assume that 0 < t < q − 1. Hence, we replace (2) with the equations
+i 1 − i 3 ≡ i 4 − i 2 (mod q − 1), α i 1 − α i 3 = α i 4 − α i 2 (3) We can substitute i 1 ≡ i 3 + t (mod q − 1) and i 4 ≡ i 2 + t (mod q − 1) in (3) to obtain the equation
+α t+i 3 − α i 3 = α t+i 2 − α i 2 , which is equivalent to the equation
+α i 3 (α t − 1) = α i 2 (α t − 1) . 	 (4) Since 0 < t < q − 1, it follows that α t − 1 = 0 and hence from (4) we have that α i 3 = α i 2 , i.e., i 3 = i 2 which contradicts the original choice of i 2 and i 3 . Therefore, A q,α is a Sidon sequence. The optimality of the sequence is a straight forward enumeration.
+Remark 2: The new construction of Sidon sequences does not help in constructing new doubly periodic S-DDC since the abelian group is not Z n .
+Sidon sets have many applications in coding theory and in communication problems. Constructions of optimal Sidon sequences are rare. We deﬁned periodicity and cyclic ar- rays in the two-dimensional case. We proved that unfolded optimal doubly periodic two-dimensional synchronization patterns are optimal Sidon sequences, thus forming some equivalence between the two structures. All the results concerning two-dimensional arrays are generalized readily to higher dimensions. We presented a new construction of optimal Sidon sequences, with q − 1 elements, over an alphabet with q(q − 1) elements, where q is a power of a prime. The main problem for future research in this direction is to ﬁnd new constructions for optimal doubly periodic DDCs and new constructions for optimal Sidon sequences.
+This work was supported in part by the United States- Israel Binational Science Foundation (BSF), Jerusalem, Is- rael, under Grant No. 2006097.
+[[[ REFS ]]]
+A. E. Brouwer
+J. B. Shearer
+N. J. A. Sloane
+W. D. Smith
+--
+A new table of constant weight codes
+----
+R. M. Roth
+G. Seroussi
+--
+Location-Correcting Codes
+----
+S. R. Blackburn
+T. Etzion
+K. M. Martin
+M. B. Paterson
+--
+Two-Dimensional Patterns with Distinct Differences – Constructions, Bounds, and Maximal Anticodes
+----
+T. Etzion
+--
+Sequence folding, lattice tiling, and multidimensional coding
+----
+S. R. Blackburn
+T. Etzion
+K. M. Martin
+M. B. Paterson
+--
+Dis- tinct difference conﬁgurations: multihop paths and key predistribution in sensor networks
+----
+A. Barg
+A. Mazumdar
+--
+Codes in permutations and error correc- tion for rank modulation
+----
+K. O’Bryant
+--
+A complete annotated bibliography of work related to Sidon sequences
+----
+W. C. Babcock
+--
+Intermodulation interference in radio systems
+----
+G. S. Bloom
+S. W. Golomb
+--
+Applications of numbered undirected graphs
+----
+M. D. Atkinson
+N. Santoro
+J. Urrutia
+--
+Integer sets with distinct sums and differences and carrier frequency assignments for nonlinear repeaters
+----
+A. W. Lam
+D. V. Sarwate
+--
+On optimum time-hopping patterns
+----
+S. W. Golomb
+H. Taylor
+--
+Two-dimensional synchronization pat- terns for minimum ambiguity
+----
+S. W. Golomb
+H. Taylor
+--
+Constructions and properties of Costas arrays
+----
+J. P. Robinson
+--
+Golomb rectangles
+----
+R. A. Games
+--
+An algebraic construction of sonar sequences using M- sequences
+----
+A. Blokhuis
+H. J. Tiersma
+--
+Bounds for the size of radar arrays
+----
+J. P. Robinson
+--
+Golomb rectangles as folded ruler
+----
+S. R. Blackburn
+T. Etzion
+K. M. Martin
+M. B. Paterson
+--
+Ef- ﬁcient key predistribution for grid-based wireless sensor networks
+----
+K. Drakakis
+S. Rickard
+--
+On the construction of nearly optimal Golomb rulers by unwrapping Costas arrays
+----
+S. W. Golomb
+--
+Algebraic constructions for Costas arrays
+----
+K. Drakakis
+--
+A review of Costas arrays
+----
+S. W. Golomb
+G. Gong
+--
+The status of Costas arrays
+----
+O. Moreno
+S. W. Golomb
+C. Corrada
+--
+Extended sonar sequences
+----
+O. Moreno
+S. Golomb
+--
+A new optimal double periodical construction of one target two-dimensional arrays
+----
+T. Etzion
+S. W. Golomb
+H. Taylor
+--
+Tuscan-k squares
+----
+K. Drakakis
+F. Iorio
+--
+The enumeration of Costas arrays of order 28
+----
+P. Erd˝os
+R. Graham
+I. Z. Ruzsa
+H. Taylor
+--
+Bounds for arrays of dots with distinct slopes or lengths
+----
+J. Singer
+--
+A theorem in ﬁnite projective geometry and some ap- plications to number theory
+----
+R. C. Bose
+--
+An afﬁne analogue of Singer’s theorem
+----
+
+--
+Solving a linear equation in a set of integers
+[[[ META ]]]
+xmlpapertitle -> Sidon Sequences and Doubly Periodic Two-Dimensional Synchronization Patterns
+pdf -> E:\testDataset\015.pdf
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\015.pdf
+xmlauthors -> Tuvi Etzion
+xmlroom -> -
+[[[ LINKS ]]]
+

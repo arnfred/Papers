@@ -1,0 +1,143 @@
+[[[ ID ]]]
+11
+[[[ INDEX ]]]
+10
+[[[ TITLE ]]]
+The Hidden Flow of Information
+[[[ AUTHORS ]]]
+Chung Chan
+[[[ ABSTR ]]]
+Abstract—An information identity is proven, equating the se- crecy capacity of the multiterminal secret key agreement problem and the throughput of certain undirected network. As a conse- quence, network coding can be used for secret key agreement while secrecy capacity characterizes the network throughput. A meaningful notion of mutual dependence is established with the combinatorial interpretation of partition connectivity.
+[[[ BODY ]]]
+Let Z 1 and Z 2 be two independent and uniformly random bits. If their mod-2 sum Z 3 := Z 1 + Z 2 is revealed, both bits remain uniformly random. However, they become completely dependent in the sense that Z 1 can be recovered from Z 2 and vice versa with the knowledge of Z 3 . In other words, Z 1 and Z 2 share one bit of information in the presence of Z 3 . We want to capture this notion of mutual dependence in general. Let Z V := (Z i : i ∈ V ) be a random vector indexed by a ﬁnite set V . Can we measure the amount of information shared among the random variables in Z A with the help of Z A c for some subset A ⊆ V : |A| ≥ 2? Is there a unifying notion of mutual dependence having different operational meanings?
+Consider the framework of secret key agreement [ 1 ]. Sup- pose Z 1 , Z 2 and Z 3 deﬁned earlier are random sources observed by user 1, 2 and 3 respectively. If user 3 reveals Z 3 publicly to everyone, then user 2 can recover Z 1 = Z 2 + Z 3 . Since Z 1 remains uniformly random to a wiretapper who observes only the public message Z 3 , it can be used as a secret key bit shared between user 1 and 2. Where does this secret key bit come from? Since user 1 and 2 agree on 2 bits of information, namely ( Z 1 , Z 2 ), after only 1 bit of public discussion, there must be 1 bit of information not obtained directly from the public message. This bit of secret information has to come from the correlation between Z 1 and Z 2 enhanced by Z 3 . More generally, suppose user i observes some random source Z i for i ∈ V . Allow them to discuss publicly until the set A of active users can share some common secret key bits. The maximum key rate is called the secrecy capacity. It is the additional information agreed upon by the active users but cannot be obtained directly from the public discussion. In this sense, secrecy capacity naturally captures the desired notion of mutual dependence.
+Consider the 3-user network again. Suppose user 1 and 3 reveals the public messages F 1 := ˜X 1 + Z 1 and F 3 := ˜X 3 + Z 3 respectively for some arbitrary inputs (˜ X 1 , ˜X 3 ) independent of ( Z 1 , Z 2 , Z 3 ). Since (F 1 , F 3 ) remains uniformly random regardless of the realization of (˜ X 1 , ˜X 3 ), one cannot learn
+anything about the inputs from the public messages. However, user 2 can recover the sum ˜ Z 2 := ˜X 1 + ˜X 3 as F 1 + F 3 + Z 2 . There is effectively a private transmission link as shown in Fig. 1(a) . If user 1 makes ˜ X 1 uniformly random while user 3 sets ˜ X 3 := 0, user 2 can recover ˜X 1 from ˜ Z 2 = ˜X 1 + 0. i.e. there is one bit of secret information ﬂow from the source node s := 1 to the sink node 2, and so user 1 and 2 agree on a secret key bit. Alternatively, by symmetry, one can obtain a transmission link with inputs from user 2 and 3 (Fig. 1(b) ) or from user 1 and 2 (Fig. 1(c) ). In the ﬁrst case, one secret key bit is still achievable with user 2 acting as the source. This cannot be done for the second case because neither user 1 nor 2 observes from the link. In general, we have a network coding problem over an undirected network: 1) turn some given private source Z V into an effective private channel with certain orientation, and 2) have each user i ∈ V multicast independent uniformly random bits to all active users in A at some rate R i . Can the total information ﬂow i∈V R i into A reach the secrecy capacity? Is it enough to have just one source s ∈ A, i.e. R i = 0 for i = s? We will show that the answers are afﬁrmative due to the combinatorial structure of information ﬂow. Consequently, there are different characterizations and interpretations for the same notion of mutual dependence.
+Given random variables Z 1 and Z 2 with joint distribution P Z 1 Z 2 , we write H( Z 1 ) = E[− log P Z 1 (Z 1 )] as the entropy of Z 1 and H( Z 1 |Z 2 ) = H(Z 1 Z 2 ) − H(Z 2 ) as the conditional en- tropy given Z 2 . It is well-known in information theory [ 2 ] that Z 1 and Z 2 share a mutual information I( Z 1 ∧Z 2 ) deﬁned as the divergence D(P Z 1 Z 2 P Z 1 P Z 2 ) = H(Z 1 ) + H(Z 2 ) − H(Z 1 Z 2 ).
+The main result is the following identity equating different interpretations of the same notion of mutual dependence in the multivariate case involving two or more random variables.
+Theorem 1 Consider a random vector Z V := (Z i : i ∈ V ) indexed by a ﬁnite ground set V . For all A ⊆ V : |A| ≥ 2 and s ∈ A, we have
+z(V ) = max x
+where z V , x V ∈ R V (with the notation z(B) := i∈B z i and similary for x(B), B ⊆ V ) satisfy
+(2) (3)
+and P ⊆ 2 V satisﬁes |P| ≥ 2 and (C ∩ A : C ∈ P) is a partition of A into non-empty disjoint sets. The divergence D(· ·) in ( 1d ) equals C∈P H(Z C ) − H(Z V ). 	 2
+( 1a ) is the secrecy capacity with min z V z(V ) being the smallest rate of communication for omniscience [ 1 ]. ( 1b ) is the maximum rate that a source node s can multicast information to all nodes in A \ {s} over certain undirected network [ 3 , Chapter 3]. ( 1c ) is some generalized notion of partition connectivity in combinatorics [ 4 ], [ 5 ]. When A = V , ( 1c ) simpliﬁes to ( 1d ) which is the information divergence from the joint distribution to the product of the marginal distributions, just like the mutual information for two random variables. (1a) ≤ (1c) was pointed out in [ 1 ] and shown to be tight in [ 6 ]. The integer version of (1b) = (1c) was shown in [ 3 , Theorem B.2] when Z V is a ﬁnite linear source [ 3 , Deﬁnition 3.1], extending some results in [ 4 ], [ 5 ]. (1a) = (1b) = (1c) for a general Z V or A V was not known before. It gives as a special case the rate region of the point-to- point undirected network in [ 7 ], [ 8 ], and more generally any undirected ﬁnite linear network. Let us return to the previous 3-user network as a concrete example.
+Example 1 Consider V := {1, 2, 3}, A := {1, 2}, s := 1 and the mod-2 sum Z 3 := Z 1 + Z 2 of two independent uniformly random bits Z 1 and Z 2 . The feasible z V to ( 2 )
+is plotted in Fig. 2(a) as the upward polyhedron with the vertices (0, 0, 1) and (1, 1, 0). The point z V = (0, 0, 1) attains the optimal value of 1 bit for ( 1a ). The triangular plane corresponds to the feasible x V to ( 3 ). Consider x V = (1, 0, 1) in particular. Fig. 2(b) is the corresponding network with inputs located at X 1 := Z 1 and X 2 := Z 2 . ( X 3 is set to a constant implicitly.) More precisely, for any C ⊆ V , we have H(Z C )−x(C) = H(Z C |X C ), which can be interpreted as the amount of information ﬂow into C. The possible choices of B for ( 1b ) are {1} and {1, 3}, while the choices of P for ( 1c ) are {{1}, {2}}, {{1, 3}, {2}} and {{1}, {2, 3}}. All of them lead to the same optimal value of 1 bit, verifying the identity ( 1 ). 2
+In the next section, we will introduce the combinatorial structure underlying the main result. A more general identity for submodular functions will be given in Section IV and proven in Section V . Theorem 1 will follow from Theorem 2 with f chosen as the entropy function ( 12 ).
+Given a ﬁnite ground set V , we denote 2 V as the power set {B ⊆ V } of V , and B c as the complement V \B of the subset B ⊆ V . For a family F ⊆ 2 V of subsets of V , ¯ F denotes the complement {B c : B ∈ F}. F is called a lattice family if
+For A ⊆ V , F is called A-co-intersecting if for all B 1 , B 2 ∈ F B 1 ∪ B 2 ⊇ A =⇒ B 1 ∩ B 2 , B 1 ∪ B 2 ∈ F 	 (5)
+Proposition 1 F = {B ⊆ V : B ⊇ A} is the unique A-co- intersecting downset with F := B∈F B = V . 	 2 P ROOF F is a downset because B ⊆ B ⊇ A implies B ⊇ A. It is A-co-intersecting because B 1 ∪ B 2 ⊇ A implies B 1 ∩ B 2 ⊇ A. To prove uniqueness, consider any A-co-intersecting downset G with G = V . For any s ∈ A and B ∈ G, we have B \ {s} ∈ G since G is a downset. B∈G B \ {s} = V \ {s} because G = V . V \{s} ∈ G because G is A-co-intersecting. Since G is a downset, it must also contain all subsets of V \{s} for any s ∈ A. In other words, G ⊇ {B ⊆ V : B ⊇ A}. The reverse inclusion is because G is A-co-intersecting.
+With |A| ≥ 2, deﬁne Π(F, A) as the set of P ⊆ ¯ F such that |P| ≥ 2 and (C ∩ A : C ∈ P) is a partition of A, i.e.
+Given any P ∈ Π(F, A), we can construct a λ ∈ Λ(F, A) by setting λ(B) to 1 |P|−1 if B c ∈ P and 0 otherwise.
+For set function f : F → R and B 1 , B 1 ∪B 2 ∈ F, we write f(B 2 |B 1 ) := f(B 1 ∪ B 2 ) − f(B 1 ). This gives the chain rule
+for all B 1 , . . . , B k ⊆ V such that B 1 ∪· · ·∪B j ∈ F for j ≤ k. f is said to be submodular if
+for all B 1 , B 2 ∈ F : B 1 ∩ B 2 , B 1 ∪ B 2 ∈ F. Equivalently, we have successive conditioning reduces f
+for a random vector Z V is known [ 9 ] to be submodular ( 10 ) because of the fact that conditioning reduces entropy ( 11 ).
+For a set function f : 2 V → R with f(∅) ≥ 0, and a family F ⊆ 2 V , deﬁne the following polyhedra
+(13) (14) (15)
+To argue this, suppose x V ∈ B(f). Then, x V ∈ P(f) by deﬁnition. Since x(B c ) ≤ f(B c ) and x(V ) = f(V ), we have x(B) = f(V ) − x(B c ) ≥ f(B|B c ) for every B ∈ F. This implies x V ∈ Q(f, F) as desired.
+If f is submodular ( 10 ), P(f ) is called a submodular polyhedron while B(f ) is a non-empty set called the base polyhedron of P(f ). In particular, z V is a vertex of B(f ) iff for some strict total order ≺ on V we have z i = f(i|{≺ i}) for i ∈ V where {≺ i} := {j ∈ V : j ≺ i}. See [ 10 , Part IV] for more details. A simple property on P(f ) is as follows.
+Then, T (f, z V ) is a lattice family ( 4 ) if f is submodular ( 10 ). 2 P ROOF For B 1 , B 2 ∈ T (f, z V ) and z V ∈ P(f),
+f(B 1 ) + f(B 2 ) = z(B 1 ) + z(B 2 ) 	 by ( 17 ) = z(B 1 ∩ B 2 ) + z(B 1 ∪ B 2 )
+(Q 1 − Q 2 ) := {x − y : x ∈ Q 1 , y ∈ Q 2 } (Q 1 ) + := {z ≥ 0 : z ∈ Q 1 }
+where z ≥ 0 means that every element of z is non-negative. For x V ∈ B(f), deﬁne the polyhedra
+= {y V ≥ 0 : y(B) ≤ f(B c ) − x(B c ) , B ∈ F} G(f, F) :=
+(19) To explain ( 18 ), it sufﬁces to show that for any y V = x V −z V , we have y(B) ≤ f(B c ) − x(B c ) iff z(B) ≥ f(B|B c ). This holds because for all B ∈ F,
+since x(V ) = f (V ). To prove ⊆ for ( 19 ), n.b. any y V ∈ G(f, F) by deﬁnition has an x V ∈ B(f) and z V ∈ Q(f, F) such that y V = x V − z V ≥ 0. Thus, z V = x V − y V ∈ P(f) because x V ∈ P(f) by ( 14 ) and reducing x V by y V ≥ 0 does not violate any constraints of P(f ) in ( 13 ).
+Because Theorem 1 can be rewritten in terms of the entropy function h in ( 12 ), a natural question to ask is whether it holds for more general set functions. What is the fundamental property of h that gives rise to the result? It turns out that the identity ( 1 ) applies equally well to the differential entropy [ 2 ] of continuous random variables, and more generally, any submodular function f with f ( ∅) ≥ 0. 2
+Theorem 2 If we have for some A ⊆ V : |A| ≥ 2 1) F = {B ⊆ V : B ⊇ A}, and
+2) f : 2 V → R is submodular ( 10 ) with f ( ∅) ≥ 0 then for all s ∈ A
+z(V ) = max x
+where Q, B, Π are deﬁned in ( 15 ), ( 14 ), ( 8 ) respectively. Given an optimal z V to ( 20a ), we can obtain an optimal x V to ( 20b ) and ( 20c ) with x s = z s +f(V )−z(V ) and x i = z i for i = s. 3 2
+An optimal z V , B, P to the minimizations in ( 20a ), ( 20b ), ( 20c ) respectively can be computed in strongly polynomial- time by the ellipsoid method given that f can be evaluated efﬁciently. 4 If f is integer, [ 3 , Theorem B.2] implies the integer version of the identity that (20b) = (20c) when the maxi- mizations are over the set of integer bases x V ∈ B(f) ∩ Z V instead. 5 Stronger statements can be made when the structure of f can be captured by a hypergraph [ 3 , Appendix B.3].
+Instead of proving Theorem 2 in one lot, we ﬁrst give three lemmas which build up different parts of the desired identity. Lemma 1 If for some S ⊆ V : S = ∅
+2) |S| = 1 or f is submodular with f(∅) ≥ 0, then f(V ) − min. z
+y(V ) = max. y
+Every optimal y V to the last maximization has y(S c ) = 0. 2 Lemma 2 If we have
+2) f is submodular with f ( ∅) ≥ 0, then min. z
+Any ﬁnite optimal z V to the right is also optimal to the left. 2 Lemma 3 (See [ 3 , Theorem B.1]) If for A ⊆ V : |A| ≥ 2
+where Λ, Π are deﬁned in ( 7 ), ( 8 ) respectively. 6 	 2 Lemma 2 and 3 together require that F is an A-co-
+intersecting downset. By Proposition 1 , F in Theorem 2 is indeed the only choice that covers all elements in V . This choice also satisﬁes Lemma 1 for any S ⊆ A. With the help of the strong duality theorem [ 11 ] for linear programs, Lemma 1 and 2 will establish (20a) = (20b) with S = {s} while Lemma 3 will give ( 20c ). The details are as follows.
+It remains to prove the reverse inequality, i.e. for every z V ∈ Q(f, F) ∩ P(f) there exists some y V ∈ G(f, F) such that y(S) = y(V ) = f(V )−z(V ). It sufﬁces to ﬁnd some y V ≥ 0
+because the prior implies y(S) = y(V ) and latter implies y(V ) = f(V ) − z(V ) and y V ∈ G(f, F) as desired.
+Consider the case |S| = 1 ﬁrst. Deﬁne y V with y i := f(V ) − z(V ) for i ∈ S and 0 otherwise. Since y V ≥ 0, y(S c ) = 0 and y(V ) + z(V ) = f(V ), it remains to prove that z(B) + y(B) ≤ f(B) for B ⊆ V . By deﬁnition of y V , z(B) + y(B) equals f (V ) − z(B c ) for B ⊇ S and it equals z(B) otherwise. Since z V ∈ P(f) implies z(B) ≤ f(B), we need only focus on the case B ⊇ S and prove that f (V ) − z(B c ) ≤ f(B). By the assumption that F ⊇ 2 V \S , we have B c ∈ F. z V ∈ Q(f, F) implies z(B c ) ≥ f(B c |B) = f(V ) − f(B) as desired.
+Consider the alternative case when f is submodular but S can be any non-empty subset of V . Consider any y V ≥ 0 : y(S c ) = 0 satisfying
+where T is deﬁned in ( 17 ). Such y V can be constructed greedily as follows. 7 Starting with y V = 0, we have x V = z V ∈ P(f). If there exists i ∈ S \ T , i.e. x(B) < f(B) for all B i, then increase y i until x(B) = f (B) for some B i. For this new y V , we still have x V ∈ P(f) but T increases strictly to contain i. Repeating this procedure, we eventually obtain the desired y V with S \ T = ∅. n.b.
+(a) is because x(T ) = f (T ) by Proposition 2 . (b) is because z V ∈ Q(f, F) implies x V ∈ Q(f, F), and T ⊇ S implies T c ∈ F by the assumption that F ⊇ 2 V \S . Thus, x(T c ) ≥ f(T c |T ). Finally, x V ∈ P(f) implies that the inequality is satisﬁed with equality, and so x V = z V + y V ∈ B(f).
+P ROOF (L EMMA 2 ) Consider the non-trivial case when the minimum is ﬁnite. 8 We want to prove that any optimal z V ∈ Q(f, F) that minimizes z(V ) is also in P(f). Suppose to the contrary that an optimal z V has for some U ⊆ V that z(U c ) > f(U c ). To reach the desired contradiction, we will construct z V ∈ Q(f, F) with z (V ) < z(V ). Deﬁne z V with
+for some strict total order ≺ on V , and z U chosen as an optimal solution that minimizes z (U) subject to
+by the assumption that z(U c ) > f(U c ). It remains to show that z V ∈ Q(f, F), i.e. z (B) ≥ f(B|B c ) for all B ∈ F.
+which equals f (B \ U|B c ) by ( 9 ). Since B ∩ U ∈ F by the assumption that F is a downset, we have z (B ∩ U) ≥ f(B ∩ U|B c ∪ (B \ U)) by the deﬁnition of z U . Hence,
+partition of V and so C∈P x(C) = x(V ) = f(V ). This gives ( 20d ) when A = V .
+For any s ∈ A, we have F ⊇ 2 V \{s} , which satisﬁes the premise of Lemma 1 with S = {s}. The premises of Lemma 2 are also satisﬁed by Proposition 1 . By Lemma 1 , 2 and ( 19 ),
+which is ﬁnite since z V ∈ Q(f, F) implies for all i ∈ V that z i ≥ f({i}|{i} c ) ≥ 0. Consider some optimal z V and y V . By optimality, y s = f(V ) − z(V ) and y(V \ {s}) = 0. Then, z V + y V gives an optimal x V as desired because it is in B(f ) by the proof of Lemma 1 . ( 20b ) follows directly from ( 21 ) as
+(b) is by the deﬁnition of F. ≤ for (a) follows from ( 18 ). Since x V ∈ B(f) implies that f(B c ) − x(B c ) ≥ 0, equality for (a) can be achieved by setting y i = 0 for i = s.
+To prove ( 20c ), n.b. by the strong duality theorem [ 11 ] y s = min λ
+where λ : F → R + satisﬁes B s λ(B) ≥ 1. By restricting λ to satisfy B i λ(B) = 1 for all i in some U ⊆ V : s ∈ U,
+where Λ( F, U) is deﬁned in ( 7 ). As b(U ) is non-decreasing, we have y s ≤ b(A) ≤ b(V ). We will show that b(A) and b(V )
+simpliﬁes to ( 20c ) and ( 20a ) respectively, and so ( 21 ) implies that y s = b(A) = b(V ) as desired. b(A) equals ( 20c ) by Lemma 3 because F and g(B) := f(B c ) − x(B c ) for B ∈ F satisfy the premise by Proposition 1 and the submodularity of f. Rewriting g(B) as x(B) −f(B|B c ) and B λ(B)x(B) as
+because B i λ(B) = 1 and x(V ) = f(V ). This equals ( 20a ) by the strong duality theorem as desired.
+In sports, players in one team often signal for an attack without their opponents knowing it. Underpinning this hidden ﬂow of information is the tacit understanding among the players developed over a long period of time. In a way, this intuitive notion of mutual dependence is captured in a mathe- matical setting by relating secret key agreement to information ﬂow in an undirected network. A better understanding of the underlying combinatorial structure is likely to result from further studies on the secret key agreement problem under different agreement and secrecy criteria, and different models for the public and private observations.
+The author would like to thank his colleagues at INC, Professor Sidharth Jaggi, Robert Li, Anthony So, Raymond Yeung and Angela Zhang for their valuable comments.
+[[[ REFS ]]]
+I. Csisz´ar
+P. Narayan
+--
+Secrecy capacities for multiple terminals
+----
+R. W. Yeun
+--
+Information Theory and Network Coding
+----
+C. Chan
+--
+Generating secret in a network
+----
+A. Frank
+T. Kir´aly
+M. Kriesell
+--
+On decomposing a hypergraph into k-connected sub-hypergraphs
+----
+J. Bang-Jensen
+S. Thomass´e
+--
+Decompositions and orientations of hypergraphs
+----
+C. Chan
+L. Zheng
+--
+Mutual dependence for secret key agreement
+----
+Z. Li
+B. Li
+--
+Network coding in undirected networks
+----
+J. Goseling
+C. Fragouli
+S. N. Diggavi
+--
+Network coding for undi- rected information exchange
+----
+S. Fujishige
+--
+Polymatroidal dependence structure of a set of random variables
+----
+A. Schrijve
+--
+Combinatorial Optimization: Polyhedra and Efﬁciency
+----
+G. B. Dantzi
+M. N. Thap
+--
+Linear Programming
+[[[ META ]]]
+xmlpapertitle -> The Hidden Flow of Information
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\011.pdf
+xmlauthors -> Chung Chan
+xmlroom -> -
+[[[ LINKS ]]]
+

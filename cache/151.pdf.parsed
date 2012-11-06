@@ -1,0 +1,92 @@
+[[[ ID ]]]
+151
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Trellis-Based Check Node Processing for Low-Complexity Nonbinary LP Decoding
+[[[ AUTHORS ]]]
+Mayur Punekar
+Mark F. Flanagan
+[[[ ABSTR ]]]
+Abstract—Linear Programming (LP) decoding is emerging as an attractive alternative to decode Low-Density Parity-Check (LDPC) codes. However, the earliest LP decoders proposed for binary and nonbinary LDPC codes are not suitable for use at moderate and large code lengths. To overcome this problem, Vontobel et al. developed an iterative Low-Complexity LP (LCLP) decoding algorithm for binary LDPC codes. The variable and check node calculations of binary LCLP decoding algorithm are related to those of binary Belief Propagation (BP). The present authors generalized this work to derive an iterative LCLP decoding algorithm for nonbinary linear codes. Contrary to binary LCLP, the variable and check node calculations of this algorithm are in general different from that of nonbinary BP. The overall complexity of nonbinary LCLP decoding is linear in block length; however the complexity of its check node calculations is exponential in the check node degree. In this paper, we propose a modiﬁed BCJR algorithm for efﬁcient check node processing in the nonbinary LCLP decoding algorithm. The proposed algorithm has complexity linear in the check node degree. We also introduce an alternative state metric to improve the run time of the proposed algorithm. Simulation results are presented for (504 , 252) and (1008 , 504) nonbinary LDPC codes over Z 4 .
+[[[ BODY ]]]
+Binary and nonbinary LDPC codes [1] have attracted much attention in the research community in the past decade. LDPC codes are generally decoded by the iterative BP algorithm which performs remarkably well at moderate SNR levels. Due to their capacity achieving performance, LDPC codes are used in many current communications systems. They are also a promising candidate for future high data rate communication systems as well as for memory applications. However, BP suffers from a so called error ﬂoor problem at high SNR. Also, the heuristic nature of BP makes it difﬁcult to analyze, and simulations are too time consuming for the prediction of the error ﬂoor.
+In recent years, the new approach of LP decoding is emerging as an attractive alternative to the BP decoding. LP decoding for binary LDPC codes was proposed by Feldman et al. [2]. In LP decoding, the maximum likelihood decoding problem is modeled as an LP problem. In contrast to BP decoding, LP decoding relies on a well studied branch of mathematics which provides a basis for better understanding of the decoding algorithms. The work of [4] extended the LP decoding framework of Feldman et al. to nonbinary linear codes. Binary and nonbinary LP decoding algorithms rely on standard LP solvers based on simplex or interior point
+methods. However, the time complexity of these solvers is known to be exponential in number of variables, which limits the use of LP decoding to codes of small block length. To decode longer codes, a specialized low complexity LP decod- ing algorithm is necessary. Such a low-complexity algorithm for binary LDPC codes was proposed by Vontobel et al. in [3]. The present authors, in [5], extended the binary LCLP decoding algorithm [3] to nonbinary codes. The complexity of the proposed nonbinary LCLP decoding algorithm is linear in the block length. As opposed to binary LCLP decoding, nonbinary LCLP decoding is not directly related to nonbinary BP. Due to this, the complexity of the check node calculations of nonbinary LCLP decoding is exponential in the maximum check node degree. In this paper, we propose a modiﬁed BCJR algorithm for the check node processing of nonbinary LCLP decoding. The proposed algorithm has complexity linear in the check node degree and allows for efﬁcient implementation of nonbinary LCLP decoding. We also propose an alternative state metric which can be used for faster check node process- ing.
+This paper is organized as follows. Notation and background information is given in Section II. Section III reviews the non- binary LCLP decoding algorithm from [5]. Section IV contains the modiﬁed BCJR algorithm for check node processing and also explains the alternative state metric. Section V presents the simulation results, and Section VI concludes the paper.
+Let ℜ be a ﬁnite ring with q elements with 0 as its additive identity. We deﬁne ℜ − = ℜ \ {0}. Let C be a linear code of length n over the ring ℜ, deﬁned by C = {c ∈ ℜ n : cH T = 0}, where H is a m × n parity-check matrix with entries from ℜ. R(C) = log q (|C|)/n is the rate of code C. Hence, the code C is an [n, log q (|C|)] linear code over ℜ. The row indices and column indices of H are denoted by the sets J = {1, . . . , m} and I = {1, . . . , n} respectively. The j-th row of H is denoted by H j and the i-th column of H is denoted by H i . supp (c) denotes the support of the vector c. For each j ∈ J , let I j = supp(H j ) and for each i ∈ I, let J i = supp(H i ). Also let d j = |I j | and d = max j ∈J {d j }. We deﬁne the set E = {(i, j) ∈ I × J : j ∈ J , i ∈ I j } = {(i, j) ∈ I × J : i ∈ I, j ∈ J i }. Moreover for each j ∈ J
+For each i ∈ I, A i ⊆ ℜ |{0}∪J i | denotes the repetition code of the appropriate length and indexing. We also use variables u i,j = (u (α) i,j ) α ∈ℜ − and v j,i = (v (α) j,i ) α ∈ℜ − for all i ∈ I, j ∈ J i ∪{0}; also for i ∈ I, u i = (u i,j ) j ∈J i ∪{0} and similarly for j ∈ J , v j = (v j,i ) i ∈I j .
+We use the following mapping given in [4], ξ : ℜ → {0, 1} q −1 ⊂ R q −1
+We extend this mapping to deﬁne Ξ : ∪
+For κ ∈ R, κ > 0, we deﬁne the function ψ(x) = e κx and its inverse ψ −1 (x) = 1 κ log(x). We also use the soft-minimum operator introduced in [3]. For any κ ∈ R, κ > 0, the soft- minimum operator is deﬁned as
+where min l (κ) {z l } ≤ min l {z l } with equality attained in the limit as κ → ∞.
+We assume transmission over a q-ary input memory- less channel and also assume a corrupted codeword y = (y 1 , y 2 , · · · , y n ) ∈ Σ n has been received. Here, the channel output symbols are denoted by Σ. Based on this, we deﬁne a vector λ = (λ (α) ) α ∈ℜ − where, for each y ∈ Σ, α ∈ ℜ − ,
+Here p(y|c) denotes the channel output probability (density) conditioned on the channel input.
+To develop a low complexity LP solver for nonbinary linear codes, the present authors in [5] proposed a primal LP formulation which is equivalent to the original LP formulation proposed in [4]. This primal LP formulation has an advantage that, it has one-to-one corresponding with the Forney-style factor graph of the code and can be used to derive a suitable dual LP (see section IV in [5]). The dual LP is then “softened”
+by using the “soft-min” operator which is used to derive the update equations given in Lemma 6.1 in [5]. The softened dual LP is given below.
+, Ξ(a) (i ∈ I), ˆ θ j ≤ min
+j , Ξ(b) 	 (j ∈ J ), ˆ u i,j = −ˆ v j,i 	 ((i, j) ∈ E), ˆ u i, 0 = −ˆ f i 	 (i ∈ I),
+The update equation can be used to update the dual variable ˆ u (α) i,j related to an edge (i, j) ∈ E while all other edge variables are held constant. The updated value of the ˆ u (α) i,j is given by
+Here the vector ˜ u i is the vectors ˆ u i where the subvector ˆ u i,j is excluded. Similarly vector ˜ v j is obtained by excluding the subvector ˆ v j,i from ˆ v j . Vector ˜ a is same as a where the j-th position is omitted and vector ˜ b is obtained by excluding the i-th position from b. Now by updating all the edges (i, j) ∈ E with some schedule (e.g. circular), the low-complexity LP decoding algorithm converges to the maximum of the SDNBLPD. (see Lemma 6.2 in [5]). The overall complexity of this algorithm is linear in the block length.
+The terms (V i, ¯ α − V i,α ) and (C j, ¯ α − C j,α ) are related to the variable node (VN) i ∈ I and check node (CN) j ∈ J
+respectively. In the binary case, these terms can be efﬁciently calculated with the VN and CN calculations of the binary Sum- Product (SP) algorithm respectively [3]. However, for nonbi- nary codes, the calculation of (V i, ¯ α − V i,α ) and (C j, ¯ α − C j,α ) is not related to the VN and CN calculations of the nonbinary SP algorithm [5]. Hence, the CN calculations are carried out by processing exhaustively all of the possible codewords of the SPC code C j . Consequently, the complexity of calculating (C j, ¯ α − C j,α ) (i.e of CN calculation) is in exponential in the maximum check-node degree d.
+In [5], the authors suggested that the equations for C j, ¯ α and C j,α can be rewritten as follows:
+It may be observed from the above equations that the calculation of the C j, ¯ α and C j,α is in the form of the marginalization of a product of functions. Hence it is possible to compute C j, ¯ α and C j,α with the help of a trellis based variant of the SP algorithm (i.e. BCJR-type algorithm). One possibility is to use the trellis of the binary nonlinear code C N L j = {Ξ(b) : ∀b ∈ C j }. However, due to nonlinear nature of this binary code, the state complexity at the center of its trellis would be exponential in d j . Here state merging is also not possible. Hence there is no complexity advantage when we use the trellis of the binary nonlinear code C N L j .
+However if the trellis for the nonbinary SPC code C j is used, then the state complexity at each trellis step is O(q) and is independent of d j . The branch complexity of this trellis is O(q 2 ). In the following, we prove that the marginals C j, ¯ α and C j,α can be efﬁciently calculated with some modiﬁcations to the BCJR algorithm which uses the trellis of the nonbinary code C j . For this purpose we deﬁne the following for the trellis of the SPC code C j :
+2) (s, s ′ ) ∈ (S t , S t +1 ) represents a branch in the trellis which is related to the symbol b t = s ′ − s.
+5) Branch metric for each (s, s ′ ) ∈ (S t , S t +1 ) is g(s, s ′ ) = g(b t ) = ψ ( ˆ v j,t , ξ(b t ) ).
+Lemma 4.1: C j,α and C j, ¯ α can be efﬁciently computed on the trellis of the nonbinary code C j as follows,
+where state metrics µ i and ν i +1 are calculated recursively from previous state metrics via
+Proof: First we prove that the state metrics can be computed recursively. The following may be observed from the deﬁnition of µ i (s),
+Hence µ i (s) can be calculated recursively from the previous state metrics. Similarly, we can prove that the ν i (s) can be calculated from previous state metrics.
+Now we prove the other part of the lemma. For ease of exposition we assume I j = {0, · · · , d j − 1} in the following.
+   
+Using (8) in (7) we get (5). Equation (6) can be proved in a similar manner.
+The overall algorithm works in two phases: in the ﬁrst phase, the forward and backward state metrics are calculated and stored; in the second phase the marginals C j,α and C j, ¯ α are computed with Lemma 4.1 where the state metrics computed in ﬁrst phase are utilized. It may be observed that the aforementioned algorithm is essentially the same as the BCJR algorithm except for the second phase where marginals are calculated.
+The calculations of the Lemma 4.1 can be visualized with the help of the trellis diagram. Figures 1 and 2 shows the trellis for the nonbinary SPC code of length 4 which is deﬁned over
+Z 4 . b 0 to b 3 represent the symbols, and states are represented by s i t , where t indicates the symbol after which the state occurs and i represents the sum of the symbols from b 0 to b t −1 . The dotted branches in Figure 1 represents the transitions related to the symbol b 1 = 1. The state pairs which are connected by these branches are used for the calculation of the C j, 1 . Similarly, the dotted branches in Figure 2 represent transitions related to the symbol b 1 = 1. Here the metrics of the corresponding state pairs are used for the calculation for the C j,¯ 1 .
+The forward state metric µ as deﬁned in (3) needs to be computed for the calculation of C j,α and can be reused for the calculation of C j, ¯ α . In (5) the algorithm needs to go through all branches (s, s ′ ) ∈ (S i , S i +1 ), s ′ − s = α for the calculation of C j, ¯ α . If the proposed algorithm is implemented in hardware or on multicore architectures, then the computation time for C j, ¯ α can be reduced by parallelizing its calculation. One possibility to parallelize calculation of C j, ¯ α is to deﬁne a new forward state metric ¯ µ, which can be computed in parallel with µ in the ﬁrst phase and reduces the calculations required during the second phase of the algorithm. For this we deﬁne an alternative forward state metric as follows,
+(9) with ¯ µ 0 (s, α) = 0, ∀s ∈ S 0 , ∀α ∈ ℜ − .
+It should be noted that due to the condition b i −1 = α, ¯ µ i (s, α) cannot be calculated recursively from ¯ µ i −1 ; instead it is calculated together with µ i (s) from µ i −1 as follows,
+With the help of the alternative forward state metric given in equation (9), the expression (5) of Lemma 4.1 can be rewritten as
+The forward state metric ¯ µ i (s, α) requires the calculation and storage of an additional q − 1 values for each state s ∈ S i during the ﬁrst phase. Hence the storage requirement for the calculation of C j, ¯ α with (10) increases by a factor of q. However, all additional state metric values can be calculated in parallel with µ which does not effect the run time of the ﬁrst phase of the algorithm. Also, the second phase of the algorithm needs to go through only q states instead of q(q − 1) branches, hence the overall run time for computing C j, ¯ α is reduced with the state metric ¯ µ.
+In Lemma 4.1, κ is assumed to be ﬁnite. However, for many practical applications we are interested in κ → ∞. According to Lemma 6.3 of [5], for κ → ∞ we again need to calculate (C j,α − C j, ¯ α ) to update the corresponding variables. However, the marginals C j,α and C j, ¯ α are here obtained as the limit of equation (2) and (1) respectively as κ → ∞, i.e.,
+(11) Thus C j,α and C j, ¯ α can be obtained by replacing all “product” operations with “sum” operations and similarly by replacing all “sum” operations with “min” operations in (2) and (1) (marginals with ﬁnite κ). In (2) and (1) the marginalization is performed in the sum-product semiring. However for κ → ∞ the marginalization is performed in the min-sum semiring and hence the marginals of (11) can be computed with a trellis based variant of the min-sum algorithm. If we redeﬁne the branch metric as g(b t ) = ˆ v j,i , ξ(b t ) and replace all “prod- uct” operations with “sum” operations and similarly replace all “sum” operations with “min” operations in equation (3), (4), (6), (9) and (10) then the resulting equations can be used on the trellis of the nonbinary SPC code C j to compute the marginals of (11). This trellis based variant of the min-sum algorithm is related to the Viterbi algorithm.
+This section presents simulation results for low complexity LP decoding which uses the trellis based check node calcula- tions described above. We consider κ → ∞ for all simulations. We use the binary (504, 252) and (1008, 504) MacKay LDPC codes, but with parity-check matrix entries taken from Z 4 instead of GF (2). These LDPC codes are (3, 6)-regular codes; hence there are 6 nonzero entries in each row of their parity- check matrix. We set the second and third nonzero entry in each row to 3, and all other nonzero entries are set to 1. Furthermore, we assume transmission over the AWGN channel where nonbinary symbols are directly mapped to quaternary phase-shift keying (QPSK) signals. We simulate up to 100 frame errors per simulation point.
+The error-correcting performance of the (504, 252) and (1008, 504) LDPC code is shown in Figure 3 where the frame error rate (FER) of the LCLP decoding algorithm is compared with that of the min-sum (MS) algorithm. The MS algorithm also uses the trellis of the nonbinary SPC code for check node
+processing. The maximum number of iterations is set to 64 for both decoding algorithms. For the (504, 252) code, the FER of low complexity LP decoding is within 0.5 dB from that of MS algorithm and for (1008, 504) code, it is within 0.7 dB. These results are comparable to that of the binary LCLP decoding algorithm of [3]. Finally, it is important to note that these LDPC codes are signiﬁcantly longer then the quaternary (80, 48) LDPC code tested in [5].
+In this paper, we proposed a modiﬁed BCJR algorithm for efﬁcient check node processing in the nonbinary LCLP decod- ing algorithm. The proposed algorithm has complexity linear in the check node degree. We also proposed an alternative state metric which can be used to reduce the run time of the proposed algorithm.
+The authors would like to thank P. O. Vontobel for many helpful suggestions and comments. This work was supported in part by the Claude Shannon Institute, UCD, Ireland.
+[[[ REFS ]]]
+M. C. Davey
+D. J. C. MacKay
+--
+Low density parity check codes over GF (q)
+----
+J. Feldman
+M. J. Wainwright
+D. R. Karger
+--
+Using linear program- ming to decode binary linear codes
+----
+P. O. Vontobel
+R. Koetter
+--
+Towards low-complexity linear- programming decoding
+----
+M. F. Flanagan
+V. Skachek
+E. Byrne
+M. Greferath
+--
+Linear- Programming Decoding of Nonbinary Linear Codes
+----
+M. Punekar
+M. F. Flanagan
+--
+Low Complexity LP Decoding of Nonbinary Linear Codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\151.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,46 @@
+[[[ ID ]]]
+40
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+A non-linear model of limit order book dynamics
+[[[ AUTHORS ]]]
+N.Vvedenskaya ∗
+Y.Suhov †
+V.Belitsky ‡
+[[[ ABSTR ]]]
+∗ Institute for Information Transmission Problems, RAS, GSP-4, Moscow 127994, RUSSIA;ndv@iitp.ru † Institute for Information Transmission Problems, RAS, GSP-4, Moscow 127994, RUSSIA;
+[[[ BODY ]]]
+Abstract—This paper introduces a prototype model in an attempt to capture some aspects of limit order book dynamics simulating market trading mechanisms. We start with a discrete time/space Markov process and then perform a re-scaling proce- dure leading to a deterministic dynamical system controlled by non-linear ODEs. This allows us to introduce approximants for the equilibrium distribution of the model represented by ﬁxed points of deterministic dynamics.
+[[[ REFS ]]]
+R. Con
+S. Stoiko
+R. Talrej
+--
+A stochastic model for order book dynamics, Operations Research, vol
+----
+I. Ros
+--
+A dynamic model of the limiting order book, Rev
+----
+N. D. Vvedenskay
+R. L. Dobrushi
+F. I
+--
+Karpelevich, A queueing system with selection of the shortest of two queues: an asymptotical approach, Problems of Information Transmission, vol
+----
+N. D. Vvedenskay
+Y. M. Suho
+--
+Multy access system with many users: stability and metastability, Problems of Information Transmission, vol
+----
+N. Vvedenskay
+Y. Suho
+V. Belitsk
+--
+Non-linear models of the limit order book dynamics, I, In preparation, 2011
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\040.pdf
+[[[ LINKS ]]]
+

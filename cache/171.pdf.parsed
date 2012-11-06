@@ -1,0 +1,154 @@
+[[[ ID ]]]
+171
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Unconditionally Secure Multi-Party Sampling from Scratch 1
+[[[ AUTHORS ]]]
+Ye Wang
+Prakash Ishwar
+[[[ ABSTR ]]]
+Abstract—In the problem of secure multi-party sampling, n parties wish to securely sample an n-variate joint distribution, with each party receiving a sample of one of the correlated variables. The objective is to correctly produce the samples using a distributed message passing protocol, while maintaining privacy against a coalition of passively cheating parties. In the two-party case, we fully characterize the joint distributions that can be securely sampled under perfect correctness and privacy requirements as well as under weakened correctness and privacy requirements. Furthermore, we show that the distributions that can be securely sampled can be produced with a protocol that only uses one round of unidirectional communication. For the n- party case, any distribution can be securely sampled with privacy against a strict minority coalition, due to well-known results in secure multi-party computation. However, when privacy against a majority coalition is required, not all distributions can be securely sampled. We give necessary conditions and sufﬁcient conditions for distributions that can be securely sampled. However, the exact characterization of the distributions that can be securely sampled remains open.
+Index Terms—secure multi-party computation, secure sam- pling, unconditional security, common information
+[[[ BODY ]]]
+An important subclass of secure multi-party computation is the problem of secure multi-party sampling. In this problem, n parties wish to securely sample a set of n jointly distributed random variables, with each party uniquely obtaining one of these n variables. The objective is to correctly realize the desired joint distribution while ensuring that any coalition of up to c parties does not learn anything more about the other parties’ samples than what can be inferred from the coalition’s set of samples. This notion of privacy is formulated in an information theoretic sense, requiring unconditional security against parties with unbounded computational power. In order to achieve this objective, the parties execute a distributed pro- tocol, in which they are allowed unlimited noiseless commu- nication over multiple interactive rounds. The parties execute this protocol “from scratch”, meaning that, while they can generate and utilize an unlimited amount of local independent randomness, they do not have access to any auxiliary “setup” of correlated randomness. We assume that the parties are
+“semi-honest”, that is, they will correctly execute the protocol and only passively attempt to extract information about the other parties’ samples.
+In this work, we present results toward the characteriza- tion of the region of joint distributions that can be securely sampled. Analogously to the work of [1], which characterizes the boolean-valued functions that can be securely computed from scratch, we aim to characterize the joint distributions that can be securely sampled from scratch. Outer bounds for secure sampling also have implications for the outer bounds for speciﬁc secure multi-party computation problems (see [2]). The characterization of these regions address the question of feasibility . The questions of protocol efﬁciency and complexity are not the primary focus of this work, although to demonstrate the feasibility of some distributions, we construct protocols that use only one round of unidirectional communication.
+For the two-party case, we fully characterize the region of distributions that can be securely sampled. We show that a pair of random variables can be securely sampled with perfect correctness and perfect privacy if, and only if, the Wyner common information of these variables is equal to their mutual information. Weakening the correctness or pri- vacy requirements, increases this region corresponding to the degree of weakening. Furthermore, these distributions can be securely sampled by a protocol that uses only one round of unidirectional communication.
+In the n-party case, the secure computability of any function (see [3] and [4]) with perfect privacy against coalitions of size up to c < n/2 implies that any n-variate joint distribution can be securely sampled with -correctness (for any > 0) and perfect privacy against coalitions of size up to c < n/2. The parties can generate shares of a private common random source and then compute the desired samples as a secure function of that common randomness. However, this technique is not applicable when privacy is required against coalitions of size c ≥ n/2. For the regime of c ≥ n/2, many distributions cannot be securely sampled and we present necessary conditions and sufﬁcient conditions for distributions that can be securely sampled.
+The problem of secure two-party sampling was ﬁrst intro- duced in the speciﬁc form of “mental poker” in [5]. In the mental poker problem, Alice and Bob wish to sample random variables that simulate the act of randomly drawing cards from a shared deck, while ensuring that their drawn cards remain
+private from the other party. The impossibility of this task when unconditional security is required was proven and a cryptographic solution was proposed in [5].
+The recent work of [2] and [6] has considered the general secure two-party sampling problem, where the parties have access to a “setup” of correlated random variables in order to assist them in generating the desired variables, and requiring perfect correctness and perfect privacy. Monotones for the secure two-party sampling problem are pairwise information measures for which the measurement between the setup ran- dom variables can be no less than the measurement between the corresponding protocol output random variables. These were introduced by [2] and used as a technique for developing outer bounds. The notion of monotones was extended to monotone regions in [6], providing a tighter outer bound technique for the general problem. The outer bound of [2], when specialized to the scenario of secure sampling from scratch (i.e., using an independent setup), matches the two- variate distribution region that we characterize for perfect correctness and perfect privacy. Hence in this scenario, we have shown that their outer bound is tight.
+The desired distribution is an n-variate joint distribution P X 1 ,...,X n over the ﬁnite alphabets X 1 × . . . × X n . The objective is to construct an n-party protocol that correctly and privately produce samples ( ˆ X 1 , . . . , ˆ X n ) ∈ X 1 ×. . .×X n , with party i generating ˆ X i . We address a single-snapshot scenario, however, our results can be readily extended to a multiple- snapshot scenario with sequences of i.i.d. joint samples.
+A protocol may involve multiple rounds of error-free, in- teractive communication, with local random computation per- formed between rounds. We describe a very general family of permissible protocols to allow for strong converse statements.
+At the beginning of a protocol, each party i generates an arbitrary, independent random seed R i , where R 1 , . . . , R n ∼
+Then, the parties interact for t rounds of communication, where in each round k ∈ {1, . . . , t}, a ﬁnite alphabet message is sent between each pair of parties i, j ∈ {1, . . . , n}, i = j, produced as a function of the sender’s random seed and all messages received by the sender in previous rounds,
+denotes every message received by party i prior to round k. Note that during a round, messages may even be sent simultaneously in both directions between a particular pair of parties. Also, any of these messages may be null, in order to capture simpler patterns of communication. In a particular round, if between each pair of parties, at least one of the messages sent in either direction is null, then we say that round uses unidirectional communication.
+After t rounds of interaction, each party produces its sample as a function of its random seed and its received messages,
+Note that this computation can also make use of all of the messages sent by the party since the sent messages are only a function of the random seed and received messages.
+From here on, we will use the following shorthand notation for messages over all t rounds. The set of all messages received by party i is denoted by
+and the set of all messages exchanged over all t rounds is denoted by
+Correctness: A protocol is -correct (for ≥ 0) if the distribution of the produced samples is close to the desired distribution, that is,
+where d(·, ·) is an arbitrary metric (e.g., Kullback-Leibler divergence, total variation distance) with respect to the space of joint probability distributions on the alphabets X 1 ×. . .×X n .
+Privacy: A protocol is (δ, c)-private (for δ ≥ 0 and c ∈ {1, . . . , n − 1}), if
+In the two-party case (n = 2), only coalitions of size c = 1 are interesting, hence we simply say δ-private.
+We say that an n-variate distribution P X 1 ,...,X n can be securely sampled with -correctness and (δ, c)-privacy if and only if there exists an n-party protocol that is both -correct and (δ, c)-private. The qualiﬁers of perfect correctness, perfect privacy, or perfect security respectively denote the cases when
+The structure of the protocol implies the following property on the samples produced and the messages exchanged.
+Lemma 1 For any distributed protocol, the samples produced are independent conditioned on all of the messages exchanged, that is,
+Proof: Consider the distribution of ( ˆ X 1 , . . . , ˆ X n , M ), which can be expressed as
+where ψ(x n , m, r n ) is equal to one if for all k ∈ {1, . . . , t} and i, j ∈ {1, . . . , n} with i = j,
+and equal to zero otherwise. This indicator function can be factorized as
+where ψ i (x i , m, r i ) is equal to one if for all k ∈ {1, . . . , t} and j ∈ {1, . . . , n} with i = j,
+and equal to zero otherwise. Thus, P ˆ X n ,M (x n , m) can be factorized as
+Hence, given this factorization, we have that ˆ X 1 , . . . , ˆ X n are independent given M .
+The notion of the “common information” between a pair of random variables has been widely explored in the literature (see for example [7], [8], [9], [10]). Several deﬁnitions, each with an operational signiﬁcance to a coding problem, have been characterized, including the G´acs-K¨orner common information [7] and the Wyner common information [9].
+The Wyner common information [9] plays a signiﬁcant role in the characterization of the region of two-variate distributions that can be securely sampled, and is deﬁned by
+where the minimum can be obtained by Y ∈ Y, with |Y| ≤ |X 1 |·|X 2 | [9]. The Wyner common information is always larger than the mutual informaion [9],
+and the following Lemma characterizes when Wyner common information is within δ of the mutual information.
+Lemma 2 For all δ ≥ 0, W (X 1 ; X 2 ) ≤ I(X 1 ; X 2 ) + δ if, and only if, there exists Y such that I(X 1 ; X 2 |Y ) = 0 and I(X 1 ; Y |X 2 ) + I(X 2 ; Y |X 1 ) ≤ δ. For the “only if ” direction, one can ﬁnd Y ∈ Y, with |Y| ≤ |X 1 | · |X 2 |.
+Proof: This follows from the deﬁnition of W (X 1 ; X 2 ), the following identity
+In the two-party case, we fully characterize the region of distributions that can be securely sampled with -correctness and δ-privacy. Our results apply for any arbitrary correctness metric d(·, ·).
+Theorem 1 A two-variate distribution P X 1 ,X 2 can be securely sampled with -correctness and δ-privacy if, and only if, there exists P ˆ X
+, P X 1 ,X 2 ) ≤ and W ( ˆ X 1 ; ˆ X 2 ) ≤ I( ˆ X 1 ; ˆ X 2 ) + δ. Furthermore, if P X 1 ,X 2 can be sampled with -correctness and δ-privacy, then it can be done with a protocol that uses only one round of unidirectional communication.
+Proof of the “only if ” part: An -correct and δ-private protocol samples P ˆ X
+, P X 1 ,X 2 ) ≤ and I(R 1 , M 1 ; ˆ X 2 | ˆ X 1 ) + I(R 2 , M 2 ; ˆ X 1 | ˆ X 2 ) ≤ δ. We have
+where (a) holds because M 2 is a function of (R 1 , M 1 ), M 1 is a function of (R 2 , M 2 ), and M = (M 1 , M 2 ), and (b) follows from the assumption that the protocol is δ-private. By Lemma 1, I( ˆ X 1 ; ˆ X 2 |M ) = 0. From Lemma 2, with Y = M , it follows that W (X 1 ; X 2 ) ≤ I(X 1 ; X 2 ) + δ.
+such that W ( ˆ X 1 ; ˆ X 2 ) ≤ I( ˆ X 1 ; ˆ X 2 ) + δ, then by Lemma 2, there exists a Y ∈ Y, with |Y| ≤ |X 1 | · |X 2 |, such that I( ˆ X 1 ; ˆ X 2 |Y ) = 0 and I( ˆ X 1 ; Y | ˆ X 2 ) + I( ˆ X 2 ; Y | ˆ X 1 ) ≤ δ. The following protocol uses only one-round of unidirectional communication:
+2) In the single round of communication, party 1 sends the message M 1 (1, 2) = Y to party 2, and party 2 does not send a message, i.e., M 1 (2, 1) is null.
+4) Party 2 independently generates R 2 = { ˆ X 2 (y)} y∈Y , where ˆ X 2 (y) ∼ P ˆ X
+. Since also ( ˆ X 1 , Y ) ∼ P ˆ X
+and I( ˆ X 1 ; ˆ X 2 |Y ) = 0, we have that ( ˆ X 1 , ˆ X 2 , Y ) ∼ P ˆ X
+I(R 1 , M 1 ; ˆ X 2 | ˆ X 1 ) (c) = I( ˆ X 1 , Y ; ˆ X 2 | ˆ X 1 ) = I( ˆ X 2 ; Y | ˆ X 1 ),
+where equality (c) is because R 1 = ( ˆ X 1 , Y ) and M 1 is null. We also have
+| ˆ X 2 ) − H( ˆ X 1 | ˆ X 2 , Y ) = I( ˆ X 1 ; Y | ˆ X 2 ),
+where (d) is because M 2 = Y , (e) is because ˆ X 2 is a deterministic function of R 2 and Y , (f ) is because R 2 is independent of ( ˆ X 1 , Y ), and (g) is because I( ˆ X 1 ; ˆ X 2 |Y ) = 0, which is a consequence of the assumptions of the “if” part of the theorem. From this it follows that
+I(R 1 , M 1 ; ˆ X 2 | ˆ X 1 ) + I(R 2 , M 2 ; ˆ X 1 | ˆ X 2 ) = I( ˆ X 2 ; Y | ˆ X 1 ) + I( ˆ X 1 ; Y | ˆ X 2 ) ≤ δ.
+Note that due to our general problem formulation, the converse result does not place any limits on message sizes or rounds of communication. However, the achievable result is attained by a simple protocol that sends only one message. An immediate corollary of the above theorem is the charac- terization for perfect security.
+Corollary 1 A two-variate distribution P X 1 ,X 2 can be se- curely sampled with perfect correctness and privacy ( = δ = 0) if, and only if,
+The outer bound of [2] applies for secure two-party sam- pling with perfect security, but where the parties have access to a correlated setup. Specializing this outer bound to an independent setup corresponds to secure two-party sampling from scratch and yields the necessary condition that P X 1 ,X 2 can be securely sampled with perfect security only if the G´acs- K¨orner common information (see [7]) between (X 1 , X 2 ) is equal to the mutual information, which happens if, and only if, the Wyner common information is equal to the mutual information (see [9] or [10]). Thus, our corollary implies that the converse of [2] is tight for the scenario of secure two-party sampling with perfect security from scratch.
+In the n-party case, when privacy is only required against a strict minority coalition (c < n/2), any distribution can be securely sampled as a consequence of the universality of secure multi-party computation with a passive coalition in the strict minority [3].
+Theorem 2 For any c < n/2 and > 0, any n-variate distri- bution P X 1 ,...,X n can by securely sampled with -correctness
+Proof: For any distribution P X 1 ,...,X n and any > 0, there exist random variables (Z, ˆ X 1 , . . . , ˆ X n ) where ˆ X i = h i (Z) for deterministic functions h i and Z uniform over a sufﬁciently large ﬁnite ﬁeld, such that d(P ˆ X
+Since c < n/2, the secure multi-party computation techniques of [3] can be used to enable the parties to securely sample ( ˆ X 1 , . . . , ˆ X n ). First, each party independently and uniformly generates Z i and distributes shares of Z i to all of the parties in the manner of [3]. By combining these shares, each party obtains shares Z = Z 1 + . . . + Z n , which is uniformly distributed. Then, using the secure computation techniques of [3], each party can securely compute ˆ X i = h i (Z) with perfect privacy. Thus, the parties will have securely sampled P X 1 ,...,X n with -correctness and perfect (0, c)-privacy. Note that the secure computation techniques of [3] are not appli- cable to the general case when privacy is required against coalitions of size c ≥ n/2. Also, although -correctness can be obtained for any > 0, perfect correctness might be impossible, since the procedure produces a joint distribution with only rational probability masses.
+In the n-party case, with privacy required against a coalition of size c ≥ n/2, the exact characterization of the distributions that can be securely sampled is not currently known. Necessary conditions for a distribution to be securely sampled can be derived from the fact that an n-party protocol, which is private against coalitions size c ≥ n/2, can be transformed into a secure two-party protocol. Thus, the converse for the two-party case can be bootstrapped to produce an outer bound for the n-party case.
+Theorem 3 For c ≥ n/2, an n-variate distribution P X 1 ,...,X n can by securely sampled with -correctness and (δ, c)-privacy only if there exists P ˆ X
+, P X 1 ,...,X n ) ≤ and for all T ⊂ {1, . . . , n} and complement ¯ T , such that |T | ≤ c and | ¯ T | ≤ c,
+For any T ⊂ {1, . . . , n}, such that |T | ≤ c and | ¯ T | ≤ c, this protocol can be converted to a secure two-party protocol for sampling P X T ,X ¯ T with -correctness and δ-privacy. Party 1 simulates the parties in T and party 2 simulates the parties in ¯ T , to produce ˆ X T = { ˆ X i } i∈T and ˆ X ¯ T = { ˆ X i } i∈ ¯ T . The parties generate the necessary seed randomness, R 1 = {R i } i∈T and R 2 = {R i } i∈ ¯ T . The messages exchanged within each group become local computations and the messages exchanged between the groups is the actual communication be- tween the two parties, M 1 = {M 1 (j, i), . . . , M t (j, i)} i∈T ,j∈ ¯ T
+and M 2 = {M 1 (j, i), . . . , M t (j, i)} i∈ ¯ T ,j∈T . The two- party protocol is -correct since d(P ˆ X
+, P X 1 ,...,X n ) ≤ . The two-party protocol is δ- private since
+I R 1 , M 1 ; ˆ X ¯ T | ˆ X T + I R 2 , M 2 ; ˆ X T | ˆ X ¯ T ≤ I {R i , M i } i∈T ; { ˆ X i } i / ∈T |{ ˆ X i } i∈T
+Since P X T ,X ¯ T can be sampled with -correctness and δ- privacy,
+Sufﬁcient conditions that enable a distribution to be securely sampled are given in the following theorem.
+Theorem 4 For any c ∈ {1, . . . , n − 1}, an n-variate distribution P X 1 ,...,X n can by securely sampled with - correctness and (δ, c)-privacy if there exists P ˆ X
+such that d(P ˆ X
+Furthermore, if the above conditions are satisﬁed then the protocol need only use one round of unidirectional communi- cation.
+Proof: If the conditions of the theorem are satisﬁed then we can construct the following protocol using only one round of unidirectional communication:
+2) In the single round of communication, party 1 sends message M 1 (1, i) = Y to every other party i ∈ {2, . . . , n}. All other messages are null.
+4) For i ∈ {2, . . . , n}, party i independently generates R i = { ˆ X i (y)} y∈Y , where ˆ X i (y) ∼ P ˆ X
+(·|y). 5) Party i outputs ˆ X i = g i (R i , Y ) = ˆ X i (Y ).
+for i ∈ {1, . . . , n}. Along with the given condi- tion that ˆ X i are independent given Y , this implies that ( ˆ X 1 , . . . , ˆ X n ) ∼ P ˆ X
+for i = 1, (b) since ˆ X T is a function of R T , Y , (c) since R T is independent of ˆ X ¯ T given Y , and (d) since ˆ X i are independent given Y . Thus, the privacy condition is the same as the given condition
+Theorem 3 gives necessary conditions and Theorem 4 gives sufﬁcient conditions for distributions that can be securely sampled for coalitions of size c ≥ n/2. However, the exact region has not been characterized as these conditions are not tight. Perhaps, an appropriately deﬁned set of conditions based on an n-variate notion of Wyner information, such as that proposed by [11], can fully characterize the n-party region, and possibly exhibit a zero-one law (analogous to [1]), if the region for c = n/2 matches that for all c ≥ n/2. However, this remains an open problem and is part of our ongoing work.
+[[[ REFS ]]]
+B. Chor
+E. Kushilevitz
+--
+A zero-one law for boolean privacy
+----
+S. Wolf
+J. Wullschleger
+--
+New monotones and lower bounds in unconditional two-party computation
+----
+M. Ben-Or
+S. Goldwasser
+A. Wigderson
+--
+Completeness theorems for Non-Cryptographic Fault-Tolerate Distributed Computation
+----
+D. Chaum
+C. Cr´epeau
+I. Damg˚ard
+--
+Multi-Party Unconditionally Secure Protocols
+----
+A. Shamir
+R. Rivest
+L. Adleman
+--
+Mental poker
+----
+V. Prabhakaran
+M. Prabhakaran
+--
+Assisted common information with applications to secure two-party computation
+----
+P. G´acs
+J. K¨orner
+--
+Common information is far less than mutual information
+----
+R. Ahlswede
+J. K¨orner
+--
+On common information and related characteristics of correlated information sources
+----
+A. D. Wyner
+--
+The common information of two dependent random variables
+----
+I. Csisz´a
+J. K¨orne
+--
+Information Theory: Coding Theorems for Discrete Memoryless Systems 
+----
+W. Liu
+G. Xu
+B. Chen
+--
+The common information of n dependent random variables
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\171.pdf
+[[[ LINKS ]]]
+

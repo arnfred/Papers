@@ -1,0 +1,117 @@
+[[[ ID ]]]
+175
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Degraded two-message multicast over graphs
+[[[ AUTHORS ]]]
+Shirin Saeedi Bidokhti Christina Fragouli
+[[[ ABSTR ]]]
+School of Computer and Communication Sciences EPFL, Switzerland
+[[[ BODY ]]]
+Abstract—We consider communication of two degraded mes- sage sets over graphs where a common source sends two prioritized messages (a common and a private message) to several receivers. All receivers require the common message and a subset of the receivers require both the common and private messages. In this paper, we consider the case where all but two of the receivers require both messages. We provide an outer-bound on the rate region that depends on graph properties. We prove that this bound is achievable by using carefully selected linear operations at the network nodes. The achievability proof is built on our result in [14] and is illustrating potential connections of communication over deterministic channels and communication over graphs.
+[[[ REFS ]]]
+R. Ahlswede
+N. Cai
+R. Li
+W. Yeung
+--
+Network information ﬂow
+----
+R. Li
+W. Yeung
+N. Cai
+--
+Linear network coding
+----
+Y. Cassuto
+J. Bruck
+--
+Network coding for non-uniform demands
+----
+C. Chekuri
+C. Fragouli
+E. Soljanin
+--
+On achievable information rates in single-source non-uniform demand networks
+----
+Z. Li
+B. Li
+--
+Network coding: the case of multiple unicast sessions
+----
+T. Ho
+R. Koetter
+--
+Online incremental network coding for multiple unicasts
+----
+C. Fragouli
+E. Soljanin
+--
+Network Coding Applications
+----
+S. Gheorghiu
+S. Saeedi
+C. Fragouli
+--
+Degraded Multicas- ting with Network Coding over the Combination Network
+----
+M. Cover
+--
+T
+----
+P. Bergmans
+--
+A simple converse for broadcast channels with additive white Gaussian noise
+----
+G. Gallager
+--
+R
+----
+J. Korne
+K. Marton
+--
+General broadcast channels with degraded message sets
+----
+V. Prabhakaran
+S. Diggavi
+D. Tse
+--
+Broadcasting with degraded message sets: A deterministic approach
+----
+S. Saeedi
+S. Diggavi
+C. Fragouli
+V. Prabhakaran
+--
+On degraded two message set broadcasting
+----
+G. Kramer
+--
+Edge-Cut Bounds on Network Coding Rates
+----
+M. Adler
+A. Harvey
+K. Jain
+R. Kleinberg
+--
+On the capacity of information networks
+----
+S. Saeed
+C. Fragoul
+--
+Degraded two-message multicast over graphs” 	 EPFL technical report, Feb 2010, available from http://infoscience
+----
+V. Vaziran
+--
+V
+----
+R. Koetter
+M. Medard
+--
+An algebraic approach to network coding
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\175.pdf
+[[[ LINKS ]]]
+

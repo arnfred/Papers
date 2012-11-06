@@ -28,6 +28,13 @@ case class Paper(val id :       Int,
     return names.distinct
   }
 
+  def getTitle : Title = title
+  
+  def getAuthors : List[Author] = authors
+  def getAbstract : Abstract = abstr
+  def getBody : Body = body
+  def getReferences : List[Reference] = refs
+  
   def clean : Paper =
     return Paper(id, index, title, authors.filter(a => a.name.length > 4), abstr, body, refs.map(r => r.clean), meta, links)
 
@@ -63,23 +70,34 @@ case class Paper(val id :       Int,
 
 case class Title(t: String) extends Term {
   override def toString: String = t
+  
+  def getText: String = t
 }
 
 case class Author(name: String) extends Term {
   override def toString: String = name
+  
+  def getName: String = name
 }
 
 case class Abstract(text: String) extends Term {
   override def toString : String = "Abstract:\t" + text.take(40) + " ... "
+  
+  def getText: String = text
 }
 
 case class Body(text: String) extends Term {
   override def toString: String = "Body:\t\t" + text.take(100) ++ " ... \n"
+  
+  def getText: String = text
 }
 
 case class Reference(authors: List[Author], title: Title) extends Term {
   def clean : Reference = return Reference(authors.filter(a => a.name.stripMargin.length > 0), title)
   override def toString : String = authors.mkString("\n") + "\n--\n" + title
+  
+  def getAuthors: List[Author] = authors
+  def getTitle: Title = title
 }
 
 case class Link(index : Int, weight : Int) extends Term {

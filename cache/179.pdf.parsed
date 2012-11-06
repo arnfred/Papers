@@ -1,0 +1,125 @@
+[[[ ID ]]]
+179
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Cascade and Triangular source coding with causal side information
+[[[ AUTHORS ]]]
+Yeow-Khiang Chia
+Tsachy Weissman
+[[[ ABSTR ]]]
+Abstract—We consider cascade and triangular source coding with side information and causal reconstruction at the end node. When the side information at the source and intermediate nodes are the same, we characterize the rate distortion regions for both the cascade and triangular source coding problems. For the general cascade setting with causal reconstruction at the end node, we character- ize the rate region when the sources satisfy a positivity condition, or when a Markov chain holds.
+[[[ BODY ]]]
+In [1], Yamamoto ﬁrst considered the problem of lossy source coding through a cascade where a source node (Node 0) sends a message to Node 1, which then sends a message to Node 2. The Cascade setting has received further attention in recent years, where several authors established the capacity regions for several special cases of the Cascade setting, or extend the Cascade setup to incorporate side information at either Nodes 1 or 2. In [2], the authors considered the Cascade problem with side information Y at Node 1 and Z at Node 2, with the Markov Chain X − Z − Y . The authors provided inner and outer bounds for this setup and showed that the bounds coincide for the Gaussian case. Inner and outer bounds for the general Cascade problem where the side information is known only to the intermediate node are given in [3].
+Previous work that are most relevant to this paper are the work in [4] and [5]. [4] considered the Cascade source coding problem with side information available at both Node 0 and Node 1 and established the rate distortion region for this setup. The setting was then extended to the Triangular source coding setting [1] where an additional rate limited link is available from the source node to Node 2. This work was further extended in [5] to include degraded side information at the second user, and the rate distortion regions for both the Cascade and Triangular cases were established.
+Motivated by results in [5], this paper considers other conditions on the Cascade setting for which we can establish the rate distortion region. Our focus in this paper is on the case of causal reconstruction at the end
+node (Node 2). The setup of causal source coding (and reconstruction) was ﬁrst introduced in [6]. In [7], this setup was extended to the Gu-Effros cascade source cod- ing problem [8] when causal reconstruction is required at the end node.
+Our paper also considers the setting of causal recon- struction at the end node, and we derive more general results for both the cascade and triangular source coding cases. We begin by providing formal deﬁnitions and problem statements in section II. In section III, we consider the problem of Causal Cascade and Triangular Source Coding with the same side information Y avail- able at the ﬁrst 2 nodes (the Source Node, Node 0, and the intermediate node, Node 1) and side information Z available at Node 2. We characterize the rate distortion regions for these settings and recover as a special case, the rate distortion region for the Gu-Effros network. In section IV, we consider the problem of (near) lossless source coding through a cascade with side informations Y and Z available at Nodes 1 and 2 respectively. We establish the optimum rate region when the positivity condition [6] p(x, y, z) > 0 for all x, y, z holds; and when the sources form a Markov chain X − Y − Z.
+In this section, formal deﬁnitions for the setups under consideration are given. We will follow the notation of [9].
+A. Causal Cascade and Triangular Source coding with same side information at ﬁrst 2 nodes
+We give formal deﬁnition for the Triangular source coding setting (Figure 1). The Cascade setting follows from specializing the deﬁnitions for the Triangular set- ting by setting R 3 = 0. A (n, 2 nR 1 , 2 nR 2 , 2 nR 3 ) code for the Triangular setting consists of 3 encoders
+f 2 (at Node 1) : Y n × [1 : 2 nR 1 ] → M 2 ∈ [1 : 2 nR 2 ], f 3 (at Node 0) : X n × Y n → M 3 ∈ [1 : 2 nR 3 ],
+Fig. 1: Triangular source coding setting. If R 3 = 0, this setting reduces to the Cascade setting
+g 2i (at Node 2) : Z i × [1 : 2 nR 2 ] × [1 : 2 nR 3 ] → ˆ X 2i , i ∈ [1 : n],
+Given (D 1 , D 2 ), a (R 1 , R 2 , R 3 ) rate tuple for the triangular source coding setting is said to be achievable if, for any > 0 and n sufﬁciently large, there exists a (n, 2 n(R 1 + ) , 2 n(R 2 + ) , 2 n(R 3 + ) ) code for the Triangu- lar source coding setting such that
+The rate-distortion region, R(D 1 , D 2 ), is deﬁned as the closure of the set of all achievable rate tuples.
+Causal Cascade Source coding with same side in- formation at ﬁrst 2 nodes: The Cascade source coding setting corresponds to the case where R 3 = 0.
+This setting is shown in Figure 2. A (n, 2 nR 1 , 2 nR 2 ) code for the lossless causal cascade source coding setting consists of 2 encoders
+The rate region is then deﬁned as the closure of the set of all achievable rate tuples.
+In this section, we present our results for the ﬁrst set- ting described in II-A, which are single letter character- izations of the rate-distortion regions for both the Trian- gular and Cascade Source coding settings. In Theorems 1 and 2, we will present only proofs of the converses. The achievability schemes are similar to the schemes presented in [4] and [5], but with slight modiﬁcations to account for the assumption of causal reconstruction. We refer readers to these references for the schemes.
+Theorem 1: R(D 1 , D 2 ) for the Cascade source cod- ing setting deﬁned in section II-A is given by the set of all rate tuples (R 1 , R 2 ) satisfying
+R 1 ≥ I(X; ˆ X 1 , U |Y ), R 2 ≥ I(U ; X, Y )
+p(x, y, z, u, ˆ x 1 ) = p(x, y, z)p(u|x, y)p(ˆ x 1 |x, y, u) and function g 2 : U × Z → ˆ X 2 such that
+Remark 1: If Y = X, this setup reduces to the case of causal Wyner-Ziv source coding discussed in [6].
+Remark 2: If Z = ∅, then the case of causal source coding at Node 2 is the same as noncausal source coding at Node 2. Therefore, Theorem 1 reduces to the equivalent result in [4] when Z = ∅.
+Remark 3: Let Y = ∅, X = ( ˜ X, ˜ Y ), d 1 (X, ˆ X 1 ) = d 1 ( ˜ X, ˆ X) and d 2 (X, ˆ Y ) = d 2 ( ˜ Y , ˆ Y ), then we recover the Gu-Effros network [8] with causal source coding at the end node, which shows that the result in [7] is a special case of Theorem 1.
+(X i−1 , Y i−1 , Z i−1 , M 2 ). We have the following. nR 2 ≥ H(M 2 ) = I(X n , Y n ; M 2 )
+Step (a) follows from the Markov Chain Z i−1 − (X i−1 , Y i−1 , M 2 ) − (X i , Y i ) which can be shown by considering
+(a) follows from the Markov Chain Z i−1 − (X i−1 , Y i−1 , M 2 ) − (X i , Y i ) which can be established using the same technique as that in showing the Markov
+Chain for the bound for R 2 . (b) follows from the fact that ˆ X 1i is a function of Y n and M 1 . Next, the proof is completed in the usual manner by letting Q be a random variable uniformly distributed over [1 : n] and independent of (X n , Y n , Z n ). We note that X Q = X, Y Q = Y , Z Q = Z and deﬁning U = (U Q , Q) and
+ˆ X 1Q = ˆ X 1 then completes the proof. The existence of the reconstruction function g 2 follows from the deﬁnition of U and the assumption of causal source coding at Node 2. The Markov Chain (U, ˆ X 1 )− (X, Y )− Z also follows from deﬁnitions of U and ˆ X 1 .
+Theorem 2: R(D 1 , D 2 ) for the Triangular source coding setting deﬁned in section II-A is given by the set of all rate tuples (R 1 , R 2 , R 3 ) satisfying
+R 1 ≥ I(X; ˆ X 1 , U |Y ), R 2 ≥ I(X, Y ; U ),
+p(x, y, z)p(u|x, y)p(ˆ x 1 |x, y, u)p(v|x, y, u) and function g 2 : U × V × Z → ˆ X 2 such that
+Similar to the Cascade case, if Z = ∅, this region reduces to the Triangular source coding region given in [4].
+The converse is proved in two parts. In the ﬁrst part, the required inequalities are derived and in the second part, we need to show that the joint probability distribution can be restricted to the form stated in the Theorem. Proof for the ﬁrst part is given, while for the second part, the proof follows similar lines to a technique in [4, Lemma 5] and we refer readers to it.
+Given a (n, 2 nR 1 , 2 nR 2 , 2 nR 3 ) code satisfying the distortion constraints (D 1 , D 2 ), deﬁne U i = (X i−1 , Y i−1 , Z i−1 , M 2 ) and V i = M 3 . We omit proof of the R 1 and R 2 inequalities since it follows the same steps as in Theorem 1. For R 3 , we have
+(a) follows from the Markov Chain Z i−1 − (M 2 , M 3 , X i−1 , Y i−1 ) − (X i , Y i ). Now, let Q be a random variable uniformly distributed over [1 : n] and independent of (X n , Y n , Z n ). We then obtain the bounds stated in Theorem 2 by deﬁning U = (U Q , Q), V = (V Q , Q) and ˆ X 1Q = ˆ X 1 . The existence of the reconstruction function g 2i for i ∈ [1 : n] follows from the deﬁnition of U , V and the assumption of causal reconstruction. Next, from the deﬁnitions of U , V and ˆ X 1 , we note the following Markov relation: (U, V, ˆ X 1 ) − (X, Y ) − Z. The joint probability distri- bution can then be factored as p(x, y, z, u, v, ˆ x 1 ) = p(x, y, z)p(u|x, y)p(ˆ x 1 , v|x, y, u). Proof of this second part is omitted here.
+In this section, we present results for the setting described in II-B. The case of the positivity condition is presented in Theorem 3, while the case of X − Y − Z forming a Markov Chain is presented in Theorem 4.
+Theorem 3: Let p(x, y, z) > 0 for all x ∈ X , y ∈ Y, z ∈ Z. Then, the rate region for lossless cascade source coding setting deﬁned in section II-B is given by the set of (R 1 , R 2 ) satisfying
+R 1 ≥ H(X|Y ), R 2 ≥ H(X).
+Remark: This result extends the result in [6]. It shows that the side information at the end node does not help when the positivity condition holds. X n has to be communicated to both Node 1 and Node 2, without the use of side information Z n . It is clear that we can generalize this theorem slightly by requiring lossy reconstruction at the Node 1. The rate region remains unchanged as R 1 ≥ H(X|Y ) implies that we can satisfy the distortion constraint since X n is recovered (near) losslessly at Node 1.
+Proof: We give a proof of converse, since the achiev- ability is straightforward. The converse follows from cutset bound arguments. We ﬁrst obtain a lower bound on R 1 by cutset arguments and relaxing the lossless requirement to Hamming distortion with D ≥ 0. Let
+ˆ X 2i be a function of M 1 , Y n , Z i and the distortion measure be Hamming distortion. Then, deﬁning U i = (Y n/i , Z i−1 , M 1 ), we have
+(a) follows from the Markov Chain Z i−1 − (X i−1 , Y n , M 1 )− X i . The lower bound is then obtained following standard procedures and the observation that U − X − (Y, Z). We have
+Setting D = 0 and following the procedure in [6], we can show that the lower bound reduces to
+We now show that the above expression is lower bounded by H(X|Y ), thereby giving us the required lower bound for R 1 . To show this, ﬁrst take (u, x) such that p(u|x) > 0 and p(u) > 0. We note that such a pair always exists since p(x) > 0 from positivity condition and p(u) =
+x p(x)p(u|x) > 0. Now, we show that p(u|x ) = 0 for all x = x.
+First, note that since p(u) > 0, there exists (y, z) such that p(u, y, z) > 0. But since H(X|U, Y, Z) = 0, we must have H(X|U = u, Y = y, Z = z) = 0. Hence, p(x|u, y, z) is either 0 or 1. But since p(x|u, y, z) ≥ p(x, u, y, z) = p(x, y, z)p(u|x) > 0 by positivity condition, we have p(x|u, y, z) = 1 and hence, p(x |u, y, z) = 0. Since p(x |u, y, z) ≥ p(x , u, y, z) = p(x , y, z)p(u|x ) = 0 and p(x , y, z) > 0, p(u|x ) = 0 for all x = x. Therefore, p(x|u) = 1 for every u such that p(u) > 0 and some x ∈ X . This result implies that
+Hence, R 1 ≥ min U−X−(Y,Z):H(X|U,Y,Z)=0 I(X; U |Y ) ≥ H(X|Y ).
+We now turn to proving the required lower bound for R 2 . From cutset argument and following similar procedure as that for R 1 , we can show the following lower bound for R 2 ,
+The auxiliary U used in the lower bound can be taken as U = (U Q , Q), where U Q = (Z Q−1 , M 2 ) and Q is a random variable uniformly distributed over [1 : n], independent of other random variables. We
+now show that this expression is lower bounded by H(X) following similar arguments to that for R 1 . Take (u, x) such that p(u|x) > 0 and p(u) > 0 as before. Since p(u) > 0, there exists at least one z such that p(u, z) > 0. Hence, we have H(X|U = u, Z = z) = 0 from the condition that H(X|U, Z) = 0. Therefore, p(x|z, u) is either 0 or 1. Next, we have p(x|u, z) ≥ p(x, u, z) = y p(x, y, z, u) = y p(x, y, z)p(u|x, y). Now, since p(y|x) > 0 for all (x, y) and p(u|x) =
+p(y|x)p(u|x, y) > 0, there must exist a y such that p(u|x, y) > 0. Hence, p(x|u, z) > 0 from p(u|x, y) > 0 and p(x, y, z) > 0, which implies that p(x|u, z) = 1 and p(x |u, z) = 0 for x = x.
+y p(x , y, z)p(u|x , y) = 0 and p(x , y, z) > 0 for all y by positivity, we have that p(u|x , y) = 0 for all y, which implies that p(u|x ) = y p(y|x )p(u|x , y) = 0. We therefore have p(u) = x p(x )p(u|x ) = p(u, x). Hence, p(x|u) = 1 for some x ∈ X and every u such that p(u) > 0. Finally, the proof is completed by observing that
+lossless cascade source coding setting deﬁned in section II-B, if X − Y − Z form a Markov chain, then the rate region for lossless causal source coding is given by
+Remark: Unlike the case when noncausal side in- formation Z n is available at the end node, the case of X − Z − Y forming a Markov Chain is, to the best of our knowledge, still open for the case of causal reconstruction at the end node.
+Achievability sketch: Fix p(u|x, y) such that H(X|U, Z) = 0. We ﬁrst describe X n to Node 1, which can be done using a rate of H(X|Y ) + δ 1 ( ). Node 1 then codes for the end node using a lossy source code with Hamming distortion and distortion, D = 0. Node 1 carries out this step out by covering (X n , Y n ) with U n , which requires a rate of I(U ; X, Y ) + δ 2 ( ). Node 2 then reconstructs X i by ˆ X 2i = g 2i (U i , Z i ). It remains to show that this procedure yields a code with vanishing block probability of error. First, consider (x n , z n , u n (m 2 )) ∈ T (n) . Then, p X,Z,U (x i , z i , u i ) > 0 for all i ∈ [1 : n]. From the condition H(X|U, Z) = 0,
+we see that ˆ x i (u i , z i ) = x i for i ∈ [1 : n]. Next, let 0 < < and deﬁne the following error events
+Then, the probability of “error” is upper bounded by P(E) ≤ P(E 1 ) + P(E 2 ∩ E c 1 ) + P(E 3 ∩ (E 2 ∪ E 1 ) c ).
+P(E 1 ) → 0 as n → ∞ by law of large numbers; P(E 2 ∩ E c 1 ) → 0 as n → ∞ since R 1 = H(X|Y ) + δ 1 ( ) and P(E 3 ∩ (E 2 ∪ E 1 ) c ) → 0 as n → ∞ because R 2 = I(U ; X, Y ) + δ 2 ( ) and by the conditional typ- icality lemma [9, Lecture 2], since U − (X, Y ) − Z.
+On E c , note that ˆ X n 1 = X n and (U n (M 2 ), ˆ X n 1 , Z n ) = (U n (M 2 ), X n , Z n ) ∈ T (n) . Hence,
+which implies that P( ˆ X n 2 = X n ) ≤ P(E). Since P(E) → 0 as n → ∞, this establishes the achievability of the rate region.
+Converse Sketch: The lower bound for R 1 is estab- lished using cutset arguments and the Markov Chain assumption X − Y − Z, while the lower bound for R 2 is established using similar procedures to those used in establishing the lower bounds for R 1 and R 2 in Theorem 3.
+[[[ REFS ]]]
+H. Yamamoto
+--
+Source coding theory for cascade and branching communication systems
+----
+D. Vasudevan
+C. Tian
+S. N. Diggavi
+--
+Lossy source coding for a cascade communication system with side informations
+----
+P. Cuff
+H.-I. Su
+A. El Gamal
+--
+Cascade multiterminal source coding
+----
+H. Permuter
+T. Weissman
+--
+Cascade and triangular source coding with side information at the ﬁrst two nodes
+----
+Y.-K. Chia
+H. Permuter
+T. Weissman
+--
+Cascade, triangular and two way source coding with degraded side information at the second user
+----
+T. Weissman
+A. El Gamal
+--
+Source coding with limited-look- ahead side information at the decoder
+----
+R. Timo
+B. Vellambi
+--
+Two lossy source coding problems with causal side-information
+----
+W. H. Gu
+M. Effros
+--
+Source coding for a simple multi- hop network
+----
+A. El Gamal
+Y. H. Kim
+--
+Lectures on network information theory
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\179.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,75 @@
+[[[ ID ]]]
+178
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Secure Source Coding with Action-dependent Side Information
+[[[ AUTHORS ]]]
+Kittipong Kittichokechai
+Tobias J. Oechtering
+Mikael Skoglund
+[[[ ABSTR ]]]
+School of Electrical Engineering and the ACCESS Linnaeus Center Royal Institute of Technology (KTH), Stockholm, Sweden
+[[[ BODY ]]]
+Abstract—We consider a secure lossy source coding problem with the presence of an eavesdropper who has access to the source description. An encoder wants to compress the source in such a way that the intended decoder can reconstruct the source sequence and satisfy a distortion criterion, while revealing only limited knowledge about the source to the eavesdropper. In our system an action sequence is generated based on the source description with some costs to inﬂuence the side information available to the legitimate decoder and the eavesdropper. We provide a complete characterization of the rate-distortion-cost- equivocation region for a discrete source with correlated action- dependent side information at the decoders. The result serves as a fundamental limit for example in secure sensor networking.
+[[[ REFS ]]]
+A. D. Wyner
+--
+The wire-tap channel
+----
+I. Csisz´ar
+J. K¨orner
+--
+Broadcast channels with conﬁdential messages
+----
+Y. Lian
+H. V. Poo
+S. Shamai (Shitz
+--
+Information Theoretic Security , Now Publishers, 2009
+----
+A. E. Gama
+Y. H. Ki
+--
+Lecture Notes on Network Information Theory , 2010
+----
+D. Slepian
+J. Wolf
+--
+Noiseless coding of correlated information sources
+----
+A. D. Wyner
+J. Ziv
+--
+The rate distortion function for source coding with side information at the decoder
+----
+V. Prabhakaran
+K. Ramchandran
+--
+On secure distributed source coding
+----
+D. G¨und¨uz
+E. Erkip
+H. V. Poor
+--
+Lossless compression with security constraints
+----
+J. Villard
+P. Piantanida
+--
+Secure lossy source coding with side information at the decoders
+----
+H. Permuter
+T. Weissman
+--
+Source coding with a side information “Vending Machine”
+----
+I. Csisz´a
+J. K¨orner
+--
+Information Theory: Coding Theorems for Discrete Memoryless Systems 
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\178.pdf
+[[[ LINKS ]]]
+

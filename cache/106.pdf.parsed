@@ -1,0 +1,153 @@
+[[[ ID ]]]
+106
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Performance of Hybrid Codebook Techniques for MISO Downlink Channels with Limited Feedback
+[[[ AUTHORS ]]]
+Sungkyu Jung
+Kyeongjun Ko
+Jungwoo Lee
+[[[ ABSTR ]]]
+Abstract— Multi-antenna downlink system with limited feedback can provide enormous capacity gains. In prac- tical, two systems can be considered. One is zero-forcing beamforming (ZFBF), and the other is per user unitary rate control (PU 2 RC) which has been proposed for emerg- ing cellular standards. In order to have good performance, ZFBF requires many feedback bits, and PU 2 RC requires many users. Recently, the authors proposed a hybrid multi- user MISO system which has merits of those two schemes simultaneously. In this paper, we analyze the sum-rate performance and quantization error of the hybrid scheme. The throughput scaling laws are also derived in high and medium SNR regimes.
+[[[ BODY ]]]
+Multi-user multi-antenna downlink communication systems can achieve a higher spectral efﬁciency (throughput) by using space-division multiple access (SDMA) such as dirty-paper coding (DPC) [1] or transmit beamforming [2]–[5]. However they are not practical in limited feedback system since trans- mitter does not have perfect channel state information (CSI).
+As for practical implementation, zero-forcing beamforming (ZFBF) with limited feedback [6], [7], and PU 2 RC which is an extended technique of random beamforming (RBF) [8], [9] were proposed. In both systems, the sum-rate and the scaling law are analyzed in a large user regime [7], [10]. It is shown that the sum-rate grows as M log log K in the medium SNR and the noise-limited regimes, and as M M−1 log K in the high SNR regime for both systems, where M is the number of transmit antennas and K is the number of users. However, it is difﬁcult to say that either one of them is better than the other since they have different characteristics. For the ZFBF, in order to eliminate the interference, accurate channel state information (CSI) is needed, so many feedback bits are needed. Therefore, the more feedback bits we use in ZFBF, the better the performance gets. On the other hand, PU 2 RC ﬁnds the user set that has optimal performance with some ﬁxed unitary precoding matrices. The amount of feedback is relatively small and is not critical for PU 2 RC. The number of total users affects the system performance critically.
+We recently proposed a new hybrid multi-user MISO down- link communication system combined by ZFBF and PU 2 RC, and also proposed a hybrid codebook to combine the two structures [11]. This codebook has a hierarchical structure
+which combines PU 2 RC codebook and ZFBF, and the system can have advantages of the two multi-user schemes simulta- neously. In this paper, we consider the quantization error of the hybrid scheme, and analyze the sum-rate performance and the sum-rate scaling law when the number of users K gets asymptotically large. In a medium SNR regime, it shows how the number of users, the number of antennas, and the signal power affect the sum-rate, and shows the scaling law of hybrid system is identical to those of ZFBF and PU 2 RC. In the high SNR regime, the effect of the number of feedback bits is also considered. Through the sum-rate, we can observe that the hybrid system has characteristics of both ZFBF and PU 2 RC.
+The rest of the paper is organized as follows. Section II introduces the system model, and the hybrid system is brieﬂy reviewed in Section III. Section IV shows the sum- rate performance and the scaling law of the hybrid system. We present simulation results in Section V, and conclude in Section VI.
+We consider a broadcast downlink channel in which the transmitter (base station) has M > 1 antennas, and K ≥ M receivers (users) have a single antenna. The signal received by user k can be represented as
+where h k is the M × 1 channel vector at user k whose entries are independent identically distributed (i.i.d.) complex Gaus- sian with zero mean and unit variance. x is the transmitted symbol vector containing information symbols of a selected set of users U = {π(1), · · · , π(|U|)}, and n k is the additive noise with unit variance. The transmitted vector x is related to information symbols s i , i ∈ U, via linear beamforming
+where s k is the scalar symbol for user k with E[|s k | 2 ] = 1, P is the total transmit power. The user set U is chosen according to the user selection scheme of [11].
+In [11], the authors proposed a new hybrid codebook design in limited feedback environment which has merits of the two
+broadcast schemes simultaneously. One is the zero-forcing beamforming (ZFBF), and the other is per user unitary rate control (PU 2 RC). We summarize this hybrid codebook method brieﬂy.
+The ﬁrst step of the codebook construction follows the PU 2 RC codebook which consists of preset unitary matrices. 2 B 1 M × M unitary matrices are constructed randomly when B 1 is the number of feedback bits for the ﬁrst step. In the second step, a training set which will be used for the codebook for ZFBF is generated randomly, that is T = {T 1 , · · · , T L }. 2 B 2 /M codewords are constructed by the LBG algorithm with the training vectors, T t , which satisﬁes following condition in T for each v i,j (1 ≤ i ≤ M, 1 ≤ j ≤ 2 B 1 )
+where v i,j is the ith vector of the jth unitary matrix. Therefore the number of codewords in the ZFBF codebook of each unitary matrix is (2 B 2 /M)×M = 2 B 2 , and the number of total feedback bits is B = B 1 +B 2 . For the ith vector of the jth uni- tary matrix, codewords c l,j (2 B 2 (i−1)/M +1 ≤ l ≤ 2 B 2 i/M) are generated by the LBG algorithm with the condition of (3).
+For feedback, each receiver ﬁnds the best codeword vector which has the closest distance from original channel h k . The best codeword vector is chosen hierarchically. In the ﬁrst step, a receiver chooses a codeword only among the vectors in the unitary matrices.
+In the 2nd step, among c l,j ∗ (2 B 2 (i ∗ − 1)/M + 1 ≤ l ≤ 2 B 2 i ∗ /M), the closest codeword is chosen, and we get the index l ∗ = arg max l |h H k c l,j ∗ | 2 . Each receiver feedbacks j ∗ and l ∗ (or i ∗ ) to the transmitter. B = B 1 + B 2 feedback bits are needed. As for the feedback of channel quality indicator (CQI) which is used to select users, the expectation of SINR for the kth user is computed [11] by
+where θ k is the angle between the normalized channel vector and the codeword. The right hand side term is set to γ k , and fed back. The number of feedback bits needed for this CQI is small relative to the number of feedback bits for the codeword index. To consider the effect of index feedback, we do not consider the number of CQI feedback bits. This is because the effect of CQI quantization on throughput is shown to be insigniﬁcant.
+The user selection scheme of hybrid algorithm is designed based on the principle of PU 2 RC. For each v i,j , transmitter selects the user which has the largest CQI value ( γ k ) among the users that selected v i,j . We denote the set of users
+associated with v i,j to U i,j , and the index u i,j and the CQI ξ i,j of the selected user can be written as
+In the event that U i,j = ∅, the vector v i,j is associated with no user, and the maximum ξ i,j is set as zero.
+The unitary matrix of the codebook that maximizes through- put (sum rate) is chosen, whose index is
+where U j is the set of users allocated to the jth unitary matrix, that is |U j | = n({i|U i,j = ∅, for given j}). The ﬁnal selected user set U is equal to the set U j ∗∗ , and the number of selected users |U| satisfy 1 ≤ |U| ≤ M.
+In this section, we analyze the sum-rate of the hybrid codebook based limited feedback scheme. From (6) and (7), the sum-rate is given by
+The sum-rate and the scaling law of R are derived for an asymptotically large number of users.
+We obtain the quantization error through two steps which correspond to the PU 2 RC codebook and the ZFBF codebook. At ﬁrst, we compute the quantization error between the M orthonormal vectors of each unitary matrix (PU 2 RC codebook) and the normalized original channel vector ˜ h k = h k / h k .
+We omit the subscript k from now since all the distribution of sin 2 φ k are same. This is exactly the same as the quantization error of PU 2 RC. The cumulative distribution function (CDF) of sin 2 φ, F sin 2 φ (x), is easily obtained for 0 ≤ x ≤ 1/2, but the derivation of CDF for 1 /2 ≤ x ≤ 1 is difﬁcult because the
+sphere caps of the M orthonormal vectors overlap. In [10], the following inequality is used for the expectation of log sin 2 φ.
+(10) where μ is sin 2 φ and P α = 1 − [1 − M2 −(M−1) ] 2 B1 . But this inequality is not useful for our hybrid algorithm, and we use a quantization cell approximation used in [7], [12], [13] to compute quantization error according with 2 B 1 M codeword vectors. The quantization error approximation is based on the assumption that the surface area of a sphere cap corresponding to each vector is 1 /2 B 1 M of the surface area of a unit sphere. For given 2 B 1 codebook matrices, the quantization error sin 2 φ between the 2 B 1 M vectors and ˜h H k has the CDF given by
+Let us consider the vectors of the ZFBF codebook for computing the quantization error 1 − |˜h H k c l,j | 2 = sin 2 θ. We consider this quantization error in two different cases; one is that the ﬁrst codebook error sin 2 φ is less than , and the other is that sin 2 φ is larger than . We then have
+If the ﬁrst codebook error sin 2 φ is less than , sin 2 θ is obtained directly by the quantization cell approximation. As- suming the second codebook vectors are uniformly distributed in a spherical cap of size , the surface area of a sphere cap corresponding to the quantization cell of each vector is
+When sin 2 φ ≥ , the quantization error sin 2 θ is approxi- mated by the relation with sin 2 φ. Assuming that η < << 1, it is approximated from Fig. 1 by
+From (11), (12), (13), and (15), the quantization error of the hybrid codebook is expressed as F sin 2 θ (x) =
+Note that as B 2 increases, η decreases and the quantization error decreases. It is expected that the performance of the system improves as the number of the second feedback bits increases when other parameters are ﬁxed.
+In this subsection, we analyze the sum-rate of the hybrid codebook for the high SNR or the interference-limited regime. In this regime the SINR in (5) becomes
+where s = 1 − M−1 M . The CDF of ¯ γ k is given by F ¯ γ k (x) = 1 − F sin 2 θ s s + x
+⎧ ⎪ ⎨ ⎪ ⎩
+where a = s(1−δ+ −η) δ− +η and b = s(1−η) η . The sum-rate is then obtained as in the following theorem.
+Theorem 1: In the high SNR or the interference-limited regime, the sum-rate of the hybrid codebook design becomes
+Proof: By the weak law of large numbers, for an asymp- totically large number of users, users are equally and uniformly allocated to each vector v i,j so that |U i,j | = K T /(2 B 1 M) and |U j | = |U| = M. Therefore, (8) becomes
+For the ﬁnite B 1 and M, |U i,j | goes inﬁnity as K T → ∞, and so we use the extreme value theory [7], [8] to obtain max k∈U i,j ¯γ k .
+Let |U i,j | = N, a N = s(2 B 1 +B 2 N) 1 M−1 , and b N = −1. We consider the distribution in (18). When z > 0, for a sufﬁcient large N, a N z + b N ≥ b, and we have
+When z ≤ 0, N(1 − F ¯ γ k (a N z + b N )) = 0, and therefore, F ¯ γ k (x) belongs to the type (i) distribution of [7, Appendix VI]. Through a process similar to [7, Appendix V], we get
+and for a large N, log(1+ max k∈U
+(23) The desired sum-rate is given by
+• The sum-rate (19) is an increasing function of B 2 . This is an expected result since the quantization error is reduced as B 2 increases.
+• For the case of → 0, the proposed hybrid system has no secondary codebook for ZFBF and becomes a PU 2 RC system, which can be seen from (19). Since as → 0, the number of the second codebook vectors associated with v i,j goes to 1 (that is, itself), and 2 B2 M = 1. Therefore the sum-rate of PU 2 RC is reduced to M M−1 log K T .
+• We can observe that the interchangeability between 2 B 2 and K T as in a ZFBF system [7]. For a given target sum- rate, the effect of one feedback bit per user is the same as the effect of doubling the number of users.
+• The throughput scaling law for a hybrid system is identical to those for PU 2 RC and ZFBF. That is, lim K T →∞ R log K T = M M−1 . The sum-rate is shown to scale logarithmically with the number of users.
+In this regime, to analyze γ k is difﬁcult since the joint distribution of quantization error and channel gain in γ k is complicated. In this section, we use the upper and the lower bound of sum-rate to avoid analyzing the joint distribution.
+Theorem 2: In the medium SNR regime, the sum-rate of the hybrid codebook is bounded by
+Proof: For brevity, we denote P/M, h k 2 , and sin 2 θ k to ρ, h k , and ζ k , respectively. Then, we have
+Note that h k has a gamma distribution with the parameter (M, 1), and the extreme value of h k can be obtained as in [8].
+Now, let us consider the lower bound. We deﬁne a set of users whose quantization error is smaller than 1 /K 1 M T .
+From [10, Lemma 1], [14, Lemma 4.8] we obtain P r sup i,j | ¯ U i,j | K T − 1 2K M−1
+and c is a constant. We set λ 1 (K T ) = λ 2 (K T ) = 1/c 1 K (M−1)/M T 	 , then we have
+where c 1 is an arbitrary positive constant that makes c 2 ≥ 0, and c 2 = 2c 1 c 1 −2 , i.e., c 1 , c 2 > 2. We can see that the right- hand side of (30) goes to 1 when K T gets sufﬁciently large. Therefore
+(log ¯ K T + O(log log ¯ K T )) , (32)
+where ¯ K T = K 1 M T /c 2 . Then, (25) is readily followed. There are a few remarks on Theorem 2.
+• We can easily observe that the throughput scaling law for the hybrid system is lim K T →∞ 	 R log log K T = M. According the previous subsection, in high SNR regime, the sum-rate increases by multi-user diversity is by a factor of log K T . We observe that the effect of multi- user diversity is larger in the high SNR regime. This is identical to the analysis for PU 2 RC, ZFBF, and RBF [8].
+• The effects of the number of users, antennas, and signal power are considered. We can observe that the multiuser diversity of an SNR improvement is by a factor of log K T as other previous multi-user techniques [7], [8].
+In this section, we present numerical results. We use M = 4 transmit antennas, B = B 1 + B 2 = 6 feedback bits, and = 0.25. Fig. 2 and Fig. 3 show the sum-rate comparison of the three schemes in medium and high SNR region with respect to the number of users. For the hybrid system, we consider the four different cases: ( B 1 = 0, B 2 = 6), (B 1 = 1, B 2 = 5), ( B 1 = 2, B 2 = 4), and (B 1 = 3, B 2 = 3). Since 2 B 2 /M > 1, B 2 cannot be smaller than 3 in this simulation environment. When the number of users is large, we can see that our hybrid scheme has additional gain compared to ZFBF and PU 2 RC in both of the medium and the high SNR region. The main reason is that for PU 2 RC, increasing feedback does not necessarily lead to higher throughput [10]. Hence in the hybrid codebook scheme, even if the size of the ﬁrst codebook for PU 2 RC decreases, the increased size of the second codebook for ZFBF makes system performance improve. This improvement by increasing the second codebook bits B 2 is signiﬁcant in the high SNR region as shown in Fig. 3. We can see that although the total feedback bits B is the same, as B 2 increases the system sum-rate increases. This result is well matched to the sum-rate equation (19). The slope of growth of sum-rate versus the number of users is larger in the high SNR region than in the medium SNR region. This is because the effect of multi- user diversity is larger in the high SNR regime as we showed in Section IV-B and C.
+In this paper, a multi-user downlink system that consists of a transmitter with multiple antennas and K receivers with a single antenna has been considered in the limited feedback environment. We analyzed the quantization error of the hybrid scheme, the sum-rate performance, and the scaling law of sum- rate when the number of users K gets asymptotically large. In a high SNR regime, the sum-rate of hybrid system is shown to scale logarithmically with the number of users. And in the medium SNR regime, it is shown that the sum-rate scales in a double logarithmic fashion with the number of users. Through the sum-rate analysis, we observe that the hybrid system has the characteristics of both ZFBF and PU 2 RC. Simulation results show that the proposed hybrid algorithm has advantages of the both schemes, and has the best performance when the number of users is large.
+This research was supported in part by Basic Science Research Program through the National Research Foundation of Korea (NRF) funded by the Ministry of Education, Sci- ence and Technology (2010-0013397), Seoul R&BD Program (JP091007, 0423-20090051), and the Institute of New Media & Communications (INMAC).
+[[[ REFS ]]]
+M. Costa
+--
+Writing on dirty paper
+----
+P. Viswanath
+D. Tse
+--
+Sum capacity of the vector Gaussian broadcast channel and uplink-downlink duality
+----
+M. Sharif
+B. Hassibi
+--
+A comparison of time-sharing, DPC, and beamforming for MIMO broadcast channels with many users
+----
+N. Jindal
+A. Goldsmith
+--
+Dirty-paper coding versus TDMA for MIMO broadcast channels
+----
+T. Yoo
+A. Goldsmith
+--
+On the optimality of multiantenna broad- cast scheduling using zero-forcing beamforming
+----
+N. Jindal
+--
+MIMO broadcast channels with ﬁnite-rate feedback
+----
+T. Yoo
+N. Jindal
+A. Goldsmith
+--
+Multi-antenna downlink channels with limited feedback and user selection
+----
+M. Sharif
+B. Hassibi
+--
+On the capacity of MIMO broadcast channels with partial side information
+----
+J. Kim
+H. Kim
+K. B. Lee
+--
+Limited feedback signaling for MIMO broadcast channels
+----
+K. Huang
+J. Andrews
+R. Heath
+--
+Performance of orthogonal beamforming for SDMA with limited feedback
+----
+K. Ko
+J. Lee
+--
+Hybrid codebook design for multiuser MISO systems with limited feedback
+----
+K. Mukkavilli
+A. Sabharwal
+E. Erkip
+B. Aazhang
+--
+On beam- forming with ﬁnite rate feedback in multiple-antenna systems
+----
+S. Zhou
+Z. Wang
+G. Giannakis
+--
+Quantifying the power loss when transmit beamforming relies on ﬁnite-rate feedback
+----
+P. Gupta
+P. Kumar
+--
+The capacity of wireless networks
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\106.pdf
+[[[ LINKS ]]]
+

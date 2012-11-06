@@ -1,0 +1,159 @@
+[[[ ID ]]]
+2
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Implicit Communication in Multiple-Access Settings
+[[[ AUTHORS ]]]
+Gireeja Ranade
+Anant Sahai
+[[[ ABSTR ]]]
+Abstract—Optimal control strategies for decentralized control problems may involve internal communication between con- trollers. We think of such internal communication as implicit, since the messages being sent are endogenous to the system and not externally speciﬁed. Recently, Grover and Sahai [1] applied information-theoretic techniques to provide an approximately optimal scheme for the Witsenhausen counterexample: one of the simplest models of a decentralized control system. This paper examines a MAC-inspired extension of the Witsenhausen counterexample. Deterministic modeling techniques based on the work by Avestimehr at al. [2] feature centrally in the strategy development. This example illustrates that “Information is in the eye of the beholder”, and we ﬁnd “rate gains” in the context of implicit communication. These are not observed in the original Witsenhausen counterexample.
+[[[ BODY ]]]
+Shannon’s groundbreaking 1948 paper built upon an in- sightful simpliﬁcation for the communication problem: ignore the content and context of the message while designing com- munication schemes [3]. Following this, information theoretic problem formulations traditionally focus on explicit commu- nication, where the message has been externally speciﬁed to the encoder.
+Now consider a situation where communication serves as a means to an end. Say the transmitted “messages” are system-generated and possibly even related to the channel over which they are traveling. Can we capitalize on the connec- tions between the system and the message? Recently, Grover and Sahai explored the concept of implicit communication in decentralized control systems, where both the message and the channel over which it is to be communicated are endogenous to the system [1]. They provided a provably approximately optimal strategy for an asymptotic vector ver- sion of the Witsenhausen counterexample. These strategies were then extended by Grover, Sahai and Park to the scalar counterexample [4]. Another example of implicit communica- tion comes from the problem of information embedding with reversible stegotext [5]. The channel state plays double roles: it acts as both a system-generated message and as interference. Finally, Grover, Wagner and Sahai [6] studied the problem of information embedding in control systems, which combined both implicit and explicit messages in a system.
+The communication-centric perspective for decentralized control problems can be illustrated well using deterministic models as in [7]. Deterministic models have given insight into the interference and relay channels [2], [8], but their full potential has not been explored in the context of control
+problems. The two controller example considered by Grover and Sahai [7] did not involve any interfering states.
++− + v + y
+Here, we examine a multiple-access Witsenhausen (MAW) problem (Fig. 1), in order to understand implicit communica- tion in decentralized control systems with interfering states, and to test drive a deterministic approach. The Witsenhausen counterexample can be thought of as a decentralized control parallel to the point-to-point channel. The multiple-access channel (MAC) has traditionally been the ﬁrst multi-user follow-up to the point-to-point channel, and the MAW problem is a natural exploration. Scenarios where controllers observe linear combinations of state variables could occur frequently in biological or chemical control plants. For instance, molecules A and B may undergo a chemical reaction to produce an observed species C. Based on this observation, the system may need to estimate or control the concentrations of species A, B or C.
+As in [1], we focus on developing approximately optimal control schemes in this paper, and consider two variations of the MAW problem. In the state-setup, two states add to
+form a new state, which is of interest to the second stage controller. Strategies for this ﬁrst variation turn out to be similar to the original Witsenhausen counterexample. Despite being a multi-user problem it is noise-limited (not interference- limited). Nazer and Gastpar [9] considered a MAC setup where a function of the encoder messages is of interest at the decoder. The structured codes developed for this situation are the crux of the strategy used in the state-setup (Sec. IV).
+In the observation-setup (Sec. V), the second-stage con- troller must estimate two states from one observation 1 : the sum of states. The two states interfere with each other, just as in a MAC. A slight re-drawing of the problem, as in Fig. 2, highlights that this control problem is closely related to the dirty multiple-access channels considered by Kotagiri and Laneman [10] and by Philosof et al. [11]. The deterministic model proves to be particularly illuminating here, and suggests good lattice and random coding strategies that work well in the Gaussian case.
+The MAW problem is a two-time-step control system with two states, x and w. As noted in the introduction, we consider two versions of the problem (Fig. 1). The ﬁrst stage control is identical for both versions. At time zero, the stage-one controllers, C x and C w , observe the initial states x 0 , w 0 ∼ N(0,σ 2 ) respectively, and add their own control inputs, u x and u
+w , to get x 1 , w 1 . x 1 and w 1 add together to give v. Note that u x and u w are functions of x 0 and w 0 respectively. The system is described by:
+x 1 = x 0 + u x , w 1 = w 0 + u w 	 (1) v = x 1 + w 1 , y = v + z 	 (2)
+The third controller C v observes y, which is a noisy version of the sum of the states. The noise z is distributed as N(0,1). Depending on the problem setup, v can be thought of as a state of the system or as (the precursor to) an observation. Following the chemistry example in the introduction, if the quantity of interest for control is the molecule C, v is a state. However, if the engineer wants to control the concentration of molecules A and B, then v acts as an observation and is not of inherent interest. This distinction between state and observation can only be seen in multiuser communication and control problems.
+This leads to the two problem setups. In the ﬁrst, v is the system state to drive to zero 2 (the state-setup, Fig. 1(a)). In the second, v is just an observation (the observation- setup, Fig. 1(b)), and the aim is to drive states x and w to zero. The ﬁrst stage cost J 1 ( ||u x || 2 , ||u w || 2 ) penalizes the power used, and the second stage cost, J 2 ( ||u v || 2 ) or J 2 ( ||u vx || 2 , ||u vw || 2 ), penalizes the control error. The total cost to be minimized is a weighted sum of the ﬁrst and second
+stage costs, J(k 2 ) = k 2 J 1 + J 2 , where k is a parameter. Minimizing mean square error (MMSE) at the second stage error is equivalent to generating the best estimate of the state(s) (v or x 1 , w 1 ). With this perspective, C v can be seen as a decoder. C x and C w then take on the role of encoders (Fig. 2).
+In the state-setup, controller C v would like to gen- erate a control input u v to set state v to zero, and the cost function is E k 2 ||u x || 2 + k 2 ||u w || 2 + ||v − u v || 2 . In the observation-setup, the objective is to minimize E k 2 ||u x || 2 + k 2 ||u w || 2 + ||x 1 − u vx || 2 + ||w 1 − u vw || 2 .
+Just as in the original Witsenhausen counterexample, the goal is to minimize EJ(k 2 ). In both setups, the ﬁrst stage cost is a symmetric function of the power P used by C x and C w . Thus, it is logical for both controllers C x and C w to use the same power P . Indeed, say C x used power P + . C w could also use the same power without changing the order of magnitude of J 1 , and will not make a signiﬁcant difference in an approximately optimal scheme. For now, we focus our attention on this symmetric problem. We also note that minimizing the total cost J is equivalent to minimizing J 2 such that E ||u x || 2 , E ||u w || 2 ≤ P (for all P) and we interchangably deal with the two formulations.
+As traditional in information theory, in sections IV-B and V-B we consider a vector version of the problem, where the variables x 0 , w 0 etc. are vectors of length l, and let l → ∞. From a control-theoretic perspective it is important to also consider the scalar version of the problem, as in [4], but we leave this for future work. To start off, we examine deterministic versions of the problem.
+Grover and Sahai [7] used a deterministic model based on the ideas from [2] to analyze the Witsenhausen counterex- ample with an added explicit message. Building on this, we consider a deterministic MAW problem, as detailed below (Fig. 3).
+0 is replaced by an inﬁnite binary string b n b n−1 ...b 1 b 0 .b −1 b −2 .... The representation beyond b 0 (deemed the least signiﬁcant bit (LSB)) turns
+out to not be relevant in our case. b n is the most signiﬁcant bit (MSB).
+random variable. For example, x 0 ∼ N(0,σ 2 ) can have highest representation at the log 2 σ 2 level. Similarly, to control the value of a bit at level l, a controller needs power P = 2 l .
+level that x can take. The cost function takes the form k 2 pow(u x )+k 2 pow(u w )+pow(error) depending on the case we are looking at.
+. . .
+. . .
+. . .
+. . .
+. . .
+Here, the cost function we want to minimize is k 2 pow(u x )+ k 2 pow(u w )+pow(v −v). We focus on minimizing pow(v−v) with pow(u x ), pow(u w ) ≤ P.
+Theorem 4.1: Let log 2 σ 2 = n, log 2 P = m and J 2,min denote the minimum stage-two cost. Let pow(u x ), pow(u w ) ≤ 2 m . Then,
+Proof: Let b 0 to b n , c 0 to c n and d 0 to d n represent the bit levels of x 1 , w 1 and v respectively. The noise power is at the level of the lowest bits, b 0 , c 0 , d 0 . d 0 (the red bit at the noise ﬂoor in Fig. 3) is not received by the decoder, while d 1 to d n are received noiselessly.
+Case 1 (zero-forcing): If C x , C w can control all bit levels, i.e. m ≥ n then the obvious strategy is to set all bits for both x 1 and w 1 to zero at stage-one. Clearly, J 2,min = 0, since C v sets v = 0.
+Case 2 (quantization): In the deterministic model, all bits of v above the noise level (see Fig. 2) are received noiselessly by C v . The only challenge is to correctly decode the bits below the noise ﬂoor. Hence if m > log 2 1 = 0, then C x and C w can set all bits of x 1 , w 1 below the noise ﬂoor to zero (see Fig. 4), effectively setting d 0 to 0. C v reads d 1 to d n noiselessly, and knows d 0 = 0 in advance. Thus, J 2,min = 0.
+Case 3 (do-nothing): Unlike Case 2, here the stage-one controllers cannot set the value of d 0 . C v will correctly guess the value with probablility 0.5, and make an error of power 1 otherwise. Thus, J 2,min = 0.5.
+Remark 4.1: Just as in the original Witsenhausen coun- terexample, the bit bottleneck in the state-setup comes from noise. Therefore, the problem is noise-limited. Hence, from the perspective of the second stage decoder, the second stage estimation problem is identical to that in the point-to-point counterexample [1].
+In the Gaussian setup, we look at all variables as being vectors of length l, and we change notation appropriately.
+Theorem 4.2: An achievable cost for the vector Gaussian case state-setup MAW problem is min 2k 2 σ 2 , 2σ 2 1+2σ 2 , 2k 2 as l → ∞.
+Proof: (Sketch) Following the deterministic model, the Gaussian sum estimation problem employs three control strate- gies: zero-forcing, lattice-point quantization, and do-nothing. In each of the strategies, we examine average costs over the vector length (i.e. 1 l E[J(k 2 )] as l → ∞ etc.), but drop the l to simplify the explantion). The zero-forcing strategy pushes both states to zero at the ﬁrst stage, with E[J 1 ] = 2σ 2 at the ﬁrst stage and E[J 2 ] = 0, so E[J] = 2k 2 σ 2 . In the do-nothing strategy, E[J 1 ] = 0 and C v performs MMSE estimation to get v. Hence, E[J 2 ] ≤ 2σ 2 1+2σ 2 . The lattice-point quantization strategy is inspired by the work of Nazer and Gastpar [9]. Lattice codebooks of second moment 1 (i.e. the cell radius is matched to the noise power, 1) are used to quantize x 0 and w 0 to x 1 and w 1 respectively. Then, E[ ||u x || 2 ] ≤ 1. The sum of two lattice-points is also a lattice-point, and since the second moment of the lattice and the noise variance are both 1, the noise will not push the received codeword outside the decoding region of v. Hence, E[J 2 ] = 0, and we achieve E[J(k 2 )] ≤ 2k 2 as l → ∞.
+state-setup MAW problem as the vector length l → ∞. The scheme presented in Thm. 4.1 achieves this bound to within a constant factor.
+We leave the proof of this to an extended version of the paper [12].
+In this setup, we are working to minimize J(k 2 ) = k 2 pow(u x ) + k 2 pow(u w ) + pow(x 1 − x 1 ) + pow(w 1 − w 1 ). We’ll use the same notation as in the state-setup. Looking at Fig. 3, the deterministic model highlights that the separate estimation problem is interference-limited. Notice that the bits of v are a communication resource shared by x 1 and w 1 . As in the MAC, there is a tension between the variables.
+Theorem 5.1: Let log 2 σ 2 = n, log 2 P = m and J 2,min denote the minimum achievable stage-two cost. Let pow(u x ), pow(u w ) ≤ 2 m . Then,
+Proof: Case 1: (do-nothing) Recall that the stage-two cost focuses on the highest erroneous bit. No bits of x 1 or w 1 (above the noise level if n > 0, and below the noise level if n < 0) can be reproduced at the decoder, since they are all killed by interfering with each other. We will have errors on x 1 and w 1 at level n with probability 0.5 each. Hence, J 2,min = 0.5 · 2 n + 0.5 · 2 n = 2 n .
+Case 2: (quantization) To be able to communicate any information across the interference-limited channel, one of the controllers, say C w , needs to “make room” for C x to communicate. We have the ability to control m bits of x and w (upto level m, and above the noise level), but cannot modify anything beyond level m. To understand the strategy, consider n = 6, m = 2, as in Fig. 5. the optimal strategy is for C x to set b 1 , b 2 to equal b 5 , b 6 and use these two bits to communicate the two MSBs of x 0 . On the other hand, C w sets c 1 , c 2 to zero. C v receives b 5 , b 6 , as well as b 5 + c 5 and b 6 + c 6 noiselessly, and decodes the four MSBs perfectly. The highest bits not recovered in the example are b 4 and c 4 , and J 2,min = 2 · 1 2 · 2 4 = 2 4 . Using an identical scheme for any m < n/2 we can achieve J 2,min = 2 n−m .
+Remark 5.1: Even though we focused all available re- sources on communicating two bits of x 1 , we noiselessly decoded four bits at the decoder. Since w 1 acts as both message and state, we are able to effectively “double” our communication rate. We’ll revisit this idea in the Gaussian case.
+Case 3: (coding): This case is identical to the previous case, except that since m ≥ n 2 , we can decode all n 2 MSBs of x 1 , w 1 . Thanks to the “room” created by C w , c 1 to c n 2 are known to be zero, and b 1 to b n 2 are noiselessly received. All bits above the noise level can be recovered at the decoder and J 2,min = 0. We call this a coding strategy (as opposed
+to quantization) since here C v perfectly recovers both x 1 and w 1 .
+Case 4: (zero-forcing) If m > n, then we can set all bits of x 1 , w 1 to zero at stage-one, regardless of whether n > 0 or n ≤ 0. Clearly, J 2,min = 0.
+Theorem 5.2: Let ζ(P ) = 2k 2 P +2 	 σ 2 . 5+P + √P ) 2 +1. An achievable cost for the vector Gaussian observation-setup MAW problem as l → ∞ is min σ 2 , 2k 2 σ 2 , 2k 2 σ, min
+P ≥1 ζ(P ) . Proof: (Sketch) Once again, all costs are averaged over vector length l as l → ∞, but we drop the explicit notation for simplicity.
+Case 1: (do-nothing, cost σ 2 ) This strategy involves no action on the part of the stage-one controllers, and is useful when σ 2 is comparable to the noise power. The second stage controller takes the cost hit, by estimating x 1 = w 1 = 0, and we have E[J 1 ] = 0 and E[J 2 ] = σ 2 .
+P ≥1 ζ(P )) This strategy is useful when the available power, P , is greater than the noise power 1. Consider two nested lattices, Λ P (the coarse lattice) and Λ 1 (the ﬁne lattice), of second moments (i.e. Voronoi cell radii) P and 1 respectively. Intuitively, following the deterministic model, the “helper” C w can clear out up to log 2 P bits by pushing w 0 to one of the points of Λ P , so that
+C x then communicates bits of x 0 in this cleared out space using the points of Λ 1 . A modulo-lattice decoder can decode (possibly with errors) the ﬁne and coarse lattice points separately. However, unless P is large enough, the resolution provided by the ﬁne lattice may not be sufﬁcient to decode x 0 noiselessly. The focus on x 0 instead of x 1 leads to an addition to the second stage cost, which we quantify below.
+We omit the details of this strategy here (see [12]). This requires the use of inﬂated versions of Λ P and Λ 1 , as in Philosof et al. [11]. If the decoder would like to recover explicit messages (say M 1 , M 2 ) from two encoders (with power P ), in a doubly dirty MAC, at rates R 1 , R 2 , then all rate pairs R 1 + R 2 ≤ 1 2 log 2 ( 1 2 + P ) + are achievable [11].
+x 0 can be thought of as message M 1 . Based on the above achievability result, we know that R x 0 = R 1 = 1 2 log 2 ( 1 2 + P ) is achievable, if R 2 = 0 and E ||u x || 2 , E ||u w || 2 ≤ P. The rate distortion theorem ([13], Thm. 10.3.2) gives E ||x 0 − x 0 || 2 =
+. Since, E ||x 0 −x 1 || 2 ≤ P, we use the triangle inequality as in [1], and hence, E ||x 1 − x 1 || 2 ≤ 	 σ 2 . 5+P + √P 2 . Using this, x 1 , the MMSE estimation of w 1 , as w 1 = y −x 1 gives, E ||w 1 − w 1 || 2 ≤ 	 σ 2 . 5+P + √P 2 + 1.
+Thus, an achievable cost for every P is 2k 2 P + 2 	 σ 2 . 5+P + √P 2 +1. Minimizing over P gives the optimal tradeoff between ﬁrst and second stage costs.
+Remark 5.2: We manage to recover x 1 (acting as the mes- sage) and w 1 (acting as the state) to almost the same ﬁdelity. The implicit nature of the communication and the message- state double role played by w 1 help us get two for the price of one.
+Case 3: (coding, cost 2k 2 σ) The coding strategy is really a special case of the lattice strategy in Case 2, where P can “make enough room” for x 1 to be communicated noiselessly. We can check by comparing the rate region of the MAC to the rate-distortion function that if P ≥ σ, when σ > 1, the stage one controllers can compress x 0 , w 0 to x 1 , w 1 , which have entropies small enough that they can be communicated noiselessly over the MAC (details omitted, see [12]). In this case, E[J 1 ] = 2k 2 σ and E[J 2 ] = 0.
+Case 4: (zero-forcing, cost 2k 2 σ 2 ) When P ≥ σ 2 we can push the state to zero at the ﬁrst stage. Again, the second stage controller estimates both x 1 = w 1 = 0, but this time at no cost. The costs achieved are E[J 1 ] = 2k 2 σ 2 and E[J 2 ] = 0.
+log 2 (1+4P ) 1 	 is a lower bound on the Gaussian case observation-setup MAW problem. The scheme presented in Thm. 5.1 achieves this bound to within a constant factor, ρ ≤ 100.
+We defer the proof of this to the extended version of the paper [12]. Since the bounding techniques used in the proof are loose we only prove ρ ≤ 100, however numerical calculations show that the ratio is in fact ≤ 4.
+With insight gained from the deterministic model, we were able to provide strategies for the multiple-access Witsenhausen problem. The deterministic model suggested key ideas (e.g. quantization and “making room”), which hinted at the use of structured codes in the Gaussian problem. Lattice coding was essential in both versions of the problem, reemphasizing its importance as a technique in multi-user communication.
+Communication problems focus on sending a message from an encoder to a decoder. Control problems, on the other hand, focus on state control and estimation. In the MAW problem, we ﬁnd that system states can play double roles: they act as both messages and interference. This double role was not observed in the original Witsenhausen counterexample. Gelfand-Pinsker [14] channels assume the interference, S, is
+independent of other variables in the problem and uninteresting to the decoder. Communication rate is measured in terms of the bits of the encoder message that are communicated to the decoder. However, The MAW problem highlights that “information is in the eye of the beholder”. Since the MAW decoder cares about the internally generated interference/state, it learns more relevant information and we achieve a “higher rate” of implicit communication.
+Versions of the MAW problem with more than two users, as well as problems with asymmetries between the stage-one power costs and initial state variances remain open for future work. Systems with explicit messages and channels as in [6], [7] can also be explored. Based on preliminary investigations, we do not expect signiﬁcant qualitative differences in the result in any of these cases.
+We would like to thank Pulkit Grover for suggesting the direction of research and helpful discussions, as well as Pulkit Grover, Kristen Woyach and Hari Palaiyanur for comments on the manuscript. Special thanks to the anonymous reviewers whose detailed comments were very useful. We also thank the NSF for a GRF and grant CNS-0932410, which supported this research.
+[[[ REFS ]]]
+P. Grover
+A. Sahai
+--
+The vector Witsenhausen problem as assisted interference cancelation
+----
+S. Avestimehr
+S. Diggavi
+D. Tse
+--
+Wireless Network Information Flow: A Deterministic Approach
+----
+C. Shannon
+--
+A mathematical theory of communication
+----
+P. Grover
+A. Sahai
+S. Park
+--
+The ﬁnite-dimensional Witsenhausen counterexample
+----
+O. Sumszyk
+Y. Steinberg
+--
+Information embedding with reversible stegotext
+----
+P. Grover
+A. Wagner
+A. Sahai
+--
+Information embedding meets distributed control
+----
+P. Grover
+A. Sahai
+--
+Implicit and explicit communication in decen- tralized control
+----
+R. Etkin
+D. Tse
+H. Wang
+--
+Gaussian interference channel capacity to within one bit
+----
+B. Nazer
+M. Gastpar
+--
+Computation over multiple-access channels
+----
+S. Kotagiri
+J. Laneman
+--
+Multiaccess channels with state known to some encoders and independent messages
+----
+T. Philosof
+R. Zamir
+U. Erez
+A. Khisti
+--
+Lattice Strategies for the Dirty Multiple Access Channel
+----
+G. Ranade
+A. Sahai
+--
+Implicit Communication in Multiple-Access Settings
+----
+T. Cove
+J. Thoma
+--
+Elements of information theory, 2nd ed
+----
+S. Gelfand
+M. Pinsker
+--
+Coding for a channel with random param- eters
+[[[ META ]]]
+parsed -> yes
+file -> E:\testDataset\002.pdf
+[[[ LINKS ]]]
+

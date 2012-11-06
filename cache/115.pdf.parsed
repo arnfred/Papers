@@ -1,0 +1,169 @@
+[[[ ID ]]]
+115
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Outﬁx-free and Intercode Constraints for DNA Sequences
+[[[ AUTHORS ]]]
+Hiroshi Kamabe
+[[[ ABSTR ]]]
+Abstract—DNA sequences can be regarded as sequences consisting of 4 symbols A (adenine), C (cytosine), G (guanine), and T (thymine). Many constraints for the DNA sequences are studied because when the DNA sequences are used as funda- mental ingredients for computation or processing information, the DNA sequences should satisfy constraints so that molecular biological processes are done with small error probabilities. We explain constraints of the DNA sequences for hybridization. We also show some results on outﬁx-free and intercode constraints for DNA sequences.
+Keywords-Watson-Crick complementarity, Hybridization, DNA sequence, GC-content, Constraint coding
+[[[ BODY ]]]
+When we use DNA or RNA sequences for processing, recording or transmitting information, we may impose some constraints on the sequences so that we could process data sequences with few difﬁculties. There are many such constraints, e.g., a bond-free constraint and a comma-free constraint [1].
+In digital magnetic recording we also have problems for encoding data into sequences satisfying given constraints. The theory of symbolic dynamics is one of fundamental tools for the problems. The topological entropy of a subshift, a set of sequences satisfying some constraints, is an impor- tant characteristics of the shift and is completely determined by an adjacency matrix of the shift if the shift is of ﬁnite type or soﬁc [2]. Therefore a class of constraint modeled as subshifts of ﬁnite type are well studied. The DC-free constraint is given in terms of spectrum and determines a class of soﬁc shift [3], [4], [5]. Constraints on the DNA sequences are usually given by specifying languages because the constraints come from theories for DNA computers. See [1], [6].
+Recently many researchers are paying much attention to relationships between the information theory and the molecular biology [7]. There are also several studies on DNA sequences from the point of view of the coding and information theory [8], [9]. In this manuscript we show we can improve lower bounds of the capacities of some constraints for DNA sequences.
+There are several arhitectures for DNA computer. In those architectures data and programs should be encoded into the DNA sequences at the preparation step for computing. An important requirement for the encoding rule is that unin- tended hybridization never happen during computation steps so that the ﬁnal result will be meaningfull. This requirement
+is stated as a formal language. Since the requirement (that is, constraint) is imposed, all DNA sequences can not be used in the DNA computer. However, if the number of DNA sequences satisfying the constraint would not grow exponentially, the requirement is not realistic. Therefore, the fundamental question is that “how many sequences can be used even if the constraint is imposed?”
+Another requirement is that all sequences should hy- bridyze at almost the same temperatures. Since the tempera- ture at which the hybridyzation occurs strongly depends on the “GC-content” of DNA sequences used for computation, the requirement can be stated as that almost all DNA sequences should have the same GC-content.
+These questions are partially answered in several litera- tures, e.g., [10], [11], [6], [12].
+Let Σ be a non empty ﬁnite set, called an alphabet. We will denote by X a special alphabet {A, G, C, T } representing the DNA nucleotides. A word or a block u over Σ is a ﬁnite sequence of symbols in Σ. By Σ ∗ we mean the set of all words over Σ. Note that Σ ∗ includes the empty word, ǫ. By Σ ∗ we mean the set of all non empty words, that is, Σ + = Σ ∗ \{ǫ}. The length of a word u = u 1 · · · u n is denoted by |u| and we have |u| = n.
+A DNA single strand has a direction, that is, there are two ends in the strand, 5 ′ end and 3 ′ end. We usually write the DNA sequence from the 5 ′ end to the 3 ′ end. For example GGACT means a DNA single strand
+A mapping φ : X ∗ → X ∗ is called a morphism (anti- morphism) of X ∗ if φ(uv) = φ(u)φ(v) (respectively φ(uv) = φ(v)φ(u)) for all u, v ∈ X ∗ . An involution ψ : R → R of R is a mapping such that ψ 2 equals the identity mapping. Let θ be a mapping deﬁned by θ(A) = T , θ(T ) = A, θ(G) = C, and θ(C) = G, which implements the Watson-Crick complementarity. Then θ is a morphic involution. By (θ(u)) R we can deﬁne an anti- morphic involution where R means the reversing operation of strings. When counting the number of G and C in a DNA sequence, the following function is used
+A set of all bi-inﬁnite sequences from Σ, or a set of all functions from the set of functions from the set Z of all integers to Σ, is called the full shift on Σ, denoted by Σ Z . For a set F ⊆ Σ ∗ , we deﬁne X F as follows
+We call X F a subshift and F a forbidden set. If a subshift S is given as S = X F for some ﬁnite set F, we call S a subshift of ﬁnite type (SFT). We deﬁne a map σ : Σ Z → Σ Z by
+Let Y and W be two subshifts. For a function f : Y → W , f is continuous and commutes with the shift map, that is,
+if and only if there exists a map φ : Σ n → Σ and integers n and l such that
+Such a function f is called a block map. If there is a surjective block map from Y to W , we say W is a factor of Y . If Y is of ﬁnite type, then we say W is a soﬁc shift. A forbidden set of a soﬁc is not necessarily a ﬁnite set.
+Let B n (W ) be the set of words of length n appearing as a subsequence of some sequence in W . The topological entropy h(W ) of W or the capacity C(W ) of W is deﬁned by
+The base of the logarithm is usually 2. But in the manuscript the base is the number of symbols. Therefore the base is 4 when we consider the DNA sequences.
+A ﬁnite state transition diagram (FSTD) is a ﬁnite labeled directed graph G = (V, E, ℓ) consisting of
+• a ﬁnite set of edges E where each edge e has an initial state, denoted by σ(e), and a terminal state, denoted by τ (e);
+• an edge labeling ℓ : E → Y where Y = {−1, 1} or {G, C, A, T } in this manuscript.
+A path u of G is a sequence of edges in E such that τ (u i ) = σ(u i+1 ) for all i = 1, 2, . . . , M − 1. If τ (u M ) = σ(u 1 ) then u is called a cycle. If every state in G appears in {σ(u 1 ), . . . , σ(u M −1 )} and {τ (u 1 ), . . . , τ (u M −1 )} at most once, then u is said to be simple.
+In this section several constraints which DNA sequences should satisfy are given when the sequence are used as fundamental objects for computation.
+Let L be a language over an alphabet Σ and let φ be a morphic or anti-morphic involution on Σ ∗ . The language L is said to be (φ, k) -bond-free if for any two substrings u and v over L with length k, we have u = φ(v). This constraint is imposed so that undesirable hybridization will not occur. L. Kari et al. studied this constraint [11].
+The following are other constraints for DNA languages [1, Chapter 4], [6]:
+• A language L over Σ is said to be φ -inﬁx-free if Σ + φ(L)Σ ∗ ∩ L = ∅ and Σ ∗ φ(L)Σ + ∩ L = ∅.
+• A language L over Σ is said to be φ -preﬁx-free if φ(L)Σ + ∩ L = ∅.
+• A language L over Σ is said to be φ -sufﬁx-free if Σ + φ(L) ∩ L = ∅.
+• A language L over Σ is said to be φ -biﬁx-free if L is both φ-preﬁx-free and φ-sufﬁx-free.
+• A language L over Σ is said to be φ -comma-free if Σ + φ(L)Σ + ∩ L 2 = ∅.
+• A language L over Σ is said to be φ -outﬁx free if for u, φ(u 1 )xφ(u 2 ) ∈ L with φ(u) = φ(u 1 )φ(u 2 ) implies x = ǫ.
+• A language L is called a φ -intercode if L m+1 ∩ Σ + φ(L m )Σ + = ∅, m ≥ 1. The integer m is called the index of L.
+In [10] the comma-free constraint was studied and a sequence {L i } of comma-free codes are also given. It has been shown that the capacity of L i tends to 1 as i tends to ∞ where the base of the logarithm is 4(Proposition 1).
+Let n α (u) be the number of occurrences of a symbol α in a sequence u. Then the following ratio GC(u) is called
+It is known that the melting temperature of DNA dou- ble strand strongly depends on the GC-content of DNA sequences in a DNA solution. Therefore if we construct a device which uses the DNA solution as a fundamental ingredient, then the GC-content of DNA sequences in the solution should be almost the same so that all DNA double strands are broken into two single DNA strands at the almost same temperature. The problem for generating DNA sequences having the almost same melting temperature are studied by several authors, e.g., [13], [14], [15]. In the coding theorem for communication, there are constraints which are very similar to the above constraints[12].
+There are other constraints, e.g., free-energy constraint, similarity constraint [1, Chapter 4].
+In the remaining of this manuscript we assume that φ is a morphic or anti-morphic involution.
+Hussini et al. have shown the following proposition [10, Proposition 16].
+Proposition 1. Let m and n be non-negative integer with m > 1. Let K m, ∞ = A m T (X m −1 T ) ∗ C m and let K m,n =
+(i) 	 K m, ∞ and, therefore, K m,n are comma-free codes (ii) The entropy of K m,n tends to (1 − 1/m) as n →
+From (ii) we can say the codes given in the proposition are asymptotically optimal in the sense of the capacity.
+a n (Σ\φ(a)) i a n for a ﬁxed integer n ≥ 1. Then X and X + are both φ-preﬁx-free and φ-sufﬁx-free. The entropy of X + is such that log(p − 1) < h(X + ) < log p where p is the number of symbols.
+The languages (or symbolic dynamical systems) given in the above propositions can be represented by simple FSTDs (e.g., Fig. 3 in [6]). Proposition 2 can be improved as the following theorem.
+A symbolic dynamical system S n is deﬁned by S n = X F n where F n = {AC n }. We can prove the following lemma[12].
+Since S n is an SFT, an FSTD G n represents S n . In G n there is a path α 1 · · · α n generating AC n −1 . We add a cycle β 1 · · · β 2+2 n generating AC n AC n with σ(α 1 ) = σ(β 1 ) to G n . Let G ′ n be the resulting graph.
+Using the above lemma, we can prove the following Theorem [12].
+Theorem 4. Let T ′ n be a language consisting of words generated by G ′ n but starting and terminating with AC n . Then T ′ n is both φ-preﬁx-free and φ-sufﬁx-free. The entropy h(T ′ n ) tends to 1 as n tends to 1.
+The outﬁx-free constraint is imposed so that the language will not produce any hybridyzation
+φ(u 1 )zφ(u 2 ) and u 1 u 2 with curly z.
+Kari and Mahalingam proved the following proposition[6].
+Proposition 5. Let a, b ∈ Σ be symbols such that φ(a) = φ(b) = a. Let
+for a ﬁxed integer n ≥ 1. Then X n,m and X + n,m are biﬁx- free and outﬁx-free.
+Let L be an outﬁx-free language. There may be a word such that u ∈ L and φ(u 1 )φ(u 2 ) ∈ L but φ(u 1 )xφ(u 2 ) ∈ L for a non empty sequence x. A language is said to be regular if the language is represented by a ﬁnite state automata, i.e., a ﬁnite directed graph with labeled edges.
+Proposition 7. Let L be a regular and outﬁx-free language. Deﬁne S L by
+S L = {φ(u 1 )φ(u 2 ) : u ∈ L and φ(u 1 )φ(u 2 ) ∈ L but φ(u 1 )xφ(u 2 ) ∈ L for x = ǫ}.
+Therefore X n,m is constrained more than the outﬁx-free Proof: outline of the proof: Suppose that |S L | is inﬁnite.
+Then there is a sequence {x i } of words converging to some semi-inﬁnite sequence x since Σ Z is a compact metric space.
+There should be a symbol which appears at the last positions of x i inﬁnitely many times since the size of the alphabet is ﬁnite. Therefore there is a subsequence {x 1 i } i such that all the last symbols of sequences are t 1 . By the same argument it can be shown that there is a subsequence {x 2 i } i such that every sequence in {z i } i has the same sufﬁx t 2 t 1 . By repeating this argument it can be shown that there is a subsequence {y i } i such that there is a word t = t n t n −1 · · · t 1 which is a sufﬁx of a word in L and every y i has t as a sufﬁx.
+Applying the same argument to prefﬁxes of sequences in {y i } i , it can be shown that there is a subsequence {z i } i such that every sequence {z i } i has s and t as a preﬁx and sufﬁx, respectively. Since L is regular, there is a directed graph G with labeled eges which represents L. Without loss of generality it is assumed that G is deterministic.
+Let s and t be paths in G such that s and t produce s and t, respectively and there is z J with |z J | ≥ |s| + |t| + K 2 where K is the number of states in G. Let z J be a path generating z J . There should be a state σ in z J such that σ appear at least twice in z J . Therefore z i is decomposed into paths a, b and c such that z J = abc and b is a cycle. Let a, b and c be words generated by paths a, b and c, respectively. Since ac is generated by a path in G, ac is a word in L.
+From the deﬁnition of S L , there should be a word u ∈ L with φ(u) = φ(u 1 )φ(u 2 ), φ(u 1 ) = a and φ(u 2 ) = c. Since abc is also generated by a path in G, φ(u 1 )bφ(u 2 ) should be a word in L. But this is a contradiction because L is assumed to be outﬁx-free.
+Corollary 8. Let L be regular and outﬁx-free language. Deﬁne
+Proof: Every u ∈ L can be decomposed into u = u 1 u 2 . Therefore T L ⊂ S L .
+The intercode constraint is imposed so that every encoded data can be parsed correctly.
+Proposition 9. Choose distinct a, b, c ∈ Σ such that φ(a) = b, c, φ(a) = a. Let X = ∞ i=1 a n (Σ n −1 c) i b n for some n ≥ 2. Then X and X + satisﬁes the intercode constraint for all m ≥ 1. The entropy of X + saitsiﬁes
+X is constructed so that X satisﬁes the intercode con- straint. There can be other constructions. The following proposition is one of the constctructions.
+Proposition 10. Assume that p ≥ 5. Let a, b, c be distinct symbols such that φ(a) = b, c. Deﬁne T n by
+Let X n = ∞ i=1 a n T i n b n for some n ≥ 2. Then X n and X + n satisﬁes the intercode constraint for all m ≥ 1 and
+Proof: Suppose that X does not satisfy the intercode constraint for m ≥ 1. Then there should be k with
+for some y = y 1 · · · ∈ X m+1 and k ≥ 1. But this is impossible because y k · · · y k+2n can not contain none of {a, b, φ(a), φ(b)} and there should be at least one c in y k · · · y k+2n .
+From the deﬁnition, T n can be written as T n = Σ n − (Σ − c) n .
+n log |T n | → log p as n → ∞. The proposition follows from this fact.
+Then a symbolic dynamical system is deﬁned by prohibiting blocks in U n , say , U n . By adding appropriate labeled edges to U n , we can obtain an FSTD representing X n , or an automata for the language X n . Therefore the language given in the above proposition is regular.
+Remark 1. In the above proof we have used ‘ﬁve’ distinct symbols, a, b, φ(a), φ(b), c. Therefore it is impossible to apply the above theorem to genetic sequences consisting of four symbols.
+This work was supported in part by Grant-in-Aid for Scientiﬁc Research (C) 21560394.
+[[[ REFS ]]]
+Z. Ignatov
+I. Martinez-P´ere
+--
+DNA computing models , Springer, 2007
+----
+B. Marcu
+D. Lin
+--
+Symbolic dynamics and coding , Cambridge, 1995
+----
+K. A. S. Immin
+--
+Codes for Mass Data Storage Systems, 2nd ed
+----
+R. Karabed
+B. Marcus
+--
+Sliding-block coding for input- restricted channels
+----
+R. Karabed
+P. Siegel
+--
+Matched spectral-null codes for partial-response channels
+----
+L. Kari
+K. Mahalingam
+--
+DNA codes and their proper- ties
+----
+O. Milenkovic et al.
+--
+Introduction to the special issue on informationtheory in molecular Biology and Neuroscience
+----
+O. Milenkovic
+--
+Constrained coding for context-free lan- guages with applications to genetic sequence modelling
+----
+H. Kamabe
+--
+Combinations of Contex-Free Shifts and Shifts of Finite Type
+----
+S. Hussini
+L. Kari
+S. Konstantinidis
+--
+Coding properties of DNA languages
+----
+L. Kari
+S. Konstantinidis
+P. Sosik
+--
+Bond-free lan- guages: formalizations, maximality and construction meth- ods
+----
+H. Kamabe
+--
+Constraints for DNA sequences by formal language and its capacity
+----
+K. Sakamoto
+D. Kiga
+K. Komiya
+H. Gouzu
+S. Yokoyama
+S. Ikeda
+H. Sugiyama
+H. Hagiya
+--
+State Transitions by Molecules
+----
+H. Kamabe
+Y. Seike
+--
+On Construction of codes for DNA computers
+----
+Y. .M. Chee
+S. Ling
+--
+Improved Lower Bounds for Constant GC-Content DNA Codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\115.pdf
+[[[ LINKS ]]]
+

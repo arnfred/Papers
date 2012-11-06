@@ -1,0 +1,171 @@
+[[[ ID ]]]
+133
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Asymptotic Error Probability of Composite Relay Channels
+[[[ AUTHORS ]]]
+Arash Behboodi
+Pablo Piantanida
+[[[ ABSTR ]]]
+Abstract—Consider the composite relay channel consisting of a set of relay channels associated to a probability measure. The current channel is a draw from its probability and in some cases arbitrary small error probability cannot be guaranteed for all channels in the set. In this paper, instead of ﬁnding the maximum achievable rate subject to a small error probability (EP) for all the channels in the set, we look at the asymptotic behavior of EP for a given rate. The notion of achievable EP is introduced as a novel performance measure for wireless relay channels. We can intuitively deﬁne it as the smallest EP that can be asymptotically achieved for a given rate. The behavior of EP is directly related to the -capacity of each channel in the set. It is shown that the behavior of EP is upper and lower bounded by the outage probability of a region which is referred to as the full error region. Then every code with a rate belonging to this region yields EP equal to one. Finally, new coding for oblivious cooperation simultaneously exploiting both Decode-and-Forward (DF) and Compress-and-Forward (CF) strategies is investigated. The Gaussian relay channel with slow fading is also discussed.
+[[[ BODY ]]]
+The relay channel consists of a sender-receiver pair whose communication is aided by a relay node helping the communi- cation between the source-destination pair. Substantial advance on this problem was made in [1] (see also [2] and references therein) where bounds on the capacity of discrete memoryless relay channel (DMRC) were derived. Two cooperative strate- gies, namely Decode-and-Forward (DF) and Compress-and- Forward (CF), were introduced. The adequate strategy can be selected only if all channels are known by all terminals.
+The time-varying nature of wireless channels, e.g. due to fading and user mobility, does not allow all terminals with full knowledge of all channel parameters involved in the communication. During years, an ensemble of works has been done on channel models with uncertainty. The compound channel has been introduced by Wolfowitz [3] and continued to attract much of attention from researchers [4], [5]. Nev- ertheless these models deal with the uncertainty problem in a non-probabilistic way, yielding in general zero capacity for fading channels. Another related model is averaged (or mixed) channels introduced by Ahlswede [6] and further studied in [7] where capacity coincides with that of compound channels.
+Composite channels consist of a set of channels where the current channel is draw from the set with a probability
+distribution (PD). This channel was recently investigated in [8]–[10]. Channel uncertainty has been studied beforehand in case of fading single user channels [11] and relay channel with oblivious cooperation [12], [13]. The composite unlike compound channel introduces a probability distribution to model the uncertainty. Most of the time, in practice arbitrary small error probability (EP) cannot be guaranteed for all channels in the set. Hence an arbitrary small EP constraint may yield a null achievable rate for some composite channels. In these cases the conventional formulation of capacity is not adequate to assess the performance of the channel. The notion of outage probability, meaning the probability that a code of rate r cannot be reliable decoded, has been extensively used as a measure of performance for fading scenarios [14]. For instance, it is commonplace that encoders without state information send their messages by using ﬁxed-rate codes.
+In this paper, instead of ﬁnding achievable rates for arbitrary small EP, we look at the EP for a ﬁxed rate r. The notion of achievable EP is introduced as a new measure for performance of composite relay channels. An EP is said achievable if, given a rate r, there exists a code whose EP is asymptotically at most . Then the inﬁmum of all achievable EP for a given rate is called the asymptotic EP. It is shown that the behavior of EP is directly related to the -capacity and the outage probability. The concept of full error capacity is then deﬁned as the limit that every code with rate greater than it yields EP equal to one. The asymptotic behavior of EP at rate r is bounded by the probability that the full error capacity is larger than r. Furthermore, it turns out that for channels satisfying the strong-converse property [7] the EP coincides with the outage probability. Section II deﬁnes the composite relay channel and introduces the notion of achievable EP while Section III investigates its asymptotic behavior. We study the EP of the composite DMRC and show that the cut-set bound provides an upper bound on the full error capacity. The sketch of proof is relegated to Section V. A novel bound on the behavior of EP using DF and CF schemes, which takes insights from the oblivious cooperation scheme derived in [13], is also presented. Applications to fading relay channels are discussed.
+For the rest of the paper we denote the random variables either by upper case letters Y, X, ... or by bold Greek letters
+, θ, .... The particular variables are denoted by lower case letters and ordinary Greek letters. Information density is deﬁned as follows [5]
+(Y n |X n ) P Y n (Y n )
+where lim sup in probability of the random sequence Z n , p- lim sup
+The composite relay channel consists of a set of relay channels W θ = {W n θ } ∞ n=1 indexed with parameter θ ∈ Θ. Let P θ be a probability measure on Θ. Each channel is deﬁned by W n θ = P Y n θ Z n θ |X n X n θ , source and relay inputs x ∈ X , x θ ∈ X θ , channel and relay outputs y θ ∈ Y θ , z θ ∈ Z θ , ∀θ.
+Deﬁnition 1 (Code): A code (n, M n , ( n,θ ) θ∈Θ ) for the composite relay channel consists of the following for ∀θ ∈ Θ:
+• A set of relay functions {f θ,i : Z i−1 θ 	 −→ X θ,i } n i=1 with message set M n = 1, . . . , M n .
+Decoding sets corresponding to each decoding mapping are D k,θ ⊂ Y n θ equivalent to D k,θ ψ −1 n,θ (k). Assuming uniform EP over the message set, the average EP is deﬁned as
+It is clear from the deﬁnition that the receivers can be aware of θ since the decoder functions are indexed by θ although it is not necessary. The receivers can choose the same decoding function for all or some θ which corresponds to the situation where state information is only partially available or not available at all. Notice that the average EP can be replaced with maximum EP in the deﬁnition (1), however in our setting it does not make any difference. We now deﬁne the achievability for the composite relay channel [7].
+Deﬁnition 2 (Achievable Rate): The rate R is said achiev- able for the composite relay channel if there exists an (n, M n , ( n,θ ) θ∈Θ )-code with
+The capacity of composite relay channel C is deﬁned as the supremum of all achievable rates. It can be extended to - achievability by using lim sup
+n,θ ≤ 	 for 0 ≤ 	 < 1, and then -capacity C is the supremum of all -achievable rates.
+Remark 1: The preceding deﬁnition can lead to zero achievable rate because the worst possible channel can have zero capacity. In wireless scenarios, it is rare to have non- zero rate for all channel draws and yet it is desirable to send information anyhow. As a consequence of this observation, the previous notion may not be adequate to measure the performance of composite models.
+Notice that the probability distribution of θ is not involved in the preceding deﬁnitions. One common measure for perfor- mance of composite network is the expected EP and the outage probability [6], [7], [9], which takes into account the PD of θ. The outage probability is roughly deﬁned as the probability that the achievable rate of the channel falls under the code’s rate. On the other hand, the expected EP is simply deﬁned by the expected value of n,θ respect to θ, i.e.
+An alternative approach is the study of the asymptotic behavior of EP n,θ for a ﬁxed rate. Consider that the encoder ﬁxes its rate at r regardless of the draw of θ. In this setting, it is useful to see how the EP behaves as n goes to inﬁnity 1 . One may compute the PD of n,θ , i.e. P θ ( n,θ ≤ ). In particular, it is interesting to see for a given information-rate r, what the possible probability of errors are. In other words, to ﬁnd the maximum probability of error for a given rate. This is formally stated in the following deﬁnition of achievability for the EP.
+Deﬁnition 3 (Achievable EP): An EP 0 ≤ < 1 is said to be achievable for the composite channel W θ , at the rate r, if there exists an (n, M n , ( n,θ ) θ∈Θ )-code satisfying
+The operational meaning of the achievable EP is that information can be sent at rate r with diminishing chance that EP falls over . Then the asymptotic EP E(r) of the composite relay channel is the inﬁmum of all achievable EP at rate r.
+Deﬁnition 4 (Asymptotic EP): The asymptotic EP E(r) is characterized by
+We will later explore the relation between these new notions and those from previous works.
+Deﬁnition 5 (Full Error Capacity): Now consider a relay channel and let the full error region be the set of all s ∈ R + such that for all codes (n, M n , n ), if lim inf
+1 n
+log M n > s then lim
+= 1. The inﬁmum of all s is called full error capacity of the relay channel and is denoted by S.
+The PD of n,θ is directly related to the probability that the ﬁxed rate r falls into -capacity region C ,θ , which is function of θ and hence random. Suppose that the transmission is made at rate r. For any θ draw from Θ, if the rate achieves the EP
+then the rate should necessarily belong to the -capacity region of the channel corresponding to θ.
+Lemma 1: For all 0 ≤ < 1, the composite relay channel with random parameter θ satisﬁes
+Proof: Given θ, according to the deﬁnition 2, r is less or equal than C ,θ if and only if lim sup
+n,θ ≤ and hence the arguments inside the probability are equivalent.
+Theorem 3.1: For all 0 ≤ < 1, the EP n,θ and the - capacity deﬁned as before satisfy the following relation
+n,θ > ) ≥ lim sup
+E(1[ n,θ ≥ ]) ≥ lim
+If the relay channel satisﬁes the strong converse condition for each θ, i.e. every rate outside the capacity region yields asymptotically EP equal to one, then
+Thus n,θ is a Bernoulli trial with parameter P o which turns out to be the outage probability. The outage probability becomes equal to P θ (r > C θ ). The next proposition provides a relation between the expected EP and the current measures of EP. It should be mentioned here that the expected EP is equivalent to the deﬁnition of EP for the averaged channel in [6].
+Proposition 1: For the composite relay channel with rate r, the following relation holds true between the expected EP
+n = E[ n,θ ] and the asymptotic EP: lim
+where a comes from Fatou’s lemma. Now for every α such that P θ ( n,θ > α) goes to zero as n → ∞, we have also P θ ( n,θ > t) goes to zero asymptotically so the second term is zero for all α. So for each achievable EP α we have that
+The previous proposition states that the expected EP is not necessarily achievable in the sense of the deﬁnition 3, for a
+given rate r, but if it is then the expected EP is equal to the asymptotic EP. Therefore, it is possible in general that the error EP falls over the expected EP. This observation shows that the expected error, though indicative, would not always be a proper measure for EP. Although achievable rates and upper bounds exist for relay channels, the -capacity provides bounds on the EP is not known in general.
+Theorem 3.2: The EP of the composite relay channel with random parameter θ satisﬁes
+where C θ and S θ are respectively the capacity and the full error capacity of the composite relay channel W θ .
+Proof: This follows from Lemma 1, using that C θ is less or equal than C ,θ , and C ,θ is less or equal than S θ .
+Remark 2: Again it can be seen that if the channel satisﬁes the strong-converse condition then the EP is asymptotically determined by the outage probability, which supports the operational meaning of this notion. The essential characteristic of C θ in proof of the Theorem 3.2 is its zero EP. Hence C θ can be replaced by any other achievable rate. Similarly S θ can be replaced by any rate greater than the full error rate.
+Assume a DMRC W = P Y 1 Z 1 |XX 1 . Various achievable rates are available for these channels [1] and an upper bound is the cut-set bound, which states that any rate greater than it will have non-zero EP. the new theorem shows that the EP is necessarily one for any rate greater than the cut-set bound, which provides an upper bound on the full error rate.
+Theorem 3.3 (Strong-converse): Every (n, M n , n )-code for the discrete memoryless relay channel with rate
+1 n
+An outline of the proof is relegated to Section V. By using DF and CF schemes and Theorems 3.2 and 3.3, the following corollary can be proved.
+Corollary 1: For any rate r, the discrete memoryless com- posite relay channel W θ satisﬁes the following inequalities:
+P ≥ P θ [r > sup min{I(X, X θ ; Y θ ), I(X; Y θ , Z θ |X θ )}] , P ≤ P θ [r > sup min{I(X, X θ ; Y θ ), I(X; Z θ |X θ )}] , P ≤ P θ r > sup I(X; Y θ , ˆ Z θ |X θ ) ,
+n,θ > ) and ˆ Z θ is the compressed version of the relay observation [13].
+The lower bounds are related to the outage probabilities of DF and CF strategies, respectively. However the upper bound can be improved by using the code for oblivious relying ﬁrst presented in [13]. We have shown that block-Markov code, which is commonly used for DF scheme, can be also used with CF via the backward-decoding technique [2] without loss of performances. It means that the code is oblivious to the
+cooperative strategy. The same code was also shown to be oblivious to the presence of relay [14]. In this case, the relay based on the state information available switches between DF or CF strategies, which would improve the outage probability.
+Theorem 3.4 (Oblivious cooperation): Let W θ be a discrete memoryless composite relay channel, and let Θ DF ⊆ Θ be a decision set such that for all θ ∈ Θ DF the relay node exploits DF strategy. Then, for any rate r, the EP is bounded by
+Notice that this lower bound is at least as good as the previous bounds. The choice of CF or DF should be known to the destination. However θ may only be partially known at the relay, which is a natural assumption knowing the fact that the source-destination channel is usually unknown at the relay.
+Sketch of the proof of Theorem 3.4: Consider a source which uses a block-Markov code with rate r. The relay would choose DF if θ belongs to Θ DF . In this case, clearly if r ≤ sup min{I(X, X θ ; Y θ ), I(X; Z θ |X θ )} the error probabil- ity tends to zero. On the other hand, if θ belongs to Θ c DF , then the relay would use CF strategy. Notice that Block Markov coding can be also employed in CF case [13]. So in this case, if r ≤ sup I(X; Y θ , ˆ Z θ |X θ ), the error probability tends to zero. For such a decoding scheme, it can be seen that the outage probability is either equal to the probability of DF outage, when θ ∈ Θ DF , or to the probability of CF outage, when θ ∈ Θ c DF . These outage probabilities yield the right-hand side in the expression of Theorem 3.4.
+In this section, we investigate the slow-fading composite relay channel. Consider the channel described in Fig. 1 that is deﬁned by the following relations
+Y 1 = h 1 X + h 3 X 1 + N, Z 1 = h 2 X + ˜ N,
+where N and ˜N are Gaussian noises with zero-mean and variances N, ˜ N . In addition to this, h 1 , h 2 , h 3 are the complex fading coefﬁcient and the average power of X and X 1 must not exceed P and P 1 , respectively. In this context, the source
+does not know the instantaneous coefﬁcients and hence it must transmit with ﬁxed-rate r. In theory, the relay could set the cooperative strategy to either DF or CF, but in our setting h 1 , h 3 are unknown and such choice can be only based on h 2 .
+For simplicity, let us assume that h 1 = h 3 = 1 and thus fading is only present on the channel between the source and the relay. Hence the achievable rates for DF and CF I DF (h 2 ) and I CF (h 2 ) are as follows:
+|h 2 | 2 P N + ˜ N
+where N is the compression noise. The outage probabilities corresponding to the rate r and each term I CF (h 2 ) and I DF (h 2 ) can be calculated. In this case, the relay knows h 2 and then it can see whether I CF (h 2 ) > I DF (h 2 ) to switch the cooperative strategy as discussed in Theorem 3.4. This improves the performance signiﬁcantly as shown in the Fig. 2. Outage probabilities are presented for the cases where the relay uses only DF, only CF and mixed strategy. The asymptotic PD of EP is between the bounds obtained from the mixed cooperative strategy and the cut-set bound obtained from Theorem 3.3.
+We give the outline of the proof here although the detailed proof can be found in [15]. Let the random variable M n be the message sent with uniform distribution over M n . The following lemma is a slightly different formulation of Verdu- Han’s lemma [5] and is proved using the very same method.
+Lemma 2: Every code (n, M n , n ) for the relay channel satisﬁes:
+For every γ > 0, where M n has uniform probability distribu- tion over M n and i(M n ; Y n 1 ) denotes the information density.
+The general idea behind the proof is to show that for the rate greater than the bounds in the Theorem 3.3 the probability on the right-hand side of the lemma tends to one. In other words, the information spectrum of 1 n i(M n ; Y n 1 ) is placed on the left-hand side of cut-set bound values. We only give the proof outline for one of the bounds and the other is obtained similarly. For a general (not necessarily i.i.d.) relay and channel inputs X n X n 1 deﬁne
+1 n
+(Y 1j |X j , X 1j ) P Y 1j (Y 1j )
+According to the positivity of inf-divergence rate and inf- mutual information rate [5], [7], it can be said that liminf in probability of U n − 1 n i(M n ; Y n 1 ) will be positive which means that the probability of 1 n i(M n ; Y n 1 ) < U n goes to one as n → ∞. As the second step, for U n deﬁned as above there exists P XX 1 such that
+is the sum of independent variance limited random variables respective to the probability W j (Y 1j |x j , x 1j ) due to the fact that channel is memoryless. Using Chebyshev’s inequality it tends to its expected value
+Pr U n > 1 n
+where δ n goes to zero with increasing n. Then there is a probability distribution P XX 1 which satisﬁes
+which will lead to the proof. Finally the proof follows from the next steps. Using Lemma 2 we obtain
+From ﬁrst and second step we know that the probability on the right-hand side of (6) converges to 1 as n → ∞. By taking the limit on both sides of (6), we obtain for all γ
+1 n
+The asymptotic behavior of error probability (EP) for com- posite relay channels was studied. The asymptotic EP for a given rate r was deﬁned as the inﬁmum over all achievable EP at that rate. It was shown that the probability distribution of the EP is directly related to the -capacity. The probability distribution of EP was bounded by the outage probability at rate r, and the probability that the full error capacity exceeds r. It was shown that in general the expected EP is not necessarily achievable. For relay channels satisfying the strong-converse property the EP will be a Bernoulli random variable who parameter is the outage probability. Assuming a discrete memoryless relay channel, it was shown that all codes with rate exceeding the supremum of either of cut- set bounds will have error probability one. By exploiting the oblivious cooperation techniques, a novel outage probability was derived. This bounds the asymptotic EP of a code which takes simultaneously advantage of both DF and CF schemes. An application example to the slow-fading Gaussian relay channel was also considered.
+[[[ REFS ]]]
+T. Cover
+A. El Gamal
+--
+Capacity theorems for the relay channel
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative strategies and capac- ity theorems for relay networks
+----
+J. Wolfowitz
+--
+Simultaneous channels
+----
+I. Lapidoth
+A. Telatar
+--
+The compound channel capacity of a class of ﬁnite-state channels
+----
+S. Verdu
+T. S. Han
+--
+A general formula for channel capacity
+----
+R. Ahlswede
+--
+The weak capacity of averaged channel
+----
+T. S. Ha
+--
+Information-Spectrum Methods in Information Theory
+----
+A. Goldsmith
+M. Medard
+--
+Capacity of time-varying channels with causal channel side information
+----
+M. Effros
+A. Goldsmith
+Y. Liang
+--
+Generalizing capacity: New deﬁnitions and capacity theorems for composite channels
+----
+P. Piantanida
+G. Matz
+P. Duhamel
+--
+Outage behavior of discrete memoryless channels under channel estimation errors
+----
+S. Shamai
+--
+A broadcast strategy for the gaussian slowly fading chan- nel
+----
+M. Katz
+S. Shamai
+--
+Cooperative schemes for a source and an occasional nearby relay in wireless networks
+----
+A. Behboodi
+P. Piantanida
+--
+Cooperative strategies for simultane- ous and broadcast relay channels
+----
+M. Katz
+S. Shamai
+--
+Transmitting to colocated users in wireless ad hoc and sensor networks
+----
+A. Behboodi
+P. Piantanida
+--
+On the asymptotic error probability of composite networks
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\133.pdf
+[[[ LINKS ]]]
+

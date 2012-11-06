@@ -8,21 +8,19 @@ import scala.util.matching.Regex.MatchIterator
 import sun.nio.cs.Unicode
 
 
-object XMLParser extends Parsers {
-	// These are the modifiable parameters (extractors and extraction order)
-	val authorsExtractor: AuthorsExtractor = AuthorsExtractor1
-	val abstractExtractor: AbstractExtractor = AbstractExtractor1
-	val titleExtractor: TitleExtractor = TitleExtractor1
-	val referencesExtractor: ReferencesExtractor = ReferencesExtractor1
-	val bodyExtractor: BodyExtractor = BodyExtractor1
-	val extractionOrder: List[InformationExtractor] = List(titleExtractor, authorsExtractor, abstractExtractor, bodyExtractor, referencesExtractor)
+object XMLParser extends Parsers with TitleExtractor1
+							     with AuthorsExtractor1
+							     with AbstractExtractor1
+							     with BodyExtractor1
+							     with ReferencesExtractor1{
+  
+   val extractionOrder: List[(Paper, XMLDocument, List[XMLParagraph]) => (List[XMLParagraph], Paper)] = List(extractTitle, extractAuthors, extractAbstract, extractBody, extractReferences)
 	
-	
-	
+
    // This method returns the xml representation of the text contained in the Source object
    def getXMLObject(in: Source): Option[Elem] = {
-	  // String generation and illegal xml character removing
-	  val text = in.mkString.replace("" + '\uffff', "")
+	  // String generation and illegal xml characters removing
+	  val text = in.mkString.replace("" + '\uffff', "").replace("" + "\u001f", "")
       // This instruction is important, otherwise the xml file can't be deleted
       in.close
       
@@ -37,8 +35,8 @@ object XMLParser extends Parsers {
    
    
    // Method for references extraction following the extraction order
-   def extract(extractors: List[InformationExtractor], t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
-	   def extract0(extractors: List[InformationExtractor], t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
+   def extract(extractors: List[(Paper, XMLDocument, List[XMLParagraph]) => (List[XMLParagraph], Paper)], t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
+	   def extract0(extractors: List[(Paper, XMLDocument, List[XMLParagraph]) => (List[XMLParagraph], Paper)], t : (XMLDocument, Option[Paper], List[XMLParagraph])): (XMLDocument, Option[Paper], List[XMLParagraph]) = {
 		   if(extractors.length == 0) return t
 	     
 	       val input = if(extractors.length == 1) t else extract0(extractors.tail, t)
@@ -48,7 +46,7 @@ object XMLParser extends Parsers {
 	     
 		   if(paper != None) {
 			   // Calling the extraction method of the extractor
-			   val extraction = extractors.head.extract(paper.get, xml, paragraphs)
+			   val extraction = extractors.head(paper.get, xml, paragraphs)
 			   return (xml, Some(extraction._2), extraction._1)
 		   }
 		   
@@ -66,6 +64,9 @@ object XMLParser extends Parsers {
 	  else {
 		  val cleanPaper = Paper(0, 0, Title(""), Nil, Abstract("Not saved"), Body("Not saved"), List(), Map.empty, List())
 		  val xmlDocument = XMLObjectsManager.constructXMLDocument(xml.get, "\n")
+		  
+		  // print
+		  //xmlDocument.get.getParagraphs.foreach((p : XMLParagraph) => println(p.getText + "\n" + p.getOptionsValue + "\n" + p.getEnumerationFormat + "\n\n\n"))
 		  
 		  if(xmlDocument == None) return None
 		  val paper = extract(extractionOrder, (xmlDocument.get, Some(cleanPaper), xmlDocument.get.getParagraphs))

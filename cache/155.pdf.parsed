@@ -1,0 +1,150 @@
+[[[ ID ]]]
+155
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Channels with Intermittent Errors
+[[[ AUTHORS ]]]
+Arya Mazumdar ∗
+Alexander Barg ∗,§
+[[[ ABSTR ]]]
+Abstract—We study coding for binary channels in which out of any two consecutive transmitted bits at most one can be affected by errors. We consider a set of basic coding problems for such channels, deriving estimates on the size of optimal codes and providing some constructions. We also study a generalization to errors separated by at least s = 2, 3, . . . error-free channel uses. Finally, we deﬁne a probabilistic model of a binary channel with non-adjacent errors and ﬁnd the capacity of this channel.
+Index Terms—Non-adjacent errors, bounds on codes, list decoding, channel capacity, linear codes
+[[[ BODY ]]]
+Constrained systems, in particular, channels with data- dependent noise and channels with memory play an important role in the analysis of performance of magnetic recording devices and other storage systems [6]. Recent works [4], [7] considered a model of errors for a high-density magnetic recording channel, in which the action of errors on the recorded data depends on the contents of the memory cells. Under this model, errors can occur in a cell (bit) only if its contents is different from the contents of the previous cell. Another feature of this model, imposed by the nature of the read/write process in memory, is that errors never occur in adjacent cells. In this paper we assume the last property as a deﬁnition of the error process and analyze the problem of coding against errors in the combinatorial and probabilistic contexts.
+The following general deﬁnition characterizes codes cor- recting a given set of errors.
+Deﬁnition 2.1: A code C ⊂ {0, 1} n is said to correct errors from a set E ⊂ {0, 1} n if for all x = x ∈ C and for any e, e ∈ E,
+where the addition is modulo 2. Vectors from the set E are called correctable errors for C.
+A vector e = (e 1 , . . . , e n ) ∈ {0, 1} n will be called a non- adjacent error vector if for all 1 ≤ i < n, e i = 1 implies e i+1 = 0. As usual, the weight (multiplicity) of error w H (e) is equal to the number of ones in e.
+Let E n,t = {e ∈ {0, 1} n : w H (e) ≤ t} and let E n,t ⊂ E n,t be the set of all non-adjacent error vectors of weight less than or equal to t. We say that a code code C is t-non- adjacent error-correcting if in deﬁnition 2.1, E = E n,t . In the standard scenario of coding theory, a t-error-correcting code corresponds to choosing E = E n,t , i.e., all the errors of multiplicity not exceeding some t > 0.
+We begin with computing the cardinality of the set E n,t . The next proposition forms a particular case of Prop. 3.1 below.
+Remark: Although slightly less obvious, the following is also true: if t = n+1 2 then |E n,t | is the (n + 2)nd term in the sequence of Fibonacci numbers {1, 1, 2, 3, 5, 8, 13, . . . }.
+Let h(z) = −z log 2 z − (1 − z) log 2 (1 − z) be the binary entropy function. Observe that
+≈ 0.2764. This asymptotic formula follows from the observation that n−i+1 i 	 increases with i for i ≤ 1 10 (5n + 2 −
+5n 2 + 20n + 24). Thus, as long as t/n ≤ 1 2 −
+is determined by the term n−t+1 t , and (2) follows by standard estimates of binomial coefﬁcients (for example, see [5, p. 310]).
+A. Bounds on non-adjacent error correcting codes. Clearly a t-error-correcting code is t-non-adjacent error-correcting. Somewhat surprisingly, the converse is also true.
+Proposition 2.3: A code C is t-non-adjacent error- correcting if and only if it is t-error-correcting.
+Proof: Observe that E n,t +E n,t = {x+y : x, y ∈ E n,t } = E n,2t , or in other words, any vector of weight ≤ 2t can be written as a sum of two non-adjacent errors of weight ≤ t. At the same time. also E n,t + E n,t = E n,2t .
+Suppose that a code C is t-non-adjacent error-correcting, but there exist uncorrectable errors e, e ∈ E n,t , i.e., for a pair of distinct codewords x, x we have x+e = x +e . This implies that x = x + (e + e) = x + z, where z ∈ E n,2t Then write z = e 1 + e 1 , where e 1 , e 1 ∈ E n,t . This implies the equality x + e 1 = x + e 1 , which is a contradiction.
+It would seem that the problem of correcting t non-adjacent errors is equivalent to correcting arbitrary t errors. The follow- ing theorem proves that this is not the case.
+that can correct any t = τ n non-adjacent errors with a polynomial time decoding algorithm.
+Proof: We will only consider the case of n even (the case of odd n is established in a similar way). Let C be a linear [n/2, k, t + 1] code 1 . Construct a code C from C by repeating each coordinate in C twice: namely, for each codeword x = (x 1 , . . . , x n/2 ) ∈ C , form the vector x ∈ (x 1 , . . . , x n ) ∈ C by putting x 2i = x 2i−1 = x i for 1 ≤ i ≤ n/2. Clearly, the code C is linear and |C| = |C |.
+The code C is decoded by the following two-step procedure. Suppose that a vector z = (z 1 , . . . , z n ) ∈ {0, 1} n is received from the channel. In the ﬁrst step, we construct a vector z = (z 1 , . . . , z n/2 ) ∈ {0, 1, } n/2 from z; here is the erasure symbol. For 1 ≤ i ≤ n/2, we set z i = z 2i if z 2i = z 2i−1 , or otherwise we set z i = .
+If there are at most t non-adjacent errors then z will contain at most t erasure symbols. The code C will then be used to correct them which is possible by a polynomial-time procedure.
+To estimate the cardinality of the code C, take a linear code C of distance t + 1 that attains the Gilbert-Varshamov lower bound. Then
+The estimate of the theorem is obtained by using a standard asymptotic estimate for the sum of binomial coefﬁcients.
+This theorem justiﬁes the claim made before its statement: for τ = 1 / 4 (1 − θ), where θ is small, the estimate of rate established in it behaves as θ 2 (log 2 e)/4 while the rate of the best known polynomial-time decodable τ n-error-correcting codes approaches 0 as a constant multiple of θ 3 .
+B. List decoding. The gap between error correcting codes and non-adjacent error correcting codes becomes even more pronounced if we consider decoding into a list. Formally, a code C is list-of-L t-non-adjacent-error-correcting ((L, t)- NAECC) if for any vector x ∈ {0, 1} n ,
+In words, for any received vector x ∈ {0, 1} n , there are at most L codewords that could be transformed to x by the action of an error e ∈ E n,t .
+As usual, let M (n, t; L) be maximum size of an (L, t)- NAECC of length n. For 0 ≤ τ ≤ 1 / 2 deﬁne
+The following theorem contains elementary upper and lower bounds on the size of list codes.
+Proof: We begin with the lower bound. Let us construct the code by choosing M codewords randomly and uniformly with replacement from {0, 1} n . For a ﬁxed vector y ∈ {0, 1} n , call the choice of any L + 1 codewords c 1 , . . . , c L+1 ‘bad’ if c 1 , . . . , c L+1 ∈ {y + e : e ∈ E n,t }. Clearly, the expected number of bad choices for a random code C is less than or equal to
+where we have used Eq. (1). Take M 	 = 2 nL/(L+1) / t i=0 n−i+1 i , then the ensemble-average number of bad (L + 1)-tuples is less than 1. Therefore there exists a code of size M in which all the (L + 1)-tuples of codewords are good. This implies the lower bound on M (n, t; L).
+For the upper bound on M (n, t; L) we again use the probabilistic method. Let C be an (L, t)-NAECC and let y be a vector randomly and uniformly chosen from {0, 1} n . For a ﬁxed codeword c ∈ C, the probability,
+2 n . Therefore,
+This implies that there exists at least one vector y ∈ {0, 1} n such that
+2 n . This proves the upper bound on M (n, t; L).
+The above theorem along with (2) implies that whenever τ ≤ 1 2 −
+n . (3) An equivalent result for list decoding of ordinary binary code is well known (it is present in some form in [2]): the estimates (3) are valid for list-of-L t-error-correcting codes if (1 − τ ) h τ 1−τ is replaced by h(τ ). Concavity implies that (1 − τ )h τ 1−τ < h(τ ), so we have proved that there exist codes of higher rates for list decoding in the case of non- adjacent errors than in the case of usual errors of the same multiplicity. Thus, non-adjacent errors are less adversarial than unrestricted errors (as should be expected), so codes of higher rates are possible. Later in the paper we will see that this claim also holds true for probabilistic error correction.
+In this section we consider the case when the gap between two errors is at least s = 2, 3, . . . bits. Let E s n,t be the set of all binary vectors of length n and weight t, where between any two ones, there are at least s zeros. Codes correcting t intermittent errors satisfy Deﬁnition 2.1 with E = E s n,t and will be called (s, t) intermittent-error correcting.
+Proof: Let us count the number of binary vectors of weight i which any two ones are separated by at least s zeros ((s, ∞) patterns in the language of constrained systems). Trying to place i ones in n cells so that every two are separated by ≥ s empty cells leaves n − (i − 1)s cells for the ones themselves. Any placement of ones in these cells gives rise to a valid vector, which implies the claimed count.
+As shown earlier in Prop. 2.3, (1, t)-intermittent error cor- recting code (non-adjacent error-correcting code) is equivalent to t-error-correcting code. As s increases from one, we expect to be able to construct codes of much higher rates for inter- mittent errors than for usual errors. Let M s (n, t) be the size of the largest possible (s, t) intermittent-error correcting code of length n.
+Proof: The upper bound follows by an elementary “sphere-packing” argument, while the lower bound is similar to the Gilbert bound on error-correcting codes. Namely, sup- pose that c 1 , c 2 ∈ C are two codewords that can be confused by the decoder. Then there exist e 1 , e 2 ∈ E s n,t such that c 1 = c 2 + e, where e = e 1 + e 2 . Let
+then we obtain that M s (n, t) ≥ 2 n /|D|. It remains to show that |D| ≤ N. Any vector e ∈ D of weight l ≥ 4 must satisfy the following two properties:
+2) If the positions of the ones in e are j 1 < j 2 < · · · < j l , then for all 1 ≤ i ≤ l − 3, the vector (e j i , e j i +1 , . . . , e j i+3 ) must contain at least s − 1 zeros
+To verify the second condition, consider that e = e 1 + e 2 , and observe that the smallest number of zeros is obtained when e j i , e j i+2 are coming from e 1 , say, and e j i+1 , e j i+3 from e 2 , and when j i+1 = j i + 1 and j i+3 = j i+2 + 1.
+Let us count the number of vectors that satisfy property 2. A vector of weight l contains l − 3 quadruples of consecutive ones, and we would like that each of these quadruples have the form (10 . . . 010 . . . 010 . . . 1) with no fewer than s − 1 zeros. As in (4), there are n−(l−3)(s−1) l 	 possible ways of placing l ones in n − (l − 3)(s − 1) cells. After that, we place s − 1 zeros within each quadruple. For one quadruple, there are s+1 s−1 ways of doing this. Overcounting, we assume that this is true for every quadruple. Taking account of the fact that 0 ≤ l ≤ 2t, we obtain the ﬁnal estimate.
+The cases of l ≤ 3 are easier to handle, and are treated separately.
+Observe that for s = 1 we recover the standard Gilbert- Varshamov bound from the above theorem, as is to be expected (recall that correcting t non-adjacent errors is equivalent to correcting t arbitrary errors). Note also that the calculations for list decoding of Thm. 2.5 can be generalized to the case s > 2 without difﬁculty.
+In this section we make brief remarks on constructing (s, t)- intermittent error-correcting codes.
+Construction 1: Let s = 2 m − 1 for some integer m, and suppose that s divides n. The construction can be extended without much effort for general s.
+Consider a Hamming code H with parameters [s, s − m, 3]. Consider a direct concatenation of n/s copies of H,
+The rate of the code C is equal to 2 m − m − 1
+The code C is an (s, t)-intermittent error-correcting for any t ≥ 0. This is because each Hamming sub-block of a codeword of C has to correct at most one error.
+In the next section we consider a probabilistic model of the channel with intermittent errors. The above construction establishes that the zero-error capacity for such a channel is at least 1 − log (s + 1)/s.
+Construction 2: The construction of Theorem 2.4 can be viewed as a concatenation of a binary code A of length n/2 and a [2, 1, 2] repetition code B. Taking instead a Reed- Solomon code A of length q = 2 s−1 and distance t + 1 over F q and a [s, s − 1, 2] binary single parity-check code B, we construct a concatenated code C that corrects t intermittent errors. This is because every block of s symbols will include at most one error which will be detected by the code B. The set of ≤ t erasures resulting from inner decoding will be corrected by the code A. Here the rate of the inner code B is s−1 s , and the rate of the outer code A is 2 s−1 −t 2 s−1 . The code C will have length n = s2 s−1 and rate R = 1 − 1 s 1 − t 2 s−1 . It is possible to have more constructions using code concatenation techniques.
+In conclusion, note that both constructions presented here have polynomial-time encoding and decoding procedures.
+In this section we deﬁne a probabilistic channel that cor- responds to the combinatorial model of non-adjacent errors studied above. This is a binary-output channel that can make an error only at positions that are at least s + 1 bits away. Our goal is to estimate the Shannon-theoretic capacity for this channel model.
+We begin with a set of general deﬁnitions pertaining to ﬁnite-state channels and their capacity. A stationary binary ﬁnite state channel (BFSC) [3] is a channel with binary input x = x 1 , x 2 , x 3 , . . ., binary output y = y 1 , y 2 , y 3 , . . ., and a state sequence σ = σ 1 , σ 2 , σ 3 , . . .. where each state σ n takes values in a ﬁnite set of states S. We assume that the initial state σ 0 also takes values in S. The channel is described statistically by conditional probabilities P (y i σ i |x i σ i−1 ), i ≥ 1, where the probability distribution does not depend on i.
+Let Q(x n ) be a probability distribution on the channel input x n = (x 1 , . . . , x n ). Deﬁne the lower and upper capacities of BFSC by
+The limits in the above deﬁnitions are known to exist. A more detailed discussion of the upper and lower capacities is found in [3].
+Clearly, C n ≤ C n for all n, and thus, C ≤ C. We are in- terested in the situation when this relation holds with equality. In particular, this is the case if the channel is indecomposable. Informally this means that the inﬂuence of the initial state diminishes with time. To give a formal deﬁnition, let
+A BFSC is called indecomposable if for every > 0 there exists n 0 such that for every n ≥ n 0
+for all σ n , x n , σ 0 and σ 0 [3, p.106]. A necessary and sufﬁcient condition for a BFSC to be indecomposable is given in Theorem 4.6.3 of [3]: this holds true if for some ﬁxed n and each x n , there exists a choice for σ n (which may depend on x n ) such that
+The common value of C and C, denoted by C, is called the capacity of the BFSC. If we assign a probability distribution
+to the initial state, so that σ 0 becomes a random variable, then C = lim n→∞ C n , where
+C n = 1 n
+Clearly, C n ≤ C n ≤ C n for all n, so that C, as deﬁned above, is indeed the common value of C and C. Note that this is independent of the choice of the probability distribution on σ 0 .
+Let us specialize these deﬁnitions for a channel model with intermittent errors . We consider a binary-input binary-output channel similar to the binary symmetric channel, except that errors must be separated. Formally, this is a channel with binary input x = x 1 , x 2 , x 3 , . . . and binary output y = y 1 , y 2 , y 3 , . . . . The input-output relationship is determined by a binary sequence u = u 1 , u 2 , u 3 , . . ., which is a Markov chain, independent of the input sequence x, with transition probabilities P (u i |u i−1 , u i−2 , . . . , u i−s ) deﬁned as follows:
+u i = 0 u i = 1 u i−l = 0, ∀1 ≤ l ≤ s 	 1 − p 	 p
+For any i the output of the channel is connected to the input by the equation
+We call this channel the binary-input intermittent (BINInter(s, p)) channel.
+It is easy to see that the BINInter channel is a BFSC, where the nth state σ n is a number i ∈ {0, 1, 2, . . . , s} S. Suppose that ≥ 0 is the smallest number such that u n− = 1. If no such exists, then set = ∞. Whenever ≤ s, we set σ n = . For > s, we set σ n = s. For completeness, we introduce an initial state σ 0 that takes values in S. When n < s, σ n = min(n + σ 0 , , s).
+A related model of a binary-input channel with nonadjacent erasures was considered in [7].
+Let us check that the BINInter channel is indecomposable, so its capacity is well-deﬁned. The case p = 1 will require special handling.
+Lemma 4.1: The BINInter(s, p) channel is indecomposable for p < 1.
+Proof: We must check that the condition in (5) holds. Take n = s and σ n = s, then min σ 0 q(σ n | x n , σ 0 ) = (1 − p) s > 0.
+Lemma 4.2: For the BINInter(s, p) channel with parameter p = 1, we have C = C = C(1) = 1.
+Proof: It sufﬁces to prove that C ≥ 1. Since p = 1, once the initial state σ 0 is ﬁxed, the output y of the BINInter channel becomes a deterministic function of the input x (i.e. the u sequence is ﬁxed with probability 1). Therefore, for any ﬁxed a ∈ S, we have H(y n | x n , σ 0 = a) = 0, and hence, I(x n ; y n | σ 0 = a) = H(y n | σ 0 = a). If x n is a sequence of i.i.d. Bernoulli( 1 / 2 ) random variables, then H(y n | σ 0 = a) = n for all a ∈ S. It follows that C n ≥ 1, so that C ≥ 1.
+The last two lemmas are very similar to the analogous results in [7] which considered a BFSC with a data-dependent noise process described by a two-state Markov chain.
+Theorem 4.3: For the BINInter(s, p) channel with parame- ter p ∈ [0, 1], we have C = C = C(p) 1 − h(p) 1+sp .
+Proof: We assume that p < 1, so the channel is indecom- posable and its capacity is deﬁned by (6).
+The state sequence σ = σ 0 , σ 1 , . . . ; σ i ∈ S = {0, 1, . . . , s} forms a ﬁrst-order Markov chain whose (nonzero) transition probabilities are given by
+Pr(σ n = i + 1 | σ n−1 = i) = 1, 0 ≤ i ≤ s − 1 Pr(σ n = 0 | σ n−1 = s) = p,
+All other transition probabilities are zero. The stationary distribution of this Markov chain is the following:
+We assume that the initial state σ 0 follows this distribution as well.
+0 ) (b) = H(y n | σ
+where (a) is due to the fact that, given x n , the sequences y n and u n uniquely determine each other, and (b) follows because u n is independent of x n . Also given σ 0 , the sequences u and σ completely determine each other. Further, since σ is a stationary ﬁrst-order Markov process, we have
+1 + ps . 	 (8) Clearly, H(y n | σ 0 ) ≤ n. However, if x n is a sequence of i.i.d. Bernoulli( 1 / 2 ) random variables, then H(y n | σ 0 ) = n. Therefore,
+As our ﬁnal result, we show that capacity of the BINInter(s, p) can be achieved by binary linear codes.
+Theorem 4.4: Let C = 1 − h(p) 1+ps . There exists a sequence of binary linear codes of growing length n with the following properties. For every choice of , δ > 0, there exists n 0 such that for all codes in the sequence of length n ≥ n 0 , the code
+rate satisﬁes R ≥ C − , and the error probability of maximum likelihood decoding on the BINInter(s, p) is less than δ.
+Proof: (outline) We will prove the theorem by construct- ing a sequence of linear codes for which the set of “typical errors” that occur in the channel is formed of vectors with distinct syndromes.
+Let R = C − and let n be an integer (the code length). Consider the ensemble of linear codes deﬁned by random parity-check matrices of dimensions (1 − R)n × n with Bernoulli( 1 / 2 ) independent entries. The rate of any code in the ensemble is at least R. The probability that two vectors x = y ∈ {0, 1} n have the same syndrome equals
+If such an event occurs, the errors x, y contribute to the decoding error event. Now let E be an (unspeciﬁed) set of error vectors. By the Lov´asz Local Lemma (see [1]), if
+then there exists a matrix H with no two errors in the set E colliding. The code with this parity-check matrix will have low error probability of decoding if errors outside E have a small probability of occurring in the channel.
+Now consider the set of vectors of length n (errors) gener- ated by the random process described in (7). We claim that the set of typical vectors generated by this process has cardinality
+(estimating the cardinality is a standard but tedious calculation which will be omitted). Concluding, there exists a linear code of rate R = C − for which these errors will be decoded correctly, and thus the overall decoding error probability will be arbitrarily small.
+Acknowledgment. The authors are grateful to Navin Kashyap and Gilles Z´emor for useful discussions of this work.
+[[[ REFS ]]]
+N. Alo
+J. Spence
+J. Wile
+--
+The Probabilistic Method,  Sons, 2000
+----
+P. Elias
+--
+Error-correcting codes for list decoding
+----
+R. G. Gallage
+--
+Information Theory and Reliable Communication, John Wiley and Sons, 1968
+----
+A. R. Iyengar
+P. H. Siegel
+J. K. Wolf
+--
+Write channel model for bit-patterned media recording
+----
+J. MacWilliam
+A. Sloan
+--
+F
+----
+B. H. Marcus
+R. M. Roth
+H. Siegel
+--
+Constrained systems and coding for recording channels
+----
+A. Mazumdar
+A. Barg
+--
+Coding for high-density recording on a 1-D granular magnetic medium
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\155.pdf
+[[[ LINKS ]]]
+

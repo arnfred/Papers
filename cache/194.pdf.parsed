@@ -1,0 +1,180 @@
+[[[ ID ]]]
+194
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Treewidth of MDS and Reed-Muller Codes
+[[[ AUTHORS ]]]
+Navin Kashyap †
+Andrew Thangaraj ‡
+[[[ ABSTR ]]]
+Abstract—The treewidth of a linear code is the least constraint complexity of any of its cycle-free graphical realizations. This notion provides a useful parametrization of the maximum- likelihood decoding complexity for linear codes. In this paper, we compute exact expressions for the treewidth of maximum distance separable codes, and ﬁrst- and second-order Reed-Muller codes. These results constitute the only known explicit expressions for the treewidth of algebraic codes.
+[[[ BODY ]]]
+Cycle-free graphical realizations, or simply tree realizations, of linear codes are interesting because the sum-product algo- rithm (SPA) on such a realization is an exact implementation of maximum-likelihood (ML) decoding [16]. The notion of constraint complexity of a tree realization was introduced by Forney [4] as a measure of the computational complexity of the corresponding SPA algorithm. It is deﬁned to be the maximum dimension among the local constraint codes constituting the realization. The treewidth of a linear code is the least constraint complexity of any of its tree realizations.
+The minimal tree complexity measure deﬁned for linear codes by Halford and Chugg [5] is a close relative of treewidth. There are also closely related notions of treewidth deﬁned for graphs [3] and matroids [6]; these relationships are discussed in more detail in [9]. Known facts about the treewidth of graphs and matroids imply that computing the treewidth of a code is NP-hard.
+For a length-n linear code over the ﬁeld F q , the compu- tational complexity of implementing ML decoding, via the SPA on an optimal tree realization, is O(nq t ), where t is the treewidth of the code [9]. In particular, ML decoding is ﬁxed- parameter tractable with respect to treewidth. Thus, treewidth provides a useful parametrization of ML decoding complexity.
+Trellis representations (or trellis realizations) of codes are special cases of tree realizations which have received extensive attention in the literature (see e.g., [14]). In the context of trellis representations, constraint complexity is usually called branch complexity. We deﬁne here the trelliswidth of a code to be the least branch complexity of any of its trellis representa- tions (optimized over all possible orderings of the coordinates of the code). As trellis representations are instances of tree
+realizations, trelliswidth is at least as large as treewidth. In fact, it is known that trelliswidth can be much larger than treewidth: it was shown in [10] that the ratio of trelliswidth to treewidth can grow at most logarithmically with blocklength, and that there are codes with arbitrarily large blocklengths that achieve this logarithmic growth rate. The only known code family achieving logarithmic growth rate of this ratio is a family consisting of cut-set codes of a certain class of graphs. The codes in this family all have treewidth 2, and rate approximately 1/4, but minimum distance only 4 [9].
+It is not known if there are any other code families for which there is a signiﬁcant advantage to be gained in going from trellis representations to tree realizations that are topologically more complex. In the only previous investigation reported on this question, Forney [4] considered the family of Reed- Muller (RM) codes. He showed that for a certain natural tree realization of RM codes, obtained from their well-known recursive |u|u + v| construction, the constraint complexity is, in general, strictly larger than the trelliswidth of the code. But this still leaves open the possibility that there may be other tree realizations whose constraint complexity beats trelliswidth. In particular, it leaves undecided the question of whether the treewidth of a RM code can be strictly less than its trelliswidth.
+In this paper, we show that for ﬁrst- and second-order Reed- Muller codes, treewidth is equal to trelliswidth. 1 The proof of this makes use of structural properties known for optimal trellis realizations of Reed-Muller codes, and also relies strongly on certain separator theorems for trees. A similar proof strategy also works on the much simpler case of maximum distance separable (MDS) codes, where we show that treewidth equals trelliswidth. These results yield the ﬁrst explicit expressions for the treewidth of classical algebraic codes.
+The rest of this paper is organized as follows. After provid- ing deﬁnitions in Section II, our proof strategy is described in Section III. Separator theorems needed by the proof strategy are presented in Section IV. Sections V and VI deal with MDS and Reed-Muller codes, respectively.
+The notation [n] denotes the set of positive integers from 1 to n; [a, b] denotes the set {i ∈ Z : a ≤ i ≤ b}. An (n,k) linear code is a code of length n and dimension k. The n coordinates of the code are indexed by the elements of an index set I; unless speciﬁed otherwise, I = [n].
+Let C be a linear code with index set I. For J = {j 1 , j 2 , . . . , j s } ⊆ I, the shortening of C to the coordinates
+The notions of treewidth and trelliswidth are central to this article, and we deﬁne these next. A. Treewidth and trelliswidth
+For brevity, we provide only the necessary deﬁnitions and main results; for details, see [4],[9].
+A tree is a connected graph with no cycles. The set of nodes and the set of edges of a tree T are denoted by V (T ) and E(T ), respectively. Degree-1 nodes in a tree are called leaves, and all other nodes are called internal nodes. We let L(T ) denote the set of leaves of T . A tree is a path if all its internal nodes have degree 2; and is a cubic tree if all its internal nodes have degree 3. A path with at least one edge has exactly two leaves; a cubic tree with n leaves has n − 2 internal nodes.
+Let C be an (n,k) linear code with index set I. A tree decomposition of C is a pair (T,ω), where T is a tree and ω : I → V (T) is an assignment of coordinates of C to the nodes of T .
+Given a tree decomposition (T, ω) of C, for each node v of T , we deﬁne a quantity κ v as follows. Let E(v) denote the set of edges of T incident on v. For e ∈ E(v), let T e,v denote the component of T −e (T with e removed) not containing v. Finally, let I e,v = ω −1 (V (T e,v )) be the set of coordinates of C that are assigned to nodes in T e,v . Then,
+The quantity κ v above is the dimension of the local constraint code at node v in the minimal realization of C on (T,ω), denoted by M(C;T,ω).
+κ v denote the constraint complex- ity of M(C;T,ω). The treewidth of a code C, denoted by κ( C), is then deﬁned as
+It is, in fact, enough to perform the minimization in (2) over cubic trees T with n leaves, and mappings ω that are bijections between I and L(T ).
+The trelliswidth of C, which we will denote by τ(C), can be deﬁned using the above notation as follows:
+where P is the path on n nodes, and the minimization is over mappings π that are bijections between I and V (P ). From (2) and (3), it is clear that κ( C) ≤ τ(C).
+Let v 1 , v 2 , . . . , v n be the nodes of the path P , listed in order from one leaf to the other. For the bijection π : I → V (P) that maps i to v i (1 ≤ i ≤ n), we obtain from (1),
+κ v i = k − dim(C π[1,i −1] ) − dim(C π[i+1,n] ), 	 (4) where π[a, b] = {π(j) : a ≤ j ≤ b}.
+The generalized Hamming weights of a linear code, intro- duced and studied in [15], limit the possible dimensions of shortened versions of the code. So, they are related to the complexity of tree realizations in a natural way.
+Let C be an (n,k) linear code with index set I. We will use the notation D C to say that D is a subcode of C. For a subcode D C, we deﬁne its support χ(D) = {i : ∃c 1 c 2 . . . c n ∈ D s.t.c i = 0}. The p-th generalized Hamming weight of C, denoted d
+(C) = min{|χ(D)| : D C,dim(D) = p} for 1 ≤ p ≤ k. It is known that 0 ≤ d 1 (C) < d 2 (C) < ··· < d k (C) ≤ n. Also, d 1 (C) is the minimum distance of C.
+A closely related deﬁnition is that of maximal limited- support subcode dimensions. For 1 ≤ s ≤ n, U s (C) is deﬁned to be the maximum dimension of a subcode of C with support size at most s, i.e., U s (C) = max{dim(D) : D C,|χ(D)| ≤ s }. The maximal limited-support subcode dimensions can be computed using the generalized Hamming weights as follows:
+U s (C) = u such that d u (C) ≤ s < d u+1 (C) 	 (5) with the convention that d 0 (C) = 0 and d k+1 (C) = n+1. We also deﬁne U 0 (C) = 0.
+From the relevant deﬁnitions, treewidth cannot exceed trel- liswidth for any code C, i.e., κ(C) ≤ τ(C). We now describe a general strategy that can be used to show the opposite inequality in certain cases.
+Consider an (n, k) linear code C, with index set I. The idea of using maximal limited-support subcode dimensions to study the complexity of trellis realizations of C was introduced in [8]. We extend that idea to tree realizations here. For J ⊆ I, C J is a subcode of C with support size at most |J|. So, dim(C J ) ≤ U |J| (C). Therefore, given any tree decomposition (T, ω) of C, we obtain from (1) that for any v ∈ V (T),
+Now, recall from the deﬁnition of treewidth that it sufﬁces to carry out the minimization in (2) over tree decompositions (T, ω) in which T is a cubic tree with n leaves, and ω is a bijection between I and L(T ). For such a (T, ω), we note that |I e,v | is simply the number of leaves in T e,v , and for an internal node v ∈ V (T), the summation in (6) contains exactly three terms.
+Let n e,v denote the number of leaves in T e,v , and note that these numbers n e,v are determined purely by the topology of T . At an internal node v in a cubic tree T with n leaves, we will list the edges in E(v) in the form of an ordered triple [e 1 (v) e 2 (v) e 3 (v)] such that 1 < n e 1 (v),v ≤ n e 2 (v),v ≤ n e 3 (v),v < n. If the node v is clear in the context, we will use the simpliﬁed notation n i = n e i (v),v for i = 1, 2, 3. With this notation, [n e,v : e ∈ E(v)] = [n 1 n 2 n 3 ].
+Suppose that T is a cubic tree with n leaves having an internal node v such that the numbers n 1 , n 2 , n 3 satisfy
+U n i (C) ≤ k − τ(C). Then, by (6), for any bijection ω between the I and L(T ), we have κ v ≥ τ(C), and hence κ( C;T,ω) ≥ τ(C). Consequently, if every cubic tree with n leaves had such a node v, then we would have κ( C) ≥ τ(C). Since the opposite inequality is always true, we have proved the following proposition.
+Proposition 1. Let C be an (n,k) linear code with the property that for any cubic tree T with n leaves, there always exists an internal node v ∈ V (T) such that 3 i=1 U n i (C) ≤ k − τ(C), where n i = n e i (v),v . Then, κ(C) = τ (C).
+Hence, to show treewidth equals trelliswidth for a code C, the strategy is to show the existence of a node in any cubic tree, whose removal partitions the tree into components
+with a certain property. The property in this case is that the corresponding partition of the number of leaves, n, into n 1 , n 2 , n 3 satisﬁes 3 i=1 U n i (C) ≤ k−τ(C). Structural results of this form are known as separator theorems (see e.g., [13]).
+A classical separator theorem of Jordan [7] states that any tree on n nodes has an internal node whose removal leaves behind connected components with at most n/2 nodes each. A trivial modiﬁcation of the simple proof of this theorem shows that the two occurrences of “nodes” in the theorem statement can be replaced by “leaves”. For easy reference, we record this as a proposition for the special case of cubic trees.
+Proposition 2. In any cubic tree with n ≥ 3 leaves, there exists an internal node v such that n e i (v),v ≤ n/2, i = 1,2,3.
+Another classical (edge) separator theorem is the following result (cf. [13]): every cubic tree T with n leaves contains an edge e such that both components of T −e have at most 2n/3 leaves. Now, one of these two components must have at least n/2 leaves; let v be the node incident with e for which this component is T e,v . Then, for this v, we have n 3 ∈ [n/2,2n/3]. Proposition 3. In any cubic tree with n ≥ 3 leaves, there exists an internal node v such that n e 3 (v),v ∈ [n/2,2n/3].
+As we will see below, the two propositions in this section allow us to deal with MDS and ﬁrst-order Reed-Muller codes. Second-order Reed-Muller codes require a more specialized separator theorem to be stated later.
+In this section, we show how the strategy outlined in Section III can be applied to MDS codes. Deﬁnitions and basic facts about MDS codes can be found in [12].
+Let C be an (n,k) MDS code, with index set I = [n]. The generalized Hamming weights of C were computed in [15] as follows:
+From this, the maximal limited-support subcode dimensions, U s (C) for 1 ≤ s ≤ n, can be determined using (5). They are given by
+Let H be a parity-check matrix for C. For a subset J ⊆ I, the code C J has dimension equal to |J| − rank(H| J ), where H | J refers to the restriction of H to the columns indexed by J. As C is MDS, rank(H| J ) = min{|J|,n − k}. Hence, dim(C J ) = max{0,|J| − (n − k)} = U |J| (C). Therefore, for any permutation π of I, we have for integers 1 ≤ a ≤ b ≤ n, dim(C π[a,b] ) = U b −a+1 (C). Therefore, the right-hand-side of (4) is always equal to k − U
+achieved for i = n −k+1. We thus have the following result. Proposition 4. The trelliswidth of an (n, k) MDS code C is given by τ ( C) = min{k,n − k + 1}.
+We can now prove that the treewidth of an MDS code equals its trelliswidth.
+Theorem 5. For an (n, k) MDS code C, κ(C) = τ(C) = min{k,n − k + 1}.
+Proof: The statement is trivial for n = 1, 2, or when k = n, so we assume n ≥ 3 and 1 ≤ n − k. Let T be a cubic tree with n leaves, and let v be the node guaranteed by Proposition 2. We will show that v satisﬁes the hypothesis of Proposition 1.
+Set n i = n e i (v),v , i = 1, 2, 3, and recall that, by deﬁnition, n 1 ≤ n 2 ≤ n 3 . By choice of v, we also have n i ≤ n/2 for i = 1, 2, 3. For convenience, we write U n i for U n i (C).
+n − k ≥ k: In this case, n i ≤ n/2 ≤ n−k, so that i U n i = 0 by (7). Moreover, by (8), k − τ(C) = 0. 1 ≤ n − k < k: Now, we have n i ≤ n/2 < k. We must show that
+U n i ≤ 2k − n − 1. If n 3 ≤ n − k, then i U n i = 0. So, we assume n 3 = k − δ, with 1 ≤ δ < 2k − n. Then, U n 3 = n 3 − (n − k) = 2k − n − δ and n 1 + n 2 = n − n 3 =
+n − k + δ. So, we have U n 1 + U n 2 + U n 3
++ n 2 } + 2k − n − δ, = max{2k − n − δ,3k − 2n + n
+2 − δ,3k − 2n}, ≤ 2k − n − 1,
+where the last inequality holds because δ ≥ 1, n 2 ≤ n − k + δ − 1 and n − k ≥ 1.
+Thus, in both cases, we see that i U n i ≤ k − τ(C), and so, by Proposition 1, we have κ( C) = τ(C).
+For positive integers m and r with 0 ≤ r ≤ m, the r-th order binary Reed-Muller code of length 2 m , denoted RM(r, m), is deﬁned as follows. Let P m r denote the set of all Boolean polynomials in m variables of degree less than or equal to r. For an integer i, 0 ≤ i ≤ 2 m − 1, with binary expansion i = m −1 j=0 b j (i)2 j , b j (i) ∈ {0,1}, we let b(i) = [b 0 (i) b 1 (i) ··· b m −1 (i)]. For f ∈ P m r , let f (b(i)) = f (b 0 (i), b 1 (i), ··· ,b m −1 (i)). The code RM(r, m) is deﬁned as
+RM(r, m) = {[f(b(0)) f(b(1)) ··· f(b(2 m −1))] : f ∈ P m r }. (9)
+The code RM(r, m) is an (n = 2 m , k(r, m) = r i=0 m i ) code [12]. In (9), the order of evaluation of the function is according to the index set I = [0, 2 m − 1]. This is called the standard bit order.
+We will denote the treewidth and trelliswidth of RM(r, m) by κ(r, m) and τ (r, m), respectively. A. Trelliswidth of RM(r, m)
+Let C be the Reed-Muller code RM(r,m) in the standard bit order, so that I = [0, 2 m −1]. In this section, we derive an exact expression for the trelliswidth of C.
+Let P be the path on n = 2 m nodes, with v 0 , v 1 , . . . , v n −1 being the nodes of P , listed in order from one leaf to the other. For any π : I → V (P), we obtain from (4), in a manner analogous to the derivation of (6),
+κ v i ≥ k(r,m) − U i (C) − U n −1−i (C), for i = 0, 1, . . . , n − 1. Thus,
+Note that the right-hand-side is independent of π, so that by (3),
+It is shown in [8] that for RM(r, m) in the standard bit order, we have for i = 0, 1, . . . , n − 1, dim(C [0,i] )) = U i+1 (C) and dim(C [i,n −1] ) = U n −i (C). It follows that when π simply maps i to v
+in (11). To put this another way, the branch complexity of the minimal trellis representation of RM(r, m) in the standard bit order attains the lower bound on, and thus equals, the trelliswidth of the code. Techniques from [2] allow us to compute the branch complexity of this trellis representation; for details, see [11]. We then have the following result.
+Proposition 6. The trelliswidth of the Reed-Muller code RM(r, m) is given by
+For ﬁrst-order Reed-Muller codes, the application of Propo- sition 1 is especially straightforward. When r = 1, we have k(r, m) = m + 1, and it may be veriﬁed from Proposition 6 that τ (r, m) = m. Hence, k(1, m) − τ(1,m) = 1.
+As computed in [15], the generalized Hamming weights of RM(1, m) are as follows:
+The maximal limited-support subcode dimensions, U s (RM(1, m)) for 1 ≤ s ≤ 2 m , can now be computed using (5). We only need to know that
+U s (RM(1, m)) = 0 for 1 ≤ s < 2 m −1 , 	 (12) U s (RM(1, m)) = 1 for 2 m −1 ≤ s < 2 m −1 + 2 m −2 .(13)
+Theorem 7. The treewidth of the ﬁrst-order Reed-Muller code RM(1, m) is given by κ(1, m) = τ (1, m) = m.
+Proof: The statement is trivial when m = 1, so assume m ≥ 2. Let T be a cubic tree with 2 m leaves. Let v be a node of T as guaranteed by Proposition 3. Write n i = n e i (v),v , and U n i = U n i (RM(1, m)), for i = 1, 2, 3. By choice of v, we have n 3 ∈ [2 m −1 , (2/3)2 m ], and hence, by (13), U n 3 = 1. Furthermore, since 1 ≤ n 1 ≤ n 2 and n 1 + n 2 = 2 m − n 3 , we see that 1 ≤ n 1 , n 2 < 2 m −1 . Hence, by (12), U n 1 = U n 2 = 0. Therefore, i U n i = 1 = k(1, m) − τ(1,m), and so, by Proposition 1, the theorem is proved.
+The proof strategy suggested by Proposition 1 can also be made to work for second-order Reed-Muller codes, but this requires some effort. The codes RM(2, 2) and RM(2, 3) are MDS codes, which have been dealt with in Section V. So, here we will only consider RM(2, m) with m ≥ 4. It can be checked that for m ≥ 4, we have k(2,m)−τ(2,m) = m+2.
+The generalized Hamming weights of second-order Reed- Muller codes are as follows [15]:
+where p = m+(m −1)+···+(m−s+1)+q with q < m−s. Assuming m ≥ 4, computations result in the following:
+From these, the maximal limited-support subcode dimensions, U s (RM(2, m)) can be computed via (5).
+and U s (RM(2, m)) ≥ m + 2 for s ≥ 2 m · 11 16 . To use Proposition 1 in this case, we need a new separator theorem, which we state and prove next. For notational ease, we set U n ∗ i = U n ∗ i (RM(2, m)).
+Proposition 8. In any cubic tree T with 2 m leaves, m ≥ 4, there exists an internal node v ∗ ∈ V (T) such that
+Proof: Let T be a cubic tree with 2 m leaves, m ≥ 4, and let W = {v ∈ V (T) : n e 3 (v),v ∈ [2 m · 1 2 , 2 m · 2 3 ]}. By Proposition 3, W is non-empty. Let v ∗ ∈ W be a node that achieves max {n e 3 (v),v : v ∈ W}. Write n ∗ i = n e i (v ∗ ),v ∗ , i = 1, 2, 3. We will show that U n ∗ i ≤ m + 2.
+We ﬁrst claim that n ∗ 2 < 2 m · 1 3 . Indeed, suppose not. Then, n ∗ 1 + n ∗ 3 ≤ 2 m · 2 3 . Let v be the neighbour of v ∗ incident with edge e 2 (v ∗ ). Then, setting n 3 = n e 3 (v),v , we see that n 3 = n ∗ 1 + n ∗ 3 ; see Figure 1. But this means that n ∗ 3 < n 3 ≤ 2 m · 2 3 , which contradicts our choice of v ∗ .
+In summary, we have n ∗ 3 ∈ [2 m · 1 2 , 2 m · 2 3 ], n ∗ 2 < 2 m · 1 3 , and n ∗ 1 ≤ n ∗ 2 . From (14), we see that U n ∗3 ∈ {m,m + 1} and U n ∗1 ≤ U n ∗2 ≤ 1.
+If U n ∗1 = 0, then U ∗ n i ≤ m + 2. If U n ∗1 = 1, then n ∗ 1 ≥ 2 m · 1 4 . The constraints on n ∗ i then imply that n ∗ 1 = n ∗ 2 = 2 m · 1 4 , and n ∗ 3 = 2 m · 1 2 . In this case, we have U n ∗1 = U n ∗2 = 1 and U n ∗3 = m, so that U n ∗ i = m + 2.
+Theorem 9. The treewidth of the second-order Reed-Muller code RM(2, m) is given by
+Proof: The cases m = 2 and m = 3 are MDS codes, and therefore, are covered by Theorem 5. For m ≥ 4, the fact that
+κ(2, m) = τ (r, m) follows from Propositions 1 and 8. The explicit expression for τ (2, m) comes from Proposition 6.
+We conclude with the remark that in a follow-up paper [11], we have extended the results of this section to the entire family of Reed-Muller codes.
+A. Thangaraj thanks Rakesh Pokala for several helpful discussions.
+[[[ REFS ]]]
+Y. Berger
+Y. Be’ery
+--
+Bounds on the trellis size of linear block codes
+----
+T. Blackmore
+H. Norton
+--
+On trellis structures for Reed-Muller codes
+----
+L. Bodlaender
+--
+A tourist guide through treewidth
+----
+D. Forney Jr.
+--
+Codes on graphs: constraint complexity of cycle-free realizations of linear codes
+----
+R. Halford
+M. Chugg
+--
+The extraction and complexity limits of graphical models for linear codes
+----
+P. Hlinˇen´y
+G. Whittle
+--
+Matroid tree-width
+----
+C. Jordan
+--
+Sur les assemblages des lignes
+----
+T. Kasami
+T. Takata
+T. Fujiwara
+S. Lin
+--
+On the optimum bit orders with respect to the state complexity of trellis diagrams for binary linear codes
+----
+N. Kashyap
+--
+On minimal tree realizations of linear codes
+----
+N. Kashyap
+--
+Constraint complexity of realizations of linear codes on arbitrary graphs
+----
+N. Kashyap
+A. Thangaraj
+--
+The treewidth of MDS and Reed- Muller codes
+----
+J. MacWilliam
+A. Sloan
+--
+F
+----
+D. Smith
+N. Wormald
+--
+Geometric separator theorems and applications
+----
+A. Vardy
+--
+Trellis Structure of Codes
+----
+K. Wei
+--
+Generalized Hamming weights for linear codes
+----
+N. Wiber
+D. thesi
+--
+Codes and Decoding on General Graphs, Ph
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\194.pdf
+[[[ LINKS ]]]
+

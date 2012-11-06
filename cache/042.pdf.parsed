@@ -1,0 +1,182 @@
+[[[ ID ]]]
+42
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Capacity of the K -User Cyclic Gaussian Interference Channel
+[[[ AUTHORS ]]]
+Lei Zhou
+Wei Yu
+[[[ ABSTR ]]]
+Abstract—This paper studies the capacity region of a K- user cyclic Gaussian interference channel, where the kth user interferes with only the (k − 1)th user (mod K) in the network. Inspired by the work of Etkin, Tse and Wang, which derived a capacity region outer bound for the two-user Gaussian inter- ference channel and proved that a simple Han-Kobayashi power splitting scheme can achieve to within one bit of the capacity region for all values of channel parameters, this paper shows that a similar strategy also achieves the capacity region for the K-user cyclic interference channel to within a constant gap in the weak interference regime. Speciﬁcally, a compact representation of the Han-Kobayashi achievable rate region using Fourier-Motzkin elimination is ﬁrst derived, a capacity region outer bound is then established. It is shown that the Etkin-Tse-Wang power splitting strategy gives a constant gap of at most two bits (or one bit per dimension) in the weak interference regime. Finally, the capacity result of the K-user cyclic Gaussian interference channel in the strong interference regime is also given.
+[[[ BODY ]]]
+The interference channel models a communication scenario where several mutually interfering transmitter-receiver pairs share the same physical medium. The interference channel is a useful model for practical wireless network. The capacity region of the interference channel, however, has not been completely characterized, even for the two-user Gaussian case.
+The largest achievable rate region for the two-user interfer- ence channel is due to a Han-Kobayashi strategy [1], where each transmitter splits its transmit signal into a common and a private part. The achievable rate region is the convex hull of the union of achievable rates where each receiver decodes the common messages from both transmitters plus the private message intended for itself. Recently, Chong et al. [2] obtained an equivalent achievable rate region but in a simpler form by applying the Fourier-Motzkin algorithm together with a time-sharing technique to the Han and Kobayashi’s original rate region. The optimality of the Han-Kobayashi region for the two-user Gaussian interference channel is still an open problem in general, except in the strong interference regime where transmission with common information only is shown to achieve the capacity region [1], [3], [4], and in a noisy in- terference regime where transmission with private information only is shown to be sum-capacity achieving [5]–[7].
+In a recent breakthrough, Etkin, Tse and Wang [8] showed that the Han-Kobayashi scheme can in fact achieve to within one bit of the capacity region for the two-user Gaussian interference channel for all channel parameters. Their key
+insight was that the interference-to-noise ratio (INR) of the private message should be chosen to be as close to 1 as possible in the Han-Kobayashi scheme. They also found a new capacity region outer bound using a genie-aided technique.
+The Etkin-Tse-Wang result applies only to the two-user interference channel. Practical communication systems often have more than two transmitter-receiver pairs, yet extending the one-bit result of Etkin, Tse and Wang’s work to beyond the two-user case is by no means trivial. This is because when more than 2 users are involved, the Han-Kobayashi private- common superposition coding strategy becomes exceedingly complicated. It is conceivable that multiple common messages may be needed at each transmitter, each intended to be decoded by an arbitrary subset of receivers, thus making the optimization of the resulting rate region difﬁcult. Further, superposition coding itself may not be adequate. Interference alignment types of coding scheme [9] has been shown to be able to enlarge the achievable rate region and to achieve to within constant gap of many-to-one and one-to-many interfer- ence channels [10].
+In the context of K-user Gaussian interference channels, sum-capacity results are available in the noisy interference regime [5], [11]. Annapureddy et al. [5] obtained the sum capacity for the symmetric three-user Gaussian interference channel, the one-to-many and the many-to-one Gaussian in- terference channels under the noisy interference criterion. Shang et al. [11] studied the fully connected K-user Gaussian interference channel and showed that treating interference as noise at the receiver is sum-capacity achieving when the transmit power and the cross channel gains are sufﬁciently weak to satisfy a certain criterion. In addition, much work has also been carried out on the generalized degrees of freedom (as deﬁned in [8]) of the K-user interference channel and its variations [9], [12], [13].
+Instead of treating the general K-user interference channel, this paper focuses on a cyclic Gaussian interference channel model, where the kth user interferes with only the (k − 1)th user. In this case, each transmitter interferes with only one other receiver, and each receiver suffers interference from only one other transmitter, thereby avoiding the difﬁculties mentioned earlier. For the K-user cyclic interference channel, the Etkin, Tse and Wang’s coding strategy remains a natural one. In our previous work [14], we showed that such a strategy achieves the sum capacity for a symmetric channel to within
+two bits. The main objective of this paper is to show that this strategy also achieves to within two bits of the capacity region for the general cyclic interference channel in the weak interference regime. This paper contains an outline of the main results. Detailed proofs can be found in [15].
+The cyclic interference channel model is motivated by the so-called modiﬁed Wyner model, which describes the soft handoff scenario of a cellular network [16]. The original Wyner model [17] assumes that all cells are arranged in a linear array with the base-stations located at the center of each cell, and where intercell interference comes from only the two adjacent cells. In the modiﬁed Wyner model [16] cells are arranged in a circular array as shown in Fig. 1. The mobile terminals are located along the circular array. If one assumes that the mobiles always communicate with the intended base-station to its left (or right), while only suffering from interference due to the base-station to its right (or left), one arrives at the K-user cyclic Gaussian interference channel studied in this paper. The modiﬁed Wyner model has been extensively studied in the literature [16], [18], [19], but often either with interference treated as noise or with the assumption of full base station cooperation. This paper studies the modiﬁed Wyner model without base station cooperation, in which case the soft handoff problem becomes that of a cyclic interference channel.
+The main results of this paper are as follows. For the K-user cyclic Gaussian interference channel in the weak interference regime, one can achieve to within two bits of the capacity re- gion using the Etkin, Tse and Wang’s power splitting scheme. The capacity region in the strong interference regime is also given. It is shown that transmission with common message only achieves the capacity region.
+A key part of the development involves a Fourier-Motzkin elimination procedure on the achievable rate region of the K- user cyclic interference channel. To deal with the large number of inequality constraints, an induction proof needs to be used. It is shown that as compared to the two-user case, where the rate region is deﬁned by constraints on the individual rate R i , the sum rate R 1 + R 2 , and the sum rate plus an individual rate 2R i + R j (i ̸= j), the achievable rate region for the K- user cyclic interference channel is deﬁned by an additional set of constraints on the sum rate of any arbitrary l adjacent users, where 2 ≤ l < K. These four types of rate constraints completely characterize the Han-Kobayashi region for the K-
+user cyclic interference channel. They give rise to a total of K 2 + 1 constraints.
+The K-user cyclic Gaussian interference channel is ﬁrst introduced in [14]. It consists of K transmitter-receiver pairs as shown in Fig. 2. Each transmitter communicates with its intended receiver while causing interference to only one neigh- boring receiver. Each receiver receives a signal intended for it and an interference signal from only one neighboring sender plus the additive white Gaussian noise (AWGN). As shown in Fig. 2, X 1 , X 2 , · · · X K and Y 1 , Y 2 , · · · Y K are complex-valued input and output signals, respectively, and Z i ∼ CN (0, σ 2 ) is the independent and identically distributed (i.i.d) circularly symmetric Gaussian noise at receiver i. The input-output model can be written as
+Y 1 = h 1,1 X 1 + h 2,1 X 2 + Z 1 , Y 2 = h 2,2 X 2 + h 3,2 X 3 + Z 2 ,
+where each X i has a power constraint P i associated with it, i.e., E
+| 2 ] ≤ P i . Here, h i,j is the complex-valued channel gain from transmitter i to receiver j.
+The encoding-decoding procedure is described as follows. Transmitter i maps a message m i ∈ {1, 2, · · · , 2 nR i } into a length n codeword X n i that belongs to a codebook C n i , i.e. X n i = f n i (m i ), where f n i (.) represents the encoding function of user i, i = 1, 2, · · · , K. Codeword X n i is then sent over a block of n time instances. From the received sequence Y n i , receiver i obtains an estimate ˆ m i of the transmit message m i using a decoding function g n i (.), i.e. ˆ m i = g n i (Y n i ). The average probability of error is deﬁned as P n e = E [Pr(∪( ˆ m i ̸= m i ))]. A rate tuple (R 1 , R 2 , · · · , R K ) is said to be achievable if for an ϵ > 0, there exists a family of codebooks C n i , encoding functions f n i (.), and decoding functions g n i (.), i = 1, 2, · · · , K, such that P n e < ϵ for a sufﬁciently large n. The capacity region is the collection of all achievable rate tuples.
+Deﬁne the signal-to-noise and interference-to-noise ratios for each user as follows 1 :
+(2) The K-user cyclic Gaussian interference channel is said to be in the weak interference regime if
+Otherwise, it is said to be in the mixed interference regime, which has 2 K − 2 possible combinations.
+Throughout this paper, modulo arithmetic is implicitly used on the user indices, e.g., K + 1 = 1 and 1 − 1 = K. Note that when K = 2, the cyclic channel reduces to the conventional two-user interference channel.
+In the two-user case, the shape of the Han-Kobayashi achievable rate region is the union of polyhedrons (each corresponding to a ﬁxed input distribution) with boundaries deﬁned by rate constraints on R 1 , R 2 , R 1 + R 2 , and on 2R 1 + R 2 and 2R 2 + R 1 , respectively. To extend Etkin, Tse and Wang’s result to the general case, one needs to ﬁnd a similar rate region characterization for the general K-user cyclic interference channel ﬁrst.
+A key feature of the cyclic Gaussian interference channel model is that each transmitter sends signal to its intended receiver while causing interference to only one of its neigh- boring receivers; meanwhile, each receiver receives the in- tended signal plus the interfering signal from only one of its neighboring transmitters. Using this fact and with the help of Fourier-Motzkin elimination algorithm, we show in this section that the achievable rate region of the K-user cyclic Gaussian interference channel is the union of polyhedrons with boundaries deﬁned by rate constraints on the individual rates R i , the sum rate R sum , the sum rate plus an individual rate R sum + R i (i = 1, 2, · · · , K), and the sum rate for arbitrary l adjacent users (2 ≤ l < K). This last rate constraint on arbitrary l adjacent users’ rates is new as compared with the two-user case.
+The preceding characterization together with outer bounds to be proved later in the section allow us to show that the capacity region of the K-user cyclic Gaussian interference channel can be achieved to within a constant gap using the Etkin, Tse and Wang’s power-splitting strategy in the weak interference regime. However, instead of the one-bit result as obtained for the two-user interference channel [8], this section shows that without time-sharing, one can achieve to within two bits of the capacity region for the K-user cyclic
+Gaussian interference channel in the weak interference regime. The strong interference regime is treated in the next section.
+Theorem 1. Let P denote the set of probability distributions P ( ·) that factor as
+For a ﬁxed P ∈ P, let R (K) HK (P ) be the set of all rate tuples (R 1 , R 2 , · · · , R K ) satisfying
+a i = I(Y i ; X i |W i , W i+1 , Q), 	 (10) d i = I(Y i ; X i |W i+1 , Q), 	 (11) e i = I(Y i ; W i+1 , X i |W i , Q), 	 (12) g i = I(Y i ; W i+1 , X i |Q), 	 (13)
+and the range of indices are i, m = 1, 2, · · · , K in (6) and (9), l = 2, 3, · · · , K − 1 in (7). Deﬁne
+Then R (K) HK is an achievable rate region for the K-user cyclic interference channel.
+Proof: The achievable rate region can be proved by the Fourier-Motzkin algorithm together with an induction step. The proof follows the Kobayashi and Han’s strategy [20] of eliminating a common message at each step. Details are available in [15].
+In the above achievable rate region, (6) is the constraint on the achievable rate of an individual user, (7) is the constraint on the achievable sum rate for any l adjacent users (2 ≤ l < K), (8) is the constraint on the achievable sum rate of all K users, and (9) is the constraint on the achievable sum rate for all K users plus a repeated user.
+From (6) to (9), there are a total of K +K(K −2)+1+K = K 2 + 1 constraints. Together they describe the shape of the
+achievable rate region under a ﬁxed input distribution. The quadratic growth in the number of constraints as a function of K makes the Fourier-Motzkin elimination of the Han- Kobayashi region quite complex. An induction needs to be used to deal with the large number of the constraints.
+As an example, for the two-user Gaussian interference channel, there are 2 2 + 1 = 5 rate constraints, corresponding to that of R 1 , R 2 , R 1 + R 2 , 2R 1 + R 2 and 2R 2 + R 1 , as in [1], [2], [8], [20]. Speciﬁcally, substituting K = 2 in Theorem 1 gives us the following achievable rate region:
+0 ≤ R 2 ≤ min{d 2 , a 2 + e 1 }, 	 (17) R 1 + R 2 ≤ min{e 1 + e 2 , a 1 + g 2 , a 2 + g 1 }, (18)
+Theorem 2. For the K-user cyclic Gaussian interference channel in the weak interference regime, the capacity region is included in the following set of rate tuples (R 1 , R 2 , · · · , R K ):
+where the ranges of the indices i, m, l are as deﬁned in Theorem 1, and
+γ i = log (1 + INR i+1 + SNR i ) , 	 (27) λ i = log(1 + SNR i ), 	 (28) µ i = log(1 + INR i ), 	 (29)
+Proof: Genie-aided bounding techniques are used to prove the theorem. See [15] for details.
+Theorem 3. For the K-user cyclic Gaussian interference channel in the weak interference regime, the ﬁxed Etkin, Tse and Wang’s power-splitting strategy achieves to within two bits of the capacity region 2 .
+Proof: Applying the Etkin, Tse and Wang’s power- splitting strategy (i.e., INR ip = min(INR i , 1)) to Theorem 1, parameters a i , d i , e i , g i can be easily calculated as follows:
+a i = log (2 + SNR ip ) − 1, 	 (31) d i = log (2 + SNR i ) − 1, 	 (32) e i = log (1 + INR i+1 + SNR ip ) − 1, 	 (33) g i = log (1 + INR i+1 + SNR i ) − 1. 	 (34)
+To prove that the achievable rate region described by the above a i , d i , e i , g i is within two bits of the outer bound in Theorem 2, we need to show that each of the rate constraints in (6)-(9) is within two bits of their corresponding outer bound in (21)-(24), i.e., the following inequalities hold for all i, m, l in the ranges deﬁned in Theorem 1:
+δ R i < 2, 	 (35) δ R m + ···+R m+l −1 < 2l, 	 (36)
+δ R sum < 2K, 	 (37) δ R sum +R i < 2(K + 1), 	 (38)
+where δ ( ·) is the difference between the achievable rate in Theorem 1 and its corresponding outer bound in Theorem 2. A complete proof can be found in [15] .
+The results so far in the paper pertain only to the weak interference regime, where SNR i ≥ INR i , ∀i. In the strong interference regime, where SNR i ≤ INR i , ∀i, the capacity result in [1] [4] for the two-user Gaussian interference channel can be easily extended to the K-user cyclic case.
+Theorem 4. For the K-user cyclic Gaussian interference channel in the strong interference regime, the capacity region is given by the set of (R 1 , R 2 , · · · , R K ) such that
+for i = 1, 2, · · · , K. In the very strong interference regime where INR i ≥ (1 + SNR i −1 )SNR i , ∀i, the capacity region is the set of (R 1 , R 2 , · · · , R K ) with
+Proof: Achievability: It is easy to see that (39) is in fact the intersection of the capacity regions of K multiple-access
+(41) Each of these regions corresponds to that of a multiple-access channel with W n i and W n i+1 as inputs and Y n i as output (with U n i = U n i+1 = ∅). Therefore, the rate region (39) can be achieved by setting all the input signals to be common messages. This completes the achievability part.
+Converse: The converse proof follows the idea of [4]. The key ingredient is to show that for a genie-aided Gaussian inter- ference channel to be deﬁned later, in the strong interference regime, whenever a rate tuple (R 1 , R 2 , · · · , R K ) is achievable, i.e., X n i is decodable at receiver i, X n i must also be decodable at Y n i −1 , i = 1, 2, · · · , K.
+The genie-aided Gaussian interference channel is deﬁned by the Gaussian interference channel (see Fig. 2) with genie X n i+2 given to receiver i. The capacity region of the K-user cyclic Gaussian interference channel must be resided inside the capacity region of the genie-aided one.
+Assume that a rate tuple (R 1 , R 2 , · · · , R K ) is achievable for the K-user cyclic Gaussian interference channel. In this case, after X n i is decoded, with the knowledge of the genie X n i+2 , receiver i can construct the following signal:
+which contains the signal component of Y n i+1 but with less noise since |h i+1,i | ≥ |h i+1,i+1 | in the strong interference regime. Now, since X n i+1 is decodable at receiver i + 1, it must also be decodable at receiver i using the constructed Y n i . Therefore, X n i and X n i+1 are both decodable at receiver i. As a result, the achievable rate region of (R i , R i+1 ) is bounded by the capacity region of the multiple-access channel (X n i , X n i+1 , Y n i ), which is shown in (41). Since (41) reduces to (39) in the strong interference regime, we have shown that (39) is an outer bound of the K-user cyclic Gaussian interference channel in the strong interference regime. This completes the converse proof.
+In the very strong interference regime where INR i ≥ (1 + SNR i −1 )SNR i , ∀i, it is easy to verify that the second constraint in (39) is no longer active. This results in the capacity region (40).
+This paper studies the capacities and the coding strategies for the K-user cyclic Gaussian interference channel in the weak and the strong interference regimes. An achievable rate region based on the Han-Kobayashi power splitting strategy is ﬁrst derived; a corresponding capacity region outer bound is then obtained using genie-aided bounding techniques. This paper shows that in the weak interference regime, the Etkin, Tse and Wang’s power-splitting strategy achieves to within two
+bits of the capacity region. The capacity result for the K-user cyclic Gaussian interference channel in the strong interference regime is a straightforward extension of the corresponding two-user case. However, in the mixed interference regime, although the constant gap result may well continue to hold, the proof becomes considerably more complicated, as different mixed scenarios need to be enumerated and the corresponding outer bounds derived.
+[[[ REFS ]]]
+T. S. Han
+K. Kobayashi
+--
+A new achievable rate region for the interference channel
+----
+H. Chong
+M. Motani
+H. Garg
+H. El Gamal
+--
+On the Han- Kobayashi region for the interference channel
+----
+A. B. Carleial
+--
+Interference channels
+----
+H. Sato
+--
+The capacity of the Gaussian interference channel under strong interference
+----
+V. S. Annapureddy
+V. Veeravalli
+--
+Gaussian interference networks: sum capacity in the low interference regime and new outer bounds on the capacity region
+----
+A. S. Motahari
+A. K. Khandani
+--
+Capacity bounds for the Gaussian interference channel
+----
+X. Shang
+G. Kramer
+B. Chen
+--
+A new outer bound and the noisy- interference sum-rate capacity for Gaussian interference channels
+----
+R. Etkin
+D. Tse
+H. Wang
+--
+Gaussian interference channel capacity to within one bit
+----
+V. R. Cadambe
+S. A. Jafar
+--
+Interference alignment and the degrees of freedom for the K user interference channel
+----
+G. Bresler
+A. Parekh
+D. Tse
+--
+The approximate capacity of the many-to-one and one-to-many gaussian interference channels
+----
+X. Shang
+G. Kramer
+B. Chen
+--
+New outer bounds on the capacity region of Gaussian interference channels
+----
+S. A. Jafar
+S. Vishwanath
+--
+Generalized degrees of freedom of the symmetric Gaussian K user interference channel
+----
+V. R. Cadambe
+S. A. Jafar
+--
+Interference alignment and a noisy interference regime for many-to-one interference channels
+----
+L. Zhou
+W. Yu
+--
+On the Symmetric Capacity of the K-user Symmetric Cyclic Gaussian Interference Channel
+----
+
+--
+On the capacity of the K-user cyclic Gaussian interference channel
+----
+O. Somekh
+B. M. Zaidel
+S. Shamai
+--
+Sum rate characterization of joint multiple cell-site processing
+----
+A. D. Wyner
+--
+Shannon-theoretic approach to a Gaussian cellular multiple-access channel
+----
+Y. Liang
+A. Goldsmith
+--
+Symmetric rate capacity of cellular systems with cooperative base stations
+----
+J. Sheng
+D. N. C. Tse
+J. Hou
+J. B. Soriaga
+R. Padovani
+--
+Multi- cell downlink capacity with coordinated processing
+----
+K. Kobayashi
+T. S. Han
+--
+A further consideration on the HK and the CMG regions for the interference channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\042.pdf
+[[[ LINKS ]]]
+

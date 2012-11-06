@@ -1,0 +1,179 @@
+[[[ ID ]]]
+62
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The Diversity of MMSE Receiver over Frequency-Selective MIMO Channel
+[[[ AUTHORS ]]]
+Ahmed Hesham Mehana
+Aria Nosratinia
+[[[ ABSTR ]]]
+Abstract— This paper analyzes the MMSE receiver in MIMO frequency-selective channels. This expands our understanding of the MMSE MIMO channel, whose diversity was only recently characterized in the MIMO ﬂat-fading regime. Speciﬁcally, in this paper lower and upper bounds on the diversity of the MMSE receiver operating over frequency selective MIMO channel under block transmission with zero-padding (ZP) or cyclic-preﬁx (CP) are produced. The tightness of the bounds is demonstrated for both ZP/CP for the special case of SIMO channel.
+[[[ BODY ]]]
+Linear receivers are widely used for their low complexity compared to maximum likelihood (ML) receivers. Although a signiﬁcant amount of research has focused on linear re- ceivers, their performance is not fully understood in the MIMO channel. For instance, the distribution of the output signal- to-interference-plus-noise ratio (SINR) of the linear MIMO receiver is unknown except in asymptotic regimes (large number of antennas, and high/low SNR) [1], [2]. The outage and diversity of MMSE receiver has also been a subject of interest. Gore et al. [3] compare the performance of MMSE D-BLAST with the ordered successive cancellation V-BLAST. They show that the former has better throughput at low- and moderate SNR. Onggosanusi et al. [4] study MMSE and zero- forcing (ZF) MIMO receivers and comment on their distinct outage performance at high-SNR. Hedayat and Nosratinia [5] consider the outage probability as a function of ﬁxed rates R under joint and separate spatial encoding for ZF and MMSE receivers. Kumar et al. [6] provide a DMT analysis for the system of [5] and observe that the DMT framework does not predict the diversity of MMSE receivers at lower spectral efﬁciencies (in the ﬁxed rate regime). Kumar et al. [6] also provide an approximation for the diversity at low rates which turns out to be exact [7].
+In this paper we analyze the frequency-selective, quasi-static MIMO channel. Speciﬁcally we consider single carrier (SC) MMSE equalization under zero-padding (ZP) and cyclic-preﬁx (CP) transmission. SC-MMSE equalizer provides an attrac- tive alternative to orthogonal frequency division multiplexing (OFDM) due to its low complexity and natural avoidance of the peak-to-average power ratio problem. The diversity analysis of CP and ZP systems was also a subject of intensive study in the literature. However, the explicit tradeoff between the spectral efﬁciency and diversity of SC MIMO system under these two schemes has been unknown and is the subject of our work. We show that the diversity is a function of number of
+antennas, channel memory and spectral efﬁciency, and obtain the explicit tradeoff in the special case of SIMO. For a general M × N MIMO system (where M and N are the transmit and receive antenna numbers respectively), we obtain upper and lower bounds that explicitly describe the diversity function (under ZP and CP transmission) 1 .
+It is worth mentioning that the well-known and power- ful framework of diversity-multiplexing tradeoff (DMT) is not sufﬁcient to characterize the MMSE diversity in MIMO frequency-selective channel in the ﬁxed rate regime (zero multiplexing gain) because the DMT framework cannot distin- guish between different spectral efﬁciencies that correspond to the same multiplexing gain. Similar to our previous work [7] for the ﬂat fading channel, we approach the problem through a rate-dependent approximation of the outage probability. Bounding the pairwise error probability (PEP) from both sides using the outage follows in a similar manner to the ﬂat fading case [7] and omitted for brevity 2 .
+We consider a general MIMO system in a rich scattering quasi-static environment. The equivalent baseband channel is given by multipath model with ν paths referred to as the ISI channel in the sequel. The (ν + 1)-tap channel impulse response between the transmit antenna m and receive antenna n is denoted by the vector h mn = [h mn, 0 , h mn, 1 , . . . , h mn,ν ]. We assume a block-fading model where h mn remains un- changed during a transmission block. Assuming M transmit and N receive antennas with N M , the received vector y k at time instant k is given by [10], [11]
+where H i is the M × N channel matrix that has h mn,i as its (m, n) element, x k−i is M × 1 transmitted vector at time index k − i, y k is the N × 1 received vector and n k is the the N × 1 Gaussian noise vector at time index k.
+Consider a transmission of L d + L e spatial vectors each of size M × 1, where L d is an integer representing the number of transmissions over the quasi-static channel and L e is the
+length of data extension to avoid inter-block interference, in the form of either ZP or CP. The receiver discards the ﬁrst L e vectors to cancel the inter-block interference [10]. Stacking the transmitted vector in an M (L d + L e ) × 1 vector, we can rewrite the model in (1) as
+where ¯ y is the L d N × 1 received vector, ¯ x is the M (L d + L e )×1 transmitted vector, ¯ n is the white Gaussian noise vector ∈ C N L d × 1 and ¯ H is the channel matrix given by
+H 0 H 1 · · · H ν 0 · · · 0 0 H 0 H 1 · · · H ν · · · 0
+The linear data extension operation maps the data vector ˆ x to the transmitted vector ¯ x, i.e. ¯ x = Uˆ x where U denotes the zero-padding or cyclic preﬁx matrix. The system model in (2) can now be written in terms of the unpadded data vector ˆ x and an equivalent channel matrix H e as follows
+where in a CP system, H e = ¯ HU cp is a N L d × M L d block circulant matrix constructed by block circulations of the matrix [H 0 , H 1 , . . . , H ν , 0, . . . , 0] T . Similarly, in a ZP system, H e = ¯ HU zp is a N L d × M L d block Toeplitz matrix.
+Assuming perfect channel state information at the receiver (CSIR) and that the channel remains unchanged during the transmission of L d +L e vectors, the MMSE equalizer W is ap- plied to decouple the received streams after removing the ﬁrst L e vectors. The MMSE equalizer and the unbiased decision- point SINR of its output are respectively given by [12]:
+) − 1 kk − 1 	 k = 1, . . . , M L d (6) where ρ is the per-stream SNR. We also deﬁne the outage-type quantities [11]
+log ρ . (7) In the following sections we analyze the outage diversity
+for the ZP and CP systems. The PEP analysis follows in a direct manner as in the ﬂat fading case [7] so we omit it.
+In this section we analyze the MMSE receiver diversity in MIMO frequency-selective channel under CP transmission using the receiver model of [11] which shows that, under CP transmission, equalizing the non-diagonal channel in an uncoded single-carrier (SC) SISO system can achieve diversity greater than one. The system model is given by (4) where H e = ¯ HU cp and ˆ x is generated by taking the IDFT transform of the information vector x [13], i.e. ˆ x = Q H T x x where Q T x
+is the augmented DFT matrix given by Q T x = Q⊗I M , where I M is the identity matrix, Q is the normalized DFT matrix, and ⊗ is the Kroenecker product. The N L d ×M L d block-circulant matrix H e has eigen decomposition H e = Q H Rx ΛQ T x , where Q Rx = Q ⊗ I N . The matrices Q T x and Q Rx are unitary and Λ is a block diagonal matrix whose diagonal elements are {B k } matrices. The matrix B k is given by [14]
+Analogous to the proof of [11], we ﬁrst consider the case where the transmission data-block length is equal to the number of channel taps, i.e. L d = ν + 1 for its simplicity. In this case the entries of B k s are i.i.d. normal complex Gaussian. The reason we start with this case is that it provides an upper bound on diversity for a general M × N MIMO system when L d > ν + 1 (as discussed in Section III-B) and it also provides an exact characterization for the diversity of the SIMO system when L d > ν + 1.
+Applying the MMSE equalizer given by (5) to the received vector in (4), the effective mutual information between ˆ x and the equalized received signal W ¯ y is equal to the sum of mutual information of their components [4], [11]
+Substituting with the SINR given by (6) in the outage proba- bility given in (7), we get
+Where (9) follows from Jensen’s inequality, (10) follows from the eigen decomposition of H e , and λ k,i is k-th eigenvalue of the i-th wishart matrix B H i B i . Using the standard change of variable α n = − log λ n log ρ [9], we can write the exponential equality [11]
+is either zero or one at high SNR, therefore to characterize n 1 1+ρλ
+count the ones [11]. We now quote one of the results given by [7].
+Lemma 1: Let {λ n } denotes the eigen values of a wishart matrix B H B, where B is an N ×M matrix with i.i.d Gaussian entries. For an integer s M we have [7, Section III-A]
+In order to evaluate the outage bound in (11), we deﬁne θ i = α k,i > 1 1. The variables {θ i } are i.i.d. discrete random variables which, according to Lemma 1, have the following asymptotic distribution
+where Ω = M L d 2 − R M . Evaluating the probability in (15) in a combinatorial manner, we get
+where n i ∈ [0, M ] for (i = 1, 2, . . . , L d ) is the value of the i-th discrete random variable θ i , and (16) is true since the the summation in (15) is asymptotically dominated by the maximum element. The problem in (16) reduces to a quadratic integer-programming (QIP) problem (see e.g. [15]) which are in general NP-hard. However, due to the simple structure of the objective function, we can efﬁciently solve it and obtain a closed form expression for {n i }.
+Lemma 2: The optimum solution of n i in (16) is given by: n ∗ i = u for 1 i t, and n ∗ j = u + 1 for t + 1 j L d , where u = Ω L d and t = L d (u + 1) − Ω.
+Remark 1: Despite of the complicated expression of d cp one can verify that it reduces to the diversity of SISO MMSE receiver derived in [11] when N = M = 1.
+We now lower bound the outage probability using Specht’s inequality
+where (19) follows from Specht’s inequality 3 , M β is Specht ratio, and (20) follows in a similar manner to [7, Section III- B]. The bound in (20) is the same as the upper bound in (11), thus the bound is tight and the diversity is given by (17).
+Recall that so far we have considered data block length L d = ν + 1. It can be shown that the diversity for any L d > ν + 1 is upper bounded by the computed diversity for the case L d = ν + 1 (i.e. the analyzed case serves as a bound for the general case). This bounding is derived from (10) via DFT arguments and using DFT properties for zero-padded signals. A tight diversity lower bound for data block lengths L d > ν +1 remains an open problem, except for the SIMO system as discussed in the next section.
+Theorem 1: In a SIMO quasi-static frequency-selective channel with memory ν, N receive antennas and data-block length L d , the MMSE receiver diversity is d CP M M SE = N min(ν + 1, L d 2 −R + 1) under joint spatial encoding and cyclic preﬁx transmission.
+Remark 2: Theorem 1 shows that the diversity varies from N to (ν+1)N depending on the operating rate (b/s/Hz). Notice that this cannot be characterized by DMT analysis since DMT framework assigns only single diversity value for the ﬁxed rate regime . Moreover this result is also valid for uncoded systems as shown in [11] for SC-SISO system.
+In order to prove Theorem 1, we ﬁrst analyze the case of L d = ν +1 and then generalize the result for L d > ν +1. The system model is given by (4) where the N L d × L d equivalent channel matrix is given by (3) where H i = h i (for i = 0, 1, . . . , ν) is N × 1 SIMO channel. Note that the diagonal elements of (H e H H e ) are identical and equal to ν i =0 h H i h i . Thus the MMSE SINR for each output information stream is
+where (22) follows from (21) and (23) follows similarly to (11). The scalar value λ k = B H k B k where B is N ×1 vector. For the case L d = ν + 1, the eigenvalues {λ k } are distributed according to Gamma distribution with shape parameter N and scale parameter 1, i.e. λ k ∼ Γ(N, 1). For L d > ν + 1 the Gaussian variables in B k are no longer independent and thus analyzing this case requires the unknown distribution {λ k }. Instead, we indirectly show that the diversity of L d = ν + 1 also holds for L d > ν + 1.
+Lemma 3: In a SIMO quasi-static frequency-selective chan- nel with memory ν, N receive antennas and data-block length L d = ν + 1, the MMSE receiver diversity is d CP M M SE = N ( L d 2 −R + 1) under joint spatial encoding and cyclic preﬁx transmission.
+For the case of L d > ν + 1 we use the following lemma which is an extension to the corresponding SISO case [11].
+Lemma 4: Consider two SIMO systems both operating un- der quasi-static frequency-selective channels with memory ν. One system has data block length L d 1 ≥ ν + 1 and the other L d 2 ≥ L d 1 , we have the following property for any m ∈ R
+Using Lemma 4 and the results in [11, Theorem 2], Theo- rem 1 is established.
+It is known that in a point-to-point single-antenna ISI chan- nel, linear receivers can achieve full multipath diversity under zero-padding transmission [17]. In this section we investigate the similar question for MIMO systems whose receivers use linear MMSE operations in both the spatial and temporal dimensions. We provide lower and upper bounds on diversity. The bounds are not always tight, but the diversity is fully characterized for SIMO systems.
+1) Diversity Upper Bound: Similar to the CP case, the outage probability is given by
+where H e = ¯ HU ZP . The bound in (25) is obtained using the Specht bound (cf. Section III-B) with a change of variable M β = L d M β . Equation (26) is obtained via a modiﬁcation of Lemma 5 in the Appendix of [7] by replacing M β with M β 4 . The λ k (G) denote the k-th eigenvalue of a square matrix G. The block diagonal elements of H e H H e are given by
+The matrix H e H H e is Toeplitz and Hermitian. Moreover, the block-diagonal elements of H e H H e (i.e. D j ) are Wishart matrices.
+Deﬁne M S to be the set of the M smallest eigenvalues of H e H H e . The outage probability can be evaluated as
+We now use the Sturmian separation theorem [18, P.1077]. Theorem 2: (Sturmian Separation Theorem) Let {A r , r =
+1, 2, . . .} be a sequence of symmetric r × r matrices such that each A r is a submatrix of A r +1 . Then if {λ k (A r ) , k =
+1, . . . , r} are the ordered eigenvalues of A r in descending order, we have λ k +1 (A i +1 ) ≤ λ k (A i ) ≤ λ k (A i +1 ).
+For our purposes, we consider a special case of the Sturmian Theorem by constructing a set of matrices A M , A M +1 , . . . , A L d M starting by the largest one A L d M = H e H H e and making all other matrices A i to be (successively embedded) i × i principal submatrices of H e H H e , such that the smallest matrix is A M = D L d (cf. (28)). This implies that the smallest M eigenvalues of H e H H e are bounded above by the M eigenvalues of D L d , respectively. Hence:
+D L d is a sum of (ν +1) central Wishart matrices each with N degrees of freedom and with identity covariance matrix, i.e. D L d ∈ W((ν + 1)N, I). Therefore the outage analysis of [7, Section III] applies here and we have the following lemma.
+Lemma 5: In a MIMO quasi-static frequency-selective sys- tem (with channel memory ν) consisting of M transmit and
+N receive antennas, the MMSE diversity under joint spatial encoding and zero-padding transmission is upper bounded as
+2) Diversity Lower Bound: We can upper bound the outage probability given by (24) as follows.
+1 M
+where (31) follows from Jensen’s inequality and (32) follows from setting the smallest L d M − M eigenvalues to zero.
+Now we repeatedly use the second inequality in the Stur- mian theorem with A M L d = H e H H e and A M = D L d , similar to the earlier case. Therefore the largest M eigenvalues of H e H H e are bounded below by the M eigenvalues of D L d , respectively. Therefore
+where Q = max 0, M 2 − R M − (M L d − M ) . Recall that D L d is a Wishart matrix, therefore the analysis of [7] follows and we obtain the following lemma.
+Lemma 6: In a MIMO quasi-static frequency-selective sys- tem (with channel memory ν) consisting of M transmit and N receive antennas and using under joint spatial encoding and zero-padding transmission, the MMSE receiver diversity is lower bounded as: d ZP 	 Q 2 + ((ν + 1)N − M ) Q , where Q = max 0, M 2 − R M − (M L d − M ) .
+E. Diversity of MMSE SIMO Receiver under ZP Transmission For the special case of SIMO channel with zero-padding
+Lemma 7: In a SIMO quasi-static frequency selective sys- tem (with channel memory ) and N receive antennas, the MMSE receiver diversity is N (ν + 1) under joint spatial encoding and zero-padding transmission.
+We analyze the MMSE receiver operating in frequency- selective N × M MIMO channel (where M and N 	 M are the number of transmit and receive antennas respectively). This extends our previous work for the MIMO ﬂat fading
+channel [7]. Speciﬁcally, we seek answers for the following questions: when can the MMSE receiver exploit the full diversity in MIMO channel? More generally, how does the diversity of the MMSE receiver vary with the system pa- rameters such as spectral efﬁciency R, and the number of antennas, and the channel memory in case of inter-symbol interference (ISI) channel? We show that in the frequency- selective MIMO channel under zero-padding (ZP) and cyclic- preﬁx (CP) transmission, the MMSE receiver diversity is a function of number of antennas, channel memory and spectral efﬁciency, and obtain the explicit tradeoff in the special case of SIMO (under ZP and CP transmission).
+[[[ REFS ]]]
+P. Li
+D. Paul
+R. Narasimhan
+J. Ciofﬁ
+--
+On the distribution of SINR for the MMSE MIMO receiver and performance analysis
+----
+A. L. Moustakas
+K. R. Kumar
+G. Caire
+--
+Performance of MMSE MIMO receivers: A large n analysis for correlated channels
+----
+D. Gore
+A. Gorokhov
+A. Paulraj
+--
+Joint MMSE versus v-BLAST and antenna selection
+----
+E. N. Onggosanusi
+A. G. Dabak
+T. Schmidl
+T. Muharemovic
+--
+Capacity analysis of frequency-selective MIMO channels with sub- optimal detectors
+----
+A. Hedayat
+A. Nosratinia
+--
+Outage and diversity of linear receivers in ﬂat-fading MIMO channels
+----
+K. R. Kumar
+G. Caire
+A. L. Moustakas
+--
+Asymptotic performance of linear receivers in MIMO fading channels
+----
+A. Hesham Mehana
+A. Nosratinia
+--
+Diversity of MMSE MIMO receivers
+----
+A. H. Mehana
+A. Nosratinia
+--
+Diversity of MMSE MIMO receiver
+----
+L. Zheng
+D. N. C. Tse
+--
+Diversity and multiplexing: a fundamental tradeoff in multiple-antenna channels
+----
+A. Scaglione
+P. Stoica
+S. Barbarossa
+G. Giannakis
+H. Sampath
+--
+Optimal designs for space-time linear precoders and decoders
+----
+A. Tajer
+A. Nosratinia
+--
+Diversity order in ISI channels with single- carrier frequency-domain equalizer
+----
+H. Gao
+P. J. Smith
+M. V. Clark
+--
+Theoretical reliability of MMSE linear diversity combining in rayleigh-fading additive interference chan- nels
+----
+A. Stamoulis
+S. Diggavi
+N. Al-Dhahir
+--
+Intercarrier interference in mimo ofdm
+----
+A. Kaveh
+H. Rahami
+--
+Block circulant matrices and applications in free vibration analysis of cyclically repetitive structures
+----
+A. H. S
+T. Magnant
+--
+P Bradely and  Applied Mathematical Program- ming 
+----
+W. Specht
+--
+Zur theorie der elementaren mittel
+----
+C. Tepedelenlioglu
+--
+Low complexity linear equalizers with maximum multipath diversity for zero-padded transmissions
+----
+
+--
+I
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\062.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,198 @@
+[[[ ID ]]]
+14
+[[[ INDEX ]]]
+13
+[[[ TITLE ]]]
+Compression with Graphical Constraints: An Interactive Browser
+[[[ AUTHORS ]]]
+Amin Karbasi
+Morteza Zadimoghaddam
+[[[ ABSTR ]]]
+Abstract—We study the problem of searching for a given element in a set of objects using a membership oracle. The membership oracle, given a subset of objects A, and a target object t, determines whether A contains t or not. The goal is to ﬁnd the target object with the minimum number of questions asked from the oracle. This problem is known to be strongly related to lossless source compression. In fact, the optimum strategy is provided by Hufmman coding with the average number of questions very close to the entropy H(P ) of the object set.
+The membership oracle aims at modelling interactive methods (i.e., incorporate human feedback) has many real life applica- tions. Due to practical constraints imposed by such applications not every subset A of objects can be queried. It is known that in general ﬁnding the optimum strategy with such constrains is NP-complete. Given this negative result we restrict attention to the cases represented by graphical models: graph G whose nodes are the database objects is given, and the queries are restricted to be those subsets A that are connected in G.
+We show that when G itself is connected, there is a search algorithm that ﬁnds the target in 4H(P ) + 2 queries on the average. Since entropy is the trivial lower bound, our algorithm performs within a constant gap from the optimum strategy.
+[[[ BODY ]]]
+Searching is one of the fundamental problems in computer science which arises in many different areas. In this work we consider the problem of searching where objects have different likelihood of being the target and are only accessible through a membership oracle. This is an oracle that can answer the following type of questions:
+”Given a set A and an object t, does set A contain t or not?”
+Given access to the membership oracle, we wish to identify a particular element (target) in the given set of objects. This element, for instance, can be a defective node in a network. In each phase, a set of objects is submitted to the oracle. Based on the outcome of the previous queries, the next query will be posed. The search terminates once the target object is located in the set. The membership oracle models, to some extent, the human abilities in content search applications with human assistance in the loop. Such applications include visual recognition [1] and pattern classiﬁcation [2] where questions based on simple visual attributes are posed interactively and the goal is to identify the true class. Using this analogy, it is natural to try minimizing the access to the oracle, since asking human users is costly.
+The above commonly cited examples can be seen as the visual version of the ”twenty question problem” where one player chooses an instance from a category (e.g. a picture of a famous person from Flicker) and the other player who knows the category tries to guess the particular choice by posing questions as the ones speciﬁed by the membership oracle.
+Without any constraints on the queries, one can see that this problem is equivalent to the lossless source compression in which Huffman coding is the optimum startegy in terms of the mean number of questions/queries asked.
+However, this formulation is much too restrictive for prac- tical content search/classiﬁcation schemes. Due to limited ability of humans (e.g., imperfect memory, inexperienced users, etc) there are usually many restrictions on the subset of objects that could be asked. In practice, it might be impractical or impossible to demand a person to be capable of answering the above type of questions for every subset.
+In the constrained twenty questions problem [3], [4] the set of possible questions is limited. The problem is then speciﬁed by two parameters: the prior distribution of objects and the set of constraints. For small databases, on can ﬁnd the optimum strategy with dynamic programming while it has been shown that the general problem is NP-complete [5]. Like many hard combinatorial problems, considerable effort has been applied to ﬁnding suboptimal but still good algorithms. This is precisely what we intend to do in this work.
+We address the above constraints within a general frame- work that we refer to as graphical model, i.e., each query set must conform to the constraints imposed by a graph. For instance, items can be associated with the vertices of the con- straint graph and an edge between two vertices indicates that the associated pair of objects can simultaneously participate in a query. In other words, an admissible query is a subset of nodes that are path connected. We should stress that in this context, as a special case the optimum algorithm for ﬁnding an object on a complete graph (i.e., no graphical constraints) reduces to that of Huffman coding. Given a graphical model for the constraints we then show how one can devise a suboptimal but provably efﬁcient algorithms with a constant gap from the performance of the optimum strategy.
+The rest of this paper is organized as follows. In Section II we provide an overview of the related work in this area. In Section III, we introduce our notation and mention some basic
+facts related to graphs. Then Section IV formally describes the problem that is the focus of this work, namely, compression with graphical constraints. In Section V we present our theo- retical results. Finally, we conclude in Section VI.
+The problem studied here can be seen as a special case of the binary identiﬁcation problem [3]. It is known that both the average case minimization and worse case minimization are NP-complete [5]. For both cases, there exist heuristic algorithms that admit O(log n)-approximation [6]. There are many variants to the binary identiﬁcation problem, such as searching in a totally ordered sets [7] or partially ordered sets [8], [9].
+The use of interactive methods (i.e., that incorporate human feedback) for searching in a dataset has a long history in literature. Relevance feedback [10] is a method for interactive image retrieval, in which users mark the relevance of image search results, which then used to create a reﬁned search query. Similarly, in active learning [11] the main idea is to sequentially acquire labelled data by presenting an oracle (the user) with unlabelled images and ask her to label them. Our objective in this work is somewhat similar. We use the membership oracle to identify a target in a database. This oracle has been extensively used in practice [2], [1]. In general, having access to a membership oracle is a strong assumption, since humans may not necessarily be able to answer queries of the above type for any object set. To make this oracle practically appealing, we introduced the graphical constraints on the set of queries, the same way deployed in [12].
+Our problem is strongly related to the interactive methods used for nearest neighbour search (NNS) [13], [14] where the goal is to identify the nearest object to a query in a database. Recently, a new interactive method for the NNS was introduced by Lifshits et al [15] and further explored in [16], [17], [18] in which they assumed to have access to a comparison oracle . This oracle, given two reference objects and a query object, returns the reference object closest to the query object. Comparison oracle attempts to model another ability of humans, namely, humans are capable of comparing objects and single out which are the most similar ones, though they can probably not assign a meaningful numerical value to similarity. This problem was then generalized for the non- uniform probability distribution over the set of objects by authors in [19].
+In this section we introduce some tools, deﬁnition and notations which are used throughout the paper.
+Deﬁnition 1: Consider a set of objects N where |N | = n. In order to represent the constraint graph G(V, E) we assume that there is a one-to-one map between the objects and the set of vertices V = {1, 2, . . . , n}. The set of edges represent the constraints on the proposed object sets as follows: we say that a subset A ⊂ V is proper if the elements of A are path connected on graph G. The proper sets are basically the ones
+that can be submitted to the membership oracle (the oracle is formally described below.) Throughout this paper we focus merely on connected constraint graphs.
+Deﬁnition 2: The membership oracle O(A, t) is the one that given the set A ⊂ V and target object t provides one bit of information as follows:
+In the same way we can deﬁne the constrained membership oracle over the proper subsets A. More formally,
+  
+YES 	 if A is proper & t ∈ A, NO 	 if A is proper & t / ∈ A, ERROR if A is not proper.
+Unless stated otherwise, throughout this paper whenever we refer to an oracle we mean the constrained membership oracle.
+Deﬁnition 3: The distance d G (u, v) in G of two vertices u, v is the length of a shortest u − v path in G. The greatest distance between any two vertices in G is the diameter of G and denoted by D G .
+Deﬁnition 4: A vertex is central in G if its greatest distance from any other vertex is as small as possible. This distance is the radius of G denoted by R G . Formally,
+Deﬁnition 5: For t ∈ V , we will call t the target. We will consider a probability distribution P = {p 1 , p 2 , . . . , p n } over the set of objects which we call the demand. In general the demand can be heterogeneous as p t can be different across different objects.
+Deﬁnition 6: Let e = uv be an edge of a graph G(V, E). By G/e we denote the graph obtained from G by contracting the edge e into a new vertex v e , which becomes adjacent to all the former neighbours of v and u. The same way, for a proper set A ⊂ V we denote by G/A, the graph obtained by contracting all the vertices of A into one single vertex v A . Note that if the graph G is connected, after contraction it still remains connected.
+Deﬁnition 7: For a proper set A ⊂ G we denote by G − A the operation that removes all the vertices of A and their incident edges from G. Note that the removal operation may lead to a disconnected graph.
+Let G = (V, E) denote the constraint graph which deter- mines the proper sets. Given access to the constraint graph G and its corresponding membership oracle O G , we would like to navigate through V , the set of objects, until we ﬁnd the target. More formally, let A k be the k-th proper set submitted to the constrained oracle O G , and let
+to be the history of the process up to the k-th access to the oracle. By deﬁnition we assume that H 0 = φ, i.e., there is no history when we start the search. In general the selection of the (k + 1)-th proposed set A k+1 , is determined by the history H k . More precisely, there exists a mapping H k → f (A k ) such that
+We call f (·) the search policy. Our goal is to design f such that we minimize the number of access to the oracle. More formally, given a target t and a search policy f , we deﬁne the search cost
+to be the number of proposals to the oracle until t is found. We restrict our attention to the case where the search policy is deterministic. The content search through membership oracle is then deﬁned as follows:
+ACLE (CSTMO): Given a demand distribution P and constraint graph G, select f that minimizes the expected search cost
+In this section we present our main results . We ﬁrst show that Algorithm 1 through contraction and removal procedures can ﬁnd the target in H(P )+log R G +2 queries in expectation. Similarly, for Algorithm 2 we show that it identiﬁes the target in log n queries irrespective of the distribution or the constraint graph. Surprisingly, the combination of these two strategies will provide us with a search algorithm that performs within a constant gap from the optimum point.
+Input: Constraint graph G, root vertex v, radius R G .
+Run the classical Huffman Coding to ﬁnd the target. else
+Let S be the set of all objects in G with distance at most R G /2 from v, and ¯ S be the remaining.
+Submit the query O G (S, t). if O G (S, t) = YES then
+Recurse with new arguments: G − ¯ S, v, and R G /2 . else
+Recurse with new arguments: G/S, v S , and R G /2 . end if
+Algorithm 1 divides the database into two groups and through the membership oracle determines in which group the target is located. It then reduces the search domain using contraction/removal procedure.
+Theorem 5.1: Given a connected constraint graph G of radius R G , Algorithm 1 ﬁnds the target in H(P )+ log R G +2 queries, on average.
+Proof: Unless the graph is complete Algorithm 1 divides objects into two sets: 1) Set S: the objects within distance at most R G /2 from the central vertex v, and 2) Set ¯ S: the remaining ,i.e., ¯ S = V −S . The partitioning method is shown in Figure 2.
+The set S is proper. Hence, using the membership oracle we can ﬁnd out whether the target t is in S or not. More formally, we submit O G (S, t). Based on the oracle’s response we do the following. If the target is in set S or equivalently O G (S, t) = YES, we remove set ¯ S from G, i.e., G = G − ¯ S. Otherwise, we contract set S since we know that the target is not in S. We need to do the contraction in order to keep the induced constraint graph connected. The above procedure is repeated (from the same central node v that we started) until the graph becomes complete, meaning, any subset of vertices can be queried. The following lemma bounds the number of access to the oracle until the ﬁrst phase terminates.
+Proof: Note that after each iteration R G reduces to either R G /2 or R G /2 . Therefore, with at most log R G
+iterations, the R G becomes 1. At this step, the graph is a star centered at v. We submit the query O G ({v}, t). If the target is v, the task is done, and we terminate. Otherwise, we can submit any subset S of leaves of this star as a proper query set by simply adding v to S. Therefore, in this case instead of submitting query S, we can submit S ∪ {v}, and get the same answer.
+Once the above procedure terminates we are left with a complete graph on which we can run Huffman coding for ﬁnding the target. Note that the queries we ask until the constraint graph becomes complete partitions the objects into different groups such that the constraint graph of each group is complete after contracting the set of vertices outside this group.
+Let S 1 , S 2 , · · · , S k denote the groups that we have at the end of the ﬁrst phase. Clearly, ∪ k i=1 S i is equal to {1, 2, · · · , n}, the set of vertices. We also know that these groups are disjoint, i.e., S i ∩ S j = ∅ for every choice of i = j. Let P i be the sum of probabilities of objects in group S i . Therefore, with probability P i , the target is in S i on which we can then run Huffman coding to ﬁnd the target. To do so, we require to access the membership oracle at most one plus the entropy of set S i .
+(One should not forget to scale the probability of set S i by P i , otherwise the sum of probabilities is not one.) The target is in S i with probability P i . Hence, the average number of queries in the second phase is given by
+The target is found once both phases one and two terminate. Using Lemma 5.2 and (2) we can conclude that the average number of queries to the oracle is at most H(P )+ log R G +2.
+In what follows we present a simple algorithm that ﬁnds the target in log n queries.
+Theorem 5.3: Given a connected constraint graph G with |V | = n, Algorithm 2 ﬁnds the target in log n queries, on average.
+Proof: First, note that the constraint graph always re- mains connected. In particular, if the target is in set T , i.e., O G (T , t) = YES, we set G = T . Otherwise, we contract set T into v T , i.e., G = G/T . In the latter case, since the neighbors of v T are all connected through v T , whenever we want to submit a query of a subset of neighbors (which may not be path connected), we only need to add v T to the query to make the subset proper. Due to the fact that the target is
+Algorithm 2 The role of size Input: Constraint graph G,
+while There are more than n/2 vertices in T do Remove one of the leaves in T arbitrarily.
+Let T be the remaining subtree after leaf removals. Submit the query O G (T , t) if O G (T , t) = YES then
+Keep all the objects in T , and remove all the rest. Recurse on the remaining objects.
+Remove object v T from G/T , and connect all neigh- bours of v T , and recurse on the remaining graph.
+not in set T , this addition does not affect the response of the query. For simplicity, we can connect all neighbors of v T , keeping in mind that they are connected through v T .
+Each query to the membership oracle halves the number of vertices/objects in the constraint graph. Therefore, we submit at most log n queries.
+The main drawback of algorithm 1 and 2 is that they can potentially deviate from the entropy H(P ) by a factor of log n.
+In this section we present a search algorithm that ﬁnds the target within a constant gap from the optimum algorithm. To do so, we use algorithm 1 and 2 as the subroutines in our search strategy.
+Theorem 5.4: Given a connected constraint graph G, there exists a search strategy that ﬁnds the target in 2 + 4H(P ) queries, on average.
+Proof: Without loss of generality, let us assume that p 1 ≥ p 2 ≥ · · · ≥ p n . For any non-negative integer i, deﬁne the threshold a i to be the number such that
+Proof: For any i ≥ 1, let T i be the set of probabilities in the range (1/2 a i+1 , 1/2 a i ], i.e.,
+We deﬁne Q i to be the sum of probabilities in T i , namely, Q i = p j ∈T i p j . Clearly, for any p j ∈ T i we have a i ≤ log (1/p j ). As a result
+In Our algorithm we use thresholds a i to partition the ob- jects into different groups, and search inside them separately. Let A i be the set of probabilities p j in the range [1/2 a i , 1], i.e. A i = {p j |p j ≥ 1/2 a i }. Since each probability p j represents an object, we abuse the notation and let A i also denote the set of corresponding objects.
+Lemma 5.6: Given that the set A i contains the target, Algorithm 2 ﬁnds it in a i queries.
+Proof: For simplicity, let us assume that t ∈ A 1 (the argument is the same for other A i ). In this case, we can delete all other vertices, and keep only set A 1 . By doing so we might let the graph become disconnected. To avoid that, if there was is a path between two vertices u and v both in A 1 such that some of the vertices of this path are outside A 1 , we simply add an auxiliary edge between u and v. This way the graph stays connected. However, we should be careful about the meaning of the added edge. When we want to make a query that contains both u and v, the axillary edge indicates which vertices outside set A 1 should also be included to the query. Since we know that the target is in set A 1 , adding these vertices will not change the response of the oracle. We know that the probability of each vertex/object in A 1 is at least 1/2 a 1 , so there are at most 2 a 1 vertices in A 1 . Therefore, with at most a 1 queries algorithm 2 ﬁnds the target.
+The search algorithm starts from A 1 , and uses Algorithm 2 to ﬁnd some vertex v ∈ A 1 as the target location. The search algorithm submits an additional query O G ({v}, t). If the target is v, we identify it. Otherwise, we can conclude that the target is not in A 1 . The search then moves to the set A 2 . In general, once we ﬁnd out that the target is not in set A i we check the subsequent set A i+1 . Using the same argument, with a i + 1 queries we can conclude whether A i contains the target or not and in case it does we identify it. Note that the probability that the target is not in A i decreases exponentially as i increases. More formally, for any i ≥ 1, the probability that we do not ﬁnd the target in A i is
+Hence, the expected number of queries in our algorithm is at most 	 ∞
+We studied the problem of content search through a database of objects using a constrained membership oracle. We showed that for those cases that the constraints can be represented by a graphical model, there exists an efﬁcient search algorithm that ﬁnds the target object in less than 2 + 4H(P ) queries on the average.
+[[[ REFS ]]]
+S. Branson
+C. Wah
+F. Schroff
+B. Babenko
+P. Welinder
+P. Perona
+S. Belongie
+--
+Visual recognition with humans in the loop
+----
+D. Geman
+B. Jedynak
+--
+Shape recognition and twenty questions
+----
+M. Garey
+--
+Optimal binary identiﬁcation procedures
+----
+D. W. Loveland
+--
+Performance bounds for binary testing with arbitrary weights
+----
+L. Hyaﬁl
+R. Rivest
+--
+Constructing optimal binary decision trees is np-complete
+----
+S. R. Kosaraju
+T. M. Przytycka
+R. S. Borgstrom
+--
+On an optimal split tree problem
+----
+D. Knut
+--
+The Art of Computer Programming
+----
+Y. Ben-Asher
+E. Farchi
+I. Newman
+--
+Optimal search in trees
+----
+R. Carmo
+J. Donadelli
+Y. Kohayakawa
+E. Laber
+--
+Searching in random partially ordered sets
+----
+X. S. Zhou
+T. S. Huang
+--
+Relevance feedback in image retrieval: A comprehensive review
+----
+A. Holub
+P. Perona
+M. Burl
+--
+Entropy-based active learning for object recognition
+----
+M. Cheraghchi
+A. Karbasi
+S. Mohajerzefreh
+V. Saligrama
+--
+Graph-Constrained Group Testing
+----
+K. L. Clarkson
+--
+Nearest-neighbor searching and metric space dimen- sions
+----
+P. Indyk
+R. Motwani
+--
+Approximate nearest neighbors: Towards removing the curse of dimensionality
+----
+N. Goyal
+Y. Lifshits
+H. Schutze
+--
+Disorder inequality: a combina- torial approach to nearest neighbor search.
+----
+Y. Lifshits
+S. Zhang
+--
+Combinatorial algorithms for nearest neigh- bors, near-duplicates and small-world design
+----
+D. Tschopp
+S. N. Diggavi
+--
+Approximate nearest neighbor search through comparisons
+----
+
+--
+Facebrowsing: Search and navigation through comparisons
+----
+A. Karbasi
+S. Ioannidis
+L. Massoulie
+--
+Content search through comparisons
+[[[ META ]]]
+xmlpapertitle -> Compression with Graphical Constraints: An Interactive Browser
+pdf -> E:\testDataset\014.pdf
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\014.pdf
+xmlauthors -> Amin Karbasi, Morteza Zadimoghaddam
+xmlroom -> -
+[[[ LINKS ]]]
+

@@ -1,0 +1,129 @@
+[[[ ID ]]]
+146
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The Gaussian Multiple Access Diamond Channel
+[[[ AUTHORS ]]]
+Wei Kang
+Nan Liu
+[[[ ABSTR ]]]
+Abstract—In this paper, we study the capacity of the diamond channel. We focus on the special case where the channel between the source node and the two relay nodes are two separate links of ﬁnite capacity and the link from the two relay nodes to the destination node is a Gaussian multiple access channel. We call this model the Gaussian multiple access diamond channel. We ﬁrst propose an upper bound on the capacity. This upper bound is a single-letterization of the n-letter upper bound proposed by Traskov and Kramer, which is tighter than the cut-set bound. Next, we provide a lower bound based on sending correlated codes through the multiple access channel. Since the upper and lower bounds take on similar forms, it is expected that they coincide for certain channel parameters. To show this, we further focus on the symmetric case where the separate links to the relays are of the same capacity and the power constraints of the two relays are the same. For the symmetric case, we give necessary and sufﬁcient conditions that the upper and lower bounds meet. Thus, for a Gaussian multiple access diamond channel that satisﬁes these conditions, we have found its capacity.
+[[[ BODY ]]]
+The diamond channel was ﬁrst introduced by Schein in 2001 [1]. It models the communication from a source node to a destination node with the help of two relay nodes. The channel between the source node and the two relays form a broadcast channel as the ﬁrst stage and the channel between the two relays and the destination node form a multiple access channel as the second stage. The capacity of the diamond channel in its most general form is open. Achievability results were proposed in [1], while for the general diamond channel, the best known converse results is still the cut-set bound [2]. Capacity has been found for some special classes of diamond channels in [3], [4].
+The problem of sending correlated codes through a multiple access channel was studied in [5]. This channel model can be regarded as a special case of the diamond channel where the broadcast channel between the source node and the two relay nodes are two separate links of ﬁnite capacity. We call this the multiple access diamond channel. Achievability results for the discrete multiple access diamond channel were proposed in [5], [6]. In [6], an uncomputable n-letter upper bound is also provided which is tighter than the cut-set bound.
+In this paper, we consider the multiple access diamond channel where the multiple access channel from the two relay nodes to the destination node is Gaussian, see Figure 1. We call this channel model the Gaussian multiple access diamond channel. We ﬁrst obtain an upper bound on the capacity by single-letterizing the n-letter upper bound in [6]. The main technique we use in the upper bound derivation is the introduction of an imaginary random variable used to bound the correlation between the two relay signals. This technique has also been used in solving the Gaussian multiple description problem [7]. We then propose a lower bound on the capacity where the relays send correlated codewords into the channel. Comparing the upper and lower bounds, we ﬁnd that they are of similar forms and therefore, when the channel parameters satisfy certain conditions, they would coincide, yielding the capacity. To illustrate this, we focus our attention on the symmetric case, where the power constraints of the relay nodes are the same and the links from the source node to the two relay nodes are of the same capacity. For the symmetric case, we give necessary and sufﬁcient conditions that the upper and lower bounds meet. Thus, for a symmetric Gaussian multiple access diamond channel that satisﬁes these conditions, we have found its capacity.
+We consider the Gaussian multiple access diamond channel, see Figure 1. The capacity of the link from the source node to Relay k is R k , k = 1, 2. The received signal at the destination node is
+where X 1 and X 2 are the input signals from Relay 1 and Relay 2, respectively, and U is a zero-mean unit-variance Gaussian random variable. It is assumed that U is independent to (X 1 , X 2 ).
+Let W be a message that the source node would like to transmit to the destination node. Assume that W is uniformly distributed on {1,2,··· ,M}. An (M,n, n ) code consists of an encoding function at the source node
+f n : {1,2,··· ,M} → {1,2,··· ,2 nR 1 } ×{ 1,2,··· ,2 nR 2 }, two encoding functions at the relays
+which satisfy the average power constraint: for any x n k that Relay k input into the Gaussian multiple access channel, it satisﬁes
+1 n
+g n : R n → {1,2,··· ,M} The probability of error is deﬁned as
+Rate R is said to be achievable if there exists a sequence of 2 nR , n, n codes such that n → 0 as n → ∞. The capacity of the Gaussian multiple access diamond channel is the supremum of all achievable rates.
+We would like the characterize the capacity of the Gaussian multiple access diamond channel in terms of the channel parameters R 1 , R 2 , P 1 and P 2 .
+To simplify presentation, we deﬁne the following functions of ρ ∈ [0,1]:
+Theorem 1 An upper bound on the capacity of the Gaussian multiple access diamond channel is
+max(T 1 , T 2 ) where
+0≤ρ≤ρ ∗ min {f 1 (ρ), f 2 (ρ), f 3 (ρ), f 4 (ρ)} (1) T 2 = max
+Remark: The cut-set bound for the Gaussian multiple access diamond channel is
+= H(X n 1 , X n 2 ) + H(W |X n 1 , X n 2 ) 	 (3) ≤ H(X n 1 , X n 2 ) + H(W |Y n ) 	 (4) ≤ H(X n
+2 ) + n n 	 (5) ≤ I(X n 1 , X n 2 ; Y n ) + H(X n 1 , X n 2 |Y n ) + n n ≤ I(X n
+n 	 (6) = h(Y n ) − h(Y n |X n 1 , X n 2 ) + 2n n
+= h(Y n ) − n 2 log(2πe) + 2n n 	 (7) where (3) is because without loss of generality, we may consider deterministic encoders, i.e., (X n 1 , X n 2 ) is a deter- ministic function of W , (4) is because of Markov chain W → (X n 1 , X n 2 ) → Y n , and (5) and (6) both follow from Fano’s inequality. We also have
+nR = H(W ) ≥ H(X n 1 , X n 2 ) 	 (8) ≥ I(X n
+(8) is follows from the same reasoning as (3). Now, we upper bound h(Y n ) as
+, and used the fact that given power constraint, the Gaussian distribution maximizes the differential entropy. Another upper bound on R is
+nR ≤ H(X n 1 , X n 2 ) + n n 	 (11) = H(X n 1 |X n 2 ) + H(X n 2 ) + n n ≤ H(X n 1 |X n 2 ) + nR 2 + n n = I(X n
+2 ) + nR 2 + n n ≤ I(X n 1 ; Y n |X n 2 ) + nR 2 + 2n n
+where (11) is because of (5) and (12) follows from the same reasoning as (10). Similarly,
+Since the inputs from Relay 1 must satisfy the average power constraint P 1 , we have
+P 1i . Due to the concavity of the logarithm function, from (12), we have
+By a similar argument, from (10), we have 1
+≤ 1 2 log(2πe) 1 n n i =1 P 1i + P 2i + 2|ρ i | P 1i P 2i + 1 ≤ 1 2 log(2πe) P 1 + P 2 + 1 n n i =1 2 ρ 2 i P 1i P 2i + 1
+1 n
+Thus, we have 1
+2 log(2πe) P 1 + P 2 + 2ρ a P 1 P 2 + 1 (14) Similarly, there exists a ρ b ∈ [0,1] such that ρ 2 b P 2 =
+R ≤ 1 2 log (1 − ρ 2 b )P 2 + 1 + R 1 + 2 n 	 (15) 1
+2 log(2πe) P 1 + P 2 + 2ρ b P 1 P 2 + 1 (16) Deﬁne ρ ∈ [0,1], which is a function of h(Y n ) as follows: If 1
+then ρ = 0; otherwise, ρ is such that 1
+2 log(2πe)(1 + P 1 + P 2 + 2ρ P 1 P 2 ) (18) For the case when ρ = 0, from (13), (15), (7), (17) and (2), and letting n → ∞, we have
+R ≤ min(f 1 (ρ), f 2 (ρ), f 3 (ρ), f 4 (ρ)) which means, for the case of ρ = 0, R ≤ T 1 .
+For the case of ρ > 0, since h(Y n ) must satisfy (14) and (16), we see that ρ ≤ min(ρ a , ρ b ). This means from (13), (15), (7) and (9), that we have
+R ≤ min(f 1 (ρ), f 2 (ρ)) + 2 n 	 (19) f 4 (ρ) ≤ R ≤ f 4 (ρ) + 2 n 	 (20)
+and is independent to everything else. We have 2nR ≤ 2H(X n 1 , X n 2 ) + 2n n 	 (22) = H(X n
+2 ) + 2n n ≤ H(X n 1 , X n 2 ) − I(X n 1 ; X n 2 ) + nR 1 + nR 2 + 2n n ≤ I(X n
+(23) where (22) follows because of (5), and (23) follows from (6). Note that
+= I(X n 1 ; Z n ) − I(X n 1 ; Z n |X n 2 ) + I(X n 1 ; X n 2 |Z n ) ≥ I(X n 1 ; Z n ) − I(X n 1 ; Z n |X n 2 ) = I(X n
+(24) We further have
+where (25) follows by similar arguments as (12) and (26) follows by similar arguments as (13) and (19). Similarly, we have
+h (Z n ) ≥ n 2 log 2( 2 n h (Y n ) ) + 2πeN Therefore,
+Using (23), (24), (26), (27) and (29), we have 2nR
+2R ≤ f 4 (ρ) + f 3 (ρ) + 3 n 	 (30) Hence, for the case of 0 < ρ ≤ ρ ∗ , from (19), (20) and (30), and letting n → ∞, we have proved R ≤ T
+Finally, for the case where ρ > ρ ∗ , though we do not have (30), (19), (20) and (2) still hold, and by letting n → ∞, we have proved R ≤ T 2 .
+1 or R ≤ T 2 , and thus, Theorem 1 is proved.
+Theorem 2 A lower bound of the capacity of the above Gaussian multiple access diamond channel is
+0≤ρ≤ρ ◦ min {f 1 (ρ), f 2 (ρ), f 3 (ρ), f 4 (ρ)} 	 (31) where
+Proof: Consider a pair of zero-mean jointly Gaussian random variables (X 1 , X 2 ), such that the covariance of X k
+is P k , k = 1, 2 and the correlation coefﬁcient between X 1 and X 2 is ρ. Note that the condition 0 ≤ ρ ≤ ρ o is equivalent to min(R 1 , R 2 ) ≥ 1 2 log 1 1−ρ 2 .
+Codebook generation: Randomly generate 2 nR 1 indepen- dent codewords x n 1 (i), i = 1, . . . , 2 nR 1 according to p(x 1 ) and randomly generate 2 nR 2 independent codewords x n 2 (i), i = 1, . . . , 2 nR 2 according to p(x 2 ). Then, with probability 1, for every codeword x n 1 (i), i = 1, . . . , 2 nR 1 , there are 2 n R 2 − 1 2 log 1 1−ρ2 x n 2 sequences jointly typical with x n 1 (i) according to the given Gaussian distribution. Similarly, with probability 1, for every codeword x n 2 (i), i = 1, . . . , 2 nR 2 , there are 2 n R 1 − 1 2 log 1 1−ρ2 x n 1 sequences jointly typical with x n 2 (i). We collect all the jointly typical codeword pairs (x n 1 (i), x n 2 (j)) among all the possible (i, j) combinations and index them as (x n 1 , x n 2 )(k), for k = 1, . . . , 2 nR , where
+Encoding: When the message W = w, for w = 1, . . . , 2 nR , the source nodes ﬁnds the pair (i, j) that corresponds to(x n 1 , x n 2 )(w). It sends index i ∈ {1,2,··· ,2 nR 1 } to Relay 1 and index j ∈ {1,2,··· ,2 nR 2 } to Relay 2. Relay 1 upon receiving index i, sends x n
+1 (i) into the multiple access channel. Relay 2 upon receiving index j, sends x n 2 (j) into the multiple access channel.
+Decoding: Upon receiving Y n , the receiver declares w is sent if (x n 1 , x n 2 )(w) is jointly typical with the received codeword. If no such w exists, or if there is more than one such, an error is declared.
+Probability of Error: By a similar argument as in [2, Sec. 14.3.1], we can show that the probability of error goes to zero if following conditions are satisﬁed
+R ≤ min(f 1 (ρ), f 2 (ρ), f 4 (ρ)) 	 (33) Thus, based on (32) and (33), Theorem 2 is proved.
+Comparing the upper and lower bounds proposed in Theo- rems 1 and 2, we see that they take on similar forms, more speciﬁcally, the four functions after the minimum in (1) is exactly the same as that in (31). Thus, if the parameters of the Gaussian multiple access diamond channel, R 1 , R 2 , P 1 and P 2 , is such that ρ o ≥ ρ ∗ and T 1 ≥ T 2 , the upper and lower bounds meet providing us with the exact capacity of the channel.
+To show that there indeed exist channels such that the upper and lower bounds meet, in this section, we focus on the symmetric case, i.e., P 1 = P 2 = P and R 1 = R 2 = R 0 .
+If the channel is such that R 0 ≥ 1 2 log (1 + 4P ), it is clear that the multiple access channel in the second stage is the bottleneck of the whole network, and thus, the capacity is equal to 1 2 log (1 + 4P ). On the other hand, if the channel
+is such that 1 2 log (1 + 2P ) ≥ 2R 0 , it is clear that the two separate links in the ﬁrst stage is the bottleneck of the whole network, and the capacity is equal to 2R 0 . Thus, we only need to focus on the nontrivial cases where
+2 log (1 + 4P ) Deﬁne the following functions of ρ ∈ [0,1]:
+Theorem 3 For the symmetric Gaussian multiple access dia- mond channel, if the channel parameters satisfy
+ρ o ≥ ¯ρ 3 , ρ ∗ ≥ ¯ρ 1 , f s 1 (ρ ∗ ) ≤ f s 3 (¯ ρ 3 ) 	 (34) then its capacity is f s 3 (¯ ρ 3 ). Here, ¯ ρ 1 and ¯ ρ 3 are the positive roots of the second order equations f s 1 (ρ) = f s 4 (ρ) and f s 3 (ρ) = f s 4 (ρ), respectively.
+Proof: : The proof of Theorem 3 is omitted due to limited space.
+To show that there indeed exist symmetric Gaussian mul- tiple access diamond channels that satisfy (34), take for example, P = 3 and R 0 = 1.2, we then have
+ρ o = 0.9003, ρ ∗ = 0.8471, ¯ ρ 1 = 0.7734, ¯ ρ 3 = 0.7643, f s 1 (ρ ∗ ) = 1.6426, f s 3 (¯ ρ 3 ) = 1.7671
+Thus, for P = 3 and R 0 = 1.2, (34) is satisﬁed and the upper and lower bounds coincide, yielding the capacity, which is 1.7671.
+To illustrate further, we plot the upper and lower bounds in Theorems 1 and 2 and depict them in Figure 2 and Figure 3 for the cases of P = 3 and P = 30, respectively. The cut-set bound is also plotted to show the improvement of our upper bound over the cut-set bound, which is the best-known upper bound on the capacity. As can be seen, for small R 0 , the proposed upper bound is much smaller than the cut-set bound. Also, the gap between our lower and upper bounds is rather small, especially when R 0 is relatively small and/or P is relatively large.
+We have studied the Gaussian multiple access diamond channel and provided upper and lower bounds on the capacity. Focusing on the symmetric case, we gave necessary and sufﬁcient conditions that the upper and lower bounds meet. Thus, for a symmetric Gaussian multiple access diamond channels that satisﬁes these conditions, we have found its capacity.
+[[[ REFS ]]]
+B. E. Schein
+--
+Distributed Coordination in Network Information Theory
+----
+T. M. Cove
+J. A. Thomas
+--
+Elements of Information Theory
+----
+W. Kan
+S. Ulukus
+--
+Capacity of a class of diamond channels
+----
+R. Tando
+S. Ulukus
+--
+Diamond channel with partially separated relays
+----
+R. Ahlswed
+T. S. Han
+--
+On source coding with side information via a multiple-access channel and related problems in multi-user information theory
+----
+D. Trasko
+G. Kramer
+--
+Reliable communication in networks with multi-access interference
+----
+L. Ozarow
+--
+On a source-coding problem with two channels and three receivers
+----
+P. Bergmans
+--
+A simple converse for broadcast channels with additive white Gaussian noise
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\146.pdf
+[[[ LINKS ]]]
+

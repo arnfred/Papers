@@ -1,0 +1,175 @@
+[[[ ID ]]]
+46
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Distributed Storage Codes through Hadamard Designs
+[[[ AUTHORS ]]]
+Dimitris S. Papailiopoulos
+Alexandros G. Dimakis
+[[[ ABSTR ]]]
+Abstract—In distributed storage systems that employ era- sure coding, the issue of minimizing the total repair bandwidth required to exactly regenerate a storage node after a failure arises. This repair bandwidth depends on the structure of the storage code and the repair strategies used to restore the lost data. Minimizing it requires that undesired data during a repair align in the smallest possible spaces, using the concept of interference alignment (IA). Here, a points-on-a-lattice representation of the symbol extension IA of Cadambe et al. provides cues to perfect IA instances which we combine with fundamental properties of Hadamard matrices to construct a new storage code with favorable repair properties. Speciﬁ- cally, we build an explicit (k + 2, k) storage code over GF(3), whose single systematic node failures can be repaired with bandwidth that matches exactly the theoretical minimum. Moreover, the repair of single parity node failures generates at most the same repair bandwidth as any systematic node failure. Our code can tolerate any single node failure and any pair of failures that involves at most one systematic failure.
+[[[ BODY ]]]
+The demand for large scale data storage has increased signiﬁcantly in recent years with applications demanding seamless storage, access, and security for massive amounts of data. When the deployed nodes of a storage network are individually unreliable, as is the case in modern data centers, or peer-to-peer networks, redundancy through erasure coding can be introduced to offer reliability against node failures. However, increased reliability does not come for free: the encoded representation needs to be main- tained posterior to node erasures. To maintain the same redundancy when a storage node leaves the system, a new node has to join the array, access some existing nodes, and regenerate the contents of the departed node. This problem is known as the Code Repair Problem [3], [1].
+The interest in the code repair problem, and speciﬁcally in designing repair optimal (n, k) erasure codes, stems from the fact that there exists a fundamental minimum repair bandwidth needed to regenerate a lost node that is factors less than the size of the encoded data object. MDS erasure storage codes have generated particular interest since they offer maximum reliability for a given storage capacity; for example check the EvenOdd construction [2]. However, most practical solutions for storage use existing
+off-the-shelf erasure codes that are repair inefﬁcient: a single node repair generates network trafﬁc equal to the size of the entire stored information.
+Designing repair optimal MDS codes, i.e., ones achiev- ing the minimum repair bandwidth bound that was derived in [3], seems to be challenging especially for high rates
+≥ 1 2 . Recent works by Cadambe et al. [11] and Suh et al. [12] used the symbol extension IA technique of Cadambe et al. [4] to establish the existence, for all n, k, of asymptotically optimal MDS storage codes, that come ar- bitrarily close to the theoretic minimum repair bandwidth. However, these asymptotic schemes are impractical due to the arbitrarily large ﬁle size and ﬁeld size that they require. Explicit and practical designs for optimal MDS storage codes are constructed roughly for rates k n ≤ 1 2 [5]- [10], [13], and most of them are based upon the concept of interference alignment. Interestingly, as of now no explicit MDS storage code constructions exist with optimal repair properties for the high data rate regime. 1
+Our Contribution: In this work we introduce a new high-rate, explicit, (k+2, k) storage code over GF(3). Our storage code exploits fundamental properties of Hadamard designs and perfect IA instances pronounced by the use of a lattice representation for the symbol extension IA of Cadambe et al. [4]. This representation gives hints for coding structures that allow exact instead of asymptotic alignment. Our code exploits these structures and achieves perfect IA without requiring the ﬁle size or ﬁeld size to scale to inﬁnity. Any single systematic node failure can be repaired with bandwidth matching the theoretic minimum and single parity node failure generates (at most) the same repair bandwidth as any systematic node repair. Our code has two parities but cannot tolerate any two failures: the form presented here can tolerate any single failure and any pair of failures that involves at most one systematic node
+a 	 A T 1 f 1 + . . . + A T k f k b 	 B T 1 f 1 + . . . + B T k f k
+failure 2 . Here, in contrast to MDS codes, slightly more than k, that is, k 1 + 1 2k , encoded pieces are required to reconstruct the ﬁle object.
+In this section, we consider the code repair problem for storage codes with 2 parity nodes. Let a ﬁle of size M = kN denoted by the vector f ∈ F kN be partitioned in k parts f = f T 1 . . . f T k T , each of size N . We wish to store this ﬁle with rate k k+2 across k systematic and 2 parity storage units each having storage capacity M k = N . To achieve this level of redundancy, the ﬁle is encoded using a (k + 2, k) distributed storage code. The structure of the storage array is given in Fig. 1, where A i and B i are N × N matrices of coding coefﬁcients used by the parity nodes a and b, respectively, to “mix” the contents of the ith ﬁle piece f i . Observe that the code is in systematic form: k nodes store the k parts of the ﬁle and each of the 2 parity nodes stores a linear combination of the k ﬁle pieces.
+To maintain the same level of redundancy when a node fails or leaves the system, the code repair process has to take place to exactly restore the lost data in a newcomer storage component. Let for example a systematic node i ∈ {1, . . . , k} fail. Then, a newcomer joins the storage network, connects to the remaining k +1 nodes, and has to download sufﬁcient data to reconstruct f i . Observe that the missing piece f i exists as a term of a linear combination only at each parity node, as seen in Fig. 1. To regenerate it, the newcomer has to download from the parity nodes at least the size of what was lost, i.e., N linearly independent data elements. The downloaded contents from the parity nodes can be represented as a stack of N equations
+where p (a) i , p (b) i ∈ F N 2 are the equations downloaded from parity nodes a and b respectively. Here, V (a) i , V (b) i ∈ F N × N 2 denote the repair matrices used to mix the parity contents. 3 Retrieving f i from (II) is equivalent to solving an underdetermined set of N equations in the kN un- knowns of f , with respect to only the N desired unknowns of f i . However, this is not possible due to the additive in- terference components that corrupt the desired information in the received equations. These terms are generated by the undesired unknowns f u , u = i, as noted in (II). Additional data need to be downloaded from the systematic nodes, which will “replicate” the interference terms and will be subtracted from the downloaded equations. To erase a single interference term, a download of a basis of equations that generates the corresponding interference
+formed. Thus, it can be proven that the repair bandwidth to exactly regenerate systematic node i is given by
+where the sum rank term is the aggregate of interference dimensions. Interference alignment plays a key role since the lower the interference dimensions are, the less repair data need to be downloaded. We would like to note that the theoretical minimum repair bandwidth of any node for optimal (k + 2, k) MDS codes is exactly (k + 1) N 2 , i.e. half of the remaining contents; this corresponds to each interference spaces having rank N 2 . This is also true for the systematic parts of non-MDS codes, as long as they have the same problem parameters discussed in the beginning of this section and all the coding matrices have full rank N . An abstract example of a code repair instance for a (4, 2) storage code is given in Fig. 2, where interference terms are marked in red.
+To minimize the repair bandwidth γ i , we need to care- fully design both the storage code and the repair matrices.
+In the following, we provide a 2 parity code that achieves optimal systematic and near optimal parity repair.
+We introduce a (k + 2, k) storage storage code over GF(3), for ﬁle sizes M = k2 k , with coding matrices
+, and i ∈ {1, . . . , k}. In Fig. 3, we give the coding matrices of the (5, 3) version of the code.
+Theorem 1: The code in (2) has optimally repairable systematic nodes and its parity nodes can be repaired by generating as much repair bandwidth as a systematic repair does. Moreover, it can tolerate any single node failure, and any pair of failures that contains at most one systematic failure.
+In the following, we present the tools that we use in our derivations. Then, in Sections V and VI we prove Theorem 1.
+Optimality during a systematic repair, requires inter- ference spaces collapsing down to the minimum of N 2 , out of the total N , dimensions. At the same time, useful data equations have to span N dimensions. For the con- structions presented here, we consider that the same repair matrix is used by both parities, i.e., V (1) i = V (2) i = V i . Hence, for the repair of systematic node i ∈ {1, . . . , k} we optimally require
+The key ingredient of our approach that eventually pro- vides the above is Hadamard matrices.
+To motivate our construction, we start by brieﬂy dis- cussing the repair properties of the asymptotic coding schemes of [11], [12]. Consider a 2-parity MDS storage code that requires ﬁle sizes M = k2∆ k−1 , i.e., N = 2∆ k−1 . Its N × N diagonal coding matrices {X s } k s=1 have elements drawn uniform i.i.d. from some arbitrarily large ﬁnite ﬁeld F. During the repair of a systematic node i ∈ {1, . . . , k}, the repair matrix V i that is used by both parity nodes to mix their contents, has as columns the
+0 1 2 1 2
+0 	 0 1 2 1 2
+0 1 2 1 2
+0 	 0 1 2 1 2
+Z k : k s=1 X x s s w L → 	 k s=1 x s e s , where e s is the s- th column of I k+1 . Now, consider the induced lattice representation of V i
+Observe that the i-th dimension of the lattice where L(V i ) lies on, indicates all possible exponents x i of X i . Then, the products X j V i , j = i, and X i V i map to
+respectively. In Fig. 2, we give an illustrative example for k = 3, and ∆ = 2.
+Remark 1: Observe how matrix multiplication of X i and elements of V i manifests itself through the dots-on-a- lattice representation: the product of X i with the elements of V i shifts the corresponding arrangement of dots along the x i -axis, i.e., the x i -coordinate of the initial points gets increased by one.
+Asymptotically optimal repair of node i is possible due to the fact that interference spaces asymptotically align
+and useful spaces span N dimensions, that is, rank ([V i X i V i ]) = |L(V i ) ∪ L(X i V i )| = 2∆ k−1 , with arbitrarily high probability for sufﬁciently large ﬁeld sizes.
+The question that we answer here is the following: How can we design the coding matrices X i and the repair matrices such that i) exact interference alignment
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+is possible and ii) the full rank property is guaranteed deterministically, for ﬁxed in k ﬁle size and ﬁeld size? We ﬁrst address the ﬁrst part. We want to design the code such that the space of the repair matrix is invariant to any transformation by matrices generating its columns, i.e., L(X j V i ) = L(V i ). This is possible when
+that is, when the matrix powers x s “wrap around” after they reach their modulus ∆. This wrap-around property is obtained when the diagonal coding matrices have elements that are roots of unity.
+Lemma 1: For diagonal matrices, X 1 , . . . , X k , whose elements are ∆-th roots of unity, i.e., X ∆ s = X 0 s , for all s ∈ {1, . . . , k}, we have that L(X j V i ) = L(V i ), for all i ∈ {1, . . . , k}\j.
+However, arbitrary diagonal matrices whose elements are roots of unity are not sufﬁcient to ensure the full rank property of the useful data repair space [V i X i V i ]. Interestingly, the full rank property along with perfect IA is guaranteed when using speciﬁc Hadamard designs. Speciﬁcally, we set N = 2 k , and consider the set
+The columns of this set are generated by taking products of the set of our 2 nd roots of unity, diagonal, coding matrices {X s } k s=1 of (2). Interestingly, there is a one-to- one correspondence between the elements of H N and the columns of a Hadamard matrix.
+Lemma 2: Let an N × N Hadamard matrix of the Sylvester’s construction
+with H 1 = 1. Then, H N is full-rank with mutually orthogonal columns, that are the N elements of H N . Moreover, any two columns of H N differ in N 2 positions.
+The proof is omitted due to lack of space. To illustrate the connection between H N and H N we “decompose” the Hadamard matrix of order 4
+. Due to the commutativity of X 1 and X 2 , the columns of H 4 are also the elements of H 4 = {w, X 1 w, X 2 w, X 1 X 2 w}.
+By using H N as our “base” set, we are able to ob- tain perfect alignment condition due to the wrap around property of it elements; the full rank condition will be also satisﬁed due to the mutual orthogonality of these elements.
+Let systematic node i ∈ {1, . . . , k} fail. Then, we pick the columns of the repair matrix as a set of N 2 vectors whose lattice representation is invariant to all X j s but to one key matrix X i . We speciﬁcally construct the N ×
+repair matrix V i whose columns have a one-to-one correspondence with the elements of the set
+ 
+ 
+First, observe that V i is full column rank since it is a collection of N 2 distinct columns from H N . Then, we have the following lemma.
+The above holds due to each element of H N being associated with a unique power tuple. Then, the columns of [V i X i V i ] are exactly the elements of H N , since
+Moreover, the set of columns in V i are identical to the set of columns if X j V i , i.e., L(V i ) = L(X j V i ), for j = i. Therefore, the interference spaces span N 2 dimensions, which is the theoretic minimum, and the desired data space during any systematic node repair is full-rank since it is spanned by the columns of H N .
+We conclude that a single systematic node of the code can be repaired with bandwidth (k + 1) N 2 = k+1 2k M . In Fig. 4, we depict a (6, 4) code of our construction, along with the illustration of the repair spaces.
+Here, we prove that a single parity node repair gener- ates at most the repair bandwidth of a single systematic repair. Let parity node a fail. Then, observe that if the newcomer uses the N × N repair matrix V (b) a = X 1 to multiply the contents of parity node b, then it downloads X 1 	 k i=1 X 1 f i = f 1 + k i=2 X 1 X i f i . Observe, that the component corresponding to systematic part f 1 appears the same in the linear combination stored at the lost parity. By Lemma 2, each of the remaining blocks, X 1 X i f i has exactly N 2 positions equal to the corresponding N 2
+positions of X i f i which was lost, for any i ∈ {2, . . . , k}. This is due to the fact that the diagonal elements of matrices X 1 X i and X i are the elements of some two columns of H N . Therefore, the newcomer has to download from systematic node j ∈ {2, . . . , k}, the N 2 entries that parity a’s component X j f j differs from the term X 1 X j f j of the downloaded linear combination. Hence, the ﬁrst parity can be repaired with bandwidth at most N + (k − 1) N 2 = (k + 1) N 2 . 4 The repair of parity node b can be performed in the same manner.
+Our code can tolerate any single node failure and any two failures with at most one of them being a systematic one. A double systematic and parity node failure can be treated by ﬁrst reconstructing the lost systematic node form the remaining parity, and then reconstructing the lost parity from all the systematic nodes. However, 2 systematic nodes cannot be tolerated. Consider for exam- ple the corresponding matrix when we connect to nodes
+The rank of this kN × kN matrix is (k − 1)N + N 2 due to the submatrix I N I N X k−1 X k having rank 3N 2 . Hence, at worst case, the stored ﬁle can be decoded by “touching” k + 1 nodes and downloading kN + N 2 blocks, or k + 1 2 encoded pieces.
+[[[ REFS ]]]
+
+--
+The 	 Coding 	 for 	 Distributed 	 Storage 	 wiki http://tinyurl
+----
+M. Blaum
+J. Brady
+J. Bruck
+J. Menon
+--
+EVENODD: An efﬁcient scheme for tolerating double disk failures in raid architec- tures
+----
+A. G. Dimakis
+P. G. Godfrey
+Y. Wu
+M. J. Wainwright
+K. Ramchandran
+--
+Network coding for distributed storage systems
+----
+V. R. Cadambe
+S. A. Jafar
+--
+Interference alignment and the degrees of freedom for the K user interference channel
+----
+Y. Wu
+A. G. Dimakis
+--
+Reducing repair trafﬁc for erasure coding-based storage via interference alignment
+----
+D. Cullina
+A. G. Dimakis
+T. Ho
+--
+Searching for minimum storage regenerating codes
+----
+V. Rashmi
+N. B. Shah
+P. V. Kumar
+--
+Exact regenerating codes for distributed storage
+----
+N. B. Shah
+K. V. Rashmi
+P. V. Kumar
+K. Ramchandran
+--
+Ex- plicit codes minimizing repair bandwidth for distributed storage
+----
+C. Suh
+K. Ramchandran
+--
+Exact regeneration codes for dis- tributed storage repair using interference alignment
+----
+
+--
+A construction of systematic MDS codes with minimum repair bandwidth
+----
+V. Cadambe
+S. Jafar
+H. Maleki
+--
+Distributed data storage with minimum storage regenerating codes - exact and functional repair are asymptotically equally efﬁcient
+----
+C. Suh
+K. Ramchandran
+--
+On the existence of optimal exact- repair MDS codes for distributed storage
+----
+K. Rashmi
+N. B. Shah
+P. V. Kumar
+--
+Optimal exact- regenerating codes for distributed storage at the MSR and MBR points via a product-matrix construction
+----
+I. Tamo
+Z. Wang
+--
+MDS Array Codes with Op- timal Rebuilding
+----
+V. R. Cadambe
+C. Huang
+J. Li
+--
+Permutation codes: optimal exact-repair of a single failed node in MDS code based distributed storage systems
+----
+D. S. Papailiopoulos
+A. G. Dimakis
+V. R. Cadambe
+--
+Repair optimal erasure codes through hadamard designs
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\046.pdf
+[[[ LINKS ]]]
+

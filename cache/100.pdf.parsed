@@ -1,0 +1,185 @@
+[[[ ID ]]]
+100
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Coding Theorems on the Worst-Case Redundancy of Fixed-Length Coding for a General Source
+[[[ AUTHORS ]]]
+Hiroki Koga
+Mitsuharu Arimura
+Ken-ichi Iwata
+[[[ ABSTR ]]]
+Abstract—We consider a situation where n-tuples generated from a general source are encoded by a ﬁxed-length code and discuss coding theorems on the worst-case redundancy, where the worst-case redundancy is deﬁned as the maximum of the difference between the rate and the ideal codeword length per symbol with respect to all the correctly decodable n-tuples. We treat the four cases where the decoding error probability ε n is required to satisfy (a) lim n →∞ ε n = 0, (b) lim inf n →∞ ε n = 0, (c) lim sup n →∞ ε n ≤ ε, and (d) lim inf n →∞ ε n ≤ ε, respectively, where ε ∈ [0, 1) is an arbitrary constant. We give general formulas of the optimum worst-case redundancy that are closely related to the width of the entropy-spectrum of a source.
+[[[ BODY ]]]
+In ﬁxed-length source coding it is fundamental to es- tablish the minimum attainable bounds on the rates under requirements on the decoding error probability. For example, for a discrete memoryless source it is well-known that the minimum attainable bound coincides with the entropy if the decoding error probability ε n is required to satisfy ε n → 0 as n → ∞ [1]. So far various bounds are obtained under other requirements on ε n , say ε n ≤ ε, ε n ≈ 2 −nr , etc., where ε ∈ [0, 1) and r > 0 are constants [2]–[4]. Such bounds are extended to coding of a general source [5]–[10].
+On the other hand, in variable-length coding not only bounds on the average codeword length but also redundancies of codes are of interest. For example, in variable-length coding of a discrete memoryless source, the entropy gives the asymptotically attainable lower bound of the average codeword length per source symbol for the case of no decoding error [1]. In addition, if the Shannon code is used, the redundancy is at most 1, where the redundancy is deﬁned as the difference between the actual codeword length and the ideal codeword length. Variable-length coding for a general source is also studied by various authors [6], [12], [13] etc.
+Quite recently, a new redundancy problem on ﬁxed-length coding is formulated in [14]. The authors in [14] consider the situation where n-tuples from a general source are encoded by a ﬁxed-length code with M n codewords subject to ε n → 0 as n → ∞. In this setup 1 n log M n − 1 n log 	 1 P
+is regarded as redundancy of n source outputs x n , where P X n (x n ) denotes the probability that x n is generated from the source. They
+showed that the optimum redundancy deﬁned in a certain sense coincides with the width of the distribution of 1 n log 	 1 P
+[15] (hereinafter, this distribution is called entropy-spectrum). However, certain difﬁculty arises in [14] if the same redun- dancy problem is discussed under other requirements on ε n . This is partly because redundancy of correctly decodable n- tuples is not necessarily small.
+In this paper we consider the worst-case redundancy that is deﬁned as the maximum of 1 n log M n − 1 n log 	 1 P
+with respect to all the correctly decodable n-tuples. We establish general formulas of the asymptotically attainable worst-case redundancy for a general source under the following four criteria: (a) lim n →∞ ε n = 0, (b) lim inf n →∞ ε n = 0, (c) lim sup n →∞ ε n ≤ ε, and (d) lim inf n →∞ ε n ≤ ε, where ε ∈ [0, 1) is an arbitrary given constant. We show that the optimum worst-case redundancy coincides with the width of the entropy-spectrum in case (a), while this result is naturally extended in cases (b), (c) and (d). In fact, we need notions of the width of the entropy-spectrum with probability at least 1 − ε for descriptions of the results for cases (c) and (d).
+The organization of this paper is as follows. In Section II we deﬁne the width of the entropy-spectrum and its extensions. We analyze the redundancy of ﬁxed-length coding for cases (a) and (b) in Section III. In Section IV we extend the results in Section III for cases (c) and (d).
+Let X be a ﬁnite or countably inﬁnite alphabet. Let X = {X n } ∞ n=1 be a general source [6], where for each n ≥ 1 X n is a random variable taking values in X n . Denote the probability distribution of X n by P X n . Let P X n (x n ) denote the probability of X n = x n for an element x n of X n . The sequence of probability distributions P X n , n ≥ 1, does not need to satisfy the consistency condition. We deﬁne the spectrum sup-entropy and inf-entropy rates for X by
+respectively [6], where log( · ) = log 2 ( · ) throughout the paper. The spectrum sup-entropy (resp., inf-entropy) rate can be regarded as the right (resp., left) endpoint of the distribution
+that is valid for all sufﬁciently large n, where the distribution of 1 n log 	 1 P
+is called the entropy- spectrum of X.
+Suppose that X satisﬁes H(X) < ∞. Then, we can deﬁne the width of the entropy-spectrum by
+[15], where G =
+is a set of sequences of intervals. Here, we require that sequences of intervals {(a n , b n ) } ∞ n=1 must satisfy a n ≤ b n for all n ≥ 1. We also deﬁne
+where G ∗ =
+Clearly, W ∗ (X) ≤ W (X) from their deﬁnitions. It is known that 0 ≤ W (X) ≤ H(X) − H(X) [15].
+Furthermore, we consider the following two quantities as extensions of W (X) and W ∗ (X), respectively.
+Deﬁnition 2.1: Let ε ∈ [0, 1) be an arbitrary constant. Deﬁne
+where G ε =
+It is clear that 0 ≤ W ∗ ε (X) ≤ W ε (X) for any ε ∈ [0, 1) and W 0 (X) = W (X) and W ∗ 0 (X) = W ∗ (X). While W ∗ ε (X) is
+Example 2.1: Letting P X 1 and P X 2 be two probability distributions on X satisfying H(P X 1 ) < H(P X 2 ), where H(P X i ) denotes the entropy of P X i for i = 1, 2, deﬁne
+for all n ≥ 1 and x n = x 1 x 2 · · · x n ∈ X n . We consider the mixed source X = {X n } ∞ n=1 satisfying
+for all n ≥ 1 and x n ∈ X n [6], where τ is a constant satisfying 0 < τ < 1/2. Then, it is easily veriﬁed that
+Next, consider a mixed-source with perturbation. That is, letting P X
+be another probability distribution on X satisfying H(P X 1 ) < H(P X
+n ), if n is odd, (1 − τ)P X n
+In this section we deﬁne the worst-case redundancy of ﬁxed-length coding and give a coding theorem. For each n ≥ 1 we deﬁne an encoder and a decoder as determin- istic mappings ϕ n : X n → M n def = {1, 2, . . . , M n } and ψ n : {1, 2, . . . , M n } → X n , respectively, where M n denotes the number of codewords. Deﬁne
+which is the set of all the correctly decodable sequences of length n under the pair (ϕ n , ψ n ). Notice that, if the decoding error probability is sufﬁciently small, the ideal codeword length for x n ∈ D n by variable-length coding can be regarded
+1 n
+log M n − 1 n
+P X n (x n ) 	 (3) means redundancy per source symbol for x n . Similarly,
+log M n − 1 n
+can be regarded as the worst-case redundancy per source sym- bol for the pair (ϕ n , ψ n ). We simply call the quantities in (3) and (4) redundancy and worst-case redundancy, respectively, for short.
+A general formula of the inﬁmum achievable redundancy is given in [14].
+Deﬁnition 3.1 ( [14]): We say that R is an achievable re- dundancy if there exists a sequence {(ϕ n , ψ n ) } ∞ n=1 of the pairs of an encoder ϕ n and a decoder ψ n satisfying
+for any constant γ > 0. The inﬁmum of the achievable redundancy is denoted by R AI (X).
+Theorem 3.1 and (5) and (6) in Deﬁnition 3.1 tell us that, letting γ > 0 be an arbitrarily small constant, the probability of correctly decodable sequences with redundancy less than or equal to R = W (X) + γ goes to 1 as n → ∞. However, there is no immediate relationship between D n and the set of sequences with redundancy less than or equal to R. Hence, certain difﬁculty arises when we consider extensions of Theorem 3.1 under other requirements on the decoding error probability. This motivates us to consider the following worst- case redundancy.
+Deﬁnition 3.2: We say that R is an achievable worst-case redundancy if there exists a sequence {(ϕ n , ψ n ) } ∞ n=1 of the pairs of an encoder ϕ n and a decoder ψ n satisfying (5) and
+The inﬁmum of the achievable worst-case redundancy is denoted by R(X).
+Proof: First, we prove R(X) ≤ W (X). It sufﬁces to prove that R = W (X) + 4γ is an achievable worst-case redundancy for an arbitrary constant γ > 0. We should notice that the deﬁnition of G guarantees the existence of {(a n , b n ) } ∞ n=1 ∈ G satisfying
+Setting S n =
+x n ∈ X n : 1 n
+Notice that |S n | ≤ 2 n(b n +γ) for all n ≥ 1. Hence, setting M n = 2 n(b n +γ) , there exists a one-to-one mapping ϕ n from S n to M n = {1, 2, . . . , M n }. In addition, we deﬁne ψ n as a mapping satisfying D n = S n . Clearly, such a ψ n exists. Then, the sequence {(ϕ n , ψ n ) } ∞ n=1 satisﬁes (5) due to (10). Furthermore, since
+(b n − a n ) + 3γ ≤ W (X) + 4γ = R,
+where the last inequality follows from (8). This shows that R = W (X) + 4γ is an achievable worst-case redundancy.
+Next, we prove R(X) ≥ W (X). This inequality is es- tablished similarly to the method used in [15]. Suppose that there exists a sequence {(ϕ n , ψ n ) } ∞ n=1 satisfying (5) and (7). Let γ > 0 be an arbitrarily small constant. Then, since [6, Lemma 1.3.2] tells us that
+On the other hand, since (7) implies the existence of an integer n 0 = n 0 (γ) such that
+∈ ( 1
+for any constant γ > 0. This means that {( 1 n log M n − R, 1 n log M n ) } ∞ n=1 ∈ G and therefore R ≥ W (X) from the deﬁnition of W (X). Since R is arbitrary, R(X) ≥ W (X) is established.
+Next, we deﬁne the unachievable worst-case redundancy in the strong sense. The notion of unachievability in the strong sense is introduced in [16].
+Deﬁnition 3.3: We say that R is an unachievable worst-case redundancy in the strong sense if
+for any sequence of {(ϕ n , ψ n ) } ∞ n=1 satisfying (7). Denote by U (X) the supremum of the unachievable worst-case redun- dancy in the strong sense.
+Proof: We prove only U (X) ≥ W ∗ (X) here because U (X) ≤ W ∗ (X) can be proved similarly to R(X) ≤ W (X) in the proof of Theorem 3.2. To this end, we ﬁx any R satisfying R < W ∗ (X). Then, [6, Lemma 1.3.2] tells us that any {(ϕ n , ψ n ) } ∞ n=1 satisﬁes (11) for any constant γ > 0. Next,
+similarly to (13), for any {(ϕ n , ψ n ) } ∞ n=1 satisfying (7) there exists an integer n 0 = n 0 (γ) satisfying
+Pr {X n / ∈ D n } ≥ Pr
+In addition, note that {( 1 n log M n − R, 1 n log M n ) } ∞ n=1 / ∈ G ∗ because
+by the assumption. Hence, there exists a constant γ 0 > 0 satisfying
+∈ ( 1
+Now (16) is clear from (11) and (17). This establishes that any R < W ∗ (X) is unachievable in the strong sense. Therefore, U (X) ≥ W ∗ (X) must hold.
+Remark: Notice that the deﬁnition of U (X) guarantees that there exists a {(ϕ n , ψ n ) } ∞ n=1 satisfying lim inf n →∞ Pr {X n ∈ D n } = 0. In addition, we can easily verify that the above U (X) coincides with R ∗ (X), the inﬁmum of achievable worst-case redundancy in the optimistic sense, which is de- ﬁned similarly to the optimistic coding rate [7]–[10] and is formally deﬁned as the inﬁmum of R such that there exists a sequence {(ϕ n , ψ n ) } ∞ n=1 satisfying for any γ > 0
+for inﬁnitely many n. Theorem 3.3 tells us that R ∗ (X) = U (X) = W ∗ (X).
+In the preceding section we have analyzed the worst-case redundancy of ﬁxed-length coding with the decoding error probability that asymptotically goes to zero. In this section we treat the cases where the decoding error probability is asymptotically bounded by a given constant ε ∈ [0, 1).
+Deﬁnition 4.1: Let ε ∈ [0, 1) be a constant arbitrarily given. We say that R is an ε-achievable worst-case redundancy if there exists a sequence {(ϕ n , ψ n ) } ∞ n=1 of pairs of an encoder ϕ n and a decoder ψ n satisfying the following two inequalities:
+log M n − 1 n
+{X n ∈ D n } P X n (x n )
+The inﬁmum of the ε-achievable worst-case redundancy is denoted by R ε (X).
+Proof: We prove only R ε (X) ≥ W ε (X) here because R ε (X) ≤ W ε (X) can be proved similarly to R(X) ≤ W (X) in Theorem 3.2. To this end, we set
+{X n ∈ D n } P X n (x n )
+where the ﬁrst and the second inequalities follow from the deﬁnition of U n and the inequality |D n ∩ U n | ≤ |D n | ≤ M n , respectively. Since (23) means
+{X n ∈ D n ∩ U n } Pr {X n ∈ D n }
+On the other hand, (21) guarantees the existence of an integer n 0 = n 0 (γ) satisfying
+log M n − 1 n
+{X n ∈ D n } P X n (x n )
+1 n
+log M n − 1 n
+{X n ∈ D n } P X n (x n )
+} < γ for all sufﬁciently large n, it follows from (28) that
+∈ ( 1
+Note that γ > 0 on the left side of (29) can be made arbitrarily small. Hence, we have {( 1 n log M n − R, 1 n log M n ) } ∞ n=1 ∈ G ε and therefore R ≥ W ε (X) from the deﬁnition of W ε (X). Since R is assumed to be an arbitrary ε-achievable worst-case redundancy, R ε (X) ≥ W ε (X) is established.
+Next, similarly to Deﬁnition 3.3, we introduce the notion of ε-unachievable worst-case redundancy in the strong sense and investigate a general formula of its supremum.
+Deﬁnition 4.2: Let ε ∈ [0, 1) be a constant arbitrarily given. We say that R is ε-unachievable worst-case redundancy in the strong sense if
+for any {(ϕ n , ψ n ) } ∞ n=1 satisfying (21). Denote by U ε (X) the supremum of the ε-unachievable worst-case redundancy in the strong sense.
+Proof: We prove only U ε (X) ≥ W ∗ ε (X) here. Fix R < W ∗ ε (X) arbitrarily and consider any {(ϕ n , ψ n ) } ∞ n=1 satisfying (21). Letting γ > 0 be an arbitrary constant, we deﬁne U n and V n by (22) and (25), respectively. Although U n and V n are not deﬁned for n satisfying Pr {X n ∈ D n } = 0, (33) given afterwards trivially holds in such a case. This means that we can assume Pr {X n ∈ D n } > 0 for all n ≥ 1 without loss of generality. Note that, similarly to (27), there exists an integer n 0 = n 0 (γ) satisfying
+Pr {X n / ∈ D n } ≥ Pr{X n ∈ U n ∪ V c n } − 2 −nγ for all n ≥ n 0 .
+Now, set A n =
+, B n =
+log Pr {X n ∈ D n } > −γ for all n ≥ n 1 , it holds that A n ⊂ U n and B n ⊂ V c n for all n ≥ n 1 . Thus, A n ∪ B n ⊂ U n ∪ V c n for all n ≥ n 1 . This guarantees that
+for all n ≥ max{n 0 , n 1 }, (33) which yields
+However, since R = 1 n log M n − ( 1 n log M n − R) < W ∗ ε (X) is assumed, we have {( 1 n log M n − R, 1 n log M n ) } ∞ n=1 / ∈ G ∗ ε and therefore
+Then, the combination of (34) and (35) shows that (30) is satisﬁed. Thus, any R < W ∗ ε (X) turns out to be an ε- unachievable worst-case redundancy in the strong sense, which establishes U ε (X) ≥ W ∗ ε (X).
+[[[ REFS ]]]
+T. M. Cove
+J. A. Thoma
+--
+Elements of Information Theory, 2nd ed
+----
+I. Csisz´a
+J. K¨orne
+--
+Information Theory : Coding Theorems for Discrete Memoryless Systems, Academic Press, 1981
+----
+G. Longo
+A. Sgarro
+--
+The source coding revisited: a combinatorial approach
+----
+I. Kontoyannis
+--
+Second-order noiseless source coding theorems
+----
+T. S. Han
+S. Verd´u
+--
+Approximation theory of output statistics
+----
+T. S. Ha
+--
+Information-Spectrum Methods in Information Theory, Springer-Verlag, 2003
+----
+S. Vemb´u
+S. Verd´u
+Y. Steinberg
+--
+The source-channel transmission theorem revisited
+----
+N. Chen
+F. Alajaji
+--
+Optimistic Shannon coding theorems for arbitrary single-user systems
+----
+N. Sato
+H. Koga
+--
+New results on optimistic source coding
+----
+M. Hayashi
+--
+Second-order asymptotics in ﬁxed-length source coding and intrinsic randomness
+----
+T. S. Han
+--
+Folklore in source coding: information-spectrum approach
+----
+O. Uchida
+T. S. Han
+--
+The optimal overﬂow and underﬂow probabilities of variable-length coding for the general source
+----
+H. Koga
+H. Yamamoto
+--
+Asymptotic properties on codeword lengths of an optimal FV code for general sources
+----
+M. Arimura
+K. Iwata
+--
+The minimum achievable redundancy rate of ﬁxed-to-ﬁxed length source codes for general sources
+----
+H. Koga
+--
+A coding theorem on the ﬁxed-length homophonic coding for a general source
+----
+H. Koga
+--
+Four limits in probability and their roles in source coding
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\100.pdf
+[[[ LINKS ]]]
+

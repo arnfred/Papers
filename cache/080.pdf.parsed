@@ -1,0 +1,43 @@
+[[[ ID ]]]
+80
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Special Session on Information Theory and  Neuroscience At ISIT 2011 
+[[[ AUTHORS ]]]
+Todd P. Coleman 
+Aurel A. Lazar 
+[[[ ABSTR ]]]
+Abstract—This represents a special session on information theory  and neuroscience at ISIT 2011. 
+[[[ BODY ]]]
+Recently,  there  has  been  an  increased  interest  in  the  intersection  in  information  theory  and  neuroscience,  as  evidenced by  
+•  a  special  issue  on  Information  Theory  in  Molecular  Biology  and  Neuroscience,  IEEE Transactions on Information  Theory, February 2010  
+•  a  special  issue  on  Methods  of  Information  Theory  in  Neuroscience  Research,  Journal  of  Computational  Neuroscience, February 2011  
+•   5  years  of  special  sessions  on  "Methods  of  Information  Theory  in  Computational  Neuroscience"  at  the  Computational Neuroscience Annual Meeting (CNS) 
+This  fact,  along  with  CNS  and  ISIT  taking  place  one  after  another, in Stockholm, Sweden and St. Petersburg, Russia, has  led to the ISIT workshop holding a special session pertaining to  neuroscience  in  information  theory.  Each  researcher  in  computational/experimental  neuroscience  will  give  an  overview of their work and will speak to the potential synergies  with information theory. The hope is that intrigued researchers  on both sides of the disciplines might be able to use the same  trip  to  Europe  to  attend  both  conferences  and  further  identify  the interplay between both. 
+             
+A.   Dendritic Decoding of Visual Stimuli Encoded with  Hodgkin-Huxley Neurons 
+We  investigate  architectures  for  time  encoding  and  time  decoding of visual stimuli such as natural and synthetic video  streams  (movies,  animation).  The  architecture  for  time  encoding  is  akin  to  models  of  the  early  visual  system.  It  consists of a bank of filters in cascade with single-input multi- output  neural  circuits.  Neuron  firing  is  either  based  on  a  threshold-and-fire  or  an  integrate-and-fire  spiking  mechanism  with feedback. We show that analog information is represented  by  the  neural  circuits  as  projections  on  a  set  of  bandlimited  functions  determined  by  the  spike  sequence.  Under  Nyquist- type and frame conditions, the encoded signal can be recovered  from  these  projections  with  arbitrary  precision.  For  the  video  time  encoding  machine  architecture,  we  demonstrate  that  bandlimited  video  streams  of  finite  energy  can  be  faithfully  recovered from the spike trains and provide a stable algorithm  for  perfect  recovery.  The  key  condition  for  recovery  calls  for  the  number  of  neurons  in  the  population  to  be  above  a  threshold  value.  Although  the  encoding  mechanism  can  be  efficiently implemented with neural circuits, the reconstruction  algorithms call for the pseudo-inversion of a large scale matrix.  Several  real-time  reconstruction  algorithms  have  been  demonstrated  in  the  past.  We  shall  present  a  solution  to  the  reconstruction  of  time  encoded  signals  using  only  neural  hardware components. Finally, we extend the above results to  neural encoding circuits built with Hodgkin-Huxley neurons. 
+       
+B.  Understanding How Information is Conveyed in Dynamic  Interacting Networks of Neural Activity 
+Todd P. Coleman, Dept of Bioengineering, UCSD    
+We  develop  a  generalization  to  Granger’s  notion  of  causality  to  infer  the  statistical  dynamics  underlying  interacting  neural  circuits.  Our  approach  is  inspired  from  an  information-
+theoretic  sequential  prediction  methodology.  Under  the  log  loss, we demonstrate that this mathematization is precisely the  causally  conditioned  directed  information.  We  develop  an  estimation approach and demonstrate how the network causal  dynamics represent information processing in the brain. In the  primary  visual  cortex  of  an  awake-behaving  monkey,  we  analyze  simultaneous  spiking  and  field  potential  recordings  and  demonstrate  a  consistent  change  in  causal  interactions  between cells depending upon the type of stimulus displayed.  In  primary  motor  cortex  of  an  awake  behaving  monkey,  our  procedure  identifies  strong  structure  in  the  estimated  causal  relationships,  the  directionality  and  speed  of  which  is  consistent  with  predictions  made  from  the  wave  propagation  of simultaneously recorded local field potentials. We conclude  with  a  discussion  of  new  mathematical  techniques  going  beyond the lens of causality that might be useful to elucidate  the network dynamical aspects of brain function.  
+C.  Information coding by recurrently connected networks  Taro Toyoizumi,  Lab for Neural Computation &  Adaptation, RIKEN Brain Science Institute 
+Neurons code variety of perceptual and motor signals by their  activity. The accuracy of information representation is subject  to  specific  network  connectivity.  In  this  talk,  using  quantitative  measures  developed  in  information  theory  and  statistics,  I  characterize  how  parameters  of  synaptic  connections  influence  the  accuracy  of  information  coding.  More  specifically,  simple  analytical  expressions  of  signal-to-
+noise ratio are derived to demonstrate the following: (1) With  dynamical  interactions  between  neurons,  spike  timing  could  add to spike counts significantly more information about static  stimulus  (2)  Network  connectivity  and  the  resulting  background activity of neurons determine neural responses to  static  and  dynamic  stimuli.  In  particular,  when  randomly  connected  networks  are  operating  near  the  edge  of  chaos,  external input can be more efficiently amplified and buffered  with chaotic than non-chaotic background activity. 
+                 
+D.  Estimating source space cross-frequency coupling from  MEG event-related data -– a cross-term deprived  covariance (CTDC) approach 
+Alexei Ossadtchi, Dept of Higher Nervous Activity,  St. Petersburg State University   
+Synchronization  of  activity  between  distinct  cortical  regions  underlies the mechanism of functional integration that forms a  foundation of all our actions. Recently, the role of  non-linear  interactions  manifested  in  cross-frequency(across  scale)  synchronization  has  been  emphasized  as  facilitating  the  exchange  of  information  between  cell  assemblies.  Such  synchronization  has  been  found  in  many  experimental  paradigms  and  is  currently  under  active  study.  Unfortunately  spatially  and  temporally  precise  analysis  available  only  in  a  limited number of cases corresponding to neurological patients  with implanted cortical grids. In order to provide the flexibility  in  experimental  designs  and  allow  for  more  specific  studies,  tools for analysis of such non-linear synchronizations are to be  developed.  Instrumentally,  MEG  is  a  unique  technology  that  allows  for  mapping  of  cortical  activations  and  provides  high  temporal  resolution.  The  use  of  beamformers  supported  by  sufficiently  accurate  forward  models  allows  for  reasonable  (0.5 cm) spatial resolution. The time frequency representation  of  MEG  signals  is  natural  and  captures  the  nature  of  MEG  observed  cortical  activity  as  consisting  of  short  time  narrow-
+band bursts.   
+In this work our goal was to combine the above and develop a  signal  processing  method  for  identification  of  the  cortical  spatial  structure  of  cross-frequency  coupling  between  the  oscillations  in  the  two  non-overlapping  time-frequency  windows. Our method is a statistical test contrasting the results  of adaptive beamformer based inverse mapping obtained using  the  original  and  cross-term  deprived  time-frequency  domain  data  covariance  matrices  by  calculating  the  ratio  of  the  two  inverse  values.  We  use  multiple  comparison  corrected  randomization  statistical  tests  for  identification  of  significant  source space coupling. 
+Application  of  the  method  to  an  event-related  MEG  dataset  from  a  single  subject  (imagined  hand  rotation)  yielded  plausible  results  with  interacting  pairs  falling  into  physiologically  plausible  cortical  sites.  We  observed  beta-
+gamma  coupling  between  frontal  and  parietal-occipital  regions,  consistent  with  published  signal  space  analysis.  We  also observed beta-gamma prefrontal/frontal and alpha-gamma  temporal/frontal couplings. 
+[[[ REFS ]]]
+
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\080.pdf
+[[[ LINKS ]]]
+

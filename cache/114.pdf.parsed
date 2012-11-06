@@ -1,0 +1,135 @@
+[[[ ID ]]]
+114
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+New Construction of DNA Codes with Constant-GC Contents from Binary Sequences with Ideal Autocorrelation
+[[[ AUTHORS ]]]
+Young-Sik Kim
+Sang-Hyo Kim
+[[[ ABSTR ]]]
+Abstract—In this paper, we provides a coding theoretic con- struction of DNA codes. Previously, some works have been carried out on DNA codes with biologically motivated constraints such as minimum Hamming distance and constant GC-content. There- fore, for given code-length N , the number of GC-content w, and minimum hamming distance d, it is interesting to construct DNA codes with maximum size A GC 4 (N, w, d). In the previous works, the DNA codes from the quaternary constant weight codes have been proposed [5]. In this paper, we propose another approach based on the binary constant weight codes, not quaternary ones. It is found that the size of the new DNA codes from binary constant weight codes is greater than or equal to that from the quaternary ones. First a general approach to constructing DNA codes from a binary constant weight code is proposed. Second, a speciﬁc DNA code with parameters (2 n −1, 2 n −1 , 2 n −1 ) from binary sequences with ideal autocorrelation property is constructed.
+[[[ BODY ]]]
+Due to its massive parallelism, DNA computing can solve some hard problems, NP-complete problem such as Hemilto- nian path problem [1] and the bounded post correspondence problem [2] and so on. In this computation, DNA strands and biochemical reaction are exploited as computing tools. Because the self assemble property of DNA strands with their Watson-Crick complement strands is a major ingredient in this computing approach, construction of a set of short single- stranded DNA (called oligonucleotides library) is important for obtaining a correct result in this computation. In addition, DNA codes which satisfy pure combinatoric constraints can be used not only in the DNA computing, but also in molecular bar-coding [3], and cryptanalysis [7], etc.
+Although there are several studies on the construction of DNA codes, many approaches can provide optimal code sets only for a relatively short length because of very large com-
+putational complexity for large N . In this respect, algebraic approaches can be beneﬁcial to construct long DNA codes.
+In the DNA code construction, the oligonucleotide library should satisfy some constraints such as the minimum Ham- ming distance, reverse complementary distance, and constant GC-contents, in order to reduce the probability of non-speciﬁc hybridization. In addition, it is desirable that the library has as many sequences as possible for a given length N . This is called as the oligonucleotide sequence design problem [4] and in this problem, we are going to construct sequences that satisfy combinatorial constraints given above with the minimized length of sequences.
+In this paper, we focus on a coding theoretic construction of DNA code sets. Previously, some works have derived bounds of the maximum size of DNA codes with biologically motivated constraints adopted from coding theory. The most widely appreciated approach is based on the constant weight code in the coding theory. In the previous works, the DNA codes from the quaternary constant weight codes have been proposed [5]. In this paper, we will propose another approach based on the binary constant weight codes, not quaternary ones. Then, it is possible to construct new DNA codes with better parameters. First, we will discuss and derive the general DNA codes construction approach from a binary constant weight codes. In addition, we show a speciﬁc example from the well-known maximal length sequences (also known as Singer difference sets).
+In this section, we present basic deﬁnitions and notations. The Hamming distance between two sequences q 1 (t) and q 2 (t) in a library L is deﬁned as
+Throughout the paper, we will use interchangeably q i (t) and q i to represent a sequence in L when there is no confusion. The complement of a sequence q = q(1)q(2) · · · q(N) is denoted as q = q(1)q(2) · · · q(N) and the reverse complement of q is denoted by q R = q(N )q(N − 1) · · · q(1), where q(i) is in
+{A, G, C, T } and the complement of DNA letter is given as A = T, T = A, C = G, G = C.
+A library of N -mer oligo-nucleotides L ⊆ Σ N should satisfy all the following constraints[4].
+1) Hamming distance constraint: d H (q i , q j ) ≥ d for all q i , q j ∈ L, q i ̸= q j
+2) Reverse-complementary 	 distance 	 constraint: d H (q i , q j ) ≥ d for all q i , q j ∈ L
+3) Constant GC-content constraint: GC(q i ) = w for all q i ∈ L where GC(q i ) means the number of occurrences of G and C in the DNA sequence q i .
+The periodic cross-correlation function C q 1 q 2 (τ ) of the two quaternary sequences q 1 (t) and q 2 (t) is deﬁned as
+where ω 4 is the primitive 4-th root of unity, ω 4 = e j 2π 4 . We represent DNA codes in {A, C, G, T } as a code in Z 4 using the mapping A = 0, C = 2, G = 3, and T = 1. Note that this mapping is different from the previous mapping in [5] which sets C = 1 and T = 2. Since we are going to construct a quaternary sequence by applying inverse Gray mapping to the binary constant weight code, this mapping is more adequate to have new DNA codes meet required constraints of DNA codes such as constant GC-content, the minimum Hamming distance, and minimum reverse-complement Hamming distance.
+Let ϕ[u, v] be the inverse Gray mapping from binary two tuple to the integer ring Z 4 = {0, 1, 2, 3} deﬁned by
+        
+Let u(t) and v(t) be binary sequences of period N . We deﬁne a quaternary sequence q(t) as q(t) = ϕ[u(t), v(t)]. Then the sequence in the signal space corresponding to q(t) can be represented by using the binary sequences, u(t) and v(t) [6] as
+It is not difﬁcult to check that the Watson-Crick complement of a DNA sequence q i = ϕ[u, v] is given as q c i = ϕ[u, v], where v is a binary compliment sequence of v, i.e., each component of codeword v is given as v i = 1 − v i .
+Krone and Sarwate derived the relation between the corre- lations of the binary sequences and the quaternary sequences in (3) as follows.
+Theorem 1 (Krone and Sarwate [6]): Let u 1 (t), v 1 (t), u 2 (t), and v 2 (t) be binary sequences of the same period. Let q 1 (t) and q 2 (t) be quaternary sequences deﬁned by q 1 (t) = ϕ[u 1 (t), v 1 (t)] and q 2 (t) = ϕ[u 2 (t), v 2 (t)], respectively. Then cross-correlation function C q 1 q 2 (τ )
+1 2
+Corollary 2: Let N be an integer and u(t) and v(t) binary sequences with period N . Let us deﬁne quaternary sequences q(t) as follows
+where ⊕ is addition modulo 2. Then the autocorrelation function R q (τ ) becomes
+The reverse inphase cross-correlation between q 1 (t) and q 2 (t) is given as
+Then, the reverse complementary inphase cross-correlation between q 1 (t) and q 2 (t) is represented using the adopted binary sequences as in the following corollary.
+Corollary 3: The reverse complementary inphase cross- correlation between two sequences q 1 (t) and q 2 (t) is given as
+1 2
+Proof: From (4), the reverse complementary inphase cross-correlation is given as
+By plugging q 2 (N − t) = ϕ(u 2 (N − t), v 2 (N − t) ⊕ 1) into Theorem 1, we have
+Then, it is straightforward to obtain the statement in this corollary.
+Also, a reverse mapping µ( ·) (called µ-map) from Z 4 to F 2 can be deﬁned as
+The maximum size of the binary constant weight code C 2 [N, 2δ, w] of length N with constant weight w and min- imum Hamming distance 2δ is denoted by A 2 (N, 2δ, w). For simplicity, we will represent the number of codes in C 2 [N, 2δ, w] as M . Let d ij be the Hamming distance between two codewords b i and b j in C 2 [N, 2δ, w]. Then, the in-phase (τ = 0) cross-correlation of binary constant weight codewords b i and b j in C 2 [N, 2δ, w] is
+In this section, we are construct a new DNA code with constant GC-content from a binary constant weight code.
+Suppose that we have a binary constant weight code C 2 [N, 2δ, w]. Then, split C 2 [N, 2δ, w] into two arbitrary subsets B 0 and B 1 with the same number of codewords such as
+   
+B 0 ∪ B 1 and |B 0 | = |B 1 | = M 2 , 	 for an even M B 0 ∪ B 1 ∪ {c M −1 } and
+where c N −1 is a codeword in C 2 [N, 2δ, w]. Let u i and v i be the codewords in B 0 and B 1 , respectively. Then, the new DNA code L with constant GC-content is deﬁned as
+    
+), for M −1 2 ≤ i < M − 1 ϕ(c M −1 , c M −1 ), 	 i = M − 1.
+Consider the difference codeword s ij between two code- words q i and q j such that s ij (t) = q i (t) − q j (t) mod 4 for 1 ≤ T ≤ N. The number of occurrences of x in s ij (t) is denoted by D x . Therefore, it is clear that D 0 +D 1 +D 2 +D 3 = N . For deriving the Hamming distance property, we need the following lemma.
+Lemma 4: The numbers of letters in s ij have the following relations
+Proof: Let us consider the case of odd M . According to the indices of the codewords, we have to consider the following three cases.
+In this case, it is enough to consider only the in-phase correlation.
+where C u i v j (0) = N − 2d and C v i u j (0) = N − 2d ′ . Since 2δ ≤ d, d ′ ≤ n/2, we have D 1 −D 3 ≤ (N −4δ)/2 < N −4δ.
+Case 2) 0 ≤ i < M −1 2 and M −1 2 ≤ j ≤ M − 1 Similarly, the in-phase correlation is given as
+Case 3) M −1 2 ≤ i < j ≤ M − 1 In this case, we have
+Thus, the difference between the number of each letter in s ij (t) is similarly given as
+It is easy to see that the case of even M can be similarly proved.
+In order to represent parameters in C GC 4 [N, d, w] con- structed from C 2 [N, d, w], we introduce a new parameter γ which is deﬁned as the maximum number of component t among a pair of DNA codewords, q i = ϕ[u i , v i ] and q j = ϕ[u j , v j ] such that u i (t)+v i (t) = 1 and u j (t)+v j (t) = 1 where u i (t) and u j (t) are in a subset of B 1 of C 2 [N, d, w] and v i (t) and v j (t) are in its complementary set B 2 . Then, we can derive another inequality for D i ’s using the parameter γ as in the following lemma.
+Proof: The sum of D 1 + D 3 is equivalent to the number of components such that
+D 1 + D 3 = |{t | u i (t) + v i (t) + u j (t) + v j (t) ≡ 1 mod 2, 0 ≤ t ≤ N − 1}|
+from (5). The Hamming distance between u i (t) and v i (t) (or u j (t) and v j (t)) is ∆ i = N 1 + N 3 ≥ 2δ (or ∆ j ≥ 2δ). Let γ ij be the number of components such that
+Then, we can show that the oligonucleotide library L is actually C GC 4 [N, 4δ − γ, w] code as in the following theorem.
+Theorem 6: The constant GC-content DNA code L con- structed from a binary constant weight code C 2 [N, 2δ, w] is represented as
+Proof: What we have to show ﬁrst is the GC-content of constructed DNA codes is constant and then the Hamming distance between any pair of codewords in L is greater than or equal to 4δ − γ.
+Let us start with constant GC-content property of new DNA codes L. Let N k be the number of the letter k in the codeword q i with length N . Then, the constant GC-content constraint means that
+We can obtain DNA codes with constant GC-content from the binary constant weight codes by applying the inverse Gray mapping. Note that the generated quaternary code set is not necessary to have constant weight for each letter in order to satisfy constant GC-content, but to have the constant sum N 2 + N 3 .
+For two binary codes u(t) and v(t) in C 2 [N, 2δ, w], the weight of the quaternary code is given as
+− ω 4 2
+Therefore, N 2 + N 3 = w and N 0 + N 1 = N − w are constant for all q i ∈ L since N 0 + N 1 + N 2 + N 3 = N .
+Secondly, we are going to prove the Hamming distance property of the generated quaternary sequence set. That is, we have to show that
+From (1), the in-phase cross-correlation between q i and q j is represented as
+That is, we can obtain a DNA code C GC 4 [N, 4δ −γ, w] from a binary constant weight code C 2 [N, 2δ, w].
+In this section, we present a speciﬁc example based on the construction method in Section III. In this example. a class of optimal DNA codes will be constructed from a binary pseudo random sequence with the ideal autocorrelation as a concrete example of the previous section since it is possible to construct a binary constant weight code from a binary sequences with the ideal autocorrelation.
+For any prime power 2 n , let F 2 n be the ﬁnite ﬁeld with 2 n elements. Then, the trace function tr n 1 ( ·) is the mapping from F 2 n to its subﬁeld F 2 deﬁned by
+Then the m-sequence b(t) with period 2 n −1 can be simply represented as
+In addition, it is well-known that the m-sequence has the ideal autocorrelation properties as presented in the below
+Therefore, it is easy to see that a binary constant weight code C 2 [2 n − 1, 2 n −1 , 2 n −1 ] can be constructed from a binary m-sequence as in the following theorem by using a cyclic shift.
+Theorem 7: The code C = {b(t) | 0 ≤ t ≤ 2 n − 1} is a binary constant weight code C 2 [2 n −1, 2 n −1 , 2 n −1 ] where b(t) is the m-sequence with period 2 n − 1.
+Then we can determine the parameter γ in Lemma 5 as in the following lemma.
+Lemma 8: For the binary m-sequence, the number of t satisfying b(t + i 1 ) + b(t + i 2 ) = 1 and b(t + j 1 ) + b(t + j 2 ) = 1
+is equal to 2 n −2 where b( ·) is a m-sequence and i 1 , j 1 , i 2 , and j 2 are distinct phases.
+Proof: From the linearity of m-sequences, b(t + i 1 ) + b(t + i 2 ) = b(t + i 3 ) and b(t + j 1 ) + b(t + j 2 ) = b(t + j 3 ) for some i 3 and j 3 . Then two-tuple balance property of the m-sequence with period 2 n − 1, the number of t satisfying b(t + i 3 ) = b(t + j 3 ) = 1 is given as 2 n −1 .
+Let us divide C into two subsets B 0 and B 1 . Because the codewords in C are cyclically shifted version of each other, the DNA code can be inherited this cyclic shift property in some Gray mapping. It is better to keep the coding from inheriting the cyclic shift property because otherwise, it is highly probable to occur unwanted bonding between two codewords. For this purpose, we assign the index in B 0 and B 1 as follows
+Example 9: The codewords in the DNA code L with con- stant GC content constructed from the binary m-sequence with length 15 are listed as
+9) AGACCCGTTAGTACG 10) GAGGCCTATCAACGT 11) TGGGGTTTGTTGGTG 12) GCGGAATCTACCAGT 13) CGCAAAGTTCGTCAG 14) GCATAGAACCTGTCG 15) GATACAAGGTCTGCC
+From Lemma 8, we have γ = 4. Therefore, this code set L is C GC 4 [15, 12, 8] with A GC 4 (15, 12, 8) = 15 which is greater than 13 in Table I of [5].
+In the this example, we found that the DNA code with length 15 from the binary sequences with the ideal autocorrelation has bigger size than the previous example.
+[[[ REFS ]]]
+L. M. Adleman
+--
+Molecular computation of soultions to combinatorial problems
+----
+L. Kari
+G. Gloor
+S. Yu
+--
+Using DNA to solve the bounded post correspondence problem
+----
+S. E. Pierc
+E. L. Fun
+D. F. Jaramill
+A. M. Ch
+R. W. Davi
+C. Nislo
+G. Giaeve
+--
+A unique and universal molecular barcode array, Nature Methods, vol
+----
+Y. M. Chee
+S. Ling
+--
+Improved lower bounds for constant GC- content DNA codes
+----
+P. Gaborit
+O. D. King
+--
+Linear constructions for DNA codes
+----
+S. M. Krone
+D. V. Sarwate
+--
+Quadriphse sequences for spread- spectrum multiple-access communication
+----
+O. Pelletier
+A. Weimerskirch
+--
+Algorithmic Self-Assembly of DNA Tiles and its Application to Cryptanalysis
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\114.pdf
+[[[ LINKS ]]]
+

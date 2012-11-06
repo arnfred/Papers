@@ -1,0 +1,136 @@
+[[[ ID ]]]
+157
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+A Lattice of Gambles
+[[[ AUTHORS ]]]
+Paul Cuff
+Thomas Cover
+Gowtham Kumar
+Lei Zhao
+[[[ ABSTR ]]]
+Abstract— A gambler walks into a hypothetical fair casino with a very real dollar bill, but by the time he leaves he’s exchanged that for a random amount of money. What is lost in the process? It may be that the gambler walks out at the end of the day, after a roller-coaster ride of winning and losing, with his dollar still intact—or maybe even with two dollars. But what the gambler loses the moment he places his ﬁrst bet is position. He exchanges one distribution of money for a distribution of lesser value, and he can’t get back to the original distribution. Our ﬁrst discussion in this work connects known results of economic inequality and majorization to the probability theory of gambling and Martingales. We provide a simple proof that fair gambles cannot increase the Lorenz curve, and we also constructively demonstrate that any sequence of non-increasing Lorenz curves corresponds to at least one Martingale.
+We next consider the efﬁciency of gambles. If any fair gamble is available then one can move down the lattice of distributions with respect to the Lorenz ordering. The step from one distribution to the next is not unique. Is there a sense of efﬁciency with which one can move down the Lorenz stream? One approach would be to minimize the average total volume of money placed on the table. In this case, it turns out that implementing part of the strategy using private randomness can help reduce the need for the casino’s randomness, resulting in less money on the table that the casino can get its hands on.
+[[[ BODY ]]]
+What is lost when one gambles? Even in a fair casino with fair bets offered, a gambler trades one random variable of wealth for another—an exchange that cannot be reversed through subsequent fair gambles. A gambler who walks into a fair casino with $1 walks out with a random amount of wealth with mean still $1. The gambler cannot devise a strategy that allows him to recover his $1 with probability one. He can only use fair gambles to exchange his random variable for one that is further degraded.
+In this paper we identify the Lorenz curve [1] as a simple way to characterize which distributions can be transformed through fair gambles to which others, which is an idea that can be distilled from the literature through an investigation of topics such as majorization, Schur convexity, and related ideas in [2]-[13]. The partial ordering of non-negative, mean-one distributions, which places p 1 p 2 if p 1 can be the starting point of a fair gambling system with p 2 the ending point, coincides
+with the partial ordering induced by the associated Lorenz curves. Thus, given two distributions p a and p b , we can use the Lorenz curve to identify the most degraded distribution from which we can gamble to either p a or p b . Similarly, we can ﬁnd the least degraded distribution that can be produced from either starting point p a or p b .
+Example 1.1: Consider two different mean-one distri- butions p a and p b given by
+What is the ﬁrst distribution that can be arrived at by starting from either p a or p b using fair gambles? It’s not the distribution that places all of the mass on 0 and 2. The least degraded distribution that they can both arrive at is
+This is identiﬁed with ease from the Lorenz curves, illustrated in Fig. 4.
+P er ce n t o f In co m e
+20% 40% 60% 80%
+20% 40% 60% 80% 100% A
+In this paper we show the relationship between Lorenz curves and fair gambling and discuss the lattice formed by this relationship. This implies a “second law” of Martingales, characterized by the Lorenz curve or any Schur convex function, similar to entropy increase in Markov chains. These relationships also provide a simple proof of weak convergence of Martingales.
+We also consider the efﬁciency of going from one distribution to another. For any system of gambles, there is an amount of money that may be lost and therefore must be placed on the table at a casino. To model the fact that casinos actually take a proﬁt by offering games with a house edge, we can imagine that any money placed on the table is taxed. There are in general many ways of gambling from p 1 to p 2 , assuming p 1 is less degraded than p 2 . We identify a general method for constructing the most efﬁcient gambling system.
+The Lorenz curve is a metric developed by Lorenz in 1905 for the purpose of measuring economic inequality in a population. If the population is ordered according to increasing wealth, forming an increasing sequence of individual wealths w 1 , w 2 , ..., w N , then the Lorenz curve is obtained from the sequence of partial sums of this sequence, l i = i k =1 w k . Normally, the Lorenz curve L(u) is scaled so that the domain and range are [0, 1], such that L(u) is the linear interpolation of the points {(i/N, l i l
+In Figure 2 we see the Lorenz curve for the United States of America (based on income rather than wealth). We can interpret the curve in the following way. Con- sider the point A = (.6, .27). This says that the poorest 60% of the population account for 27% of the total income.
+For a probability distribution with mean one, we can deﬁne the Lorenz curve in the following way.
+The Lorenz curve can be deﬁned for a probability distribution. Each quantum of probability corresponds to an individual in the economic wealth distribution interpretation. For continuous random variables X ∼ p X (x) we deﬁne
+We can deﬁne the Lorenz curve in a way that ac- commodates all random variables (continuous, discrete, and singular) by expressing it as an optimization over all random variables U that are correlated with X. The general expression for the Lorenz curve is given by
+For example, we might let U be a random variable with a uniform distribution on the interval [0, 1], and let g(u) be a function such that X = g(U ) ∼ p X . This is in fact an optimal choice of U . An example of a function that would work would be the inverse of the cumulative distribution function which we deﬁne by
+A straightforward way of calculating the Lorenz curve is
+Any function with these properties is a Lorenz curve and uniquely speciﬁes a mean-one distribution.
+It is possible to talk about Lorenz curves for random variables that take negative values, in which case Prop- erty 4 would not necessarily hold. We only discuss non- negative random variables in this work.
+Suppose one wishes to exchange a random variable X 1 ∼ p X 1 for another random variable X 2 ∼ p X 2 using a system of fair gambles. The system may specify a different fair gamble, or sequence of gambles, for each value of X 1 . The following theorem states when such a system exists.
+Theorem 3.1: Given marginal distributions p X 1 and p X 2 with mean 1, there exists a joint distribution p X 1 ,X 2 with the property that E (X 2 |X 1 ) = X 1 if and only if L 1 (u) ≥ L 2 (u) ∀u ∈ [0, 1], where L 1 is the Lorenz curve for p X 1 and L 2 is the Lorenz curve for p X 2 .
+Proof: This theorem can be distilled from the literature. The concept of majorization, which applies to vectors, is related to the Lorenz curve. If a random variable X is formed from taking the uniform distri- bution over the elements of a vector x, and a random variable Y and vector y share the same relationship, then x majorizes y if and only if the Lorenz curve for Y is above the Lorenz curve for X. Based on this connection, the theorem can be established. However, we present a simple proof of the theorem here.
+For the converse part of the proof, assume that a joint distribution p X 1 ,X 2 has the property that E (X 2 |X 1 ) = X 1 . Construct X 1 = g(U ) ∼ p X 1 where U is uniformly distributed on [0, 1], as is used in the paragraph following (1). Also let U − X 1 − X 2 form a Markov chain.
+= E E (X 2 |X 1 , U ) 1 U ∈A ∗ = E E (X 2 1 U ∈A ∗ |X 1 , U ) = E X 2 1 U ∈A ∗
+The symbol A ∗ refers to the argmin of the right-hand side of the ﬁrst equality. The fourth equality is due to the construction of U having the Markov relationship U − X 1 − X 2 .
+For the direct part of the proof, ﬁrst note that E[X 2 |X 1 ] = X 1 is equivalent to the existence of a sequence of fair gambles that starts with wealth X 1 and ends up with wealth X 2 . For simplicity, we provide a proof for discrete random variables with ﬁnite alphabets in this paper. The proof for random variables with general distribution will be provided in the full paper under preparation.
+The following lemma solves the case where X 1 = 1, which by scaling, holds for X 1 = c for any constant c > 0.
+Lemma 3.2: Let X be a discrete random variable with support set {x 1 , .., x n }, x 1 < x 2 ... < x n , and probability mass function {p 1 , ..., p n }, satisfying x 1 ≥ 0 and EX = c. There exists a sequence of fair binary gambles that starts with $ c and ends up with wealth X.
+Proof: We give a proof by induction. For n = 2, the lemma automatically holds. Suppose the lemma holds for n = k. Consider the case n = k + 1. First, use a fair binary gamble to generate a binary random variable V :
+, w.p. 1 − p 1 x 1 , w.p. p 1
+, using the inductive assumption, there exists a sequence of fair binary gambles that starts with 1−p 1 x 1 1−p
+and ends up with a random variable X ′ ∼ ( p 2 1−p
+) with support set {x 2 , ..., x n }. This completes the proof of Lemma 3.2.
+Suppose X and Y are two non-negative discrete random variables with ﬁnite alphabets {x 1 , ..., x n } and {y 1 , ..., y n ′ }, respectively, and mean 1, and that the associated Lorenz curves of X and Y are L 1 and L 2 , respectively, where L 1 (u) ≥ L 2 (u). Again, we will use induction to prove the result. Note that Lemma 3.2 proves the case |X | = 1, which serves as the starting case. Assume the direct part of the theorem holds for |X | = k. Consider the case |X | = k + 1. Extend the line segment of L 1 (u) for u ∈ [p X (x 1 ), p X (x 1 )+p X (x 2 )] to the left, i.e., the region u ≤ p X (x 1 ), until it intersects L 2 at some point (u ∗ , l ∗ ) The convexity of the Lorenz curve and the fact that L 1 (u) ≥ L 2 (u) guarantee that such a point exists and u ∗ ≤ p X (x 1 ), illustrated in Fig. 3. Let m ∗ = argmax{j : Pr(Y < y j ) ≤ u ∗ }, and deﬁne the distribution of V by
+It is easy to check that EV = x 1 . In the ﬁrst step of the gamble, if X = x 1 , we do nothing, if X = x 1 , we use x 1 to generate the random variable V , which is feasible due to Lemma 3.2. By doing so, we exchange X 1 for a random variable Y 1 whose Lorenz curve coincides with L 2 for u ∈ [0, u ∗ ] and coincides
+with L 1 for u ∈ [p X (x 1 ), 1]. Note that Y 1 |Y 1 ≥ x 2 has a support set of cardinality |X | − 1, which is equal to k. Thus by the assumption of the induction, we can use Y 1 |Y 1 ≥ x 2 to generate L 2 (u), u ∈ (u ∗ , 1]. This completes the direct part of the theorem for discrete random variables with ﬁnite alphabets.
+Theorem 3.1 gives a partial ordering of mean-one distributions, based on the Lorenz curve. We say that p 1 p 2 , or p 1 is upstream from p 2 , or p 2 is more degraded than p 1 if L 1 ≥ L 2 ∀u ∈ [0, 1].
+The partial ordering of distributions according to the Lorenz curve gives a lattice. For any two mean-one distributions that are incomparable (the Lorenz curves cross), we can identify the last distribution (most de- graded) from which they each can be produced through a system of fair gambles. This will correspond to the point-wise maximum of the two Lorenz curves. We can also identify the ﬁrst distribution (least degraded) that they can each produce. This is the greatest Lorenz curve below both. Due to the convexity of the Lorenz curve, this will be the lower boundary of the convex hull of the epigraphs of both Lorenz curves.
+Let X 0 , X 1 , X 2 , ... be a sequence of random variables produced by fair gambles (wealths X n at times n = 0, 1, 2, ...). Let F 0 , F 1 , ... be the corresponding sequence of cumulative distribution functions and L 0 (u), L 1 (u), ... their Lorenz functions. Then we have the following simple proof of the convergence of X n in distribution.
+Theorem 3.3: For a sequence {X i } resulting from fair gambles, there exists a random variable X such that
+Proof: The sequence of Lorenz curves L n (u) is nonnegative, monotonically nonincreasing and thus has a limit L(u). F (x) is the corresponding limiting cu- mulative distribution function. In the case where L n (u) converges to zero for all u ∈ [0, 1), L(u) is not a Lorenz curve for lack of continuity, and the limiting distribution is zero with probability one.
+The second law of thermodynamics has a close rela- tionship to the behavior of entropy in Markov chains. For a Markov chain with a uniform stationary distribution, entropy always increases. However, this is not true for Martingales.
+Theorem 3.1 indicates that Martingales degrade in a different sense. The Lorenz curve cannot increase. A number of measures of inequality derived from the Lorenz curve, such as the Gini index, can only increase as a Martingale progresses.
+Suppose a gambler starts with $1 and wants to achieve a uniform distribution unif (0, 2) on his wealth after gambling. There is more than one possible gambling strategy to achieve this:
+• After inﬁnite bets the distribution of wealth is unif (0, 2).
+In this method, the gambler must place on the casino’s table a total of:
+8 + · · · = 1. Method 2:
+In this method, the gambler used “air gambles” to randomize the amount of money placed on the table and supplement the “physical gambles” implemented by the casino, resulting in a reduced expected amount of money placed on the table,
+We now ask “What is the minimum volume of bets to be placed on the table to achieve a desired target distribution?” We characterize the optimal efﬁciency for certain special cases of the target distribution.
+Theorem 4.1: Suppose a casino offers all fair binary gambles, i.e. ∀c ∈ (0, 1), the casino offers
+which can be scaled up or down (both cost and payout) as desired. Then, the minimum expected amount that one has to place on the casino’s table in order to gamble from x to 0 or 1 is given by V ∗ (x) = −(1 − x) ln(1 − x) ≤ x.
+Suppose we start with x. Here is a strategy to gamble to 0 or 1:
+2) The algorithm is n steps long. Let x n denote the wealth before the nth step. If x n = 1, make the following gamble:
+3) If the gamble succeeds, we are left with 1. If it fails, we are left with (x − δx) and we continue the process.
+Let V (x) denote the total volume of bets placed on the table to reach 0 or 1 from x. Then,
+In the limit as δx → 0, this can be recast as a differential equation
+Solving this differential equation with boundary condi- tions V (0) = V (1) = 0 gives
+We only outline the proof of the converse. In the above achievability scheme, we used only “physical” gambles. We did not use “air” gambles. So we must ﬁrst reason why air gambles are not needed. Note that the target distribution
+is not a convex combination of two or more different distributions with mean 1. In other words, it is an “extreme” distribution: an extreme point of the convex
+set of probability distributions with mean 1. A sequence of “air” gambles is simply a convex combination of “physical” gambles. Since the target distribution X con- sidered above is an extreme distribution, every physical gambling tree has to achieve X on termination. The volume of bets in an “air” gambling scheme is the average of the volume of bets in physical gambling schemes that constitute the air gambling scheme. It follows that we need only minimize the volume V ∗ (x) over physical gambling schemes.
+Now to establish optimality over physical gambles, we use a dynamic programming approach similar to [13]. According to the Bellman equation, we only need to show that V ∗ satisﬁes
+whenever 0 ≤ a ≤ b ≤ 1, and 0 ≤ θ ≤ 1. This can be proven using some algebra and calculus.
+The left hand side of the above inequality simply uses the scheme and expends a volume V ∗. The right hand side deviates from V ∗ for only the ﬁrst time step by playing an arbitrary gamble (b − a)θ → (b − a). The inequality suggests deviating from V ∗ is worse. By invoking this dynamic programming argument, we conclude that V ∗ is optimal.
+[[[ REFS ]]]
+
+--
+Methods of measuring the concentration of wealth.
+----
+
+--
+The Existence of Probability Measures with Given Marginals.
+----
+
+--
+Calibrated Learning and Correlated Equilib- rium.
+----
+
+--
+Entropies of Mixing (OEM) and the Lorenz Order.
+----
+
+--
+Lorenz Ordering of Order Statistics.
+----
+
+--
+On the Ordering of Probability Forecasts.
+----
+
+--
+The Comparison and Evaluation of Forecasters.
+----
+
+--
+Probabilitistic Forecasts, Cal- ibration and Sharpness.
+----
+
+--
+Lorenz Ordering of Order Statistics.
+----
+
+--
+Inequalities: Theory of Majorization and Its Applications.
+----
+
+--
+Variability and Mutability, Contribution to the Study of Statistical Distribution and Relations.
+----
+
+--
+Axiomatic Characterization of the Gini Coefﬁcient and Lorenz Curve Orderings.
+----
+
+--
+Inequalities for Stochastic Processes; How to Gamble If You Must.
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\157.pdf
+[[[ LINKS ]]]
+

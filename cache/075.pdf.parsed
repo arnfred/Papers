@@ -1,0 +1,210 @@
+[[[ ID ]]]
+75
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+MultiPass Lasso Algorithms for Sparse Signal Recovery
+[[[ AUTHORS ]]]
+Yuzhe Jin
+Bhaskar D. Rao
+[[[ ABSTR ]]]
+Abstract—We develop the MultiPass Lasso (MPL) algorithm for sparse signal recovery. MPL applies the Lasso algorithm in a novel, sequential manner and has the following important attributes. First, MPL improves the estimation of the support of the sparse signal by combining high quality estimates of its partial supports which are sequentially recovered via the Lasso algorithm in each iteration/pass. Second, the algorithm is capable of exploiting the dynamic range in the nonzero magnitudes. Preliminary theoretic analysis shows the potential performance improvement enabled by MPL over Lasso. In addition, we pro- pose the Reweighted MultiPass Lasso algorithm which substitutes Lasso with MPL in each iteration of Reweighted ℓ 1 Minimiza- tion. Experimental results favorably support the advantages of the proposed algorithms in both reconstruction accuracy and computational efﬁciency, thereby supporting the potential of the MultiPass framework for algorithmic development.
+Index Terms—Sparse signal recovery, MultiPass Lasso, Reweighted MultiPass Lasso, group detector, multiuser detection
+[[[ BODY ]]]
+Consider the estimation of a sparse signal through its linear measurements in the presence of noise, namely based on the model
+where x ∈ R m is the signal of interest, A ∈ R n ×m is the measurement matrix, N ∈ R n is the measurement noise, and Y ∈ R n is the noisy measurement. We assume N ∼ N (0, σ 2 I). Denote by k the number of nonzero entries in x, i.e., k = |supp(x)|, where supp(x) denotes the support set of x. Then, x is said to be sparse when k ≪ m. Given the measurement Y and the measurement matrix A, the goal is to reconstruct the sparse signal x. This problem of sparse signal recovery has recently received much attention and has many applications such as compressed sensing, biomagnetic inverse problems, image processing, channel estimation, and wireless communication [1], [2], [3]. Among existing algorithms for reconstructing sparse solutions, one can broadly classify them into two categories according to their underlying principles. The ﬁrst class of algorithms employ a greedy search approach and the locations of the nonzero entries in x are sequentially determined via a number of iterations. At each iteration, the algorithm ﬁnds the columns of A that best correlate with the current residual signal and then removes their contributions from the current residual signal to form the new residual signal for the next iteration. The algorithm terminates employing a stopping criterion such as the number of iterations or the strength of the residual signal, among others. Algorithms re- lated to this principle include Matching Pursuit [4], Orthogonal
+Matching Pursuit [5], Stagewise Orthogonal Matching Pursuit [6], Subspace Pursuit [7], etc. The second class of algorithms involve solving an optimization problem with a carefully chosen cost function to which the minimizers are considered reasonable estimates of the sparse signals of interest. As opposed to the class of sequential selection algorithms above, an algorithm of the second class jointly estimates all the nonzero entries. Basis Pursuit (BP) [8], FOCUSS [9], Lasso [10], and Reweighted ℓ 1 Minimization [11] are examples of this latter type of joint recovery algorithms. Especially, with important relevance to this work, the Lasso algorithm solves for
+where λ ≥ 0 is the regularization parameter. Note that (1) is convex in nature and can be solved by many existing convex optimization routines [12], [13], [14].
+In this work, we explore the opportunity of merging these different design principles together for performance improve- ment. The main contributions of the paper are summarized as follows. First, we propose the MultiPass Lasso algorithm in which the Lasso algorithm is applied in a novel, sequential manner. Speciﬁcally, at each iteration, Lasso is performed based on the current residual signal with the goal of estimating a subset of the support of the true sparse signal. Then, the cur- rent residual signal is projected onto the orthogonal comple- ment of the subspace spanned by columns of A corresponding to all previously selected indices to form the residual signal for the next iteration. Second, we derive the Reweighted MultiPass Lasso algorithm, which essentially replaces the Lasso routine with MultiPass Lasso in Reweighted ℓ 1 Minimization [11]. Third, motivated by the techniques presented in [15], we con- duct preliminary theoretic analysis to demonstrate the potential performance improvement of the MultiPass Lasso algorithm. Fourth, the experimental study indicates that Multipass Lasso and Reweighted MultiPass Lasso possess advantages over Lasso and Reweighted ℓ 1 Minimization, respectively, in both reconstruction accuracy and computational efﬁciency. Overall, these observations support the potential of the MultiPass framework and further suggest its usage in conjunction with other joint recovery methods for algorithmic innovations.
+The rest of the paper is organized as follows. We motivate the MultiPass Lasso algorithm in Section II-A, and develop the MultiPass Lasso algorithm in Section II-B, with observations in Section II-C and theoretic analysis in Section II-D. The Reweighted MultiPass Lasso algorithm is proposed in Section
+II-E. Experimental study is presented in Section III. Section IV concludes the paper.
+Notations . Let R m denote the m-dimensional real Eu- clidean space. Let N denote the set of positive integers. Let [m] denote the set {1, 2, ..., m}. Let |S| denote the cardinality of set S. For a vector x, ∥x∥ p denotes the ℓ p norm of x, i.e., ∥x∥ p 	 (
+|x i | p ) 1/p . Especially, ∥x∥ ∞ = max i |x i |. Let supp(x) {i : x i ̸= 0}. For a vector x, x S denotes the subvector made of the elements of x indexed by the set S. For a matrix A, A S denotes the submatrix formed by columns of A indexed by the set S, and A † denotes the Moore-Penrose pseudoinverse of A. Let diag(x i ) denote a diagonal matrix with elements of x i as its ith diagonal element.
+The motivation of the MultiPass Lasso algorithm is many fold.
+First, we are inspired by a theoretical advantage of Lasso which was recently unveiled in [15]. Basically, with other model parameters ﬁxed, a larger regularization parameter λ increases the probability of the support of the reconstructed signal being a subset of the true support. Based on this fact, the MultiPass Lasso algorithm suitably reﬂects the design idea that at each iteration a partial support can be correctly reconstructed with high probability so that the union of these sequentially recovered partial supports has a good chance of being the true support.
+Second, from a practical perspective, it has been observed that real signals usually do not have nonzero entries with similar magnitudes. According to the theoretic analysis for Basis Pursuit and Lasso [16], [17], they are capable of dealing well with signals with similar magnitude but they do not exploit the variation in the dynamic range of the nonzero magnitudes. Sequential selection methods perform notably better when such variation in nonzero entries exists [18]. The proposed MultiPass Lasso aims to make the best of both worlds. We model the nonzero entries as clusters with each cluster comprising of a group of nonzero entries with comparable magnitudes. The clusters are identiﬁed in a sequential manner and the nonzero entries within a group are detected jointly. Note that, at each internal iteration, existing sequential selection methods usually apply some correlation based detector [4], [5], [6], which has performance inferior to more sophisticated methods for simultaneous detection of multiple nonzero entries when the columns of A are correlated [19]. Therefore, MultiPass Lasso enables the potential of using Lasso for each internal iteration with the goal of improving the reconstruction of a partial support.
+Moreover, recently a connection between sparse signal recovery and reliable communication over the Multiple Access Channel (MAC) has been studied [20]. From an information theoretic perspective, a nonzero entry can be viewed as a user and the measurement matrix as the codebook, thus bridging sparse signal recovery and multiple user detection in wireless communication. A sequential selection method for sparse sig- nal recovery can be viewed as a Successive Interference Can- cellation (SIC) scheme for multiple user detection, and meth- ods such as Lasso as joint detection schemes [21]. When one
+examines the capacity region of a MAC, similar magnitudes of the nonzero entries suggest joint detection and disparate magnitudes suggest sequential detection. The development of group detectors [22] in multiple user communication motivates us to extend this design principle to the problem of sparse signal recovery.
+Step 2 : At the lth iteration. Choose a regularization parameter λ (l) within the range [0, 1 n ∥A (l −1) Y (l −1) ∥ ∞ ). Solve for
+Step 3 : If the predeﬁned termination condition is satisﬁed, out- put the ﬁnal estimate of the sparse signal as X MPL = A † S (l) Y. Otherwise, set l → l + 1 and go to Step 2.
+1) Selection of Regularization Parameter λ (l) : At the lth iteration, MPL solves for a Lasso solution based on the current residual signal Y (l −1) and the current measurement matrix A (l −1) . According to the discussion in [23], generally, X (l) ̸= 0 if and only if λ (l) ∈ [0, 1 n ∥A (l −1) Y (l −1) ∥ ∞ ). Meanwhile, based on the analysis in [24], as λ (l) → 0 + , in general more nonzero entries will be included in X (l) . One feasible way in implementation is to use the form λ (l) = γ n ∥A (l) Y (l) ∥ ∞ with some ﬁxed γ ∈ (0, 1) for all iterations. Our experiences indicate that γ ∈ (0.4, 0.9) typically gives good results. With larger γ, the solution in each iteration tends to be sparser, and generally more iterations will be carried out.
+2) Termination Condition: We propose two possible criteria for algorithm termination, which are inspired by matching pur- suit algorithms [4], [5], [25]. In the ﬁrst criterion, we choose some δ > 0 such that the algorithm stops if 1 n ∥Y (l) ∥ 2 2 ≤ δ. When the measurement noise is absent, i.e., N = 0, δ can be chosen as a small positive quantity related to machine precision. When the measurement is noisy, δ should be chosen based on the noise variance σ 2 . As the second termination criterion, a threshold s max ∈ N is set, and the algorithm terminates if |S (l) | ≥ s max .
+3) Update of Measurement Matrix A (l) : The update for A (l) in Step 2 is also employed in Order Recursive Matching Pursuit [25] for removing the contribution from previously selected columns. Note that the columns of A (l) indexed by S (l) are actually zero vectors due to the orthogonal projection P ⊥ S (l) . For purpose of implementation, one can use the sub- matrix of A (l) by removing all the zero columns and properly re-indexing the remaining columns.
+Recent theoretical work on Lasso [15] characterizes the probability lower bound for the event that the support of the recovered signal being a subset of the support of the true sparse signal. We can leverage the analytical techniques therein with necessary modiﬁcations to accommodate the dependencies among iterations to demonstrate the performance improvement enabled by MPL.
+For ease of exposition, let us consider a simple but rep- resentative scenario, where the nonzero entries of a sparse signal can only take one of two possible values. Formally, let S h , S l ⊂ [m] satisfying S h ∩ S l = ∅, |S h | = k h , |S l | = k l . For 0 < x low ≤ x high , the signal x is given as x i = x high if i ∈ S h ; x i = x low if i ∈ S l ; and x i = 0 otherwise. Suppose the elements of the measurement matrix A is independently generated according to N (0, 1). Let
+Fix some δ > σ 2 . Let ρ > 0 be an arbitrarily small constant. For tractable analysis, we only employ the ﬁrst termination criterion discussed in Section II-C-2).
+For the ﬁrst iteration of MPL, we choose the regu- larization parameter as λ (1) = min(λ 1 , 1 n ∥A Y∥ ∞ ) − ρ. If the algorithm proceeds to the second iteration, we choose λ (2) = min(λ 2 , 1 n ∥A (1) Y (1) ∥ ∞ ) − ρ. For any possible further iteration l, we pick an arbitrary λ (l) ∈ (0, 1 n ∥A (l −1) Y (l −1) ∥ ∞ ). Then, we can actually compute a lower bound for P(supp(X MPL ) = supp(x)) 1 . Due to the complex nature of this lower bound, we visualize it as well as the probability lower bound for support recovery by Lasso [15] in different ways in Fig.1 to compare the performance guarantees offered by different algorithms.
+First, we examine the impact of m by the simulation in Fig.1(a). Note that, for large m (i.e., more possible locations to monitor), MPL provides better performance guarantee than Lasso while holding other parameters ﬁxed. Next, we study the impact of the dynamic range of nonzero magnitudes on the reconstruction performance in Fig.1(b). Note that each
+point (x low , α) corresponds to the nonzero signal value pair (x low , x high ) where x high = αx low . The color of a point indi- cates the difference between the probability lower bound for MPL and that of Lasso. As we can see, given the noise level, when x low is relatively small, a nontrivial distance between x high and x low (i.e., a large dynamic range) enables MPL to enjoy better performance guarantee.
+The MPL algorithm enables the opportunity of substituting the Lasso routine in existing algorithms for obtaining their alternative MPL versions. Inspired by Reweighted ℓ 1 Mini- mization [11], we develop the Reweighted MultiPass Lasso algorithm as follows.
+Step 1 : Set q = 1, w (1) i = 1 for i ∈ [m]. Choose ϵ > 0, q max ∈ N.
+Step 2 : At the qth iteration. Run MultiPass Lasso based on the modiﬁed measurement matrix A · diag((w (q) i ) −1 ) and the measurement Y, and obtain the output as Z (q) . For i ∈ [m], compute
+Step 3 : If X (q) = X (q −1) or q = q max , the algorithm terminates. Otherwise, set q → q + 1 and go to Step 2.
+We perform experiments to empirically study the perfor- mance of the proposed MultiPass Lasso algorithms. The common experimental setup is as follows. We set n = 100 and m = 256. The measurement matrix A has elements i.i.d. according to N (0, 1). The number of nonzero entries k increases from 9 to 57 with a step size 6, and the nonzero entries are independently drawn from N (0, 1). Note that the Gaussian distribution for the nonzero entries is commonly employed in the literature and it leads to variety in magnitude. Both termination criteria in Section II-C-2) are employed. We claim a success in sparse signal recovery if ∥ ˆ X − x∥ 2 / ∥x∥ 2 ≤ τ , where ˆ X denotes the estimated sparse signal by some algorithm, and τ is a pre-deﬁned constant. Each performance curve in this section is averaged over 200 random trials.
+First, we study the selection of the regularization parameter λ (l) in each internal iteration of MPL. As earlier mentioned, the form λ (l) = γ n ∥A (l) Y (l) ∥ ∞ with a ﬁxed γ ∈ (0, 1) for all iterations is employed. We set σ = 0, δ = 10 −14 , s max = 0.7n, τ = 10 −3 , and a zero entry is determined using the threshold 10 −7 . The MPL algorithm is implemented using FPC [12]. Fig.2 illustrates the behavior of MPL with different choices of γ.
+Note that as γ increases, λ (l) increases, and a partial support of the sparse signal can be detected with higher probability [15]. In Fig.2(a), for the cases with more nonzero entries, i.e., larger k, using larger λ gives slight performance improvement. Meanwhile, as λ (l) increases, in general fewer nonzero entries appear in the solution vector X (l) [24]. Hence, the average number of iterations needed for each experiment increases,
+leading to higher computational cost. Fig.2(b), (c) agree with this analysis.
+We explore the selection of parameters for RMPL. First, we set q max = 4, and focus on the effect of ϵ. For the component MPL, we choose γ = 0.45, s max = 0.95n. Other parameters are the same as in Section III-A. Fig.3(a) shows the result.
+From Fig.3(a), we see that RMPL with ϵ = 1 achieves the best performance. Next, let us ﬁx ϵ = 1, and study the impact of q max on the performance of the algorithm. This is illustrated in Fig.3(b). Clearly, allowing more reweighted iterations helps improve the performance at the expense of computational cost.
+Next, we study the role of the parameter s max for MPL and RMPL. We choose s max = 0.6n, 0.7n, 0.8n, 0.95n, re- spectively. The experiment setup is the same as in Sections III-A and III-B, except we ﬁx γ = 0.6 for MPL, and ϵ = 1 and q max = 4 for RMPL. The performance metrics are the success rate and the support recovery rate (using 10 −7 to determine zero entry for all ﬁnal solutions). Fig.4 summarizes the results.
+From Fig.4(a), we see that the increase of s max can slightly improve the performance of MPL for the cases with more nonzero entries. This is reasonable in the following sense. A large s max may allow more indices to be selected, and it is more likely that supp(x) ⊆ S (l) (assuming l iterations in total). Then, in the noiseless setting, the ﬁnal least squares estimation in Step 3 of MPL may set the coefﬁcients very close to zero on the indices outside the true support. These indices, though selected in S (l) , will be judged as corresponding to zero entries via thresholding. Next, based on Fig.4(b), we can see that the performance of RMPL with different s max are very similar, due to the fact that the multiple runs of MPL in RMPL has made the selection of s max less important. In summary, this set of experiments indicates that the performances of MPL and
+RMPL, in terms of support recovery and estimation accuracy, are relatively insensitive to the selection of s max .
+D. Comparison with BP, Lasso, and Reweighted ℓ 1 Minimiza- tion
+First, we consider the noiseless scenario, i.e., σ = 0. We compare the performance between BP and MPL, and between Reweighted ℓ 1 Minimization (RL1) and RMPL. In this case, BP and RL1 are implemented via ℓ 1 -MAGIC [26]. For MPL, γ = 0.6. For both RL1 and RMPL, ϵ = 1 and q max = 10. Other parameters are chosen the same way as in Sections III-A and III-B. Fig.5(a) summarizes the results. It can be seen that MPL and RMPL outperform BP and RL1, respectively, in terms of both rate of success and rate of support recovery (using 10 −5 to determine zero entry for all ﬁnal solutions).
+Next, we consider the noisy setting with σ = 0.01. We compare among Lasso, RL1, MPL, and RMPL. All algorithms are implemented using the same Lasso routine [12]. For Lasso, we choose λ = σ
+choice of λ is also employed by RL1. For MPL and RMPL, δ = 2.25σ 2 , and we use 10 −4 as the threshold for determining zero entries. Meanwhile, τ = 10 −2 . Other parameters remain the same as in the noiseless case above. Fig.5(b) shows the result. We can see that MPL outperforms Lasso, and RMPL gives better performance than RL1 in both criteria (using 10 −3 for determining zero entry in all ﬁnal solutions). This set of experiments supports the design goal of MPL from
+which better support recovery is expected. The effectiveness of the proposed MPL and RMPL in various settings are also illustrated.
+We examine the computational efﬁciency of MPL and RMPL with comparison to Lasso and RL1, respectively, in the noisy setting. The parameters are chosen the same as in the noisy case in Section III-D, except that for RL1 and RMPL, we set q max = 4.
+Three different Lasso solvers are employed, namely the Fixed-Point Continuation method (FPC) [12], the Truncated Newton Interior-Point method with Preconditioned Conjugate Gradients (L1LS) [13], and the Basic Gradient Projection method (GPSR) [14]. With each of the three Lasso solvers, we implement Lasso, RL1, MPL, and RMPL with the same initialization, termination condition, and precision control to ensure fair comparison. The computer in use runs MATLAB R2010a in Windows XP environment. Fig.6 summarizes the results.
+According to Fig.6, the empirical probabilities of success for each algorithm using different Lasso solvers are almost identical. Most implementations of MPL perform faster than Lasso for a large range of k. Especially, MPL with GPSR implementation is faster than Lasso for the whole range of k tested here, and it is faster than other implementations of Lasso as well. Meanwhile, with each optimization solver, RMPL achieves better performance and lower computational cost than RL1 built upon the same solver. The GPSR version of RMPL achieves the lowest computational cost among the tested cases. Overall, MPL and RMPL achieve both better performance and lower computational cost than their Lasso counterparts, respectively, suggesting their potential as effective and efﬁcient algorithmic choices for sparse signal recovery.
+We proposed the MultiPass Lasso algorithm and the Reweighted MultiPass algorithm for sparse signal recovery. The results are promising and compare favorably with their
+one-pass, Lasso counterparts. This MultiPass framework is quite general and can accommodate a plethora of options in the various stages. This can be a fertile ground for future algorithmic work and analysis.
+[[[ REFS ]]]
+D. L. Donoho
+--
+Compressed sensing
+----
+E. J. Candes
+--
+Compressive sampling
+----
+S. F. Cotter
+B. D. Rao
+--
+Sparse channel estimation via matching pur- suit with application to equalization
+----
+S. Mallat
+Z. Zhang
+--
+Matching pursuits with time-frequency dictio- naries
+----
+Y. C. Pati
+R. Rezaiifar
+P. S. Krishnaprasad
+--
+Orthogonal matching pursuit: Recursive function approximation with applications to wavelet decomposition
+----
+D. Donoho
+Y. Tsaig
+I. Drori
+J. Starck
+--
+Sparse solution of underdetermined linear equations by stagewise orthogonal matching pursuit
+----
+W. Dai
+O. Milenkovic
+--
+Subspace pursuit for compressive sensing: Closing the gap between performance and complexity
+----
+S. S. Chen
+D. L. Donoho
+M. A. Saunders
+--
+Atomic decomposition by basis pursuit
+----
+I. Gorodnitsky
+B. Rao
+--
+Sparse signal reconstruction from limited data using focuss: A re-weighted norm minimization algorithm
+----
+R. Tibshirani
+--
+Regression shrinkage and selection via the lasso
+----
+E. J. Candes
+M. B. Wakin
+S. P. Boyd
+--
+Enhancing sparsity by reweighted ℓ 1 minimization
+----
+E. T. Hale
+W. Yin
+Y. Zhang
+--
+A ﬁxed-point continuation method for l1-regularized minimization with applications to compressed sensing
+----
+S.-J. Kim
+K. Koh
+M. Lustig
+S. Boyd
+D. Gorinevsky
+--
+An interior- point method for large-scale l1-regularized least squares
+----
+M. Figueiredo
+R. D. Nowak
+S. J. Wright
+--
+Gradient projection for sparse reconstruction: Application to compressed sensing and other inverse problems
+----
+M. Wainwright
+--
+Sharp thresholds for high-dimensional and noisy sparsity recovery using ℓ 1 -constrained quadratic programming (lasso)
+----
+D. M. Malioutov
+M. C ¸ etin
+A. S. Willsky
+--
+Optimal sparse repre- sentations in general overcomplete bases
+----
+E. Candes
+--
+The restricted isometry property and its implications for compressed sensing
+----
+A. K. Fletcher
+S. Rangan
+V. K. Goyal
+--
+On-off random access channels: A compressed sensing framework
+----
+S. Verd
+--
+Multiuser Detection
+----
+Y. Jin
+B. D. Rao
+--
+Insights into the stable recovery of sparse solutions in overcomplete representations using network information theory
+----
+D. Ts
+P. Viswanat
+--
+Fundamentals of Wireless Communication
+----
+F. Hasegawa
+J. Luo
+K. R. Pattipati
+P. Willett
+D. Pham
+--
+Speed and accuracy comparison of techniques for multiuser detection in synchronous cdma
+----
+M. R. Osborne
+B. Presnell
+B. A. Turlach
+--
+On the lasso and its dual
+----
+B. Efron
+T. Hastie
+I. Johnstone
+R. Tibshirani
+--
+Least angle regression
+----
+S. Cotter
+J. Adler
+B. D. Rao
+K. Kreutz-Delgado
+--
+Forward sequential algorithms for best basis selection
+----
+E. J. Candes
+J. Romberg
+--
+ℓ1-magic : Recovery of sparse signals via convex programming
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\075.pdf
+[[[ LINKS ]]]
+

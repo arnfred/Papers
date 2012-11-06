@@ -1,0 +1,157 @@
+[[[ ID ]]]
+191
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Polarization and randomness extraction
+[[[ AUTHORS ]]]
+Emmanuel Abbe
+[[[ ABSTR ]]]
+Abstract—This paper explores a connection between random- ness extraction and channel (source) coding problems. It is explained how efﬁcient extractors can be used to deﬁne efﬁcient coding schemes and reciprocally, a new deterministic extractor based on a polar coding scheme is proposed. Since the source model used in extractors for computer science (cryptography) do not assume i.i.d. or known distributions, a generalized polariza- tion phenomenon for sources with block memory and unknown distributions is developed. It is shown that in this setting, the min-entropy (as usual in extractors) rather than Shannon entropy can be efﬁciently extracted. The derived polar coding results also apply to compound channels with memory.
+[[[ BODY ]]]
+This paper investigates a connection between randomness extraction and channel (source) coding problems, in particular with polar coding. Often, the intuition behind the design of good codes has been to construct ‘uniformly’ spaced out code words, and the connection to randomness extraction was not explicit. Shannon used a random coding argument to achieve the capacity on a discrete memoryless channel (DMC): by drawing the code words at random, these are with high probability well spaced out and hence, less likely to be confused by the noise. Since the random coding argument produces code books which have little structure (not linear or sparse), the complexity of the resulting coding scheme is high. To address this complexity issue, several coding schemes have been proposed, in particular, LDPC and turbo codes have provided successful constructions in terms of rate achievability and complexity. Yet, many analytical results for these codes, such as achieving capacity, rely on conjectures. More recently, a new class of codes called polar codes have proved to have several interesting attributes: (1) they are linear codes gen- erated by low-complexity deterministic matrices (2) bounds on the error probability (exponential in the square root of the block length) can be proved (3) they have a low decoding complexity (4) they allow to reach the Shannon capacity on any DMC. These codes are indeed the ﬁrst codes with low decoding complexity that are provably capacity achieving on any DMC. They also bring to light a new connection with randomness extraction.
+This paper proposes a new approach to the problem of constructing efﬁcient codes via a randomness extraction per- spective. The connection can also be used to leverage coding techniques (in particular polarization) to randomness extrac- tion problems in computer science. In the next section, the connection is brieﬂy explained in a general setting. It is then discussed in details in Section III with polar codes to construct a new deterministic extractor. In order to cast our construction
+in the literature of extractors, we will show a stronger polariza- tion phenomenon than the original phenomenon discovered by Arıkan in [4] (and reviewed in Section 3). In particular, we will extend the phenomenon to the cases of sources (or channels) with memory (as initiated in [1]) and unknown distributions. Hence, the results in this paper can also be regarded as polar code extensions to memory and compound settings.
+Consider an additive noise channel with binary input alpha- bet (these assumptions are convenient but non additive or non binary channels can also be considered). After n uses of the channel, the input x ∈ F n 2 is perturbed by a noise vector Z (valued in F n 2 ) to produce the output
+The components of Z may be independent (in the case of memoryless channels) or may have some dependencies. Imagine now that you have at hand a transformation 1 E n which is invertible and which allows to extract almost all the randomness in Z, that is, Z = E n Z contains a subset of components which are roughly i.i.d. uniform and the remaining components are roughly deterministic given this subset (mathematical deﬁnitions for the term ‘roughly’ are provided in Section II). Then, by applying E n to the output, one gets a new output
+where x = E n x. The advantage of this ‘change of coordinate’ is that Z is now a ‘special’ noise, with a subset of almost deterministic components (given the other components). This suggests directly a coding scheme: on the deterministic com- ponents, uncoded information bits shall appear, and on the pure noise components bits shall be frozen. Since E n is invertible, one shall transmit x = E −1 n b where b contains information bits on the deterministic components and frozen bits elsewhere. Thus, an efﬁcient extractor E n leads to an efﬁcient coding scheme. The communication rate is given by the number of information bits, namely 1 − H(Z)/n if all (but o(n)) of the randomness is extracted, which is the Shannon capacity for the memoryless case. The error probability is deﬁned by the residue of entropy left in the deterministic components, the encoding complexity by the complexity of E n and the decoding complexity by the decoding algorithm which also depends on the complexity of E n .
+Therefore, existing extractors that are efﬁcient, e.g., [8] for seedless and [7] for seeded extractors, can be used to deﬁne new coding schemes having interesting complexity and performance attributes. It would be interesting to investigate practical performances of these schemes. Also note that a similar application to source compression is straightforward: if Z denotes a redundant source, the random components in E n Z are the components to be stored, as the other components can be reconstructed with small error probability.
+This connection can also be used reciprocally to use coding techniques in randomness extraction. Namely, the role of E n is related to the role of the generator matrix in linear codes, and in the case of polar codes, the connection is explicit and E n = G n as deﬁned in next section. However, in the random- ness extraction problems of computer science (in particular for cryptographic applications [9], [10]), the model for the random source (i.e., Z in the above notation) is more general than the noise model considered in most coding problems 2 . Section III of this paper develops a polarization extractor handling source model assumptions which are closer to the assumptions made for deterministic extractors in computer science. In particular, we will relax the hypothesis that the source is i.i.d. and that its distribution is known.
+The key result in the development of polar codes is the so-called ‘polarization phenomenon’, initially shown in the channel setting in [4]. The same phenomenon admits a source setting formulation, as follows.
+Theorem 1. [[4], [5]] Let X = [X 1 , . . . , X n ] be i.i.d. Bernoulli( p), n be a power of 2, and Y = XG n , where G n = 1 0 1 1 ⊗ log 2 (n) . Then, for any ε ∈ (0, 1),
+1 n
+Note that (3) implies that the proportion of components j for which H(Y j |Y j−1 ) ∈ (ε, 1 − ε) tends to 0. Hence most of the randomness has been extracted in about nH(p) components having conditional entropy close to 1 and indexed 3 by
+and besides o(n) ﬂuctuating components, the remaining n(1 − H(p)) components have conditional entropy below ε.
+In [1], a generalized version of the polarization phenomenon (i.e., of Theorem 1) is shown for powers of primes (the proof is given for powers of 2, but the same holds for arbitrary primes), and a direct approach for the Slepian-Wolf problem using polar codes is proposed. Also, a generalization of Theorem 1 to a setting allowing memory within the source (non i.i.d. setting) is developed in [1]. All these were derived from a common
+result, namely Theorem 2 below. This theorem proposes a “matrix polarization” where not only randomness but also dependencies can be extracted using G n . It can be viewed as a counter-part of the results in [3] for a source rather than channel setting. The results presented in the source setting can then be extended to a channel setting (such as channels with memory, or non-prime input alphabets). This paper pursues the work initiated in [1] regarding the problem of randomness extraction.
+Some notations: For x ∈ F k 2 and S ⊆ [k], x[S] = [x i : i ∈ S]. For x ∈ F k 2 , x i = [x 1 , . . . , x i ], and {0, 1, . . . , m} ± ε = [−ε, ε] ∪ [1 − ε, 1 + ε] ∪ · · · ∪ [m − ε, m + ε].
+Deﬁnition 1. A random variable Z over F k 2 is ε-uniform if H(Z) ≥ k(1 − ε), and it is ε-deterministic if H(Z) ≤ εk. We also say that Z is ε-deterministic given W if H(Z|W ) ≤ εk.
+The following is shown in [1], the proof is sketched in Section IV.
+Theorem 2. (1) Let n be a power of 2 and X be an m × n random matrix with i.i.d. columns of arbitrary distribution µ on F m 2 . Let Y = XG n where G n = 1 0 1 1 ⊗ log 2 (n) . Then, for any ε > 0, there exist two disjoint subsets of indices R ε , D ε ⊆ [m]×[n] with |[m]×[n]\(R ε ∪D ε )| = o(n) such that the subset of entries Y [R ε ] is ε-uniform and Y [D ε ] is ε-deterministic given Y [D c ε ]. (Hence |R ε | · = nH(µ), |D ε | · = n(m − H(µ)).)
+(2) Moreover, the computation of Y as well as the recon- struction of X from the non-deterministic entries of Y can be done in O(n log n), with an error probability of O(2 −n β ), β < 1/2, using the algorithm polar-matrix-dec.
+This theorem provides an extension of the basic polarization phenomenon of Theorem 1 to source having block memory. Although more general memory models can be considered for part (i) of Theorem 1, it is not clear that there exists always a low-complexity decoding algorithm (as in part (ii)) for these models, since the complexity of the decoding algorithm scales with the memory length. Next we provide a result used for handling unknown source distributions, which matters in randomness extraction problems.
+Lemma 1. [Nested structure] Let µ, µ be two probability distributions on F m 2 and assume that there exists another probability distribution ν on F m 2 such that
+where x + y denotes the component wise modulo 2 addition (we denote µ = µ ν). Denote by X, X and Y , Y the corresponding random matrices (as in Deﬁnition 3). Then, for any S ⊆ [m],
+In a separate work, we show that previous lemma holds also for the majorization ordering. Finally, we show in Section III the following, stated formally in Theorem 3.
+Result: The deterministic extractor deﬁned in Section III allows to extract Cδ + o 1 (n) bits that are 2 −
+n -uniform from a block mixing source of min-entropy rate δ > 0. We show that C = 1 for certain values of δ. (A subsequent work shows that C = 1 for all δ > 0 using the extension of Lemma 1 with the majorization ordering.)
+The following lemma provides a characterization of the dependencies in Y , it is proved in Section IV-A. Lemma 2. For any ε > 0, we have,
+1 n
+This lemma implies the ﬁrst part of Theorem 2. The proof of the second part of the theorem is sketched in Section IV-B and uses the following result.
+Lemma 3. For any ε > 0 and j ∈ [n], let A j denote the binary matrix of maximal rank such that
+Note that A j can have zero rank, i.e., A j can be a matrix ﬁlled with zeros. We then have,
+1 n
+Inputs: D c ⊆ [m] × [n], y[D c ] ∈ F |D c | 2 . Output: y ∈ F mn 2 . Algorithm:
+1. Find the smallest j such that S j = {(i, j) ∈ M } is not empty; compute
+Due to the Kronecker structure of G n , and similarly to [4], step 1. and the entire algorithm require only O(n log n) computations.
+• Distributed data compression, i.e., Slepian-Wolf coding • Compression of sources on arbitrary ﬁnite ﬁelds • Compression of non i.i.d. sources
+The Slepian-Wolf coding problem was already investigated in [5], by reducing the problem to single-user source coding problems. A ‘direct’ approached is left for future work. This
+is indeed the approach used here. The compression of sources with memory is treated using interleaving to build the matrix X. Finally, the compression of sources on F 2 m is treated by using a representation over F m 2 of the source.
+An extractor is a map that extracts m bits that are ε-uniform from n bits that have a total entropy at least k, with the help of a seed of d pure uniform bits. For more details and a survey on extractors see for example [14], [12]. The notion of ε- uniformity (or ε-close to uniform) used in computer science is usually measured by the l 1 -norm, rather than the entropy as in this paper. Nevertheless, these two notions can be related as shown later. Also, the entropy used in the computer science literature is the min-entropy rather than the Shannon entropy, which is a lower bound to the Shannon entropy. Recall that the min-entropy of X on X is deﬁned by
+Since the source for the extractor deﬁnition is only assumed to have min-entropy k, and no further assumptions are made on the source distribution (not necessarily memoryless), it may not be possible to extract all of the Shannon entropy. On the other hand, extracting uniform bits out of sources that do not have a signiﬁcant amount of independence turned out to be limited, and it was shown in [11] that it is impossible to ﬁnd a function that would extract a single bit of randomness from sufﬁciently general classes of sources. These limitations led researchers to consider the help of seeds, which consist of few uniform bits that can be used as a catalyst to help extracting further bits from rather general source models. More recently, “seedless” or deterministic extractors have regained attention, as for certain applications such as in cryptography [9], [10], the use of seeds may not be suitable. The classes of sources considered for deterministic extractors are mainly independent sources (e.g., Markov, bit-ﬁxing sources) with a rather general class called independent-symbol sources deﬁned in [8], consisting of independent symbols of alphabet size d, and generalizing some of the previously mentioned classes. It is shown in [8] that, assuming an efﬁcient deterministic algorithm for ﬁnding large primes, an efﬁcient extractor can be constructed to extract nearly all the randomness in the source.
+This paper introduces a new deterministic extractor for a class of independent-symbol sources. The source model considered here consists of sources having i.i.d. blocks, where the blocks can have arbitrary correlations but must have small lengths compared to the total source length. This is a similar setting as in [8], it is indeed a particular case corresponding to blocks having the same distributions. It is expected that the results presented in this paper generalize to source models having independent but not i.i.d. blocks (as long as the total min-entropy is of the same order), or not independent but weakly correlated blocks. However, we stick with the i.i.d. block setting (and ﬁxed block size) as we believe it contains most of the essence of the new method proposed in this paper.
+Deﬁnition 3. Let (µ, ε)-Pext : F n 2 → F r 2 be the matrix obtained by deleting the columns of G n that are not in R ε (µ), where µ is a probability distribution on F m 2 , and R ε (µ) is deﬁned as R ε (µ) = ∪ n j=1 R j,ε (µ),
+R j,ε (µ) = arg max{|S| : H(Y j [S]|Y j−1 ) ≥ |S| − ε, S ⊆ [m]} (5)
+where an arbitrary maximizer is picked in (5) if there are multiple ones. Recall that X = X 1 , . . . , X n is i.i.d. µ and
+Note that Pext beneﬁts from the low encoding complexity of G n , namely O(n log n).
+Deﬁnition 4. We call a binary source X N m-mixing under µ if X N = [X 1 , . . . , X N/m ] with X i i.i.d. under µ on F m 2 . (Hence, N = nm with respect to previous deﬁnition.) We call a binary source X N m-mixing if it is m-mixing under some distribution µ. The entropy rate of X N is given by H ∞ (X N )/N = H ∞ (µ)/m.
+Corollary 1. Let a source X N be m-mixing under µ. Then, (µ, ε)-Pext allows to extract H(µ) m N + o(N ) bits that are ε- uniform in the entropy sense (cf. Deﬁnition 1).
+The following result generalizes previous corollary to a setting where the source distribution is not known, exploiting the min-entropy assumption, and replacing the ε-uniformity in entropy with the l 1 deﬁnition.
+Theorem 3. Let X N be m-mixing source with entropy rate δ > 0 and let ε > 0. The extractor (δ, ε 2 /2n)-Pext deﬁned below allows to extract a rate of Cδ bits that are ε-uniform in the l 1 -sense. The result still holds if ε = ε n = O(2 −n β ), β < 1/2.
+Deﬁnition 5. The extractor (δ, ε)-Pext : F n 2 → F r 2 , for m- mixing sources is given by (µ ∗ , ε)-Pext where µ ∗ is the distribution
+We now sketch the proof of these results. Our strategy to get a “universal” result as in Theorem 3 is the following. We would like to design an extractor as in Corollary 1 which is deﬁned for a distribution µ ∗ , such that it allows to extract the random bits of any other distribution µ which is in the set
+Ball ∞ (δ) := {µ on F m 2 : H ∞ (µ) ≥ δ}. 	 (6) In view of Lemma 1, our strategy becomes to ﬁnd a
+distribution µ ∗ such that Ball ∞ (δ) c µ ∗ , where we denote µ c µ if µ and µ are satisfying the hypothesis of Lemma 1. Hence, we need to understand the geometry of: (1) the min- entropy ball (2) the convolutional ball deﬁned by
+Regarding the min-entropy ball, note that a distribution µ has min-entropy at least δ if and only if µ(x) ≤ q −δ , where q = 2 m is the support cardinality of µ. Hence, the min-entropy ball is a polytope shaped by all hyper-planes µ(x) ≤ q −δ , for x ∈ F m 2 , intersecting the simplex in dimension 2 m . The convolutional ball turns out to be also a polytope. Indeed note that µ(x) = y∈F m
+µ(x + y)ν(y), ∀x ∈ F m 2 can be written in a matrix form as b = M a, where b and a are vectors in F 2 m 2 ﬁlled with the values of respectively µ(x) and µ(x) for x ∈ F m 2 , and M is the matrix containing in each row a permutation of ν(x) for x ∈ F m 2 . In the case where the distributions are on F q for q prime, this would simply be a circular matrix. Here the group of symmetry is also a sub- group of the permutations which leaves invariant the set of distributions having all components but one constant. We will soon use this. So the min-entorpy and convolutional ball are both polytopes, which gives hope for a possible tight packing. Note that the extremal points of the min-entropy ball have dif- ferent structures depending on δ. Let q = 2 m . A distribution is in the boundary of the min-entropy ball if we have µ(x) = q −δ for some x ∈ F m 2 . The boundary can be reached for one value of x, and if δ is larger, possibly for 2 values of x, etc., till the possibility of having a distribution with 2 m − 1 mass points reaching previous equality if δ is large enough. Let us give a numerical example. Let m = 2, i.e., consider distributions on 4 points. We must have δ ∈ [0, 1], where the extreme values lead to a delta and uniform distribution. Say δ is such that 4 −δ = 2/7. Then we can have (2/7, 5/21, 5/21, 5/21) which lies on the boundary of the min-etropy ball, but also (2/7, 2/7, 3/14, 3/14) or (2/7, 2/7, 2/7, 1/7). Moreover, the last distribution is an extremal point, and we can reach other points by taking the convex hull of all permutations of this point. Now the good news is that distributions of the kind (2/7, 2/7, 2/7, 1/7) are invariant under the symmetry-group of M , as mentioned previously. Hence, by picking µ ∗ to be one of these distributions, the convex hull of the orbit of µ ∗ through this symmetry-group contains the convex hull of the extremal points of the min-entropy ball. If δ is not large enough, so as to make the distribution which has all but one mass point at q −δ not an extremal-point, then the min-etropy ball can have more extremal points and the convolutional ball may not include the min-entropy ball. This explains the statement of Theorem 3 and gives Lemma 4. For δ smaller than in Lemma 4, we cannot get inclusions of the ball. However, a subsequent work shows that there is a weaker notion of ordering than the convolutional one, namely, the majorization ordering, which leads to a larger invariant group given by all permutations. This allows the inclusion of the min-entropy ball for any values of δ. Finally, the use of the l 1 rather than entropy deﬁnition for the ε-uniformity is handled in [1], using Pinsker’s inequality.
+In order to prove Lemma 2, we need the following deﬁnition and lemmas.
+Deﬁnition 6. For a random vector V distributed over F m 2 , deﬁne V − = V + V and V + = V , where V is an i.i.d. copy of V . Let {b i } i≥1 be i.i.d. binary random variables in {−, +} with uniform probability distribution, and let
+for S ⊆ [m], where the order between (−, +)-sequences is the lexicographic order (with − < +).
+Note that {V b 1 ...b k : (b 1 . . . b k ) ∈ {−, +} k } (d) = XG 2 k where X is the matrix whose columns are i.i.d copies of V . The following lemma justiﬁes the deﬁnition of previous random processes.
+Lemma 5. Using V ∼ µ in the deﬁnition of η k [S], we have for any n and any set D ⊆ [0, |S|]
+1 n
+The proof is a direct consequence from the fact that the b k ’s are i.i.d. uniform. Using the invertibility of 1 0 1 1 and properties of the conditional entropy, we have the following.
+Lemma 6. η k [S] is a super-martingale with respect to b k for any S ⊆ [m] and a martingale for S = [m].
+Note that because η k [S] is a martingale for S = [m], the sum-rate H(µ) is conserved through the polarization process. Now, using previous lemma and the fact that η k [S] ∈ [0, |S|] for any S, the martingale convergence theorem implies the following.
+The following allows to characterize possible values of the process η k [S] when it converges.
+Lemma 7. For any ε > 0, X valued in F m 2 , Z arbitrary, (X , Z ) an i.i.d. copy of (X, Z), S ⊆ [m], there exists δ = δ(ε) such that H(X [S]|Z ) − H(X [S]|Z, Z , X[S] + X [S]) ≤ δ implies H(X [S]|Z ) − H(X [S \ i]|Z ) ∈
+H(X [S]|Z ) − H(X [S]|Z, Z , X[S] + X [S]) = I(X [S]; X[S] + X [S]|Z, Z )
+≥ I(X [i]; X[i] + X [i]|Z, Z , X[S \ i] + X [S \ i], X [S \ i]) = H(X [i]|Z , X [S \ i])
+Previous expansions allow to bring the expression appearing in basic (scalar) source polarization. It is shown in [5] that if A 1 , A 2 are binary random variables and B 1 , B 2 are val- ued in arbitrary sets such that P A 1 A 2 B 1 B 2 (a 1 , a 2 , b 1 , b 2 ) = P (a 1 + a 2 )P (a 2 )Q(b 1 |a 1 + a 2 )Q(b 2 |a 2 ), for some conditional probability distribution Q and binary probability distribution P , then, for any a > 0, there exists b > 0 such that H(A 2 |B 2 ) − H(A 2 |B 1 B 2 A 1 ) ≤ b implies H(A 2 |B 2 ) ∈
+{0, 1} ± a. Hence, we set A 1 = X[i] + X [i], A 2 = X [i], B 1 = Z, X[S \ i] and B 2 = Z , X [S \ i] and we can pick δ small enough to lower bound (7) and show that H(X [i]|Z , X [S \ i]) ∈ {0, 1} ± ε. From the chain rule, we then get H(X [S]|Z ) − H(X [S \ i]|Z ) ∈ {0, 1} ± ε.
+Corollary 3. With probability one, lim k→∞ η k [S] ∈ {0, 1, . . . , |S|}.
+In order to prove Theorem 2 part (2), we basically need to show that part (1) still holds when taking ε scaling like ε n = 2 −n α for α < 1/2, as in [6]. We did not ﬁnd a direct way to show that when η k [S] converges to |S|, it must do it that fast (the sub-martingale characterization is too week to apply results of [6] directly). This is why we looked into Lemma 3. By developing a correspondence between previous results and analogue results dealing with linear forms of the X[S]’s, we are able to use the speed convergence results shown for the single-user setting and conclude. This approach was developed in [3] for the multiple access channel. In the source setting, the following is needed and proved in [2].
+Lemma 8. For a random vector Y valued in F m 2 , if H(Y [S]) ∈ {0, 1, . . . , |S|} ± ε for any S ⊆ [m], we have H( i∈S Y [i]) ∈ {0, 1} ± δ(ε), with δ(ε) ε→0 → 0.
+[[[ REFS ]]]
+E. Abb
+--
+Randomness and dependencies extraction via polarization, Information theory and application workshop (ITA), San Diego, February 2011
+----
+E. Abb
+--
+Mutual information, matroids, and extremal dependencies, arXiv:1012
+----
+E. Abb
+E. Telata
+--
+Polar codes for the m-user MAC, in Proc
+----
+E. Arıka
+--
+Channel polarization: A method for constructing capacity- achieving codes for symmetric binary-input memoryless channels, IEEE Trans
+----
+E. Arıka
+--
+Source polarization, in Proc
+----
+E. Arıka
+E. Telata
+--
+On the rate of channel polarization, in Proc
+----
+V. Guruswam
+C. Uman
+S. Vadha
+--
+Unbalanced expanders and randomness extractors from Parvaresh-Vardy codes, Journal of the ACM, vol
+----
+J. Kam
+S. Vadha
+A. Ra
+D. Zuckerma
+--
+Deterministic extractors for small-space sources , Proceedings of the 38 annual ACM symposium on Theory of computing STOC ’06, Seattle, May 21–23, 2006
+----
+J. Kam
+D. Zuckerma
+J. Comput
+--
+Deterministic Extractors for Bit-Fixing Sources and Exposure-Resilient Cryptography , SIAM , Vol
+----
+R. Koeni
+U. Maure
+--
+Extracting randomness from generalized symbol- ﬁxing and markov sources, In Proceedings of 2004 IEEE International Symposium on Information Theory, pp
+----
+M. Santh
+U. V. Vaziran
+--
+Generating quasi-random sequences from semi-random sources , JCSS, 33:75–87, 1986
+----
+R. Shaltie
+--
+Recent developments in explicit constructions of extractors, Bulletin of the EATCS, 77:67–95, 2002
+----
+I. Ta
+A. Vard
+--
+How to Construct Polar Codes, Information theory workshop, Dublin, August 2010
+----
+L. Trevisa
+--
+Extractors and Pseudorandom Generators, Journal of the ACM, 48(4):860–879, 2001
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\191.pdf
+[[[ LINKS ]]]
+

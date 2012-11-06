@@ -1,0 +1,142 @@
+[[[ ID ]]]
+126
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The capacity region for two classes of product broadcast channels
+[[[ AUTHORS ]]]
+Yanlin Geng
+Amin Gohari
+Chandra Nair
+Yuanming Yu
+[[[ ABSTR ]]]
+Abstract—We establish a new outer bound for the capac- ity region of product broadcast channels. This outer bound matches Marton’s inner bound for a variety of classes of product broadcast channels whose capacity regions were previously unknown. These classes include product of reversely semi-deterministic and product of reversely more-capable channels. A signiﬁcant consequence of this new outer bound is that it establishes, via an example, that the previously best known outer-bound is strictly suboptimal for the general broadcast channel. Our example is comprised of a product broadcast channel with two semi- deterministic components in reverse orientation.
+[[[ BODY ]]]
+The broadcast channel refers to a communication scenario where a single sender wishes to communicate (possibly different messages) with multiple receivers. This problem was introduced by Cover [1] and is one of the fundamental problems in multiuser information theory. We consider a simple setting of the problem where the sender X, who has messages M 1 , M 2 , wishes to communicate message M 1 to receiver Y and M 2 to receiver Z over a noisy discrete memoryless broadcast channel q( y, z|x). A set of rate pairs (R 1 , R 2 ) is said to be achievable for this broadcast channel, q, if there is a sequence of codebooks, each consisting of:
+• an encoder, Ψ, at the sender that maps the message pair ( m 1 , m 2 ) into a sequence X n
+• a decoder, Φ 1 , at receiver Y that maps the received sequence Y n into an estimate ˆ M 1 of its intended message M 1 , and
+• a decoder, Φ 2 , at receiver Z that maps the received sequence Z n into an estimate ˆ M 2 of its intended message M 2
+such that P( ˆ M 1 = M 1 ) , P( ˆ M 2 = M 2 ) → 0 as n → ∞, when the messages M 1 , M 2 are uniformly distributed in [1 : 2 nR 1 ]×[1 : 2 nR 2 ]. The capacity region is the closure of the set of all achievable rate pairs. An evaluable characterization of this capacity region is a well known open problem.
+The best known inner and outer bounds for the capac- ity region of a general two-receiver discrete-memoryless broadcast channel with private messages are the follow- ing:
+• Inner bound: (Marton [2]) The union of rate pairs ( R 1 , R 2 ) satisfying the inequalities
+forms a Markov chain constitutes an inner bound to the capacity region. Further to compute this region it sufﬁces [3] to consider | U |, |V | ≤ |X|, |W | ≤ |X| + 4.
+• Outer bound: (UV outer bound [4]) The union of rate pairs ( R 1 , R 2 ) satisfying the inequalities
+over all ( U, V, X) : (U, V ) → X → (Y, Z) forms a Markov chain constitutes an outer bound to the capacity region. Further to compute this region it sufﬁces to consider | U |, |V | ≤ |X| + 1.
+For all the classes of channels for which the capacity region was previously established the inner and outer bounds coincided. In a sequence of results that was established in the last few years it has been shown [5], [3], [6], [7] that the inner and outer bounds can indeed be different for various channels. Hence it is important to resolve the following questions: Is the UV-outer bound strictly sub-optimal in general? Is the Marton’s inner bound strictly sub-optimal in general?
+In this paper we resolve the ﬁrst question and show that the UV-outer bound is strictly sub-optimal in gen- eral. We also establish the capacity region (including the common message) of product of reversely semi- deterministic and reversely more-capable channels.
+Deﬁnition 1. A broadcast channel q( y, z|x) is said to be a product broadcast channel if X = (X 1 , X 2 ) , Y = (Y 1 , Y 2 ) , Z = (Z 1 , Z 2 ) and q( y 1 , y 2 , z 1 , z 2 |x 1 , x 2 ) = q 1 ( y 1 , z 1 |x 1 )q 2 ( y 2 , z 2 |x 2 ). Here we denote q = q 1 × q 2 .
+Deﬁnition 2. A product broadcast channel q = q 1 × q 2 is said to be reversely semi-deterministic if the chan- nel to one of the receivers in the ﬁrst component is deterministic, and the channel to the other receiver in the second component is deterministic. That is either q 1 ( y 1 |x 1 ) , q 2 ( z 2 |x 2 ) ∈ {0 , 1} or q 1 ( z 1 |x 1 ) , q 2 ( y 2 |x 2 ) ∈ {0, 1}.
+Deﬁnition 3. A product broadcast channel q = q 1 ×q 2 is said to be reversely more capable if one of the following two holds:
+I(X 2 ; Z 2 ) ≥ I(X 2 ; Y 2 ) , ∀p(x 2 ) , or • I(X 1 ; Z 1 ) ≥ I(X 1 ; Y 1 ) , ∀p(x 1 ),
+The capacity results originated from the consideration of the 2-letter version of Marton’s inner bound and particularly on the sum-rate. See a recent related article [8] for elaborated discussion of this 2-letter approach.
+In this section we establish the capacity region for classes of product broadcast channels with private and common message. The capacity region is deﬁned in a similar fashion as in the case without common message.
+We present a new outer bound for the product of two broadcast channels. The manipulations here are inspired by those in [8]. This outer bound matches the capacity region for a variety of product channels, including product of two reversely semi-deterministic and product of two reversely more-capable channels. For the sake of brevity, we will only present the capacity results for these two classes in this write-up.
+Claim 1. Given a product channel q( y 1 y 2 , z 1 z 2 |x 1 x 2 ) = q 1 ( y 1 , z 1 |x 1 ) × q 2 ( y 2 , z 2 |x 2 ), the union over all p 1 ( w 1 , v 1 , u 1 , x 1 ) p 2 ( w 2 , v 2 , u 2 , x 2 ) of triples ( R 0 , R 1 , R 2 ) satisfying
+Remark 1. One can interchange the roles of Y 2 and Z 1 with Z 2 and Y 1 respectively to get another bound, and we can take the intersection of these two regions as an outer bound. The sum-rate bounds comes from slightly different manipulations than the traditional approach.
+B. An achievable region for a product broadcast channel Given a product channel q( y 1 y 2 , z 1 z 2 |x 1 x 2 ) =
+q ( y 1 , z 1 |x 1 )q( y 2 , z 2 |x 2 ) the union of rate triples satis- fying
+over all p 1 ( w 1 , v 1 , u 1 , x 1 ) p 2 ( w 2 , v 2 , u 2 , x 2 ) constitutes an inner bound to the capacity region. The achievablility of these points are immediate from Marton’s inner bound by letting U = (U 1 , U 2 ) , V = (V 1 , V 2 ) , W = (W 1 , W 2 ) and p(u, v, w) ∼ p 1 ( w 1 , v 1 , u 1 , x 1 ) p 2 ( w 2 , v 2 , u 2 , x 2 ).
+Theorem 1. The capacity region for a product of reversely semi-deterministic (say, channels X 1 → Y 1 , X 2 → Z 2 are deterministic) broadcast channel is given by the union of rate triples satisfying
+Proof: The achievability is immediate by setting U 1 = Y 1 and V 2 = Z 2 in (1). Note that these two choices of auxiliary random variables are possible since channels X 1 → Y 1 , X 2 → Z 2 are deterministic.
+The converse is also immediate from the outer bound in 1. Observe that for any p 1 ( w 1 , v 1 , u 1 , x 1 ), p 2 ( w 2 , v 2 , u 2 , x 2 ) we have
+Thus the outer bound is contained in the inner bound (and hence they coincide).
+Theorem 2. The capacity region for a product of re- versely more-capable (say, receiver Z 1 is more capable than Y 1 , and receiver Y 2 is more capable than Z 2 ) broadcast channel is given by the union of rate triples satisfying
+Proof: The proof follows by again showing that the outer and inner bounds coincide. Details are given in the full version [9].
+The maximum sum-rate of the UV outer bound is SR U V (q) = max
+This was the best known outer bound for the general broadcast channel. Prior to this work, it was not known whether this bound was strictly sub-optimal or not.
+In this section we will demonstrate a product of reversely semi-deterministic channel, q = q 1 × q 2 , such that the optimal sum-rate SR ∗ (q 1 × q 2 ) satisﬁes
+This unequivocally shows that the UV outer bound is strictly suboptimal for the general broadcast channel.
+Deﬁne a λ-parametrized family of functions that is related to the sum rate given by Marton’s inner bound as follows:
+λ-SR(q, p(u, v, w, x)) = λI(W ; Y ) + (1 − λ)I(W ; Z) + I(U ; Y |W ) + I(V ; Z|W )
+The following claim allows us to shift the discussion from the sum-rate to λ-sum rate, and then return to the sum-rate at a later point to complete the argument.
+This implies that the sum-rate of Marton’s inner bound can be calculated using any of the three above expres- sions.
+was established in section 3.1.1 of [10]. For complete- ness we present a (slightly different) proof in the full version which can be considered as an application of a min-max theorem of Terkelsen [11]. The argument in the full version can also be used in other instances where a max-min occurs, such as compound channels.
+Given two channels q 1 ( y 1 , z 1 |x 1 ) , q 2 ( y 2 , z 2 |x 2 ), we say that λ-SR factorizes if
+We have discussed the factorization of λ-sum rate in a recent related article [8]. We need a shortened version of a lemma from that article:
+Lemma 1. The λ-SR(q 1 × q 2 ) factorizes if any one of the four channels X 1 → Y 1 ; X 1 → Z 1 ; X 2 → Y 2 or X 2 → Z 2 is deterministic, i.e. λ-SR(q 1 × q 2 ) = λ-SR(q 1 ) + λ-SR(q 2 ) .
+From Theorem 1 we know that Marton’s inner bound achieves the optimal sum-rate for the reversely semi- deterministic channel. Hence from Lemma 1 (or directly from the proof of Theorem 1), and Claim 2 we have
+SR ∗ (q 1 × q 2 ) = min
+Claim 3. Consider the reversely semi-deterministic channel in Figure 1. Assume that the transition prob- abilities are uniform across the possible outputs, i.e the red edges have a probability 1 3 in the ﬁrst component and the blue edges have a probability 1 3 in the second component. Then Marton’s sum rate (the optimal sum rate) is given by 8 3 = 3 − 1 3 , while the UV sum-rate is at least 3 − 1 15 .
+Proof: We begin by showing that Marton’s sum rate (the optimal sum rate) is given by 8 3 . Equation (4) shows that the optimal sum rate of q 1 × q 2 is
+A result in [9] implies that for any λ ∈ [0, 1], λ-SR(q 1 ) is equal to λ-SR(q 1 , u(x 1 )) where u is the uniform dis- tribution on X 1 . A similar statement holds for λ-SR(q 2 ). Therefore the sum rate of q 1 × q 2 is equal to
+By symmetry, we have λ-SR(q 2 , u(x 2 )) = (1 − λ)-SR(q 1 , u(x 1 )). Therefore we can express the sum rate as
+Substituting this function into (5) we see that the min- imum occurs at λ = 0.5 and the optimum sum-rate is equal to 8 3 .
+To compute a lower bound on the U V sum- rate, let p(x 1 , x 2 ) = u(x 1 ) u(x 2 ), i.e. indepen- dent uniform distribution on X 1 and X 2 . We deﬁne U 1 , V 1 , X 1 , U 2 , V 2 , X 2 having a joint distribution of the form p(u 1 , v 1 , x 1 ) p(u 2 , v 2 , x 2 ) as follows. Let U 1 = Y 1 and p(u 2 , x 2 ) to satisfy
+Let Q 1 , Q 2 be binary random variables that are mutually independent of each other, and of U 1 , V 1 , X 1 , U 2 , V 2 , X 2 . Furthermore assume that P( Q 1 = 0) = P( Q 2 = 0) = 4 5 . Deﬁne V 1 and U 2
+as follows: When Q 1 = 0 set V 1 = V 1 and else set V 1 = X 1 . When Q 2 = 0 set U 2 = U 2 and else set U 2 = X 2 . Lastly set ˜ V 1 = ( V 1 , Q 1 ) ˜ U 2 = ( U 2 , Q 2 ).
+We consider the U V region for the choice of (U 1 , ˜ U 2 ), ( ˜ V 1 , V 2 ), ( X 1 , X 2 ). Note that
+Therefore the point ( R 1 , R 2 ) = ( 22 15 , 22 15 ) is in this region. Hence the U V sum rate is at least 44 15 = 3 − 1 15 . Thus for the product channel under consideration
+= SR ∗ (q 1 × q 2 ) < 44 15
+This shows that the UV outer bound is strictly subopti- mal in general.
+Remark 2. The outer bound for the product channel is also strictly sub-optimal. To see this ﬁrst note that when one of the product channels is trivial, this outer bound does not give us anything beyond the UVW-outer bound [12]. Now, consider a product of three channels, ﬁrst one is trivial, the collection of two and three forms a
+reversely semi-deterministic pair. The new outer bound reduces to the UVW bound on the reversely semi- deterministic, and therefore it is strictly sub-optimal.
+We establish that the best known outer bound to the general two receiver broadcast channel is strictly sub- optimal. We also establish the capacity region of two new classes of product broadcast channels.
+The authors would like to thank the institute of Net- work Coding and the institute of Theoretical Computer Science and Communication at the Chinese University of Hong Kong. This work was partially supported by a grant from the University Grants Committee of the Hong Kong Special Administrative Region, China (Project No. AoE/E-02/08).
+[[[ REFS ]]]
+T. Cover
+--
+Broadcast channels
+----
+K. Marton
+--
+A coding theorem for the discrete memoryless broad- cast channel
+----
+A. Gohari
+V. Anantharam
+--
+Evaluation of Marton’s inner bound for the general broadcast channel
+----
+C. Nair
+A. El Gamal
+--
+An outer bound to the capacity region of the broadcast channel
+----
+C. Nair
+Z. V. Wang
+--
+On the inner and outer bounds for 2-receiver discrete memoryless broadcast channels
+----
+V. Jog
+C. Nair
+--
+An information inequality for the bssc channel
+----
+Y. Geng
+C. Nair
+S. Shamai
+Z. V. Wang
+--
+On broadcast channels with binary inputs and symmetric outputs
+----
+Y. Geng
+A. Gohari
+C. Nair
+Y. Yu
+--
+On marton’s inner bound for two receiver broadcast channels
+----
+Y. Geng
+A. Gohari
+C. Nair
+Y. Yu
+--
+The capacity region of classes of product broadcast channels
+----
+A. Gohari
+A. El Gamal
+V. Anantharam
+--
+On an outer bound and an inner bound for the general broadcast chan- nel
+----
+F. Terkelsen
+--
+Some minimax theorems
+----
+C. Nair
+--
+A note on outer bounds for broadcast chan- nel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\126.pdf
+[[[ LINKS ]]]
+

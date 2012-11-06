@@ -1,0 +1,119 @@
+[[[ ID ]]]
+9
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The Capacity Region of a Class of 3-Receiver Broadcast Channels With Two Eavesdroppers
+[[[ AUTHORS ]]]
+Sadaf Salehkalaibar
+Mohammad Reza Aref
+[[[ ABSTR ]]]
+1 Abstract—In this paper, we consider the 3-receiver broadcast channel with one common and two conﬁdential messages. One of the conﬁdential messages is sent to the ﬁrst and second receivers and kept secret from the third receiver (eavesdropper). The other conﬁdential message is sent to the ﬁrst receiver and kept secret from the second and third receivers (eavesdroppers). The common message is decoded by all receivers. We study some special cases of the model and determine their secrecy capacity regions.
+[[[ BODY ]]]
+Wyner [1] introduced the wiretap channel, where a transmitter sends a message to a receiver while keeping it secret from an eavesdropper. He determined the capacity of the degraded wiretap channel, in which the channel to the eavesdropper is a degraded version of the channel to the legitimate receiver. Csiszar and Korner [2] considered the general wiretap channel (not necessarily degraded) and established the secrecy capacity region. There have been several works which studied different multi-user models from the secrecy aspect [3]-[8]. Extension of the wiretap channel to more than two receivers has been investigated in [6], [7] and [8]. Inner and outer bounds on the secrecy capacity region of the 3-receiver broadcast channel with one common and one conﬁdential messages were derived in [6], [7]. Two different scenarios had been studied in [6], [7]. The ﬁrst is when the conﬁdential message is to be sent to two receivers and kept secret from the third receiver (eavesdropper). In the second case, the conﬁdential message is to be sent only to one receiver and kept secret from the other two receivers. The generalization of the ﬁrst scenario to more than three receivers has been considered in [8]. The secrecy capacity region of degraded multi-receiver wiretap channel was found in [8].
+In this paper, we consider 1-receiver, 2-eavesdropper broad- cast channel (see Fig. 1). There are three message parts in this model, i.e., M 0 , M 1 , and M 2 . The message part M 0 is decoded by all receivers. The message M 1 is sent to the ﬁrst and second receivers and kept secret from the third receiver.
+The message M 2 is only decoded by the ﬁrst receiver and kept secret from the second and third receivers. It is also assumed that H(M 2 |Z n 2 ) ≤ H(M 2 |Z n 3 ), where Z 2 and Z 3 are outputs of second and third receivers, respectively. An inner bound to the secrecy capacity region of the above scenario is derived. We consider a class of 1-receiver, 2-eavesdropper broadcast channels, where the ﬁrst receiver is less noisy with respect to the second receiver, and the channel to the second receiver is less noisy than the channel to the third receiver. An outer bound to the secrecy capacity region of this class of 1-receiver, 2-eavesdropper broadcast channels is found. The secrecy capacity region is established using the proposed outer bound. The main point about this order of less noisiness is that if the message M 2 is kept secret from the second receiver, then it is kept secret from third receiver too, since the second receiver is less noisy than the third receiver. We also study the case, where the receiver and eavesdroppers exhibit a degradedness order, and characterize the secrecy capacity region.
+The paper is organized as follows: In Section II, we present a mathematical framework for our work. In Section III, we ﬁnd an achievable secrecy rate region for the 1-receiver, 2- eavesdropper broadcast channel, and study some special cases. In Section IV, an outer bound to the secrecy capacity region of a class of 1-receiver, 2-eavesdropper broadcast channels is derived. Conclusions are provided in Section V.
+We denote discrete random variables with capital letters e.g., X, Y , and their realizations with lower case letters x, y. X j i indicates a sequence of random variables (X i , ..., X j ). We use H(.) to denote the entropy of a discrete random variable and I(.; .) to denote the mutual information between two discrete random variables. We denote by A n ε (X, Y ), the set of ε- strongly jointly typical sequences of length n, on p(x, y). A random variable X takes values in a set X . Finally, we denote the probability density function of X over X with p(x) and the conditional probability density function of X given Y by p(x|y).
+Deﬁnition 1 : A (2 nR 0 , 2 nR 1 , 2 nR 2 , n) code for 1-receiver, 2-eavesdropper broadcast channel with one receiver and two eavesdroppers (Fig. 1) consists of: i) three messages (M 0 , M 1 , M 2 ) uniformly distributed over [1 : 2 nR 0 ] × [1 :
+2 nR 1 ] × [1 : 2 nR 2 ], ii) an encoder that randomly generates a codeword X n (m 0 , m 1 , m 2 ) according to conditional dis- tribution p(x n |m 0 , m 1 , m 2 ), and iii) three decoders, the ﬁrst decoder assigns to each received sequence y n 1 an estimate ( ˆ M 01 , ˆ M 11 , ˆ M 21 ) ∈ [1 : 2 nR 0 ] × [1 : 2 nR 1 ] × [1 : 2 nR 2 ],
+the second assigns to each received sequence z n 2 an estimate ( ˆ M 02 , ˆ M 12 ) ∈ [1 : 2 nR 0 ] × [1 : 2 nR 1 ], and the third assigns to each received sequence z n 3 an estimate ˆ M 03 ∈ [1 : 2 nR 0 ]. The probability of error is deﬁned as,
+The equivocation rates at the two eavesdroppers are H(M 1 , M 2 |Z n 3 )/n and H(M 2 |Z n 2 )/n. A secrecy rate tuple (R 0 , R 1 , R 2 , R e 2 , R e 3 ) is said to be achievable if
+In the deﬁnition of R e 2 and R e 3 it is assumed that H(M 2 |Z n 2 ) ≤ H(M 2 |Z n 3 ).
+Lemma 1 ([7]): Let (U, V, Z) ∼ p(u, v, z), S ≥ 0 and > 0. Let U n a random sequence distributed according
+to n i =1 p(u i ). Let V n (l), l ∈ [1 : 2 nS ], be a set of random sequences that are conditionally independent given U n and each distributed according to n i =1 p(v i |u i ). Let L ∈ [1 : 2 nS ] be a random index with an arbitrarily probability mass function independent of U n and V n (l), l ∈ [1 : 2 nS ]. Then, if Pr{(U n , V n (L), Z n ) ∈ A n } → 1 as n → ∞ and S ≥ I(V ; Z|U ), there exists a δ( ) > 0, where δ( ) → 0 as
+In this section, we ﬁrst obtain an inner bound to the secrecy capacity region of the 1-receiver, 2-eavesdropper broadcast channel with one common and two conﬁdential messages, when M 1 is sent to receivers Y 1 and Z 2 , and kept secret from
+Z 3 , and M 2 is sent to Y 1 and kept secret from Z 2 . Then, we discuss some special cases.
+Theorem 1: An inner bound to the secrecy capacity region of 1-receiver, 2-eavesdropper broadcast channel with one common and two conﬁdential messages and with the constraint H(M 2 |Z n 2 ) ≤ H(M 2 |Z n 3 ), is given by the union of rate tuples (R 0 , R 1 , R 2 , R e 2 , R e 3 ) such that
+           
+R e 2 ≤ R 2 , R e 2 + R e 3 ≤ R 1 + R 2 , R 0 ≤ I(W ; Z 3 ),
+R 0 + R 1 ≤ I(U ; Z 2 ), R 1 ≤ I(U ; Z 2 |W ),
+R 0 + R 1 + R 2 ≤ I(V ; Y 1 ), R 1 + R 2 ≤ I(V ; Y 1 |W ), R 2 ≤ I(V ; Y 1 |U ),
+R e 2 ≤ [I(V ; Y 1 ) − R 0 − R 1 − I(V ; Z 2 |U )] + , R e 2 ≤ [I(V ; Y 1 |W ) − R 1 − I(V ; Z 2 |U )] + , R e 2 ≤ [I(V ; Y 1 |U ) − I(V ; Z 2 |U )] + ,
+R e 2 + R e 3 ≤ [I(V ; Y 1 ) − R 0 − I(V ; Z 3 |W )] + , R e 2 + R e 3 ≤ [I(V ; Y 1 |W ) − I(V ; Z 3 |W )] + ,
+           
+(2) where the union is taken over all probability distributions of the form p(w)p(u|w)p(v|u)p(x|v).
+Proof: Fix p(w)p(u|w)p(v|u)p(x|v) and consider a rate tuple (R 0 , R 1 , R 2 , R e 2 , R e 3 ) that satisﬁes the inequalities given in the rate region. Our proof strategy is to show the achievability of rate tuple (R 0 , R 1 , R 2 , R e 2 , R e 3 ), where R 1 ≥ R 1 , R 2 ≥ R 2 , R e 2 ≥ R e 2 and R e 3 ≥ R e 3 . We use superposition coding and stochastic encoding [2] in the proof.
+Generate 2 nR 0 sequences w n (m 0 ), m 0 ∈ [1 : 2 nR 0 ], each according to n i =1 p(w i ). For each w n (m 0 ), generate 2 nR 1 sequences u n (l 1 , m 0 ), l 1 ∈ [1 : 2 nR 1 ], each accord- ing to n i =1 p(u i |w i ). For each u n (l 1 , m 0 ), generate 2 nR 2 sequences v n (l 2 , l 1 , m 0 ), l 2 ∈ [1 : 2 nR 2 ], each according to
+To send the message triplet (m 0 , m 1 , m 2 ), the encoder ﬁrst randomly chooses indices l 1 and l 2 corresponding to (m 0 , m 1 , m 2 ). Finally, the encoder generates a codeword X n at random according to n i =1 p(x i |v i ) and transmits it.
+Receiver Y 1 ﬁnds (m 0 , m 1 , m 2 ) by decoding (V, U, W ), Z 2 ﬁnds (m 1 , m 0 ) by decoding (U, W ), Z 3 ﬁnds m 0 by decoding W . The probability of error goes to zero as n → ∞ if:
+R 0 ≤ I(W ; Z 3 ) R 0 + R 1 ≤ I(U ; Z 2 )
+R 1 ≤ I(U ; Z 2 |W ) R 0 + R 1 + R 2 ≤ I(V ; Y 1 )
+(d) 	 Analysis 	 of 	 Equivocation : 	 Anal- ysis 	 of 	 the 	 terms 	 H(M 1 , M 2 |Z n 3 ) 	 and H(M 2 |Z n 2 ) is straightforward. Note that since Pr{(V n (m 0 , l 1 , l 2 ), U n (m 0 , l 1 ), W n (m 0 ), Z n 3 ) ∈ A n } → 1 and Pr{(V n (m 0 , l 1 , l 2 ), U n (m 0 , l 1 ), W n (m 0 ), Z n 2 ) ∈ A n } → 1 as n → ∞ from law of large numbers, we can apply Lemma 1. Therefore, we have
+Collecting terms of (3), (4) and (5), and using Fourier- Motzkin elimination, we get the expressions in (2).
+Remark 1: Set U = V , M 2 = 0, W = 0, R e 2 = 0 in achievable rates of Theorem 1. Then, we have:
+for all distributions of the form p(u)p(x|u). The rate in (6) is the extension of Csiszar-Korner [2] result for the 2-receiver broadcast channel.
+First, we consider a special case, where Y 1 is less noisy than Z 2 and also Z 2 is less noisy than Z 3 . If Y 1 is less noisy than Z 2 , then I(U ; Y 1 ) ≥ I(U ; Z 2 ) for all p(u, x). Also, if Z 2 is less noisy than Z 3 , then I(U ; Z 2 ) ≥ I(U ; Z 3 ) for all p(u, x). It is interesting to note that the less noisiness property implies the constraint H(M 2 |Z n 2 ) ≤ H(M 2 |Z n 3 ).
+Theorem 2: The secrecy capacity region of the 1-receiver, 2-eavesdropper broadcast channel with one common and two conﬁdential messages when Y 1 is less noisy than Z 2 and Z 2 is less noisy than Z 3 , is given by the union of rate tuples
+    
+R 0 ≥ 0, R 1 ≥ 0, R 2 ≥ 0, R e 2 ≤ R 2 , R e 3 ≤ R 1 , R 0 ≤ I(W ; Z 3 ),
+R 1 ≤ I(U ; Z 2 |W ), R 2 ≤ I(X; Y 1 |U ),
+R e 2 ≤ [I(X; Y 1 |U ) − I(X; Z 2 |U )] + , R e 3 ≤ [I(U ; Z 2 |W ) − I(U ; Z 3 |W )] +
+  
+where the union is taken over all probability distributions of the form p(w)p(u|w)p(v|u)p(x|v).
+Achievability: Set V = X in Theorem 1. Converse: See Section IV.
+For the second case, we study the degraded 1-receiver, 2- eavesdropper broadcast channel. Suppose that Y 1 → Z 2 → Z 3 form a Markov chain. Thus, we can specialize our result in Theorem 2 to the degraded 1-receiver, 2-eavesdropper broadcast channel as given in the following corollary.
+Corollary 1: The secrecy capacity region of the degraded 1- receiver, 2-eavesdropper broadcast channel with one common and two conﬁdential messages is given by the union of rate tuples (R 0 , R 1 , R 2 , R e 2 , R e 3 ) such that
+    
+R 0 ≥ 0, R 1 ≥ 0, R 2 ≥ 0, R e 2 ≤ R 2 , R e 3 ≤ R 1 , R 0 ≤ I(W ; Z 3 ),
+R 1 ≤ I(U ; Z 2 |W ), R 2 ≤ I(X; Y 1 |U ),
+R e 2 ≤ I(X; Y 1 |U, Z 2 ), R e 3 ≤ I(U ; Z 2 |W, Z 3 )
+  
+where the union is taken over all probability distributions of the form p(w)p(u|w)p(v|u)p(x|v).
+The proof of corollary easily follows from Theorem 2, using the Markov chain Y 1 → Z 2 → Z 3 .
+We use the fact that a stochastic encoder can be treated as a deterministic mapping from (M 0 , M 1 , M 2 ) and an in- dependent randomization variable T onto X n . Deﬁne U i = (M 0 , M 1 , Z n 2,i+1 ) and W i = (Z i− 1 3 , M 0 ). First consider R e 2 ,
+where (a) follows from Fano’s inequality. (b) and (c) follow from Csiszar’s sum lemma [2]. For example for (b), we have:
+(d) and (e) follow by the assumption that Y 1 is less noisy than Z 2 . (f ) follows by the data processing inequality and because X i is a function of (M 0 , M 1 , M 2 , T ). Now, consider R e 3 :
+= H(M 1 |Z n 3 , M 0 ) + H(M 0 |Z n 3 ) ≤ H(M 1 |Z n 3 , M 0 ) + nδ
+where (a) and (b) follow from Csiszar’s sum lemma. (c) follows by the assumption that Z 2 is less noisy than Z 3 . For R 2 , we have:
+nR 2 = H(M 2 ) = H(M 2 |M 0 , M 1 ) ≤ I(M 2 ; Y n 1 |M 0 , M 1 ) + nδ
+where (a) follows from Csiszar’s sum lemma. (b) follows by the assumption that Y 1 is less noisy than Z 2 . Similarly, for R 1 , we have:
+nR 1 = H(M 1 ) = H(M 1 |M 0 ) ≤ I(M 1 ; Z n 2 |M 0 ) + nδ
+Finally, we get terms in the theorem by deﬁning a time-sharing random variable.
+In this paper, we considered 1-receiver, 2-eavesdropper broadcast channel with one common and two conﬁdential messages. The secrecy capacity region of a class of 1-receiver, 2-eavesdropper broadcast channels, where the ﬁrst receiver is less noisy than the second receiver and the second receiver is less noisy than the third receiver, was derived. We also established the secrecy capacity region of the degraded 1- receiver, 2-eavesdropper broadcast channel with one common and two conﬁdential messages, where the receivers exhibit a degradedness order.
+[[[ REFS ]]]
+A. D. Wyner
+--
+The wire-tap channel
+----
+I. Csiszar
+J. Korner
+--
+Broadcast channels with conﬁdential mes- sages
+----
+E. Tekin
+A. Yener
+--
+The general Gaussian multiple access and two- way wire-tap channels: achievable rates and cooperative jamming
+----
+E. Ekrem
+S. Ulukus
+--
+On the secrecy of multiple access wiretap channel
+----
+R. Liu
+I. Maric
+P. Spasojevic
+R. D. Yates
+--
+Discrete memoryless interference and broadcast channels with conﬁdential messages: secrecy rate regions
+----
+Y. K. Chia
+A. El Gamal
+--
+3-Receiver broadcast channels with common and conﬁdential messages
+----
+Y. K. Chia
+A. El Gamal
+--
+3-Receiver broadcast channels with common and conﬁdential messages
+----
+E. Ekrem
+S. Ulukus
+--
+Secrecy capacity of a class of broadcast channels with an eavesdropper
+[[[ META ]]]
+parsed -> yes
+file -> E:\testDataset\009.pdf
+[[[ LINKS ]]]
+

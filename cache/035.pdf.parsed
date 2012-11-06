@@ -1,0 +1,82 @@
+[[[ ID ]]]
+35
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Shannon meets Blackwell and Le Cam: channels, codes, and statistical experiments
+[[[ AUTHORS ]]]
+Maxim Raginsky
+[[[ ABSTR ]]]
+Abstract—The Blackwell–Le Cam decision theory provides an approximation framework for statistical experiments in terms of expected risks of optimal decision procedures. The Blackwell partial order formalizes an intuitive notion of which experiment of a given pair is “more informative” for the purposes of inference. The Le Cam deﬁciency is an approximation measure for any two statistical experiments (with the same parameter space), and it tells us how much we will lose if we base our decisions on one experiment rather than another. In this paper, we develop an extension of the Blackwell–Le Cam theory, starting from a partial ordering for channels introduced by Shannon. In particular, we deﬁne a new approximation measure for channels, which we call the Shannon deﬁciency, and use it to prove an approximation theorem for channel codes that extends an earlier result of Shannon. We also construct a broad class of deﬁciency- like measures for channels based on generalized divergences, relate them to several alternative notions of capacity, and prove new upper and lower bounds on the Le Cam deﬁciency.
+[[[ BODY ]]]
+In two seminal papers written in the early 1950’s [1], [2], David Blackwell has introduced the concept of “comparison of statistical experiments” based on expected losses of statistical decision procedures. This work has sparked a great deal of interest and led to a number of alternative comparison criteria, including information-theoretic ones [3], [4]. Le Cam [5] has extended Blackwell’s theory to an approximation approach, which has since then been developed into a comprehensive theory of experiments (cf. [6], [7] for thorough expositions). This theory has led to deep results in mathematical statistics, such as the proof of asymptotic equivalence of nonparametric regression and function ﬁltering in white Gaussian noise [8].
+In information-theoretic terms, a statistical experiment is just a noisy communication channel with an uncoded input [9]; all the processing is done at the output. While this set- up is the right one for statistics, in information theory we are also interested in such things as coding or modulation, which are interposed between the source and the channel. A coding/decoding comparison criterion for channels has been introduced in a short paper of Shannon [10]. Although Shannon’s comparison criterion bears certain similarities to Blackwell’s, it appears to have been developed independently (in fact, there is no reference to Blackwell in [10]) from a random coding perspective.
+• Following Le Cam [5], we augment the Shannon partial order with a norm-based approximation criterion. Thus,
+instead of asking which of two channels is “less noisy” or “more informative,” we ask how well one channel can be approximated by another. By allowing randomization at the input, as well as some shared randomness between the input and the output terminals, we deﬁne a new ap- proximation measure for channels based on the Shannon ordering. In parallel to Le Cam’s terminology, we call it the Shannon deﬁciency of one channel w.r.t. another.
+• Using this new notion of deﬁciency, we extend the result of Shannon [10], which says that for any code on a more noisy channel we can ﬁnd a code on a less noisy channel that does at least as well, to an arbitrary pair of channels, where the notion of “doing at least as well” is replaced by “doing at least as well up to ε.”
+• The Le Cam and Shannon deﬁciencies are based on the total variation distance. By replacing the total variation with any generalized divergence between probability dis- tributions that obeys a data processing inequality (a g- divergence in the terminology of [11]), we obtain a new broad class of deﬁciency-like quantities, many of which can be related to various generalizations of the channel capacity and can be used to derive upper and lower bounds on the Le Cam and Shannon deﬁciencies.
+We take all alphabets to be standard Borel [12] (i.e., isomorphic to a Borel subspace of a Polish space). This covers virtually all settings of practical interest. Any such space X will always be endowed with its Borel σ-algebra B(X). The space of all probability measures on X will be denoted by P(X). The total variation distance between P, Q ∈ P(X) is
+A Markov (or transition probability) kernel between X and Y is a mapping T : B(Y) × X → [0, 1], such that T (·|x) ∈ P(Y) for all x ∈ X and T (B|·) is a measurable function on X for any B ∈ B(Y). We will denote the space of all such T by M(Y|X). If both X and Y are ﬁnite, then any T ∈ M(Y|X) is a stochastic matrix with elements T (y|x), (x, y) ∈ X × Y.
+Any T ∈ M(Y|X) induces a mapping P(X) −→ P(Y), which we also will denote with a slight abuse of notation by T ; it maps any P ∈ P(X) to Q = T P ∈ P(Y), where
+We will denote the composition of Markov kernels by juxta- position. That is, for T ∈ M(Y|X) and S ∈ M(U|Y), their
+A channel with input alphabet X and output alphabet Y is simply a Markov kernel W ∈ M(Y|X) [13]. Whenever we need to specify the input and the output alphabets ex- plicitly, we will represent the channel as a triple (X, Y, W ). An M -code for (X, Y, W ) is a pair (E, D), where E ∈ M(X|{1, . . . , M }) is a (possibly randomized) encoder and D ∈ M({1, . . . , M }|Y) is a (possibly randomized) decoder. The average probability of error of (E, D) on W is
+Consider two channels (X, Y, W ) and (X, U, W ) with a common input alphabet X. When are we justiﬁed in saying that W is less noisy (or more informative) than W ? One natural answer is if we can simulate a single use of W by post-processing a single use of W . This is precisely the com- parison criterion proposed by Blackwell [1], [2]. Following the terminology of [7], we will say that W is Blackwell sufﬁcient for W and write W B W or W B W if W = T W for some Markov kernel T ∈ M(U|Y). Another way to state this is that W can be realized as a stochastic degrading of W . If W B W and W B W , we will say that they are Blackwell equivalent and write W ∼ B W .
+Blackwell sufﬁciency induces only a partial order on the family of all channels with the same input alphabet X. In fact, most channels are incomparable. As an example, let X = Y = U = R, and consider the additive channels
+where Z and Z are real-valued random variables independent of the input X. Then W B W if and only if the law of Z is a convolution factor of the law of Z [14].
+The scope of Blackwell’s theory was expanded considerably by Le Cam [5], who introduced the notion of a deﬁciency of one statistical experiment w.r.t. another. We can do the same for channels, where in our information-theoretic context the deﬁciency of W w.r.t. W will quantify how well any post- processing of W can be used to approximate W . The (Le
+According to the so-called Le Cam randomization criterion [6], [7], the inﬁmum in (3) is actually achieved, i.e., there exists some T ∗ ∈ M(U|Y), such that δ(W, W ) = T ∗ W − W ∞ . Note that δ(W, W ) = 0 iff W B W .
+The Shannon ordering criterion [10] also revolves around the simulation of one channel by another, but it allows for pre- and post-processing, as well as for shared randomness between the input and the output terminals. Consider two channels (X, Y, W ) and (X , Y , W ), where the input alphabets need not necessarily be the same. Adopting our earlier terminology and the deﬁnitions of [10], we say that W is Shannon sufﬁcient for W , and write W S W , if there exist some k ∈ N, a probability vector π = (π 1 , . . . , π k ), and k pairs (T i , S i ) ∈ M(X|X ) × M(Y |Y), 1 ≤ i ≤ k, such that
+implies W S W , but not necessarily vice versa. Thus, the Shannon ordering criterion is weaker than that of Blackwell. However, it is also only a partial order. To be able to compare any channel to any other, we adopt Le Cam’s strategy and deﬁne the corresponding Shannon deﬁciency as follows:
+When X = X , it can be weakened to δ S (W, W ) ≤ δ(W, W ), which suggests that the Le Cam deﬁciency is a more strin- gent measure than the Shannon deﬁciency. Again, note that δ S (W, W ) = 0 iff W S W .
+S channel ordering: If W S W , then for any (M, ε)-code for W we can ﬁnd an (M, ε)-code for W . The following theorem is an extension of Shannon’s result to an arbitrary pair of channels in terms of the Shannon deﬁciency (4):
+Theorem 1. Consider two channels (X, Y, W ) and (X , Y , W ). If δ S (W, W ) ≤ ε , then for any (M, ε)- code for W we can ﬁnd an (M, ε + ε )-code for W .
+Now let (E, D) be an (M, ε)-code for W . For each 1 ≤ i ≤ k, deﬁne an M -code (E i , D i ) for W by letting E i = T i E and D i = DS i . Let I be a random variable taking values in {1, . . . , k} according to the distribution π. Then
+= D (E[S I W T I ] − W ) E ∞ ≤ E[S I W T I ] − W ∞
+where the third step uses (2), and the last step is by (5). Since (E, D) is an (M, ε)-code for W , this gives
+Therefore, there must exist at least one value i ∗ ∈ {1, . . . , k}, for which ε W (E i ∗ , D i ∗ ) ≤ ε + ε . The theorem is proved.
+The following result is known (cf. [6]), but we give a self- contained proof, since we will need it later:
+Theorem 2. Consider any three channels (X, Y, W ), (X, U, W ) and (X, Z, V ). Then:
+Proof: (1) Since W B W , there exists some T ∈ M(U|Y) such that W = T W . Hence,
+(2) Again, since W B V , there exists some T ∈ M(Z|U) such that V = T W . Then
+A channel with a ﬁnite input alphabet and an arbitrary output alphabet is called semicontinuous (SC) [15, Ch. 5]. For a ﬁxed ﬁnite X, we have two extremal channels, W 0 and W 1 , such that W 0 B W B W 1 for any (X, Y, W ). These are unique up to Blackwell equivalence, and can be represented by W 0 (·|x) = e x 0 for some ﬁxed x 0 ∈ X and by W 1 (·|x) = e x , where e x is the probability distribution that puts all mass on x ∈ X.
+In operational terms, δ(W ) is the best maximal probability of error achievable on W with an arbitrary decoder and an identity encoder, E(x|x) = 1 for all x ∈ X. On the other hand, δ(W ) has a geometric interpretation as the “radius” of the set {W (·|x)} x∈X w.r.t. the total variation distance. The unique Q ∗ ∈ P(Y) that attains the inﬁmum in (7) can be thought as the “center” of this set. We will come back to this interpretation later and extend it to more general notions of “information radius” [9], [17].
+We can also use the Shannon deﬁciency to deﬁne δ S (W ) and δ S (W ). The former can be bounded as δ S (W ) ≤ δ(W ). For the latter, it is easy to show from deﬁnitions that it is equal to the Le Cam deﬁciency δ(W ).
+By using other statistical or information-theoretic measures of (dis)similarity between probability distributions instead of the total variation distance, it is possible to construct a wide variety of deﬁciency-like quantities. The resulting alternative (or generalized) deﬁciencies are of interest in their own right, and they can also be used to bound the Le Cam deﬁciencies from above and from below. We start by deﬁning a broad class of deﬁciencies based on a very minimalistic requirement: monotonicity under data processing. Following recent work of Polyanskiy and Verd´u [11], we call any mapping D : P(X) × P(X) → R a g-divergence if
+for any P, Q ∈ P(X) and any Markov kernel T ∈ M(Y|X). Given the channels (X, Y, W ) and (X, U, W ), let us deﬁne the corresponding g-deﬁciency of W w.r.t. W as
+The data-processing inequality (8) is enough to ensure the same monotonicity properties as the Le Cam deﬁciency:
+Theorem 4. The analog of Theorem 2 holds if we replace δ with δ D throughout.
+As we shall see next, particular choices of a g-divergence with additional properties (such as convexity) lead to many useful alternative notions of deﬁciency.
+A wide class of g-divergences is formed by the so-called f -divergences of Csisz´ar (cf. [18] and references therein). Let f : (0, ∞) → R be a convex function with f (1) = 0. Let P and Q be two probability measures on a space X. Then the f -divergence between P and Q is deﬁned as
+dQ dµ
+f dP/dµ dQ/dµ
+where µ is any σ-ﬁnite measure on X that dominates both P and Q 1 , and we use the conventions
+With proper choice of f , we recover many of the frequently used measures of divergence, for example:
+Thus, given two channels (X, Y, W ) and (X, U, W ), we can deﬁne the f -deﬁciency of W w.r.t. W as
+For an SC channel (X, Y, W ), we have an analog of Theo- rem 3:
+Remark 1. The f -deﬁciency δ f (W ) is the absolute f - informativity (or the f -radius) of W [9].
+T W (x|x) 	 (13) = inf
+where (13) uses (10) and the fact that f (t) → 0 as t 	 0, while (14) uses the deﬁnition of f ∗ . This proves (11); the simple proof of (12) is omitted.
+For the special case f (t) = t log t (natural logarithms), let us use the term I-deﬁciency and write δ I .
+where C(W ) = max P ∈P(X) I(P, W ) is the Shannon capacity of W . Moreover, if (X, Y, W ) and (X, U, W ) are SC, then δ I (W, W ) ≤ log |X|.
+Proof: The bound (15) follows from Pinsker’s inequality. The expression for δ I (W ) follows from Theorems 5 and 3. Next, using (12) and the minimax theorem, we have
+Finally, by data processing we have δ I (W, W ) ≤ δ I (W 0 , W 1 ) = C(W 1 ) = log |X|.
+The R´enyi divergence of order λ ∈ (0, ∞)\{1} between P and Q is [19]
+Although it is not an f -divergence (but rather a monotone transformation of one, the so-called Hellinger divergence [18]), it is a g-divergence [11]. Hence we can deﬁne the R´enyi deﬁciency of order λ, which we will denote by δ λ (·, ·).
+From Proposition 1 in [19], the right-hand side is equal to C λ (W ). By data processing, δ λ (W, W ) ≤ δ λ (W 0 , W 1 ) = C λ (W 1 ). From [19, p. 28], C λ (W 1 ) = max P ∈P(X) H(P ) =
+If both X and Y are ﬁnite and λ = 1/(1 + ρ) for some ρ > 0, ρ = 1, then we can express δ λ (W ) in terms of Gallager’s function E 0 (ρ, P, W ) [20] as
+An interesting result from [11] is that there exist g- divergences that are not representable as monotone functions of f -divergences. One example given there uses the Neyman– Pearson functions [6]. Given two probability measures P and
+[11]. Using this fact, let us deﬁne the Neyman–Pearson α- divergence between P and Q by
+Theorem 8. The Le Cam deﬁciency δ(W, W ) between any two channels (X, Y, W ) and (X, U, W ) satisﬁes the bound
+for any 0 < α < 1. Moreover, if (X, Y, W ) and (X, U, W ) are SC, then δ α (W, W ) ≤ α(1 − 1/|X|).
+Proof: We start by noting that P − Q 	 = sup 0<α<1 D α (P Q) [6, p. 36]. Then
+If (X, Y, W ) and (X, U, W ) are SC, then by data processing δ α (W, W ) ≤ δ α (W 0 , W 1 ), which in turn is equal to
+We have extended the notion of comparison between statis- tical experiments [1], [2], as well as an approximation theory for experiments [5], to coding/decoding scenarios common in information theory. Starting from a comparison criterion for channels due to Shannon [10], we have deﬁned an approxima- tion measure for channels, which we have termed the Shannon deﬁciency , mimicking the terminology of [5]. An interesting, though challenging, future direction would be to develop an approximation-based perspective on the coding theorems of information theory, similar to Le Cam’s programme in asymptotic statistics.
+Since T e x (1) = x ∈X T (1|x )e x (x ) = T (1|x), we can rewrite (16) as
+which means that β α (e x , Q) ≥ αQ(x). On the other hand, choosing T ∗ with T ∗ (1|x) = α and T ∗ (1|x ) = 0 for all x = x, we have T ∗ Q(1) = αQ(x), so β α (e x , Q) ≤ αQ(x). Thus, β α (e x , Q) = αQ(x). This and the fact that
+[[[ REFS ]]]
+
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\035.pdf
+[[[ LINKS ]]]
+

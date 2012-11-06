@@ -1,0 +1,107 @@
+[[[ ID ]]]
+174
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Compress-and-Forward Scheme for a Relay Network: Approximate Optimality and Connection to Algebraic Flows
+[[[ AUTHORS ]]]
+Adnan Raja
+Pramod Viswanath
+[[[ ABSTR ]]]
+Abstract—We study a wireless relay network, with a single source and a single destination. Our main result is to show that an appropriate compress-and-forward scheme supports essentially the same reliable data rate as the quantize-map-and-forward and noisy network coding schemes [1], [2]; thus, it is approximately optimal – in the sense the data rate is a universal constant away from the cut-set upper bound. We characterize the compress-and-forward scheme through an abstract ﬂow formulation, a generalization of ﬂow on linking systems. This characterization allows for efﬁcient computation of the minimal amount of information that has to ﬂow through each node in the network.
+[[[ BODY ]]]
+The focus of this paper is the unicast wireless Gaus- sian relay network. Recently, the approximate capacity of the unicast Gaussian relay network was character- ized in [1], where a quantize-map-and-forward scheme was proposed. In this scheme, each node quantizes the received signal, symbol by symbol, at the noise level and maps it to a random Gaussian codeword for forwarding. The scheme can also be modiﬁed to perform a vector quantization operation at each relay node [2], [3]. In particular, [2] gives an achievable scheme, called noisy network coding, for a general discrete memoryless network.
+A related scheme for the relay network is the compress-and-forward scheme which was ﬁrst pro- posed for the simple one-relay channel in [4] and extended to relay networks in [5]. In compress-and- forward, the relay node bins the quantized received signal and subsequently maps the bin number to a unique Gaussian codeword, which is then retransmitted by the relay. In [4], [5], unlike the noisy network coding scheme, the decoding process required the destination to also decode the bin indices at the relays. Therefore, as shown in [2], this scheme is strictly sub- optimal as compared to noisy network coding.
+In this paper, we propose a compress-and-forward scheme, where the destination node does not explicitly
+Consider a communication network with a set of radio nodes V with unicast trafﬁc. The source node is denoted by s and the destination node by d. At any node v, the transmit alphabet is given by X v and the receive alphabet by Y v (supposed to be discrete sets, for the most part). Time is discrete and synchronized among all nodes. The transmit symbol at any time at a node v is given by x v ∈ X v and the receive symbol is given by y v ∈ Y v . We will consider a memoryless network wherein the received symbol at any node at any given time depends (in a random fashion) only on the current transmitted symbols at other nodes. We seek the capacity of the network, which is the supremum of all achievable reliable rates. It was shown in [1] that any arbitrary communication network can be converted into a layered network by coding over blocks of time. Each layer then captures the operations in the corresponding block of time. Further, if the nodes have half-duplex constraint, then this time-layering is done with a ﬁxed transmit-receive schedule, which says which nodes are transmitting and which ones are listening in any block of time. It is then a secondary question to optimize over the schedule in order to get the maximum rate of transmission. Henceforth, we will focus on an L-layered network as shown in Figure 1, so that
+where O l denotes the m l nodes in the l-th layer. The k- th node in the l-th layer will be denoted by the ordered pair (l, k). The ﬁrst layer has only one node which is the source node and is denoted by (1, 1) or s. The last layer has only the destination node and is denoted by (L, 1) or d. The nodes other than the source and the destination node will be referred to as the relay nodes and are denoted by V r .
+In the layered network, the received symbol for a node in the l + 1-th layer depends only on the transmit symbol from the nodes in the l-th layer. This dependency is given by the probability transition function
+Here x O l is used to denote {x v : v ∈ O l }. y O l ’s are similarly deﬁned. This models the communication channel for the network. In particular, if the probability transition function is a deterministic function, then the network is called a deterministic network. Further, if the transmit and received alphabets are modeled as
+formly at random. In order to ensure that the latter event has diminishing probability, we ﬁx the total size of the quantization codebook to be of the order 2 T I (Y (l,k) , ˆ Y (l,k) ) . This ﬁxes ¯ R (l,k) such that,
+Decoding: On receiving y T d , the destination node ﬁnds a unique ˆ w , and any ˆ w (l,k) , ˆ ¯ w (l,k) , such that
+(4) If it is successful, the destination declares ˆ w as the decoded message; if not, the destination declares an error. The ﬂexibility of allowing any ˆ w (l,k) , ˆ ¯ w (l,k) , that is consistent with a unique ˆ w such that the condition in Equation (4) is satisﬁed is the critical difference from the earlier works on compress-and-forward [4], [5].
+Error Probability Analysis: The compress-and- forward scheme is essentially parameterized by R, which is the rate of the source codebook and R (l,k) ’s, which is the binning rate at relay node (l, k). The following theorem results from a careful analysis of the probability of error.
+Theorem 1. The compress-and-forward scheme is re- liable with rate R and R (l,k) ’s if,
+(5) ∀ Ω ⊆ V with s ∈ Ω, and ∀ Φ ⊆ Ω c with d ∈ Φ, for some v ∈V p (x v )p(ˆ y v |y v ). Here R(A) def = v ∈A R v . For notational convenience, we have assumed that ˆ Y d = Y d , X d = ∅, and Y s = ˆ Y s = ∅.
+We ﬁrst observe the following corollary of the above theorem which characterizes the overall rate that can be achieved by our compress-and-forward scheme
+Corollary 1. There exists a reliable compress-and- forward scheme achieving overall rate R if,
+Proof: The compress-and-forward scheme with R (l,k) = I(Y (l,k) , ˆ Y (l,k) ) + 1 achieves this rate.
+Note that the above scheme is essentially the quantize-and-forward scheme, such that every quan- tized codeword is uniquely mapped to a re- transmission codeword at the relay node. In this paper, we aim to provide a compress-and-forward scheme with minimal binning rates at each node. The next
+R (O l ) > R + I( ˆ Y Φ c ; Y Φ c |X V ) ≥ R.
+1) ρ l is bi-submodular, i.e., ∀U 1 , U 2 ⊆ O l , W 1 , W 2 ⊆ O l +1 ,
+ρ l (U 1 ∪ U 2 , W 1 ∩ W 2 ) + ρ l (U 1 ∩ U 2 , W 1 ∪ W 2 ) ≤ρ l (U 1 , W 1 ) + ρ l (U 2 , W 2 ). 	 (9)
+These functions abstract a “channel” between two adjacent layers in the network. In the context of the discrete memoryless network, the natural candidate for the channel function is the mutual information I (X U ; ˆ Y W |X O l \U ). This is indeed a channel function, as shown below.
+Proposition 1. Given a collection of independent random variables X V\O L ∼ v ∈V\d p (x v ) and the discrete memoryless network deﬁned by (2), which induces random variables Y V\O 1 ,
+forms a family of channel functions. Proof: See [10].
+Next we deﬁne ﬂow for the network with respect to the channel functions {ρ l }.
+Deﬁnition 2. A ﬂow on a network is deﬁned as a function d : V → R + which satisﬁes the following two properties:
+Traditionally, (i.e., in wireline networks) ﬂow is deﬁned over edges. Here, however, there are no natural equivalents of edges. As such, our ﬂow is deﬁned over nodes and restricted to satisfy certain conditions imposed by the channel functions. The quantity d(l, k) abstracts the amount of “information” ﬂowing through the node (l, k). The ﬁrst condition is essentially a capacity constraint resulting from the channel functions of the network. It states that the amount of information ﬂowing from the nodes U to W is upper bounded by the channel function ρ l (U, W ). The second condition states that the information in ﬁnal layer must be the same as the ﬁnal layer. This ensures that the ﬁrst layer functions as the source and the last layer as the destination.
+Finally, we deﬁne a cut for the network with the channel functions {ρ l }.
+Deﬁnition 3. For any Ω ⊆ V, the cut C(Ω) : 2 V → R + is deﬁned as
+We will use this ﬂow to construct a compress-and- forward scheme for the relay network. Theorem 3. If
+(22) for some v ∈V p (x v )p(ˆ y v |y v ), then there exists a compress-and-forward scheme for the relay network with rate R and binning rates given by,
+R (l,k) = d (l,k) + I( ˆ Y (l,k) ; Y (l,k) |X V r , X s ), (23) where d (l,k) is a ﬂow on the network with value f = R + δ, where
+The next corollary shows that the above scheme is an approximately minimal scheme in terms of the binning rates
+Corollary 5. For the compress-and-forward scheme of Theorem 3,
+Corollary 2 shows that R(O l ) is at least R for any compress-and-forward scheme. For the compress-and- forward constructed above from ﬂows, the extra term is I ( ˆ Y O l ; Y O l |X V ) + δ. We next specialize our results to the important special cases of the deterministic network where this gap is zero and to the Gaussian network where this term can be bounded by a constant term which is independent of the channel parameters.
+for some v ∈V p (x v ), then there exists a compress- and-forward scheme for the relay network with rate R and binning rates given by,
+R (l,k) = d (l,k) , 	 (27) where d (l,k) is a ﬂow on the network with value R. Further for this scheme
+=h( ˆ Y (l,k) |X V r , X s ) − h( ˆ Y (l,k) |Y (l,k) , X V r , X s ) (32) =h(Z (l,k) + ˆ Z (l,k) ) − h( ˆ Z (l,k) ) 	 (33) = log 2 2 	 (34) =1 bit. 	 (35)
+[[[ REFS ]]]
+A. S. Avestimehr
+S. N. Diggavi
+--
+Wireless network information ﬂow: A deterministic Approach
+----
+S. H. Lim
+H. Kim
+A. El Gamal
+Y. Chung
+--
+Noisy Network Coding
+----
+A. Ozgur
+S. N. Diggavi
+--
+Approximately achieving Gaus- sian relay network capacity with lattice codes
+----
+T. M. Cover
+A. El Gamal
+--
+Capacity theorems for the relay channel
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative strategies and capacity theorems for relay networks
+----
+A. Amadruz
+C. Fragouli
+--
+Combinatorial algorithms for wireless information ﬂow
+----
+S. M. S. Tabatabaei Yazdi
+S. A. Savari
+--
+A combinatorial study of linear deterministic relay networks
+----
+M. X. Goemans
+S. Iwata
+R. Zenklusen
+--
+An algebraic framework for wireless information ﬂow
+----
+A. Schrijver
+--
+Combinatorial Optimization
+----
+A. Raja
+P. Viswanath
+--
+Compress-and-Forward Scheme for a Relay Network: Approximate Optimality and Connection to Algebraic Flows
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\174.pdf
+[[[ LINKS ]]]
+

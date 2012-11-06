@@ -1,0 +1,147 @@
+[[[ ID ]]]
+28
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Use of Gray Codes for Optimizing the Search of (Shortened) Cyclic Single Burst-Correcting Codes
+[[[ AUTHORS ]]]
+Luis Javier Garc´ıa Villalba ∗
+Jos´e Ren´e Fuentes Cortez ∗
+Ana Lucila Sandoval Orozco ∗
+Mario Blaum ∗†
+[[[ ABSTR ]]]
+Abstract—In a previous work [5] it was shown that the best measure for the efﬁciency of a single burst-correcting code is obtained using the Gallager bound as opposed to the Reiger bound. In this paper, an algorithm that optimizes the search for the best (shortened) cyclic burst-correcting codes is presented. The use of Gray codes in the algorithm optimizes the search, in the sense that no repeated syndromes are computed.
+Keywords. Error-correcting codes, burst errors, cyclic bursts, wrap-around bursts, all-around (AA) bursts, single burst-correcting codes, cyclic codes, shortened cyclic codes, guard space, Gallager bound, optimal burst-correcting codes.
+[[[ BODY ]]]
+In [5], we studied the efﬁciency of linear burst-correcting block codes and we argued that the framework for determining such efﬁciency is based not on the commonly used Reiger bound [13] but on the Gallager bound [4]. Using this new framework, in particular we provided tables of shortened cyclic single burst-correcting codes with efﬁciencies either equal or larger than the ones of existing codes. Such new codes were obtained by computer search. However, absent from the study in [5], is the search algorithm utilized in order to obtain the codes. In this paper, we present such search algorithm, which allows for optimized searches given a variety of parameters. Actually, some of the best single burst-correcting codes have been found by computer search [9][12], usually improving the parameters of the best known family of single burst-correcting cyclic codes, the Fire codes [3][11]. Many of the results of such searches can be found in the tables given in [10][11]. However, in this paper we search for codes by taking into account the efﬁciency criterion developed in [5].
+In order to make the paper self-contained, we repeat several of the deﬁnitions and concepts of [5] but with less level of detail. Let us start with the deﬁnition of a burst with respect to a guard space [10][11]:
+Deﬁnition 1.1: Assume that an all-zero sequence is trans- mitted and let e 0 , e 1 , e 2 . . . be the received sequence, i.e., 1s represent errors and 0s absence of errors. Then, a vector of b consecutive bits (e l , e l+1 , . . . , e l+b−1 ) is called a burst of length b with respect to a guard space of length g if:
+3) The g bits preceding e l and the g bits following e l+b−1 are all 0s (if l < g then all the bits preceding l are 0).
+Assume that we encode a (semi-inﬁnite) sequence using a code C (either block or convolutional). If a block code of length n is used, the encoded sequence is divided into blocks of length n. So let us deﬁne the burst-correcting capability of code C.
+Deﬁnition 1.2: Assume that an encoded sequence under code C is transmitted into a channel, a (possibly noisy) version is received and the non-zero elements (i.e., the bits in error) in the difference between the received sequence and the transmitted sequence can be grouped in bursts of length at most b with guard space g. If code C can correct any such received sequence, we say that C is a (b, g)-burst-correcting code.
+The values required for the pair (b, g) can sometimes be determined from the statistics of the channel. For instance, a well known model for isolated bursts is given by the Gilbert- Elliot channel [7][2].
+Assume that the pair (b, g) is given and that we want to construct a (b, g)-burst-correcting code with rate as large as possible. We will search only for either cyclic or shortened cyclic block codes.
+Next, we consider single burst-correcting [n, k] linear binary codes and we will see how they relate to our (b, g)-burst- correcting model. When we say that an [n, k] code C can correct a single burst of length up to b, there are two types of bursts: non-all around (NAA) and all-around (AA) bursts. Let us deﬁne them formally.
+Deﬁnition 1.3: Given a block of n bits e 0 , e 1 , . . . , e n−1 , we say that e l , e l+1 , . . . , e l+b−1 is a NAA burst of length b for 0 ≤ l ≤ n − 1, if l + b ≤ n, e l = e l+b−1 = 1 and e i = 0 for i < l and i > l + b − 1.
+Similarly, given a block of n bits e 0 , e 1 , . . . , e n−1 , we say that e l , e l+1 , . . . , e n−1 , e 0 , e 1 , . . . , e l+b−n−1 is an AA burst of length b, where 1 ≤ l ≤ n − 1 and b < n, if l + b > n, e l = e l+b−n−1 = 1 and e i = 0 for l + b − n − 1 < i < l.
+AA bursts have received different names in literature. In [1], bursts of this type are called cyclic (a name we prefer to avoid in order to prevent confusion with cyclic codes). In [12], NAA bursts are called open-loop bursts and AA bursts are called closed-loop bursts, while in [8], AA bursts are called wrap- around bursts.
+Deﬁnition 1.4: Consider an [n, k] code C. If C can correct up to a single NAA burst of length up to b, or up to a single AA burst of length up to , then we say that C is an [n, k, b, ] burst-correcting code.
+The following lemma [5] is immediate and it connects Deﬁ- nitions 1.2 and 1.4:
+Lemma 1.1: Let C be an [n, k, b, ] burst-correcting code, 1 ≤ ≤ b. Then C is a (b, n − ) burst-correcting code.
+The following lemma is also immediate from Deﬁnition 1.4 and Lemma 1.1:
+Lemma 1.2: Let C be an [n, k, b, ] burst-correcting code, 2 ≤ ≤ b. Then C is an [n, k, b, − 1 ] (b, n − + 1)-burst- correcting code.
+The following lemma is simple and well known (see for instance [12]), but let us put it in the framework of Deﬁ- nition 1.4:
+Lemma 1.3: Assume that C is an [n, k, b, 1 ] burst- correcting cyclic code. Then C is an [n, k, b, b ] burst- correcting code.
+The best single burst-correcting codes considered in litera- ture prior to [5] are either b, 1 or b, b single burst-correcting codes [10][11]. It was shown in [5] that by taking intermediate values 1 < < b, codes with better rates were often found.
+Given (b, g), we will proceed as follows: for each , 1 ≤ ≤ b, we search for an optimal [g + , k , b, ] burst-correcting code (that by Lemma 1.1 is (b, g)-burst-correcting) by using the search algorithm to be described in the next section. We have denoted the dimension of each code by k to indicate its dependance on . Then we choose the code that gives us the largest value of the rate k /(g + ) (or, in other words, the one that maximizes the Gallager efﬁciency [5]). The next example, taken from [5], shows that given (b, g), sometimes there are values of that are neither 1 nor b but that give codes with better rates than the former:
+Example 1.1: Consider a pair (b, g) = (3, 25). There is a shortened cyclic [28, 19, 3, 3 ] (3,25)-burst-correcting code generated by x 9 + x 8 + x 6 + 1. By computer search we can determine that there is no [28, 20, 3, 3 ] burst-correcting (shortened) cyclic code.
+Similarly, we ﬁnd that there are [26, 19, 3, 1 ] (3,25)-burst- correcting shortened cyclic codes, but not [26, 20, 3, 1 ] codes.
+However, the [27, 20, 3, 2 ] shortened cyclic code generated by x 7 + x 6 + x 3 + 1 is a (3,25)-burst-correcting code and it has better rate than both the [28, 19, 3, 3 ] and the [26, 19, 3, 1 ] codes.
+In the next section, we present the search algorithm for shortened cyclic codes that are (b, g) burst-correcting. Let us
+point out that the search algorithm presented in [12] ﬁnds the burst-error capability of a given cyclic code. The search algorithm presented in [9] does not take into account the guard space explicitly.
+From now on, when we say a burst-correcting code we mean a single burst-correcting code, since we do not consider other cases in this paper.
+In order to check if there exists an [n, k, b, ] (shortened) cyclic code, 1 ≤ ≤ b and b ≤ (n − k)/2 (this last inequality by the Reiger bound [13]), we need to check all possible generator polynomials of degree n−k. If we ﬁnd one, we stop the search. If there is none, then we try to ﬁnd an [n, k − 1] code using the same procedure, and so on, until we determine the largest possible value of k.
+Many polynomials can be eliminated from the search with a quick test. A generator polynomial g(x) may be represented as a binary vector. We may assume without loss of generality that such binary vector begins and ends with a 1. Moreover, it can be proven without much difﬁculty that g(x) generates an [n, k, b, ] (shortened) cyclic code, if and only if the code generated by the polynomial obtained by reversing the order of the bits of g(x) is also an [n, k, b, ] (shortened) cyclic code. This observation allows to simplify the search: if we have found out that the code generated by g(x) is not an [n, k, b, ] code, then it is not necessary to test the code generated by g(x) in reverse order.
+Another simple test when checking if the code generated by g(x) is an [n, k, b, ] code, is to measure the burst-b weight [15] of g(x). The burst-b weight of a vector is the minimum number of bursts of length up to b that cover the 1s of the vector (the burst-1 weight is the usual Hamming weight). If such burst-b weight is smaller than 3, this means that in particular the code cannot be an [n, k, b, ] code, so no further tests on g(x) are necessary and we may proceed with the next candidate polynomial. It is easy to determine all the generator polynomials of burst-b weight smaller than 3 if we take into account that g(x) must start and end with a 1. Writing g(x) as a vector g of length n − k + 1, we have g = (g 0 , g 1 , . . . , g n−k ), where g 0 = g n−k = 1. If g has burst-b weight smaller than 3, it means that its non-zero entries can be covered by at most two bursts of length up to b each. But there are exactly 2 2b−2 vectors g that have burst-b weight smaller than 3: they are all the vectors g = (g 0 , g 1 , . . . , g n−k ) with g 0 = g n−k = 1 such that g i = 0 for b ≤ i ≤ n − k − b. So these 2 2b−2 vectors can also be eliminated from the search. Notice that the ﬁrst polynomial (in lexicographic order) of burst-b weight larger than 2 is g(x) = 1 + x n−k−b + x n−k−1 . We will take this polynomial as our initial polynomial.
+We are ready to state the search algorithm which is the main result of this paper.
+Algorithm 2.1: Given n, k, b ≤ (n − k)/2 and 1 ≤ ≤ b, the algorithm ﬁnds out if there is a cyclic or
+shortened cyclic [n, k, b, ] code C with generator polyno- mial g(x) = g 0 + g 1 x + · · · + g n−k x n−k , g 0 = g n−k = 1. The candidate polynomials are examined in lexicographic order. Let g = (g 0 , g 1 , . . . , g n−k ) and ← g = (g n−k , g n−k−1 , . . . , g 0 ). Then, taking as initial g the ﬁrst vector of burst-b weight 3,
+1) If g = (1, 1, . . . , 1) declare that there is no [n, k, b, ] code C and exit.
+2) If g b = g b+1 = · · · = g n−k−b = 0, then consider the next g in lexicographic order and go to step 3.
+where we consider the relationship ‘>’ in lexicographic order.
+   
+g 0 g 1 . . . g n−k 	 0 	 0 . . . 	 0 0 g 0 . . . g n−k−1 g n−k 0 . . . 	 0 .. . .. . . . . .. . 	 .. . .. . . . . .. .
+   
+By Gaussian elimination on G, obtain the systematic generator matrix G sys = (I k | V ), where I k is the k × k identity matrix and V is a k × (n − k) matrix, and then the systematic parity-check matrix H = (V T | I n−k ). Denote by h 0 , h 1 , . . . , h k−1 the ﬁrst k columns of H.
+5) Consider the 2 b−1 (n − k − (b − 2)) numbers 0 ≤ i ≤ 2 b−1 − 1, and 2 j t, where 2 b−1 ≤ t ≤ 2 b − 1 and 0 ≤ j ≤ n − k − b, corresponding to the syndromes of the 2 b−1 (n−k−(b−2)) NAA bursts of length up to b whose ﬁrst k coordinates are 0 (including the all-zero vector). Consider also the ( −2)2 −1 +1 numbers corresponding to the ( − 2)2 −1 + 1 syndromes of AA bursts of length up to . If one of these numbers gets repeated, then consider the next g(x) in lexicographic order and go to step 1. Otherwise, call S the set consisting of these 2 b−1 (n − k − (b − 2)) + ( − 2)2 −1 + 1 numbers.
+6) Consider a reﬂective Gray code G(b − 1). Let j←0, s the all-zero vector of length n − k and s = 0.
+7) Let j = q 2 b−1 + t, with 0 ≤ t < 2 b−1 . If t = 0, then let s←s⊕h q . If t = 0, let s←s⊕h q+d , where d is the coordinate changing between rows t−1 and t of the Gray code G(b − 1). Let s be the decimal representation of s. If s ∈ S, then consider the next g(x) in lexicographic order and go back to step 1. Otherwise make j←j + 1.
+8) If j = kb, then declare that code C generated by g(x) is an [n, k, b, ] code and exit. Otherwise go back to step 7.
+Let us ﬁnish this section with some comments on the optimization steps in Algorithm 2.1. In step 2 of the algorithm above we are checking whether g(x) as a binary vector has burst weight larger than 2. In step 3 we avoid checking polynomials that we have already checked in reverse order.
+In step 4, let’s point out that there are other ways of ﬁnding the systematic generator matrix G sys . For example, if the code is cyclic, we can ﬁnd x i ( mod g(x)) for k ≤ i ≤ n−1. If the
+code is shortened cyclic, something similar can be done, but we have to be careful and ﬁnd ﬁrst the length of the (shortest) cyclic code having g(x) as generator polynomial. We omit the details.
+Step 7 is the essential step of the algorithm, since the use of Gray codes allows for checking the syndromes of the kb bursts of length up to b starting in coordinates 0 to k − 1 without repetitive operations. For example, assume that we are checking the existence of a [10, 4, (3, )] code. For each candidate polynomial g(x), once the systematic parity- check matrix has been obtained, we have to check 16 possible syndromes, corresponding to 16 possible bursts. The order in which the bursts are tested, using the reﬂective Gray code G(2), according to step 7 is:
+0 1 2 3 4 5 6 7 8 9 1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 1 1 0 0 0 0 0
+We can see that at each step, we use the syndrome previ- ously computed and we XOR with the corresponding column of H. This way, the search is optimized since no repeated syndromes are recomputed.
+Adding s to S is optional. Since the code is shortened cyclic, if two syndromes corresponding to two NAA bursts of length up to b each starting in the ﬁrst k locations coincide, then rotating these two bursts such that the second one is in the last n − k locations will also give two equal syndromes. For example, taking the same case of n = 10 as above, assume that bursts (1, 1, 0, 0, 0, 0, 0, 0, 0, 0) and (0, 0, 1, 1, 0, 0, 0, 0, 0, 0) have the same syndrome. By adding the syndrome of the ﬁrst burst to S, we would ﬁnd out as we check the second burst that the syndrome is repeated. But notice that the syndrome of burst (0, 0, 0, 0, 1, 1, 0, 0, 0, 0) is already in S, by the deﬁnition of S. Since the code is (shortened) cyclic, the syndrome of (0, 0, 1, 1, 0, 0, 0, 0, 0, 0) will coincide with the syndrome of (0, 0, 0, 0, 1, 1, 0, 0, 0, 0), so we will eventually ﬁnd that two syndromes coincide, perhaps with some delay. We preferred not to increase the size of S in order to reduce both storing space and the number of comparisons, a concern as the size b of the bursts becomes larger.
+Next we present tables with the best parameters for different values of burst and guard space lengths.
+Tables I to V give parameters with optimum burst- correcting-codes for 5 ≤ b ≤ 9 and for some different values of the guard space g. The tables were obtained using Algo- rithm 2.1. The generator polynomials are given in hexadecimal notation. We indicate the value of that gives the highest value of the rate k /n. More extensive tables without gaps in the values of g are presented in an on line version [6].
+We have presented an efﬁcient algorithm ﬁnding the best cyclic or shortened cyclic burst-correcting codes for different parameters. The algorithm minimizes the number of syndrome
+checks by using Gray codes. Extensive tables with the most efﬁcient codes have been presented.
+This work was supported by the Ministerio de Ciencia e Innovaci´on (MICINN, Spain) through Project TEC2010- 18894/TCM and the Ministerio de Industria, Turismo y Com- ercio (MITyC, Spain) through Project AVANZA COMPET- ITIVIDAD I+D+I TSI-020100-2010-482. Jos´e Ren´e Fuentes
+Cortez was also supported by the Agencia Espa˜nola de Co- operaci´on Internacional para el Desarrollo (AECID) of the Ministerio de Asuntos Exteriores y de Cooperaci´on (MAEC, Spain) through AECID scholarship Program II-E No. 448626.
+[[[ REFS ]]]
+R. E. Blahut
+--
+Algebraic Codes for Data Transmission
+----
+E. O. Ellio
+--
+Estimates of Error Rates for Codes on Burst-Noise Channels, Bell Syst
+----
+P. Fire
+--
+A Class of Multiple-Error-Correcting Codes for Non- independent Errors
+----
+R. G. Gallager
+--
+Information Theory and Reliable Communication
+----
+L. J. Garc´ıa Villalba
+J. R. Fuentes Cortez
+M. Blaum
+--
+On the Efﬁciency of Shortened Cyclic Single-Burst-Correcting Codes
+----
+L. J. Garc´ıa Villalba
+J. R. Fuentes Cortez
+A. L. Sandoval Orozco
+M. Blaum
+--
+Efﬁcient Algorithms for Searching Optimal Shortened Cyclic Single-Burst-Correcting Codes
+----
+E. N. Gilbert
+--
+Capacity of a Burst-Noise Channel
+----
+H. D. L. Hollmann
+L. M. G. M. Tolhuizen
+--
+Optimal Codes for Correcting a Single (Wrap-Around) Burst of Errors
+----
+T. Kasami
+--
+Optimum Shortened Cyclic Codes for Burst-Error- Correction
+----
+S. Lin
+D. J. Costello
+--
+Error Control Coding: Fundamentals and Applications
+----
+S. Lin
+D. J. Costello
+--
+Error Control Coding (2nd Edition)
+----
+H. J. Matt
+J. L. Massey
+--
+Determining the Burst-Correcting Limit of Cyclic Codes
+----
+S. H. Reiger
+--
+Codes for the Correction of ’Clustered’ Errors
+----
+C. Savage
+--
+A Survey of Combinatorial Gray Codes
+----
+S. Wainberg
+J. K. Wolf
+--
+Burst Decoding of Binary Block Codes on Q-ary Output Channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\028.pdf
+[[[ LINKS ]]]
+

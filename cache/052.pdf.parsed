@@ -1,0 +1,179 @@
+[[[ ID ]]]
+52
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Localized Dimension Growth in Random Network Coding: A Convolutional Approach
+[[[ AUTHORS ]]]
+Wangmei Guo
+Ning Cai
+Xiaomeng Shi
+Muriel M´edard
+[[[ ABSTR ]]]
+Abstract—We propose an efﬁcient Adaptive Random Convolu- tional Network Coding (ARCNC) algorithm to address the issue of ﬁeld size in random network coding. ARCNC operates as a convolutional code, with the coefﬁcients of local encoding kernels chosen randomly over a small ﬁnite ﬁeld. The lengths of local encoding kernels increase with time until the global encoding kernel matrices at related sink nodes all have full rank. Instead of estimating the necessary ﬁeld size a priori, ARCNC operates in a small ﬁnite ﬁeld. It adapts to unknown network topologies without prior knowledge, by locally incrementing the dimension- ality of the convolutional code. Because convolutional codes of different constraint lengths can coexist in different portions of the network, reductions in decoding delay and memory overheads can be achieved with ARCNC. We show through analysis that this method performs no worse than random linear network codes in general networks, and can provide signiﬁcant gains in terms of average decoding delay in combination networks.
+Index Terms—convolutional network code, random linear network code, adaptive random convolutional network code, combination networks
+[[[ BODY ]]]
+Since its introduction [1], network coding has been shown to offer advantages in throughput, power consumption, and security in both wireline and wireless networks. Field size and adaptation to unknown topologies are two of the key issues in network coding. Li et al. showed constructively that the max-ﬂow bound is achievable by linear algebraic network coding (ANC) if the ﬁeld is sufﬁciently large for a given deterministic multicast network [2], while Ho et al. [3] proposed a distributed random linear algebraic network code (RLNC) construction that achieves the multicast capacity asymptotically in ﬁeld size. Because of its simplicity and the ability to adapt to unknown topologies, RLNC is often preferred over deterministic network codes. While the con- struction in [3] allows cycles, which leads to the creation of convolutional codes, it does not make use of the convolutional nature of the resulting codes to lighten bounds on ﬁeld size, which may need to be large to guarantee successful decoding at all sinks. Both block network codes (BNC) [4], [5] and
+convolutional network codes (CNC) [6], [7] can mitigate the ﬁeld size requirements. M´edard et al. introduced the concept of vector, or block network codes (BNC) [4], and Xiao et al. proposed a deterministic binary BNC to solve the combination network problem [8]. BNC can operate on smaller ﬁnite ﬁelds, but the block length may need to be pre-determined. In discussing cyclic networks, both Li et al. and Ho et al. pointed out the equivalence between ANC in cyclic networks with delays, and CNC [2], [3]. Because of coding introduced across the temporal domain, CNC does not have a ﬁeld size constraint. Even though degree growth of the encoding kernel may lead to high computation complexity during decoding when there are many coding nodes along a path to a sink, it is often possible to achieve the network coding advantage by coding at a subset of nodes only [9]. In addition, the structure of CNC allows decoding to occur symbol-by-symbol, thus offering gains in decoding delay. However, it may require long coding kernels when the network is unknown. As discussed by Jaggi et al. [10], there exists equivalence relationships between ANC, BNC, and CNC. All three schemes require some prior knowledge on the network topology. Overestimation for the worst case assumption can be wasteful, leading to high com- putation complexity, decoding delay, and memory overheads.
+Our work extends the RLNC and CNC setup, allowing nodes to locally grow the dimensionality of the code until nec- essary. We propose an efﬁcient adaptive random convolutional network code (ARCNC) for multicast networks, with local encoding kernels chosen randomly from a small ﬁeld, and the code constraint length incremented locally at each node. Our scheme inherits the small ﬁeld size property of CNC, while taking advantage of the distributive nature of RLNC. The gains offered by ARCNC are three-fold. First, it operates in a small ﬁnite ﬁeld. Second, it adapts to unknown network topologies without prior knowledge. Last, the localized adaptation allows convolutional codes with different code lengths to coexist in different portions of the network, leading to reduction in decoding delay and memory overheads associated with using a pre-determined ﬁeld size or code length.
+The remainder of this paper is organized as follows: the AR- CNC algorithm is proposed in Section II and its performance analyzed in Section III. As an example, the advantages of ARCNC is considered in a combination network in Section IV. Section V concludes the paper.
+We ﬁrst introduce deﬁnitions used throughout the paper. We model a communication network as a ﬁnite directed multigraph, denoted by G = (V, E). An edge represents a noiseless communication channel on which one symbol is transmitted per unit time. In this paper, we consider the multicast case. The source node is denoted by s, and the set of d sink nodes is denoted by T = {r 1 , . . . , r d } ⊂ V . For every node v ∈ V, denote the sets of incoming and outgoing channels to v by In(v) and Out(v). An ordered pair (e ′ , e) of channels is called an adjacent pair when there exists a node v with e ′ ∈ In(v) and e ∈ Out(v).
+The symbol alphabet is represented by a base ﬁeld, F q . Assume s generates a message per unit time, consisting of a ﬁxed number m of symbols represented by an m-dim row vector x ∈ F m q . We index time to start from 0, hence the (t + 1)-th coding round occurs at time t. Messages transmitted by s is represented by a power series x(z) =
+x t z t , where x t ∈ F m q is the message generated at t and z denotes a unit-time delay. Data propagated over a channel e ∈ Out(v) is y e (z), a linear function of the source message; y e (z) = x(z)f e (z), where the m-dim column vector of rational power series, f e (z) =
+f e,t z t , is called the global encoding kernel over e. Viewed locally, y e (z) is a linear combination of messages over all incoming channels to node v; y e (z) =
+k e ′ ,e,t z t is the local encoding kernel over the adjacent pair (e ′ , e). Hence, f e (z) =
+k e ′ ,e (z)f e ′ (z). As discussed in [6], k e ′ ,e (z) and f e (z) are rational power series in the form of p(z) 1+zq(z) , where p(z) and q(z) are polynomials. Collectively, we call the |In(v)| × |Out(v)| matrix K v (z) = (k e ′ ,e (z)) e ′ ∈In(v),e∈Out(v) the local encoding kernel matrix at node v, and the m × |In(v)| matrix F r (z) = (f e (z)) e ∈In(r) the global encoding kernel matrix at sink r.
+1) Encoding: at time 0, all local and global encoding ker- nels are set to 0. Source s generates a message x =
+x t z t , where x t consists of m symbols (x t,1 , x t,2 , · · · , x t,m ). Each intermediate node v, when a symbol is received on e ′ ∈ In(v) at time t, stores it in memory as y e ′ ,t , and chooses the (t + 1)- th term k e ′ ,e,t of the local encoding kernel k e ′ ,e (z) uniformly randomly from F q for e ∈ Out(v). Node v assigns registers to store k e ′ ,e,t , and forms the outgoing symbol as
+That is, the outgoing symbol is a random linear combination of symbols in the node’s memory. The (t+1)-th term of f e (z), f e,t , is placed in the header of the outgoing message.
+2) Decoding: at each time instant t, each sink node r decides whether its global encoding kernel matrix is full rank. If so, it sends an ACK signal to its parent node. An intermediate node v which has received ACKs from all its children at a time t 0 will send an ACK to its parent, and set all subsequent local encoding kernel coefﬁcients k e ′ ,e,t to 0 for all t > t 0 , e ′ ∈ In(v), and e ∈ Out(v). In other words, the constraint length of the local convolutional code increases until it is sufﬁcient for downstream sinks to decode. Such automatic adaptation eliminates the need for estimating the ﬁeld size or the constraint length a priori. It also allows nodes within the network to operate with different constraint lengths as needed.
+Once its global encoding kernel matrix F r (z) is full rank, a sink node r performs sequential decoding as introduced by Erez et al. [7] to obtain the source message symbol-by-symbol. If F r (z) is not full rank, r stores received messages and wait for more data to arrive. At time t, the algorithm is considered successful if all sink nodes can decode. At sink r, the local and global encoding kernels are k e ′ ,e (z) = k e ′ ,e,0 +k e ′ ,e,1 z + · · ·+ k e ′ ,e,t z t and f e (z) = f e,0 + f e,1 z + · · · + f e,t z t respectively, where k d,e,i and f e,i are the encoding coefﬁcients at time i. Sink r can decode successfully if there exists at least m linear independent incoming channels, i.e., the determinant of F r (z) is a non-zero polynomial. At time t, F r (z) can be written as F r (z) = F 0 + F 1 z + · · · + F t z t , where F i is the global encoding kernel matrix at time i. Computing the determinant of F r (z) at every time instant is complex, so we test instead the following conditions, introduced in [11], [12] to determine decodability at a sink r. The ﬁrst condition is necessary, while the second is both necessary and sufﬁcient.
+    
+  
+Each sink r checks the two conditions in order. If both pass, r sends an ACK signal to its parent; otherwise, it waits for more data to arrive. Observe that as time progresses, F r (z) grows in size, until decodability is achieved. This scheme for verifying the invertibility of F r (z) is based on the theory of decodable convolutional codes [12], which transfers the determinant calculation of a polynomial matrix into the rank computation of extended numerical matrices. We do not elaborate on the details and refer interested readers to the original work.
+In a cyclic network, a sufﬁcient condition for a convolu- tional code to be successful is that the constant coefﬁcient matrix consisting of all local encoding kernels be nilpotent [11], [13]; this condition is satisﬁed if we code over an acyclic topology at time 0 [11]. In other words, at time 0, we want to remove a minimal number of edges such that the network becomes acyclic, and to choose K v (0) randomly for each v
+over the resulting acyclic network. This process is essentially the problem of ﬁnding the minimal feedback edge set, which is NP-hard [7]. Approximation algorithms with polynomial complexity and other possible heuristic algorithms exist, but we do not give detailed descriptions here owning to the lack of space. The goal is to guarantee that each cycle contains at least a single delay. After initialization, the algorithm proceeds exactly the same as in the acyclic case.
+Discussions in [2], [3], [13] state that in a network with delays, ANC gives rise to random processes which can be written algebraically in terms of a delay variable z. In other words, a convolutional code can naturally evolve from the mes- sage propagation and the linear encoding process. ANC in the delay-free case is therefore equivalent to CNC with constraint length 1. Similarly, using a CNC with constraint length l > 1 on a delay-free network is equivalent to performing ANC on the same network, but with l − 1 self-loops attached to each encoding node. Each self-loop carries z, z 2 , . . . , z l −1 units of delay respectively. The ARCNC algorithm we have proposed therefore falls into the framework given by Ho et al. [3], in the sense that the convolution process either arises naturally from cycles with delays, or can be considered as computed over self-loops appended to acyclic networks. From [3], we have the following theorem,
+Theorem 3.1: For multicast over a general network with d sinks, the ARCNC algorithm over F q can achieve a success probability of at least (1 − d/q t+1 ) η at time t, if q t+1 > d, and η is the number of links with random coefﬁcients.
+Proof: At node v, the local encoding kernel k e ′ ,e (z) at time t is a polynomial with maximal degree t, i.e., k e ′ ,e (z) = k e ′ ,e,0 + k e ′ ,e,1 z + · · · + k e ′ ,e,t z t , where k e ′ ,e,i is randomly chosen over F q . If we group the encoding coefﬁcients, the ensuing vector, k e ′ ,e = {k e ′ ,e,0 , k e ′ ,e,1 , · · · , k e ′ ,e,t }, is of length t + 1, and corresponds to a random element over the extension ﬁeld F q t+1 . Using the result in [3], we conclude that the success probability of ARCNC at time t is at least (1 − d/q t+1 ) η , as long as q t+1 > d.
+We could similarly consider the analysis done by Balli et al. [14], which states that the success probability is at least (1 −d/(q −1)) |J|+1 , |J| being the number of encoding nodes, to show that a tighter lower bound can be given on the success probability of ARCNC, when q t+1 > d.
+We deﬁne the stopping time T i for sink i, 1 ≤ i ≤ d, as the time it takes i to achieve decodability. Also denote by T N the time it takes for all sinks in the network to successfully decode, i.e., T N = max {T 1 , . . . , T d }. Then we have:
+Corollary 3.2: For any given 0 < ε < 1, there exists a T 0 > 0 such that for any t ≥ T 0 , ARCNC solves the multicast problem with probability at least 1 − ε, i.e., P (T N > t) < ε.
+− lg q (1 − η √ 1 − ϵ) ⌉ −1, then T 0 + 1 ≥ ⌈log q d ⌉ since 0 < ε < 1, and (1 − d/q T 0 +1 ) η > 1 − ε.
+Applying Theorem 3.1 gives P (T N > t) ≤ P (T N > T 0 ) < 1 − (1 − d/q t+1 ) η < ε for any t ≥ T 0 .
+Since P r {∪ ∞ i=t [T N ≤ t]} = 1 − P r{∩ ∞ i=t [T N > t] } ≥ 1 −P r[T N > t], Corrollary 3.2 shows that as t goes to inﬁnity, ARCNC converges and stops in a ﬁnite amount of time with probability one for a multicast connection.
+Another relevant measure of the performance of ARCNC is the average stopping time E[T ] = 1 d
+T i . Observe that E[T ] ≤ E[T N ], where
+When q is large, the summation term becomes 1 − (1 − d/q) η by the binomial expansion. Hence as q increases, the second term above diminishes to 0, while the ﬁrst term ⌈lg q d ⌉ − 1 is 0. E[T ] is therefore upper-bounded by a term converging to 0; it is also lower bounded by 0 because at least one round of random coding is required. Therefore, E[T ] converges to 0 as q increases. In other words, if the ﬁeld size is large enough, ARCNC reduces in effect to RLNC.
+Intuitively, the average stopping time of ARCNC depends on the network topology. In RLNC, ﬁeld size is determined by the worst case node. This process corresponds to having all nodes stop at T N in ARCNC. ARCNC enables each node to decide locally what is a good constraint length to use, depending on side information from downstream nodes. The corresponding effective ﬁeld size is therefore expected to be smaller than in RLNC. Two possible consequences of a smaller effective ﬁeld size are reduced decoding delay, and reduced memory requirements.
+To study the computation complexity of ARCNC, ﬁrst ob- serve that once the adaptation process terminates, the amount of computation needed for the ensuing code is no more than a regular CNC. In fact, the expected computation complexity is proportional to the average code length of ARCNC. We therefore omit the details of the complexity analysis of regular CNC here and refer interested readers to [7].
+For the adaptation process, the encoding operations are described by f e,t =
+algorithm stops at time T N , then the number of operations in the encoding steps is O(D in |E|T 2 N m), where D in represents the maximum input degree over all nodes.
+To determine decodability at a sink r, we check if the rank of the global encoding matrix F r (z) is m. A straight- forward approach is to check whether the determinant of F r (z)
+is a non-zero polynomial. Alternatively, Gaussian elimination can be applied. At t, because F r (z) is an m × |In(r)| matrix and each entry is a polynomial with degree t, the complexity of checking if F r (z) is full rank is O(D 2 in 2 m mt 2 ). Instead of computing the determinant or using Gaussian elim- ination directly, we propose to check the conditions given in Section II-B. For each sink r, at time t, determining rank
+· · · F t ) requires a computation complexity of O(D 2 in mt 2 ). If the ﬁrst test passes, we then need to calcu- late rank(M t ) and rank(M t −1 ). Observe that rank(M t −1 ) was computed during the last iteration. M t is a (t+1) |In(r)|× (t + 1) |In(r)| matrix over ﬁeld F q . The complexity of cal- culating rank(M t ) by Gaussian elimination is O(D 2 in mt 3 ). The process of checking decodability is performed during the adaptation process only, hence the computation complexity here can be amortized over time. In addition, as decoding occurs symbol-by-symbol, the adaptation process itself does not impose any additional delays.
+ARCNC adapts to the topology of general networks by locally increasing the convolutional code length, and gener- ating coefﬁcients randomly. Such adaptation allows nodes to code with different lengths, thus possibly reducing decoding delay and memory overheads associated with overestimating according to the worst case. As examples, next we consider a small combination network to illustrate how ARCNC operates, and how delay and memory overheads can be measured. We also consider a general combination network to show that ARCNC can obtain signiﬁcant gains in decoding delay here.
+that multicasts m independent messages over F q through n intermediate nodes to d sinks [15]; each sink is connected to a distinct set of m intermediate nodes, d =
+. Assuming unit capacity links, the min-cut to each sink is m. In combination networks, routing is insufﬁcient and network coding is needed to achieve the multicast capacity m. Decoding delay at a sink r is deﬁned as the time between the start of the coding process, and when the ﬁrst symbol is decoded at r.
+how ARCNC operates, let the messages generated by source s be
+(a t , b t )z t . Assume ﬁeld size is q = 2. Observe that only s is required to code; intermediate nodes relay on received messages directly. At time 0, s chooses randomly the local encoding kernel matrix. Suppose the realization is
+The ﬁrst 5 sinks can therefore decode directly at time 0, but sink r 6 cannot. Therefore, at time 1, s increases the convolutional code length for the right two intermediate nodes. Suppose the updated local encoding kernel is
+Sink r 6 is now capable of decoding. It therefore acknowledges its parents, which in turn causes s to stop incrementing the corresponding code length. By decoding sequentially, r 6 can recover messages (a 0 , b 0 ) at time 1, (a 1 , b 1 ) at time 2, and (a t −1 , b t −1 ) at time t. Observe that for sinks r 2 to r 5 , which are also connected to the two right intermediate nodes, the global encoding kernels increases in length until time 1 as well. In other words, these sinks decode with minimal delay of 0, but require twice the memory when compared to r 1 .
+In this example, at the single encoding node s, the code lengths used are (1, 1, 2, 2), with an average of 3/2. At the sinks, the decoding delays are (0, 0, 0, 0, 0, 1), with an average of 1/6. For the same
+deterministic BNC algorithm given by Xiao et al. [8], designed speciﬁcally for combination networks, requires an average decoding delay of 1, since the entire block of data needs to be received before decoding, and the block length is 2. In the next subsection we will show that such gains in decoding delay can be achieved in general combination networks as well. In terms of memory, the BNC algorithm requires 4 bits per node to store data, while ARCNC requires 2 bits at r 1 , and 4 bits at all other nodes, with an overall average of 42 11 . Of course, it may possibly need more coding rounds, and the average rounds needed is 2.67. As an example, it implies ARCNC learns the topology of this network automatically, and achieves much lower decoding delays without compromising the amount of memory needed, when compared to the deterministic BNC algorithm designed speciﬁcally for combination networks.
+Furthermore, if RLNC is used, even for a single sink r 1 to achieve decodability at time 0, the ﬁeld size needs to be a minimum of 2 3 for the decoding probability to be 49 64 . More coding rounds will be needed to achieve a higher success probability. In other words, with RLNC over F 2 3 , the average decoding delay will be higher than 1, and the amount of memory needed is at the minimum 6 bits per node. In other words, ARCNC adapts to the network topology at signiﬁcantly lower costs than RLNC, achieving both lower decoding delays and lower memory overheads, while operating with lower complexities in a smaller ﬁeld.
+show that the average decoding delay can be signiﬁcantly im- proved by ARCNC when compared to the deterministic BNC
+algorithm. Recall from deﬁnitions in Section III-B that the average decoding delay is the average stopping time E[T ] = E
+= E[T i ]. At time t −1, for sink node i, if it has not stopped increasing the constraint length of the convolution code, the global encoding kernel is a m × m matrix of degree t − 1 polynomials in z over F q . This matrix has full rank with probability Q = (q tm −1)(q tm −q t ) · · · (q tm −q t(m −1) )/q tm 2 , so the probability that sink i decodes after time t − 1 is P (T i ≥ t) = 1 − Q. The average stopping time over all sink nodes is then upper bounded by
+First observe that E[T ] a function of m and q, independent of the value of n. In other words, if m is ﬁxed, but n increases, the expected decoding delay does not change. Next observe that if q is large, ET U B becomes 0, consistent with the general analysis in Section III-B.
+A similar upper bound can be found for the variance of T as well. It can be shown that
+] d
++ m n
+where ET 2 U B is an upperbound for E[T 2 i ], ρ U B is an upper- bound for E[T i T j ] i ̸=j , and ET LB is a lowerbound for E[T i ]. All three quantities are functions of m and q, independent of n. If m and q are ﬁxed, as n increases, d also increases, and var(T ) diminishes to 0. Combining this result with a bounded expectation, what we can conclude is that even if more intermediate nodes are added, a large proportion of the sink nodes can still be decoded within a small number of coding rounds. On the other hand, if m and n are comparable in scale, for example, if m = n/2, then the bound above depends on the exact value of ET 2 U B , ρ U B and ET U B . We leave the detailed analysis of this case for journal version.
+Comparing with the deterministic BNC algorithm proposed by Xiao et al. [8], we can see that for a large combination network, with ﬁxed q and m, ARCNC achieves much lower decoding delay. In the BNC scheme, the block length is required to be p ≥ n − m at the minimum. Thus the decoding delay increases at least linearly with n. Similar comparisons can be made with RLNC, and it is not hard to see that we can obtain gains in both decoding delay and memory.
+an example to illustrate the operations and the decoding delay gains of ARCNC. It is important to note, however, that this is a very special network, in which only the source node is required to code, and each sink shares at least 1 parent with other
+parents with r are required to increase their memory capacity. Therefore, in combination networks, we do not see much gains in terms of memory overheads when compared with BNC algorithms. In more general networks, however, when sinks do not share ancestors with as many other sinks, ARCNC can achieve gains in terms memory overheads as well, in addition to decoding delay. Due to space limitations, we do not give any detailed analysis, but it can be shown, for example, that in an umbrella-shaped network, memory overheads can be signiﬁcantly reduced with ARCNC when compared to other network codes.
+We propose an adaptive random convolutional network code (ARCNC), which operates in a small ﬁeld, and locally and automatically adapts to the network topology by incrementally growing the constraint length of the convolution process. We show through analysis that ARCNC performs no worse than random algebraic linear network codes, and illustrate through a combination network example that it can reduce the average decoding delay signiﬁcantly. ARCNC can also reduce memory overheads in networks where sinks do not share the majority of their ancestors with other sinks. One possible future direction of analysis is to characterize the behavior of this algorithm over random networks, the results of which will enable us to decide on the applicability of ARCNC to practical systems.
+[[[ REFS ]]]
+R. Ahlswede
+N. Cai
+S. Li
+R. Yeung
+--
+Network information ﬂow
+----
+S. Li
+R. Yeung
+N. Cai
+--
+Linear network coding
+----
+T. Ho
+M. M´edard
+R. Koetter
+D. Karger
+M. Effros
+J. Shi
+B. Leong
+--
+A random linear network coding approach to multicast
+----
+M. M´edard
+M. Effros
+D. Karger
+T. Ho
+--
+On coding for non- multicast networks
+----
+S. Jaggi
+P. Sanders
+P. Chou
+M. Effros
+S. Egner
+K. Jain
+L. Tolhuizen
+--
+Polynomial time algorithms for multicast network code construction
+----
+S. Li
+R. Yeung
+--
+On convolutional network coding
+----
+E. Erez
+M. Feder
+--
+Convolutional network codes
+----
+M. Xiao
+M. M´edard
+T. Aulin
+--
+A binary coding approach for combination networks and general erasure networks
+----
+M. Kim
+C. Ahn
+M. M´edard
+M. Effros
+--
+On minimizing network coding resources: An evolutionary approach
+----
+S. Jaggi
+M. Effros
+T. Ho
+M. Medard
+--
+On linear network coding
+----
+N. Cai
+W. Guo
+--
+The conditions to determine convolutional network coding on matrix representation
+----
+J. MasseyY
+M. Sain
+--
+Inverses of linear sequential circuits
+----
+R. Koetter
+M. M´edard
+--
+An algebraic approach to network coding
+----
+H. Balli
+X. Yan
+Z. Zhang
+--
+On randomized linear network codes and their error correction capabilities
+----
+R. Yeung
+S. Li
+N. Cai
+Z. Zhang
+--
+Network Coding Theory: Single Sources
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\052.pdf
+[[[ LINKS ]]]
+

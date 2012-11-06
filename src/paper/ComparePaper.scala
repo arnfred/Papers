@@ -4,13 +4,15 @@ import scala.io.Source
 
 trait ComparePaper {
 
-  def compare(papers : List[Paper], limit : Int) : List[Paper] = {
-
-    papers.map(p => {
+  def compare(paperPos:String, papers : Option[List[Paper]], limit : Int) : List[Paper] = {
+    println("BEGIN OF PAPERS COMPARISION")
+	val loadedPapers = if(papers == None) CacheLoader.load(paperPos, Cache.extended) else papers.get
+    
+	val finalPapers = loadedPapers.map(p => {
       // Check that paper isn't already linked
       if (p.meta.get("linked") == None) {
         // Get list of papers that aren't current paper
-        val otherPapers = papers.filter(p != _)
+        val otherPapers = loadedPapers.filter(p != _)
 
         // Compare to every other paper
         val weights : List[Int] = for (other <- otherPapers) yield getWeight(p, other)
@@ -29,6 +31,8 @@ trait ComparePaper {
       }
       else p
     })
+    println("END OF PAPERS COMPARISION")
+    finalPapers
   }
 
   def getWeight(p : Paper, o : Paper) : Int = {

@@ -1,0 +1,148 @@
+[[[ ID ]]]
+144
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Improvement of BP-Based CDMA Multiuser Detection by Spatial Coupling
+[[[ AUTHORS ]]]
+Keigo Takeuchi
+Toshiyuki Tanaka
+Tsutomu Kawabata
+[[[ ABSTR ]]]
+Abstract—Kudekar et al. proved that the belief-propagation (BP) threshold for low-density parity-check codes can be boosted up to the maximum-a-posteriori (MAP) threshold by spatial coupling. In this paper, spatial coupling is applied to randomly- spread code-division multiple-access (CDMA) systems in order to improve the performance of BP-based multiuser detection (MUD). Spatially-coupled CDMA systems can be regarded as multi-code CDMA systems with two transmission phases. The large-system analysis shows that spatial coupling can improve the BP performance, while there is a gap between the BP performance and the individually-optimal (IO) performance.
+[[[ BODY ]]]
+The belief-propagation (BP) threshold of a low-density parity-check (LDPC) convolutional code [1] has been shown to coincide with the maximum-a-posteriori (MAP) threshold of the corresponding LDPC block code [2], [3]. Since LDPC convolutional codes can be regarded as a spatially-coupled chain of LDPC block codes, this phenomenon is referred to as threshold saturation via spatial coupling [2].
+Recently, we proposed a phenomenological model for ex- plaining this phenomenon [4]. In the phenomenological study, spatial coupling is regarded as a general method for conveying an suboptimal solution to the optimal solution. In this paper, we apply the principle of spatial coupling to code-division multiple-access (CDMA) systems in order to improve the performance of BP-based multiuser detection (MUD).
+It is important in CDMA systems to mitigate multiple- access interference (MAI), by using MUD [5]. Let us consider conventional K-user randomly-spread CDMA systems with spreading factor N . Tanaka [6] used the replica method to analyze the performance of the optimal MUD, called the individually-optimal (IO) receiver [5], in the large-system limit, where K and N tend to inﬁnity while the system load β = K/N is kept constant. For β < β IO , with β IO denoting a critical system load, the mean-squared error (MSE) for soft- decisions of the IO receiver takes a small value. Thus, the IO receiver can mitigate MAI successfully for β < β IO . For β > β IO , on the other hand, the MSE for the IO receiver takes a large value. This result implies that MAI cannot be mitigated for β > β IO . Thus, β IO can be regarded as a threshold between the MAI-limited region and the non-limited region. Since the system load β is proportional to the sum rate, the IO threshold β IO provides a performance index for the IO receiver.
+The computational complexity of the IO receiver grows exponentially in the number of users. Kabashima [7] proposed a low-complexity iterative MUD algorithm based on BP. It was shown numerically that the algorithm converges for large systems. Furthermore, the BP-based receiver for large systems can achieve the MSE of the IO receiver for β < β BP , with a system load β BP (< β IO ), while the MSE takes a larger value for β > β BP . Thus, the BP threshold β BP can be regarded as another critical threshold between the MAI-limited and non- limited regions for the BP-based receiver. See [8], [9] for a rigorous treatment based on sparsely-spread CDMA systems.
+What is occurring for β between β BP and β IO ? The MSE for the IO receiver is given by the global stable solution of a potential energy function, called free energy [6]. On the other hand, the MSE for the BP-based receiver is given by the stable solution of the free energy corresponding to the largest MSE [7] (See also [10, Fig. 2(a)]). This solution is metastable for β ∈ (β BP , β IO ), as shown in Fig. 1(a), while it is the global stable solution for β > β IO . Thus, the MSE for the BP-based receiver is trapped in a metastable solution for β ∈ (β BP , β IO ), while the MSE for the IO receiver approaches the global stable solution.
+Instead of constructing a BP-based receiver for spatially- coupled CDMA systems, in this paper, we derive the BP ﬁxed-point equation, characterizing the performance of the BP-based receiver after sufﬁciently many iterations, by using the replica method. We will show that the MSE for BP-based
+receivers can be brought to the global stable solution of an effective potential energy function by spatial coupling, i.e., the BP threshold is boosted up to a threshold. Unfortunately, the threshold does not coincide with the IO threshold, because the potential energy is different from the free energy for con- ventional CDMA systems. The rest of this paper is organized as follows: In Section II we review our phenomenological study [4]. In Section III we deﬁne spatially-coupled CDMA systems. Section IV presents a large-system analysis of the spatially-coupled CDMA systems. In Section V we show that spatial coupling can improve the performance of BP-based MUD. Section VI concludes this paper.
+Density evolution (DE) is a powerful method for ana- lyzing the performance of BP-based algorithms for graphi- cal models [11]. In the BP-based algorithms, messages are iteratively exchanged between variable nodes and function nodes on the factor graph. The densities of the messages are characterized by a few macroscopic parameters, such as the average error probability for LDPC codes over binary erasure channel (BEC) [2] or the MSE for conventional CDMA systems [9]. DE is a method for deriving a closed-form time- evolution equation for the macroscopic parameters, called the DE equation. For simplicity, we consider the case in which each density is described by one macroscopic parameter.
+Let us consider a spatial coupling of L subsystems. The densities of the messages for the spatially-coupled system in iteration i are characterized by macroscopic parameters {y i (x = l/L)} at spatial positions l = 0, . . . , L − 1. We assume that the DE equation for the macroscopic parameters in L → ∞ is given by a dynamical system on x ∈ [0, 1] with a small diffusion coefﬁcient 0 < D 1,
+dx 2 , 	 (1) with U (y; β) denoting a potential energy function, in which β is a parameter characterizing the subsystem, such as the system load for CDMA systems. The potential energy is assumed to have two stable solutions in a region of β. Note that the potential energy depends on the position x only through y i (x).
+Let y min denote the global stable solution of the potential energy U (y; β). We impose the boundary conditions y i (0) = y i (1) = y min . This type of boundary corresponds to termina- tion for LDPC convolutional codes. One may expect that the information about the global stable solution at the boundaries diffuses over the whole system, because the diffusion term in (1) smooths y i (x) spatially. In fact, this intuition is correct.
+Theorem 1 (Takeuchi et al. [4]). Suppose that y i (x) converges to a stationary solution y(x) in i → ∞, satisfying
+If y min is the unique minimizer of the potential energy U (y; β), then, the uniform solution y(x) = y min is the unique stationary solution to (1).
+What occurs when the boundaries are ﬁxed to a metastable solution of the potential energy U (y; β)? Numerical simula- tions [4] imply that y i (x) converges to a spatially-nonuniform stationary solution for sufﬁciently small D > 0. Let us deﬁne the BP threshold β (SC) BP for the spatially-coupled system as the supremum of β such that y i (x) converges to the uniform solution y(x) = y min in i → ∞. Theorem 1 and the observation described just above imply that β (SC) BP is given by the point β at which the potential energy U (y; β) at one stable solution y = y min is equal to that at the other stable solution y = ˜ y min , i.e., U (y min ; β (SC) BP ) = U(˜y min ; β (SC) BP ).
+We consider a K-user spatially-coupled CDMA system with variable spreading factor. Let N t and L denote the spreading factor in symbol period t and the number of symbol periods per transmission block, respectively. The vector u k,t ∈ C N t transmitted by user k in symbol period t is given by
+where b k,l ∈ C denotes the lth data symbol for user k with unit power E[|b k,l | 2 ] = 1; s (k) t,l ∈ C N t represents the lth spreading sequence for user k in symbol period t with E[ s (k) t,l 2 ] = N t ; and h t,l ∈ C denotes the lth (deterministic) coupling coefﬁcient in symbol period t. For notational convenience, we have deﬁned the transmitted vector (3) as if L different spreading sequences are used in each symbol period. However, the actual number of spreading sequences is much smaller than L, because many coupling coefﬁcients are adjusted to zero, as shown in the following examples. Note that the identical data symbols b k = (b k,0 , . . . , b k,L−1 ) T are transmitted in all symbol periods, while different data symbols are sent in the conventional multi-code CDMA systems. Under the assumption of unfaded channels, the received vector y t ∈ C N t in symbol period t is given by
+It is straightforward to extend our analysis to the case of fading channels [12].
+For the simplicity of analysis, the data symbols {b k,l } are assumed to be independent and identically distributed (i.i.d.) for all k and l. Furthermore, we assume that the spreading sequences {s (k) t,l } are i.i.d. for all k, t, and l, and that each spreading sequence s (k) t,l have i.i.d. zero-mean real and imaginary parts with variance 1/2. In order to restrict the average transmit power E[ u k,t 2 ] to unit power, we impose the constraint L−1 l=0 |h t,l | 2 = 1. Furthermore, we impose the constraint L−1 t=0 |h t,l | 2 = 1 to equalize the power used for transmission of each data symbol.
+Example 1 (Uncoupled System). Let h t,l = δ t,l and N t = N. The system reduces to the conventional CDMA system. The
+sum rate for quadrature phase shift keying (QPSK) is given by 2β, with β = K/N denoting the system load.
+Example 2 (Circularly-Coupled Systems). The coupling coef- ﬁcients for circularly-coupled systems are given by h t,l = h t−l for t − l ≥ 0 and h t,l = h t−l+L for t − l < 0, with
+where W + 1 corresponds to the number per symbol period of spreading sequences used by each user. One transmission block consists of an initialization phase t = 0, . . . , W − 1 and a communication phase t = W, . . . , L − 1. The spreading factor N t = N init in the initialization phase is adjusted to a small value, so that the receiver should be able to detect the data symbols sent in this phase successfully. The spreading factor N t = N in the communication phase is chosen to a large value in order to increase the transmission rate. The sum rate R for the circularly-coupled systems with QPSK is given by
+where β init = K/N init and β = K/N denote the system loads in the initialization and communication phases, respectively. The system load β in the communication phase corresponds to the parameter β in the dynamical system (1). The sum rate (6) tends to the sum rate 2β for the uncoupled CDMA system presented in Example 1 when L tends to inﬁnity with W ﬁxed. In other words, the rate loss due to the initialization phase is negligible when L is sufﬁciently large.
+There is an interesting connection between the performance of BP-based receivers and of the IO receiver for uncoupled CDMA systems, i.e., a ﬁxed-point equation characterizing the performance of the IO receiver coincides with the BP ﬁxed-point equation obtained from DE [7]–[9], [13]. Thus, we can predict the BP ﬁxed-point equation by analyzing the performance of the IO receiver.
+The IO receiver detects the data symbols b k for each user from the received vectors Y = {y t } in all symbol periods. The soft decision ˆ b k,l of the data symbol b k,l for the IO receiver is given by the posterior mean estimator (PME)
+where p b k |Y,S (b k |Y, S) denotes the posterior distribution of b k given all received vectors Y and all spreading sequences S = {s (k) t,l }. It is well-known that the PME achieves the minimum mean-squared error (MMSE).
+Remark 1. Let us consider “online” detection for the circularly-coupled system with W = 1, presented in Exam- ple 2. The receiver detects the ﬁrst data symbols {b k,0 } and the
+last data symbols {b k,L−1 } in the initialization phase. These symbols should be detected successfully for sufﬁciently small β init . In symbol period t = 1, the receiver detects the second data symbols {b k,1 } from the received vector y 1 . The known MAI due to the ﬁrst data symbols is ﬁrst subtracted from y 1 . The obtained vector can be regarded as the received vector in symbol period t = 1 for the uncoupled system. However, the average transmit power in this case is 1/2, which is half the power for the uncoupled system. Thus, this type of online detection is suboptimal.
+In order to analyze the performance of the IO receiver (7), we consider the large-system limit in which K and {N t } tend to inﬁnity while L and the system loads β t = K/N t for all t are ﬁxed. We use the replica method to calculate the MSE for the IO receiver, following [12]. The replica method is a powerful method for large-system analysis, although it is based on several heuristic assumptions [6], [14]. The detailed calculation is omitted because of space limitation.
+The spatially-coupled CDMA system is decoupled into a bank of equivalent single-user channels in the large-system limit. This type of decoupling was originally shown for the conventional CDMA systems [14]. We ﬁrst deﬁne the equivalent single-user channels for user k. The received signals for the single-user channels are given by
+with w (k) t,l ∼ CN (0, σ 2 t ). The IO receiver for the single- user channels detects the data symbol b k,l from the received signals Z (k) l = {z (k) t,l : for all t} on the basis of the posterior probability p b k,l |Z (k)
+(b k,l |Z (k) l ). The soft decision b k,l of b k,l for this IO receiver is given by
+The MSE (10) depends on {σ 2 t } only through the asymptotic signal-to-interference ratio (SIR) for the single-user chan- nel (8), given by
+Thus, we can write (10) as ξ l = ξ(sir −1 l ). The properties of MSE imply that the function ξ(z) on z ∈ (0, ∞) is a monotonically-increasing bounded function.
+We have not so far speciﬁed the variances {σ 2 t }. By deﬁning the variances as the solution to coupled ﬁxed-point equations, the MSE for the spatially-coupled CDMA system is connected with that for the decoupled systems.
+Proposition 1. The MSE of the IO receiver for the spatially- coupled CDMA systems converges to that for the single-user channels in the large-system limit, i.e.,
+In evaluating the right-hand side of (12), the variances {σ 2 t } are given by the solution to the coupled ﬁxed-point equations,
+where sir l is given by (11). If the coupled ﬁxed-point equa- tions (13) have multiple solutions, one should choose the solution minimizing the so-called free energy,
+where D(σ 2 σ 2 t ) denotes the Kullback-Leibler divergence between CN (0, σ 2 ) and CN (0, σ 2 t ).
+The free energy (14) is a quantity proportional to the achievable sum rate I({b k }; Y|S)/( L−1 t=0 N t ) in the large- system limit.
+In order to obtain an intuitive understanding of the solu- tion to (13), we consider the circularly-coupled system with β init → 0, presented in Example 2. It should be possible to de- tect the data symbols {b k,l : l = 0, . . . , W −1, L−W, . . . , L− 1} transmitted in the initialization phase without errors. Thus, the corresponding boundaries {ξ l } can be regarded as zero. In positions distant from the boundaries, on the other hand, the coupled ﬁxed-point equations (13) can be approximated by the phenomenological model (2): Substituting (13) into (11) yields
+for W ≤ l ≤ L − 1 − W , with Δ k = ξ l+k − ξ l . Let y(x) denote a smooth function on x ∈ [0, 1] satisfying y(l/L) = ξ l for l = 0, . . . , L− 1. Applying the approximation in L → ∞ 1 ,
+where ξ −1 (z) denotes the inverse function of ξ(z). Thus, the argument presented in Section II implies that the BP threshold β (SC) BP for the circularly-coupled CDMA systems in L → ∞ is given by the point β at which the potential energy (18) has
+two global stable solutions. Unfortunately, the potential energy is different from the free energy for the uncoupled CDMA systems. Thus, the BP threshold β (SC) BP does not coincide with the IO threshold β IO for the uncoupled systems at which the free energy (14) for the uncoupled systems has two global stable solutions.
+The ﬁxed-point equation characterizing the performance of the IO receiver for the uncoupled CDMA systems coincides with the BP ﬁxed-point equation in the large-system limit, as mentioned in Section III-B. Let us assume that this statement also holds for spatially-coupled CDMA systems, i.e., the coupled ﬁxed-point equations (13) are assumed to coincide with the BP ﬁxed-point equations. Thus, the performance of BP-based receivers is equal to that of the IO receiver if the solution to the coupled ﬁxed-point equations (13) is unique. Otherwise, the BP-based receivers are outperformed by the IO receiver. We hereafter focus on QPSK data symbols.
+We solve the coupled ﬁxed-point equations (13) by succes- sive iteration, i.e.,
+with σ 2 t (0) = σ 2 init . We conjecture from the result for the uncoupled CDMA systems [9] that (19) with σ 2 init = ∞ cor- responds to the DE equation for a BP-based receiver in itera- tion i. Figure 2 shows the MSEs calculated from the stationary solutions to (19) with σ 2 init = ∞. When β = 1.6550, the MSEs take a small value for all l. Furthermore, we conﬁrmed that they coincide with those obtained from the stationary solution to (19) with σ 2 init = 0. Thus, the coupled ﬁxed-point equations (13) has the unique solution when β = 1.6550. When β increases slightly, however, a spatially-nonuniform stationary solution appears. This stationary solution does not coincide with that for σ 2 init = 0. The criterion based on the
+free energy (14) implies that the spatially-nonuniform solution is not the solution corresponding to the IO receiver. Thus, the BP-based receivers are outperformed by the IO receiver when β is strictly larger than the BP threshold ˆ β (SC) BP = 1.6550. This numerically-evaluated threshold ˆ β (SC) BP = 1.6550 coincides with the theoretical prediction β (SC) BP = 1.6550 based on the effective potential energy (18). It is worth noting that we chose a large system load β init = 1.22 in the initialization phase. One need not adjust the system load in the initialization phase to zero.
+Table II presents the comparison between several thresholds. The thresholds β BP and β IO denotes the BP and IO thresholds for the uncoupled CDMA systems, respectively. The threshold ˆβ
+BP represents the numerically-evaluated BP threshold for the circularly-coupled CDMA systems, while β (SC) BP is its theoretical prediction based on the potential energy (18). We calculated an upper bound of the IO threshold β (SC) IO for the circularly-coupled systems from the two stationary solutions to (19) with the initial values σ 2 init = ∞ and σ 2 init = 0. Note that the coupled ﬁxed-point equations (13) have the unique solution when the signal-to-noise ratio (SNR) 1/σ 2 is below 8.25 dB. The theoretical prediction β (SC) BP is in good agreement with the numerically-evaluated one ˆ β (SC) BP for 1/σ 2 = 9 dB and 1/σ 2 = 10 dB. The BP threshold ˆβ (SC) BP for the circularly- coupled CDMA systems are larger than the BP threshold β BP for the uncoupled CDMA systems for all SNRs, while there is a gap between β (SC) BP and the IO threshold β IO .
+We have proposed the spatially-coupled CDMA systems in order to improve the performance of BP-based multiuser detection. The large-system analysis shows that the circularly- coupled CDMA systems can improve the BP threshold, com- pared to the one for the conventional CDMA systems, while
+there is a gap between the improved BP threshold and the IO thresholds. We conclude that spatial coupling is a general method for boosting the BP threshold for graphical models up to a value, although it depends on the models whether or not the value coincides with the optimal one.
+The work of K. Takeuchi was in part supported by the Grant-in-Aid for Research Activity Start-up (No. 21860035) from MEXT, Japan.
+[[[ REFS ]]]
+A. J. Felstr¨om
+K. S. Zigangirov
+--
+Time-varying periodic convo- lutional codes with low-density parity-check matrix
+----
+S. Kudekar
+T. Richardson
+R. Urbanke
+--
+Threshold saturation via spatial coupling: Why convolutional LDPC ensembles perform so well over the BEC
+----
+M. Lentmaier
+G. P. Fettweis
+--
+On the thresholds of generalized LDPC convolutional codes based on protographs
+----
+K. Takeuchi
+T. Tanaka
+T. Kawabata
+--
+A phenomenological study on threshold improvement via spatial coupling
+----
+S. Verd´
+--
+Multiuser Detection
+----
+T. Tanaka
+--
+A statistical-mechanics approach to large-system analysis of CDMA multiuser detectors
+----
+Y. Kabashima
+--
+A CDMA multiuser detection algorithm on the basis of belief propagation
+----
+A. Montanari
+D. N. C. Tse
+--
+Analysis of belief propagation for non- linear problems: The example of CDMA (or: How to prove Tanaka’s formula)
+----
+D. Guo
+C.-C. Wang
+--
+Multiuser detection of sparsely spread CDMA
+----
+K. Takeda
+S. Uda
+Y. Kabashima
+--
+Analysis of CDMA systems that are characterized by eigenvalue spectrum
+----
+T. Richardso
+R. Urbank
+--
+Modern Coding Theory
+----
+K. Takeuchi
+T. Tanaka
+T. Yano
+--
+Asymptotic analysis of general multiuser detectors in MIMO DS-CDMA channels
+----
+T. Ikehara
+T. Tanaka
+--
+Decoupling principle in belief-propagation- based CDMA multiuser detection algorithm
+----
+D. Guo
+S. Verd´u
+--
+Randomly spread CDMA: Asymptotics via statistical physics
+----
+S. H. Hassani
+N. Macris
+R. Urbanke
+--
+Coupled graphical models and their thresholds
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\144.pdf
+[[[ LINKS ]]]
+

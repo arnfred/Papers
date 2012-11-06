@@ -1,0 +1,142 @@
+[[[ ID ]]]
+97
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Combinatorial Message Sharing for a Reﬁned Multiple Descriptions Achievable Region
+[[[ AUTHORS ]]]
+Kumar Viswanatha
+Emrah Akyol
+Kenneth Rose
+[[[ ABSTR ]]]
+Abstract—This paper presents a new achievable rate-distortion region for the L-channel multiple descriptions problem. Cur- rently, the most popular region for this problem is due to Venkataramani, Kramer and Goyal [3]. Their encoding scheme is an extension of the Zhang-Berger scheme to the L-channel case and includes a combinatorial number of reﬁnement codebooks, one for each subset of the descriptions. All the descriptions also share a single common codeword, which introduces redundancy, but assists in better coordination of the descriptions. This paper proposes a novel encoding technique involving ‘Combinatorial Message Sharing’, where every subset of the descriptions may share a distinct common message. This introduces a combina- torial number of shared codebooks along with the reﬁnement codebooks of [3]. These shared codebooks provide a more ﬂexible framework to trade off redundancy across the messages for resilience to descriptions loss. We derive an achievable rate- distortion region for the proposed technique, and show that it subsumes the achievable region of [3].
+[[[ BODY ]]]
+The Multiple Descriptions (MD) problem was proposed in the late seventies and has been a challenging problem since then. It has been studied extensively with results ranging from the derivation of asymptotic bounds [1], [2], [3], [4], [5], [6], [7] to practical approaches for multiple descriptions quantizer design [8]. It was originally viewed as a method to cope with channel failures, where multiple source descriptions are generated and sent over different paths. The encoder generates L descriptions for transmission over L available channels. It is assumed that the decoder receives a subset of the descriptions perfectly and the remaining are lost, as shown in Figure 1. The objective of the MD problem is to design the encoders (for each description) and decoders (for each possible received subset of the descriptions), with respect to an overall rate- distortion trade-off. The subtlety of the problem is due to the balance between the full reconstruction quality versus quality of individual descriptions; or noise free quality versus the amount of redundancy across descriptions needed to achieve resilience to descriptions loss.
+The most well known achievable region currently known for the L−channel MD problem is due to Venkataramani, Kramer and Goyal (VGK) [3] for general sources and distortion measures. Their encoding scheme builds on the prior work for the 2-channel case by El-Gamal and Cover (EC) [1] and Zhang and Berger (ZB) [2] and introduces a combinatorial number of reﬁnement codebooks, one for each subset of
+descriptions. A single common codeword is also shared among all the descriptions, which assists in controlling the redundancy across the messages, improving the rate-distortion trade-off. In this paper we present a new encoding scheme involving “Combinatorial Message Sharing” (CMS), where a unique common codeword is sent (shared) in each subset of the descriptions, thereby introducing a combinatorial number of shared codebooks, along with the reﬁnement codebooks of [3]. The common codewords enable better coordination between descriptions, providing a reﬁned over-all rate-distortion region. We derive an achievable rate-distortion region for the CMS scheme and show that it subsumes the achievable region due to VKG in [3]. We note that the underlying principle behind CMS has been shown in precursor work to be useful in related applicational contexts of routing for networks with correlated sources [10] and data storage for selective retrieval [11].
+The rest of the paper is organized as follows. In Section II, we formally state the L−channel MD setup and brieﬂy describe the approaches and regions of EC [1], ZB [2] and VKG [3]. To keep the notation simple, we ﬁrst describe in Section III-A, the CMS scheme for the 3 descriptions scenario and extend it to the general case in Section III-B.
+We ﬁrst give a formal deﬁnition of the L−channel MD problem. We follow the notation in [3]. A source produces a sequence X n = X (1) , X (2) . . . , X (n) , which are n iid copies of a generic random variable X taking values in a ﬁnite alphabet X. We denote L = {1,...,L}. There are L encoding functions, f
+n to the descriptions J l = f l (X n ) , where J l takes on values in the set {1,...B l }. The rate of description l is deﬁned as R l = log 2 (B l ) . Description l is sent over channel l and is either received at
+the decoder error free or is completely lost. There are 2 L − 1 decoding functions for each possible received combination of the descriptions ˆ X n K = ˆX (1) K , ˆ X (2) K . . . , ˆ X (n) K  = g K (J l : l ∈ K), ∀K ⊆ L,K = φ, where ˆ X K takes on values on a ﬁnite set ˆ X K , and φ denotes the null set. The distortion at the decoder when a subset K of the descriptions is re- ceived is measured as D
+d K : X × ˆ X K → R. We say that a rate-distortion tuple (R i , D K : i ∈ L,K ⊆ L,K = φ) is achievable if there exit L encoding functions with rates (R 1 . . . , R L ) and 2 L −1 decoding functions yielding distortions D K . The closure of the set of all achievable rate-distortion tuples is deﬁned as the ‘L-channel multiple descriptions RD region’. Note that, this region has L + 2 L − 1 dimensions.
+In what follows, 2 S denotes the set of all subsets (power set) of any set S and |S| denotes the set cardinality. Note that |2 S | = 2 |S| . S c denotes the set complement. For two sets S
+S − φ, the set of all non-empty subsets of S. We use the shorthand {U} S for {U K : K ∈ S} 1 .
+L , {U} 2 L −φ ) be any set of 2 L random variables distributed jointly with X. Then, an RD tuple is said to be achievable if there exist functions ψ S ( ·) such that:
++  K⊆S H U K |{U} 2 K −φ−K  (1) D
+The codebook generation is done using the following tree structure. First, 2 nR  L codewords of V L are generated using the marginal distribution of V L . Conditioned on each code- word of V L , 2 nR  l codewords of U l are generated accord- ing to the conditional PMF  n t=1 P U l |V L (u (t) l |v (t) L ) ∀l ∈ L. Next, for each j ∈ (1,...,2 n(R  L +  l ∈K R  l ) ) , a single code- word is generated for U
+and V L . Codewords of U l (at rate R  l ) are sent in description l. Along with the ‘private’ messages, each description also carries a ‘shared message’ at rate R  L , which is the codeword of V L . Hence the rate of each description is given by R l = R  l + R  L . VKG showed that, to ensure ﬁnding a set of jointly typical codewords with the observed sequence, the rates must satisfy (1). It then follows from standard arguments (see for example “typical average lemma” [9]) that, if the random variables also satisfy (2), then the distortion constraints are met. The structure of encoding the auxiliary random variables is shown in Figure 2. We call V L as the shared random variable, U l : l ∈ L as the base layer random variables and all U K : |K| ≥ 2 as the reﬁnement layers. Observe that the codebook generation follows the order: shared layer → base layer → reﬁnement layer. Note that the reﬁnement codewords are implicitly embedded in the private messages and assist in improving the distortion when multiple descriptions are received at the decoder.
+The VKG scheme for the 2 descriptions scenario involves 4 auxiliary random variables V 12 , U 1 , U 2 and U 12 . The VKG region was originally derived as an extension of the EC [1] and ZB [2] coding schemes for the 2-descriptions scenario. The ﬁrst of the two regions was by EC and their rate region (denoted here by RD EC ) is obtained by setting V 12 = Φ in RD
+, where Φ is a constant. ZB (their region is denoted here by RD ZB ) later showed that, including the shared random variable can give strict improvement over RD
+. Their result, while perhaps counter-intuitive at ﬁrst, clariﬁes the fact that, a shared message among the descriptions helps to better coordinate the messages, thereby providing a strictly improved RD region, even though it introduces redundancy. However, it has been shown that RD EC is complete for some special cases of the setup (see for example [4], [5]).
+We note that, it has recently been shown in [6] that the last layer of reﬁnement random variables (U L ) can be conveniently set to a constant (removed) without affecting the overall rate region. However, we continue to use this last layer for the time being as it is unclear if a similar result holds for the CMS coding scheme we describe in the following section. We note in passing that, other encoding schemes have been proposed in the literature for certain special cases of the L−channel MD setup [7], which improve on RD
+. However, none of them have been shown to subsume RD V KG for general sources and
+distortion measure. Some of the new ideas introduced herein may have impact on these special cases, but such extensions are beyond the scope of this paper.
+In this section, we describe the proposed encoding scheme which leads to a reﬁned achievable rate region for the L −channel MD setup. To simplify notation and understanding, we ﬁrst describe the scheme for the 3-descriptions case and offer intuitive arguments to show the achievability of the new region. We then extend the arguments to the L−channel case in Theorem 1.
+The encoding order for the 3-descriptions VKG scheme is shown in Figure 3(a). Recall that the common codeword helps in coordinating the 3 descriptions. VKG employ one common codeword that is sent in all the 3 descriptions. However, when dealing with L > 2 descriptions, restricting to a single shared message might be suboptimal. The CMS scheme therefore will allow for ‘combinatorial message sharing’, i.e a common codeword may be sent in each (non-empty) subset of the descriptions.
+The shared random variables are denoted by ‘V ’. The base and the reﬁnement layer random variables are denoted by ‘U’. For the 3 descriptions scenario, we have 11 auxiliary random variables which include 3 additional variables over the VKG scheme. These variables are denoted by V 12 , V 13 and V 23 . The codeword corresponding to V S is sent in all the descriptions l ∈ S. For example, the codeword of V 12 is sent in both the descriptions 1 and 2. This introduces a new layer in the encoding structure as shown in Figure 3 (b). This extra encoding layer can reﬁne the control of redundancy across the messages, and hence lead to an improved rate-distortion region.
+The codebook generation is done as follows. First, the codebook for V 123 is generated containing 2 nR  123 indepen- dently generated codewords. Then codebooks for V 12 , V 13 and V 23 (each containing 2 nR  12 , 2 nR  13 and 2 nR  23 codewords respectively) are generated, conditioned on each codeword of V 123 . Next, the base layer codebooks for U l , l ∈ {1,2,3} (each containing 2 nR  l codewords) are generated conditioned on the codewords of all V S such that l ∈ S. For example, the codebooks for U 1 are generated conditioned on the code- words of V 12 , V 13 and V 123 . Note that each codebook of U 1
+contains 2 nR  1 codewords and there are such 2 n(R  12 +R  13 +R  123 ) codebooks.
+The reﬁnement layer codewords are generated similar to the VKG scheme. However, the codebook for U K , is now generated conditioned not only on the code- words of {U} 2 K −φ−K and V L , but also on the code- words of all V
+is generated conditioned on each codeword tuple of {U 1 , U 2 , V 12 , V 13 , V 23 , V 123 }. Note that, there are 2 n(R 
+in the codebook of U 12 . Similarly codebooks for U 13 , U 23 and U 123 are generated conditioned on codewords of {U 1 , U 3 , V 12 , V 13 , V 23 , V 123 }, {U 2 , U 3 , V 12 , V 13 , V 23 , V 123 } and {U
+The encoder, on observing X n , tries to ﬁnd a codeword from the codebook of V 123 such that it is jointly typical with X n . Using typicality arguments, it is easy to show that the probability of not ﬁnding such a codeword approaches zero if R  123 ≥ I(X;V 123 ) . Let us denote the selected codeword of V 123 by v 123 . The encoder next looks at the codebooks of V 12 , V 13 and V 23 , which were generated conditioned on v 123 , to ﬁnd a triplet of codewords which are jointly typical with (X n , v 123 ) . It can be shown using arguments similar to [3], [9], that the probability of not ﬁnding such a triplet approaches zero if the following conditions are satisﬁed ∀Q ⊆ {12,13,23}:
+, v 13 and v 23 . The encoders next step is to ﬁnd an index tuple (i 1 , i 2 , i 3 ) such that (U 1 (i 1 ), U 2 (i 2 ), U 3 (i 3 ), U 12 (i 1 , i 2 ), U 13 (i 1 , i 3 ), U 23 (i 2 , i 3 ), U 123 (i 1 , i 2 , i 3 )) is jointly typical with (X n , v 123 , v 12 , v 13 , v 23 ) . Here U 1 (i 1 ) denotes the i 1 th codeword from the codebook of U 1 and U 12 (i 1 , i 2 ) denotes the codeword of U 12 generated conditioned on (v 123 , v 12 , v 13 , v 23 , U 1 (i 1 ), U 2 (i 2 )) . Similar notation is used for U 2 (i 2 ), U 3 (i 3 ), U 13 (i 1 , i 3 ) etc. Again using similar arguments, we can show that the probability of not ﬁnding such an index tuple approaches zero if ∀S ⊆ {1,2,3}: 
+The encoder sends the index of the base layer codewords in the corresponding descriptions. It also sends the index of codewords corresponding to V S in all the descriptions l ∈ S. For example, in description 1, the encoder sends the indices corresponding to v 123 , v 12 , v 13 and u 1 . Similarly, descriptions 2 and 3 carry indices corresponding to (v 123 , v 12 , v 23 , u 2 ) and (v 123 , v 13 , v 23 , u 3 ) respectively. Therefore, rate for description l is R l = R  l +  K∈J (l) R  K . Conditions on R l can be obtained by substituting bounds from (3) and (4).
+The decoder, on receiving a subset of descriptions, es- timates X n based on all the messages embedded in ei- ther one of the descriptions. For example, if the decoder receives the descriptions 1 and 2, it can estimate X n as ψ 12 (v 123 , v 12 , v 13 , v 23 , u 1 , u 2 , u 12 ) for some function ψ 12 ( ·). It follows from standard arguments [9], that if there exist func- tions ψ S ( ·) satisfying the following constraints, then distortion vector {D S ∀S ∈ 2 L − φ} is achievable.
+is obtained by taking the closure of the achievable tuples over all such 11 auxiliary random variables. It will be shown in corollary 1 that, this rate-distortion region subsumes the VKG region.
+nario, albeit involving more complex notation. The codebook generation is done in an order as shown in Figure 4. First, the codebook for V L is generated. Then, the codebooks for V S , |S| = W are generated in the order W = L − 1,L − 2...2. This is followed by the generation of the base layer codebooks, i.e. U S , |S| = 1. Then, the reﬁnement layer codebooks corresponding to U S , |S| = W are generated in the order W = 2, 3 . . . , L . Each codebook is generated conditioned on a subset of the previously generated codewords. The speciﬁcs of codebook generation will be described as part of the proof of Theorem 1.
+Before stating the theorem, we deﬁne the following subsets of 2 L :
+and I W + : I W ( B) = {S : S ∈ I W , B ⊆ S} I
+(8) Let ({V } J (L) , {U} 2 L −φ ) be any set of 2 L+1 −L−2 random variables jointly distributed with X. We deﬁne the quantities
+Q |{V } I W + , X  ∀Q⊆I W (9) β( S) = 
+We follow the convention α W (φ) = β(φ) = 0 . We next state the achievable region using the CMS scheme in the following theorem.
+Theorem 1. Let ({V } J (L) , {U} 2 L −φ ) be any set of 2 L+1 − L − 2 random variables jointly distributed with X deﬁned on arbitrary ﬁnite alphabets. Let α W ( Q) and β(S) be deﬁned as in (9) and (10). Let R  K ∀K ∈ J (L) and R  l ∀l ∈ L be any set of rate tuples satisfying:
+then, the RD region for the L−channel MD problem contains the rates and distortions for which there exist functions ψ S ( ·), such that
+The closure of the achievable tuples over all such 2 L+1 −L−2 random variables is denoted by RD CM S .
+Proof: Due to space constraints, we omit the detailed proof here. We only brieﬂy describe the codebook generation scheme and error analysis.
+Codebook Generation : Suppose we are given P
+according to the PMF  n t=1 P V L (v (t) L ) . For each codeword v n L (j L ) , we independently generate 2 nR  S codewords of V S ∀S ∈ I L −1 , according to  n t=1 P V S |V L (v (t) S |v (t) L ) . We denote these codewords by v n
+S (j L , j S ) j S ∈ {1...2 nR  S }. This procedure for generating the codebooks of the shared random variables continues. 2 nR  S codewords of V S are independently generated for each codeword tuple of {V } I W + ( S) according to  n
+are denoted by v n S ( {j} I W + ( S) , j S ) j S ∈ {1...2 nR  S }. Note that to generate the codebooks for V S ∀S ∈ I W , we need the codebooks of V S ∀S ∈ I W + ( Q). The codebook generation follows the order indicated in ﬁgure 4.
+Once all the codebooks of shared random variables are generated, the codebooks for the base layer random vari- ables are generated. For each codeword tuple of {V } I 1+ (l) , 2 nR 
+codewords of U l are generated independently according to  n t=1 P U l |({V } I1+(l) ) (u (t) l |{v} (t) I 1+ (l) ) and are denoted by u n l {j} I 1+ (l) , i l  i l ∈ {1...2 nR  l }. Then the codebooks for the reﬁnement layers are formed by assigning a codeword u n S ( {j} J (S) , {i} S ) to each S ∈ 2 L − {(1),(2)...(L)} and ∀{j} J (S) , {i} S . These codewords are generated according to  n
+The encoder, on observing a sequence X n attempts to ﬁnd a set of codewords, one for each variable, such that they are all jointly typical. If the encoder succeeds in ﬁnding such a set, from the typical average lemma [9], it follows that the average distortions are less than D S , ∀S ∈ 2 L −φ. However, if the encoder fails to ﬁnd such a set, the average distortions are upper bounded by d max (as the distortion measures are assumed to be bounded). Hence, if the probability of ﬁnding a set of jointly typical codewords approaches 1 the distortion conditions, (12), are met. We next show that, this probability approaches 1 if the rates satisfy (11).
+Probability of error analysis : Let E V U be the event of not ﬁnding a set of jointly typical codewords. We have,
+where E V denotes the event of not ﬁnding a set of ‘shared codewords’ which are jointly typical with X n .
+where E V,W denotes the event of not ﬁnding a set of code- words of {V } (I W ,I W + ) which are jointly typical with X n . It can be shown that, P (E
+) can be made arbitrarily small if  K∈Q R  K > α W ( Q) ∀Q ⊆ I W .
+Conditions on R  S : Similar arguments as in [3] can be used to show that, P (E V U |E c V ) can be made arbitrarily small if  l ∈S R  l > β( S) ∀S ⊆ L.
+Conditions on R S : Recall that the encoder sends the codewords of V S (at rate R  S ) in all the descriptions l ∈ S. It also sends the codewords of U l (at rate R  l ) in description l. Therefore the rate of description l can be bounded by:
+Note that, the bounds on R l in (15) are implicit in terms of the bounds on R  l and R  K . Expressing them directly in terms information theoretic quantities is considerably harder and will be considered as part of future work.
+Corollary 1. The achievable rate-distortion region of Theorem 1 subsumes the VKG region, i.e. RD V KG ⊆ RD CM S
+Proof: The proof follows directly by setting V S = Φ ∀S such that |S| < L. We then have α W ( Q) = 0 ∀Q,W < L. Substituting in (11), we get
+At the time of the submission of this manuscript, we did not know whether the CMS scheme leads to a strictly larger rate-distortion region compared to the VKG scheme, i.e., RD V KG ⊂ RD CM S . We recently proved that, this is indeed true, i.e., a combinatorial number of shared codewords, one for every subset of descriptions, can be used to achieve points outside the VKG region. The proof is available on arXiv [12] for interested readers.
+In this paper, we proposed a new encoding scheme for the L−channel multiple descriptions problem. This results in a new achievable rate-distortion region which subsumes the most famous achievable region for this problem. The proposed encoding adds controlled redundancy by including a common codeword in every subset of the descriptions. The possible impact of the new ideas presented here, on practical multiple descriptions encoder design and on certain special cases of the setting will be studied as part of future work.
+[[[ REFS ]]]
+A. El Gamal
+T. M. Cover
+--
+Achievable rates for multiple descrip- tions
+----
+Z. Zhang
+T. Berger
+--
+New results in binary multiple descriptions
+----
+R. Venkataramani
+G. Kramer
+V. K. Goyal
+--
+Multiple description coding with many channels
+----
+R. Ahlswede
+--
+The rate-distortion region for multiple descriptions with- out excess rate
+----
+L. Ozarow
+--
+On a source-coding problem with two channels and three receivers
+----
+J. Wang
+J. Chen
+L. Zhao
+P. Cuff
+H. Permuter
+--
+A random variable substitution lemma with applications to multiple description coding
+----
+R. Puri
+S. S. Pradhan
+K. Ramchandran
+--
+n-channel symmetric multiple descriptions-part II: an achievable rate-distortion region
+----
+V. A. Vaishampayan
+--
+Design of multiple description scalar quantizers
+----
+A. El Gama
+Y. H. Ki
+--
+Lecture notes on network information theory, http://arxiv
+----
+K. Viswanatha
+E. Akyol
+K. Rose
+--
+On optimum communication cost for joint compression and dispersive information routing
+----
+J. Nayak
+S. Ramaswamy
+K. Rose
+--
+Correlated source coding for fusion storage and selective retrieval
+----
+
+--
+
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\097.pdf
+[[[ LINKS ]]]
+

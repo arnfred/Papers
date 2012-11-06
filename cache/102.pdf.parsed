@@ -1,0 +1,132 @@
+[[[ ID ]]]
+102
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Distortion Bounds for Dependent Sources Over Wireless Networks
+[[[ AUTHORS ]]]
+Shirin Jalali
+Michelle Effros
+[[[ ABSTR ]]]
+Abstract—Characterizing the set of achievable distortions in lossy transmission of dependent sources over multi-user channels is an open problem. Even for a channel such as the multiple access channel, where the capacity is well-understood, the complete characterization of achievable distortions is still unknown. Since separation of source coding and channel coding is sub-optimal for this case, bounds on achievable distortions require tools beyond prior channel capacities and rate-distortion bounds. In this paper we propose a systematic approach for ﬁnding lower bounds on the set of distortions achievable through joint source-channel coding.
+[[[ BODY ]]]
+Shannon’s famous separation theorem states that in a net- work described by a single point-to-point channel, separating source coding and channel coding operations is optimal [1]. Unfortunately, this result does not generalize to multi-user channels with dependent sources [2], [3]. Characterizing the set of distortion vectors achievable by joint source-channel (JSC) coding over such channels is an open problem. Even for channels with few inputs and outputs, such as a 2-user multiple access channel (MAC) or a 2-user broadcast channel (BC), this characterization is still unknown.
+Inner and outer bounds on the set of achievable distortions are useful until a complete characterization becomes available. While evaluating the performance of separate source and channel codes provides a systematic method for ﬁnding upper bounds on minimum achievable distortions, it seems that lower bounds are more difﬁcult to obtain since they require that we develop an understanding of JSC codes. The only known methods for deriving lower bounds are based on cut-set bounds [4], [5]. As a result, very little is known even for the smallest networks. For example, several different achievability schemes for JSC coding over a BC are proposed in the literature, but no non-trivial lower bound on distortion was known until recently (see [6], [7] and refenences therein).
+Combining the idea of bounding networks from [8] with the idea of coordination capacity described in [9], we here propose a systematic method for ﬁnding lower bounds on the set of achievable distortion vectors in multi-user memoryless channels with dependent sources. The idea is to replace the multi-user discrete memoryless channel (DMC) with a noise- less network of point-to-point bit-pipes capable of simulating the memoryless joint distribution that would otherwise be
+established by the DMC. We show that after this replacement, the distortion achievable across the new network serves as a lower bound on the distortion achievable by JSC coding across the original network. Since the new network is a noiseless network, characterizing its achievable distortion region is a pure source coding problem.
+The organization of this paper is as follows. Section II summarizes our notation and deﬁnitions. Section III describes the problem setup. Section IV brieﬂy reviews the ideas of co- ordination capacity and coordination-rate region. In Section V, we present our approach for ﬁnding lower bounds on the the set of achievable distortions for dependent sources over multi- user channels. Section VI concludes the paper.
+Finite sets are denoted by script letters such as X and Y. The size of a ﬁnite set A is denoted by |A|. Random variables are denoted by upper case letters such as X and Y . The alphabet of a random variable X is represented by X . Bold face letters represent vectors. A random vector is represented by upper case bold letters like X or Y. The dimension of a vector is implied in the context. The th element of vector X is denoted by X . A vector x = (x 1 , . . . , x n ) (X = (X 1 , . . . , X n )) is sometimes represented as x n (X n ). For 1 ≤ i ≤ j ≤ n, x j i = (x i , x i +1 , . . . , x j ). For a set A ⊆ {1, 2, . . . , n}, x A = (x i ) i ∈A , where the elements are sorted in ascending order of their indices. For integers n 1 ≤ n 2 , let [n 1 : n 2 ] {n 1 , n 1 + 1, . . . , n 2 }.
+For two vectors x, y ∈ R r , x ≤ y iff r i ≤ y i for all 1 ≤ i ≤ r The 1 distance between vectors x and y of the same dimension r is denoted by x−y 1 = r i =1 |x i −y i |. If x and y represent pmfs, i.e., r i =1 x i = r i =1 y i = 1 and x i , y i ≥ 0 for all i ∈ {1, . . . , r}, then the total variation distance between x and y is deﬁned as x − y TV = 0.5 x − y 1 .
+Deﬁnition 1: For a sequence x n ∈ X n , the empirical distribution of x n is deﬁned as
+DMC E
+E E
+D D
+Consider an -input, m-output DMC described by p(y|x), where x = x ∈ i =1 X i and y = y m ∈ m j =1 Y j . (See Fig. 1.) Let I [1 : ] and J [1 : m]. Transmitter i, i ∈ I, observes the random process {U i,t } ∞ t =1 . The sources are jointly distributed and memoryless. That is, for any T ∈ N,
+where for i ∈ I, U i = (U i, 1 , U i, 2 , . . . , U i,T ) and u i = (u i, 1 , u i, 2 , . . . , u i,T ). Receiver j ∈ J is interested in lossy reconstruction of a subset β(j) ⊆ I of sources observed by the transmitters.
+A block code of source blocklength L and channel block- length n is described as follows. Transmitter i ∈ I observes a block U i = (U i, 1 , U i, 2 , . . . , U i,L ) of length L. Encoder i maps the observed block U i to the encoded block X i of length n, i.e.,
+The performance of the described coding scheme is mea- sured by the induced expected average distortions between source and reconstruction blocks, i.e., for j ∈ J and i ∈ β(j),
+where d (i→j) : U i × ˆ U i →j → R + is a per-letter distortion measure. Let d max max j,i ∈β(j),a,b d (i→j) (a, b) < ∞.
+The distortion vector D (D i →j ) j ∈J ,i∈β(j) is said to be achievable at a rate κ, if for any > 0, there exists a pair (L, n) with L/n ≤ κ, and a block code of source blocklength L and channel blocklength n such that
+E[d (i→j) L (U i , ˆ U i →j )] ≤ D i →j + , 	 (4) for any j ∈ J and i ∈ β(j).
+Let D(κ, p(y|x)) denote the set of distortions achievable at rate κ on the -input, m-output DMC described by p(y|x). Given a bit-pipe network N b with links of capacity R, let D(κ, R) denote the set of distortions achievable at rate κ on N b . Our aim is to replace the JSC region D(κ, p(y|x)) by the distortion-rate region D(κ, R) for a suitable network N b .
+When = m = 1, D(κ, p(y|x)) is fully characterized for all source distributions p(u) and channel distributions p(y|x). For > 1 or m > 1, the problem remains unsolved.
+The idea of coordination capacity was introduced in [9]. Instead of considering a network of bit-pipes as a plat- form for communicating information or reconstructing random processes, this work uses the network to generate desired dependencies among the users’ processes. In this section, we brieﬂy review this idea. In the next section we show how it can be combined with an idea from [8] for use in deriving lower bounds on the distortions of JSC codes.
+Consider the -input, m-output acyclic graph N b shown in Fig. 2. Network N b is represented by a directed graph G = (V, E) with E ⊂ V×V. Let In(v) = {(v 1 , v) : (v 1 , v) ∈ E} and Out(v) = {(v, v 1 ) : (v, v 1 ) ∈ E} denote the sets of incoming and outgoing edges of Node v. Given a rate vector R = (R e : e ∈ E) we use (N b , R) to represent a bit-pipe network in which each directed edge e = (v 1 , v 2 ) ∈ E represents a noiseless link of capacity R e . An i.i.d. jointly distributed ran- dom process {(X 1,t , . . . , X ,t )} t ≥1 with P((x N 1 , . . . , x N ) = (x N 1 , . . . , x N )) = N t =1 p o (x 1,t , . . . , x ,t ) is available to the network input nodes 1, . . . , .
+A coordination code of block length N for network N b is a code for sending messages across network N b in order to establish a joint distribution p(x , y m ) = p o (x )p(y m |x ) between the channel inputs and outputs. The message W e carried over link e has alphabet W e = {1, 2, . . . , 2 N R e }. Input node v i , i ∈ I, observes a block X N i of length N and maps it to the messages (W e : e ∈ Out(v i )) sent over its outgoing links, giving W e : X N i → W e for all i ∈ I, and e ∈ Out(v i ). Any node v ∈ V\I ∪ J inside the network maps its incoming messages (W e : e ∈ In(v)) to its outgoing messages (W e : e ∈ Out(v)), i.e., W (v,v ) : e ∈In(v) W e → W (v,v ) for all (v, v ) ∈ Out(v). Output node v j , j ∈ J , maps its incoming messages (W e : e ∈ In(v j )) to ˜ Y N j , i.e.,
+The performance of the coordination code is measured by the total variation distance between p o (x)p(y|x) and π(x, y|X N , ˜ Y N ).
+noiseless network
+For a given p o (x) conditional distribution p(y|x) is said to be achievable on N b at rate R, if there exists a sequence of codes such that
+almost surely as N grows without bound 1 . The coordination- rate region of Network N b under input distribution p o (x) is deﬁned as [9]
+= {R : p(y|x) achievable on N b at rate R}, where for a set A, A denotes the closure of the set A.
+In [8], Koetter et al. introduced systematic strategy for bounding the capacity of a network of stochastic multi- terminal channels by the capacity of a network of noiseless bit-pipes. The key to deriving the outer bounds presented in that work is to show that if the bit-pipe network can simulate the distribution of the stochastic network then any code for the stochastic network can also be run across the bit-pipe network. Combining the new proof technique and the channel simulation results of [9], we next derive a corresponding strategy for ﬁnding outer bounds on the distortions achievable by JSC codes. We begin with an example.
+Let = 1 and m = 2. Then p(y|x) describes a BC as shown in Fig. 3(a). Fig. 3(b) shows the bit-pipe model N b proposed in [8], which has one bit pipe of capacity R 2 and 3 bit pipes of capacity R 1 . Given a JSC code operating at rate κ, and distortion D on the BC, we build a code for N b as follows. (See Fig. 3(c)) The encoder ﬁrst maps U = U L to a channel input X 1 using the JSC encoder for the BC. The encoder then applies the mappings from a coordination code to map the channel input into a pair of messages of rates R 1 and R 2 for transmission across N b . The coordination code simulates distribution p o (x)p(y|x) across N b , where p o (x) is
+the channel input distribution employed by the JSC and p(y|x) is the deﬁning distribution for the BC. Each receiver applies the coordination decoder for the given node and then applies the decoder for the JSC to build reconstruction ˆ U L . Theorem 1 shows that the code achieves distortion approaching D as the block length of the coordination code grows without bound, provided that (R 1 , R 2 ) ∈ R p o (N b , p(y|x)), which shows D(κ, p(y|x)) ⊆ D(κ, R).
+D(κ, p(y|x)) ⊆ D(κ, R). 	 (5) Proof outline: Given any D ∈ D(κ, p(y|x)), consider
+a JSC code for p(y|x) with source blocklength L, channel blocklength n, L = nκ , and distortion ˆ D ≤ D + · 1. For the rest of the proof, let U = U i and ˆ U = ˆ U i →j , for some j ∈ J and i ∈ β(j). By the law of iterated expectations, we can express the distortion of the JSC code on channel p(y|x) as
+× P((X , Y m ) = (x , y m )) =
+× P(X = x ) P(Y m = y m |X = x ) =
+where X I,1:t = (X I,1 , . . . , X I,t ) and Y J ,1:t = (Y J ,1 , . . . , Y J ,t ), where X I,t ∈ i ∈I X i , Y J ,t ∈ j ∈J Y j denote the inputs and m outputs of the channel at time t.
+Since the JSC code may employ a different distribution on the channel inputs at each time t, we cannot combine the JSC code with a coordination code applied across time. Instead, following the proof from [8], we send a sequence of independent messages and apply the coordination code to a block of channel inputs resulting from different messages at the same time step t in our JSC code. We begin showing that coding a sequence of N independent messages does not change the performance of the code on channel p(y|x).
+Assume that each source i ∈ I observes a block U N L i of length N L, and breaks it into N non-overlapping sub-blocks of length L, U N L i = (U i (1), U i (2), . . . , U i (N )). During N independent sessions, these sub-blocks are described to the decoders applying the same code that achieves distortion vector D. In session k, k ∈ [1 : N ], each encoder transmits the k th sub-block U i (k). Each decoder reconstructs the k th sub-block giving reconstructions { ˆ U i →j (k)} j ∈J ,i∈β(j) . Since the sessions are independent, the code’s expected average distortion at receivers is given by E[d N L (U N L i , ˆ U N L i →j )] =
+To show that D ∈ D(κ, R), we next combine the given JSC code with a coordination code and run that code across network N b with edge capacity vector R. Since R ∈
+R p (x) (N b , p(y|x)), N b can simulate the distribution p(x)p(y|x) at the outputs using a coordination code.
+We combine the JSC code with the coordination code as follows. Each input node v i , i ∈ I ﬁrst encodes blocks (U i (1), . . . , U i (N )) using the node-i encoder for the JSC independently on each block. At each time t ∈ [1 : n], node v i blocks together the t th symbols of the N sub-blocks of the JSC output, giving X i,t = (X i,t (1), X i,t (2), . . . , X i,t (N )). Since the source sub-vectors U i (1), . . . , U i (N ) are independent and the sub-blocks are coded independently, X i,t (1), X i,t (2), . . . , X i,t (N ) is dis- tributed i.i.d. p t (x i,t ). X I,t (1), X I,t (2), . . . , X I,t (N ) is dis- tributed i.i.d. p t (x I,t ), where p t (x i,t ) is the distribution on the channel input from node v i and p t (x I,t ) is the distribution on the channel input from all nodes induced by the JSC code at time t in channel p(y|x). For each x I,t ∈ i ∈I X i ,
+where p(x I,1:n |u L ) equals 1 if the JSC encoders encode U L to x I,1:n , and 0 otherwise.
+At each time t ∈ [1 : n], we employ a coordination code of blocklength N on Network N b that simulates conditional distribution p(y|x) for the input distribution p t (x) deﬁned
+in (8). Since R ∈ p (x) R p (x) (N b , p(y|x)) by assumption, for each p t (x) and all N sufﬁciently large there exists a coordination code with outputs ˜ Y N t for which p t (x)p(y|x)− π(x, y|X N t , ˜ Y N t ) TV ≤ . Fix such a coordination code for each t ∈ [1 : n]. Applying these coordination codes, at time t, the output node v j , j ∈ J , maps the messages it receives from its incoming bit pipes to ˜ Y j,t ( ˜ Y j,t (1), . . . , ˜ Y j,t (N )). After n time steps, decoder j reassemples N sub-blocks of length n as ˜ Y N j = ( ˜ Y j (1), . . . , ˜ Y j (N )), where ˜ Y j (k) = ˜ Y j, 1:n (k). Node v j then applies the JSC decoder independently on each sub-block ˜ Y j (k), k ∈ [1 : N ]. The resulting reconstruction blocks are { ˜ U N i →j } i ∈β(j) .
+To bound the expected distortion of this code, deﬁne the event A k,x ,y m as A k,x ,y m 	 {( X (k), ˜ Y m (k)) = (x , y m )}. Note that for any k ∈ [1 : N ],
+Let ˜ D = ( ˜ D i →j ) j ∈J ,i∈β(j) denote the expected average distortion performance of the new code. As before, let U N = U N i , and ˜ U N = ˜ U N i →j , for some j ∈ J and i ∈ β(j). Since the sources and the channel are memoryless,
+(12) where π(x I,1:t−1 , y J ,1:t−1 |X I,1:t−1 (1 : N ), ˜ Y J ,1:t−1 (1 : N )) 1, for t = 0. Comparing (7) and (12) reveals that to ﬁnish the proof, it is enough to show that, for any t ∈ [1 : n],
+almost surely, as N → ∞. Then, since π(·|·) is a positive and bounded function, by the bounded convergence theorem,
+˜ D i →j → ˆ D i →j , as N → ∞. The almost sure convergence of π(x I,t , y J ,t |X I,t (1 : N ), ˜ Y J ,t (1 : N )) to p(x I,t , y J ,t ) follows from the (modiﬁed) deﬁnition of coordination capac- ity. Since the cooperation codes are chosen independently to simulate the channel p(y|x) at each time t ∈ [1 : n], and since there is no feedback from the outputs to the inputs of the channel, the almost sure convergence for each time t implies the convergence of (13) to (14), which gives the desired result.
+Example 5.2 (Binary source over a binary symmetric BC): Consider sending an i.i.d. binary Bern(q) source over a 2-user binary symmetric BC with input X and outputs Y 1 = X + Z 1 and Y 2 = X + Z 2 , where for i ∈ {1, 2}, Z i ∼ Bern(p i ), p 2 < p 1 , and Z 1 and Z 2 are independent. The point-to-point rate-distortion function of the source is R(D) 	 max(0, h(q) − h(D)), where h(β) = −β log β − (1 − β) log(1 − β) [10]. Deﬁne δ(r) R −1 (r), i.e., δ(r) = d iff R(d) = r. Since the source is successively reﬁnable [11], the set of achievable distortions by separating source and channel coding over the BC can be described as
+D 2 ≥ δ κ −1 (1 − h(p 1 ∗ α) + h(α ∗ p 2 ) − h(p 2 )) . On the other hand, R 1 ≥ 1−h(p 1 ) and R 2 ≥ h(p 1 )−h(p 2 ) is sufﬁcient for simulating the described binary BC [8]. Hence, by Theorem 1,
+D out (κ) = (D 1 , D 2 ) : D 1 ≥ δ κ −1 (1 − h(p 1 )) , D 2 ≥ δ κ −1 (1 − h(p 2 )) ,
+deﬁnes an outer bound on the set achievable distortions, i.e., D in (κ) ⊂ D(κ, p(y 1 , y 2 |x)) ⊂ D out (κ). Fig. 4 demonstrates an example of the inner and outer bounds for the case of q = 0.5, p 1 = 0.25, p 2 = 0.05, κ = 1. In this case the derived lower bound coincides with the cut-set lower bound.
+We considered the problem of sending dependent sources over multi-user memoryless channels and proposed a system- atic approach for ﬁnding lower bounds on the set of achievable distortions. In such networks, separation of source coding and channel coding is sub-optimal. Upper bounds on the performance can be derived by evaluating the performance of separation-based coding schemes. Combining the ideas from coordination capacity and network equivalence, we here proposed a systematic approach for ﬁnding lower bounds on the achievable distortion. We gave a small example where outer bounds were previously unknown.
+This work is partly supported by the Center for Mathematics of Information at Caltech and the NSF grant number CCF- 1018741.
+[[[ REFS ]]]
+C. E. Shannon
+I. Bell Syst
+--
+A mathematical theory of communication: Parts I and I Tech
+----
+T. Cove
+A. El Gama
+M. Salehi
+--
+Multiple access channels with arbitrarily correlated sources
+----
+U. Mitta
+N. Phamdo
+--
+Hybrid digital-analog (HDA) joint source- channel codes for broadcasting and robust communications
+----
+M. Gastpar
+--
+Cut-set arguments for source-channel networks
+----
+A. Gohar
+V. Anantharam
+--
+A
+----
+Z. Rezni
+M. Fede
+R. Zamir
+--
+Distortion bounds for broadcasting with bandwidth expansion
+----
+C. Tia
+S. Diggav
+S. Shamai
+--
+Approximate characterization of the gaussian source broadcast distortion region
+----
+R. Koette
+M. Effro
+M. M´edard
+I. arXiv:1007
+--
+A theory of network equivalence, parts I and I1033v2
+----
+W. Cuf
+H. Permute
+M. Cover
+--
+P
+----
+T. Cove
+J. Thomas
+--
+Elements of Information Theory
+----
+R. Equit
+M. Cover
+--
+W
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\102.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,158 @@
+[[[ ID ]]]
+138
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+A Practical Approach to Polar Codes
+[[[ AUTHORS ]]]
+A. Eslami
+H. Pishro-Nik
+[[[ ABSTR ]]]
+Abstract— In this paper, we study polar codes from a practi- cal point of view. In particular, we study concatenated polar codes and rate-compatible polar codes. First, we propose a concatenation scheme including polar codes and Low-Density Parity-Check (LDPC) codes. We will show that our proposed scheme outperforms conventional concatenation schemes formed by LDPC and Reed-Solomon (RS) codes. We then study two rate-compatible coding schemes using polar codes. We will see that polar codes can be designed as universally capacity achieving rate-compatible codes over a set of physically degraded channels. We also study the effect of puncturing on polar codes to design rate-compatible codes.
+Index Terms— Polar Codes, Rate-Compatible Codes, Concate- nated Codes.
+[[[ BODY ]]]
+low error rates without error ﬂoor. The problem of designing concatenated schemes using polar codes is yet to be studied. The only previous work on this topic is [7] where the authors study the classical idea of code concatenation using short polar codes as inner codes and a high-rate Reed-Solomon (RS) code as the outer code. It is shown that such a concatenation scheme with a careful choice of parameters boosts the rate of decay of the probability of error to almost exponential in the block-length with essentially no loss in computational complexity. While [7] mainly considers the asymptotic case, we are interested in improving the performance in practical ﬁnite lengths.
+In this paper, we study practical concatenation schemes that achieve a performance close to capacity, while keeping a low complexity and avoiding error ﬂoor. We study the combination of polar codes with LDPC codes, assuming polar codes as the outer code and LDPC codes as the inner code. Comparing our proposed scheme against conventional concatenated schemes which employ a concatenation of RS, BCH, or LDPC codes we will show that polar-LDPC combination can actually outperform existing schemes. Our results suggest that polar codes have a great potential to be used in combination with other codes in real-world communication systems.
+Rate-compatibility over time-varying channels is another important practical issue where error-correction codes are re- quired to be ﬂexible with respect to their code rates depending on the current channel state. In this paper, we study polar codes for rate-compatible applications. We ﬁrst see that polar codes are inherently well-suited for rate-compatible applications. We present a simple rate-compatible scheme that can universally achieve the channel capacity for a set of channels, using the same encoder and decoder. We will then study puncturing to design rate-compatible polar codes. Puncturing is widely used in the literature to generate rate-compatible codes [14]–[16]. We will investigate the performance of random puncturing and stopping-tree puncturing (explained later) as used for polar codes and compare them to the universally capacity-achieving scheme. The rest of this paper is organized as follows. We ﬁrst explain the notations and provide a short background on polar codes. Then, we study Concatenated polar codes in Section III. Rate-compatible polar codes are studied in Section IV. Finally, Section V concludes the paper.
+In this section, we explain some notations and preliminary concepts we will be using in our analysis. The construction of polar codes is based on the following observation: Let F = [ 1 0 1 1 ] . Apply the transform F ⊗n (where ⊗n denotes the nth Kronecker power) to a block of N = 2 n bits and transmit the output through independent copies of a symmetric BDMC, call
+capacity achieving (UCA), if the sequences of codes generated according to that scheme achieve the channel capacity c(θ j ) for j = 1, .., J . Assume that if θ i < θ j then W j is a degraded version of W i , which we denote by W j W i . We may also assume that the channel state information is available at the transmitter so that the appropriate code rate can be chosen for communication.
+In this section, we study concatenated polar codes. Our proposed scheme is formed of a Polar code as the outer code, and a LDPC code as the inner code. Fig. 2 shows the block diagram of this scheme. We consider long powerful LDPC codes as the inner code with rates close to the channel capacity. LDPC codes can be decoded in linear time using BP, and at the same time can get very close to the capacity. However, LDPC codes with good waterfall characteristics are known to mostly suffer from the error ﬂoor problem. Here, polar codes come to play their role. In [9], we studied the error ﬂoor performance of polar codes in ﬁnite length. As it is shown in [9], polar codes show very good error ﬂoor performance. Furthermore, the following theorem is proved in [9] about the girth of the tanner graph of polar codes.
+Theorem 1: Any polar code of length 8 or more has a girth of at least 12.
+Theorem 1 shows a natural advantage of polar codes over LDPC codes. In fact, a girth of 12 or more is considered so desirable for LDPC codes that many techniques have been proposed in the literature to guarantee such girths (see for example [17] and references therein). Such a large girth also contributes to the good error ﬂoor performance. Based on the facts mentioned above, the combination of polar and LDPC codes is expected to yield to a powerful concatenated code with BER performance close to the capacity for a broad range of the channel parameter. Here we consider binary polar codes as the outer code concatenated with a binary LDPC code as the inner code. This is different from the traditional concatenated schemes [18] in which a non-binary code is usually used as the outer code.
+In order to investigate the performance of our proposed scheme, we consider a real-world application which uses a concatenated coding scheme as its essential part. An Optical Transport Network (OTN) is a set of optical network elements connected by optical ﬁbre links, able to transport client signals at data rates as high as 100 Gbit/s and beyond. These net- works are standardized under ITU-T Recommendation G.709
+vector of LLRs to the polar decoder. Polar decoder then treats this vector as the input for its belief propagation process.
+Fig. 4 depicts the BER performance for the concatenated scheme explained above, when using the LDPC code above. For the channel, we assumed a binary symmetric gaussian channel as it is used by [11]–[13], [19]. Along with the concatenated scheme, we have shown the performance of the LDPC code and the polar code when used alone with an effective rate of 0.93, which is equal to the effective rate of the concatenated scheme. As it can be seen, while the concatenated scheme shows a signiﬁcant improvement over the polar code, it follows the performance of LDPC code in the waterfall region closely. Since both polar and LDPC codes here are capacity-achieving (or capacity-approaching), the concatenation does not suffer from rate loss in theory. Therefore, by increasing the code-length we expect that the curve for polar-LDPC scheme close the gap to the capacity. The curve also shows no sign of error ﬂoor down to BERs of 10 −13 , as opposed to the curve for the LDPC-only scheme. In a polar-LDPC concatenation, the two codes are orchestrated to cover for each other’s shortcomings as follows: LDPC plays the dominant role in its waterfall region, while polar code is dominant in the error ﬂoor region of the LDPC code.
+To see the signiﬁcant potential of polar codes for con- catenated schemes, we also showed the BER performance corresponding to the G.709 standard explained earlier in the paper, as well as the scheme proposed in a recent patent [19]. Both systems use a code rate of 0.93. The scheme in [19] employs a RS-BCH concatenated code with an overall minimum distance of 252. The code-length for this scheme is 65280 which is very close to our proposed scheme. As it can be seen, at a BER of 10 −12 , polar-LDPC has an edge of 1.45 dB in SNR over the RS-BCH. An improvement of 2.9 dB over the G.709 standard can also be observed at this BER.
+In this section, we consider puncturing for rate-compatible polar codes. Figure 5(b) shows the encoder structure for the punctured rate-compatible polar codes. In this scheme, a parent code is designed for the worst channel (with largest channel parameter). In order to generate codes with higher rates for better channels, the encoder punctures some of the output bits. For every channel parameter θ j , j = 1, ..., J , a puncturing pattern is determined off-line and loaded into the encoder. The punctured bits will not be sent over the channel. In the decoder side, the log-likelihood ratios for these bits will be set to zero before running belief propagation. The optimal puncturing pattern for each rate and a speciﬁc tanner graph can be found using optimization techniques [14], [15]; however, it turns out it is difﬁcult to use such techniques for polar codes.
+1) Random Puncturing: A simple way of puncturing, which is studied in some papers, is to have the encoder choose the punctured bits for each rate randomly. Random puncturing is actually proved to be a UCARC scheme for LDPC codes over the BEC [16]. Fig. 6 shows the gap-to-capacity (for the gaussian channel) for randomly punctured polar codes compared against the UCARC polar codes described in section IV-A. As it can be seen in the ﬁgure, there is a substantial distance between the two curves.
+2) Stopping-Tree Puncturing for Polar Codes: Here, we propose an algorithm involving the stopping sets in the tanner graph to improve the performance of puncturing. A stopping
+that it can result in considerable improvement over the existing concatenated schemes. We also studied different approaches to rate-compatible polar codes over a set of physically degraded channels. We showed that UCARC polar codes can be de- signed with low complexity using the inherent characteristics of polar codes. We also studied the use of puncturing to generate rate-compatible polar codes.
+[[[ REFS ]]]
+E. Arikan
+--
+Channel polarization: A method for constructing capacity- achieving codes for symmetric binary-input memoryless channels
+----
+E. Arikan
+--
+A performance comparison of polar codes and reed-muller codes
+----
+N. Hussami
+S. Korada
+R. Urbanke
+--
+Performance of polar codes for channel and source coding
+----
+S. Korada
+E. Sasoglu
+R. Urbanke
+--
+Polar codes: Characterization of exponent, bounds, and constructions
+----
+S. Korada
+R. Urbanke
+--
+Polar codes are optimal for lossy source coding
+----
+H. Mahdavifar
+A. Vardy
+--
+Achieving the secrecy capaity of wiretap channels using polar codes
+----
+M. Bakshi
+S. Jaggi
+M. Effros
+--
+Concatenated polar codes
+----
+E. Hof
+I. Sason
+S. Shamai
+--
+Polar coding for reliable communi- cations over parallel channels
+----
+A. Eslami
+H. Pishro-Nik
+--
+On bit error rate performance of polar codes in ﬁnite regime
+----
+E. M. Kurtas
+A. Kuznetsov
+I. Djurdjevic
+--
+System perspectives for the application of structured LDPC codes to data storage devices
+----
+C. Wu
+J. Cruz
+--
+RS plus LDPC codes for perpendicular magnetic recording
+----
+X. Ningde
+X. Wei
+Z. Tong
+E. F. Haratsch
+M. Jaekyun
+--
+Concate- nated low-density parity-check and BCH coding system for magnetic recording read channel with 4 kb sector format
+----
+T. Mizuochi
+Y. Konishi
+Y. Miyata
+T. Inoue
+K. Onohara
+S. Kametani
+T. Sugihara
+K. Kubo
+H. Yoshida
+T. Kobayashi
+T. Ichikawa
+--
+Experimental demonstration of concatenated LDPC and RS codes by FPGAs emulation
+----
+J. Ha
+J. Kim
+S. McLaughlin
+--
+Rate-compatible puncturing of low- density parity-check codes
+----
+J. Ha
+J. Kim
+S. McLaughlin
+--
+Rate-compatible punctured low- density parity-check codes with short block lengths
+----
+H. Pishro-Nik
+F. Fekri
+--
+Results on punctured low-density parity- check codes and improved iterative decoding techniques
+----
+M. Esmaeili
+M. Gholami
+--
+Geometrically-structured maximum-girth ldpc block and convolutional codes
+----
+S. Li
+D. J. Costell
+--
+Error Control Coding: Fundamentals and Applications
+----
+H. Griesser
+J. P. Elbers
+--
+Forward error correction coding.
+----
+S. Korad
+--
+Polar Codes for Channel and Source Coding
+----
+C. Di
+D. Proietti
+I. E. Telatar
+T. Richardson
+R. Urbanke
+--
+Finite- length analysis of low-density parity-check codes on the binary erasure channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\138.pdf
+[[[ LINKS ]]]
+

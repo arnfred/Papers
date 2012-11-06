@@ -1,0 +1,123 @@
+[[[ ID ]]]
+142
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The Universality and Linearity of Compression by Substring Enumeration
+[[[ AUTHORS ]]]
+Danny Dub´e
+Hidetoshi Yokoo
+[[[ ABSTR ]]]
+Abstract—A new lossless data compression technique called compression by substring enumeration (CSE) has recently been introduced. Two conjectures have been stated in the original paper and they have not been proved there nor in subsequent papers on CSE. The ﬁrst conjecture says that CSE is universal for Markovian sources, provided an appropriate predictor is devised. The second one says that CSE has a linear complexity both in time and in space. In this paper, we present an appropriate predictor and demonstrate that CSE indeed becomes universal for any order-k Markovian source. Finally, we prove that the compacted substring tree on which CSE’s linear complexity depends effectively has linear size.
+[[[ BODY ]]]
+Throughout the paper, we adopt the following conventions: N denotes the set of natural numbers; ǫ denotes the empty string; a and b denote bits; i, j, k, l, n, and p are in N; u, v, and w are strings in {0, 1} ∗ ; and | · | is used to obtain the length of a string, or the size of a set, depending on the context.
+The data that is sent to the compression by substring enumeration (CSE) compressor is a binary string, denoted by D, of length N bits [1]. 1 CSE assumes D to be circular, and encodes it into the pair of its equivalence class of strings under rotation and its rank, or lexicographic order, in the class. In the literature, such an equivalence class of strings is called a necklace [4]. We identify each necklace with the lexicographically smallest string in its equivalence class. In this paper, we concentrate only on the encoding of necklaces, which is the core component of the CSE technique.
+Of particular importance to CSE is the notion of occurrences of a substring in D. It is not exactly the notion that is usually adopted since CSE considers D to be circular.
+First, we deﬁne the notion of occurrence of a substring at a given position . We say that a substring w ∈ {0, 1} ∗ occurs at position p in D, denoted by w ∈ p D, if:
+circularity. The restriction is necessary to make the deﬁnition of number of occurrences sensible, as seen below. Note also that we put no restriction of the length of the substrings themselves. In particular, w can be as short as ǫ. At the other extreme, w can be longer than D.
+Second, we deﬁne the notion of occurrence. We say that a substring w occurs in D, denoted by w ∈ D, if there exists a position p such that w ∈ p D.
+Third, we deﬁne the notion of number of occurrences. The number of occurrences of a substring w in D, denoted by C w , is |{p ∈ N | w ∈ p D}|. Obviously, we have that C w > 0 if and only if w ∈ D. This deﬁnition makes it clear that we need the restriction on the possible positions of occurrences. Otherwise, C w could only be 0 or ∞. The following equations are direct consequences of the deﬁnition of C w .
+C. Compression by Substring Enumeration (CSE) From Eq. (2) above, we can derive
+which can be used to compute each quantity in the left-hand sides from C 0 w0 . We combine these equations with C 0 w0 ≥ 0, C 0 w1 ≥ 0, C 1 w0 ≥ 0, and C 1 w1 ≥ 0 to yield
+When we already have C 0 w , C w0 , and C w1 , we can efﬁciently transmit C 0 w0 using the above bounds. When predicting and encoding C 0 w0 , we refer to w as the core of 0w0. The size of the set of possible values for C 0 w0 is given by
+In particular, this means that, if min(C 0 w , C 1 w , C w0 , C w1 ) = 0, then C 0 w0 is forced to take a unique value. We say that
+such a prediction is trivial and that core w is not interesting. We denote by I(D) the set of interesting cores as follows.
+U (D) = {w ∈ {0, 1} ∗ | w0 ∈ D and w1 ∈ D} (6) V (D) = {w ∈ {0, 1} ∗ | 0w ∈ D and 1w ∈ D} (7)
+Note that when C w ≤ 1, we necessarily have that w ∈ I(D). We can summarize these observations into the CSE com-
+pression algorithm presented in Figure 1. The double for loops of the algorithm suggest that up to Θ(N 2 ) numbers of occurrences might have to be transmitted from the compressor to the decompressor. This is not the case. The number of the numbers that CSE transmits is no more than the string length. This is proved in Section IV.
+The most important operation in CSE is the prediction of the numbers C 0 w0 of occurrences. In earlier experiments, three predictors have been used: a uniform predictor [1], a predictor that learns how to efﬁciently predict C 0 w0 [1], and a combinatorial predictor. Here, we present the uniform and the combinatorial predictions.
+Uniform prediction simply consists in assigning the same probability to each possible value of C 0 w0 (or to each value of some other variable). This simple prediction can be used every time we have a lower and an upper bound on the possible values. Given the bounds established for C 0 w0 in Eq. (4), we can uniformly predict C 0 w0 and encode its actual value using lg (min(C 0 w , C 1 w , C w0 , C w1 ) + 1) bits.
+Uniform prediction has the advantage of being simple. However, it is too simplistic and, to the best of our knowledge, it cannot make CSE universal. For example, if we have C 0 w = C 1 w = C w0 = C w1 = 1000, then, intuitively, we expect C 0 w0 ≈ 500 to be more probable than C 0 w0 ≈ 1000.
+Combinatorial prediction assigns, to some legal value C 0 w0 , the probability p c (C 0 w0 | C 0 w , C w0 , C w1 ), which is
+where C 0 w1 , C 1 w0 , and C 1 w1 should be seen as functions of C 0 w0 . This prediction is inspired by the following picture. Imagine that the C w occurrences of the core are interspersed
+in D, without overlaps. Then any C 0 w0 occurrences of w might be the ones that are preceded and followed by 0s; among the remaining occurrences of w, any C 0 w1 of them might be the ones that are preceded by a 0 and followed by a 1; and so on.
+The expression for p c (C 0 w0 | C 0 w , C w0 , C w1 ) can be simpliﬁed. The numerator and the denominator can be trans- formed into C w C
+A particularly interesting property of combinatorial pre- diction is that the probability that is assigned to the joint prediction of all the numbers C 0 vw0 , for a given w, has a very simple form. Indeed, we have the following:
+The closed form of the joint probability is obtained thanks to the telescopic product. Only the denominator of the case v = ǫ remains. Since we cancel the two factors of the numerator of the probability for a particular v with the denominators of probabilities for other, longer v ′ s, one might wonder if we really get an equality here. In fact, apart from a ﬁnite number of vs, all individual probabilities that are multiplied together are equal to 1. Indeed, ﬁrst note that when v is long enough (e.g., when |v| ≥ N ), we have that C vw ≤ 1, which causes vw ∈ I(D). 2 Then note that, for vw ∈ I(D), combinatorial prediction assigns probability 1 to the single legal value of C 0 vw0 .
+The prediction that we propose here combines uniform prediction and combinatorial prediction. Given some length l, CSE ought to use uniform prediction for C 0 w0 when |w| < l and combinatorial prediction otherwise. In order to determine the optimal threshold where to switch from uniform to com- binatorial prediction, universal CSE has to evaluate the cost of predicting and encoding each C 0 w0 using each prediction method. It then has to select the length l opt that minimizes the overall cost of prediction and encoding. We deﬁne l opt as arg min l ′ l<l ′ υ l + 	 l ≥l ′ γ l , where υ l and γ l are the costs of predicting and encoding the l-bit cores using the uniform and combinatorial prediction methods, respectively:
+(see Section III-E for the deﬁnitions of K u and K c ). Conse- quently, we propose to replace line 4 in Figure 1 by:
+Predict and Send C 0 w0 uniformly Else
+The universality of CSE is proved for an order- k Markovian source X. Note that the proof does not require the implemen- tation of CSE to depend on k or on its existence.
+We denote by X i , for i ≥ 0, the ith random variable of X and the subsequence of the source random variables from X i to X j by X j i . We deﬁne the source probability distribution p (i) on the strings of length i as
+and, for i > k+1, p (i) can be recovered thanks to the ﬁniteness of the order of X:
+Since X is an order-k Markovian source, its entropy can be expressed in various forms, in particular as its kth-order entropy:
+Given D, we deﬁne the empirical probability distribu- tions ˜ p (i) D on the strings of length i as
+Based on the empirical probability distributions, we deﬁne the empirical kth-order entropy of D as
+Both the empirical probability distributions and the em- pirical kth-order entropy have been presented for D, which is a speciﬁc N -bit string. However, we can also use them on an N -bit random string X N −1 0 	 and get the empirical probability distributions ˜ p (i) X N −1
+and the empirical kth-order entropy ˜ H(X N −1 0 ). Note that these probability distributions and this entropy, respectively, are random variables. In other words, the outcomes of random variable ˜ H(X N −1 0 ) are spe- ciﬁc entropies and each speciﬁc entropy has some probability of occurrence.
+, by its very nature, cannot be equal to the source probability distribution p (k+1) , since the latter is a speciﬁc probability distribution while the former is a random variable whose outcomes are speciﬁc probability distributions. Unfortunately, E ˜ p (k+1) X N −1
+, even if it is a speciﬁc probability distribution, is not necessarily equal to p (k+1) either. One of the reasons is that the empirical prob- ability distributions are based on numbers of occurrences, and these include occurrences of substrings that wrap around D. Consequently, these substrings are not generated by consec- utive random variables of X; e.g. there is a substring that is generated by X N −1 N −4 X 8 0 .
+However, the empirical probability distribution random vari- ables have the tendency to become more similar to the source probability distribution when we let N grow. Let us be more precise. We are especially interested in the probability distributions of substrings of k + 1 bits. So we have
+We omit the proof. As a consequence, and because entropy is a continuous function, we also have
+The convergence of the empirical entropy of the random strings toward the entropy of the source allows us to deﬁne a typical set. Let us deﬁne A (N ) δ , the set of typical binary strings of length N :
+A (N ) δ is such that Pr X N −1 0 ∈ A (N ) δ 	 > 1 − δ, and we can choose any δ > 0, provided we choose N large enough.
+We deﬁne a few cost functions, which we use to bound the size of the codewords for the strings compressed by CSE.
+It is possible to encode a natural number n using O(lg n) bits, even if we have no a priori upper bound on n. For instance, we can do so using Elias gamma coding [5]. The size of the codeword for n ∈ N is K N (n).
+Let K u (X) be the cost of encoding the outcome of a random variable X with n possible outcomes when assigning these a
+uniform probability distribution. Naturally, K u (X) ∈ O(lg n). In the sequel, we keep n implicit since all such costs will be upper-bounded by lg N .
+Let K c (0w0) be the cost of encoding the value C 0 w0 combinatorially, knowing C 0 w , C w0 , and C w0 :
+Note that we write K c (0w0), not K c (C 0 w0 ), because C 0 w0 is only a natural number (e.g., 5) which would not allow us to unambiguously identify the related strings 0 w, w0, and 1w and their respective C 0 w , C w0 , and C 1 w .
+We denote by K CSE| n (D) the cost of compressing D using CSE and by forcing the prediction to switch from uniform to combinatorial when cores are n bits long or more. Finally, we denote by K CSE (D) the cost K CSE| lopt (D).
+Figure 2 presents the beginning of a derivation for an upper bound that suits both typical and atypical cases. Eq. (11) directly follows from CSE’s algorithm in Figure 1, as modiﬁed
+in Section II-C. Eq. (12) gathers all the costs that are loga- rithmic. In Eq. (13), we use the telescopic product presented in Section II-B. Eq. (14) is simple to prove.
+Eq. (15) uses the entropy h(·) of a binary random variable, which is then bounded above by 1 in Eq. (16).
+Combining the costs in the typical and atypical cases, with their respective probabilities, we get the following average cost:
+By letting N grow as much as needed, we bound the cost per symbol of CSE arbitrarily close to H(X).
+The original paper [1] mainly considers non-repetitive (ape- riodic) strings. For a non-repetitive string D, the size of the associated necklace is equal to the string length N . In other words, all the N rotations of non-repetitive D are different from each other. In the BWT-transformed matrix [6], in which all the rotations of D are lexicographically arranged as rows, the rows are all different, and every pair of adjacent rows share a preﬁx of length between 0 and N − 1. If we represent such
+a preﬁx by w, we have both w0 and w1 in D. This leads us to the following, which refers to Eq. (6).
+Lemma 1: For any non-repetitive D of length N , we have |U (D)| = N − 1.
+Proof: Let w i denote the longest preﬁx that is shared by the ith and (i + 1)st rows of the (sorted) BWT matrix of D. There exist N − 1 different w i ’s since the matrix has N rows. The length of every w i is shorter than N . This means that both w i 0 and w i 1 occur in D, and therefore, the lemma is proved.
+If we read D in the reverse direction and apply Lemma 1, we have the following.
+Lemma 2: For any non-repetitive D of length N , we have |V (D)| = N − 1.
+Note that the double for loops of the CSE algorithm transmit C 0 w0 only for w ∈ I(D). Thus, from Lemmas 1 and 2, we conﬁrm that the number of those numbers the loops emit is no more than N − 1. The implementation of CSE uses a data structure called the compacted substring tree (CST) [1]. The authors of [1] conjectured that the CST for a non-repetitive D always has 2N − 1 nodes, and used it as a ground for linear implementation.
+In the CST, the path from the root to each node represents a substring w, and the node stores the value of C w . Since identical subtrees are linked by a backward arc, the CST is not strictly a tree but a graph with cycles. Figure 3 presents an example of CST, in which backward arcs are depicted with dashed lines. We here prove the conjecture [1] that the CST for a non-repetitive D always has 2N − 1 nodes.
+We refer to normal arcs, depicted with solid lines in the ﬁgure, which go from a level- L node to a level-(L + 1) node, as forward arcs. We represent the node corresponding to a substring w by n w . The labels only on the forward arcs of the path from the root to a node n w constitute a substring w. When we are about to create a node n w , if we already have a node n x such that C x = C w for w = bx (b ∈ {0, 1}), then we must not build n w and rather add a backward arc from its parent to n x [1]. Using the way for the construction of CST, we can immediately prove the following.
+Lemma 3: For a string w, if 0w does occur and 1w does not occur in D, then a node n 0 w does not exist in the CST.
+Proof: Since 0 w ∈ D and 1w ∈ D, we have C 0 w = C w from Eq. (2). In this case, n 0 w is not built and, instead, a backward arc is added to n w .
+Lemma 4: For a string w, if both 0w and 1w occur in D, then a node n 0 w exists in the CST for D.
+Proof: Since C 0 w > 0 and C 1 w > 0, we have C w = C 0 w + C 1 w > C 0 w . In this case, there exists a node n 0 w in the CST.
+We combine the above two lemmas into the following theorem for further reference.
+Theorem 1: In the CST corresponding to D, there exists a node n 0 w if and only if both 0 w and 1w occur in D. Similarly, there exists a node n 1 w if and only if 0 w ∈ D and 1w ∈ D.
+Now, let us prune backward arcs from a CST to obtain a real tree. We still use the same term “CST” to refer to a CST without backward arcs. Let t 0 and t 1 be subtrees rooted at n 0 and n 1 , respectively, in a CST without backward arcs. Note that only backward arcs are deleted from CST and no change has been made on the nodes of the CST. Thus, we now establish the following theorem.
+Theorem 2: In the CST without backward arcs correspond- ing to a non-repetitive D of length N , the subtrees t 0 and t 1 are isomorphic, both of which have N − 1 nodes.
+Proof: It follows directly from Theorem 1 that the subtrees t 0 and t 1 are isomorphic. We use again the same theorem with Lemma 2 to conclude that each of t 0 and t 1 have N −1 nodes.
+Corollary 1: The CST corresponding to a non-repetitive D of length N has 2N − 1 nodes.
+Corollary 2: The numbers of nodes on the same level of subtrees t 0 and t 1 of the CST corresponding to a non-repetitive D are equal to one another.
+In this paper, we showed universality of CSE when the source is Markovian. A stronger result, which establishes the universality of CSE for stationary and ergodic sources is to appear about at the same time as ISIT 2011 [7].
+We wish to thank the anonymous reviewers whose com- ments contributed to improve this paper.
+[[[ REFS ]]]
+D. Dub´e
+V. Beaudoin
+--
+Lossless data compression via substring enumeration
+----
+D. Dub´e
+--
+Using synchronization bits to boost compression by substring enumeration
+----
+
+--
+On the use of stronger synchronization to boost compression by substring enumeration
+----
+F. Ruskey
+J. Sawada
+--
+An efﬁcient algorithm for generating necklaces with ﬁxed density
+----
+P. Elias
+--
+Universal codeword sets and representations of the integers
+----
+M. Burrows
+D. Wheeler
+--
+A block sorting lossless data compression algorithm
+----
+H. Yokoo
+--
+Asymptotic optimal lossless compression via the CSE tech- nique
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\142.pdf
+[[[ LINKS ]]]
+

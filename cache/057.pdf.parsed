@@ -1,0 +1,219 @@
+[[[ ID ]]]
+57
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Zero-error communication via quantum channels and a quantum Lov´asz ϑ -function
+[[[ AUTHORS ]]]
+Runyao Duan
+Simone Severini
+Andreas Winter
+[[[ ABSTR ]]]
+Abstract—We study the quantum channel version of Shannon’s zero-error capacity problem. Motivated by recent progress on this question, we propose to consider a certain linear space operators as the quantum generalisation of the adjacency matrix, in terms of which the plain, quantum and entanglement-assisted capacity can be formulated, and for which we show some new basic properties. Most importantly, we deﬁne a quantum version of Lov´asz’ famous ϑ function, as the norm-completion (or stabilisation) of a “naive” generalisation of ϑ. We go on to show that this function upper bounds the number of entanglement- assisted zero-error messages, that it is given by a semideﬁnite programme, whose dual we write down explicitly, and that it is multiplicative with respect to the natural (strong) graph product. We explore various other properties of the new quantity, which reduces to Lov´asz’ original ϑ in the classical case, give several applications, and propose to study the linear spaces of operators associated to channels as “non-commutative graphs”, using the language of operator systems and Hilbert modules.
+[[[ BODY ]]]
+For a classical channel N : X −→ Y between discrete alphabets X and Y (in the following assumed to be ﬁnite), i.e. a probability transition function N (y|x), Shannon [1] initiated the study of zero-error capacities, i.e. of transmitting messages by one and asymptotically many uses of the channel. To transmit messages through this channel with no probability of confusion, different messages m need to be associated to different input symbols x in such a way that the output distributions N (·|x) have disjoint supports. This motivates the introduction of the confusability graph G of N , that has the vertex set X and an edge x ∼ x whenever x and x can be confused via the channel, i.e. if there exists y ∈ Y such that N (y|x)N (y|x ) = 0 (assume that x is always confused with itself). An integer n uses a channel with confusability graph G is thus described by the n-fold graph product G n . For a given graph G, the maximum number of error-free messages is clearly α(G), the independence number of G, i.e. the maximum number of pairwise non-adjacent vertices of G. With this we can deﬁne the zero-error capacity of the
+i.e. the asymptotically largest number of bits transmissible with certainty, per channel use. (Throughout, log is understood as the binary logarithm.)
+For some graphs, C 0 (G) = log α(G), but in general the zero-error capacity is larger – a well-known example is the pentagon C 5 whose capacity is 1 2 log 5 [2], and there are graphs such that for every ﬁnite n, 1 n log α(G n ) < C 0 (G) [3]. Finding α(G) (and a maximal-size independent set) is in general an NP-hard problem, and C 0 (G) is not even known to be computable.
+A very good upper bound on α(G) was given by Lov´asz [2] as a semideﬁnite programming relaxation of this combinatorial problem, and called ϑ(G): rephrasing slightly [2, Thms. 5 and 6],
+ϑ(G) = max { 1 + T : T xx = 0 if x ∼ x and 1 + T ≥ 0} , (1)
+where · is the operator (sup) norm, and the maximum is over |X| × |X| complex (Hermitian) matrices T , though one can show that it is sufﬁcient to consider real symmetric T in the above formula. In fact, via an expression of ϑ as the solution to a semideﬁnite programme, it can also be shown to be multiplicative with respect to the graph product [i.e. ϑ(G × H) = ϑ(G)ϑ(H)]. Thus, it also gives an upper bound C 0 (G) ≤ log ϑ(G) on the zero-error capacity. Apart from some special graphs exhibited by Haemers [4] and Peeters [5], and a particular construction by Alon [6], it remains the best upper bound on the zero-error capacity, and has been deeply studied ever since it appeared (see Knuth [7]). Zero-error capacities and ϑ have been central in the interplay between information theory, coding, and extremal combinatorics, suggested the introduction of the notion of a perfect graph, and stimulated a large volume of work in theoretical computer science and applied mathematics.
+The generalisation of zero-error capacity to quantum chan- nels is not straightforward as the input signal states may be entangled between different uses of the channel. A careful study of such a generalisation will be of critical importance to build highly reliable communication networks, and to exploit novel applications of quantum information processing. Recently zero-error information transmission via general quan- tum channels has attracted great interest, and many valuable results have been reported. For instance, a notion of zero- error capacity of quantum channels was ﬁrst considered by Medeiros et al. [8], and then by Beigi and Shor [9] (in those investigations, communication signals were, implicitly or explicitly, restricted to product states across multiple channel uses); and very recently, in full generality by Cubitt, Chen and Harrow [10], Duan [11] and Cubitt and Smith [12]; Duan and Shi [13] present results on multi-user quantum zero-error capacity, while quantum effects for classical channels were discovered by Cubitt, Leung, Matthews and Winter [14], and were further explored by Leung et al. [15].
+In this paper, we will further extend this line of study to quantum channels and structures generalising the confusability graph. Instead of introducing only the mathematical objects, we shall precede each deﬁnition by a motivating discussion from the perspective of zero-error information theory. We will introduce zero-error codes for channels to motivate our deﬁ- nitions of quantum independence numbers (there are at least three meaningful ones). Then we introduce a quantum version of the ϑ function and explore some of its basic properties. A quantum version of ϑ turns out to be useful for upper bounding zero-error capacities, especially for entanglement- assisted zero-error capacity; more generally, to prepare the ground for introducing important mathematical ideas to the quantum realm (e.g., Ramsey numbers, index codes, etc.), and potentially to create new tools in quantum and classical computational complexity. This is the wider scope of the present work. For details, we refer the reader to our preprint arXiv[quant-ph]:1002.2514 [16].
+To describe the quantum generalisations of the above com- binatorial concepts, we start with quantum communication channels, mapping quantum states to quantum states. The input and output alphabets of a channel are replaced by ﬁnite- dimensional Hilbert spaces A and B with their spaces of linear operators L(A), etc. A quantum channel is then deﬁned as a linear map N : L(A) → L(B) that is additionally completely positive and trace preserving (cptp) . It is well-known that any such N can be represented as N (ρ) = 	 j E j ρE † j , where E j : A → B are Kraus operators satisfying the trace- preserving condition j E † j E j = 1.
+We now deﬁne the non-commutative (confusability) graph associated with N as the operator subspace
+(Following algebra convention, and to be consistent with [16], we denote subspace inclusion by “<.) In [10], [11] it is shown that a subspace S is associated in the above way to a channel iff 1 ∈ S and S = S † , and that is why we shall call a subspace S < L(A) with these properties a non-commutative graph. This can be interpreted as the quantum generalisation of the classical confusability graph G. This idea is enforced by the observation that for two channels N 1 and N 2 , with associated subspaces S 1 and S 2 , respectively, the tensor product channel N 1 ⊗ N 2 has operator subspace S 1 ⊗ S 2 .
+It is easy to see that the maximum number α(N ) of one- shot zero-error distinguishable messages down the channel is given as the maximum size of a set of (orthogonal) vectors {|φ m : m = 1, . . . , N } such that
+where the orthogonal complement is w.r.t. the Hilbert-Schmidt (or Frobenius) inner product Tr X † Y on L(A). Since it is only a property of S, we shall denote α(N ) also as α(S), and we call it the independence number of S. Note that the deﬁning property of the operators |φ m φ m | in eq. (3) is that they are rank-one and an orthonormal system orthogonal to S, with respect to the Hilbert-Schmidt inner product. Remarkably, computing the independence number α(S) is QMA-complete, much like α(G) is known to be NP-complete for graphs [9].
+There are at least two further reasonable notions of indepen- dence number possible for quantum channels and their con- fusability graphs. They are motivated by entanglement-assisted zero-error communication and by the zero-error transmission of quantum information (aka quantum error correcting codes). Here we only focus on the former notion. The quantity α(S) is deﬁned to be the largest integer N such that there exist Hilbert spaces A 0 and B 0 , a state ω ∈ S(A 0 ⊗ B 0 ), and cptp maps E m : L(A 0 ) → L(A) (m = 1, . . . , N ) such that the N states ρ m = (N ◦ E m ⊗ id B 0 )ω are pairwise orthogonal. This deﬁnition of the entanglement-assisted independence number is motivated by the scenario where sender and receiver share the state ω beforehand, and the sender uses the encoding maps E m to modulate the state before sending her share into the channel. The receiver has to be able to recover the message from his ﬁnal state, ρ m . We can give a purely linear-algebraic formulation of the zero-error condition, in analogy to eq. (3) – see [16]: There has to exist a Hilbert space R, a state Ω ∈ S(A ⊗ R) and a collection of unitaries U m , such that
+Finally, we can deﬁne C 0 (S) and C 0E (S) in a way similar to C 0 (G), as the asymptotic rate of α(S) and α(S), respec- tively.
+Remark 1: While α(S) can easily be 1 for a non-complete graph, i.e. for S = L(A) – namely precisely when S ⊥ does not contain a rank-one element –, α(S) ≥ 2 unless S is complete, i.e. S = L(A); this follows easily from eq. (4).
+Proposition 2 ([16]): The entanglement-assisted indepen- dence number α(S) is computable (in the sense of being
+approximated arbitrarily from above and below by computable numbers), and upper bounded by α(S) ≤ dim(S ⊥ ) + 1.
+For the any non-commutative graph S < L(A), i.e. 1 ∈ S and S = S † , we make, motivated by eq. (1), the following deﬁnition:
+where the norm is the operator norm (i.e. the largest singular value). For a classical channel with confusability graph G, we can show that ϑ(S) actually coincides with ϑ(G). It turns out however that, unlike the classical Lov´asz number, our deﬁnition (5) is not multiplicative under tensor product. In fact, even tensoring with a complete non-commutative graph L(R) may increase its value! For example, for the empty graph S = C1 < L(C n ), it is easy to see that ϑ(S) = n, whereas for the complete graph S = L( C n ), ϑ(S ) = 1; however, ϑ(S ⊗ S ) = n 2 > n · 1.
+Surprisingly, we can remedy this by the following better deﬁnition, which is a kind of norm completion of ϑ:
+Deﬁnition 3 ([16]): The quantum Lov´asz number is given by
+where the supremum is over all integers n, and the maximum in the second line is again over Hermitian operators T .
+Because Lov´asz’ ϑ is multiplicative, ϑ(S) = ϑ(G) for a classical channel with confusability graph G.
+There seems to be an analogy to the construction of the completely bounded norm from the “naive” norm of operator maps [17]. Much like completely bounded norms [18], also our deﬁnition via completion turns out to be given by a semideﬁnite programme as follows:
+Theorem 4 ([16]): For any non-commutative graph S < L(A),
+This has two important consequences: ﬁrst, we have now an optimisation with a bounded dimension of the extension (namely |A|) and furthermore it is semideﬁnite [19], so it is efﬁciently computable. Second, and much deeper, we have a dual semideﬁnite programme for the same value that is a minimisation problem and allows us to put upper bounds on ϑ(S).
+Theorem 5 ([16]): The dual of the semideﬁnite programme (6) gives
+where A is isomorphic to A and |Φ = j |jj ∈ A ⊗ A is the (un-normalised) maximally entangled state.
+An immediate corollary is the following multiplicativity of our function: for all S i < L(A i ),
+The dual in Theorem 5 simpliﬁes considerably in the case of classical channels, i.e., S = span{|x x | : x = x or x ∼ x } < L( CX). The Lov´asz’ ϑ is given by the semideﬁnite programme
+where S is the non-commutative graph associated to G, meaning Y xx = 0 whenever x ∼ x , and J is the all-1 matrix.
+In the previous section we learned that ϑ generalises Lov´asz’ ϑ, and that it extends some of ϑ’s nice properties, such as multiplicativity. More importantly, however, it is related to the entanglement-assisted independence number:
+Theorem 6 ([16]): For any non-commutative graph S, α(S) ≤ ϑ(S). Combining with the multiplicativity of ϑ, we have, C 0E (S) ≤ log ϑ(S).
+Proof: We use condition (4), which is evidently un- changed under rescaling Ω. So we replace it by a multiple X with largest eigenvalue 1, and write X = |ϕ ϕ| + X , where X ⊥ |ϕ ϕ| is a rest that satisﬁes X ≤ 1. Now we consider the candidate
+This is an eligible operator in Deﬁnition 3 because 1 + T = 1 +
+where in the second line we have used 1 ≥ U m XU † m , hence 1 ≥ m U m XU † m ⊗ |m m|.
+In words, the logarithm of the quantum Lov´asz number provides an upper bound for the entanglement-assisted zero- error classical capacity of S. Then, for a classical channel with confusability graph G, we observed earlier that ϑ(S) = ϑ(G). Hence, α(G) ≤ ϑ(G) and so for any graph G, C 0E (G) ≤ log ϑ(G). This answers an open question from [14], which is nontrivial because there it is shown that α(G) may be strictly larger than α(G). Most notably, we can now compute the entanglement-assisted zero-error capacity of the “Bell- Kochen-Specker” channels discussed in [14]. These are all disjoint unions of n copies of the complete graph K d , with some extra edges between the complete components, such that G is exactly the orthogonality graph of a set of nd vectors in C d .
+While we do not have a separating upper bound for the unassisted capacity C 0 (G) of these graphs, of course even as a bound on the independence number, our result is an improvement over Lov´asz [2], since we ﬁnd that ϑ(G) is even larger or equal than α. In this sense, the increase of independence number from α to α due to entanglement- assistance somehow “explains” the fact that Lov´asz’ ϑ is not always a tight bound [4] – and in fact, C 0E (G) can be strictly larger than C 0 (G), as conﬁrmed by Leung et al. in a recently appearing work using some highly nontrivial graphs constructed by the root systems of the exceptional Lie groups [15].
+Perhaps the most interesting open question regarding the entanglement-assisted zero-error capacity is whether C 0E (S) = log ϑ(S). Note that this would imply that C 0E is multiplicative (whereas C 0 is not [6]). In favour of such an idea, one might recall that entanglement-assistance has made also the theory of communication via quantum channels more elegant [20], and likewise so-called XOR games [21], for which a semideﬁnite characterisation lead to multiplicativity of the optimal winning probability.
+Be that as it may, we want to highlight two potentially interesting test cases (or rather: challenges) for the equality conjecture. The ﬁrst is a class of graphs with rather large separation between α(G) (in fact: 2 C 0 (G) ) and ϑ(G) – for instance, Peeters [5] discusses graphs G on n vertices with 2 C 0 (G) ≈ log n but ϑ(G) ≈
+n (one of which is the graph considered by Leung et al. [15]), and H with C 0 (G) = log 3 but ϑ(G) ≈ 4
+n. The difﬁculty is that it is far from ob- vious how to turn the optimal solution of the semideﬁnite programme for ϑ(G) into an entanglement-assisted coding.
+The second is a class of truly quantum objects, obtained from any set of diagonal matrices ∆ 1 , . . . , ∆ t with trace 0 by letting
+It is easy to see that ϑ(S) is given by a linear programme, in terms of the diagonal entries of the ∆ j . For instance, in the simplest case, there is only one traceless matrix ∆, w.l.o.g. with smallest eigenvalue −1 and largest eigenvalue λ ≥ 1. While we know from Proposition 2 that α(S) = 2, on the other hand ϑ(S) = 1 + λ, which can vary from 2 to the
+dimension of the Hilbert space. Thus, to attain this number, one would have to use multiple copies of S in a way not yet understood.
+Another question pertains to a possible generalisation of a very interesting property of the Lov´asz number: Is it true that
+Note that it holds for classical graphs – because the inter- section is an induced subgraph of the strong product along the diagonal. And that it would be an extension of the multiplicativity statement – apply the intersection inequality to S 1 ⊗ L(A 2 ) and L(A 1 ) ⊗ S 2 (the opposite inequality is true by deﬁnition, both for ϑ and ϑ).
+Note Added: While completing this paper, we learned of a direct proof by Salman Beigi [22] that the entanglement- assisted independence number of a classical channel (and hence a classical graph) is bounded by Lov´asz’ ϑ, a special case of Theorem 6.
+Looking beyond zero-error communication and driven by the idea of developing a proper theory of non-commutative graphs, we now turn to venture deﬁnitions of graphs, of sub- graphs, induced substructures, etc. In section II we introduced a non-commutative graph as a subspace S < L(A), such that 1 ∈ S = S † . Such subspaces are known as (concrete) operator systems [23], which are a characterised by the semideﬁnite operator order, restricted to S. That this structure is relevant for the non-commutative graph theory we’re aiming to construct, is supported by our deﬁnition of ϑ, which can be given entirely in abstract operator system terms – suggesting in turn that it is a meaningful parameter of abstract operator systems.
+In [16] we show that S < L(A) is an operator system iff there exists a quantum channel N : L(A) → L(B) – and its canonically associated complementary channel N : L(A) → L(E) – such that S = N ∗ L(E) . Of course we appeal to quantum channels to make the connection with communication theory. However, they point to yet another structure that we want to preserve: S 0 := N ∗ (M 0 ), where M 0 < L(E) is the so-called “multiplicative domain” [24] of the map N ∗ . Both M 0 and S 0 < S are ∗-algebras, and S is a (left and right) S 0 - module. Thus we arrive at our deﬁnition of a non-commutative graph:
+Deﬁnition 7 (see also [25]): A non-commutative graph is an operator system 1 ∈ S = S † < L(A) together with a ∗-subalgebra 1 ∈ S 0 < S such that S is a left and right S 0 -module under ordinary matrix multiplication.
+(Observe that any non-commutative graph occurs appears via an appropriate quantum channel in the above way.) We can then deﬁne the appropriate morphisms of these objects, but let us focus for the moment only on isomorphisms: (S 0 < S) 	 (S 0 < S ) means that there is a unitary congruence U : A → A such that S = U SU † and S 0 = U S 0 U † .
+Example 8 ([16]): If N : X → Y is a classical channel, we can view it as a quantum channel via the identiﬁcation N :
+ρ → xy N (y|x)|y x|ρ|x y|. Then, with the confusability graph G of N ,
+Furthermore, S 0 consists of diagonal matrices only, and given G, there is a channel N with G as its confusability graph, such that S 0 = span{|x x| : x ∈ X} consists of all diagonal matrices. We adopt the latter convention for all classical non- commutative graphs (9).
+From this example we see that we should interpret S 0 as encoding the vertices, and S as the edges of the graph. A fun- damental fact allowing the development of non-commutative graph theory is the following.
+Theorem 9 ([26]): Two graphs G 1 and G 2 are isomorphic if and only if their associated graphical operator systems S 1 and S 2 – see eq. (9) – are isomorphic as operator systems.
+Note that in the one direction this is trivial: if two graphs are isomorphic (w.l.o.g. on the same vertex set), it means that they are related by a permutation – interpreted as a permutation matrix this is the isomorphism of the operator systems. The nontrivial content is the converse, that if two graphical operator systems are isomorphic, via a general unitary U , then they can be related already by a permutation matrix. What this tells us is that every graph property can necessarily formulated as a property of the associated operator system, paving the way for a generalisation to all (or at least more general) non- commutative graphs.
+In the previous sections we have done this with the inde- pendence number and its generalisations, and with the Lov´asz number. It is possible to deﬁne likewise clique numbers, the graph complement, etc. [16]; in work in progress we are exploring generalisations of the chromatic number, of perfectness, graph minors, Ramsey theory, etc [26].
+One aspect of non-commutative graphs that distinguishes them radically from usual graphs is that they are geometric objects: In fact, any two operator systems of the same di- mension can be continuously deformed into each other, along a path of operator systems, whereas graphs are evidently discrete objects. It remains to be seen whether this possibility of deforming a graph continuously into another one can reveal something new about (classical) graphs.
+RD is partly supported by QCIS, University of Technology, Sydney, and the NSF of China (Grant Nos. 60736011 and 60702080). SS is supported by a Newton International Fellow- ship. AW is supported by the European Commission, the U.K. EPSRC, the Royal Society and a Philip Leverhulme Prize. The Centre for Quantum Technologies is funded by the Singapore Ministry of Education and the National Research Foundation as part of the Research Centres of Excellence programme.
+[[[ REFS ]]]
+C. E. Shannon
+--
+The zero-error capacity of a noisy channel
+----
+L. Lov´asz
+--
+On the Shannon Capacity of a Graph
+----
+F. Guo
+Y. Watanabe
+--
+On graphs in which the Shannon capacity is unachievable by ﬁnite product
+----
+W. Haemers
+--
+On Some Problems of Lov´asz Concerning the Shannon Capacity of a Graph”, IEEE Trans. Inf. Theory 25(2):231-232 (1979); “An upper bound for the Shannon capacity of a graph
+----
+R. Peeters
+--
+Orthogonal Representation over Finite Fields and the Chromatic Number of Graphs
+----
+N. Alon
+--
+The Shannon capacity of a union
+----
+D. Knuth
+--
+The Sandwich Theorem
+----
+R. A. C. Medeiros
+R. Alleaume
+G. Cohen
+F. M. de Assis
+R. A. C. Medeiros
+R. Alleaume
+G. Cohen
+F. M. de Assis
+--
+Zero- error capacity of quantum channels and noiseless subsystems”, VI Int. Telecommunications Symposium (ITS), 3-6 Sept 2006, Fortaleza CE, Brazil (2006); R. A. C. Medeiros, R. Alleaume, G. Cohen, F. M. de Assis, “Quantum states characterization for the zero-error capacity
+----
+S. Beigi
+P. W. Shor
+--
+On the Complexity of Computing Zero-Error and Holevo Capacity of Quantum Channels
+----
+T. S. Cubitt
+J. Chen
+A. W. Harrow
+--
+Superactivation of the Asymptotic Zero-Error Classical Capacity of a Quantum Channel
+----
+R. Duan
+--
+Super-Activation of Zero-Error Capacity of Noisy Quantum Channels
+----
+T. S. Cubitt
+G. Smith
+--
+Super-Duper-Activation of Quantum Zero-Error Capacities
+----
+R. Duan
+Y. Shi
+--
+Entanglement between Two Uses of a Noisy Mul- tipartite Quantum Channel Enables Perfect Transmission of Classical Information
+----
+T. S. Cubitt
+D. W. Leung
+W. Matthews
+A. Winter
+--
+Improving zero-error classical communication with entanglement
+----
+D. Leung
+L. Mancinska
+W. Matthews
+M. Ozols
+A. Roy
+--
+Entan- glement can increase asymptotic rates of zero-error classical commu- nication over classical channels
+----
+R. Duan
+S. Severini
+A. Winter
+--
+Zero-error communication via quan- tum channels, non-commutative graphs and a quantum Lov´asz ϑ func- tion
+----
+V. I. Paulse
+--
+Completely Bounded Maps and Operator Algebras, Cambridge Studies in Advanced Mathematics 78, Cambridge University Press, 2003
+----
+J. Watrous
+--
+Semideﬁnite Programs for Completely Bounded Norms
+----
+L. Vandenberghe
+S. Boyd
+--
+Semideﬁnite Programming
+----
+C. H. Bennett
+P. W. Shor
+J. A. Smolin
+A. V. Thapliyal
+--
+Entanglement- assisted classical capacity of noisy quantum channels”, Phys. Rev. Lett. 83(15):3081-3084 (1999); “Entanglement-assisted capacity of a quantum channel and the reverse Shannon theorem
+----
+R. Cleve
+W. Slofstra
+F. Unger
+S. Upadhyay
+--
+Strong Parallel Rep- etition Theorem for Quantum XOR Proof Systems
+----
+S. Beigi
+--
+Entanglement-assisted zero-error capacity is upper bounded by the Lov´asz theta function
+----
+E. G. Effro
+Z.-J. Rua
+--
+Operator Spaces, Oxford University Press, 2000
+----
+M.-D. Choi
+--
+A Schwarz inequality for positive linear maps on C ∗ - algebras
+----
+G. Kuperberg
+N. Weaver
+N. Weaver
+--
+A von Neumann algebra approach to quantum metrics”, arXiv:1005.0353 (2010); N. Weaver, “Quantum relations
+----
+R. Dua
+V. I. Paulse
+S. Severin
+A. Winte
+--
+
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\057.pdf
+[[[ LINKS ]]]
+

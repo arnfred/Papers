@@ -1,9 +1,6 @@
 package paper
 
-trait InformationExtractor {
-   // This is the main method. It takes a list of paragraphs and extracts something
-   def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
-	
+trait InformationExtractor {	
    // This method finds the first element in a list matching a particular condition and returns it with the rest of the list
    protected def findFirstOf(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = list match{
      case List() => Nil
@@ -53,40 +50,20 @@ trait InformationExtractor {
    }
 }
 
-// These are more specific traits and have to be implemented
-trait TitleExtractor extends InformationExtractor {
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
-}
-
-trait AuthorsExtractor extends InformationExtractor {
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
-}
-
-trait AbstractExtractor extends InformationExtractor {
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
-}
-
-trait BodyExtractor extends InformationExtractor {
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
-}
-
-trait ReferencesExtractor extends InformationExtractor {
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper)
-}
 
 
 
-
-object AuthorsExtractor1 extends AuthorsExtractor{
+trait AuthorsExtractor1 extends InformationExtractor{
     // This method extracts the authors of the article.
     // It uses the following rules:
     // - They are located in the first page between title and abstract
     // - Every author paragraph contains the name at the top of it, i.e. the names are located at the first line of these paragraphs
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
+	def extractAuthors(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val list = untilFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
 		val remainingList = paragraphs.drop(list.length)
-		  
+		
 		// Finding of the most at the top paragraphs
+		if(list.length == 0) return (paragraphs, paper)
 		val minTop = list.map((p:XMLParagraph) => p.getPosition.getY).min
 		val unprocessedAuthorsList = list.filter((p:XMLParagraph) => p.getPosition.getY == minTop)
 		
@@ -101,13 +78,14 @@ object AuthorsExtractor1 extends AuthorsExtractor{
 	}
 }
 
-object AbstractExtractor1 extends AbstractExtractor{
+trait AbstractExtractor1 extends InformationExtractor{
     // This method extracts the abstract of the article.
     // It uses the following rules:
     // - It is the first justified paragraph
     // - It is entirely contained in the first page
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
+	def extractAbstract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val list = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
+		if(list.isEmpty) return (paragraphs, paper)
 		val xmlFont = xml.getFontsContainer.getXMLFont(list.head.getFontID)
 		val abstractList = filterAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY)).map((p: XMLParagraph) => p.getText.replaceAll("\n", " "))
 		val remainingList = discardAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY))
@@ -117,12 +95,12 @@ object AbstractExtractor1 extends AbstractExtractor{
 	}
 }
 
-object TitleExtractor1 extends TitleExtractor {
+trait TitleExtractor1 extends InformationExtractor {
     // This method extracts the title of the article.
     // It uses the following rules:
     // - The title is contained in the first page
     // - It has the biggest font size
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
+	def extractTitle(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		// This method finds the font id having the maximum size
 		def findMaxSizeID(paragraphs: List[XMLParagraph]): String = {
 			def findMaxSizeID0(paragraphs: List[XMLParagraph], max: Int, id: String): String = paragraphs match{
@@ -138,7 +116,7 @@ object TitleExtractor1 extends TitleExtractor {
 		}
 		
 		val maxSizeIDFont = xml.getFontsContainer.getXMLFont(findMaxSizeID(paragraphs.take(10)))
-        val title = findFirstOf(paragraphs, p => maxSizeIDFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.PAGE_CENTERED))
+        val title = findFirstOf(paragraphs, p => maxSizeIDFont.get.checkID(p.getFontID) || p.hasOption(XMLParagraphOptions.PAGE_CENTERED))
 
         if(title.length != 0) (title.tail, paper.setTitle(new Title(title.head.getText.replace("\n", " "))))
         else (paragraphs, paper)
@@ -146,13 +124,14 @@ object TitleExtractor1 extends TitleExtractor {
 }
 
 
-object BodyExtractor1 extends BodyExtractor {
+trait BodyExtractor1 extends InformationExtractor {
     // This method extracts the body of the article.
     // It uses the following rules:
     // - It begins with the first justified paragraph after the abstract
     // - It is justified and belongs to one column
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
+	def extractBody(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val firstBodyList = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && !p.hasOption(XMLParagraphOptions.NO_COLUMN))
+		if(firstBodyList.length == 0) return (paragraphs, paper)
 		val bodyXmlFont = xml.getFontsContainer.getXMLFont(firstBodyList.head.getFontID)
         
 		// Filter (applying the rules)
@@ -168,13 +147,13 @@ object BodyExtractor1 extends BodyExtractor {
 	}
 }
 
-object ReferencesExtractor1 extends ReferencesExtractor {
+trait ReferencesExtractor1 extends InformationExtractor {
     // This method extracts the references of the article.
     // It uses the following rules:
     // - They begin with a paragraph containing a reference title
     // - Each following paragraph is a reference.
-    // - The method recognizes the reference format and applies a suitable xtraction stategy
-	def extract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
+    // - The method recognizes the reference format and applies a suitable extraction strategy
+	def extractReferences(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
         val refParagraphs = findFirstOf(paragraphs, (p: XMLParagraph) => ("""^""" + ExtractionRegexes.referencesName + """$""").r.findFirstIn(p.getText).isDefined)
         val referencesStringList = if(!refParagraphs.isEmpty) refParagraphs.tail else List()
 
@@ -183,7 +162,7 @@ object ReferencesExtractor1 extends ReferencesExtractor {
           case List() => accu
           case x::xs => {
         	  // Using of the good reference processor after a structure recognition
-        	  val refExtr = ReferenceProcessorDispatcher.getReferenceProcessor(x.getText.replaceAll("\n", " ")).extract
+        	  val refExtr = ReferenceProcessorExecuter.extract(x.getText.replaceAll("\n", " "))
         	  val title = refExtr._1
         	  val authors = refExtr._2
         	  

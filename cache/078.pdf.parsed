@@ -1,0 +1,201 @@
+[[[ ID ]]]
+78
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Generating Functional Analysis of Iterative Algorithms for Compressed Sensing
+[[[ AUTHORS ]]]
+Kazushi Mimura
+[[[ ABSTR ]]]
+Abstract—It has been shown that approximate message passing algorithm is effective in reconstruction problems for compressed sensing. To evaluate dynamics of such an algorithm, the state evolution (SE) has been proposed. If an algorithm can cancel the correlation between the present messages and their past values, SE can accurately tract its dynamics via a simple one-dimensional map. In this paper, we focus on dynamics of algorithms which cannot cancel the correlation and evaluate it by the generating functional analysis (GFA), which allows us to study the dynamics by an exact way in the large system limit.
+[[[ BODY ]]]
+Dynamics of iterative algorithms for compressed sensing is discussed in this paper. We consider a problem that an N – dimensional vector x ∈ R N is reconstructed from an M – demensional (M < N ) vector y ∈ R M :
+through an given M × N matrix A ∈ R M×N . Here, ω ∈ R M denotes a noise vector ω ∼ N (0, σ 2 ω I). Since the ratio δ = M/N , which is called the compression rate, is less than one, the system of equations undetermined. The original vector x 0 may be however reconstructed if we have some knowledge of it, namely the sparsity. This problem [5], [24], [11] is termed the reconstruction problem of compressed sensing [12], [2], [3], [4].
+To solve such undetermined systems, linear programming (LP) methods is widely applied and is investigated its per- formance [12], [2], [3], [4]. However, the LP might be still expensive to solve the large scale reconstruction problems. Recently, Donoho et al. have suggested an iterative algorithm which is called the approximate message passing algorithm (AMP) [13]. They have also proposed SE to evaluate its per- formance and have shown that the reconstruction performance of AMP is identical to that of the LP-based reconstruction [13]. Bayati and Montanari have provided the rigorous foundation to SE and have shown that SE can be applied to a general class of algorithms on dense graph, namely algorithms which can cancel the correlation between the present messages and its past values [1]. This correlation is often called a retarded self-interaction, which is caused by iterations, or the Onsager reaction.
+Contrary to success of analysis for AMP, analysis for algo- rithms which cannot cancel the correlation between the present messages and their past values, e.g., the iterative shrinkage- thresholding algorithm (IST) [13], [27], is not discussed enough. In this case, we have to treat complex correlation. We focus on dynamics of algorithms which cannot cancel such correlation and evaluate the dynamics of IST by applying GFA [10], [15], [6], [7]. Dynamics, that appears in the information, has drawn attention so far [23], [16], [25], [18], [19], [20],
+[21]. In GFA, we assume that the generating functional is concentrated around its average over the randomness in the large system limit, and we use the saddle-point methods to calculate the generating functional asymptotically. An advan- tage of GFA is to be able to evaluate dynamics of nonlinear systems exactly for the ﬁrst few stages. To evaluate long time dynamics, approximation schemes may, on the other hand, have to be employed due to the computational cost.
+This paper is organized as follows. The next section intro- duces reconstruction algorithms. Section III and IV explains about analysis and experiments, respectively. The ﬁnal section is devoted to a summary.
+We assume the following to simplify the problem. Each element of the original vector x 0 = (x 0,n ) ∈ R N , is an i.i.d. random variable which obeys the distribution p (x) = (1 − ρ)δ(x) + ρ(2π) −1/2 exp(−x 2 /2) with a given signal density ρ (0 ≤ ρ ≤ 1), where δ(x) denotes Dirac’s delta function. Each element of the compression matrix A = (a mn ) ∈ R M×N is an i.i.d. Gaussian random variable of mean zero and variance M −1 , i.e., a mn ∼ N (0, M −1 ).
+Donoho et. al. have developped the following iterative algo- rithm achieving the performance of LP-based reconstruction.
+Deﬁnition 1: Starting from an initial guess x (0) = 0 and z (0) = y, the approximate message passing (AMP) algorithm iteratively proceeds by
+x (t+1) = η t (A z (t) + x (t) ), 	 (2) z (t) = y − Ax (t)
+Here, {η t } is an appropriate sequence of threshold functions (applied componentwise), x (t) ∈ R N is the current estimate of the original vector x 0 , A denotes the transpose of A and η t (u) = ∂η t (u)/∂u. For a vector v = (v 1 , · · · , v N ), v
+One of other popular iterative algorithms [26] has the follow- ing form.
+Deﬁnition 2: Starting from an initial guess x (0) = 0, the iterative shrinkage-thresholding algorithm (IST) iteratively proceeds by
+x (t+1) = η t ( 1 c A z (t) + x (t) ), 	 (4) z (t) = y − Ax (t) . 	 (5)
+Here, the parameter c ≥ 1, which also appears in the separable surrogate functionals (SSF) method [9], is intro- duced to make IST be easy to converge. When c = 1, the
+z (t−1) η t−1 (A z (t−1) + x (t−1) ) exists or not. The IST lacks this term which can cancel the correlation between the present messages and their past values. Due to this, the summation of massages cannot be regarded as a Gaussian random variable. It cannot therefore hope that the shrinkage- thresholding works properly. While the property of AMP is investigated theoretically and thoroughly [13], [1], The dynamics of such algorithms for the reconstruction problem is not discussed enough so far.
+The goal of our analysis is to evaluate the mean squared error (MSE) per component.
+We analyze the dynamics in the large system limit where N, M → ∞, while the compression rate δ is kept ﬁnite. The dynamics (4) is a Markov chain, so the path probability p[x (0) , · · · , x (t) ], which is often called path probability, are simply given by products of the individual transition proba- bilities of the chain:
+(6) which is called the path probability. Here, θ (t) is an exter- nal message which is introduced to evaluate the response function and these parameters {θ 0 , · · · , θ (t) } are set to be zero in the end of analysis. The initial state probability becomes p [x (0) ] = N n=1 δ[x (0) n ]. Therefore, we can cal- culate an expectation with respect to an arbitrary function G = G(x (0) , · · · , x (t) ) of tentative decisions as E x (G)
+x (s) ) p[x (0) , · · · , x (t) ]G, where x denotes a set {x (0) , · · · , x (t) } and E X denotes the expectation with respect to a random variable X. To analyze the dynamics of the system we deﬁne the following functional that is called the generating functional.
+In familiar way [10], [6], [18], one can obtain all averages of interest by differentiation, e.g.,
+from Z [ψ]. We assume that the generating functional is con- centrated to its average over the random variables {A, x 0 , ω} in the large system limit, namely the typical behavior of the system depends only on the statistical properties of the random variables. We therefore evaluate the averaged generating func- tional ¯ Z[ψ] = E x,A,x 0 ,ω (exp[−i t s=0 x (s) · ψ (s) ]), where
+[· · · ] denotes an expectation over {A, x 0 , ω}. Evaluating the averaged generating functional, one can obtain important pa- rameters which describe the algorithm performance. Namely, we can evaluate the overlap, which is also called the direction cosine, between he original vector x 0 and the current estimate x (s) and the second moment of the current estimate. Since ||x
+0 −x (t) || 2 2 = ||x 0 || 2 2 −2x (t) ·x 0 + ||x (t) || 2 2 , we can evaluate MSE from the overlap and the second moment. Here, x (t) ·x 0 denotes the inner product between x (t) and x 0 . One ﬁnds the following proposition.
+Proposition 1: For IST with an arbitrary sequence of threshold functions {η s } t s=0 , MSE per component σ 2 t of the current estimate x (t) can be assessed as
+= ρ − 2m (t) + C (t,t) , 	 (11) in the large system limit, i.e., N → ∞, where the parameters are given as follows.
+G (s,s ) = x (s) (R −1 v) (s ) I(s > s ), 	 (14) where I(P) denotes an indicator function which takes 1 if the proposition P is true, 0 otherwise. Here, the average over the effective path measure · · · is given by
+where Dv = |2πR| −1/2 d v exp[− 1 2 v · R −1 v], R = c −2 (1 + (cδ) −1 G ) −1 D (1+(cδ) −1 G) −1 , Γ = c −1 (c− 1)1 +c −1 (1 + (cδ) −1 G) −1 (cδ) −1 G and ˆk (s) = c −1 |Λ [s] |. Each entry of D is D (s,s ) σ 2 ω + δ −1 [ρ − m (s) − m (s ) + C (s,s ) ] and each entry of Λ [s] is Λ (s ,s ) s 	 = δ s,s + (1 − δ s,s )(δ s ,s + (cδ) −1 G (s ,s ) ). The terms (R −1 v) (s) and (Γσ) (s) denote the s th element of the vector R −1 v and Γσ, respectively.
+Outline of derivation is available in Appendix A. The pa- rameters m (s) and C (s,s ) are referred to as the overlap and the correlation function, respectively. Especially, C (s,s) gives the second moment of the s th estimate. In GFA, we extract a one- dimensional iterative process which is statistically equivalent to the original N -dimensional iterative process. The effective path measure · · · is an expectation operator with respect to such a one-dimensional process. Proposition 1 entirely describe the dynamics of the system. The term (Γσ) (s) in (15) is called the retarded self-interaction or the Onsager reaction term.
+To validate the results obtained above, we performed nu- merical experiments in N = 2, 000 systems. For sparse signed original vectors, the sequence of the threshold functions [13] is chosen as η t (x; ˆ λ t ) = (x−ˆ λ t )I(x > ˆλ t )+(x+ˆ λ t )I(x < ˆλ t )
+with ˆ λ t = λσ t /c, where λ is a threshold control parameter and σ t is MSE per component of the current estimate. In practice, we cannot use a true MSE, since we do not know the original vector. We therefore have to use an alternate value instead of the true MSE. The MSE on zeros ˆ σ 2 t = E x 0 [I(x 0,n = 0)(x t n ) 2 |x 0,n = 0], which is referred to as MSEZ, is one of useful alternate values which are easy to estimate. We set ˆ σ 2 0 = ρ for an initial value.
+Figure 1 shows the ﬁrst few stages of the dynam- ics of IST which is predicted by GFA. The parameters are set to be (ρ, δ, λ, c) ∈ {(0.1, 0.5, 3, 3), (0.1, 0.8, 3, 1), (0.1, 0.8, 0.5, 1)}. The parameter λ is not optimized for IST. Figure 1(a) is a case where the reconstruction is successful. The parameter c is set to be c > 1 like the SSF method in this case. Since the residue is added little by little, it is easy to avoid a vibration behaviour. Figure 1(b) is a case where the reconstruction fails. When the parameters are near the region where the reconstruction succeeds, a vibration behaviour often turns up. Figure 1(c) is also a case where the reconstruction fails. When the parameters are far from the region where the reconstruction succeeds, MSE generally diverges. The GFA prediction is in good agreement with computer simulation result. The parameter c is set to one in Fig. 1(b) and Fig. 1(c), which corresponds to the simple iterative thresholding algorithm (ITA) [13].
+The self-consistent equations appeared in Proposition proposition:IST involve three kinds of parameters {m (s) , C (s,s ) , G (s,s ) } t s,s =0 . The number of these parameters is t + 2t 2 and gradually grows as time passes. The other parameters can be easily calculated from these. When one solve self-consistent equations according to its deﬁnition, the computational cost for stage t becomes O (t 2 e t ) since each parameter, e.g., m (t) , involves a t-multiple integral, Approxi- mation schemes to evaluate the GFA result might be therefore important to capture long time dynamics [14], [15].
+We analyzed dynamics of the iterative shrinkage- thresholding algorithm for compressed sensing as a typical algorithm which cannot cancel the correlation between the present messages and their past values. While the state evolu- tion plays an important role to understand nature of iterative algorithms which can cancel such a correlation exactly, the generating functional formalism gives us a analytical method to treat iterative algorithms which cannot cancel the corre- lation. The result of the generating functional formalism for algorithms which can cancel the correlation must give that of SE. It is under way to check this property.
+The author would like to thank Andrea Montanari for his valuable comments. This work was partially supported by a Grant-in-Aid for Scientiﬁc Research (C) No. 22500136 from the Ministry of Education, Culture, Sports, Science and Technology (MEXT) of Japan.
+Let u (t) = (u (t) n ) be a summation of messages, i.e., u (t) 1 c A z (t) + x (t) + θ (t) , where θ (t) is an exter- nal message which is introduced to evaluate the response
+function G (s,s ) . The Dirac’s delta function is replaced as δ(x) = γ(2π) −1/2 e −γ 2 x 2 /2 and the parameter γ is taken the limit γ → ∞ later. We ﬁrst separate the summation of messages at any iteration step by inserting the following delta-distributions: 1 = δ uδ ˆu t−1 s=0 N n=1 exp[iˆ u (s) n {u (s) n −
+of the vector a. We then have ¯ Z[ψ] =E x 0 ,A,ω
+In order to average the generating functional with respect to the disorder A and ω, we isolate the spreading codes by introducing the variables v (s) m , w (s) m : 1 = δ vδˆv t−1 s=0 M m=1
+We now can calculate the average of the term in the disorder- averaged generating functional. The term E ω {· · · } in (17) becomes
+Calculating the average of the term containing the disor- der in ¯ Z[ψ] , we separate the relevant one-stage and two- stage order parameters by inserting: 1 = ( N 2π ) t d md ˆ m
+x (s) n ˆ u (s ) n }]. Since the initial state probability is factorizable, the disorder-averaged generating functional factorizes into single-site contributions.
+The disorder-averaged generating functional is for N → ∞ dominated by a saddle-point [8], [17]. We can thus simplify the saddle-point problem to (19). The disorder-averaged gener- ating functional is then simpliﬁed to the saddle-point problem as
+N → ∞, the integral (19) will be dominated by the saddle point of the extensive exponent Ψ + Φ + Ω.
+One can deduce the meaning of order parameter by deriva- tion of the averaged generating functional ¯ Z[ψ] with respect to the external messages {θ (s) n } and the dummy functions {ψ (s) n }. The averaged generating functional ¯ Z[ψ] is dominated by a saddle-point for N → ∞. We can thus simplify (19) in the large system limit. Using ¯ Z[0] = 1, From derivatives of the averaged generating functional, we ﬁnd
+[ x (0) ,··· ,x (t) δuδ ˆ u μ n (x, u, ˆ u) f(x, u, ˆu)]/ [ x (0) ,··· ,x (t) δuδ ˆ u μ n (x, u, ˆ u)] with μ n (x, u, ˆ u) δ[x (0) ] exp[ t−1 s=0
+saddle . Here, f | saddle denotes an evaluation of a function f at the dominating saddle-point. The saddle-point equations are derived by differentiation of N (Ψ + Φ + Ω) with respect to integration variables {m, ˆ m, k, ˆk, q, ˆq, Q, ˆ Q, L and ˆ L}. These equations will involve the average overlap m (s) , the average single-user correlation C (s,s ) and the average single- user response function G (s,s ) :
+1 N
+1 N
+1 N
+Using the derivatives (23) – (25), straightforward differen- tiation of Ψ + Φ + Ω with respect to m (s) , ˆ m (s) , k (s) , ˆ k (s) ,
+for all s and s . We then ﬁnd m (s) = m (s) , q (s,s ) = C (s,s ) and L (s,s ) = iG (s,s ) . It should be noted that the causality ∂ x (s) /∂θ (s ) = 0, should be hold for s ≤ s , therefore L (s,s ) = G (s,s ) = 0 for s ≤ s .
+Straightforward differentiation and taking the limit γ → ∞, we then arrive at Proposition 1.
+[[[ REFS ]]]
+M. Bayat
+A. Montanar
+--
+Proc
+----
+E. J. Cand´e
+T. Ta
+--
+IEEE Trans
+----
+E. J. Cand´e
+J. Romber
+T. Ta
+--
+IEEE Trans
+----
+E. J. Cand´e
+T. Ta
+--
+IEEE Trans
+----
+J. F. Claerbou
+F. Mui
+--
+Geophysics, 38, 826 (1973)
+----
+A. C. C. Coole
+--
+Preprint arXiv cont-mat/0006011 (2000)
+----
+A. C. C. Coole
+--
+The Mathematical Theory of Minority Games, Oxford Univ
+----
+E. T. Copso
+--
+Asymptotic Expansions, Cambridge Univ
+----
+I. Daubechie
+M. Defris
+C. De-Mo
+--
+Commun
+----
+C. De Dominici
+--
+Phys
+----
+D. L. Donoh
+J. Appl
+--
+SIAM  Math
+----
+
+--
+IEEE Trans
+----
+D. L. Donoh
+A. Malek
+A. Montanar
+--
+Proc
+----
+H. Eissfelle
+M. Oppe
+--
+Phys
+----
+J. A. F. Heime
+--
+Doctoral Thesis, King’s College London (2001)
+----
+Y. Kabashim
+J. Phys
+--
+A: Math
+----
+N. Merha
+--
+
+----
+K. Mimura 
+M. Okad
+J. Phys
+--
+A: Math
+----
+K. Mimur
+M. Okad
+--
+Proc
+----
+K. Mimur
+M. Okad
+--
+Proc
+----
+K. Mimur
+A. C. C. Coole
+--
+Proc
+----
+K. Mimura
+--
+Generating functional analysis of iterative reconstruction algorithms for compressed sensing
+----
+T. J. Richardso
+R. L. Urbank
+--
+IEEE Trans
+----
+F. Santos
+W. W. Syme
+J. Sci
+--
+SIAM  and Stat
+----
+T. Tanak
+M. Okad
+--
+IEEE Trans
+----
+J. Trop
+S. J. Wrigh
+--
+Proc
+----
+M. Zibulevsk
+M. Ela
+--
+IEEE Signal Proc
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\078.pdf
+[[[ LINKS ]]]
+

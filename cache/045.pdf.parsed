@@ -1,0 +1,121 @@
+[[[ ID ]]]
+45
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Permutation Code: Optimal Exact-Repair of a Single Failed Node in MDS Code Based Distributed Storage Systems
+[[[ AUTHORS ]]]
+Viveck R. Cadambe
+Cheng Huang
+Jin Li
+[[[ ABSTR ]]]
+Abstract— We consider exact repair of failed nodes in maximum distance separable (MDS) code based distributed storage systems. It is well known that an (n, k) MDS code can tolerate failure (erasure) of up to n − k storage disks, when the code is used to store k information elements over n distributed storage disks. The focus of this paper is optimal recovery, in terms of repair bandwidth - the amount of data to be downloaded to repair a failed node - for a single failed node. When a single node fails, it has been previously shown by Dimakis et. al. that the amount of repair bandwidth is at least L(n−1) n−k units, when each storage disk stores L units of data. The achievability of this lower bound of L(n−1) n−k units, for arbitrary values of (n, k), has been shown previously using asymptotic code constructions based on asymptotic interference alignment. However, the existence of ﬁnite codes satisfying this lower bound has been shown only for speciﬁc regimes of (n, k) and their existence for arbitrary values of (n, k) remained open. In this paper, we provide the ﬁrst known construction of a ﬁnite code for arbitrary (n, k), which can repair a single failed systematic node by downloading exactly L(n−1) n−k
+units of data. The code that we construct is based on permutation matrices and hence termed the Permutation Code.
+[[[ BODY ]]]
+Consider a distributed storage system with n dis- tributed storage nodes/disks. An (n, k) code can be used in this storage system to protect it against the failure of any k failures (erasures). If the total data stored in this storage system is M, then storing L = M/k amount of data in each node using an (n, k) MDS code protects against n − k erasures. This is because, in an MDS code, the original data can be entirely recovered from any k surviving nodes. It is well known that MDS codes provide the highest redundancy for a given amount of storage - or equivalently, they provide the lowest cost of storage for a ﬁxed amount of redundancy. However, this desired property of MDS codes comes at a cost of network and disk access for repair. For instance, even if a single node fails in this system, in general, data of
+size M needs to be downloaded from (any) k surviving nodes by a new node replacing this failed node for repair. Thus, to repair data of size M/k, the repair bandwidth - the total data downloaded by the new node to repair a failed node - is equal to M with this repair strategy. The inefﬁciency of conventional MDS codes in terms of repair bandwidth has motivated, recently, a search for efﬁciently repairable codes for storage system, where the efﬁciency is measured in terms of the repair bandwidth (The reader is referred to the survey in [1] and references therein). Reference [2], showed that for an (n, k) MDS code based system described above, with the new node connecting to d = n − 1 surviving nodes, the repair bandwidth must be at least L(n−1) n−k . The pursuit of systematic code 1 constructions which achieve this lower bound of repair bandwidth for exact repair 2 has yielded two classes of results summarized below.
+1) Finite Codes for Low Rates: By connecting the problem of exact repair to the wireless interference management technique of interference alignment, codes which achieve the repair-bandwidth lower bound of L(n−1) n−k have been found for the case where k ≤ max(n/2,3). In other words, if the rate, k/n, of the code is smaller or equal to than half, ﬁnite code constructions exist which are optimal in terms of repair bandwidth.
+2) Asymptotic Codes for Arbitrary Rate: For arbi- trary (n, k) references [3], [4] used the interference alignment scheme of [5] to generate asymptotic codes which achieve the optimal repair bandwidth
+of L(n−1) n−k asymptotically as L becomes arbitrarily large.
+While the above results are interesting from a theoretical perspective, several storage systems use high rate codes in practice, i.e., they have a small number of parity nodes as compared to the number of systematic codes and therefore operate in the regime where k/n > 1/2. For this regime, previous literature contains only asymp- totic MDS code constructions as mentioned above. For k > max(n/2, 3), it was not known whether the repair bandwidth of L(n−1) n−k is achievable with ﬁnite codes. In fact, for this regime of (n, k), the construction of ﬁnite codes having a repair strategy which is more efﬁcient than the trivial repair strategy with a repair bandwidth of k L = M remained open. The main contribution of this paper settles these open questions in the positive for systematic repair , i.e., for the repair of a single failed systematic node. In particular, we provide the ﬁrst known ﬁnite MDS code construction which repairs, exactly, a failed systematic node with a repair bandwidth of L(n−1) n−k
+for any (n, k). We use the nomenclature Permutation Code to describe our code since our construction is based on permutation matrices.
+Before we proceed to describe our constructions, it must be mentioned that there exists a parallel line of work which constructs codes with desirable repair band- width for arbitrary (n, k) by increasing the amount of storage space used in the system (See references in [1]). Since these codes use more storage space to provide the same redundancy, they are not MDS codes. We focus on MDS code constructions in this paper. We provide terse descriptions of our constructions in this paper, focusing on conveying the main idea. For a more thorough and rigorous description of our code construction, the reader is referred to the extended version of this paper [6].
+Consider k sources, all of equal size L = M/k over a ﬁeld F q of size q. Source i ∈ {1,2,...,k} is represented by the L×1 vector a i ∈ F L q . Note here that M denotes the size of the total information stored in the distributed storage system, in terms of the number of elements over the ﬁeld 3 There are n nodes storing a code of the k source symbols in an (n, k) MDS code. Each node stores a data of size L, i.e., each coded symbol of the (n,k) code is a L × 1 vector. The data stored in node i is represented by L × 1 vector d i , where i = 1, 2, . . . , n. Our code is linear and d i can be represented as
+where C i,j are L×L square matrices. Further, we restrict our codes to have a systematic structure, so that, for i ∈ {1,2,...,k},
+Since we restrict our attention to MDS codes, we will need the matrices C i,j to satisfy the following property
+The MDS property ensures that the storage system can tolerate up to (n − k) failures (erasures), since all the sources can be reconstructed, linearly, from any k nodes whose indices are represented by j 1 , j 2 , . . . , j k ∈ {1,2,...,n}. Now, consider the case where a single systematic node, node i ∈ {1,2,...,k}, fails. Now, to
+reconstruct a failure of node i, V i d j is downloaded by the new node from node j ∈ {1,2...,n} − {i} where V 1 is L n−k ×L matrix. Note that this strategy downloads a fraction of 1 n−k from each surviving node so that the total repair bandwidth is L(n−1) n−k as required. The linear combinations downloaded are of two types listed below.
+1) The data downloaded from the surviving systematic nodes j ∈ {1,2,...,k} − {i} contain no informa- tion of the failed node a i , i.e.,
+Note that there L n−k such linear combinations of each interfering component a j , j = 2, 3, . . . , k.
+2) Now, from each of the n − k parity nodes, L n−k linear combinations are downloaded. Therefore, a total of L linear combinations are downloaded from all the parity nodes. The L components of a i have to be reconstructed using these L linear combinations of the form V i d j , j = k + 1, k + 2, . . . , n. For successful reconstruction of a i , the interference terms associated with a j , j ∈ {1,2,...,k} − {i} contained in these linear combinations need to be cancelled completely (See Fig.1)
+The goal of our solution will be to completely cancel the interference from the second set of L linear combi- nations, using the former set of linear combinations, and then to regenerate a 1 using the latter L interference- free linear combinations (See Fig. 1). We proceed to describe our constructions of C j,i and V i for j = k+1, k+2, . . . , n and i ∈ {1,2,...,k} which enable this regeneration along with the MDS property. Before we do so, we will introduce some notations and preliminary
+Notations and Preliminary Deﬁnitions: The bold font is used for vectors and matrices and the regular font is reserved for scalars. Given a l × 1 dimensional vector a its l components are denoted by
+For example, d 1 = [d 1 (1) d 1 (2) . . . d 1 ( L)] T . Given a set A, the l-dimensional Cartesian product of the set is denoted by A l . The notation I l denotes the l ×l identity matrix; the subscript l is dropped when the size l is clear from the context. Next, we deﬁne a set of functions which will be useful for our description.
+Given (n, k) and a number m ∈ {1,2,...,(n−k) k }, we deﬁne a function 4 φ : {1,2,...,(n − k) k } → {0,1,...,(n − k − 1)} k such that φ(m) is the unique k dimensional vector whose k components represent the
+k-length representation of m −1 in base (n−k). In other words
+We motivate our code by ﬁrst considering the case where k = 3, n = 5 for simplicity. The generalization of the code to arbitrary n, k will be brieﬂy described later 5 . For n = 5, k = 3, we have L = M/k = (n − k) k = 2 3 = 8. We use generalized permutation matrices for C i,j , j ∈ {1,2,...,k},i ∈ {k + 1,k + 2,...,n}. Note here that the variables a j , j = 1, 2, . . . , k are 8 ×1 dimensional vectors.
+Now, we describe our code as follows. Since the ﬁrst three storage nodes are systematic nodes and the remaining two are parity nodes, the design parameters are C 4,j , C 5,j , V j for j = 1, 2, 3. We choose
+where λ 4,j are independent random scalars chosen using a uniform distribution over the non-zero elements of the ﬁeld F q . Now, consider the 8 × 8 permutation matrix P i , i = 1, 2, 3 deﬁned as
+  
+e( 1, 0, 0 ) e( 1, 0, 1 ) e( 1, 1, 0 ) e( 1, 1, 1 ) e( 0, 0, 0 ) e( 0, 0, 1 ) e( 0, 1, 0 ) e( 0, 1, 1 )
+  
+e( 0, 1, 0 ) e( 0, 1, 1 ) e( 0, 0, 0 ) e( 0, 0, 1 ) e( 1, 1, 0 ) e( 1, 1, 1 ) e( 1, 0, 0 ) e( 1, 0, 1 )
+  
+e( 0, 0, 1 ) e( 0, 0, 0 ) e( 0, 1, 1 ) e( 0, 1, 0 ) e( 1, 0, 1 ) e( 1, 0, 0 ) e( 1, 1, 1 ) e( 1, 1, 0 )
+where λ 5,j are random independent scalars drawn uni- formly over the non-zero elements of the ﬁeld F q . In other words, we have
+The code is depicted in Figure 2. For a better under- standing of the structure of the permutations, consider an arbitrary column vector a = [a(1) a(2) . . . a(8)] T . Then,
+  
+a( 1, 0, 0 ) a( 1, 0, 1 ) a( 1, 1, 0 ) a( 1, 1, 1 ) a( 0, 0, 0 ) a( 0, 0, 1 ) a( 0, 1, 0 ) a( 0, 1, 1 )
+  
+a(5) a(6) a(7) a(8) a(1) a(2) a(3) a(4)
+of a such that the element a( 1, x 2 , x 3 ) is swapped with the element a( 0, x 2 , x 3 ) for x 2 , x 3 ∈ {0,1}. Similarly, P 2 a swaps a( x 1 , 0, x 3 ) with a( x 1 , 1, x 3 ) and P 3 a swaps a( x 1 , x 2 , 0 ) with a( x 1 , x 2 , 1 ) where x 1 , x 2 , x 3 ∈ {0,1}.
+Now, we show that this code can be used to achieve optimal recovery, in terms of repair bandwidth, for a single failed systematic node. To see this, consider the case where node 1 fails. The repair strategy is to download d i ( 0, 0, 0 ), d i ( 0, 0, 1 ), d i ( 0, 1, 0 ), d i ( 0, 1, 1 )
+In other words, the rows of V 1 come from the set {e( 0,x 2 , x 3 ) : x 2 , x 3 ∈ {0,1}}. Note that the strategy downloads half the data stored in every surviving node
+as required. With these download vectors, it can be observed (See Figure 2) that the interference is aligned as required and all the 8 components of the desired signal a 1 can be reconstructed. Speciﬁcally we note that
+for i = 2, 3: Note that since x 2 , x 3 ∈ {0,1} there are a total 8 components described in the two equations above, such that, all the interference is of the form a i ( 0, y 2 , y 3 ), i ∈ {2,3},y 2 , y 3 ∈ {0,1}. In other words, the interference from a i , i = 2, 3 comes from only half its components, and the interference is aligned as described in (2) and Fig.2. However, note that the 8 components span all the 8 components of the desired signal a 1 , i.e.,
+Thus, the interference can be completely cancelled from the equations downloaded from nodes 4, 5 and the de- sired vector a 1 can be completely reconstructed using
+Similarly, in case of failure of node 2, the set of rows of the repair matrices V 2 is equal to the set {e( x 1 , 0, x 3 ) : x 1 , x 3 ∈ {0,1}}, i.e.,
+so that the interference is aligned. It can be veriﬁed that the desired signal can be reconstructed completely because of condition similar to (3) as well. For re- pair of node 3, the rows of V 3 come from the set {e( x 1 , x 2 , 0 ) : x 1 , x 2 ∈ {0,1}}. Equations similar to (2) and (3) can be veriﬁed to be satisﬁed, ensuring that a 3
+can be recovered by canceling the aligned interference. While this shows that optimal repair is achieved, all
+the remains to be shown is that the code is an MDS code, i.e., Property 1. Intuitively, the MDS property can be shown to be satisﬁed with probabilistically by using the Schwartz-Zippel Lemma if the scalars λ i,j are chosen randomly. Due to lack of space, we refer the reader to [6] for the proof. Next, we describe an overview of this generalization to arbitary (n, k) - the reader is referred to [6] for a more detailed description.
+This is a natural generalization of the (5, 3) code for general values of (n, k), with L = (n − k) k . To describe this generalization, we deﬁne func- tion χ i (m) = (φ 1 (m), φ 2 (m), , . . . , φ i−1 (m), φ i (m) ⊕ 1, φ i+1 (m), φ i+2 (m), . . . , φ k (m)), where the operator ⊕ represents an addition modulo (n − k). In other words, χ i (m) essentially modiﬁes the ith position in the base (n −k) representation of m−1, by addition of 1 modulo (n − k).
+Remark 1: For the (5, 3) Permutation Code de- scribed previously, note that the mth row of P i is e( χ i (m) ). In other words, for the (5, 3) Permutation Code described above, the mth component of P i a is equal to a( χ i (m) ).
+Remark 2: χ i (1) , χ i (2) , . . . , χ i ((n − k) k ) is a permutation of 1, 2, . . . , (n − k) k for any i ∈ {1,2,...,k}. Therefore, given a L × 1 vector a,
+is a permutation of a. We will use this permutation to construct our codes.
+In this code, we have L = M/k = (n−k) k . Consider the permutation matrix P i deﬁned as
+are the rows of the identity matrix I (n−k) k . Note that because of Remark 2, the above matrix is indeed a per- mutation matrix. Then, the coding matrices are deﬁned, for j ∈ {k + 1,k + 2,...,n},i ∈ {1,2,...,k}, as
+Now, in case of failure of node l, the rows of the repair matrices V l are chosen from the set {e(m) : φ l (m) = 0 }. Since φ l (m) can take n − k values, this construction has L k = (n − k) k−1 rows for V l as required. This construction allows complete interference cancellation due to alignment in a manner similar to (2), and enables exact regeneration of the failed node because of equations similar to (3), for each systematic node failure [6].
+We have provided an (n, k) MDS code construction which is repair-bandwidth optimal for a single failed systematic node. In our current constructions, the strat- egy for parity node repair remains trivial - download k surviving nodes completely. An open problem is con- struction of ﬁnite codes with optimal (or even non-trivial) repair of parity nodes along with systematic nodes.
+[[[ REFS ]]]
+A. G. Dimakis
+K. Ramchandran
+Y. Wu
+C. Suh
+--
+A survey on network codes for distributed storage
+----
+A. Dimakis
+P. Godfrey
+M. Wainwright
+K. Ramchandran
+--
+Network coding for distributed storage systems
+----
+V. R. Cadambe
+S. Jafar
+H. Maleki
+--
+Distributed data storage with minimum storage regenerating codes - exact and functional repair are asymptotically equally efﬁcient
+----
+C. Suh
+K. Ramchandran
+--
+On the existence of opti- mal exact-repair mds codes for distributed storage
+----
+V. Cadambe
+S. Jafar
+--
+Interference alignment and the degrees of freedom of the k user interference channel
+----
+V. R. Cadambe
+C. Huang
+S. A. Jafar
+J. Li
+--
+Optimal repair of MDS codes in distributed storage via subspace inter- ference alignment
+----
+D. Cullina
+A. Dimakis
+T. Ho
+--
+Searching for minimum stor- age regenerating codes
+----
+C. Suh
+K. Ramchandran
+--
+Exact regeneration codes for distributed storage repair using interference alignment
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\045.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,153 @@
+[[[ ID ]]]
+141
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Instability of the Ergodic Limit Theorems with Respect to Small Violations of Algorithmic Randomness
+[[[ AUTHORS ]]]
+Vladimir V’yugin
+[[[ ABSTR ]]]
+Abstract—An instability property of the Birkhoff’s ergodic the- orem and related asymptotic laws with respect to small violations of algorithmic randomness is studied. The Shannon–McMillan– Breiman theorem and all universal compression schemes are also among them.
+[[[ BODY ]]]
+A lack of effective convergence bounds is typical for asymptotic results of ergodic theory like Birkhoff’s ergodic theorem – Krengel [2], Shannon–McMillan–Breiman theorem and universal compressing schemes – Ryabko [3].
+In this paper we present new impossibility results based on analysis of ergodic theory in algorithmic randomness framework – instability under small violations of algorithmic randomness.
+It is well known that main laws of probability theory are valid not only almost surely but for any individual Martin- L¨of random sequence. An inﬁnite binary sequence ω 1 ω 2 . . . is Martin-L¨of random with respect to uniform or 1/2-Bernoulli measure if and only if Km(ω n ) ≥ n − O(1) for all n, where Km(ω n ) is a monotone Kolmogorov complexity of a binary string ω n = ω 1 . . . ω n .
+A stability property under small violations of algorithmic randomness of the main limit probability laws was discovered by Schnorr [4] and Vovk [7]. They shown that the law of large numbers for uniform Bernoulli measure holds for a binary sequence ω 1 ω 2 . . . if Km(ω n ) ≥ n − σ(n), where σ(n) is an arbitrary computable function such that σ(n) = o(n) as n → ∞, and the law of iterated logarithm holds if Km(ω n ) ≥ n−σ(n), where σ(n) is an arbitrary computable function such that σ(n) = o(log log n) as n → ∞.
+In that follows l(α) denotes the length of a ﬁnite sequence α, Ω = {0, 1} ∞ . A probability measure P on Ω is deﬁned as follows: deﬁne P (Γ α ) for each ﬁnite sequence α, where Γ α = {ω ∈ Ω : α ⊂ ω}, and extend it for all Borel subsets of Ω.
+Some notions from ergodic theory are given in Section IV-B. Let T be a measure preserving transformation, and f be a com- putable function. V’yugin [8] proved an algorithmic version of the ergodic theorem : for any inﬁnite binary sequence ω
+1 n
+We show in this paper that a constant O(1) in (1) cannot be replaced on an arbitrary slow increasing variable σ(n).
+Let d P (ω n ) = − log P (ω n )−Km(ω n ) be a universal test of randomness with respect to a measure P . For uniform measure d(ω n ) = n − Km(ω n ).
+In the following proposition some sufﬁcient condition of stability of a probability law is given.
+Proposition 1: Assume there exists a computable double sequence {U k,n } of sets of ﬁnite binary sequences such that P (∪ y∈U k,n Γ y ) ≤ ρ k (n)c k,n , where c k,n is a computable se- quence of positive numbers and ρ k (n) is a sequence of positive functions (not necessary computable) such that
+c k,n < ∞ and ρ k (n) → 0 as n → ∞ for each k.
+Then for any k, d P (ω n ) = o(log(1/ρ k (n))) as n → ∞ implies ω n ∈ U n,k for almost all n. Proof . Since
+c k,n < ∞, we can deﬁne a corresponding preﬁx-free code, and so, Km(ω n ) ≤ − log c k,n + O(1) (all logarithms are on the base 2). Assume ω n ∈ U k,n for inﬁnitely many n. Then P (∪ y∈U k,n Γ y ) ≥ P (ω n ) for these n. Then we have for any k, o(log(1/ρ k (n))) = d P (ω n ) = − log P (ω n ) − Km(ω n ) ≥ − log ρ k (n) − log c k,n + log c k,n − O(1) = − log ρ k (n) + O(1) for inﬁnitely many n. This contradiction proves the proposition.
+Using Proposition 1 we can prove stability property for main probability laws. Let λ be the uniform measure on Ω, where λ(Γ α ) = 2 −l(α) . By Chernoff inequality λ(U k,n ) ≤ 2e −2n 2 k , where k is such that k = o(k) as k → ∞ and U k,n = {x : l(x) = n, | 1 n
+Suppose d(ω n ) ≤ α(n) for all n, where α(n) is a com- putable function such that α(n) = o(n) as n → ∞.
+We can write λ(U k,n ) ≤ 2 −α(n) c k,n , where c k,n = 2e −2n 2 k +α(n) . For any k, the series
+α(n) = o(n). By Proposition 1 for each k, ω n ∈ U n,k for almost all n, i.e., the law of large numbers holds.
+An analogous construction can be developed for the law of iterated logarithm for uniform Bernoulli measure and for law of large numbers for stationary ergodic Markov chains.
+We present “a measure free” (comparing with [9]) instability property of the ergodic theorem. In Theorems 1 and 2 the uniform measure on Ω is considered.
+Theorem 1: Let σ(n) be a nondecreasing unbounded com- putable function. Then there exist a computable ergodic mea- sure preserving transformation T and a sequence ω ∈ Ω such that the inequality Km(ω n ) ≥ n−σ(n) holds for all n and the limit (1) does not exist for some computable indicator function f (with the range {0, 1}).
+The construction of the transformation T is given in Sec- tion III.
+Theorem 2: A measure preserving transformation T can be constructed such that for any nondecreasing unbounded computable function σ(n) a sequence ω ∈ Ω exists such that Km(ω n ) ≥ n − σ(n) holds for all n and the limit (1) does not exist for some computable indicator function f .
+Does an ergodic transformation T exists satisfying Theorem 2 is an open question.
+Recall some notions of symbolic dynamics. A partition is a sequence pairwise of disjoint subsets π = (π 1 , . . . , π k ) of the interval [0, 1) whose union is equal to this interval. A transformation T deﬁnes a measure on the set of all ﬁnite and inﬁnite words in the alphabet A = {0, 1, . . . , k − 1} as follows
+where a 1 a 2 . . . a n is a sequence of letters from A. The measure P can be extended on all Borel subsets of A ∞ by the Kolmogorov’s extension theorem. The measure P deﬁned by (2) is stationary and ergodic with respect to the left shift if and only if the measure preserving transformation T is ergodic with respect to λ.
+In the construction given in Section III, k = 2, and we deﬁne a speciﬁc partition (π 0 , π 1 ) of [0, 1].
+We will use a natural correspondence between points of [0, 1] and inﬁnite binary sequences representing dyadic rep- resentations of these points (see Section III). This correspon- dence is one-to-one besides a set of measure zero.
+Let T be the left shift on Ω, and P be the computable stationary measure (i.e. the left shift T is invariant w.r.t P ) deﬁned by (2) using the partition (π 0 , π 1 ).
+Recent result of Hochman [1] implies an algorithmic ver- sion of the Shannon–McMillan–Breiman theorem for any computable stationary ergodic measure P with entropy H, Km(ω n ) ≥ − log P (ω n ) − O(1) implies
+n 	 = H 	 (3) The construction given in Section III shows also an insta-
+bility property of the relation (3) (this was ﬁrst shown in [9]). Theorem 3: Let σ(n) as in Theorem 1, be a sufﬁciently
+measure P (deﬁned by (2) and by the partition (π 0 , π 1 )) with entropy 0 < H ≤ and an inﬁnite binary sequence ω exist such that for all n
+A code {φ n } is called universal with respect to a class of stationary ergodic sources if for any computable stationary ergodic measure P (with entropy H)
+n 	 = H a.s., 	 (6) where l(x) is length of a word x.
+Lempel–Ziv coding scheme is an example of such universal coding scheme.
+Since universal coding schemes are asymptotically optimal, i.e., for almost all sequences, they have compressing ratio (6) the same as Kolmogorov complexity compressing ratio (3), we have an instability property for any universal coding schemes.
+Theorem 4: Let σ(n) and as in Theorem 1. A computable stationary ergodic measure P with entropy 0 < H ≤ exists such that for each universal code {φ n } an inﬁnite binary sequence ω exists such that for all n
+We will deﬁne an ergodic transformation T and prove that an ω ∈ Ω exists such that two conditions hold
+1 n
+1 n
+where r is an arbitrary small real number and an indicator function χ is deﬁned below.
+We use cutting and stacking method to deﬁne an ergodic transformation T of the unit interval [0, 1] (see Section IV-B for details of this method).
+Let r > 0 be a sufﬁciently small rational number. Deﬁne a partition π 0 = [0, 1 2 ) ∪ ( 1 2 + r, 1] and π 1 = [ 1 2 , 1 2 + r]. The ergodic transformation T will be deﬁned by a sequence of gadgets ∆ s , Π s , where s = 0, 1, . . . .
+A computable with respect to σ sequence of positive integer numbers exists such that 0 < h −2 < h −1 < h 0 < h 1 < . . . and
+The gadgets will be deﬁned by mathematical induction on steps. The gadget ∆ 0 is deﬁned by cutting of the interval [ 1 2 − r, 1 2 + r] on 2h 0 equal parts and by stacking them. Let Π 0 be a gadget deﬁned by cutting of the intervals [0, 1 2 − r) and ( 1 2 + r, 1] in 2h 0 equal subintervals and stacking them. The purpose of this deﬁnition is to construct initial gadgets of height 2h 0 with supports satisfying λ( ˆ ∆ 0 ) = 2r and λ( ˆ Π 0 ) = 1 − 2r.
+The sequence of gadgets {∆ s }, s = 0, 1, . . . , will deﬁne an approximation of the uniform Bernoulli measure concentrated on the names ot their trajectories. The sequence of gadgets {Π s }, s = 0, 1, . . . , will deﬁne a measure with sufﬁciently small entropy.
+We use a natural correspondence between points of [0, 1] and inﬁnite binary sequences representing dyadic representa- tions of these points. This correspondence is deﬁned using cor- respondence between ﬁnite binary sequences and subintervals of [0, 1] with dyadically rational endpoints. A ﬁnite sequence α of length n corresponds to an interval [a, a + 2 −n ) with dyadically rational endpoints, where a = 1≤i≤n α i 2 −i . We choose r such that both elements π 0 and π 1 of the partition can be represented (up to a set of measure zero) as ﬁnite unions of pairwise disjoint intervals with dyadically rational endpoints.
+The purpose of the construction is to suggest conditions under which an inﬁnite sequence ω ∈ Ω exists such that Km(ω n ) ≥ n − σ(n) for all n and the limit (1) does not exist for a name χ(ω)χ(T ω)χ(T 2 ω) . . . of its trajectory, where χ(ω) = i if ω ∈ π i , i = 0, 1.
+Construction . Let at step s − 1 (s > 0) gadgets ∆ s−1 and Π s−1 were deﬁned. Cut of the gadget ∆ s−1 into two copies ∆ and ∆ of equal width (i.e. we cut of each column into two subcolumns of equal width) and join Π s−1 ∪ ∆ in one gadget. Find a number R s and do R s -fold independent cutting and stacking of the gadget Π s−1 ∪ ∆ and also of the gadget ∆ to obtain new gadgets Π s and ∆ s of height ≥ 2h s such that the gadget Π s−1 ∪ ∆ is (1 − 1/s)–well–distributed in the gadget Π s . The needed number R s exists by Lemma 3 (Section IV-B).
+Properties of the construction . Deﬁne a transformation T = T {Π s }. Since the sequence of the gadgets {Π s } is complete (i.e. λ( ˆ Π s ) → 1 and w(Π s ) → 0 as s → ∞), T is deﬁned for λ-almost all ω. The transformation T is ergodic by Lemma 2 (Section IV), where Υ s = Π s , since the sequence of gadgets Π s is complete. Besides, the gadget Π s−1 ∪∆ , and the gadget Π s−1 are (1 − 1/s)-well–distributed in Π s for any s. By construction λ( ˆ ∆ i ) = 2 −i+1 r and λ( ˆ Π i ) = 1 − 2 −i+1 r for all i = 0, 1, . . . .
+We will deﬁne by induction on steps s a sequence ω satisfying the conclusion of Theorem 3 as the union of an increasing sequence of initial fragments
+Using Proposition 2 (Section IV-A), deﬁne ω(0) such that d(ω(0) j ) ≤ 2 for all j ≤ l(ω(0)). Deﬁne s(−1) = s(0) = 0.
+Induction hypotheses. Suppose that k > 0 and a sequence ω(0) ⊂ · · · ⊂ ω(k − 1) is already deﬁned. Also, the interval with dyadically rational endpoints corresponding to ω(k−1) is a subset of an interval from the support of the gadget Π s(k−1) . We suppose that l(ω(k − 1)) > h s(k−1) , and d(ω(k − 1)) ≤ σ(h s(k−2) ) − 3 if k is odd and d(ω(k − 1)) ≤ σ(h s(k−2) ) if k is even.
+Let us consider a sufﬁciently large s and a set of all ﬁnite strings extending a such that the corresponding intervals with dyadically rational endpoints are subsets of intervals from columns of the gadget Π s−1 and generate Π s−1 -trajectories with frequency of visiting the element π 0 of the partition less than 2r. By the ergodic theorem the total measure of these subintervals tends to 2 −l(a) as s → ∞.
+We consider a sufﬁciently ﬁne dyadically rational discretiza- tion of unit interval such that for all sufﬁciently large s the total measure of the set of all such intervals with dyadically rational endpoints locating in the lower half of the gadget Π s is ≥ (1/4)2 −l(a) . Let C a be a set of strings corresponding to these subintervals.
+By Proposition 2 (Section IV-A) an b ∈ C a exists such that d(b j ) ≤ d(a) + 3 for each l(a) ≤ j ≤ l(b). Deﬁne ω(k) = b. By induction hypotheses inequalities d(a) ≤ σ(h s(k−2) ) − 3 and l(a) ≥ h s(k−1) > h s(k−2) hold. Then d(b j ) ≤ σ(h s(k−2) ) ≤ σ(l(a)) ≤ σ(j) for all l(a) ≤ j ≤ l(b). Also, we can take l(b) ≥ h s(k) . Therefore, the induction hypotheses and condition (8) are valid.
+Let k be even. Put b = ω(k − 1) and s = s(k − 1) + 1. Deﬁne s(k) = s.
+Let us consider an arbitrary column from the gadget ∆ s−1 . Divide all its intervals into two equal parts: upper half and lower half. Any interval of the lower part has a trajectory of the length ≥ L/2, where L ≥ 2h s−1 is the height of the gadget ∆ s−1 . The uniform measure of all such intervals is equal to
+By Chernoff inequality the measure λ of all points of sup- port of the gadget ∆ s−1 whose trajectories have length ≥ L/2 and frequency of ones ≤ 1/4 is less than 2 − 1 16 L λ( ˆ ∆ s−1 ) ≤
+λ( ˆ ∆ s−1 ) (let L be sufﬁciently large). Then all such points from intervals of the lower part of the gadget ∆ s−1 whose trajectories have length ≥ L/2 and frequency of ones more than 1/4 have total measure at least 1 4 λ( ˆ ∆ s−1 ). By (9)
+= λ( ˆ ∆ s−1 ) 2λ( ˆ Π s−1 )
+Consider a set of all binary strings correspondent to intervals from the lower part of the gadget generated by cutting and stacking of Π s−1 ∪∆ such that trajectories starting from these intervals pass through an upper subcolumn of the gadget ∆
+and have frequencies of ones at least 1/4. For any such subin- terval consider a set of all subintervals from a discretization set with dyadically rational endpoints containing in it (we consider
+a sufﬁciently ﬁne dyadically rational discretization). Let D b be a set of all binary strings correspondent to these intervals. By deﬁnition the trajectory of any such interval has length at most 2L and some fragment of its name has at least L/8 ones. Hence, frequency of ones in the name of any such trajectory is at least 1 16 . Since γ ≤ 1, the total measure of all such intervals is at least γ 32 2 −l(b) . By Proposition 2 an c ∈ D b exists such that d(c j ) ≤ d(b) + 1 − log γ 32 ≤ d(b) + (σ(h s−1 ) − σ(h s−2 ) − 9) + 6 ≤ σ(h s−1 ) − 3 = σ(h s(k−1) ) − 3 for all j such that l(b) ≤ j ≤ l(c). Here we have d(b) ≤ σ(h s(k−2) ) ≤ σ(h s−2 ) by induction hypothesis. We also have used the inequality (11). Besides, by the induction hypothesis we have l(b) ≥ h s−1 . Therefore, d(c j ) < σ(h s−1 ) ≤ σ(l(b)) ≤ σ(j) for all j such that l(b) ≤ j ≤ l(c). Deﬁne ω(k) = c. It is easy to see that all induction hypotheses are true for ω(k).
+An inﬁnite sequence ω is deﬁned by a sequence of its initial fragments (10). We have proved that d(ω j ) ≤ σ(j) for all j.
+By the construction there are inﬁnitely many initial frag- ments of trajectory of the sequence ω with frequency of ones ≥ 1/16 in their names. Hence, the condition (7) holds.
+The proof of Theorem 3 is analogous: since the sequence ω has sufﬁciently long fragments of ∆ s−1 -names we have (4) for inﬁnitely many n; we have also (5) for inﬁnitely many n, since ω has inﬁnitely many fragments of Π s−1 -trajectories with frequency of zeros less than 2r.
+Let λ be a uniform measure on Ω, λ(Γ x ) = 2 −l(x) and a set A consists of words y such that x ⊆ y. Deﬁne λ(A) = λ(∪ y∈A Γ y ). Recall that d(x) = l(x) − Km(x).
+Proposition 2: Assume a set A consists of words y such that x ⊆ y and 0 < µ < 1. Then a subset A ⊆ A exists such that λ(A ) > µλ(A) and
+Proof . We will use in the proof the notion of supermartingale. A function M is called λ–supermartingale if: (1) M (Λ) ≤ 1, (2) M (x) ≥ 1 2 (M (x0) + M (x1)) for all x. We will consider only nonnegative supermartingales.
+Lemma 1: There exists a supermartingale M such that d(x) ≤ log M (x) for all x.
+Proof . Let some optimal function ψ deﬁnes the monotone complexity Km(x). Deﬁne
+Q(α) = λ(∪{Γ p : α ⊆ ψ(p)}). 	 (12) Since ψ(p) is monotone (with respect to relation ⊆ on strings), Q(Λ) ≤ 1 and Q(α) ≥ Q(α0) + Q(α1) for all α. Then the function M (α) = 2 l(α) Q(α) is a supermartingale.
+Since for any α the shortest string p exists such that α ⊆ ψ(p) and Km(α) = l(p) is an element of the set from (12), we have Q(α) ≥ 2 −Km(α) . Hence, d(α) ≤ log M (α).
+Let d(x) ≤ log M (x), where M is a supermartingal from Lemma 1. Denote c = 2 −l(x) /((1 − µ)λ(A)) and deﬁne
+A set of words B is called preﬁx free if for any two distinct words x, y ∈ B conditions x ⊆ y and y ⊆ x hold.
+It is easy to verify that for any preﬁx free set B such that x ⊆ y for all y ∈ B the inequality
+holds. For any y ∈ A 1 let y p be the initial fragment of y of maximal length such that M (y p ) M (x) > c. The set {y p : y ∈ A 1 } is preﬁx free. Then by (13) we have
+From this the inequality λ(A 1 ) < c −1 2 −l(x) = (1 − µ)λ(A) follows. Deﬁne
+Then λ(A ) > µλ(A). For any y ∈ A we have M (y j ) ≤ cM (x) for all j such that l(x) ≤ j ≤ l(y). The proposition follows from the inequality d(x) ≤ log M (x).
+An arbitrary measurable mapping of the a probability space into itself is called a transformation or a process. A transfor- mation T preserves a measure P if P (T −1 (A)) = T (A) for all measurable subsets A of the space. A subset A is called invariant with respect to T if T −1 A = A. A transformation T is called ergodic if each invariant with respect to T subset A has measure 0 or 1.
+Recall the main notions and properties of cutting and stacking method (see Shields [5], [6]). A column is a sequence E = (L 1 , . . . , L h ) of pairwise disjoint subintervals of [0, 1] of equal width (and with rational endpoints); L 1 is the base, L h is the top of the column, ˆ E = ∪ h i=1 L i is the support of the column, w(E) = λ(L 1 ) is the width of the column, h is the height of the column, λ( ˆ E) = λ(∪ h i=1 L i ) is the measure of the column.
+Any column deﬁnes an algorithmically effective transfor- mation T which linearly transforms L j to L j+1 for all j = 1, . . . , h − 1. This transformation T is not deﬁned outside all intervals of the column and at all points of the top L h interval of this column. Denote T 0 ω = ω, T i+1 ω = T (T i ω). For any 1 ≤ j < h an arbitrary point ω ∈ L j generates a ﬁnite trajectory ω, T ω, . . . , T h−j ω.
+Since all points of the interval L j generate the identical trajectories, we refer to this trajectory as to trajectory of generated by the interval L j .
+A partition π = (π 1 , . . . , π k ) is compatible with a column E if for each j there exists an i such that L j ⊆ π i . This number i is called the name of the interval L j , and the corresponding sequence of names of all intervals of the column is called the name of the column E. For any point ω ∈ L j , where 1 ≤ j < h, by E–name of the trajectory ω, T ω, . . . , T h−j ω
+we mean a sequence of names of intervals L j , . . . , L h from the column E. The length of this sequence is h − j + 1.
+A gadget is a ﬁnite collection of disjoint columns. The width of the gadget w(Υ) is the sum of the widths of its columns. A union of gadgets Υ i with disjoint supports is the gadget Υ = ∪Υ i whose columns are the columns of all the Υ i . The support of the gadget Υ is the union ˆ Υ of the supports of all its columns. A transformation T (Υ) is associated with a gadget Υ if it is the union of transformations deﬁned on all columns of Υ. With any gadget Υ the corresponding set of ﬁnite trajectories generated by points of its columns is associated. By Υ-name of a trajectory we mean its E- name, where E is that column of Υ to which this trajectory corresponds. A gadget Υ extends a column Λ if the support of Υ extends the support of Λ, the transformation T (Υ) extends the transformation T (Λ) and the partition corresponding to Υ extends the partition corresponding to Λ.
+The cutting and stacking operations that are common used will now be deﬁned. The distribution of a gadget Υ with columns E 1 , . . . , E n is a vector of probabilities
+A gadget Υ is a copy of a gadget Λ if they have the same distribution and the corresponding columns have the same partition names. A gadget Υ can be cut into M copies of itself Υ m , m = 1, . . . , M , according to a given probability vector (γ 1 , . . . , γ M ) of type (14) by cutting each column E i = (L i,j : 1 ≤ j ≤ h(E i )) (and its intervals) into disjoint subcolumns E i,m = (L i,j,m : 1 ≤ j ≤ h(E i )) such that w(E i,m ) = w(L i,j,m ) = γ m w(L i,j ). The gadget Υ m = {E i,m : 1 ≤ i ≤ L} is called the copy of the gadget Υ of width γ m . The action of the gadget transformation T is not affected by the copying operation.
+Another operation is the stacking gadgets onto gadgets. At ﬁrst we consider the stacking of columns onto columns and the stacking of gadgets onto columns.
+Let E 1 = (L 1,j : 1 ≤ j ≤ h(E 1 )) and E 2 = (L 2,j : 1 ≤ j ≤ h(E 2 )) be two columns of equal width whose supports are disjoint. The new column E 1 ∗ E 2 = (L j : 1 ≤ j ≤ h(E 1 )+h(E 2 )) is deﬁned as L j = L 1,j for all 1 ≤ j ≤ h(E 1 ) and L j = L 2,j−h(E 1 )+1 for all h(E 1 ) ≤ j ≤ h(E 1 ) + h(E 2 ). Let a gadget Υ and a column E have the same width, and their supports are disjoint. A new gadget E ∗Υ is deﬁned as follows. Cut E into subcolumns E i according to the distribution of the gadget Υ such that w(E i ) = w(U i ), where U i is the i-th column of the gadget Υ. Stack U i on the top of E i to get the new column E i ∗ U i . A new gadget consists of the columns (E i ∗ U i ).
+Let Υ and Λ be two gadgets of the same width and with disjoint supports. A gadget Υ ∗ Λ is deﬁned as follows. Let the columns of Υ are (E i ). Cut Λ into copies Λ i such that w(Λ i ) = w(E i ) for all i. After that, for each i stack the gadget Λ i onto column E i , i.e. we consider a gadget E i ∗Λ i . The new gadget is the union of gadgets E i ∗ Λ i for all i. The number
+of columns of the gadget Υ ∗ Λ is the product of the number of columns of Υ on the number of columns of Λ.
+The M -fold independent cutting and stacking of a sin- gle gadget Υ is deﬁned by cutting Υ into M copies Υ i , i = 1, . . . , M , of equal width and successively independently cutting and stacking them to obtain Υ ∗(M ) = Υ 1 ∗ · · · ∗ Υ M .
+Any complete sequence of gadgets {Υ s } determines a trans- formation T = T {Υ s } which is deﬁned on interval [0, 1) almost surely.
+By deﬁnition T preserves the measure λ. In [5] the con- ditions sufﬁcient a process T to be ergodic were suggested. Let a gadget Υ is constructed by cutting and stacking from a gadget Λ. Let E be a column from Υ and D be a column from Λ. Then ˆ E ∩ ˆ D is deﬁned as the union of subcolumns from D of width w(E) which were used for construction of E.
+Let 0 < < 1. A gadget Λ is (1 − )-well-distributed in Υ if
+Lemma 2: ([5], Corollary 1), ([6], Theorem A.1). Let {Υ n } be a complete sequence of gadgets and for each n the gadget {Υ n } is (1 − n )-well-distributed in {Υ n+1 }, where n → 0. Then {Υ n } deﬁnes the ergodic process.
+Lemma 3: ([6], Lemma 2.2). For any > 0 and any gadget Υ there is an M such that for each m ≥ M the gadget Υ is (1 − )-well-distributed in the gadget Υ ∗(m) constructed from Υ by m-fold independent cutting and stacking.
+This research was partially supported by Russian foundation for fundamental research: 09-07-00180-a.
+[[[ REFS ]]]
+M. Hochman
+--
+Upcrossing inequalities for stationary sequences and applications to entropy and complexity
+----
+U. Krenge
+--
+Ergodic Theorems, Berlin, New York: de Cruyer, 1984
+----
+B. Ryabko
+--
+Twice universal coding
+----
+P. Schnorr
+--
+A uniﬁed approach to the deﬁnition of random se- quences
+----
+C. Shields
+--
+Cutting and stacking: a method for constructing stationary processes
+----
+
+--
+Two divergence-rate counterexamples
+----
+G. Vovk
+--
+The law of the iterated logarithm for random Kolmogorov, or chaotic sequences
+----
+V. V’yugin
+--
+Ergodic theorems for individual random sequences
+----
+V. V’yugin
+--
+Problems of robustness for universal coding schemes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\141.pdf
+[[[ LINKS ]]]
+

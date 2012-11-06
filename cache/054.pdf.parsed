@@ -1,0 +1,144 @@
+[[[ ID ]]]
+54
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Data Compression in Multiterminal Statistical Inference —Linear-Threshold Encoding
+[[[ AUTHORS ]]]
+Shun-ichi Amari
+[[[ ABSTR ]]]
+Abstract—When correlated letters are generated from two or more information sources at different locations, we need to transmit observed data to a common destination for the purpose of estimating or testing the joint probability distribution of the in- formation sources. When we need to compress data separately at each location, what is the optimal data compression scheme? This is a fundamental problem of multiterminal statistical inference proposed by T. Berger [1] and still remains unsolved. We give a new idea of linear-threshold encoding for data compression, and study the performances of this class of data compression by using a simple binary information sources. In order to estimate or test the correlation of two sources, we show that, when correlation is weak, a simple (trivial) encoding where each encoded bit depends only on one original letter is optimal, that is, the case of no substantial encoding, just discarding overﬂown letters. As the strength of correlation increases, it is better to use a number of letters to encode each bit, for example, to use the majority of three letters, in the case of transmission rate is 1/3. Further, when the correlation is very strong, it is better to encode each bit by using all the letters, where weighted majority decision plays a fundamental role.
+[[[ BODY ]]]
+Multiterminal statistical inference studies the optimal data compression scheme, when correlated letters are generated from information sources at different locations, to make sta- tistical inference on the joint probability distribution of the sources. This problem was proposed by T. Berger [1] and a considerable number of papers were published on this problem [1–11], but the essential part has remained unsolved for a quarter century. We attack this problem by using a new idea of linear-threshold data compression.
+We use a simple model of multiterminal sources, without losing the essential characteristic of the problem. We consider two information sources X and Y , which generate iid se- quences x = (x 1 , · · · , x n ) and y = (y 1 , · · · , y n ), respectively, where x i and y i are binary variables taking 1 or -1. We assume that
+E [x i ] = E [y i ] = 0, 	 (1) where E denotes expectation. This means that the probabilities of 1 and −1 are ﬁfty-ﬁfty. Let q be the probability of x i = y i ,
+q = Prob {x i = y i } 	 (2) and this is the only unknown parameter to specify the joint probability distribution. When q = 1/2, x i and y i are indepen-
+dent and when q = 1(0), x i = y i (x i = −y i ) with probability 1.
+The problem is to estimate q or to test hypothesis q = q 0 from the observed data x = x 1 , · · · , x n and y = y 1 , · · · , y n . However, not all of x i and y i are available at the destination because data compression is required. We compress them to encoded words by
+f X : x −→ c X ∈ M X 	 (3) f Y : y −→ c Y ∈ M Y 	 (4)
+where M X and M Y are the sets of codewords c X and c Y , whose cardinalities are
+In this case, two n bits data x and y are compressed to k X and k Y bits binary codes c X and c Y , where
+We estimate q or test a hypothesis q = q 0 by using the received codewords c X ∈ M X and c Y ∈ M Y . The performance of statistical inference is evaluated by the Fisher information G (M X , M Y ) included in the encoded random variables since the mean square error of estimation is asymptotically equal to the inverse of the Fisher information, when we use the maximum likelihood estimator. The performance of testing is also evaluated by the Fisher information. It is calculated from the joint probability distributions of c X and c Y .
+We search for the optimal way of data compression that maximizes the Fisher information when the compression rates k X and k Y are ﬁxed. This is a difﬁcult problem not solved for a quarter century. Here, we use the scheme of linear-threshold encoding (data compression) to consider this problem. We mainly study the helper case where y is transmitted without data compression, that is, k Y = n, and then touch upon more general cases.
+The main results of the paper is that, when x i and y i are independent, there are no better data compression methods than the trivial one where only k = k X bits of x, say x 1 , · · · , x k , are transmitted without any coding. However, as q increases (or decreases) from 1/2, this simple scheme is no more optimal. For an intermediate q, the local scheme
+where each letter c X i of the codewords M X is a threshold function of three bits, say x i 1 , x i 2 , x i 3 , is better than the above simple scheme. As q further increases (decreases), the encoding scheme becomes wider and wider, and for an extremely large (small) q, it is better to use all x 1 , · · · , x n for determining each letter of c X i .
+The present paper calculates the Fisher information explic- itly under the linear-threshold encoding schemes deﬁned in the next section. We further discuss how good these encoding schemes are. It is also discussed where the difﬁculty lies for obtaining the optimal encoding scheme. The present paper gives a new direction of research for the problem of multi- terminal statistical inference proposed by T. Berger which is a long-standing unsolved problem.
+Let us deﬁne a linear threshold function with weight vector a = (a 1 , · · · , a n ) by
+where a · x = a i x i . When all the letters of codeword c are given by linear-threshold functions by using k vectors a 1 , · · · , a k ,
+we call such an encoding scheme linear-threshold encoding. We study the performances of linear encoding schemes.
+When only s components of weight vectors a j are non- zero, we call it s-threshold encoding. In this case, each letter of codeword c is determined from s letters included in x. The simplest 1-threshold encoding is typically,
+This scheme does not need any transformation, just discarding letters beyond the capacity k. The 3-threshold encoding uses three non-overlapping bits in x, for example,
+This works well when the transmission rate is less than 1 /3. This scheme is local in the sense that each encoded bit c i depends only on a small number of original letters.
+The other extreme case is n-threshold encoding, which is indeed not local but global in the sense that each encoded letter c i uses all letters of x. Let {a 1 , · · · , a k } be k mutually nearly orthogonal vectors whose components are non-zero. A typical example of n-threshold encoding is to use such a set of weight vectors to obtain c j of (8). This is not local but global or wide-spread encoding.
+Which is better, local or wide encoding? We show that it depends on q. When q is close to 1/2, that is x i and y i are independent, local encoding is better, while as q increases (or decreases) wider encoding becomes better, and when q is very close to 1 (or 0), very wide encoding is the best.
+4, 	 (11) Therefore, the joint probability of x and y is
+The Fisher information per a pair of letters ( x i , y i ) is deﬁned by
+Obviously, the Fisher information of x and y is n times larger, G X n Y n (q) = nG XY (q). 	 (15)
+Let us denote codewords c X and c Y by m X and m Y , respectively. They are random variables. Since we have
+m X = f X (x) ; m Y = f Y (y) 	 (16) the joint probability of ( m X , m Y ) is given by
+and so on. The Fisher information which the encoded mes- sages m X and m Y possesses is written as
+l(x, y; q) = log p(x, y; q) 	 (20) and its derivative is calculated as
+The following theorem gives a convenient means to calculate the Fisher information of messages.
+Theorem 1: The Fisher information of encoded messages is given by
+where E [l |m X , m Y ] is the conditional expectation of l (x, y) under condition ( m X , m Y ) and the ﬁrst E denotes expectation with respect to m X and m Y .
+p(x, y; q) 	 (23) = 1 p(M ) x
+where p = (d/dq)p and M = (m X , m Y ). From the deﬁnition of the Fisher information, we have the theorem.
+We give the following decomposition theorem of Fisher information, which is useful for discussing the optimality of encoding schemes.
+Theorem 2: The entire Fisher information of X n and Y n is decomposed as a sum of the Fisher information G M (q) of coded messages and the loss Δ G M (q) of information by data compression,
+Proof: Since E[l ] = 0, the Fisher information is the variance of the score function l (x, y). The encoding f X is a mapping from X n to M X , which is many-to-one. Hence, its inverse f −1 X divides X n into subclasses, where one class correspond to f −1 X (m X ) for each codeword m X . The same is true for Y n . When the set of ( X n , Y n ) is divided into subclasses, the entire variance of l ( x, y) is decomposed as a sum of the within-class variance and the inter-class variance, which gives the theorem.
+The theorem shows that the loss of information is minimized if the within-class variance is minimized, since it is the con- ditional variance of l for each pair of codewords (m X , m Y ).
+We study the helper case where k Y = n, so that y is transmitted as it is and only x is encoded into m X . We study, as typical cases, the 1-, 3- and n-threshold encoding schemes. The other cases can be studied in similar ways.
+This is a trivial case, since only ﬁrst k letters are transmitted without any transformation. Hence the Fisher information per one encoded bit is given by
+We analyze the 3-threshold encoding given by (10), where we assume that the transmission rate is less than 1 /3. Let us put
+Theorem 3: The Fisher information per bit of the 3- threshold encoding is given by
+t(4t + 3)(4t 2 − 5t + 2) 	 (30) Proof: We calculate the Fisher information of the ﬁrst
+c 1 = sgn (x 1 + x 2 + x 3 ) 	 (31) Since all the other c i use non-overlapping letters of x, they are independent so that the total Fisher information is k times the information of c 1 . The encoding divides X n into two classes, c 1 = 1 and −1. We consider only x = (x 1 , x 2 , x 3 ), disregarding the other letters. For c 1 = 1, there are four x, {(1, 1, 1), (1, 1, −1), (1, −1, 1), (−1, 1, 1)} and eight y = (y 1 , y 2 , y 3 ), since we treat only the ﬁrst 3 letters. We calculate the within-class variance of l (x, y). After tedious calcula- tions, we have the theorem. We may calculate it by obtaining the probability of ( c 1 , y) and calculate the Fisher information directly therefrom.
+Theorem 4: The Fisher information per letter of n-linear encoding is given by
+1 2
+t . 	 (35) Proof: We use a randomly generated weight vector a 1 ,
+where each component is subject to standard Gaussian distri- bution independently, and then normalize it as |a 1 | = 1. For the second a 2 , we again generate a random vector indepen- dently which is asymptotically orthogonal to a 1 . We continue this process. Then, we obtain asymptotically orthogonal unit vectors a 1 , · · · , a k whose components are non-zero with prob- ability one. Since the weight vectors a i are mutually nearly orthogonal, the weighted sums
+u i = a i · x, i = 1, · · · , k 	 (36) are asymptotically jointly Gaussian and independent. Hence, it sufﬁces to calculate the Fisher information of the ﬁrst one, a = a 1 . We put
+u = a · x, 	 (37) v = a · y. 	 (38)
+E[u] = E[v] = 0 	 (39) E u 2 = E v 2 = 1 	 (40)
+We calculate the joint probability distribution of ( c, y). How- ever, this depends on y only through v. Hence, we calculate that of ( c, v). By integrating (42) with respect of u from 0 to inﬁnity, corresponding to c = 1, we have
+Taking the logarithm of the above probability, its derivative is the score,
+Hence, the Fisher information is given by taking the expecta- tion of the square of the score. We omit detailed calculations.
+We compare the Fisher information of the three data com- pression schemes. Since the Fisher information diverges as q goes to 0 or 1, we multiplied it by a common factor 4 t 2 . This is the Fisher information of the natural parameter θ when the probability is expressed as
+Fig. 1 shows how the Fisher information depends on q for the three schemes, where 1 /2 ≤ q ≤ 1 is shown. When 0 ≤ q ≤ 1/2, the graph is symmetrical with respect to q = 1/2.
+The graph shows that, when q is close to 1 /2 (that is, x and y are nearly independent), 1-threshold encoding is the best of the three. As q increases (or decreases), the 3-threshold encoding becomes better, and ﬁnally as q approaches 1 (or 0), the n-threshold encoding is the best. This shows that the 5- and 7-threshold encodings become better as q increases in the intermediate ranges. Therefore, the best encoding scheme depends q.
+This fact is directly utilized for hypothesis testing, because we assume q 0 . In the case of estimation, we need preliminary information transmission for ﬁxing a good encoding scheme based on an approximate guess q and then transmit informa- tion by the encoding scheme based on q .
+We discuss the case where X n and Y n transmit only 1 bit each, by using the linear-threshold encoding. This can easily be generalized to the case of k X = k Y = k, provided k does not grow in proportion to n, because we use the central limit theorem. In the case of the 1-threshold encoding where x 1 only is transmitted, there is no merit of receiving all y (the
+helper case) compared to the case of only y 1 is sent. However, even in the case of the 3-threshold encoding, the situation is different, as we see in the following (proofs omitted).
+send one bit information derived from the 3-threshold encod- ing is
+t (4t 2 − 9t + 6) . 	 (46) When both X and Y use the n-threshold encoding, the Fisher information is given by
+We cannot prove that the optimal encoding scheme is in the class of the linear-threshold encoding schemes. We show that, when x and y are independent, the 1-threshold encoding is optimal. In this case, q = 1/2, and the score is
+We now consider a general encoding scheme not necessarily in the frame of the linear-threshold encoding. Let {m i } be the set of codewords. For a codeword m i , we calculate the center of the gravity of x belonging to x ∈ f −1 X (m i ),
+Theorem 6: The Fisher information under encoding scheme f X is given by
+We can reformulate the optimality problem in the following geometrical one.
+Problem: Let us divide X n into 2 k classes, each including 2 n−k vertices of the cube of X n . Obtain the partition that minimizes the sum of the squared norms of the centers of gravity of all the classes. This gives the optimal encoding scheme.
+Theorem 7: In the helper case of q = 1/2, when only 1 bit is transmitted, the 1-threshold encoding is optimal.
+Proof: In this case, the encoded messages are only two, c = 1 and c = −1. Let x + and x − be the center of gravity, where x + = x − holds. Let us consider the hypersurface orthogonal to the line connecting x + and x − , passing through the origin. Let it be
+is 1-threshold encoding, for which the magnitudes of |x + | and |x − | are bigger than those of the original ones. Hence, the optimal encoding scheme is within the class of linear- threshold scheme.
+We have studied the Fisher information of the encoded mes- sages obtained by typical linear-threshold data compression. There are many problems to be studied in order to solve the problem of optimal data compression. We list some of them.
+1. Optimality of the linear-threshold data compression. Is it optimal? The answer will be no. So when is it optimal? The optimality depends both q and the rate k/n.
+2. Extension of s-threshold encoding. When the rate k/n is larger than s −1 or when sk < n, we can design s-threshold encoding having non-overlapping a i . However, when sk > n, the weight vectors a i have overlapping non-zero components. In such cases, c i are no more independent, so that the Fisher information is no more the k times of that per one letter. Moreover, since c i are not independent, we can compress codeword c further. This provides us an interesting situation to be studied further.
+3. Wide range encoding of the n-threshold case. We have used the central limit theorem to calculate the Fisher infor- mation. When k is ﬁxed and n becomes large, we can say that u 1 , · · · , u k are asymptotically jointly Gaussian. However, when k grows in proportion to n with k = rn where r is the rate, the central limit theorem no more holds. When a i are orthogonal, the correlation of u i are zero, but they are not independent. So we can compress c further, implying that the Fisher information is larger than k times of that per one encoded letter.
+We revisited the long-standing unsolved problem of mul- titerminal statistical inference proposed by Berger. We used a simple model of binary unbiased sources and the linear- threshold encoding scheme. We have found interesting char- acteristics of the s-threshold encoding schemes that depend on q, that is, the optimal s depends on q. We have touched upon the optimality of the simple 1-threshold encoding when q is 1/2, that is, x and y are independent.
+We hope that this approach gives a new direction of research of this problem.
+[[[ REFS ]]]
+T. Berger
+--
+Decentralized estimation and decision theory
+----
+R. Ahlswede
+I. Csisz´ar
+--
+Hypothesis testing with communication constraints
+----
+T. S. Han
+--
+Hypothesis testing with multiterminal data compression
+----
+T. S. Han
+K. Kobayashi
+--
+Exponential-type error probabilities for multiterminal hypothesis testing
+----
+H. M. H. Shalaby
+A. Papamarcou
+--
+Multiterminal detection with zero-rate data compression
+----
+S. Amari
+T. S. Han
+--
+Statistical inference under multiterminal rate restrictions: A differential geometric approach
+----
+Z. Zhang
+T. Berger
+--
+Estimation via compressed information
+----
+S. Amari
+--
+Fisher information under restriction of Shannon information in multi-terminal situations
+----
+R. Ahlswede
+M. Burnashev
+--
+On minimax estimation in the presence of side information about remote data
+----
+T. S. Han
+S. Amari
+--
+Parameter estimation with multiterminal data compression
+----
+T. S. Han
+S. Amari
+--
+Statistical Inference Under Multiterminal Data Compression
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\054.pdf
+[[[ LINKS ]]]
+

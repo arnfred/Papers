@@ -1,0 +1,149 @@
+[[[ ID ]]]
+131
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Toward Optimal Trade-off Between Identiﬁcation and Secrecy-Key Binding Using Linear Codes
+[[[ AUTHORS ]]]
+Po-Hsiang Lai
+Joseph A. O’Sullivan
+[[[ ABSTR ]]]
+Abstract—We consider the trade-off between identiﬁcation and secret-key binding capacities in biometric systems. We propose the use of linear codes to achieve optimal trade-off for general source and noise models. We relate the problem to classical point to point communication problems, and two system designs based on linear codes are discussed. One design is proven to achieve optimal trade-off by using good linear codes and good decoders. The other design can be proven to achieve slightly suboptimal performance with lower decoder complexity, which is proper for many practical situations. Based on these results, we are also able to extend previous achievable rate region results to general source and noise models that have dependency within and across source and noise elements.
+[[[ BODY ]]]
+Biometric template security and secret key protection are rapidly growing areas of study. It is not only because of the growing use of such systems, but also because of the public concern about privacy leakage and potential costs when biometric and secret key systems are compromised [1]. There are several fundamental information theoretic results on the trade-off between recognition capacity and information constraints, such as amount of information allowed to store in the system [2], [3], [4]. In the biometric context, these results can be thought as fundamental limits on the trade-off between biometric identiﬁcation capacity and the information about an individual biometric template given the stored data. The latter is the amount of information and privacy that could be leaked if the system was compromised. On the other hand, the problem of generating secrecy though public communication in distributed systems is pioneered by the work of Ahlswede and Csisz`ar [5], [6]. The public message can be thought of as the stored information in a biometric database, as it could be compromised, and the secrecy can be thought of as a secret- key that can only be generated from biometric data, given both stored information and a correct input query.
+Advancing from these results, Ignatenko and Willems stud- ied joint system designs for biometrics and secrecies. In their framework, biometric signals are used with secret-keys, or are used to generate secret-keys, and fundamental informa- tion theoretic relation among secret-key capacity, recognition capacity, and information leakage are studied [7], [8]. The biometric templates and noise are each modeled as sequences whose elements are independent and identically distributed
+(i.i.d.). In [9], they proposed a linear code method for a secret- key binding problem in biometric systems. They show that their proposed system achieves the optimal identiﬁcation and secrecy-key trade-off when the template sequence are modeled as i.i.d. Bernoulli 1 2 , and noise as i.i.d. Bernoulli q. Then the templates are protected in the sense that the stored helper data only reveals limited amount of information about the original template.
+In this paper, we consider the problem of trade-off between biometric identiﬁcation and secret-key discussed in [7], [9]. Our contributions are
+(1) We show that linear codes can be used to design such optimal trade-off systems even if the models for the source and noise are general so that they may have correlations or other dependencies.
+(2) We also show a suboptimal system design using linear codes which has low decoder complexity, even for general sources with additive noise.
+(3) We argue that the achievable rate region result of [9] can be directly generalized for general source and noise models.
+We relate the identiﬁcation and secrecy trade-off problem to a classical point to point communication problem with some additional constraints. This allows one to apply results from the rich literature of source coding and channel coding to bio- metric security problems directly according to one’s stochastic models of the biometric systems. The use of linear codes for identiﬁcation systems is inspired by our previous work in coding for pattern recognition with information constraints [10].
+The secret-key binding problem is described in section II, followed by a summery of key results and theorems proved in this paper in section III. The converse proof is given in section IV, while we leave the achievability proof using random codes in VI. The system design using linear codes and their achievability proofs are given and section V. We further comment and conclude this paper in section VII.
+We consider the trade-off between biometric identiﬁcation capacity and secret-key binding capacity. We focus on design- ing systems that can be proved to achieve good performance
+f(.,.) x j j =1,…,M J s j
+utilizing good linear codes. In this problem, for each individ- ual, a template of a biometric trait is measured and a secret-key is selected, independent of the identity and measured template. Both the template and the secret key are used to generate the helper data which is stored in the database. Note that the template and secret key are themselves not stored in the database. During identiﬁcation, the biometric system receives a query signal. The goals of the system are to identify the identity to which this query belongs, and recover the secret- key of this individual. The system requirements are that the helper data contains a negligible amount of information about the secret-key, and the identiﬁcation error should be small. The questions of interest are how many individuals can be enrolled in the systems, how many secret-keys can be generated, and what the trade-off between them are. The overall system is illustrated in Fig. 1, adapted from [9].
+In this paper, capital case denotes the random variables, lower case denotes realizations of random variables, and bold case denotes sequences, unless otherwise indicated. The biometric template of each individual is denoted as a length n sequence x j = (x j 1 , · · · , x jn ) ∈ X n where j ∈ {1, · · · , M J } is the index of the individual and M J is the total number of individual enrolled in the system. Each template x j is modeled as a realization drawn independent and identically from a biometric source random process governed by a sequence of distributions p n X , independent of other templates. Note that X is independent of the index j. The query signal y ∈ Y n is modeled as a noisy version of a biometric template drawn from a sequence of distributions p n Y |X , that the query signal y can be thought as the output of a template x passing through a noisy channel. When the noise is additive and independent of the source, we denote the additive noise as z drawn from a sequence of distribution p n Z such that y = x + z. Throughout this paper, we focus on discrete cases, and X and Y are ﬁelds. In practice, they may be integers as a results of quantization. Each individual is assumed to be equally likely to present the query input that p(i) = 1 M
+For each individual j, one template is measured and a secret- key is uniformly drawn from a set S independent of one another, the individual indexes j, and the templates X j . The cardinality of S is denoted as M s . A large M s suggests that it is harder to guess the secret-key of an individual and hence the system is safer. The measured template and selected secret-key are used to generate the helper data which will be enrolled and stored in the database with the index. This process is modeled as the encoding part of the system: an encoder function f takes an input x j and a secret-key s j ∈ S to produce the helper data
+The identiﬁcation process is modeled as a decoder mapping g which takes the query y along with S to produce an estimate of subject index ˆ i and an estimate of the secret ˆ s j
+Note that the decoder does not have any knowledge about what are the realizations of the secret-keys, but only the set S from which they are drawn. The system requirements of small information leakage about the secret-key from helper data, small identiﬁcation error, and design for a large number of individuals and secret-key choices can then be cast as an information theoretic problem.
+Deﬁnition 1 Achievability : A pair of identiﬁcation rate and secrecy key rate (R J , R S ) is achievable in the biometric identiﬁcation and secret-key binding setting if for all δ > 0 and for n large enough, there exists an encoder f (·) and a decoder φ(·) such that:
+Pr (ˆj, ˆ s j ) = (j, s j ) ≤ δ 	 (3) 1
+n log M J ≥ R J − δ 	 (4) 1
+n log M S ≥ R S − δ 	 (5) 1
+n I(S j ; T j ) ≤ δ ∀j. 	 (6) The achievable rate region is the set of all achievable rate pairs and is denoted as R. In the work of Ignatenko and Willems [8], [9], the achievable rate region of i.i.d. sources with independent i.i.d. additive noise is proved to be:
+Note that the X and Y are not in bold case, as the source and noise are assumed to be i.i.d. in their derivation. In particular, they also show that for i.i.d. Bernoulli 1 2 source with i.i.d. Bernoulli noise q independent of the source, a simple linear code is able to achieve the optimal rate region [9].
+We summarize the results and contribution of this paper in this section as three main theorems. The entropy rates of dis- tributions p n X , p n Y , p n Z , p n X ,Y , and the conditionals p n X |Y , p n Y |X are assumed to exist. Before we present the key theorems, we introduce the following three deﬁnitions.
+Deﬁnition 2 A sequence of source code is said to be good for a sequence of source p n X if it asymptotically achieves the optimal lossless source coding rate H(X ).
+Deﬁnition 3 A sequence of decoders is said to be good for a good sequence of source codes of p n X if it can reconstruct the typical sequences of the sequence of p n X with probability 1 − ǫ(n), where ǫ(n) approaches zero as n gets large.
+Deﬁnition 4 A good universal source code for two sources p n X and p n Z achieves optimal lossless source coding rates for both sources.
+Theorem 1 For arbitrary p n X ,Y with all entropy rates assumed to exist, the achievable rate region of identiﬁcation and secret- key binding trade-off is
+Comment: The converse proof is a direct generalization of Ignatenko and Willems [7], [9], and the achievability proof is derived from Theorem 2.
+Theorem 2 If there exists a good code for a source p n X with a good decoder, a system can be designed to achieve optimal identiﬁcation and secret-key binding trade-off as in eq. (8) for arbitrary p n Y |X if the entropy rates exist.
+Comment: Theorem 2 requires a good decoder for source X, whose entropy rate may be high. In practice, there may not be a low complexity decoder available. Thus one may choose a suboptimal system design that only requires a simpler decoder, which motivates the next result.
+Theorem 3 Assume the query noise is additive and independent of the template source. If there exists a good universal code for sources p n X and p n Z with good decoder only for p n Z , then a system can be designed to achieve the rate region
+Comment: This Theorem requires only a decoder which is good for Z, whose entropy rate is usually smaller than that of X in practice. It is easier to build a low complexity practical decoder for a smaller entropy rate distribution. However there is a small loss in the performance. Several results on universal linear codes are available, such as the seminal paper by Csisz´ar [11]. As shown by Theorem 1, we know that R 2 ⊆ R a . For example, for binary symmetric Bernoulli source p and binary symmetric noise q, it is easy to show that R 2 is strictly contained in R a .
+The converse proof presented here is a generalization of the converse proof for i.i.d. source and noise models proved derived by Willems and Ignatenko [9]. We observe that their proof can be readily applied to arbitrary source and noise distributions as long as their entropy rates exist.
+We are interested in the error probability P e = P (ˆj, ˆ s j ) = (j, s j ) , where (ˆj, ˆ s j ) = φ (y, t 1 , · · · , t n ). From
+H(j, s j | ˆ J, ˆ s J ) ≤ 1 + P e log |M J ||M S | = 1 + P e n(R J + R S )
+where the last inequality follows from the error constraint of system. The converse proof is derived as follows:
+≤ I(J, S j ; T 1 , · · · , T M J , Y) +H(J, S j | ˆ J, ˆ S J )
+The second term H(J, S J | ˆ J, ˆ S J ) can be bounded using Fano’s inequality. We then focus on the ﬁrst term:
+I(J, S j ; T 1 , · · · , T M J , Y) = I(J, S j ; T 1 , · · · , T M J )
+≤ I(J, S j ; T 1 , · · · , T M J ) + H(Y) −H(Y|X, J, S j , T 1 , · · · , T M J )
+(a) By the deﬁnition of mutual information, which is as- sumed to exist. Note that ˆ J, ˆ S j is the decoder output which is determined by H 1 , · · · , H M J , Y.
+(c) Rewriting mutual information into entropy, and adding an X term where the inequality follows because conditioning reduces entropy. Assuming all terms exist.
+(d) Given X, Y is independent of the remaining terms. (e) Only T j may contain information about S j .
+Because H(j, S j ) = log M J M S = n(R J + R S ), along with equations (10) and (11), we have
+We describe two linear coding approaches. The two ap- proaches utilize the same encoding strategy; the difference lies in the decoding capacity requirements. The approach which achieves the optimal trade-off bound from the converse proof requires high decoding capacity. The other approach requires
+less decoding capacity so that more practical decoders may be used for this system design, but it leads to a suboptimal trade-off.
+The system design goals are to prevent information about the secret-key from leaking through the helper data, to cor- rectly identify individuals, and to reconstruct the secret-key. To prevent information leak, the idea is to use the biometric tem- plate signal as a surrogate noisy channel between the secret- key and the helper data that the channel should minimize their mutual information. Consider the input secret-key and the output helper data as two sequences of the same length, the best channel in this security context is then a channel of i.i.d. uniform additive noise. Thus to achieve small leakage, one should map the biometric templates to i.i.d. uniform sequences, which is analogous to optimal lossless source coding for the templates. To identify individuals and estimate the secret-key, the system utilizes the correlation between the correct template and the query, and the performance can be proved through standard joint-typicality arguments and union bounds.
+For each x j , the helper data is computed as t j = Gx j + s j , where G is a nH (X) log |X | by n generator matrix with certain requirements described later and H(X) is the entropy rate of p n x . The elements of s j are uniformly drawn from X , independent of everything else, and s j is associated with label index S j .
+For the optimal trade-off achieving approach, the decoder checks if there exists a helper data t ˆ j and a sequence ˆ s j ∈ S such that from t ˆ j − ˆ s j , the reconstructed template ˆ x is jointly typical with the input query y . The decoder then outputs the satisfying t ˆ j and ˆ s j . If there are multiple candidates, the decoder picks one randomly.
+For suboptinal trade-off with lower decoder complexity, the decoder takes the query y and checks if there exists a helper data t ˆ j , a sequence ˆ s j and sequence ˆ z that is a typical sequence of P n Z and satisﬁes Gˆ z = Gy − t ˆ j − ˆ s j . The decoder outputs the corresponding ˆ j and ˆ s j . If there are multiple candidates, the decoder picks one randomly.
+We assume that the source has higher entropy rate than the noise that H(X) ≥ H(Z). The conditions for the matrix G, or an ensemble of generating G, to achieve the optimal trade-off or near optimal trade-off with lower decoder complexity are
+(1) it achieves near optimal lossless source coding of source X, and
+(2.a) most typical sequences x can be recovered from Gx. (2.b) most typical sequences z can be recovered from Gz.
+The ﬁrst condition is needed to ensure that there is only a negligible amount of information leaked from t about s, i.e. I(T; S) approaches zero as n gets large. The ﬁrst condition is required by both approaches. Condition (2.a) is only required by the optimal trade-off approach where the decoded ˆ x i has to be computed and checked for joint typicality with the query y. Condition (2.b) is only needed for the near optimal trade-off
+with lower computational demand, where computing the noise vector z is needed.
+We have to check that T leaks negligible information about S, and conditions when the probability of identiﬁcation and secret-key estimation error approaches zero. For both approaches, the secrecy leakage analysis is the same. We show the achievable region and error analyses of both approaches separately.
+By condition (1) of the previous subsection, each sequence of the set
+is nearly drawn from the i.i.d. uniform distribution over X . This is because each typical sequence is almost equally likely and there are around 2 nH (X) typical sequences, which is the number of possible outcomes of G. Thus we have
+where (a) is because S and GX are independent, and (b) is because GX is almost i.i.d. uniform over X . Hence we have 1 n I(S; T) ≤ δ. This means that the helper data leaks a negligible amount of information about the secret-key.
+C. Achievable Region of the Optimal Trade-off Approach The system error comes from
+• For the correct individual j with all possible choices of ˆ s j , there does not exist a reconstructed sequence ˆ x j which is jointly typical with the query y.
+• There is another combination of individual l and secret- key s ∈ S such that the reconstructed ˆ x l is jointly typical with the input query y.
+The ﬁrst type of error is bounded by the probability of the following events:
+where D ⊆ GX is the set of decodable sequences by the decoding algorithm. The ﬁrst term approaches zero as n gets large. The second is negligible because the decoder is good, so condition (2.a) described in subsection V-A is satisﬁed.
+The second type error e 2 is that there exists another t ˆ l with a secret s ∈ S so that ˆ x = φ(ˆ h j , s k ) is jointly typical with the query y, where φ(·, ·) is the decoding algorithm. We have:
+where x ′ is a sequence with distribution p(X) but independent of y, and
+(b) follows from condition (1) in subsecition V-A and each typical sequence is almost equally likely;
+(c) is due to the fact that if x ′ has the same distribution as the marginal of x but independent of y, the probability that x ′ and y is jointly typical is 2 −I(X;Y) .
+Thus the second type of error goes to zero as long as R J + R S < 1 n I(X, Y) and we obtain Theorem 2 which matches the converse result.
+D. Achievable Region of the Suboptimal Approach with Lower Decoder Complexity
+• For the correct individual j, the decoder can not ﬁnd a ˆ z which is a typical sequence of P n Z and satisﬁes Gˆ z = Gy − t ˆ j − ˆ s j .
+• There is another combination of individual and secret key such that there exists a ˆ z which is a typical sequence of P n Z and satisﬁes Gˆ z = Gy − t ˆ l − ˆs.
+The ﬁrst type of error happens when the noise z is not typical or Gz is not decodable when z is typical, and both cases have negligible probability as the decoder is assumed to be good for p n Z . The second condition happens if there exists a false pair of identity and secret-key so that Gy − t l − s is the syndrome of a typical sequence of p n Z . There are nH(Z) out of nH(X) syndromes of G that contain one and only one typical sequence of p n Z when the source code is good for p n Z . Since h j and s k are i.i.d. uniform over X , the probability of each pair of (l, s) resulting in a syndrome of a typical sequence of p n Z has probability 2 n (H(Z)−H(X)) . The union bound of the second type of error e 2 is
+which goes to zero when R J + R S < H(X) − H(Z|X). This proves Theorem 3.
+We outline the proof of achieviablity in this section. We ﬁrst describe the encoder and decoder and then prove the system can achieves all points in R a in eq. (8).
+The encoder consists of two mappings. For each typical sequence of p X , the encoder uses f 1 to map it uniquely to a length ⌈nH(X)⌉ binary sequence, denoted as ¯ x. For simplicity we omit the use of ceiling function from now on. Note that there are nH(X) typical sequences, which is equal to the number of binary sequences to be mapped onto. For each individual, the secret-key s j is uniformly chosen from a set S. The encoder then use f 2 uniquely mapped this secret-key also to a binary sequence of length nH(X), denoted as ¯ s j . The encoder computes the helper data as h j = ¯ x j + ¯ s j .
+The decoder takes the input query y and looks for the index ˆj and secrecy key ˆs ∈ S such that ˆ x ˆi = f −1 1 h ˆ j − f 2 (ˆt) is jointly typical with y. The notation f −1 1 is slightly abused that if t ˆ j − f 2 (ˆs) is not in the range of f 1 , f −1 1 simply outputs an error.
+The error analyses is similar to V-C, and the leakage analysis is similar to that in subsection V-B.
+In this paper we proposed two system designs using linear codes for identiﬁcation and secret-key binding trade-off. One of the designs is proved to achieve the optimal trade-off for general source and noise distributions. This design may require higher decoder complexity, while some practical applications may require low computational complexity. Thus we also pro- posed a second system design which uses decoders with lower complexity and prove its performance for general sources with additive noise. Also we generalize previous achievable rate region results to general source and noise distributions. A fu- ture direction is to design systems which consider information about the templates leaked from helper data, and its trade-off with identiﬁcation and secret-key capacity.
+The authors thank Tanya Ignatenko, Alan D. Kaplan, and Ikenna Odinaka for their valuable suggestions.
+[[[ REFS ]]]
+A. K. Jain
+K. Nandakumar
+A. Nagar
+--
+Biometric template security
+----
+B. Westover
+J. A. O’Sullivan
+--
+Achievable rates for pattern recog- nition
+----
+N. A. Schmid
+J. A. O’Sullivan
+--
+Performance prediction method- ology for biometric systems using a large deviations approach
+----
+E. Tuncel
+--
+Capacity/storage tradeoff in high-dimensional identiﬁcation systems
+----
+R. F. Ahlswede
+I. Csisz`ar
+--
+Common randomness in information theory and cryptography. I. secret sharing
+----
+
+--
+Common randomness in information theory and cryptography. II. CR capacity
+----
+T. Ignatenko
+F. M. J. Willems
+--
+Biometric systems: Privacy and secrecy aspects
+----
+
+--
+Fundamental limits for biometric identiﬁcation with a database containing protected templates
+----
+F. M. J. Willems
+T. Ignatenko
+--
+Identiﬁcation and secret-key binding in binary-symmetric template-protected biometric systems
+----
+P.-H. Lai
+J. A. O’Sullivan
+--
+Pattern recognition system design with linear encoding for discrete patterns
+----
+I. Csisz´ar
+--
+Linear codes for sources and source networks: Error ex- ponents, universal coding
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\131.pdf
+[[[ LINKS ]]]
+

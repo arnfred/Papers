@@ -1,0 +1,165 @@
+[[[ ID ]]]
+110
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Spatially Coupled LDPC Codes for Decode-and-Forward in Erasure Relay Channel
+[[[ AUTHORS ]]]
+Hironori Uchikawa
+Kenta Kasai
+Kohichi Sakaniwa
+[[[ ABSTR ]]]
+Abstract—We consider spatially-coupled LDPC codes for the three terminal erasure relay channel. It is observed that BP threshold value of spatially-coupled LDPC codes, in particular spatially-coupled MacKay-Neal code, is close to the theoreti- cal limit for the relay channel. Empirical results suggest that spatially-coupled LDPC codes have great potential to achieve theoretical limit of a general relay channel.
+[[[ BODY ]]]
+Felstr¨om and Zigangirov constructed the time-varying peri- odic LDPC convolutional codes from LDPC block codes [1]. Surprisingly, the LDPC convolutional codes outperform the constituent underlying LDPC block codes. Recently, Kudekar et al. rigorously proved such decoding performance improve- ment over binary erasure channels (BEC) and showed that the terminated LDPC convolutional coding increases the belief propagation (BP) threshold up to the maximum a-priori (MAP) threshold of the underlying block code. This phenomenon is called threshold saturation [2]. A protograph of an LDPC con- volutional code can be seen that a spatially coupled protograph of the underlying LDPC code, hence Kudekar et al. named this code spatially-coupled protograph-based LDPC code.
+Spatially-coupled protograph-based LDPC codes, composed of many identical protographs coupled with their neighboring protographs, have recently attracted much attentions. The threshold saturation phenomenon is observed not only for the BEC, but also for general binary memoryless symmetric (BMS) channels [3]. It is expected that the spatially-coupled protograph-based LDPC codes achieve universally the capacity of the BMS channels under BP decoding. Such universality is not possessed by polar codes [4] or irregular LDPC codes [5]. Depending on the channel, frozen bits need to be optimized for polar codes and degree distributions need to be optimized for irregular LDPC codes. Therefore, it is expected that the spatially-coupled protograph-based LDPC codes are able to be applied to many other problems in communications.
+Recently, Kudekar and Kasai showed empirical evi- dences that the BP threshold value of the spatially-coupled protograph-based LDPC codes is approaching the theoretical limit for a class of channels with memory [6] and the Shannon threshold over multiple access channels [7]. Recently, Kasai et al. have shown that spatially-coupled MacKay-Neal (MN) codes have the BP thresholds very close to the Shannon limit of the BEC [8].
+It is tempting to conjecture that the same phenomenon occurs also for transmission over relay channels. We con- sider a three terminal relay network with one sender, one destination (i.e. receiver) and an intermediate (i.e. relay) node that participate in the communication by relaying messages from the sender to the destination. In this paper, we employ the decode-and-forward (DF) strategy [9], i.e., we assume the relay node seldom fails to decode the sender’s messages. Cover and El Gamal proved that under the DF strategy it is possible to achieve the capacity of degraded general (not necessarily erasure) relay channels [9]. However, this coding scheme is not efﬁciently decodable. For the erasure relay channel under the DF strategy, maximum-distance-separable coding achieves the capacity [10]. However, this coding scheme is not applicable for general relay channels. In this paper, we propose spatially-coupled protograph-based LDPC and MN codes for the DF relay channel. We evaluate the decoding performance of these proposed codes by density evolution. These codes are efﬁciently decodable and expected to be applicable to general relay channels.
+The paper is organized as follows. Section II introduces the erasure relay channel and the DF strategy. Section III deﬁnes spatially-coupled protograph-based LDPC and MN codes. Section IV describes the density evolution equations. The numerical results are presented in Section V. The last section will conclude.
+We show the erasure relay channel used in this paper in Fig. 1. The relay channel comprises of a sender node S, a destination node D, and a relay node R. For simplicity, interferences between the sender and the relay transmissions are not considered in this paper, therefore we can view the above relay channel as two separate channels. One is an erasure-broadcast channel from S to R and D, and the other is a point-to-point erasure channel from R to D. We denote that the erasure probabilities on the channels from S to R, from R to D, and from S to D by ǫ SR , ǫ RD , and ǫ SD , respectively. This relay channel can be regarded as wireless communication network from the viewpoint of higher layer [11].
+where β = 1 if R < 1 − ǫ SR and β = ǫ SR otherwise. Since the DF strategy is employed, i.e., R < 1 − ǫ SR in this paper, it holds that β = 1. The region, therefore, becomes
+The dashed lines in Fig. 2 represents the boundary of the region for ﬁxed coding rate R = 0.5. We will deﬁne a code pair used at S and R in Section III. In Section IV, we will investigate the achievable region of (ǫ SR , ǫ SD ) for the code pair.
+Let N S and N R are the lengths of codes used at S and R, respectively. We denote the codewords sent from S and R by
+x ∈ {0, 1} N S and x ′ ∈ {0, 1} N R , respectively. We denote the received words at R and D from S by y R ∈ {0, 1, ?} N S ,
+y D ∈ {0, 1, ?} N S , respectively. We denote the received words at D from R by y ′ ∈ {0, 1, ?} N R .
+Design of LDPC codes for relay channels with DF strategy was discussed in several papers [12], [13], [14], [15]. The sender S sends a codeword x encoded by an LDPC code. The relay R decodes x. We assume the decoding error probability is arbitrary small. This is realized by capacity approaching codes and due to the DF strategy assumption R < 1 − ǫ SR . Then R generates x ′ from x using another LDPC code. The
+x ′ is transmitted to D. D decodes the codeword x from y D and y ′ . This decoding process is performed by joint use of Tanner graphs of the two LDPC codes.
+In this section, we deﬁne spatially-coupled protograph- based LDPC and MN codes, respectively.
+Protograph-based codes are deﬁned by the Tanner graphs lifted from relatively small graphs called protographs [16]. Protographs are deﬁned by non-negative integer matrices called base-matrices [17]. Let us assume we are given a base-matrix B ∈ (Z + ) m p ×n p . The parity-check matrix is
+obtained by replacing each entry of B (i, j) with a q ×q binary matrix which a sum of B (i, j)-times randomly chosen q × q permutation matrices over GF(2). Note that the zero entry of B is replaced with a q × q all-zero binary matrix. This lifting process of matrices keeps the weight of columns and rows the same.
+We deﬁne a spatially-coupled base-matrix B [0,L−1] from a given base-matrix B ∈ (Z + ) m p ×n p . Let L be a non-negative integer, which is referred to as coupling number. We deﬁne B [0,L−1] as follows.
+   
+  
+where B 0 , . . . , B d ∈ (Z + ) m p ×n p are non-negative integer matrices chosen so that
+for some d. These matrices are referred to as spreading base- matrices.
+C. Spatially-Coupled Protograph-based ( l, r, L)-regular LDPC Codes
+We deﬁne the base-matrix of protograph-based ( l,r)-regular LDPC codes as
+where we assumed r = kl for some integer k, for simplic- ity. Spatially-coupled protograph-based ( l, r, L)-regular LDPC codes are deﬁned as protograph-based codes deﬁned by spreading base-matrices
+The design rate R (l,r,L) of the spatially-coupled protograph- based ( l, r, L)-regular LDPC codes is given by
+R (l,r) = 1 − 1/k is the design rate of the underlying code. R (l,r,L) converges to R (l,r) as increasing L with gap O(1/L).
+We use bits corresponding to the leftmost column of B (l,r) as information bits.
+D. Spatially-Coupled Protograph-based ( l, r, g, L)-MN Codes We deﬁne the base-matrix of protograph-based ( l, r, g)-MN
+where we assumed l = gr, for simplicity. Spatially- coupled protograph-based ( l, r, g, L)-MN codes are deﬁned as protograph-based codes deﬁned by spreading base-matrices B MN(l,r,g,L) i 	 for i = 0, . . . , g − 1 as follows
+ 
+where 0 a ×b represents an a × b all-zero matrix and 1 i represents all-one row vector of length i.
+The design rate R MN(l,r,g,L) of the spatially-coupled protograph-based ( l, r, g, L)-MN codes is given by
+R MN(l,r,g) = 1/g is the design rate of the underlying code. R MN(l,r,g,L) converges to R MN(l,r,g) as increasing L with gap O(1/L).
+We use bits corresponding to the leftmost column of B MN(l,r,g) as information bits. The information bits are punc- tured.
+E. Relay Channel Coding via Spatially-Coupled Protograph- based Codes
+As explained in Section II-C, we use two LDPC codes for coding at S and R. We propose a relay channel coding scheme via spatially-coupled protograph-based codes in the following way.
+The sender S encodes the information bits with a spatially-coupled ( l, r, L)-regular LDPC (resp. (l, r, g, L)-MN) code deﬁned by a base-matrix B (l,r,L) (resp. B MN(l,r,g,L) ). The relay R decodes the information bits and en- codes with another spatially-coupled ( l, r, L)-regular LDPC (resp. ( l, r, g, L)-MN) code deﬁned by the same base-matrix
+The decoder at the destination D performs the BP decoding algorithm on a Tanner graph which represents the two codes. The joint Tanner graph is obtained by connecting information variable nodes in the two codes with check nodes of degree 2. In Fig. 3, the joint Tanner graph of spatially-coupled regular LDPC codes is depicted. In Fig. 5, the joint Tanner graph of spatially-coupled MN codes is depicted.
+The BP decoder [18] iteratively exchanges messages ∈ {0, 1, ?} between variable nodes and check nodes in the Tanner graphs. For transmissions over the BEC, the density evolution allows us to predict the message erasure probability at each iteration round.
+Let us assume we are given two protograph-based codes deﬁned by spatially-coupled base-matrix B. We refer to the edges in the Tanner graph corresponding to the base-matrix entry B (i, j) as edges at section (i, j). Let y (ℓ) i,j denote the probability that the messages from check nodes to variable nodes along the edges at section (i, j) are “?” at iteration ℓ. Similarly, we deﬁne x (ℓ) i,j as the probability that the messages from variable nodes to check nodes along the edges at section (i, j) are “?” at iteration ℓ. The messages at the 0-th round are initialized with channel outputs. It follows that x (0) i,j = ǫ j , where ǫ j is deﬁned by ǫ j = ǫ SD (reps. ǫ RD ) if the bits are transmitted by S (resp. R) and corresponding to the j- th column of the base-matrix entry B are not punctured, and ǫ j = 1 otherwise.
+A message sent from a check node is “ ?” if and only if at least one of the incoming messages are “ ?”. Consequently, we have
+A message sent from a variable node is “ ?” if all the incoming messages and the message from the channel are “ ?”. Consequently, we have
+The channel erasure probability pair ( ǫ RD , ǫ SD ) is said to be achievable by the protograph-based codes if lim ℓ →∞ x (ℓ) i,j = 0 for all i, j such that B(i, j) = 0.
+In this section, we evaluate the achievable ( ǫ RD , ǫ SD ) region, referred to as achievable erasure probability region, for LDPC codes and spatially-coupled protograph-based LDPC and MN codes.
+Figure 2 shows the achievable erasure probability region of (3,6)-regular LDPC codes of rate 0.5 at S and R. The vertical axis represents ǫ SD and the horizontal axis represents ǫ RD . The black dashed line represents the theoretical limit Eq. (1) for rate 0.5. It can be seen that there is a large gap in the slope region for 0.5 < ǫ RD < 1, 0.5 < ǫ SD < 1.
+When ǫ RD = 1, y ′ is all erased, D needs to decode x only from y D . Hence, the achievable ǫ SD when ǫ RD = 1 is equal to the BP threshold of the (3,6)-regular LDPC code 0.4294.
+B. Spatially-Coupled Protograph-based (l, r, L)-regular LDPC Codes
+Figure 4 shows achievable erasure probability region of spatially-coupled protograph-based (3,6,128)-regular LDPC codes at S and R. The design rate R (3,6,128) is 0.4921875. As L goes to inﬁnity, R (3,6,L) converges to 0.5. The black dashed line represents the theoretical limit for rate 0.4921875 and the gray dotted line represents the theoretical limit for rate 0.5. At the corner point ǫ RD = 1 (ǫ SD = 1), ǫ SD ( ǫ RD ) is almost equal to the MAP threshold of (3,6)-regular LDPC code 0.48815. However, there is still a small gap in the slope region for 0.5 < ǫ RD < 1, 0.5 < ǫ SD < 1.
+C. Spatially-Coupled Protograph-based ( l, r, g, L)-MN Codes Figure 6 shows achievable erasure probability region of
+spatially-coupled (4,2,2,128)-MN codes at S and R. The design rate R MN(4,2,2,128) is 0.49609375. As L goes to inﬁnity, R MN(4,2,2,L) converges to 0.5. The black dashed line repre- sents the theoretical limit for rate 0.49609375 and the gray dotted line represents the theoretical limit for rate 0.5. At the corner point ǫ RD = 1 (ǫ SD = 1), ǫ SD = 0.4999 (ǫ RD = 0.4999) is almost equal to the point-to-point Shannon limit of rate one half codes. The boundary of the achievable region is very close to the theoretical limit. However there is a very small gap less than 10 − 4 between the boundary of the region and the theoretical limit. This gap is due to wiggles [2].
+We have designed spatially-coupled protograph-based LDPC and MN codes for erasure relay channels. It is ob- served that spatially-coupled protograph-based MN codes ap- proach the theoretical limit. We expect that spatially-coupled
+protograph-based MN codes approach the capacity over the relay channels also with other channel impairments, such that the binary symmetric relay channels and the Gaussian relay channels.
+In the future work, we propose spatially-coupled protograph-based MN codes for the relay channel with interferences at the destination and prove the rate achievability of the spatially-coupled protographs-based MN codes to the theoretical limit.
+[[[ REFS ]]]
+A. J. Felstr¨om
+K. S. Zigangirov
+--
+Time-varying periodic convo- lutional codes with low-density parity-check matrix
+----
+S. Kudekar
+T. Richardson
+R. Urbanke
+--
+Threshold saturation via spatial coupling: Why convolutional LDPC ensembles perform so well over the BEC
+----
+S. Kudekar
+C. M´easson
+T. J. Richardson
+R. Urbanke
+--
+Threshold saturation on BMS channels via spatial coupling
+----
+E. Arıkan
+--
+Channel polarization: A method for constructing capacity- achieving codes for symmetric binary-input memoryless channels
+----
+T. J. Richardson
+M. Shokrollahi
+R. Urbanke
+--
+Design of capacity- approaching irregular low-density parity-check codes
+----
+S. Kudekar
+K. Kasai
+--
+Threshold saturation on channels with memory via spatial coupling
+----
+S. Kudekar
+K. Kasai
+--
+Spatially coupled codes over the multiple access channel
+----
+K. Kasai
+K. Sakaniwa
+--
+Spatial coupling of capacity-achieving codes with bounded density
+----
+T. M. Cover
+A. A. E. Gamal
+--
+Capacity theorems for relay channels
+----
+K. Salamatian
+R. Khalili
+--
+An information theory for erasure channels
+----
+R. Khalili
+K. Salamatian
+--
+On the achievability of cut-set bound for a class of erasure relay channels the non degraded case
+----
+D. Sridhara
+C. A. Kelley
+--
+LDPC coding for the three-terminal erasure relay channel
+----
+P. Razaghi
+W. Yu
+--
+Bilayer low-density parity-check codes for decode-and-forward in relay channels
+----
+T. V. Nguyen
+A. Nosratinia
+D. Divsalar
+--
+Bilayer protograph codes for half-duplex relay channels
+----
+V. Savin
+--
+Split-extended LDPC codes for coded cooperation
+----
+J. Thorpe
+--
+Low Density Parity Check (LDPC) Codes Constructed from Protographs
+----
+M. Lentmaier
+G. Fettweis
+K. S. Zigangirov
+D. Costello
+--
+Ap- proaching capacity with asymptotically regular LDPC codes
+----
+T. J. Richardso
+R. Urbank
+--
+Modern Coding Theory
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\110.pdf
+[[[ LINKS ]]]
+

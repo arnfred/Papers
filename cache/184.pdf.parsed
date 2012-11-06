@@ -1,0 +1,131 @@
+[[[ ID ]]]
+184
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Random CDMA with Constant Envelope
+[[[ AUTHORS ]]]
+Ralf R. M¨uller
+[[[ ABSTR ]]]
+Abstract—This paper studies the design of random code- division multiple-access (CDMA) with continuous-time constant envelope. The proposed scheme is compatible with linear CDMA and allows for standard methods of linear multiuser detection while avoiding phase jumps at all times.
+The proposed algorithm ﬁnds a set of spreading waveforms with approximately rectangular power spectral density and stop-band attenuation of more than 60 dB at exactly constant envelope. Alternatively, the algorithm can provide perfect stop- band attenuation at a peak-to-average power ratio of 0.04 dB at spreading factor 512.
+[[[ BODY ]]]
+Constant envelope (CE) modulation offers signiﬁcant ad- vantages compared to amplitude modulation with respect to the design and linearity demands of the radio-frequency (RF) hardware, in general, and of the power ampliﬁer, in particular. These advantages made it the method of choice for the GSM (Groupe Sp´ecial Mobile, later Global System for Mobile Communications) standard [1].
+State-of-the-art CE modulation also brings along some disadvantages. On a single user communication link, many forms of CE modulation come with intrinsic intersymbol interference and the need for a trellis based equalizer at the receiver. However, there are ways to circumvent this drawback in practice with negligible loss, see e.g. [2].
+Furthermore, CE modulation only allows for information coded in phase, but not in amplitude. On a single user channel, this makes spectral efﬁciency saturate at only half its potential value at high signal-to-noise ratio (SNR) since the amplitude is kept unused for information transfer. Aiming for higher spectral efﬁciency the successors of GSM like IMT-2000 (International Mobile Telecommunications-2000) and others discarded CE modulation and went for linear modulation despite the need for more expensive RF-hardware. However, on a multiple-access channel, the amplitude component is utilized by the superposition of the signals of various users [3]. For a large number of users, spectral efﬁciency is not impaired due to the restriction to phase modulation. In multiuser com- munication systems, the spectral efﬁciency of CE modulation was, in fact, found to be almost indistinguishable from the spectral efﬁciency of CDMA with linear quadrature amplitude modulation [4]. Unfortunately, the ﬁndings in [4] came at the cost of rather big spectral side-lobes that are incompatible with the spectral masks of most wireless communication standards.
+The combination of continuous phase (CP) modulation and CDMA was ﬁrst addressed in [5] in a very general setting. In the sequel, the following two ways to combine CP modulation with CDMA were given further attention: 1) A traditional spread spectrum signal is feed into a CP modulator [6]. This allows for a simple implementation of the transmitter by means of a voltage controlled oscillator. In its general form it prohibits linear multiuser detection, as it does not allow for a description of the transmitted signal as linear or quasi- linear CDMA. To overcome this drawback, Lampe et al. [7] proposed to closely approximate the received signal by an offset quaternary phase-shift keying (OQPSK) signal. 2) The spreading sequence is fed into a CP modulator before the data sequence is modulated [8]–[10]. This method decouples the phase state of the CP modulator from the phase of the data signal and therefore constitutes a linear CDMA system with constant envelope. In its general form it creates phase jumps at the transitions between symbols. To overcome this drawback, [4] proposed to use particular frequency pulses that avoid those phase jumps.
+The two ways to combine CDMA with CP modulation still have their drawbacks. The modulator by Lampe et al. [7] achieves acceptable stop-band attenuation, but the pass- band spectrum is severely colored. Furthermore, the question whether the CP modulation increases the correlation of the signature waveforms has not been addressed. Reference [4] has found ways to shape the pass-band spectrum while keeping the correlation of the signature waveforms unaffected. However, the attenuation in the stop-band remained unsatisfactory.
+In this paper, a novel way of CE modulation for CDMA is proposed that avoids the problems with spectral side-lobes at the cost of only fractions of decibels. For that purpose an iterative algorithm is proposed to generate sets of random spreading sequences with CE such that each user is assigned a set of spreading sequences. The spreading sequences of a user are very similar and differ only at the very beginning and the very end. They are chosen in a data-dependent fashion to avoid phase jumps at symbol transitions. In order for the iterative algorithm to converge where it is intended to, it is initialized with random spreading sequences generated by a Markov chain. We note that spreading sequences generated by Markov chains were previously proposed in literature, e.g. [11], [12], though with other purposes in mind.
+The paper is composed of ﬁve more sections. Section II introduces the multiple-access channel considered in this paper. Section III introduces the novel method to generate
+CE signature waveforms. Section IV addresses the issue of avoiding phase discontinuities at symbol transitions. Section V shows that the correlation properties of the proposed wave- forms do not fall behind the ones of independent identically distributed (i.i.d.) random signatures. Conclusions are drawn in Section VI.
+Consider an asynchronous CDMA system with K users in ﬂat 1 Rayleigh fading. We focus on the uplink (reverse link) communication here, since the choice of CE modulation is motivated the by cost of transmitter hardware which is more relevant for mobile devices than for base stations.
+in complex base-band notation. Here, a k ∈ C is the received amplitude of user k accumulating the effects of transmitted amplitude, fading, and carrier phase offset; τ k ∈ R is the signal delay of user k; w(t) is zero-mean additive white Gaussian noise with power spectral density N 0 ; and s k (t) is the spread signal of user k. It can be decomposed into
+where b k [m] ∈ B is the symbol transmitted by user k at time instant m, c k,m (t) is the signature waveform of user k at time slot m, T s is the symbol clock cycle, and B ⊂ {z ∈ C : |z| = 1 } is the symbol alphabet. Introducing the spreading factor N and the chip clock cycle
+by the discrete-time chip sequence s k,m [ ·] and the chip wave- form ψ(t). Finally, we assume that τ k modT c is uniformly distributed within the chip interval.
+In the following an iterative method to generate CE signa- ture waveforms with high stop-band attenuation and suitable pass-band spectrum is proposed. For that purpose the signature waveforms at iteration = 0 are represented as
+  
+by means of two-fold oversampling and offset modulation. Following an idea of [4], the offset is chosen to be in opposite directions for even and odd user indices.
+In order to ensure convergence of the iterative algorithm towards the desired ﬁxed-point, the initial choices of ˜ s (0) k [ ·] and ˜ ψ (0) ( ·) are important. The following initializations were found to lead to satisfactory results:
+1) Create subsequent samples of ˜ s (0) k [ ·] by consecutively assigning the outputs of a binary symmetric antipodal Markov source with transition probability Pr( −1|+1) = Pr(+1 | − 1) = p < 1 2 .
+This choice is motivated as follows: The offset modulation together with the half-sinewave pulse shape ensures CE of the signature waveforms by means of the well-known identity sin 2 (x) + cos 2 (x) = 1 ∀x. The spectrum of the half-sinewave pulse has a low-pass characteristic with severely colored passband and many sidelobes. The offset modulation shifts the spectrum of the signature waveform compared to the spectrum of the pulse shape to the right and to the left by 1/T c for even and odd user indices, respectively. For independent identically distributed chips, the resulting cumulated spectrum of all users Φ ss (f ) (power spectral density of the signal s(t)) is therefore, an M-shaped spectrum with sidelobes where low (and high) frequencies are underrepresented compared to medium frequencies around ±1/T c . To amplify the low- frequencies without affecting the CE, the chip sequence is given low-pass properties. This is implemented by means of the Markov source with appropriate transition probability. The Markov source ampliﬁes the low-frequency components and attenuates the high-frequency components. By this means, the signals of all users maintain CE and the power spectral density of the superposition signal s(t) achieves almost rectangular shape in the passband. However, the stop-band properties are still unsatisfactory. This is to be overcome by the following iterations.
+where T s ∗ denotes cyclic convolution (efﬁciently implemented by means of oversampling and fast Fourier transform) with respect to T s and r(t) is a root-raised cosine ﬁlter with roll-off factor α = 0.1 and Nyquist frequency (1 + α)/T c windowed to the length of the symbol interval T s . The convolution with the root-raised cosine ﬁlter serves the purpose of reducing the sidelobes in the stop-band. One would wish to use an ideal low-pass ﬁlter (zero roll-off) instead of the root-raised cosine ﬁlter. However, iterations did not converge in that case. A small, but non-zero roll-off (or something similar) seems to be
+necessary 2 . The normalization in (9) restores the CE after the ﬁltering. The cyclic convolution was not primarily preferred over linear convolution to simplify implementation by means of fast Fourier transform, though it is certainly helpful in this respect, but to ensure that the signature waveform converges to a cyclic signal.
+An example of two signature waveforms for spreading factor N = 16 is shown in Fig. 1. It is observed that the more iterations the smoother is the phase trajectory.
+Fig. 2 shows the average power density spectrum for spreading factor N = 512 after various numbers of iterations. Depending on the number of iterations, a stop-band attenuation of more than 60 dB can be reached while maintaining exactly constant envelope in continuous time 3 . Even after 10 4 itera- tions, no ﬁxed point was reached and further improvements of the stop-band attenuation are possible. The ﬁgure indicates that every tenfold increase of the number of iterations approx- imately buys additional 10 decibels of stop-band attenuation.
+The proposed algorithm can also produce a perfectly band- limited signal at the expense of small concessions with respect to CE. For that purpose, we only need to stop the iterations after (8) and (11) instead of (9) and (12), respectively. The signal is then perfectly band-limited due to the ﬁltering with r(t) within the limits of the spectral properties of time-limited signals. The peak-to-average power ratios (PAPRs) are given in Table I for various numbers of iterations. The PAPR converges slower for large spreading factors, but saturates at a lower
+level. Further experiments showed that the saturation level can be lowered by the choice of a larger roll-off factor for the root- raise cosine ﬁlter r(t).
+To ensure that the spectral properties of the signature wave- forms also hold for the spectrum of the spread signal s k (t), phase jumps at the symbol transition points (integer multiples of T s ) must be avoided. In fact, CP is only a necessary, but not sufﬁcient condition. To ensure high stop-band attenuation even ﬁrst and higher order derivatives of the phase should vanish or be sufﬁciently small.
+Phase jumps do not occur at symbol transitions where the data symbols do not change, as the signature waveform is cyclic due to the cyclic convolution in the iterative process that created it. However, symbol transitions with changing symbols pose an obstacle. A way to overcome this problem by means of guard chips will be proposed in this section.
+is to use a set of several signature waveforms for each user. Assume that the data symbols stem from a regular M -ary phase shift keying, i.e. B = {z : z M = 1 }. Then, we only need |B| 2 = M 2 signature sequences per user. One of these is the signature waveform produced by the iterative algorithm in Section III. It will be used in the present time slot if the data symbols of the present, the past and the future time slot are identical.
+In order not to jeopardize linear multiuser detection all M 2 signature waveforms of a given user should be very similar, e.g. to differ only at the very ﬁrst and very last chips, called the guard chips in the sequel. These guard chips can be discarded by the multiuser detector just like the cyclic preﬁx is discarded in orthogonal frequency-division multiplexing. A more sophisticated version of linear multiuser detection, based on expected spreading waveforms which partially utilizes the guard chips is discussed in [13].
+The M 2 signature waveforms per user are created by means of secondary iterations with use the outcome of the primary iterations (8) to (9) as starting point. First, we concatenate two signature sequences where the phase of one of them is shifted by one of the phase-shift-keying constellation points d
+  
+c (∞) k (t + T s )/d −T s ≤ t < 0 c (∞) k (t) 	 0 ≤ t < T s 0 	 elsewhere
+Then, for all constellation points d ∈ B we iterate the concatenation of the two signature sequences
+|˜c ( ) k (t, d) | 	 (12) until the phase jumps have smoothened out and we have re- established the desired spectral properties while preserving CE. Now, we can assign the data-dependent spreading se- quences by cutting out the middle part of the concatenation and undoing the phase shift:
+   
+  
+T s /2 ≤ t < T s 0 	 elsewhere
+(13) With these data-dependent spreading sequences, all symbol transitions are smooth.
+The proposed method works excellently for large spreading factors. For small spreading factors, the method suffers from the well-known time-frequency uncertainty. Since the signals are strictly time-limited to preserve CE, their spectral prop- erties deteriorate the shorter the signature waveform. Fig. 3 shows the spectra for various spreading factors after 10 4 primary iterations and 10 3 secondary iterations. For N ≥ 32, the spectral regrowth due to CE dominates. For N ≤ 16, spectral regrowth is dominated by the time-limitation of the spreading sequences.
+If the signal set is not a regular M -ary phase shift keying, there are, in general, more than M phase differences. Then, more than M 2 signatures sequences per user are required and (10) to (13) must be generalized accordingly
+The various signature waveforms of each user should be very similar in order to apply standard algorithms for linear multiuser detection. Due to their design, they show signiﬁcant deviations from each other only at the very beginning and at the very end. In the example shown in Fig. 4, they differ signiﬁcantly only within the ﬁrst two and last two chip intervals. The deviation is insigniﬁcant. In fact, the correlation coefﬁcient between the two sequences was measured as 0.998. In practice, mismatch due to channel estimation errors is much larger. Thus, this small deviation should not pose any practical concern for high spreading factors.
+The initial generation by a Markov source and the iterative processing of the random signature waveforms leads to signa- ture sequences with correlated chips. This raises the concern whether the signature waveforms proposed in the two previous sections are more correlated than signature waveforms formed by i.i.d. random samples. We do not have a proof to debunk such concern, but we will give strong numerical evidence that this concern is unfounded.
+The deleterious impact of correlations among signature sequences becomes visible at the spread of the singular values of the matrix of signature sequences. Note that those singular values are the only way the signature sequences affect the total capacity of the Gaussian multiple-access channel with channel state information at the receiver.
+Fig. 5 shows the empirical distribution of singular values for both the proposed CE signature waveforms and a set of signature waveforms of i.i.d. random chips. In order to allow for a fair comparison, the i.i.d. random waveforms are modulated with a root-raise cosine pulse with roll-off factor 0.22. This results in almost identical power density spectra, cf. Fig. 2. It is evident from Fig. 5 that the singular value distributions of CE and i.i.d. signature waveforms differ insigniﬁcantly. Thus, we conclude that CE random waveforms show the same properties with respect to multiuser detection
+and channel capacity than CDMA with i.i.d. random signature waveforms.
+On the CDMA channel with moderate to high spreading fac- tor, CE modulation comes at small to no cost in performance compared to conventional linear pulse shaping. It allows for the use of less expensive and more efﬁcient power ampliﬁers at the transmitters. At the same time, the CE modulation proposed in this work is compatible with off-the-shelf linear multiuser detection due to its quasi-linear design. In multi- rate systems, users with small spreading factors can employ conventional spreading with root-raised cosine pulse shapes and co-exist with users with large spreading factors and CE signature waveforms. A stopband attenuation of 30 dB and 55 dB can be reached by spreading factors N = 8 and N = 64, respectively.
+The author would like to thank Johannes Huber as well as Lutz and Alexander Lampe for insightful discussions.
+[[[ REFS ]]]
+
+--
+GSM speciﬁcations, series 01–12
+----
+J. Huber
+W. Liu
+--
+An alternative approach to reduced–complexity CPM–receivers
+----
+L. Duan
+B. Rimoldi
+R. Urbanke
+--
+Approaching the AWGN channel capacity without active shaping
+----
+R. R. M¨uller
+A. Lampe
+--
+Spectral efﬁciency of random CDMA with constant envelope modulation
+----
+A. Svensson
+C.-E. Sundberg
+G. Lindell
+--
+On direct sequence spread spectrum with continuous phase modulation
+----
+F. Giannetti
+M. Luise
+R. Reggiannini
+--
+Chip timing recovery in digital modems for continuous-phase CDMA radio communications
+----
+L. Lampe
+R. Schober
+R. Tzschoppe
+J. B. Huber
+--
+Noncoherent continuous-phase modulation for DS-CDMA
+----
+A. T. McDowell
+J. S. Lehnert
+--
+Phase-independent continuous phase modulation for bandwidth efﬁcient multiple-access communications
+----
+M. A. Landolsi
+W. E. Stark
+--
+Performance of DS/CDMA com- munications with continuous-phase signals
+----
+R. T. Hsu
+J. S. Lehnert
+--
+The performance of continuous-phase- coded DS/SSMA communications
+----
+G. Mazzini
+G. Setti
+R. Rovatti
+--
+Chaotic complex spreading sequences for asynchronous DS-CDMA— Part I: System modeling and results
+----
+H. Fujisaki
+--
+Design of optimum M -phase spreading sequences of Markov chains
+----
+R. R. M¨uller
+--
+Multiuser detection for continuous phase CDMA
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\184.pdf
+[[[ LINKS ]]]
+

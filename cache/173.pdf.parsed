@@ -1,0 +1,131 @@
+[[[ ID ]]]
+173
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The average radius of codes: survey and new results
+[[[ AUTHORS ]]]
+G´erard Cohen
+Carlos Munuera
+Patrick Sol´e
+[[[ ABSTR ]]]
+Abstract—The average radius of a block code is a parameter that occurs naturally in quantization and steganography. We give asymptotic upper and lower bounds on this parameter. In particular we show that for almost all long codes the normalized average radius equals the normalized covering radius. We survey some special graph-theoretic lower bounds.
+Index Terms—steganography, covering radius, probabil- ity of error
+[[[ BODY ]]]
+The average radius of a binary code is the average distance of a vector in ambient space to the code.
+It should not confused with the covering radius R = max
+a parameter that has received a lot of attention in the past [4]. Following [8, Chap. 1, §5], let us denote by α i the number of cosets of weight i. Then, for a linear [n, k] code the deﬁning formula (1) becomes
+This quantity occurs in steganography as the average number of changes made in the cover to realize an embedding [3], [5], [9]. It also controls the average distortion in vector quantizing when using the code as a codebook [12]. An immediate consequence of the above deﬁnitions is that
+In Section 4, we shall see that this bound is asymptotically tight. However, non asymptotic im- provements are possible as in Proposition 2. Con- sequently, most of this paper will be dedicated to
+lower bounds on ˜ R, either direct or by graph theo- retic arguments as in Section 5. Since steganography requires coset coding, we shall limit ourselves to linear binary codes, and Gray images of Z 4 -codes. The material is organized as follows. Section 2 col- lects the necessary notation and deﬁnitions. Note- worthy is a Lemma on the average radius of the Hamming ball. Section 3 contains combinatorial bounds. Asymptotic bounds are in Section 4. Sec- tion 5 surveys graph theoretic lower bounds from the nineties. Section 6 compiles some exact values of ˜ R computed from known coset weight distribu- tion. Section 7 casts our results into perspective and points out some challenging open problems.
+The notation tends to follow that of [4]. Greek letters normally denote normalized quantities. The parameters of a linear code are length n, dimension k = nκ, minimum distance d = nδ, covering radius R = nρ, average radius ˜ R = n ˜ ρ. The packing radius is d−1 2 , and its normalized version δ/2. The parameters of C are collectively denoted by [n, k, d, R, ˜ R] and those of its dual C ⊥ by [n, n − k, d ⊥ , R ⊥ , ˜ R ⊥ ]. For a set B ⊆ F n 2 and a vector x ∈ F n 2 we denote by ˜ d(x, B) the average distance from b ∈ B to x. Formally
+Of special importance is the case of the mean radius of a Hamming ball
+where B(0, t) denotes the Hamming ball of radius t and center 0. The following two results are proved in [9, §5.4].
+Lemma 1: If V (n, t) = |B(0, t)| = n i=0 n i , then
+n 	 = τ, for all 0 < τ < 0.5.
+Proof: The ﬁrst point is easily proved by con- sidering the generating function
+and computing f n (1)/f n (1). The second point fol- lows from
+By a Voronoi region B for the [n, k] code C we shall mean a set of 2 n−k coset leaders that constitute a system of distinct representatives for the 2 n−k cosets of C into ambient space. This region is, in general, non unique. A Voronoi region is hereditary iff it is stable by inclusion for supports. Note that, since the translates of B by elements of C tile the ambient space we get, for all c ∈ C, the property
+Deﬁne the defect to the Hamming bound of an [n, k] code C by the expression
+Proposition 1: If the code C has packing radius t then
+with equality iff the code is perfect or quasi perfect (R = t + 1).
+Clearly |S t | = 2 k V (n, t). Note that if x ∈ B(c, t), for some c ∈ C then d(x, C) = d(x, c). On the other
+hand, if x / ∈ S t , then d(x, C) ≥ t + 1. From this discussion we see that, on average,
+2 n 	 . The result follows upon noticing that
+An upper bound that sharpens the trivial ˜ R ≤ R is the following
+Proposition 2: If the code C has packing radius t and covering radius R then
+Proof: As is well-known α i = n i for i ≤ t. On the other hand, since C is not t + 1-correcting, α t+1 ≤ n t+1 − 1. By using a hereditary Voronoi [4, Thm. 2.414] this bound can be generalized in the case of t + 1 ≤ i ≤ R we have
+descendants of weight i. The result follows then after substitution into (2).
+Remark: By using the formula [8, Chap. 1 §5 (24)]
+we see that the estimates on the α i ’s in the above proof can be useful to estimate word error rates P e in the context of transmission on a BSC with transition probability p.
+denote the binary entropy function and let h −1 (·) denote the inverse function over the range [0, 1/2]. The following Lemma is the contrapositive of [9, Lemma 5.11 (3)].
+Lemma 2: If t is such that V (n, t) ≤ |B|, then ˜ d(0, B) ≥ b(n, t).
+W.l.o.g. we may assume that |B| = V (n, t). Let a = |B B(0, t).| We see that then
+Proposition 3: Let 0 < θ < 1. If |B| > V (n, nθ) ≈ 2 nh(θ) , then ˜ d(0, B) ≥ nθ.
+Let us now use known upper bounds of [7, §2.10] written as 1 − κ > h(f (δ)) to get lower bounds on
+˜ R = n ˜ ρ of the form ˜ ρ ≥ f (δ). Thus, we get from the
+• Elias bound:˜ ρ ≥ 1/2 − (1/2)(1 − 2δ) 1/2 ≥ δ/2. • ﬁrst MRRW bound:
+We require a well-known but deep theorem from [4]. We shall say that a property holds for almost all codes (a.a.) iff for large n the proportion of codes of length n with that property is > 1 − o(1).
+Theorem 1: Almost all codes of parameters [n, nr, nδ, nρ] lie on the Varshamov Gilbert bound for minimum distance and on the sphere covering bound for covering radius, i.e satisfy:
+h −1 (1 − κ) − o(1) ≤ ρ ∼ δ ≤ h −1 (1 − κ) + o(1). In particular, for those codes:
+Proof: The assertion for the covering radius comes from [4, Th. 12.3.10]. That for minimum distance from [1, Lemma 1.2].
+We are now ready for the main asymptotic result. Theorem 2: Almost all codes satisfy
+Proof: We take for B a Voronoi region of C. Then, by (3) for a.a. codes:
+|B| ≥ 2 n(h(δ)−o(1)) and, by Proposition 3 we obtain
+But, by the properties of the Voronoi region n −1 ˜ d(0, B) ∼ ˜ ρ,
+Remark: There are inﬁnite families of codes for which ρ = ˜ ρ for large n. By performing i
+times a direct product of parity-check matrices, from C ⊥ [n, n − k, d, R], one gets C ⊥ i [ni, (n − k)i]; revert- ing to the primal code, this gives C i [ni, ki, d, Ri].
+For concreteness let C = BCH 2 [15, 7, 5, 3] By Proposition 1 ˜ R ≈ 2.46; this gives C i [15i, 7i, 5, 3i, 2.46i]. Indeed R − ˜ R = 0.54i goes to inﬁnity, and for the normalized quantities:
+The theme of this section is that codes with high symmetry have a high average radius. Let G(C) denote the automorphism group of C. It was proved by graph theoretic methods in [12] that
+Theorem 3: If G(C) acts transitively on the co- ordinates of C, then
+In particular the conclusion holds for cyclic codes.
+Deﬁne the coset graph Γ(C) as the undirected Cayley graph with vertex set the cosets of C; two cosets being connected iff they differ by a coset of weight one. It is well known that the diameter of this graph is none other than the covering radius of the code [2]. In [12] it is proved that the mean distance D is related to the average radius by the formula
+Recall that, following [10], a graph is orbital regular if its automorphism group has a subgroup that acts regularly on the set of edges, and, more generally on its orbits on ordered pairs of vertices.
+In particular, the result is true for C cyclic without words of period < n.
+Proof: The ﬁrst assertion follows from [11, Cor. 1] and [10, Thm. 2.2] applied to Γ(C). The second assertion follows from [11, Thm. 6].
+In this section we extend the table of [12] by using Proposition 1 as well as coset weight distri- bution from the literature. By t we denote the error correcting capacity. The example of the cyclic Golay shows that we might have ˜ R < t for some codes. The terminology “truncated Golay” of [2] means punctured in the sense of [8].
+In the present paper steganography directed our investigation towards a relatively unexplored invari- ant of a code: the average radius. It is related to, but different from, the covering radius. Both asymptotics and numerical values show that the codes with the lowest average radius for given codimension are codes that are both good packings and good coverings. Indeed, if two codes have the same covering radius the one with the larger packing radius will have the lower average radius. Thus the Preparata codes of the preceding section have a lower average radius than any linear code of the same length, covering radius and codimension.
+There are many open problems and directions. For instance, generalizing the bounds of Section V to unrestricted codes is a possible direction. Deriving upper bounds on ˜ R as a function of the dual distance that do not come from the immediate ˜ R ≤ R is a challenge. In general all the problems and tech- niques that enter the study of the covering radius are worthy of consideration to study the average radius.
+Considering other alphabets and metrics might lead to interesting problems as well.
+[[[ REFS ]]]
+A. Bar
+S. Ples
+C. Huffman ed
+--
+Complexity isues in Coding theory, in Handbook of Coding Theory , vol
+----
+A. E
+A. M
+A. Distance-regular graphs
+--
+Brouwer, , Cohen, ; Neumaier,  Ergebnisse der Mathematik und ihrer Grenzgebiete (3) , 18
+----
+J. Bierbraue
+J. Fridric
+Y. Q. Shi
+--
+Constructing good covering codes for applications in steganography, Lecture Notes in Computer Science, Trans
+----
+
+--
+G
+----
+F. Galan
+G. Kabatiansk
+--
+Steganography via Covering Codes, Proceedings of ISIT 2003, Yokohama
+----
+M. Harad
+--
+M Ozeki, Extremal self dual codes with the smallest covering radius, Discrete Math 215 (2000) 271–281
+----
+W. Cary Huffma
+--
+Vera Pless Fundamentals of error correcting codes , Cambridge (2003)
+----
+F. J
+N. J. 
+--
+MacWilliams, ; Sloane,  The theory of Error Correcting Codes , North Holland (1977)
+----
+C. Munuer
+--
+Steganography from a coding theory point of view, Algebraic Geometric Modelling in Information Theory
+----
+P. Sol´
+--
+The edge-forwarding index of orbital regular graphs, Discrete Math
+----
+P. Sol´
+--
+Expanding and forwarding
+----
+P. Sol´
+P. Tillic
+--
+J- On the dual distance and the gap of a binary code
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\173.pdf
+[[[ LINKS ]]]
+

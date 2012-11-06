@@ -1,0 +1,95 @@
+[[[ ID ]]]
+190
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Lower Bound of the Free Distance of Partial Unit Memory Codes Based on LDPC Codes
+[[[ AUTHORS ]]]
+Konstantin Kondrashov
+Victor Zyablov
+[[[ ABSTR ]]]
+Abstract—In this paper we describe ensemble of binary partial unit memory (PUM) codes based on Low–Density Parity–Check (LDPC) block codes. We study the lower bound on the free distance of the proposed codes and show that the increase α of these codes has positive value.
+[[[ BODY ]]]
+option. Therefore, we deﬁne a (P)UM code by its semi-inﬁnite transposed parity-check matrix H T :
+where H 0 , H 1 are r × n matrices, r = n − k. For either UM or PUM codes, block matrix H 0 must have full rank and H 1 may have less rank if the code is PUM: rank (H 0 ) = r, rank (H 1 ) = r 1 ≤ r.
+We build an ensemble C(n, k, k 1 ) of (P)UM codes by choosing randomly and independently LDPC codes from an ensemble of regular Gallager LDPC codes [8]. The parity- check matrix of such a Gallager code consists of a number of so-called layers. The parity-check of the ﬁrst layer H ∗ is obtained by combining n 0 identity matrices
+where identity matrix I b has size b × b. Having l layers in the LDPC code, its parity-check matrix will be deﬁned as
+where π i is random column permutation. Resulting parity- check matrix dimensions are r×n, where r = lb and n = bn 0 . By construction, such matrix has l ones and each column and n 0 ones in each row.
+We consider the ensemble of C(n, k, k 1 ), k 1 ≤ k, k+k 1 < n (P)UM codes deﬁned by semi-inﬁnite transposed check matrix (1) with random LDPC check matrices H 0 and H 1 , such that corresponding generator matrix may be presented in the next form:
+where G 0 and G 1 are k × n matrices, rank(G 0 ) = k and rank(G 1 ) = k 1 ≤ k. Having both H and G in minimal basic
+     
+   
+Let C 00 denote code deﬁned by generator matrix G 00 . Then, v i ∈ C 00 and summarily Hamming weight wt (v i v i+1 ) ≥ d (C 00 ).
+Let C 0 denote code deﬁned by generator matrix G 0 , C 11 denote code deﬁned by generator matrix G 11 . Then, v i ∈ C 0 , v i+1 ∈ C 11 and wt (v i v i+1 ) ≥ d (C 0 ) + d (C 11 ).
+Let C 01 denote code deﬁned by generator matrix G 01 . Then, v i ∈ C 01 , v i+1 ∈ C 11 and wt (v i v i+1 ) ≥ d (C 01 ) + d (C 11 ).
+Active row distance d r 1 is deﬁned by the output with the minimum Hamming weight among these cases. Hereinafter we assume that among two codes of the same length the one with highest rate has lowest distance. All C ij belong to LDPC codes which satisfy our assumption. Thus, d (C 0 ) < d (C 01 ) and minimum Hamming weight in case 2 is less than in case 3. This yields d r 1 = min (d (C 00 ) , d (C 0 ) + d (C 11 )). Compare now cases 1 and 2. Minimum distance of code C 00 is greater than minimum distance of code C 0 . However, d (C 00 ) may be less than sum d (C 0 )+d (C 11 ). The later is deﬁned by relation between k and k 1 , e.g. if k − k 1 > k 1 , then d (C 00 ) < d (C 11 ) and d r 1 = d (C 00 ).
+Consider information sequence u having 2 subsequent non- zero information blocks: u = [. . . , 0, u i , u i+1 , 0, . . .] , where u j = (u j,0 u j,1 ) , j = i, i + 1. Let us examine all possible code sequences. Equation (6) yields:
+1) u i,0 = 0, u i,1 = 0, random u i+1 . Output code blocks:
+2) u i,0 = 0, u i,1 = 0, u i+1,0 = 0, u i+1,1 = 0. Output code blocks:
+3) u i,0 = 0, u i,1 = 0, u i+1,0 = 0, u i+1,1 = 0. Output code blocks:
+4) u i,0 = 0, u i,1 = 0, u i+1,0 = 0, u i+1,1 = 0. Output code blocks:
+since d (C m1 ) > d (C α ): dim (G m1 ) = 2k 1 , dim (G α ) = k + k 1 and 2k 1 < k + k 1 . Compare cases 4 and 2:
+since d (C 11 ) > d (C m0 ): dim (G 11 ) = k 1 , dim (G m0 ) = k and k 1 < k.
+since d (C 00 ) > d (C m0 ), d (C 00 ) > d (C 0 ) and second summable is greater then d (C 0 ) in any cases. Thus, d r 2 = d (C 0 ) + d (C m0 ).
+Consider u = [. . . , 0, u i , u i+1 , u i+2 , 0, . . .] , where u j = (u j,0 u j,1 ) , j = i, i + 1, i + 2. Let us examine all possible code sequences. Equation (6) yields:
+1) u i,0 = 0, u i,1 = 0, random u i+1 , random u i+2 . Output code blocks:
+v i ∈ C 00 and distribution of non-zero parts in u i+1 and u i+2 gives results for v i+1 , v i+2 , v i+3 covered in d r 2 analysis. Thus, wt (v i v i+1 v i+2 v i+3 ) ≥ d (C 00 ) + d r 2 .
+v i ∈ C 0 , v i+1 ∈ C m0 and distribution of non-zero parts in u i+1 gives results for v i+2 , v i+3 covered in d r 1 analysis. Thus, wt (v i v i+1 v i+2 v i+3 ) ≥ d (C 0 ) + d (C m0 ) + d r 1 .
+d (C 0 ) + d (C m0 ) + d r 1 > d (C 0 ) + d (C m0 ) + d (C α ) . Thus, d r 3 = d (C 0 ) + d (C m0 ) + d (C α ) = d r 2 + d (C α ).
+Now we can determine appearance of information sequences which generate code sequences with minimum active row distance at corresponding lengths.
+Lemma 2: Active row distance d r l , l > 1 of a PUM code from ensemble C (n, k, k 1 ), k + k 1 < n is deﬁned by the case when information sequence
+has all information sub-blocks except the last one being non- zero: u s,j = 0, s = i, . . . i + l − 1, j = 0, 1, u i+l−1,0 = 0 , u i+l−1,1 = 0.
+Proof: Let us examine each code block v i of code sequence v generated by u in details. Code block v i may belong to 3 different LDPC codes: C 0 , C 00 , C 01 . First of these codes is deﬁned by generator matrix
+and two others are obtained by crossing out upper or lower sub-matrix. Code block v i+1 and further may belong to 4 different codes which are deﬁned by generator matrix
+and its possible crossings out. The last code block v i+l is exception. It either belongs to code C 11 or equals zero. Recall now that having two LDPC codes of the same length, code with higher rate will have lower distance. Thus, d r l is deﬁned by the case when v i ∈ C 0 , code blocks inside code sequence v i+1 ∈ C α , last but one v i+l−1 ∈ C m and last v i+l = 0. Such code sequence is generated by input sequence
+u s,j = 0, s = i, . . . i + l − 1, j = 0, 1, u i+l−1,0 = 0 , u i+l−1,1 = 0.
+d r l ≥ d (C 0 ) + (l − 2)d (C α ) + d (C m0 ) , l ≥ 2, α ≥ d (C α ) ,
+Note the inequality sign. It appears in (8) because summing code distances assumes that code words from different code blocks are independent of each other. However this is not true. Two neighboring code blocks are always generated by information words having common parts. This restricts code blocks to be from some sub-codes and thus, their distance may increase. Compare d r 1 ≥ min (d (C 00 ) , d (C 0 ) + d (C 11 )) and d r 2 ≥ d (C 0 )+d (C m0 ). It always holds that d (C 0 )+d (C 11 ) > d (C 0 ) + d (C m0 ). However, d (C 00 ) may be greater or less than d (C 0 ) + d (C m0 ) depending on relation between k and k 1 . Thus, we have following bound for d f ree :
+distance estimation could be applied. We assume only that de- creasing k 1 will increase its distance, since dim (G α ) = k+k 1 will decrease. We provide numerical results for d f ree of a PUM code based on (n, l, b) LDPC codes along with Gilbert- Varshamov relative bound δ gv in Table I, where δ = d/n denotes relative code distance of LDPC code deﬁned by H 0 and δ f ree = d f ree /n. For estimation we have used parity- check matrices H 0 and H 1 with rank (H 0 ) /rank (H 1 ) = r/r 1 = 0.5 and H 1 having r − r 1 zero rows.
+We have considered binary PUM codes based on LDPC block codes and studied their characteristics. These codes may be decoded by iterative decoding algorithms like those used to decode LDPC block codes, provided simple modiﬁcations taking into account blocks overlapping are done. In that sense, considered codes inherit low decoding and encoding complex- ity of LDPC codes and outperform them in the distance.
+[[[ REFS ]]]
+L. nan Lee
+--
+Short unit-memory byte-oriented binary convolutional codes having maximal free distance (corresp.)
+----
+V. V. Zyablov
+V. Sidorenko
+--
+On periodic (partial) unit memory codes with maximum free distance
+----
+J. Justesen
+--
+Bounded distance decoding of unit memory codes
+----
+U. Dettmar
+U. Sorger
+--
+New optimal partial unit memory codes based on extended bch codes
+----
+U. Dettmar
+S. Shavgulidze
+--
+New optimal partial unit memory codes
+----
+R. Johannesso
+K. S. Zigangiro
+--
+Fundamentals of Convolutional Coding 
+----
+C. Thommesen
+J. Justesen
+--
+Bounds on distances and error exponents of unit memory codes
+----
+R. Gallager
+--
+Low-density parity-check codes
+----
+J. Forney
+--
+Convolutional codes i: Algebraic structure
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\190.pdf
+[[[ LINKS ]]]
+

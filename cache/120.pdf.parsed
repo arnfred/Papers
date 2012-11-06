@@ -1,0 +1,147 @@
+[[[ ID ]]]
+120
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Model-ﬁtting in the presence of outliers
+[[[ AUTHORS ]]]
+Jayakrishnan Unnikrishnan
+[[[ ABSTR ]]]
+Abstract—We study the problem of parametric model-ﬁtting in a ﬁnite alphabet setting. We characterize the weak convergence of the goodness-of-ﬁt statistic with respect to an exponential family when the observations are drawn from some alternate distribu- tion. We then study the effects of outliers on the model-ﬁtting procedure by specializing our results to -contaminated versions of distributions from the exponential family. We characterize the sensitivity of various distributions from the exponential family to outliers, and provide guidelines for choosing thresholds for a goodness-of-ﬁt test that is robust to outliers in the data.
+[[[ BODY ]]]
+Consider a sequence of random observations Z = {Z i : i = 1, . . . , n} drawn i.i.d. from a ﬁnite alphabet Z = {z 1 , , z 2 , . . . , z N }. Let P(Z) denote the space of probability measures on Z. The problem of parametric model-ﬁtting is concerned with the following question: what is the most likely distribution from a parametric class of probability distributions
+that could have generated the string Z? The commonly used solution to this problem is given by the maximum-likelihood (ML) estimate ˆ θ n of the parameter based on the observations.
+A related problem that arises in model-ﬁtting is to quantify the accuracy of the ﬁt, often called the goodness-of-ﬁt of the model. This question is typically answered using the limiting distributions of some distance metric between the empirical distribution of the observations and the ML distribution. For instance, in the ﬁnite alphabet setting, a useful metric is the Kullback-Leibler divergence D(Γ n π ˆ θ
+) where Γ n denotes the empirical distribution (type) of the observations:
+Γ n (z) := 1 n
+where I is the indicator function. The idea is to accept the null hypothesis that the observations were indeed drawn from some distribution in the parametric family {π θ } only if the divergence D(Γ n π ˆ θ
+) is less than some pre-decided threshold τ chosen to meet some false alarm probability constraint. The threshold τ is typically chosen based on the following asymptotic weak convergence of the test statistic under the null hypothesis
+where χ 2 a denotes a chi-square random variable with a degrees of freedom and N is the alphabet size. This result, which holds under some regularity conditions on {π θ }, enables us to obtain approximations to the distribution of the test statistic for large n which can then be used to set thresholds τ that approximately meet a target false alarm constraint.
+One of the pitfalls in using the above technique to quantify goodness-of-ﬁt is its sensitivity to model inaccuracies. In reality all models are only approximate. One of the common ir- regularities is the presence of outliers in the data. In this paper, we model data with outliers as coming from -contamination classes of distributions [1] from an exponential family and study the behavior of the test statistic D(Γ n π ˆ θ
+) in the presence of outliers. We ﬁrst obtain the asymptotic distribution of the divergence statistic when the observations are drawn from an arbitrary distribution outside of the exponential family. We then specialize our results to the case of distributions from the -contamination class and characterize the behavior of the test statistic as a function of . These results quantify the sensitivity of the test to outliers and provide guidelines on how to choose the threshold τ to design a test that is robust to outliers. Our results are also useful for approximating the power of the goodness-of-ﬁt test to reject general distributions that lie outside the exponential family.
+Most of the probabilistic studies of outliers in model-ﬁtting have focussed on robust estimation, regression and hypothesis testing [1], [2], [3]. In this paper we pursue a detailed study of the effect of outliers on goodness-of-ﬁt testing. A related work is the robust goodness-of-ﬁt test that we studied in [4]. The ﬁnite alphabet uncertainty model studied in [4] is however not suited for analyzing the effects of data outliers.
+We describe the problem setup in Section II, our results in Section III and conclusions in Section IV. Throughout the paper, we use the following notation: For measures µ ∈ P(Z) we use µ(z) to denote the mass at z ∈ Z. We sometimes use µ also to denote the vector in R N with µ i = µ(z i ). For functions f deﬁned on Z we denote the expected value under µ by µ, f := z∈Z µ(z)f (z).
+is a vector of afﬁnely independent real-valued functions over Z, i.e. the functions {ψ 0 , ψ 1 , ψ 2 , . . . , ψ d } are linearly inde- pendent over Z where ψ 0 (z) = 1 for all z ∈ Z. Hence θ T ψ = d i=1 θ i ψ i is a real-valued function on Z. The function Λ(.) in (2) is deﬁned by
+Furthermore, the Hessian 2 Λ is given by the covariance matrix of the random vector ψ(Z) when Z ∼ π θ :
+and is positive deﬁnite everywhere on R d under the afﬁne independence of the functions in ψ (see [5, Lemma III.1]).
+Let ˆ θ n denote the ML estimate of the parameter θ based on the n i.i.d. observations {Z 1 , Z 2 , . . . , Z n }. In this paper we are interested in testing whether or not these observations were drawn from some distribution in E π ; i.e., we are testing the following composite null hypothesis
+The test statistic typically used for this purpose is the diver- gence D(Γ n π ˆ θ
+) between the empirical distribution and the ML distribution. We accept hypothesis H 0 if this statistic is below some ﬁxed threshold. i.e., the test is of the form
+with ˆ H = 0 indicating a decision in favor of H 0 . This test statistic can be motivated based on its interpretation in terms of error exponents as we elaborate in Section III-C. In the rest of this paper we study the asymptotic behavior of the statistic
+) and its implications for goodness-of-ﬁt testing in the presence of outliers.
+Lemma III.1. Let µ ∈ P(Z) be any distribution with full support over Z and π θ be as deﬁned in (2). Then there exists θ ∗ ∈ R d that solves the following reverse I-projection problem
+Clearly, the minimizer ˆ π exists since we are optimizing over a compact set. Furthermore, by the Lagrange multiplier theorem it follows that ˆ π ∈ E π whenever µ has full support in Z (see, for example, [6, Thm 3.2]). This fact together with [6, Cor 3.1]
+An important consequence of this lemma is that whenever Γ n has full support over Z, the ML estimate ˆ θ n exists. This is because
+The following theorem, the ﬁrst part of which is known (see, for example, [6]), characterizes the asymptotic behavior of the statistic D(Γ n π ˆ θ n ). The main result of this paper is the second part which we prove in the appendix.
+Theorem III.2. Suppose that the observation sequence Z is i.i.d. with marginal µ ∈ P(Z) with full support over Z. Let θ ∗ ∈ R d be as in Lemma III.1 and let π ˆ θ
+denote the ML estimate of the underlying distribution from the exponential family (2) based on the ﬁrst n observations. Then we have,
+where χ 2 a denotes a chi-squared random variable with a degrees of freedom.
+(ii) If µ / ∈ E π , then √
+where N (0, σ 2 ) denotes a mean zero Gaussian random variable with variance σ 2 and σ 2 µ := Var µ log µ(Z) π
+The above results suggest that for large enough n, we have the following approximations of the test statistic when Z i ∼ µ
+ 
+if µ ∈ E π D(µ π θ ∗ ) + N (0,σ 2 µ ) √ n 	 if µ / ∈ E π .
+) is the fact that the asymptotic distribution of this statistic is the same irrespective of which distribution π θ is true under the null hypothesis H 0 . Thus the ﬁrst approximation in (11) can be used to determine the threshold levels for the test (6) so as to meet an approximate false alarm probability constraint under H 0 . The second approximation of (11) on the other hand enables us to approximate the error performance of the test for alternate hypothesis distributions µ / ∈ E π .
+One of the problems in model-ﬁtting problems is the pres- ence of outliers in data. For example, in the problem described above, while most of the observations in the sequence Z may be drawn from some member π θ of the exponential family, a small fraction of these points maybe outliers which do not correspond to the exponential family model. One approach to
+model outliers is to assume that the true distribution of the observations is a mixture of the form
+Here ξ is the unknown distribution of the outliers and ∈ [0, 1] is the fraction of outliers in the data. Such distributions constitute an -contamination class [1]. In general the outlier distribution ξ is allowed to be arbitrary in P(Z) while in some cases a uniform distribution for the outliers can be justiﬁed.
+We now obtain approximate expressions and bounds for the limiting divergence D(µ π θ ∗ ) and variance σ 2 µ appearing in Theorem III.2 when µ is of the form (12) and is small. For ease of illustration we will use h to denote ξ − π θ so that µ is now of the form π θ + h, with h ∈ R N . We also deﬁne the d × N matrix Ψ as
+and use diag(v) to denote a square matrix with entries from vector v along its principal diagonal. The following proposition is proved in the appendix. In these results we use the standard big-O notation: for any function g( ) the notation O(g( )) denotes some function f ( ) which satisﬁes the condition that there exists κ > 0 such that for small enough, we have |f ( )| < κg( ).
+Proposition III.3. Suppose µ ∈ P(Z) is of the form (12) and let θ ∗ be as deﬁned in Theorem III.2.
+D(µ π θ ∗ ) = 1 2 2 h T G θ h + O( 3 ) 	 (13) σ 2 µ = 2 h T G θ h + O( 3 ) 	 (14)
+(ii) The divergence and variance satisfy the following bounds
+1 − 	 (15) σ 2 µ ≤ 2 2 δ θ + O( 3 ). 	 (16)
+Remark: A simpler version of the problem studied in this paper is when the family E π in (5) is replaced by a single distribution π. Asymptotics of D(Γ n π) were studied in [5]. The results (9) and (10) continue to hold with π ˆ θ
+and π ∗ θ replaced by π and with d = 0. In the presence of outliers, it can be shown that results (13) and (14) continue to hold with G θ replaced by diag( 1 π ).
+In the rest of this section we list some of the applications of the results presented in this paper.
+1) Power of rejecting alternate hypotheses: One of the important facets of model ﬁtting that is often underemphasized is the ability of the goodness-of-ﬁt procedure to reject wrong hypotheses. Suppose we are performing the test (6) and the true distribution µ of the observations {Z i } lies outside the exponential family E π . For such distributions we can use the second expression in (11) to approximate the probability of wrongly accepting the hypothesis H 0 while performing the test (6).
+2) Sensitivity to outliers: Another use of Theorem III.2 is to quantify the performance degradation of the goodness-of- ﬁt test (6) when the observations are drawn from E π but are corrupted by outliers. We see that when the true distribution µ = (1 − )π θ + ξ / ∈ E π , the test statistic no longer converges to zero, but instead converges to D(µ π θ ∗ ) with a standard deviation of order 1 √ n σ µ . Proposition III.3 illustrates how the divergence and variance vary as a function of . From the approximate expressions in (13) and (14) we can argue that those distributions π θ ∈ E π with large eigenvalues for the corresponding matrix G θ are most sensitive to outliers.
+3) Robustifying for outliers: In practical scenarios when we expect to have outliers in our data, we may wish to make our goodness-of-ﬁt test robust to outliers. In this case, we would like to expand our null hypothesis to
+) for goodness-of-ﬁt as before. However, we may now reject hypothesis H 0 only if the test statistic value cannot be explained by any distribution in H 0 . Proposition III.3(ii) gives us an exact bound on the divergence D(µ π θ ∗ ) and an approximate bound on the variance σ 2 µ as a function of θ. If the parameters θ of interest belong to a compact subset Θ of R d we know that max θ∈Θ δ θ is ﬁnite and hence these bounds can be used to choose the threshold τ in (6) to ensure that we approximately meet a false alarm constraint under all distributions of the form:
+Consider the problem of testing the following simple null hypothesis
+where π ∈ P(Z). Hoeffding [7] proved that the test that uses the divergence statistic D(Γ n π) is universally optimal in an error exponent sense. This test maximizes the type- II error exponent (i.e. the error exponent under the alternate hypothesis (H π 0 ) c ) for all distributions subject to a constraint on the type-I error exponent (i.e. the error exponent under the null hypothesis H π 0 ). Now consider the problem of testing the following composite null hypothesis
+H P 0 : Z i ∼ i.i.d. µ, µ ∈ P 	 (17) where P is some subset of P(Z). This problem was studied in [2] and [4] when P is a linear family. It was shown in [2]
+that a threshold test on inf µ∈P D(Γ n µ) optimizes the type-II error exponent subject to a constraint on the worst-case type-I error-exponent. The composite hypothesis testing problem we study in (5) is identical to the problem in (17) with P = E π . Furthermore, since the ML estimate ˆ θ n solves the reverse I- projection problem of (8) it follows that the test (6) is optimal in an error-exponent sense for solving (17) when P = E π .
+We have established the asymptotic behavior of the goodness-of-ﬁt statistic with respect to an exponential family under general measures from the probability simplex. Our results can be used to approximate the power of the test to reject distributions from outside the exponential family. We have characterized the sensitivity of the goodness-of-ﬁt test to data outliers and also provided guidelines for designing tests that are robust to outliers.
+Although our results are for an exponential family of distributions, we believe that our approach can also be used to obtain similar results for general parametric classes of distri- butions on a ﬁnite alphabet. Another direction for future work is to analyze the implications of these results for goodness-of- ﬁt testing using quantized observations drawn from parametric distributions on inﬁnite alphabets. We are also seeking tighter bounds in Proposition III.3(ii) that do not explicitly depend on δ θ .
+This research was supported by ERC Advanced Investiga- tors Grant: Sparse Sampling: Theory, Algorithms and Appli- cations SPARSAM no 247006.
+Proof: Here we prove only the second part of the theorem since the ﬁrst is well known (see, e.g., [6]). Since the reverse I- projection is attained, it follows that D(µ π θ ) has a stationary point at θ ∗ = θ ∗ (µ). This means that we have,
+This can be viewed as a ﬁxed point equation in µ and θ(µ). Since 2 Λ(θ ∗ ) is invertible, it follows by the Implicit Function Theorem [8] that θ ∗ (µ) is continuously differentiable in a Euclidean neighborhood N δ (µ) of µ. It follows that whenever Γ n ∈ N δ (µ), the ML estimate ˆ θ n is guaranteed to exist. Now since we know by the strong law of large numbers that
+µ, we can argue via Slutsky’s theorem [9] that it sufﬁces to establish the weak convergence of
+)−D(Γ n π θ ∗ ) and T 2 = D(Γ n π θ ∗ )− D(µ π θ ∗ ). For Γ n ∈ N δ (µ), we have
+Using the ML condition Γ n , ψ = Λ(ˆ θ n ), and a second order Taylor’s expansion of Λ(.) about ˆ θ n , we have
+where ˜ θ n = γθ ∗ + (1 − γ)ˆ θ n with γ = γ(n) ∈ [0, 1]. Now we know that ˆ θ n = θ ∗ (Γ n ) holds when Γ n ∈ N δ (µ). Thus by the differentiability of the θ ∗ function, we have
+where ˜ Γ n is some convex combination of Γ n and µ. Thus (20) can be written as
+Now as n → ∞ we have by the continuity of 2 Λ(.) and differentiability of θ ∗ (.)
+Furthermore, we know by the central limit theorem that n(Γ n −µ)(Γ n −µ) T converges in distribution to a ﬁnite valued random matrix. Using these results and applying Slutsky’s theorem we get
+It follows from [5, Thm. III.3] that √
+Combining the results on convergence of T 1 and T 2 , we arrive at the desired result.
+Proof of part (i): For any ν ∈ P(Z) in the neighborhood of π θ let θ ∗ (ν) denote the reverse I-projection as before. We know that θ ∗ satisﬁes ν, ψ = Λ(θ ∗ (ν)). Furthermore, since 2 Λ(θ ∗ ) is invertible, we know by the Implicit Function Theorem that θ ∗ (ν) is differentiable with respect to ν and if we deﬁne the d × N matrix M θ by M θ (i, j) := ∂θ ∗ i (ν) ∂ν
+we have for all ν in some neighborhood of π θ ,
+For µ = π θ + h we have the following approximation via Taylor’s expansion of θ ∗ (ν) about ν = π θ :
+Now let θ ∗ denote θ ∗ (µ). Extending the notation of measures as vectors to likelihood ratios we have,
+where 1 is an N × 1 vector of all 1’s. Now using the fact that Λ(θ ∗ ) = Ψµ (see (18)), we obtain from (22):
+Using this relation in (24) and using H θ for the Hessian, we get
+where the last step follows by applying the analyticity of Λ to approximate H θ ∗ with H θ up to O( ). We know that
+For obtaining the approximate value of the variance σ 2 µ = Var µ [log µ π
+(Y )] we ﬁrst note that we have the following approximation for the log-likelihood ratio (LLR) function L(.) := log µ π
+where the last step follows from (23) and the fact that log(1 + x) = x + O(x 2 ). From the fact that the LLR function L is of order O( ), it can easily be seen that
+The variance term on the right side can be expressed via the vector notation as
+where B is the vector L with the invariant part 1( Λ(θ)) T M θ h omitted (since it does not contribute to the
+(since it is correct up to O( )):
+Simplifying and using Ψ(diag(π θ ) − π θ π T θ )Ψ T = 2 Λ(θ) by (4) we obtain,
+where the last step follows from (21). Combining with (27) and (28) the result follows.
+where 1 z ∈ P(Z) has unit mass on z ∈ Z. The inequality (29) follows from the convexity of KL divergence. Now for any distribution ν ∈ P(Z) we have,
+D((1 − )ν + 1 z ν) =
+where x = (1− )ν(z) . Now using log(1 + 1 x ) ≤ 1 x , and substituting for x, we get
+(1 − )ν(z) . (31) Combining with (29) we get (15). The second result (16) follows from the approximation (14) together with the fact that h T G θ h ≤ h T diag( 1 π
+[[[ REFS ]]]
+P. J. Hube
+--
+Robust Statistics
+----
+C. Pandit
+S. P. Meyn
+--
+Worst-case large-deviations with application to queueing and information theory
+----
+P. J. Rousseeu
+A. M. Lero
+--
+Robust regression and outlier detection
+----
+J. Unnikrishnan
+S. Meyn
+V. Veeravalli
+--
+On thresholds for robust goodness-of-ﬁt tests
+----
+J. Unnikrishnan
+D. Huang
+S. Meyn
+A. Surana
+V. Veeravalli
+--
+Universal and composite hypothesis testing via mismatched divergence
+----
+I. Csisz´ar
+P. C. Shields
+--
+Information theory and statistics: A tutorial
+----
+W. Hoeffding
+--
+Asymptotically optimal tests for multinomial distribu- tions
+----
+D. Luenberge
+--
+Linear and nonlinear programming, 2nd ed
+----
+P. Billingsle
+--
+Convergence of Probability Measures
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\120.pdf
+[[[ LINKS ]]]
+

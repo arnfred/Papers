@@ -1,0 +1,137 @@
+[[[ ID ]]]
+83
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+(n, K) -user Interference Channels: Degrees of Freedom
+[[[ AUTHORS ]]]
+Ali Tajer
+Xiaodong Wang
+[[[ ABSTR ]]]
+Abstract—The gains of opportunistic communication in multiuser interference channels is analyzed. Consider a network of fully connected n-user Gaussian interference channel that afford activating K ≤ n at-a-time. It is shown that when n obeys certain scaling laws, by opportunistically and dynamically selecting the K active pairs the number of degrees of freedom can exceed K 2 and, in fact, can be made arbitrarily close to K. More speciﬁcally the network size scaling as n ∈ ω(SNR d(K−1) ) is a sufﬁcient condition for achieving d ∈ [0, K] degrees of freedom.
+[[[ BODY ]]]
+The emerging wireless networks are interference-limited due to the increasing demands for multimedia communications and am- bitious spectral efﬁciency targets. The interference channel, a core component of such systems, becomes of paramount importance and has attracted signiﬁcant recent interest. While the full extent of interference channels is still unknown, there exists a rich literature, spanning from the initial work by Shannon [1] and the best achievable rate region [2] to the most recent developments on the approximate capacity of two-user interference channels [3] and the notion of interference alignment [4], [5] for the K-user interference channel.
+In this paper we consider an interference channel embedded in a dense wireless network and analyze the degrees of freedom achievable for the interference channel of interest. In dense wireless networks the resources might be inadequate for serving all users con- currently. While being an impediment, such a situation, nevertheless, brings about the opportunity of tracking network state ﬂuctuations and dynamically identifying and allocating the resources (power and bandwidth) to the best links at each time. Such notion of resource allocation, known as opportunistic communication, can effectively combat undesired channel variations as its performance relies on the peak, rather than average, channel conditions. Furthermore, the performance improves as the number of users increases, as it becomes more likely to encounter stronger links.
+The outline of the proofs are provided and the parts of the proofs not presented in the paper can be found in [6].
+Consider a wireless network consisting of n pairs of transmitters and receivers, where each transmitter communicates exclusively with its designated receiver. During each time slot, only K transmitter- receiver pairs are allowed to be communicating, constituting a K-user Gaussian interference channel. We use the following conventions: A(n) = {1, . . . , n} denotes the set of the indices of all transmitter- receiver pairs, and V t = {v 1 , . . . , v K } ⊂ A(n) contains the indices of the transmitter-receiver pairs that are active during time slot t. The wireless channel from transmitter v ∈ A(n) to receiver u ∈ A(n) during time slot t undergoes Rayleigh fading and is denoted by h u,v [t] ∈ C. The signal received by the receiver u ∈ V t is
+where x v [t] denotes the signal of transmitter v and γ u,v ∈ R + accounts for the path-loss along channel h u,v [t]. Also z u [t] denotes the additive white Gaussian noise distributed as N C (0, 1) and SNR denotes the average transmission power of the active transmitters. Finally, we deﬁne R u as the rate that the u th transmitter-receiver pair can sustain reliably and corresponding to the set of active users V t we deﬁne the rate vector
+The results on interference alignment [4] establish that for the set of active users V t , when all the channel gains are bounded away from zero and inﬁnity the pre-log factor of the sum-capacity at the asymptote of large SNR is K 2 . In other words, if ∃h min , h max ∈ R + such that
+As the network size increases (n → ∞), however, the likelihood that some channel channels violate the bounding constraints on channel gains increases. As it will be made clear later in the paper, under certain conditions on the size of n some groups of users V t ⊂ A(n) violate the bounding constraints (2). For such group of users we have
+where X V t , depending on the structure of the channels, can lie anywhere within the interval [0, K], and ˜ Y V t satisﬁes
+As the network size n increases, the network becomes richer in the sense that it offers more diverse channel realizations. Consequently, the likelihood that we encounter a set of users V t for which the degrees of freedom X V t exceeds K 2 , and possibly approaches K, increases. Motivated by this premise, we aim to characterize how n should scale in order to guarantee attaining any arbitrary degree of freedom in the interval ( K 2 , K]. For this purpose we provide a few deﬁnitions in the nest Section.
+For any channel realization {h u,v } u,v and for corresponding to a given set of active users V t ⊂ A(n), we deﬁne
+where 1 K×1 is the vector of all ones. By opportunistically selecting the set of users V t that yield the largest dof V t (n, K) over all possible choices of V t , for the (n, K)-user interference channel we also deﬁne
+Since dof V t (n, K), and consequently dof ∗ (n, K), are functions of the random channel channel coefﬁcients {h u,v } u,v , they are also changing randomly with channel ﬂuctuations. Therefore, we also deﬁne the average number of degrees of freedom as the mean of dof ∗ (n, K) over the ensemble of all possible channel realizations. This average degrees of freedom, denoted by dof(n, K), is given by
+We aim to characterize the achievable average degrees of freedom of the (n, K)-user interference channel in the asymptote of large network sizes, i.e.,
+We provide the main results of the paper in this section and relegate the proofs and the ensuing discussions to Section VI. We obtain a lower bound on lim n→∞ dof(n, K). This lower bound, in turn, offers sufﬁcient condition on the scaling of n for achieving an arbitrary degrees of freedom d ∈ [0, K]. In order to obtain a tractable lower bound on lim n→∞ dof(n, K) we assume that the receivers employ single-user decoders, where each receiver recovers its designated signal via linear ﬁltering and treating the rest of interfering signals as Gaussian noise.
+Let us denote the rates achievable via single-user decoding for the set of active users V t by R sd V t . For any u ∈ V t we have
+Similar to (4), for any given set of users V t ⊂ A(n), upon employing single-user decoders we deﬁne
+Characterizing dof sd (n, K) requires ﬁnding the statistical distribution of dof ∗ sd (n, K), which is the largest order statistic (maximum) of the set of random variables S deﬁned as
+Note that due to the statistical independence of the channel coefﬁ- cients, for any two arbitrary sets V t and ˜ V t we have
+if V t ∩ ˜ V t = ∅ ⇒ dof sd V t and dof sd ˜ V t are independent if V t ∩ ˜ V t = ∅ ⇒ dof sd V t and dof sd ˜ V
+Hence, S is a set of correlated random variables. Moreover, due to the different path-losses that different users experience, the ele- ments of S have non-identical distributions. Therefore, characteriz- ing dof sd (n, K) requires obtaining the largest order statistics of a sequence of non-identical and correlated random variables, which is in general intractable. As a remedy, we ﬁnd some lower and upper bounds on the distribution of the largest order statistics of S, which in turn offer lower and upper bounds on the achievable number of degrees of freedom dof sd (n, K).
+For the upper bound on dof sd (n, K) we use the properties of exchangeable sequence of random variables and use the result of de Finetti ’s theorem [7] in order to ﬁnd a bound on the distribution of the largest order statistic of a correlated sequence of random variables. For obtaining the lower bound on dof sd (n, K) we partition the set of n transmitter-receiver pairs to M = n K disjoint sets of K transmitter-receiver pairs. By optimizing dof sd V t (n, K) over such partitions (instead of optimizing it over all possible partitions) clearly provides a lower bound on it. The main result for (n, K)-user interference channel is offered in the following theorem.
+Theorem 1. For the (n, K)-user interference channel with single- user decoders at the receivers we have
+log SNR . 	 (14) The theorem above establishes lower and upper bounds on
+lim n→∞ dof sd (n, K). By noting that the single-user decoders are sub-optimal receivers, we immediately ﬁnd that the lower bound in (13) is also a lower bound on lim n→∞ dof(n, K), i.e., the degrees of freedom of the (n, K)-user interference channel in the asymptote of large n. Hence, by leveraging this lower bound we can obtain a sufﬁcient condition on the scaling law of the network size for achieving any arbitrary degrees of freedom in the interval [0, K].
+Note that that that achieving the degrees of freedom characterized by the theorem above do not necessitate any transmit-side channel state information (CSI). The CSI is necessary for only calculating the sum-rate achievable for all possible sets of active users V t . Therefore, it sufﬁces that such CSI is only revealed to the receivers. Moreover, for achieving the lower bound in Theorem 1 the receivers are required to obtain only some local CSI. More speciﬁcally, based on the construction of the proofs for the lower bounds, we group the n pairs of transmitters-receivers into subgroups each containing K users and select the best subgroup as the active set of users. For this purpose each subgroup of users have to obtain only local CSI in order to identify the sum-rate achievable for them. Eventually the subgroup that the largest achievable sum-rate is selected as the set of active users.
+Corollary 1. For the (n, K)-user interference channel a sufﬁcient condition for achieving d ∈ [0, K] degrees of freedom is
+It is noteworthy that for ﬁnite network size n, without transmit-side CSI the interference channel is interference-limited and the degrees of freedom is 0, whereas for large networks, depending on the network size, it can be up to K. On the other hand, when the transmitters can acquire CSI, interference alignment always offers K 2 degrees of freedom almost surely. Therefore, with the transmit-side CSI, the
+region of more signiﬁcance is d ∈ ( K 2 , K] that is not achievable without invoking opportunistic selection of the active users.
+In the next corollary, we also provide a necessary condition on the scaling law of the network size for achieving d degrees of freedom. This necessary condition, however, unlike the sufﬁcient condition in Corollary 1 is restricted to single-user decoders and it is expected that for more advanced receivers, the necessary conditions on the scaling of n is stringent.
+Corollary 2. For the (n, K)-user interference channel with single- user decoders at the receivers, a necessary condition for achieving d ∈ [0, K] degrees of freedom is
+Note that when the network size n is ﬁxed, i.e., when ξ n = 0, by employing single-user decoders (and no interference alignment) the network becomes interference-limited. In other words, the SINRs and the rates will be saturating by increasing SNR and consequently we expect to have d = 0 degrees of freedom.
+In this section we brieﬂy provide some deﬁnitions and propositions that are instrumental and frequently referred to throughout the proofs.
+Deﬁnition 1. We say two functions f (SNR) and g(SNR) are exponentially equal, denoted by f (SNR) . = g(SNR), when
+log SNR . 	 (15) The cumulative distribution function (cdf) of α X is given by
+and we have the following exponential equality for its probability density function (pdf) [8]
+Deﬁnition 3. For the random variable X distributed as N C (0, 1) deﬁne
+where δ(·) denotes Dirac’s delta function. Remark 1. For d 1 , . . . , d m ∈ R we have
+Remark 2. For positive real values a, b ∈ R + and for the functions f, g : R + → R + , if f (SNR) . = SNR −a and g(SNR) . = SNR b , then
+The proof consists of three main steps. In the ﬁrst step, for each arbitrary set of active users V t we formulate the achievable degrees of freedom dof sd V t (n, K) as a function of the exponential orders (Remark 1) of the channel coefﬁcients of the users with their indices included in V t . In the second step, by using the results of Deﬁnitions 2 and 3 we obtain the probability distribution of dof sd V t (n, K) for each arbitrary V t . In the third step, ﬁnally, by using the distribution of dof sd V t (n, K) we offer lower and upper bounds on the distributions of the largest order statistics of the sequence {dof sd V t } V t , which consequently provide lower and upper bounds on dof sd (n, K).
+∀u, v ∈ V t : α u,v = − |h u,v | 2 log SNR ⇒ γ u,v |h u,v | 2 . = SNR −α u,v . (21)
+Note that due to the statistical independence of {h u,v } u,v , their associated exponential orders {α u,v } u,v also become independent. By recalling SINR u , as given in (8), and by invoking the exponential equalities in (21) we obtain the following exponential equality ∀u ∈ V t .
+max max v∈V t , v=u SNR −α u,v , SNR −1 . = SNR −α u,u
+It is noteworthy that for any set of active users V t and any transmitter- receive pair u, the random variable β u (V t ) is shaped up by the channel coefﬁcients of all channels from transmitters v = u, where v ∈ V t , to receiver u. Therefore, it can be readily veriﬁed that for (V t , u) = ( ˜ V t , ˜ u), the random variables β u (V t ) and β ˜ u ( ˜ V t ) are statistically independent. Next, equations (22) and (23) give rise to
+where we have deﬁned (x) + = max(0, x). The deﬁnition of the exponential equality (Deﬁnition 1) in conjunction with (24) provide that ∀u ∈ V t
+where (β u (V t ) − α u,u ) + is a random variable inheriting its ran- domness from the the channel coefﬁcients {h u,v } v∈V t through their associated exponential orders {α u,v } v∈V t . Equations (20) and (25) yield that the number of degrees of freedom for the set of active users V t when they deploy single-user decoding is given by
+Next we obtain the distribution of dof sd V t (n, K) through ﬁnding the distributions of its summands (β u (V t ) − α u,u ) + . We deﬁne a new random variable corresponding to each summand of (26).
+The following lemma provides the exponential order of the probabil- ity density function of Z u (V t ).
+Lemma 1. For the probability density function (pdf) of Z u (V t ), denoted by f Z (z), we have
+Note that while for distinct choices of (V t , u) = ( ˜ V t , ˜ u) the random variables Z u (V t ) and Z ˜ u ( ˜ V t ) are not identically distributed (due to different path losses of the channels), their probability density functions exhibit identical exponential orders. For notational convenience we deﬁne
+where Z u (V t ) is deﬁned in (27). Next, by using the exponential equality on the pdf of Z u (V t ) provided in Lemma 1, we proceed to ﬁnd the distribution of X V t in the next lemma.
+Lemma 2. For the cumulative density function (cdf) of X V t , denoted by F X (x), we have
+For obtaining the lower bound on dof sd (n, K) we partition the set of n transmitter-receiver pairs to M = n K disjoint sets U 1 , . . . , U M each consisting of K transmitter-receiver pairs as follows,
+Since the sets U 1 , . . . , U M are disjoint, the random variables X U i and X U j are statistically independent for i = j. Therefore, for the cdf of max i X U i , denoted by F max X (x), we have
+Next, in order to characterize F max X (x) we use Remark 2 and any x ∈ [0, K] we deﬁne the functions f x (SNR) and g x (SNR) as follows.
+n < (K − 1)x, or equivalently for any x ∈ [0, K]
+Moreover, by noting that X V t ∈ [0, K] we consequently have max i X U i ∈ [0, K], which immediately provides
+ 
+Some simple manipulations yield that for the pdf of max i X U i we have
+Exchanging the limit and integral in (g) is justiﬁed according to Lebesgue’s dominated convergence Theorem [9].
+We start by providing the following lemma for the exchangeable sequences of random variables. A ﬁnite or inﬁnite sequence of random variables {X 1 , . . . , X n } is called exchangeable if for any possible ﬁnite permutation of the indices 1, . . . , n (any permutation that keeps all but a ﬁnite number of indices ﬁxed) the joint pdf of the permutated sequence is equal to that of the original sequence.
+Lemma 3. For an exchangeable sequence of random variables with identical and not necessarily independent distributions we have
+From the deﬁnition of X V t = dof sd V t (n, K) given (29) we can ﬁnd the following upper bound on X V t
+(40) Due to the symmetry involved, the sequence of random variables {W u } u∈A(n) are exchangeable. Therefore, by invoking Lemma 3
+(41) By further deﬁning
+and recalling β u (V t ) deﬁned (23) we get the following connection between between β u (V t ) and β u,v
+By substituting β u (V t ) with its equivalent term given above, from (41) we can ﬁnd that for u = v
+(44) Note that for any two random variables X and Y , if the cdf of X uniformly dominates Y , i.e., F X (x) ≥ F Y (y), or equivalently
+x d(F X (x)) ≤ y d(F Y (y)). By applying this observation from (44) we obtain that for u = v
+w · d P (β u,v − α u,u ) + ≤ w n(n−1) . (45)
+In the next step we ﬁnd the distribution of (β u,v − α u,u ) + as formalized in the following lemma.
+Lemma 4. For the CDF of (β u,v − α u,u ) + we have the following exponential equality
+Given the Lemma above, for w ∈ [0, 1] we use the result of Remark 2 by setting
+Therefore, by following the same line of argument as in the case for the lower bound, from (45) and (47) we ﬁnd that for u = v
+The gains of the opportunistic communication in interference chan- nels have been investigated. In particular, a dense network consisting of n single-antenna transmitter-receiver pairs that affords to activate K n pairs at-a-time is considered. It had been demonstrated that by appropriately allocating the resources to K user pairs, when the network size obeys certain scaling laws, it is possible to capture the degrees of freedom within the interval ( K 2 , K] that are not achievable without incorporating opportunistic user activation.
+[[[ REFS ]]]
+C. E. Shannon
+--
+Two-way communication channels
+----
+T. S. Han
+K. Kobayashi
+--
+A new achievable rate region for the interference channel
+----
+R. Etkin
+D. Tse
+H. Wang
+--
+Gaussian interference channel capacity to within one bit
+----
+V. R. Cadambe
+S. A. Jafar
+--
+Interference alignment and degrees of freeom of the K-user interference cnannel
+----
+M. A. Maddah-Ali
+A. S. Motahari
+A. K. Khandani
+--
+Communication over MIMO X channels: Interference alignment, decomposition, and performance analysis
+----
+A. Tajer
+X. Wang
+--
+(n, K)-user interference channels: Degrees of freedom
+----
+D. Heath
+W. Sudderth
+--
+De F-netti’s theorem on exchangeable variables
+----
+K. Azarian
+H. El-Gamal
+P. Schniter
+--
+On the achievable diversity- multiplexing tradeoff in half-duplex cooperative channels
+----
+R. G. Bartl
+--
+The Elements of Integrations
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\083.pdf
+[[[ LINKS ]]]
+

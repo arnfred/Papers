@@ -9,7 +9,7 @@ import java.io._
 object Cache {
   
   // Constants
-  val dir = "cache/"
+  val dir = "cache" + Paths.sep
   val parsed = "parsed"
   val extended = "extended"
   val linked = "linked"
@@ -47,11 +47,11 @@ object Cache {
   def load(file : File) : Paper = {
 
     // Printout
-    println("loading file " + file.getName + " from cache")
+    println("Loading file " + file.getName + " from cache")
 
     // Get file and read in lines
     val lines : Iterator[String] = Source.fromFile(file).getLines
-    
+
     // Variables
     var vars : Map[String, List[String]] = Map.empty.withDefaultValue(Nil)
     var current = "unknown";
@@ -115,45 +115,40 @@ object Cache {
       case line         => map = map + (current -> (line :: map(current)))
     }
 
-    //println(map.mkString("\n"))
-
     // Now gather it
     val refs = for (i <- 0 to index) yield Reference(stringToAuthors(map("authors" + i)), Title(map("title" + i).head))
     return refs.toList
   }
 }
 
-
-
 trait LoadPaper {
 
-  def load(name : String, postfix : List[String], parser : Parsers, loader : FileLoader) : List[Paper] = {
-	// Get file handle of original file or directory
+  def loadAndParse(name : String, postfix : List[String], parser : Parsers, loader : FileLoader) : List[Paper] = {
+	println("BEGIN OF PARSING")
+    
+    // Get file handle of original file or directory
     val orig = new File(name)
 
     // Check that directory or file exists
     if (!orig.exists) sys.error("Something is wrong with the file or directory in the argument")
 
     // If exists, set name and file
-    var fnames : List[String]  = List(name)
-    var files : List[File]  = List(orig)
-
     // In case it's a directory, let the file array contain all the files of the directory (regex utilization)
-    if (orig.isDirectory) {
-    	files   = SystemHelper.getFilesFromDirectory(orig)			// MODIFIED
-    	fnames  = files.map(f => name ++ f.getName)
-    }
+    val files : List[File]  = if(orig.isDirectory) SystemHelper.getFilesFromDirectory(orig) else List(orig)
+    val fnames : List[String]  = if(orig.isDirectory) files.map(f => name ++ f.getName) else List(name)
+
 
     // If postfix exists, try loading from cache
-    var somePapers : List[Option[Paper]] = Nil
-    if (postfix != Nil) somePapers = files.map(f => loadFromCache(f, postfix))
+    val somePapers : List[Option[Paper]] = if (postfix != Nil) files.map(f => loadFromCache(f, postfix)) else Nil
 
     // All papers that weren't loaded by cache are loaded by file
-    somePapers = somePapers.zip(files).map(p => if (p._1 == None) loadFromFile(p._2, parser, loader) else p._1)
+    val finalPapers = somePapers.zip(files).map(p => if (p._1 == None) loadFromFile(p._2, parser, loader) else p._1)
 
     // Filter papers for None's and set index
-    val papers : List[Paper] = somePapers.filter(p => p != None).zipWithIndex.map({case Pair(p,i) => p.get.setIndex(i) }).toList
+    val papers : List[Paper] = finalPapers.filter(p => p != None).zipWithIndex.map({case Pair(p,i) => p.get.setIndex(i) }).toList
 
+    println("END OF PARSING")
+    
     return papers
   }
 
@@ -216,6 +211,22 @@ trait LoadPaper {
       }
     }
   }
-  
-  
 }
+
+
+object CacheLoader extends LoadPaper{
+    def load(paperPos:String, postfix : String): List[Paper] = {
+    // Get file handle of original file or directory
+    val orig = new File(paperPos)
+
+    // Check that directory or file exists
+    if (!orig.exists) sys.error("Problem with file path")
+    
+    val files : List[File] = if(orig.isDirectory()) orig.listFiles.toList else List(orig)
+
+    // If postfix exists, try loading from cache
+    val papers : List[Option[Paper]] = files.map(f => loadFromCache(f, List(postfix)))
+
+    return papers.filter((p:Option[Paper]) => p != None).map((p:Option[Paper]) => p.get)
+    }
+  }
