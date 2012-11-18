@@ -7,16 +7,20 @@ trait XMLScheduleParser {
   import scala.collection.immutable.Map._
 
   // Overall function that loads the xml schedule and returns the papers with the extra data
-  def getXMLSchedule(paperPos : String, papers : List[Paper]) : List[Paper] = {
-	val path = paperPos + "/schedule.xml"
+  def getXMLSchedule(paperPos : String, papers : Option[List[Paper]]) : List[Paper] = {
+    println("BEGIN OF XML SCHEDULING")
+	val path = paperPos + Paths.sep + "schedule.xml"
 	
-    if (!(new File(path)).exists()) return papers;
+    val schedule = (new File(path)).exists()
+	
+	val loadedPapers = if(papers == None) CacheLoader.load(paperPos, Cache.parsed) else papers.get
 	
     // Parse schedule
-    val xml : Map[Int, Elem] = parse(path)
+    val xml : Map[Int, Elem] = if(schedule) parse(path) else Map()
 
+    println("END OF XML SCHEDULING")
     // match schedule with papers
-    return matchXML(xml, papers);
+    return matchXML(xml, loadedPapers, schedule)
   }
 
   // Function for taking care of parsing the xml
@@ -49,37 +53,48 @@ trait XMLScheduleParser {
   }
 
   // Function for putting the xml in the right paper
-  def matchXML(xml : Map[Int, Elem], papers : List[Paper]) : List[Paper]= {
+  def matchXML(xml : Map[Int, Elem], papers : List[Paper], schedule: Boolean) : List[Paper]= {
+    def apply(p: Paper, data: Option[Elem] ): Paper = {
+      	        // Get resulting paper
+	        val result = setXMLData(data, p, schedule)
+	
+	        // Save result
+	        Cache.save(result, Cache.scheduled)
+	
+	        // Return result
+	        result
+    }
+    
     // Loop through all papers and add the xml elements the appropriate one
-    return for (p <- papers) yield xml.get(p.id) match {
-      case None             => println("No schedule data for paper with id: " + p.id); p
-      case Some(data)       => {
-        // Get resulting paper
-        val result = setXMLData(data, p)
-
-        // Save result
-        Cache.save(result, Cache.scheduled)
-
-        // Return result
-        result
-      }
+    return for (p <- papers) yield {
+    	val xmlObject = xml.get(p.id)
+    	if(schedule && xmlObject == None) {println("No schedule data for paper with id: " + p.id); p}
+    	else apply(p, xmlObject)
     }
   }
 
   // Putting the xml in a paper
-  def setXMLData(xml : Elem, paper : Paper) : Paper = {
-    paper.setMeta("xmldate"        -> getDate(xml))
-         .setMeta("xmlroom"        -> getRoom(xml \\ "room"))
-         .setMeta("xmlsession"     -> (xml \\ "sess").text)
-         .setMeta("xmlstarttime"   -> (xml \\ "starttime").text)
-         .setMeta("xmlendtime"     -> (xml \\ "endtime").text)
-         .setMeta("xmlpaperid"     -> (xml \\ "paperid").text)
-         .setMeta("xmlsessionid"   -> (xml \\ "sessionid").text)
-         .setMeta("xmlpapertitle"  -> (xml \\ "papertitle").text)
-         .setMeta("xmlabstract"    -> (xml \\ "abstract").text)
-         .setMeta("xmlauthors"     -> getAuthors(xml \\ "authors").mkString(", "))
-         .setTitle(new Title((xml \\ "papertitle").text))
-         .setAuthors(getAuthors(xml \\ "authors").map(a => Author(formatAuthors(a))))
+  def setXMLData(xmlObject : Option[Elem], paper : Paper, schedule: Boolean) : Paper = {
+    if(schedule) {
+    	val xml = xmlObject.get
+	    paper.setMeta("xmldate"        -> getDate(xml))
+	         .setMeta("xmlroom"        -> getRoom(xml \\ "room"))
+	         .setMeta("xmlsession"     -> (xml \\ "sess").text)
+	         .setMeta("xmlstarttime"   -> (xml \\ "starttime").text)
+	         .setMeta("xmlendtime"     -> (xml \\ "endtime").text)
+	         .setMeta("xmlpaperid"     -> (xml \\ "paperid").text)
+	         .setMeta("xmlsessionid"   -> (xml \\ "sessionid").text)
+	         .setMeta("xmlpapertitle"  -> (xml \\ "papertitle").text)
+	         .setMeta("xmlabstract"    -> (xml \\ "abstract").text)
+	         .setMeta("xmlauthors"     -> getAuthors(xml \\ "authors").mkString(", "))
+	         .setTitle(new Title((xml \\ "papertitle").text))
+	         .setAuthors(getAuthors(xml \\ "authors").map(a => Author(formatAuthors(a))))
+  	} else {
+  	    paper.setMeta("xmldate"   	   -> "-")
+	         .setMeta("xmlroom"        -> "-")
+	         .setMeta("xmlpapertitle"  -> paper.title.toString())
+	         .setMeta("xmlauthors"     -> paper.authors.mkString(", "))
+  	}
   }
 
   // Converts an authors XML note to string

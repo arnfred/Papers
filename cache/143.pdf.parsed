@@ -1,0 +1,119 @@
+[[[ ID ]]]
+143
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Partial Group Decoding for Interference Channels
+[[[ AUTHORS ]]]
+Ali Tajer
+H. Vincent Poor
+Xiaodong Wang
+[[[ ABSTR ]]]
+Abstract—In order to achieve the Han-Kobayashi rate region for the two-user interference channel each transmitter splits its message into two sub-messages, each drawn from an independent codebook. Generalizing this idea to the K-user interference channel implies that 2 K−1 codebooks should be allocated to each transmitter, where each of them carries the message that is public to one of the subsets of the K − 1 non-designated receivers. While such a rate-splitting scheme yields the best known achievable rate region (with random coding), optimizing a rate-related utility function over this region persents certain challenges stemming from the computational complexities and the distributed nature of interference channels. This paper introduces the notion of partial group decoding which offers a practical rate optimization strategy over this achievable rate region and mitigates these challenges. The merits of partial group decoders are demonstrated through treating the problem of optimal rate allocation with fairness constraints.
+[[[ BODY ]]]
+In the interference channel even though a receiver is not ultimately interested in decoding the messages of the interfering transmitters, decoding them (fully or partially) often enhances the quality of decoding its desired message [1]. Motivated by this premise, some recent developments for the K-user interference channel suggest that each receiver should partition the set of the interfering transmitters into two groups, in which one group of transmitters are fully decoded along with the designated transmitter while the other group of transmitters are treated as Gaussian noise [2]–[4].
+The main advantage of either fully decoding or completely discard- ing an interfering transmitter is that it is sufﬁcient to allocate only one codebook to each transmitter, which is appealing for practical purposes. The drawback of such a codebook assignment is that the receivers give up the freedom of decoding only a fraction of an interfering transmitter, which is a less stringent condition than fully decoding or discarding an interferer.
+In order to facilitate decoding the interferers partially, we focus on allocating multiple codebooks to each transmitter as opposed to the strategies of [2]–[4]. Assigning multiple codebooks enables splitting the message of each transmitter into multiple sub-messages, each drawn from an independent codebook. Such rate splitting can be deemed as the generalization of the Han-Kobayashi scheme [1] for a two-user interference channel. Splitting the messages into multiple sub-messages provides the receiver with the freedom of partially decoding the interferers and, consequently, with the merit of sustaining reliable communication at higher rates.
+Such gains are attainable at the cost of facing certain practical challenges. In particular, once each transmitter has multiple sub- messages, one important task of each receiver is to identify the best subset of the interfering sub-messages it should decode. The number of such possible subsets in a K-user interference channels grows double-exponentially with K, which can make the process of deter- mining the best such subsets computationally prohibitive. Moreover,
+the interference channel is a distributed system that might allow only very limited coordination among different users. Establishing a network-wide optimality, on the other hand, induces an interplay among the designs of the different transmitters and receivers, which in turn necessitates coordination among the transmitters. Therefore, while having some level of coordination is inevitable, it is highly desirable for it to be minimal.
+In this paper we introduce the notion of partial group decoding which is devised to address the challenges related to rate optimization over the rate region achievable via assigning multiple codebooks to each transmitter. We analyze these challenges and the merits of the partial group decoders in harnessing them through solving a fair rate allocation problem for the K-user interference channel.
+Consider a fully connected K-user Gaussian interference channel in which K transmitters communicate with their designated receivers. Denote the channel from the l th transmitter to the k th receiver by h k,l and corresponding to the k th receiver deﬁne h k = [h k,1 , . . . , h k,K ]. By deﬁning x = [x 1 , . . . , x K ] T , where x k is the input of the k th transmitter to the interference channel, the discrete-time model of the signal received by the k th receiver is given by
+where z k accounts for the additive white Gaussian noise distributed as N C (0, 1). In order to allow for rate splitting, which in turn enables the receivers to decode the interferers partially, we assume that the message of each transmitter is split into smaller sub- messages, each drawn from an independent Gaussian codebook. Each transmitter reserves 2 K−1 such codebooks, each of which represents the public message to be decoded by the designated receiver as well as one speciﬁc subset of the (K − 1) non-designated receivers. Let us deﬁne M = 2 K−1 as the number of codebooks per transmitter and denote the set of codebooks of the k th transmitter by ¯ C k = {C k,1 , . . . , C k,M } Deﬁne x k,m as the codeword drawn from codebook C k,m and denote its rate by R k,m . Hence, the input of the k th transmitter to the interference channel is
+We also deﬁne the rate matrix R = [R k,m ] k,m and use the two-tuple notation (k, m) to denote the index of rate R k,m . Furthermore, we deﬁne the set of such indices:
+For any arbitrary set A ⊆ K we deﬁne the K × M indicator matrix 1 A such that ∀k, m,
+We represent the Hadamard product of the matrices A and B by A ◦ B and denote the entry-wise 1-norm of matrix R by
+In this section we discuss the practical challenges pertinent to op- timizing a rate-related utility function over the rate region achievable via assigning M codebooks to each transmitter. Addressing these challenges serves as the basis for designing the structure of the partial group decoders (PGDs).
+Given that each receiver can beneﬁt from decoding a part of the interference jointly with its desired message, the receivers have the freedom to decide what group of interferers they choose to decode. For this purpose the k th receiver partitions the set of indices of the messages K deﬁned in (3) into {Q k , K\Q k }, where it will decode the messages of the codebooks in Q k and treat those in K\Q k as Gaussian noise. A valid choice of Q k must include the messages transmitted by the k th transmitter, i.e.,
+Clearly there exist 2 M (K−1) possible valid partitions for each re- ceiver. Therefore, searching for the best partitioning, which depends on the utility function of interest, has a complexity that grows exponentially with M (K − 1). We demonstrate that employing the partial group decoders breaks this complexity to polynomial in M (K − 1) and does not incur any loss in determining the best decodable set of messages.
+Upon determining the partition {Q k , K\Q k }, the k th receiver should decode the messages included in Q k . As the cardinality of Q k can be as large as M K, employing maximum likelihood decoders can have prohibitive complexity. As a remedy for controlling the decoding complexity, the proposed PGD, besides identifying Q k , further partitions it into p k ∈ N sets as
+and employs a successive decoding procedure for decoding the messages included in Q k . More speciﬁcally, the PGD performs a p k -stage successive procedure, where in the i th stages the k th receiver jointly decodes the messages of Q i k while treating those in {Q i+1 k , . . . , Q p k k , K\Q k } as Gaussian noise. Successively decoding the messages of Q i k reduces the decoding complexity considerably and exhibits the same performance as the maximum likelihood decoder.
+In order to achieve globally optimal performance, the transmitters and receivers cannot act autonomously based on their local knowledge of the network states. On the other hand, coordinating different transmitters and receivers for jointly designing their transmission strategies necessitates some information exchange among them, which contradicts the distributed nature of interference channels.
+Hence, while having some level of coordination is inevitable, it is highly desirable to be minimal. The proposed PGD imposes only limited information exchange among the users and is, therefore, amenable to almost distributed implementation.
+The speciﬁc structure of the partial group decoders, and in particular the way partitions {Q k , K\Q k } and {Q 1 k , . . . , Q p k k } are determined for each k depend on the rate-utility function that we seek to optimize. In this paper we consider the problem of optimal rate allocation with some fairness constraints.
+Consider a K-user interference channel that is operating at a decodable rate matrix R, i.e., the channel between the k th transmitter and receiver can sustain the rate R k deﬁned in (2). Upon any change in the network state (e.g., resources or fading) the rate vector R may remain decodable if ∀ k, R k is decodable by the k th receiver and will not be decodable if ∃ k such that R k is not decodable by the k th receiver. We aim to update R and obtain a new decodable rate vector R new such that the following conditions are satisﬁed.
+First, some notion of fairness in the rate changes is guaranteed, i.e., no codebook (user) sacriﬁces its rate in favor of other codebooks (users), and secondly, R new is optimal in the sense that it cannot be increased without violating the fairness constraints. For the fairness model we consider updating the rates of different codebooks based on a pre-determined set of priorities for them. More speciﬁcally, we are interested in ﬁnding the largest possible x ∈ R such that after updating the rate matrix as R new = R + x · T for a given matrix T 0, the updated rate matrix R new remains decodable. Matrix T can capture different notions of fairness. For instance, setting T = 1 K×M provides all codebooks with identical rate changes, or setting T = R leads to scaling all the rates identically. We call x the rate change factor and its optimal value is determined by solving
+When the rate matrix R is decodable under the new network state x ∗ is expected to be non-negative and the rates can possibly be incremented beyond R. On the other hand, when the rate matrix R is not decodable after the change in the network state x ∗ will be negative and the rates should be decremented.
+In this section we offer a procedure for identifying an optimal partitioning of K into {Q k , K\Q k }. For any two disjoint subset of the messages A, B ⊆ K, and for any k ∈ {1, . . . , K}, let R k (A, B) denote the set of rate matrices that are supported by the k th user when it decodes the messages included in A via maximum likelihood decoding and treats those in B as Gaussian interferers. R k (A, B) can be characterized as
+Moreover, for the k th receiver and any two disjoint subsets A and B of K we deﬁne a rate change factor as
+Given the deﬁnition in (8), the maximum rate change factor that the k th user can afford, i.e., such that it remains decodable, can be found by maximizing δ k (A, B) over all possible choices of A ⊆ K that satisfy
+Therefore, the maximum rate change factor for the k th receiver is given by
+and corresponding to this rate change factor we construct the set Q k as
+The remaining part of this section will be devoted to solving (10) with controlled complexity. Solving (10) involves two levels of complexity. One stems from the complexity of searching for the best choice of set A that solves (10), and the other one is related to the complexity of solving (8) for given sets A and B. We discuss each of these levels of complexity and our approach for mitigating them separately.
+We use the properties of polymatroids for solving δ k (A, B). Based on the techniques developed in [5] we provide the following lemma, which is instrumental for solving the optimization problem in (8).
+Lemma 1: For a submodular function f : 2 A → R + on the ground set A ⊆ K deﬁne the polymatroid
+f (A) is equal to
+In order to apply the lemma above to the problem in hand, note that the region R k (A, B) can be readily shown to be a polymatroid of the form P f (A) deﬁned in Lemma 1 with the submodular function f (D) = L k (D, B) given in (7) [6]. Hence, by applying Lemma 1, the solution of (8) can be found as
+Therefore, solving (12), which in turn solves (8), reduces to solv- ing a combinatorial optimization of a submodular function over a polymatroid, which is feasible in polynomial time [2], [7].
+Based on (10), a direct (naive) approach for computing δ ∗ k and constructing Q k is to exhaust all valid partitions {A, K\A} for which the condition in (9) is satisﬁed. Such exhaustive search has a complexity that scales exponentially with (K − 1)M . We instead propose an efﬁcient iterative procedure that ﬁnds δ ∗ k for each user k ∈ K, with a complexity that is polynomial in (K − 1)M .
+We start by brieﬂy explaining the steps involved in this procedure and then provide the details followed by their optimality properties. Without loss of generality assume that network state changes are in favor of increasing the rates of the k th user beyond its currently operating rates, i.e., δ ∗ k ≥ 0. Corresponding to each valid set A that satisﬁes the conditions in (9), the k th receiver observes a multiple
+access channel that needs to decode the messages included in A and its noise level is shaped by the interference induced by the messages included in K\A. The multiple access channel corresponding to A is characterized by 2 |A| − 1 inequalities of the form
+Based on these inequalities, the rate of the messages in D can be incremented as much as this inequality is not violated and the highest rate increments occur when
+which provides that the maximum rate change factor corresponding to set D is
+Now, among all possible choices for A and D, the one that yields the smallest rate change factor x given in (14) will constitute the bottleneck set of messages in the sense that these users determine what the maximum rate change factor is. The procedure that identiﬁes this bottleneck set for the k th receiver is initialized by including all messages as candidates for being decoded. It then solves δ k (K, ∅) and identiﬁes a non-empty set B that minimizes (12). If this set B does not include the index of any codebooks of the k th transmitter, i.e.,
+then the k th receiver eliminates this set of messages from the set of candidate messages for being decoded and will treat them as noise. The same procedure is repeated iteratively by solving δ(K\B, B) and updating B. This procedure successively identiﬁes and eliminates a group of users that can be safely treated as Gaussian noise and their elimination provides a higher rate change factor. This procedure stops when the most updated set B contains one of the messages transmitted by the k th transmitter (which must be decoded by the k th receiver). At this point the procedure declares the users eliminated in the previous iterations as those to be treated as noise, and based on that computes the optimal rate change factor.
+This procedure has at most M (K − 1) steps, where each step solves a problem of the form (12), which as discussed earlier has polynomial complexity of an order not more than KM . The steps of this successive message elimination procedure are formalized in Algorithm 1. The optimality of this algorithm is demonstrated in the subsequent theorem.
+Theorem 1: Algorithm 1 identiﬁes the partitioning that maximizes δ k (A, K\A) over all valid sets A that satisfy (9), i.e., Q k = A k , and
+yields the value of δ ∗ k as δ ∗ k = δ k , where A k and δ k are the outputs of Algorithm 1.
+In this section we provide an analysis for determining an optimal partitioning of Q k (obtained from Algorithm 1 and Theorem 1) into {Q 1 k , . . . , Q p k k }. This partitioning is intended to avoid joint maximum likelihood decoding of the messages in Q k and, instead, facilitates a successive decoding procedure that decodes the messages of Q k in multiple stages. For the partition {Q 1 k , . . . , Q p k k } of Q k , the messages of Q i k are jointly decoded after treating those in K\{Q 1 k , . . . , Q i−1 k } as Gaussian noise. Therefore, a rate matrix R new is decodable if and only if there exist Q 1 , . . . , Q K such that for each k ∈ {1, . . . , K}
+The successive decoding procedure has the same structure as Algo- rithm 1 in the sense that it aims at successively ﬁnding the set of messages that constitute the decoding bottleneck through exhibiting the smallest normalized gap between the mutual information function and the operating rates as formalized in (14). The steps involved in the successive decoding procedure are formalized in Algorithm 2.
+Theorem 2: The sets {Q 1 k , . . . , Q p k k } yielded by Algorithm 2 offer a successive decoding order that supports the rate changes corresponding the rate change factor δ k .
+In Algorithm 1 each user acts autonomously and determines the optimal rate change factor and the associated rate update policy based on its local information. However, distinct users do not necessarily suggest identical rate updates. We show that for reaching a consensus among all users about the optimal rate change policy it is sufﬁcient to have them exchange their local and independent computations. Speciﬁcally, as proved in Theorem 3, the k th user has to report the value of δ k (one scalar) to the other users. The globally optimal change rate factor x ∗ deﬁned in (5) is then found as the minimum of all {δ k } K k=1 . Consequently, the new rate matrix R new is
+Theorem 3: The updated rate matrix yielded by (15) satisﬁes R new 	 ˜ R where ˜ R is any decodable rate matrix such that ˜ R = R + ˜ x · T for some ˜ x ∈ R.
+Proof: If there exists a decodable rate-vector ˜ R as deﬁned above such that R new ˜ R, then we have
+By deﬁning = arg min k∈{1,...,K} δ k we conclude that ˜ x > δ . Since ˜ R is decodable, then R+ ˜ x·T is decodable by the k th receiver
+and ˜ x > δ , which contradicts the optimality of δ as the optimal rate change factor for the th user (Theorem 1).
+We have introduced the concept of partial group decoding which is tailored to address the challenges of rate optimization problems over the currently known achievable region for the K-user Gaussian interference channel. The main features of the partial group decoders include 1) their polynomial complexity in the number of codebooks in the channel for determining what codebooks each receiver should decode, 2) their amenability to distributed processing with minimal information exchange among the users, and 3) their reduced decoding complexity. These merits and the associated analysis are provided for solving the problem of optimally allocating rates to users with some fairness constraints.
+In order to prove the optimality of Algorithm 1 we ﬁrst provide the following two lemmas.
+Lemma 2: Let us denote the number of iterations of Algorithm 1 by q. For the values {δ i } q i=1 calculated in Algorithm 1 we have δ 1 ≤ · · · ≤ δ q
+Lemma 3: For A k and δ k as the outputs of Algorithm 1 and Q k and δ ∗ k , as the optimal partitioning of K and its associate rate change factor, respectively, if δ ∗ k > δ k , then
+For the output of Algorithm 1 we have A k = K\∪ q−1 i=1 B i , where q is the number of iterations. For the optimal partitioning {Q k , K\Q k } and its corresponding rate change factor δ ∗ k we show that δ ∗ k ≤ δ k , which in conjunction with the optimality of δ ∗ k establishes the desired result. We provide proof by contradiction. Suppose that we have δ ∗ k > δ k . Then, according to Lemma 3 we have B q ⊆ Q k ⊆ A k , where A k is the output of Algorithm 1. Let us deﬁne H = A k \Q k . Therefore
+B i ) T ◦ 1 B q
+where (20) holds since B q ⊆ A k \D and therefore minimizing over the sets A k and A k \H yield the same result. Hence, we have shown that δ ∗ k ≤ δ k , which contradicts the initial assumption that δ ∗ k > δ k . Therefore, by contradiction we must have δ ∗ k ≤ δ k , which in conjunction with the optimality of δ ∗ k provides the desired result.
+where (23) holds by invoking (17). The inequality between (22) and (24) provides
+Note that A k = K\ ∪ q−1 i=1 B i . In order to show that Q k ⊆ A k we equivalently show that Q k ∩ B i = ∅ for i = 1, . . . , q − 1. By contradiction, let us assume that Q k has non-empty intersection with some of the sets {B i } q−1 i=1 and denote by j the smallest value such that Q k ∩ B j = ∅, while for i = 1, . . . , j − 1, we have Q k ∩ B i = ∅. By using the expansion B j = {Q k ∩ B j } ∪ {{K\Q k } ∩ B j } and the properties of ∆ k (·, ·) given in (17)-(18) along with the deﬁnitions of δ j and B j (Algorithm 1) we get
+= ∆ k ({Q k ∩ B j } ∪ {{K\Q k } ∩ B j }, ∪ j−1 i=1 B i ) = ∆ k ({K\Q k } ∩ B j , ∪ j−1 i=1 B i )
+∆ k (D, ∪ j−1 i=1 B i ) ≥ δ j T ◦ 1 D . Now, by setting D = {K\Q k } ∩ B j we get
+which is a contradiction. Therefore, for all j ∈ {1, . . . , q − 1}, Q k ∩ B j = ∅ and as a result Q k ⊆ {K\ ∪ q−1 j=1 B j } = A k .
+If B q 	 Q k , then by noting that B q ⊆ A k we deduce B q ∩ {A k \Q k } = ∅. By expanding B q = {B q ∩ Q k } ∪ {B q ∩ {A k \Q k }} and following the same line of argument as in case 1 we have
++ ∆ k (B q ∩ {A k \Q k }, ∪ q−1 i=1 B i ) ≥ ∆ k (B q ∩ Q k
+[[[ REFS ]]]
+T. S. Han
+K. Kobayashi
+--
+A new achievable rate region for the interference channel
+----
+A. Motahari
+A. K. Khandani
+--
+M-user Gaussian interference chan- nels: To decode the interference or to consider it as noise
+----
+N. Prasad
+X. Wang
+--
+Outage minimization and rate allocation for the multiuser Gaussian interference channels with successive group decoding
+----
+A. Tajer
+N. Prasad
+X. Wang
+--
+Fair rate adaptation in multiuser inter- ference channels
+----
+M. A. Maddah-Ali
+H. Mahdavi-Doost
+A. K. Khandani
+--
+Optimal order of decoding for max-min fairness in K-user memory-less interfer- ence channels
+----
+D. N. C. Tse
+S. V. Hanly
+--
+Multiaccess fading channels part I: Poly- matroid structure, optimal resource allocation and throughput capacities
+----
+A. Schrijver
+--
+A combinatorial algorithm minimizing submodular func- tions in strongly polynomial time
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\143.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,124 @@
+[[[ ID ]]]
+24
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Construction of Polar Codes
+[[[ AUTHORS ]]]
+Ramtin Pedarsani
+S. Hamed Hassani
+Ido Tal
+Emre Telatar
+[[[ ABSTR ]]]
+Abstract—We consider the problem of efﬁciently constructing polar codes over binary memoryless symmetric (BMS) channels. The complexity of designing polar codes via an exact evaluation of the polarized channels to ﬁnd which ones are “good” appears to be exponential in the block length. In [3], Tal and Vardy show that if instead the evaluation if performed approximately, the construction has only linear complexity. In this paper, we follow this approach and present a framework where the algorithms of [3] and new related algorithms can be analyzed for complexity and accuracy. We provide numerical and analytical results on the efﬁciency of such algorithms, in particular we show that one can ﬁnd all the “good” channels (except a vanishing fraction) with almost linear complexity in block-length (except a polylogarithmic factor).
+[[[ BODY ]]]
+Polar coding, introduced by Arıkan in [1], is an encod- ing/decoding scheme that provably achieves the capacity of the class of BMS channels. Let W be a BMS channel. Given the rate R < I(W ), polar coding is based on choosing a set of 2 n R rows of the matrix G n = 1 0 1 1 ⊗n to form a 2 n R × 2 n matrix which is used as the generator matrix in the encoding procedure 1 . The way this set is chosen is dependent on the channel W and uses a phenomenon called channel polarization: Consider an inﬁnite binary tree and place the underlying channel W on the root node and continue recursively as follows. Having the channel P : {0, 1} → Y on a node of the tree, deﬁne the channels P − : {0, 1} → Y 2 and P + : {0, 1} → {0, 1} × Y 2
+1 2
+P + (y 1 , y 2 , x 1 |x 2 ) = 1 2
+and place P − and P + as the left and right children of this node. As a result, at level n there are N = 2 n channels which we denote from left to right by W 1 N to W N N . In [1], Arıkan proved that as n → ∞, a fraction approaching I(W ) of the channels at level n have capacity close to 1 (call them “noiseless” channels) and a fraction approaching 1 − I(W ) have capacity close to 0 (call them “completely
+noisy” channels). Given the rate R, the indices of the matrix G n are chosen as follows: choose a subset of the channels {W (i) N } 1≤i≤N with the most mutual information and choose the rows G n with the same indices as these channels. For example, if the channel W (j) N is chosen, then the j-th row of G n is selected, up to the bit-reversal permutation. In the following, given n, we call the set of indices of N R channels with the most mutual information, the set of good indices.
+We can equivalently say that as n → ∞ the fraction of channels with Bhattacharyya constant near 0 approaches I(W ) and the fraction of channels with Bhattacharyya constant near 1 approaches 1 − I(W ). The Bhattacharyya constant of a channel P : {0, 1} → Y is given by
+Therefore, we can alternatively call the set of indices of N R channels with least Bhattacharyya parameters, the set of good indices. It is also interesting to mention that the sum of the Bhattacharyya parameters of the chosen channels is an upper bound on the block error probability of polar codes when we use the successive cancellation decoder.
+Designing a polar code is equivalent to ﬁnding the set of good indices. The main difﬁculty in this task is that, since the output alphabet of W (i) N is Y N × {0, 1} i , the cardinality of the output alphabet of the channels at the level n of the binary tree is doubly exponential in n or is exponential in the block-length. So computing the exact transition probabilities of these channels seems to be intractable and hence we need some efﬁcient methods to “approximate” these channels.
+In [1], it is suggested to use a Monte-Carlo method for estimating the Bhattacharyya parameters. Another method in this regard is by quantization [3], [4], [5], [6, Appendix B]: approximating the given channel with a channel that has fewer output symbols. More precisely, given a number k, the task is to come up with efﬁcient methods to replace channels that have more that k outputs with “close” channels that have at most k outputs. Few comments in this regard are the following:
+• The term “close” above depends on the deﬁnition of the quantization error which can be different depending on the context. In our problem, in its most general setting
+we can deﬁne the quantization error as the difference between the true set of good indices and the approximate set of good indices. However, it seems that analyzing this type of error may be difﬁcult and in the sequel we consider types of errors that are easier to analyze.
+• Thus, as a compromise, will intuitively think of two channels as being close if they are close with respect to some given metric; typically mutual information but sometimes probability of error. More so, we require that this closeness is in the right direction: the approximated channel must be a “pessimistic” version of the true channel. Thus, the approximated set of good channels will be a subset of the true set.
+• Intuitively, we expect that as k increases the overall error due to quantization decreases; the main art in designing the quantization methods is to have a small error while using relatively small values of k. However, for any quantization algorithm an important property is that as k grows large, the approximate set of good indices using the quantization algorithm with k ﬁxed approaches the true set of good indices. We give a precise mathematical deﬁnition in the sequel.
+Taking the above mentioned factors into account, a suitable formulation of the quantization problem is to ﬁnd procedures to replace each channel P at each level of the binary tree with another symmetric channel ˜ P with the number of output symbols limited to k such that ﬁrstly, the set of good indices obtained with this procedure is a subset of the true good indices obtained from the channel polarization i.e. channel ˜ P is polar degraded with respect to P , and secondly the ratio of these good indices is maximized. More precisely, we start from channel W at the root node of the binary tree, quantize it to ˜ W and obtain ˜ W − and ˜ W + according to (1) and (2). Then, we quantize the two new channels and continue the procedure to complete the tree. To state things mathematically, let Q k be a quantization procedure that assigns to each channel P a binary symmetric channel ˜ P such that the output alphabet of
+˜ P is limited to a constant k. We call Q k admissible if for any i and n
+Note that (4) and (5) are essentially equivalent as N grows large. Given an admissible procedure Q k and a BMS channel W , let ρ(Q k , W ) be 2
+So the quantization problem is that given a number k ∈ N and a channel W , how can we ﬁnd admissible procedures Q k such that ρ(Q k , W ) is maximized and is close to the capacity of W . Can we reach the capacity of W as k goes to inﬁnity?
+Are such schemes universal in the sense that they work well for all the BMS channels? It is worth mentioning that if we ﬁrst let k tend to inﬁnity and then n to inﬁnity then the limit is indeed the capacity, but we are addressing a different question here, namely we ﬁrst let n tend to inﬁnity and then k (or perhaps couple k to n). In Section IV, we indeed prove that such schemes exist.
+Any discrete BMS channel can be represented as a collec- tion of binary symmetric channels (BSC’s). The binary input is given to one of these BSC’s at random such that the i-th BSC is chosen with probability p i . The output of this BSC together with its cross over probability x i is considered as the output of the channel. Therefore, a discrete BMS channel W can be completely described by a random variable χ ∈ [0, 1/2]. The pdf of χ will be of the form:
+such that m i=1 p i = 1 and 0 ≤ x i ≤ 1/2. Note that Z(W ) and 1 − I(W ) are expectations of the functions f (x) = 2 x(1 − x) and g(x) = −x log(x) − (1 − x) log(1 − x) over the distribution P χ , respectively.
+Therefore, in the quantization problem we want to replace the mass distribution P χ with another mass distribution P ˜ χ such that the number of output symbols of ˜ χ is at most k, and the channel ˜ W is polar degraded with respect to W . We know that the following two operations imply polar degradation:
+• Replacing the channel with a BEC channel with the same Bhattacharyya parameter.
+Furthermore, note that the stochastic dominance of random variable ˜ χ with respect to χ implies ˜ W is stochastically degraded with respect to W . (But the reverse is not true.)
+In the following, we propose different algorithms based on different methods of polar degradation of the channel. The ﬁrst algorithm is a naive algorithm called the mass transportation algorithm based on the stochastic dominance of the random variable ˜ χ, and the second one which outperforms the ﬁrst is called greedy mass merging algorithm. For both of the algorithms the quantized channel is stochastically degraded with respect to the original one.
+In the most general form of this algorithm we basically look at the problem as a mass transport problem. In fact, we have non-negative masses p i at locations x i , i = 1, · · · , m, x 1 < · · · < x m . What is required is to move the masses, by only moves to the right, to concentrate them on k < m locations, and try to minimize i p i d i where d i = x i+1 − x i is the amount i th mass has moved. Later, we will show that this method is not optimal but useful in the theoretical analysis of the algorithms that follow. 12
+Note that Algorithm 1 is based on the stochastic dominance of random variable ˜ χ with respect to χ. Furthermore, in general, we can let d i = f (x i+1 ) − f (x i ), for an arbitrary increasing function f .
+The second algorithm merges the masses. Two masses p 1 and p 2 at positions x 1 and x 2 would be merged into one mass p 1 + p 2 at position ¯ x 1 = p 1 p
+x 2 . This algorithm is based on the stochastic degradation of the channel, but the random variable χ is not stochastically dominated by ˜ χ. The greedy algorithm for the merging of the masses would be the following:
+3: Find j = argmin{p i (f (¯ x i ) − f (x i )) − p i+1 (f (x i+1 ) − f (¯ x i )) : i = m} ¯ x i = p i p
+4: Replace the two masses (p j , x j ) and (p j+1 , x j+1 ) with a single mass (p j + p j+1 , ¯ x j ).
+Note that in practice, the function f can be any increasing concave function, for example, the entropy function or the Bhattacharyya function. In fact, since the algorithm is greedy and suboptimal, it is hard to investigate explicitly how chang- ing the function f will affect the total error of the algorithm in the end (i.e., how far ˜ W is from W ).
+In this section, we provide some bounds on the maximum approximation loss we have in the algorithms. We deﬁne the “approximation loss” to be the difference between the expectation of the function f under the true distribution P χ and the approximated distribution P ˜ χ . Note that the kind of error that is analyzed in this section is different from what was deﬁned in Section I-B. The connection of the approximation loss with the quantization error is made clear in Theorem 1. For convenience, we will simply stick to the word “error” instead of “approximation loss” from now on.
+We ﬁrst ﬁnd an upper bound on the error made in Algo- rithms 1 and 2 and then use it to provide bounds on the error made while performing operations (1) and (2).
+Lemma 1. The maximum error made by Algorithms 1 and 2 is upper bounded by O( 1 k ).
+Proof: First, we derive an upper bound on the error of Algorithms 1 and 2 in each iteration, and therefore a bound
+on the error of the whole process. Let us consider Algorithm 1. The problem can be reduced to the following optimization problem:
+where d i = f (x i+1 ) − f (x i ), and f ( 1 2 ) − f (0) = 1 is assumed w.l.o.g. We prove the lemma by Cauchy-Schwarz inequality.
+p i d i is less than 1, the minimum of the terms will certainly be less than 1 m . Therefore,
+For Algorithm 2, achieving the same bound as Algorithm 1 is trivial. Denote e (1) the error made in Algorithm 1 and e (2) the error made in Algorithm 2. Then,
+e (2) i = p i (f (¯ x i ) − f (x i )) − p i+1 (f (x i+1 ) − f (¯ x i )) (13) ≤ p i (f (¯ x i ) − f (x i )) 	 (14) ≤ p i (f (x i+1 ) − f (x i )) = e (1) i . 	 (15)
+Consequently, the error generated by running the whole algorithm can be upper bounded by m i=k+1 1 i 2 which is O( 1 k ).
+What is stated in Lemma 1 is a loose upper bound on the error of Algorithm 2. To achieve better bounds, we upper bound the error made in each iteration of the Algorithm 2 as the following:
+e i = p i (f (¯ x i ) − f (x i )) − p i+1 (f (x i+1 ) − f (¯ x i )) 	 (16) ≤ p i p i+1 p
+where ∆x i = x i+1 − x i and (17) is due to concavity of function f . Furthermore, (19) is by the mean value theorem, where x i ≤ c i ≤ x i+1 .
+If |f (x)| is bounded for x ∈ (0, 1), then we can prove that min i e i ∼ O( 1 m 3 ) similarly to Lemma 1. Therefore the error of the whole algorithm would be O( 1 k 2 ). Unfortunately, this is not the case for either of entropy function or Bhattacharyya 13
+function. However, we can still achieve a better upper bound for the error of Algorithm 2.
+Lemma 2. The maximum error made by Algorithm 2 for the entropy function h(x) can be upper bounded by the order of
+We can see that the error is improved by a factor of log k √ k in comparison with Algorithm 1.
+Now we use the result of Lemma 1 to provide bounds on the total error made in estimating the mutual information of a channel after n levels of operations (1) and (2).
+Theorem 1. Assume W is a BMS channel and using Algo- rithm 1 or 2 we quantize the channel W to a channel ˜ W . Taking k = n 2 is sufﬁcient to give an approximation error that decays to zero.
+Proof: First notice that for any two BMS channels W and V , doing the polarization operations (1) and (2), the following is true:
+(20) Replacing V with ˜ W in (20) and using the result of Lemma 1, we conclude that after n levels of polarization the sum of the errors in approximating the mutual information of the 2 n channels is upper-bounded by O( n2 n k ). In particular, taking k = n 2 , one can say that the “average” approximation error of the 2 n channels at level n is upper-bounded by O( 1 n ). Therefore, at least a fraction 1 − 1 √ n of the channels are distorted by at most 1 √ n i.e., except for a negligible fraction of the channels the error in approximating the mutual information decays to zero.
+As a result, since the overall complexity of the encoder con- struction is O(k 2 N ), this leads to “almost linear” algorithms for encoder construction with arbitrary accuracy in identifying good channels.
+In this section, we show that there are admissible schemes such that as k → ∞, the limit in (6) approaches I(W ) for any BMS channel W . We use the deﬁnition stated in (5) for the admissibility of the quantization procedure.
+Theorem 2. Given a BMS channel W and for large enough k, there exist admissible quantization schemes Q k such that ρ(Q k , W ) is arbitrarily close to I(W ).
+Proof: Consider the following algorithm: The algorithm starts with a quantized version of W and it does the nor- mal channel splitting transformation followed by quantization according to Algorithm 1 or 2, but once a sub-channel is sufﬁciently good, in the sense that its Bhattacharyya parameter is less than an appropriately chosen parameter δ, the algorithm replaces the sub-channel with a binary erasure channel which is degraded (polar degradation) with respect to it (As the
+operations (1) and (2) over an erasure channel also yields and erasure channel, no further quantization is need for the children of this sub-channel).
+Since the ratio of the total good indices of BEC(Z(P )) is 1−Z(P ), then the total error that we make by replacing P with BEC(Z(P )) is at most Z(P ) which in the above algorithm is less that the parameter δ.
+Now, for a ﬁxed level n, according to Theorem 1 if we make k large enough, the ratio of the quantized sub-channels that their Bhattacharyya value is less that δ approaches to its original value (with no quantization), and for these sub- channels as explained above the total error made with the algorithm is δ. Now from the polarization theorem and by sending δ to zero we deduce that as k → ∞ the number of good indices approaches the capacity of the original channel.
+In order to evaluate the performance of our quantization algorithm, similarly to [3], we compare the performance of the degraded quantized channel with the performance of an upgraded quantized channel. An algorithm similar to Algo- rithm 2 for upgrading a channel is the following. Consider three neighboring masses in positions (x i−1 , x i , x i+1 ) with probabilities (p i−1 , p i , p i+1 ). Let t = x i −x i−1 x
+. Then, we split the middle mass at x i to the other two masses such that the ﬁnal probabilities will be (p i−1 + (1 − t)p i , p i+1 + tp i ) at positions (x i−1 , x i+1 ). The greedy channel upgrading proce- dure is described in Algorithm 3.
+3: Find j = argmin{p i (f (x i ) − tf (x i+1 ) − (1 − t)f (x i−1 )) : i = 1, m}
+The same upper bounds on the error of this algorithm can be provided similarly to Section III with a little bit of modiﬁcation.
+In the simulations, we measure the maximum achievable rate while keeping the probability of error less than 10 −3 by ﬁnding maximum possible number of channels with the smallest Bhattacharyya parameters such that the sum of their Bhattacharyya parameters is upper bounded by 10 −3 . The channel is a binary symmetric channel with capacity 0.5. Us- ing Algorithms 2 and 3 for degrading and upgrading the chan- nels with the Bhattacharyya function f (x) = 2 x(1 − x), we obtain the following results:
+It is worth restating that the algorithm runs in complexity O(k 2 N ). Table I shows the achievable rates for Algorithms 2 and 3 when the block-length is ﬁxed to N = 2 15 and k changes in the range of 2 to 64.
+It can be seen from Table I that the difference of achievable rates within the upgraded and degraded version of the scheme 14
+is as small as 10 −4 for k = 64. We expect that for a ﬁxed k, as the block-length increases the difference will also increase (see Table II).
+However, in our scheme this difference will remain small even as N grows arbitrarily large as predicted by Theorem 2. (see Table III).
+We see that the difference between the rate achievable in the degraded channel and upgraded channel gets constant 2×10 −3 even after 25 levels of polarizations for k = 16.
+Proof: Let us ﬁrst ﬁnd an upper bound for the second derivative of the entropy function. Suppose that h(x) = −x log(x) − (1 − x) log(1 − x). Then, for 0 ≤ x ≤ 1 2 , we have
+Using (22) the minimum error can further be upper bounded by
+Now suppose that we have l mass points with x i ≤ 1 √ m and m − l mass points with x i ≥ 1 √ m . For the ﬁrst l mass points we use the upper bound obtained for Algorithm 1. Hence, for 1 ≤ i ≤ l we have
+where (24) is due to (15) and (25) can be derived again by applying Cauchy-Schwarz inequality. Note that this time
+(m − l) 3 , 	 (29) where (29) is due to H¨older’s inequality as follows:
+(30) Now by applying H¨older’s inequality we have
+(m − l) 3 . (32) Overall, the error made in the ﬁrst step of the algorithm
+[[[ REFS ]]]
+E. Arıkan
+--
+Channel Polarization: A Method for Constructing Capacity- Achieving Codes for Symmetric Binary-Input Memoryless Channels
+----
+S. B. Korada
+--
+Polar Codes for Channel and Source Coding
+----
+I. Tal
+A. Vardy
+--
+How to Construct Polar Codes
+----
+S. H. Hassani
+S. B. Korada
+R. Urbanke
+--
+The Compound Capacity of Polar Codes
+----
+R. Mori
+T. Tanaka
+--
+Performance and Construction of Polar Codes on Symmetric Binary-Input Memoryless Channels
+----
+T. Richardson
+R. Urbanke
+--
+Modern Coding Theory
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\024.pdf
+[[[ LINKS ]]]
+

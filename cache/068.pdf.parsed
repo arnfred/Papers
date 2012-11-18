@@ -1,0 +1,236 @@
+[[[ ID ]]]
+68
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Bounds for Threshold and Majority Group Testing
+[[[ AUTHORS ]]]
+Rudolf Ahlswede
+Christian Deppe
+Vladimir Lebedev
+[[[ ABSTR ]]]
+Abstract—We consider two generalizations of group testing: threshold group testing (introduced by Damaschke [8]) and ma- jority group testing (a further generalization, including threshold group testing and a model introduced by Lebedev [15]).
+We show that each separating code gives a nonadaptive strategy for threshold group testing for some parameters. This is a generalization of a results in [2] on “guessing secrets”, introduced in [6].
+We introduce threshold codes and show that each threshold code gives a nonadaptive strategy for threshold group testing. We show that there exist threshold codes such that we can improve the lower bound of [3] for the rate of threshold group testing.
+We consider majority group testing if the number of defective elements is unknown (otherwise it reduces to threshold group testing). We show that cover-free codes and separating codes give strategies for majority group testing. We give a lower bound for the rate of majority group testing.
+[[[ BODY ]]]
+Group testing is of interest for many applications like in molecular biology. For an overview of results and applications we refer to the books [9] and [10].
+The classical group testing problem is to ﬁnd the un- known subset D of all defective elements in the set [N ] = {1, 2, . . . , N }.
+For a subset S ⊂ [N ] a test t S is the function t S : 2 [N ] → {0, 1} deﬁned by
+We deﬁne search strategies as in [1]. A strategy is called successful, if we can uniquely determine D. We remind the reader of the concepts of adaptive and nonadaptive strategies.
+Strategies are called adaptive if the results of the ﬁrst k − 1 tests determine the kth test. Strategies in which we choose all tests independently are called nonadaptive.
+In the present paper we study two generalizations of group testing which are quite natural.
+In threshold group testing the integers 0 ≤ l < u are given and a test t S is the function t S : 2 [N ] → {0, 1, {0, 1}}, deﬁned by
+     
+    
+1 	 , if |S ∩ D| ≥ u {0, 1} , otherwise
+(meaning that the result can be arbitrary 0 or 1).
+In threshold group testing it is not possible to ﬁnd the set D of all defective elements exactly if the gap g = u − l − 1 > 0 (see [8]). It is only possible to ﬁnd a set F of subsets of [N ] which includes D and ∀P, P ∈ F : |P \P| ≤ g and |P\P | ≤ g.
+In majority group testing there are two functions f 1 , f 2 : {0, 1, . . . , N } → R + which put weights on the number D = |D| ∈ {0, 1, . . . , N } of defective elements and f 1 (D) < f 2 (D) ∀D ∈ [0, 1, . . . , N ].
+They describe the structure of tests t S : 2 [N ] → {0, 1, {0, 1}} as follows
+     
+    
+1 	 , if |S ∩ D| ≥ f 2 (D) {0, 1} , otherwise
+(meaning that the result can be arbitrary 0 or 1).
+Clearly majority group testing is a generalization of threshold group testing. We get threshold group testing as a special case by setting f 1 (D) = l and f 2 (D) = u. Furthermore the models are equivalent if the number D of defectives is known. In majority group testing, in particular also for threshold group testing, it is not possible to ﬁnd the set D of all defective elements. We can ﬁnd a set of subsets F ⊂ 2 [N ] , which contains D. This set depends on f 1 and f 2 , on D, and on the strategy used. In this case we call a strategy successful, if we can ﬁnd an F with the smallest possible size in the worst case.
+A special case of majority group testing was introduced by Lebedev [15].
+In [2] it was shown that for guessing secrets (that means l = 0 and u = D for threshold group testing) a (D, D) separating code gives a successful nonadaptive strategy. We prove in Section 2 that for threshold group testing a (u, D − l) separating code gives a successful nonadaptive strategy if D = u + l. This improves the result of [3] for this special case, because the authors use a (u, D − l) cover-free code for the strategy, which has a smaller rate than a separating code.
+In Section 3 we introduce threshold codes and show that these codes give nonadaptive strategies for threshold group testing, if the number of defectives are known. We improve the lower bound for the rate of threshold group testing of [3].
+In Section 4 we consider majority group testing for f 1 (D) = D k − 1 and f 2 (D) = D k + 1 where 2 ≤ k ∈ N. We ﬁrst give conditions for a successful nonadaptive strategy.
+Then we give a lower bound for its rate. Again we ﬁnd relations to separating codes and cover-free codes.
+Finally, in Section 5 we give a list of values to compare the bounds of Section 3 by computer calculation.
+We call a set S ⊂ [N ] a test set if it is used in deﬁning the test t S . We assume that D ≥ u, because otherwise it is not possible to ﬁnd any defective element.
+It is obvious that it is not possible to ﬁnd defective elements if D ≤ u − 1. In [8] it is shown that if D ≥ u we can ﬁnd a set P such that
+|D\P| ≤ g and |P\D| ≤ g 	 (1) or we can even ﬁnd a set F of subsets of [N ] with
+We say that a strategy for threshold group testing is suc- cessful if we found a set F satisfying condition (2). The size of F cannot be reduced. It is shown in [8] that all answers given for a strategy can be the same for all sets in the set F as for the set D of defective elements. Thus we cannot distinguish these sets. First we consider the case where the number D of defectives is known.
+Deﬁnition 1: n T h (N, l, u, D) is the minimal number of tests of a nonadaptive strategy for threshold group testing with lower bound l and upper bound u (see the deﬁnition in the introduction) to ﬁnd a set F which fulﬁlls (2), if there are D de- fective elements. R T h = R T h (l, u, D) = sup N 	 log N n
+denotes the maximal achievable rate of a nonadaptive strategy for threshold group testing for given D, u, l.
+Deﬁnition 2: An n×N matrix (m ij ) 1≤i≤n,1≤j≤N is called a (w, r) separating code of size n×N , if for any pair of subsets I, J ⊂ [N ] such that |I| = w, |J | = r, and I ∩ J = ∅, there exists a row index k ∈ [n] such that m ki = 1 ∀i ∈ I and m kj = 0 ∀j ∈ J or vice versa.
+By n S (N, w, r) we denote the minimal number of rows of a (w, r) separating code with N columns and by R S the corresponding maximal achievable rate.
+Theorem 1: Let D = u + l, then n T h (N, l, u, D) ≤ n S (N, u, D − l).
+In conjunction with our Theorem 1 this implies (this was shown in [2] for l = 0 only)
+Corollary 1: If D = u + l, then n T h (N, l, u, D) ≤ 2u2 u log N and R T h ≥ 1 2u2 2u .
+By random choice of a separating code (see [7]) we get a lower bound on R S and thus we get from Theorem 1
+In the previous section we got a lower bound for threshold group testing if D = u + l. The best known bound for general D was given in [3] using cover-free codes.
+Deﬁnition 3: An n×N matrix (m ij ) 1≤i≤n,1≤j≤N is called a (w, r) cover-free code of size n×N , if for any pair of subsets I, J ⊂ [N ] such that |I| = w, |J | = r, and I ∩ J = ∅, there exists a row index k ∈ [n] such that m ki = 1 ∀i ∈ I and m kj = 0 ∀j ∈ J .
+n c (N, w, r) denotes the minimal number of rows among all (w, r) cover-free codes with N columns.
+Threshold group testing without gap is a special case of the complex group testing model, which was introduced in [21]. In complex group testing we have a set of N elements and a family P of defective subsets of this set. The test gives a positive result, if it includes all elements of a defecive subset. The goal is to ﬁnd all defective subsets.
+Let D the set of defective elements in threshold group testing with the upper bound u and the lower bound l. If we choose P = D u then threshold group testing and complex group testing are the same. Therefore the bounds for complex group testing in [12] can be used for threshold group testing without gap. For u = 3 it is the same bound like in [3].
+In [3] it is shown that every (u, D − l) cover-free code is a nonadaptive strategy for threshold group testing, if D is unknown but bounded by D . This implies
+where n T h denotes the minimal number of tests of a nonadap- tive strategy for threshold group testing with lower bound l, upper bound u, and D bounded by D .
+n T h (N, l, u, D ) ≤ u + D − l
+D −l u + D − l u
+u + D − l + 1 . For the rate this gives
+The best known lower bound using cover-free codes for the rate of threshold group testing is given in [11] (see also [19], [20] for constructions of cover-free codes) by
+D − l + u − 1 	 . (5) One gets this lower bound by random choice of a (u, D −l)
+We ﬁrst consider the case when D is given and de- rive another lower bound for threshold group testing. Let (m ij ) 1≤i≤n,1≤j≤N be an n × N matrix. We denote by r i = (m i1 , . . . , m iN ) the ith row and by c j = (m 1j , . . . m nj ) the jth column.
+Deﬁnition 4: We call an n × N matrix a (D, u, l)-threshold code, if for all A, B ⊂ {1, 2, . . . , N }, |A| = |B| = D, and |A\B| ≥ u − l there exists an i ∈ {1, 2, . . . , n} such that
+We call the rows of the matrix tests and the columns code- words.
+In the previous section we have shown how to get a nonadaptive group testing strategy in case D = u + l by an (u, D−l) separating code. A (D, u, l) threshold code is deﬁned in such a way that it gives a nonadaptive strategy for threshold group testing for every u, l, D. Therefore we get the following
+Lemma 1: Every (D, u, l) threshold code gives a nonadap- tive strategy for threshold group testing if the number D of defectives is known.
+Given an integer N , what is the minimal number (of rows) n such that a threshold code of size n × N fulﬁlls this weaker condition?
+We say that c j is bad if there exists a pair of sets A, B ⊂ {1, 2, . . . , N } with |A| = |B| = D and for which (6’) is not true for any row. Otherwise we call c j good. Consider a random matrix (X ij ) 1≤i≤n,1≤j≤N where the X ij ’s are independent identical distributed random variables. We choose P (X ij = 1) = p and P (X ij = 0) = q.
+Let A, B ⊂ [N ] with |A ∩ B| = D − u + l. Then every test (row) of a (D, u, l)-threshold code contains exactly l 1s inside of the positions corresponding to |A ∩ B|. If there are less, then in the ﬁrst set we cannot have more than u 1s, and if there are more then in the second set we will have more than l 1s. Therefore in this case
+(7) If we assign
+then the right-hand side of (7) does not exceed 1 2 and the average number of bad columns does not exceed N 2 . Thus
+there exists a matrix which has at least N 2 good columns. By using R ≥ lim N →∞ log N 2 n
+D + u − l − 1 	 . 	 (8) We want to consider the general case. We say that c j is
+bad if there exists a pair of sets A, B ⊂ {1, 2, . . . , N } with |A| = |B| = D and for which (6) is not true for any row. Clearly
+(10) Now we need an upper bound
+P (c j is bad) ≤ (D − u + l + 1) · 	 (11) max
+We calculate for each k the rate like for k = D − u + l. The factor (D − u + l + 1) in (11) does not change the rate. Therefore the minimal of these rates gives a bound for the rate in the general case.
+This formula is better than the known one, because every (u, D − l) cover-free code is a (D, u, l) threshold code. The bound for the rate of cover-free codes is derived in the same way as we did for threshold codes. Recall that the best known bound for the rate, using cover-free codes is
+We analyse the rate functions for u = l + 1 in relative quantities
+, µ = u D
+, κ = k D
+We denote by h(x) = −x log x − (1 − x) log(1 − x) the binary entropy function. The next two theorems show how much the bound R T is better as compared with R C .
+Theorem 3: In the case without gap, that is u = l + 1, it holds 	 R
+We remind the reader of the deﬁnition of majority group testing in Section 1.
+This is a generalization of the model considered in [15]. We will now consider the case f 1 (D) = D k − 1 and f 2 (D) =
+ 
+1 	 , if |S ∩ D| > D k = f (D) {0, 1} , otherwise.
+If D is known this problem can be reduced to threshold group testing.
+Now we will consider the case when D is bounded by some D < N . The number of tests depends on D .
+It is clear that as in threshold group testing it is not always possible to determine the set of defectives.
+Deﬁnition 5: We say that two sets A, B of possible defec- tive elements are indistinguishable if for all strategies the results can be the same for both A and B. We call a set F of subsets of [N ] a solution, if the set of all defective elements D ∈ F and the sets in F are pairwise indistinguishable. The next theorem gives conditions for a solution.
+Theorem 5: Let D ⊂ [N ] be the set of defectives and f (D) = D 2 . We can determine a solution F such that for every sets P 1 , P ∈ F with |P 1 | ≥ |P| the following holds
+4) In all other cases we can distinguish two sets A, B with A = B.
+1) In the corresponding matrix of a strategy for majority group testing with f (D) = D 2 it is possible to exchange the zeros and the ones.
+2) The proof of Theorem 5 shows that for a successful strategy we have to have for all disjoint pairs J , I ⊂ [N ] with the size D 2 + 1 two test sets such that the elements of J are contained in one test set and no element of I is contained in the other test set or vice
+versa. This is exactly a separating code and therefore we have the following
+Theorem 6: Let f (D) = D 2 and D be bounded by D , which is known, then a ( D 2 + 1, D 2 + 1) separating code gives a nonadaptive strategy for majority group testing.
+As before we have conditions for a solution. They are given by the following
+Theorem 7: Let D ⊂ [N ] be the set of defectives and f (D) = D k . We can determine a solution F such that for every sets P 1 , P ∈ F with |P 1 | ≥ |P| = ak + s (0 ≤ s ≤ k − 1) the following holds
+3) In all other cases we can distinguish two sets A, B with A = B.
++ 1) cover-free code gives a strategy and thus we have the following
+Theorem 8: Let f (D) = D k and D be bounded by D , which is known, then a ( D k + 1, D − D k + 1) cover- free code is a nonadaptive strategy for majority group testing.
+We set µD = u, λD = l, κD = k, αD = j E 0 = 2 De 0
+with e 2 = (1 − κ)h( f 2 1−κ ) + (1 − κ − f 2 ) log(1 − p) + f 2 log(p) where f 2 = (µ − α)β + (1 − κ)(1 − β).
+with e 3 = (1 − κ)h( f 3 1−κ ) + f 3 log(p) + (1 − κ − f 3 ) log(1 − p) where f 3 = (λ − α)γ.
+The computer calculates now for given µ and λ and e = e 1 + e 2 + e 3 − e 0 :
+• The biggest value for e 1 + e 2 + e 3 − e 0 we have for µ = λ = 1 2
+• The smallest value for e 1 + e 2 + e 3 − e 0 we have for (λ = 0 and µ arbitrary) and for (µ = 1 and λ arbitrary).
+• p = 	 µ 1−λ+µ gives always the biggest value (therefore it is not listed in the table below).
+0 	 x 	 0.00 0.4 0.4 0.97 0.1 0.1 0.47 0.4 0.5 0.89 0.1 0.2 0.45 0.4 0.6 0.80 0.1 0.3 0.43 0.4 0.7 0.69 0.1 0.4 0.41 0.4 0.8 0.55 0.1 0.5 0.39 0.4 0.9 0.36 0.1 0.6 0.36 0.4 1.0 0.00 0.1 0.7 0.32 0.5 0.5 1.00 0.1 0.8 0.27 0.5 0.6 0.89 0.1 0.9 0.21 0.5 0.7 0.76 0.1 1.0 0.00 0.5 0.8 0.60 0.2 0.2 0.72 0.5 0.9 0.39 0.2 0.3 0.69 0.5 1.0 0.00 0.2 0.4 0.65 0.6 0.6 0.97 0.2 0.5 0.60 0.6 0.7 0.83 0.2 0.6 0.55 0.6 0.8 0.65 0.2 0.7 0.49 0.6 0.9 0.41 0.2 0.8 0.40 0.6 1.0 0.00 0.2 0.9 0.28 0.7 0.7 0.88 0.2 1.0 0.00 0.7 0.8 0.69 0.3 0.3 0.88 0.7 0.9 0.43 0.3 0.4 0.83 0.7 1.0 0.00 0.3 0.5 0.76 0.8 0.8 0.72 0.3 0.6 0.69 0.8 0.9 0.45 0.3 0.7 0.60 0.8 1.0 0.00 0.3 0.8 0.49 0.9 0.9 0.47 0.3 0.9 0.32 0.9 1.0 0.00 0.3 1.0 0.00 1.0 1.0 0.00
+The authors would like to thank Christian Kleinew¨achter for improvements of the computer program.
+The author improves the bound for n(N, D, u, l) of [3] by a factor of log D.
+[[[ REFS ]]]
+R. Ahlswed
+I. Wegene
+--
+Suchprobleme, Teubner Verlag, Stuttgart, 1979, Russian Edition: Zadatsi Poiska, MIR, 1982, English Edition: Search Problems, Wiley-Interscience Series in Discrete Mathematics and Optimization, 1987
+----
+N. Alo
+V. Guruswam
+T. Kaufma
+M. Suda
+--
+Guessing secrets efﬁciently via list decoding, 13th SODA, 254-262, 2002
+----
+H.-B. Che
+H.-L. F
+--
+Nonadaptive algorithms for threshold group testing, Discrete Appl
+----
+H.-B. Che
+H.-L. F
+K. Hwan
+--
+F
+----
+M. Cheraghch
+--
+Improved constructions for non-adaptive threshold group testing, Proceedings of the 37th International Colloquium on Automata, Languages and Programming (ICALP), 2010
+----
+F. Chun
+R. Graha
+T. Leighto
+J. on Combinatoric
+--
+F
+----
+G. Cohe
+G. Schaathu
+--
+H
+----
+P. Damaschk
+R. Ahlswede et al
+--
+Threshold group testing, General Theory of Information Transfer and Combinatorics,  editors, Lecture Notes in Computer Science, Vol
+----
+Z. D
+K. Hwan
+--
+D
+----
+Z. D
+K. Hwan
+--
+D
+----
+A. D’yachko
+A. Macul
+P. Vilenki
+D. Torne
+J. Combin
+--
+Families of ﬁnite sets in which no intersection of l sets is covered by the union of s others,  Theory Ser
+----
+A. D’yachko
+A. Macul
+P. Vilenki
+D. Torne
+--
+Two models of nonadaptive group testing for designing screening experiments, Proc
+----
+W. Kaut
+R. Singleto
+--
+Nonrandom binary superimposed codes, IEEE Trans
+----
+S. Lebede
+--
+V
+----
+S. Lebede
+--
+V
+----
+J. Mitchel
+C. Pipe
+--
+C
+----
+M. Nao
+J. Schulma
+A. Srinivasa
+--
+L
+----
+R. Stinso
+--
+D
+----
+R. Stinso
+T. van Trun
+R. We
+--
+D
+----
+R. Stinso
+R. We
+L. Zh
+J. Combin
+A. 9
+--
+D
+----
+C. Torne
+--
+D
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\068.pdf
+[[[ LINKS ]]]
+

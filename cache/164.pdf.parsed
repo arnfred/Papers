@@ -1,0 +1,144 @@
+[[[ ID ]]]
+164
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Queueing Delay - Error Probability Tradeoff for Point-to-Point Channels with Fixed Length Block Codes
+[[[ AUTHORS ]]]
+Vineeth Bala Sukumaran
+Utpal Mukherji
+[[[ ABSTR ]]]
+Abstract—We study the tradeoff between the average error probability and the average queueing delay of messages which randomly arrive to the transmitter of a point-to-point discrete memoryless channel that uses variable rate ﬁxed codeword length random coding. Bounds to the exponential decay rate of the average error probability with average queueing delay in the regime of large average delay are obtained. Upper and lower bounds to the optimal average delay for a given average error probability constraint are presented. We then formulate a constrained Markov decision problem for characterizing the rate of transmission as a function of queue size given an average error probability constraint. Using a Lagrange multiplier the constrained Markov decision problem is then converted to a problem of minimizing the average cost for a Markov decision problem. A simple heuristic policy is proposed which approximately achieves the optimal average cost.
+[[[ BODY ]]]
+We consider the communication of an information source over a point-to-point channel. The aim of the system designer is to provide a transmitter-receiver pair which guarantees that the source can be transmitted reliably, with minimum delay, or in compliance with other Quality of Service (QoS) parameters. Tradeoffs exist between many of these QoS measures, which are yet to be characterized.
+The transmission of an information source, modeled as an inﬁnite pool of bits, over a point-to-point channel is one of the earliest problems considered by information theorists. For a bursty source with no delay constraint the theory provides us with the maximum rate, i.e., capacity (C), at which infor- mation can be transmitted with arbitrarily low probability of error. Under the assumption that the bursty source is modeled by an iid process, and with a constraint that the average delay is ﬁnite, it can be shown that arbitrarily low probability of error can be achieved if the source rate is less than the capacity of the channel [4]. Also the tradeoff between the error probability of a codeword and the codeword length has been analyzed [3, Chap 5]. If we have a delay constraint, it is intuitively clear that long codewords cannot be used, leading to a non-zero minimum achievable error probability for the given delay constraint. Our objective is to characterize the tradeoff between the average error probability and the average delay for bursty sources. The dependence of the error probability
+on transmission rate is captured using reﬁned models for the coding scheme as in [10]. In prior work [13] we had considered the problem of average delay optimal scheduling in a point-to-point channel where codebooks are chosen for transmissions such that the expected error probability for each transmission meets a ﬁxed constraint. The codeword length was varied as a function of the number of messages transmitted to meet the ﬁxed error probability constraint. We obtained an approximation for the optimal policy. Performance bounds for a related queueing system were obtained by Musy and Telatar [9]. Such bounds [9], [13] constitute a possible characteri- zation of the tradeoff between average error probability and average delay for the point-to-point channel. We note that the constraint that the error probability should be ﬁxed in every transmission can be further relaxed, i.e., one can ask for the average error probability over all transmissions to be less than the ﬁxed constraint. This is the perspective taken in this paper. With a delay deadline constraint, the decay rates, with respect to the delay constraint, of the probability of delay deadline violation and the probability of error, for a ﬁxed rate random block code, were analyzed by Javidi et.al [6]. In this paper, we consider variable rate ﬁxed length random block codes and study the exponential decay rate of the average error probability with respect to average delay in the regime of large average delays.
+In Section II, we discuss the system model and the problem. The exponential decay rate is characterized in Section III. Upper and lower bounds on the optimal average delay for a given average error probability constraint are obtained in Section IV. Further characterization of the tradeoff is done using a constrained Markov decision process formulation in Section V. Numerical results are presented in Section VI.
+The system is assumed to evolve in slotted time, where each slot is one channel use. The slots are indexed by t ∈ {0, 1, · · · }. In each slot t the source generates a random number A s (t) of message symbols, which is assumed to be bounded above. Each symbol is generated independently and uniformly from a message alphabet of ﬁnite cardinality M . The symbols are to be communicated over a discrete
+memoryless channel (DMC) with input alphabet X , output alphabet Y, and channel transition matrix P Y |X . The message symbols generated in a slot t are assumed to enter an inﬁnite transmitter buffer just before the slot boundary. The transmitter uses a random block code of length N c to communicate the message symbols. At the start of every transmission the rate of transmission can be varied by the choice of number of symbols transmitted(s). The receiver, that performs maximum- likelihood decoding, is assumed to know s before every transmission through a separate control channel. Under the above assumptions on the coding scheme it is known [3, Theorem 5.6.2] that an upper bound on the probability that a codeword, of rate s N
+ln M ), ρ ∈ [0, 1], and Q is a p.m.f on X . We note that other upper bounds on the codeword error probability can be obtained by optimizing over ρ ∈ [0, 1] while keeping Q ﬁxed, or vice versa.
+We now describe the evolution of the transmitter queue with the random arrival of the source symbols. We assume that transmissions occur every N c slots. So one scheduling period is taken to be equal to N c slots. Let m ∈ {0, 1, · · · } index the scheduling periods. The size of the transmitter queue at the start of a scheduling period m is Z(m). Let Z(0) = z 0 . In each scheduling period S(m) messages (0 ≤ S(m) ≤ Z(m)) from the head of the queue are transmitted using a random block code of length N c . If S(m) = 0, then the transmitter idles for N c slots. Let A(m) denote the random number of message symbol arrivals in the m th scheduling period, then A(m) ∼ A s (1) N c , the N c convolution of A s (1). The evolution of the system sampled at the scheduling epochs is given by
+where S(m) ≤ Z(m). A policy π for operation of the transmitter consists of the sequence (S(m), m ≥ 1) as well as the choice of N c (N c does not change during the operation of the system). For every m, S(m) can depend on (A(0), S(0), · · · , A(m − 1), S(m − 1)) and z 0 . The class of policies with a ﬁxed N c is denoted by Π N c . The class of all policies is Π = N
+Π N c . The class of all stationary policies Π s is such that S(m) = s(Z(m)) where s is a function (possibly randomized) of the state Z(m). If π ∈ Π s then the process Z(m) for π is a Markov chain. The class of stationary policies with a ﬁxed N c is denoted by Π s,N c .
+Note that we are interested in the average delay of the symbols as well as the fraction of symbols which are received in error. For a particular policy π, let D i be the delay of the i th symbol and E i be the event that the i th symbol was received in error. Then we deﬁne ¯ D π = lim sup N →∞ N i=1 D i N and ¯ P e,π = lim sup N →∞ N i=1 I Ei N 	 where I E i = 1 if the event E i has occurred and 0 otherwise. From Little’s law, if the customer- average delay ¯ D π and the time-average queue size ¯ Z π exist as limits w.p.1, then ¯ Z π = λ ¯ D π . If π ∈ Π s induces an ergodic Markov chain Z(m) → Z with stationary distribution ζ then
+, where c(Z) = ZN c + N c (N c −1)λ 2 	 , is the expec- tation of the cumulative queue-length in N c slots conditioned
+on Z. Thus if Z(m) is c-regular [8, Prop A.4.5] under π, then we have that ¯ D π = E ζ c(Z) λN
+. We also note that λ ¯ D π is equal to the expected time-average of c(Z(m)) if Z(m) is c-regular,
+If the fraction of symbols in error ¯ P e,π and the time- rate of symbols in error ¯ H π exist as limits w.p.1, then it can be shown that ¯ H π = λ ¯ P e,π . As in the case of average queue size, it can be shown that if π ∈ Π s induces an ergodic Markov chain, then ¯ H π = E ζ c s (S) N
+, where S is s(Z) and c s (s) is the expected number of symbols in error when a codeword transmits s symbols in N c channel uses. Note that c s (s) ≤ s ≤ z, so that if π is c-regular it is c s - regular. Therefore ¯ P e,π = E ζ c s (S) λN
+. Also if π is c-regular, then λ ¯ P e,π is equal to the expected time-average of c s (S(m)), i.e.,
+Note that c s (s) is not known exactly except in the simplest of cases. As a codeword transmission is in error if any symbol is in error, in the following we approximate c s (s) by assuming that all symbols are decoded incorrectly if the codeword is in error. Different upper bounds on the codeword error probability, as in Eq (1), can be used to obtain approximations for c s (s). The following approximations are possible : c s (s) = (a) s min(1, e −N c E 0 (ρ,Q)+ρs ln M ) where both ρ and Q are ﬁxed, (b) s min(1, e min Q (−N c E 0 (ρ,Q)+ρs ln M ) ), where ρ is ﬁxed, (c) se min ρ∈[0,1] (−N c E 0 (ρ,Q)+ρs ln M ) , where Q is ﬁxed,
+Approximation (a) is analytically tractable as ρ and Q are ﬁxed and do not depend on s. In (b) the optimal Q is a function of the ﬁxed ρ and the analysis would be similar to that of (a) with Q being ﬁxed at the optimal Q for the ﬁxed ρ. As the minimizing ρ and Q are not known explicitly as a function of s even for simple channel models [3, Chap 5] we do not make use of (c) and (d) for most part of the analysis. However for the asymptotic analysis in Section III we are able to present lower bounds using (c). In Section III we use ˜ c s (s) = se min ρ∈[0,1] (−N c E 0 (ρ,Q)+ρs ln M ) , where Q is ﬁxed, as an approximation for the expected number of symbols in error. To simplify analysis we make the following assumption :
+Assumption 2.1: The expected number of symbols in error for a random block code of codeword length N c transmitting s symbols is c s (s) = s min 1, e (−N c E 0 (ρ,Q)+ρs ln M )
+Let ¯ D ∗ (P e,r ) and ¯ P ∗ e (D) denote the optimal values of (a) and (b) respectively. If the inﬁmum is over a ﬁxed N c , i.e., π ∈ Π s,N c then the optimal values of (a) and (b) are denoted by D ∗ N
+(D) respectively. In the next section, we analyze P ∗ e,N
+A. The asymptote lim D→∞ P ∗ e,N c (D) Let ¯ P ∗ ∞ (N c ) denote lim D→∞ P ∗ e,N
+(D). The following op- timization problem is used to construct both upper and lower
+We now obtain a lower bound on ¯ P ∗ ∞ (N c ). Let S denote the random variable of number of symbols transmitted in stationary state. Therefore ¯ P e,π = Ec s (S) λN
+. With = 0 and ES = λN c , the optimal value of the minimization problem (4) is a lower bound to ¯ P ∗ e (D) for any D as the minimization is over all possible distributions of S and we impose a constraint only on ES. Hence ¯ P ∗ ∞ (N c )
+where s = W (e NcE0(ρ,Q)+1 )−1 ρ ln M 	 and W is Lambert’s W func- tion.
+For > 0, let s ∗ ( ) be the optimal value of the mini- mization problem (4). A distribution is said to be δ-optimal if it achieves s ∗ ( ) + δ, where δ > 0. If a distribution is δ-optimal ∀δ > 0, then it achieves the minimum. Con- sider the sequence of i.i.d random variables S(m) ∼ a distribution with ﬁnite support which is δ-optimal for s ∗ ( ). We obtain a randomized stationary policy by transmitting U (m) = min(Z(m), S(m)). The service cost is given by EU min 1, e −N c E 0 (ρ,Q)+ρU ln M but as U ≤ S, we have that c s (U ) ≤ c s (S). It can be shown that Ec(Z) < ∞ for ES ≥ λN c + , so that D( , δ) = Ec(Z)/λN c < ∞ and ¯
+P ∗ e (D( , δ)) ≤ Ec s (U )/λN c ≤ Ec s (S)/λN c . For every > 0 and δ > 0 we have ¯ P ∗ ∞ (N c ) ≤ ¯ P ∗ e (D( , δ))
+We therefore obtain that ¯ P ∗ ∞ (N c ) is equal to the lower bound obtained in inequality (5).
+Remark 3.1: If c s (s) were strictly convex in s for ﬁxed N c then the problem would have been the same as the tradeoff problem considered by Berry and Gallager [1] with their single stage power cost replaced by c s (s). Then ¯ P ∗ e (D) would be strictly convex in D. [1] suggests that a policy which partitions the data buffer into two regions, with a service rate less than the arrival rate in the lower region and a service rate greater than the arrival rate in the upper region, approximately achieves the best rate of convergence of ¯ P ∗ e (D) to ¯ P ∗ ∞ (N c ) as D → ∞. This is a motivating factor for the heuristic policy considered in Section V-C.
+We note that ¯ P ∗ ∞ (N c ) → 0 as N c → ∞ for all λ ln M < E 0 (ρ, Q)/ρ < C, where C is the capacity of the point-to-point channel. We consider ¯ P ∗ ∞ (N c ) for a sequence of stationary policies for which N c → ∞. For any sequence of stationary policies we obtain upper bounds on lim D→∞ − ln( ¯ P ∗ e (D)) D .
+Proposition 3.2: The exponential decay rate of ¯ P ∗ e (D), lim D→∞ − ln( ¯ P ∗ e (D)) D 	 ≤ 2 3 (E 0 (ρ, Q) − ρλ ln M ) for a ﬁxed ρ and Q, if the expected number of symbols in error is assumed to be c s (s). This decay rate is bounded above by max Q max ρ∈[0,1] 2 3 (E 0 (ρ, Q) − ρλ ln M ).
+We provide a sketch of the proof. We consider any sequence of stationary policies π k such that ¯ D π k < ∞, ¯ D π k → ∞ as k → ∞, N c,k → ∞, and inducing a stationary ergodic Markov chain Z π k at the scheduling epochs. It can be shown that for large enough k, ¯ P e,π k ≥ e −N c,k (E 0 (ρ)−ρλ ln M ) (using inequality (5)). Note that ¯ D π k = EZ πk λ + N c,k −1 2 . For a given π k , EZ π k ≥ λN c as the exhaustive policy minimizes EZ π k for a given N c . Therefore ¯ D π k ≥ 3N c,k 2 − 1 2 or 2 3 ( ¯ D π,k +
+lim D→∞ − ln( ¯ P ∗ e (D)) D 	 ≤ 2 3 (E 0 (ρ ∗ (λ), Q) − ρ ∗ (λ)λ ln M ), where ρ ∗ (s) = argmax ρ∈[0,1] (E 0 (ρ, Q) − ρ s N
+ln M ), if the expected number of symbols in error is assumed to be ˜ c s (s). This decay rate is bounded above by max Q 2 3 (E 0 (ρ ∗ (λ), Q) − ρ ∗ (λ)λ ln M ).
+Remark 3.4: From Props. 3.2 and 3.3 the best exponential decay rate under the assumption that the expected number of symbols in error is c s (s) or ˜ c s (s) is the same.
+For any policy we obtain an upper bound to its average error probability if we use c s (s) = se −N c E 0 (ρ,Q)+ρs ln M ≥ s min(1, e −N c E 0 (ρ,Q)+ρs ln M ). Consider a sequence of ex- haustive service (s(z) = z, ∀z) policies e k , such that for each k, N c,k = k. Note that ¯ P ∗ e (D) ≤ ¯ P e,e k , for D = ¯ D e k . We evaluate ¯ P e,e k with c s (s) = se −N c E 0 (ρ,Q)+ρs ln M to obtain a lower bound on the exponential decay rate.
+Proposition 3.5: The 	 exponential 	 decay 	 rate lim D→∞ − ln( ¯ P ∗ e (D)) D 	 ≥ 	 2 3 (E 0 (ρ, Q) − Λ), where
+The best exponent is achieved by ﬁxing ρ at ρ = argmax ρ∈[0,1] (E 0 (ρ, Q) − Λ). An approximation to the best exponent as λ ln M ↑ C is now outlined. Consider λ ﬁxed such that C − δ ≤ λ ln M < C, where δ > 0 and δ ≈ 0. Let ρ λ = sup{ρ : λ ln M < E 0 (ρ, Q)/ρ}. As E 0 (ρ, Q)/ρ is monotonically decreasing in ρ, ∀ρ ∈ [0, ρ λ ), λ < E 0 (ρ,Q) ρ ln M . Also as λ ln M is close to C, ρ λ ≈ 0. Hence, for ρ ∈ [0, ρ λ ) ln Ee ρA s (1) ln M = ρλ ln M + o(ρ). Note that if ρ ≥ ρ λ then E 0 (ρ, Q) − Λ ≤ 0, so that ρ lies in [0, ρ λ ). Then, as E 0 (ρ , Q) − Λ ≈ E 0 (ρ , Q) − ρ λ ln M , we expect ρ = ρ ∗ (λ). Thus, for λ ln M close to capacity, the exhaustive service policy approximately achieves the upper bound on the exponent max Q 2 3 (E 0 (ρ ∗ (λ), Q) − ρ ∗ (λ)λ ln M ). Hence for a given large average delay budget D, for λ ln M close to C, the codeword length to be used should be 2 3 of the delay budget.
+We also consider a sequence of policies µ k such that N c,k → ∞, where µ k transmits using a ﬁxed rate r, where λ ln M < r ln M < C, r a rational number. We choose N c,k such that rN c,k is an integer. At a scheduling epoch, if there are atleast R = rN c symbols then R symbols are transmitted, else the system idles. As above, we evaluate ¯ P e,µ k with c s (s) = se −N c E 0 (ρ,Q)+ρs ln M to obtain a lower bound on the exponential decay rate.
+Note that the lower bound on the achieved exponent goes to zero if r → λ or r → C ln M . For values of r ∈ (λ, C ln M ), the exponent is non-negative. For a ﬁxed ρ and Q, the optimal ﬁxed rate r ∗ can be obtained by maximizing the exponent over r. But it is seen that the lower bound on the exponent for a ﬁxed rate scheme does not match the upper bound.
+We note that ¯ D ∗ (P e,r ) is obtained as a minimization over π ∈ Π s = N
+Π s,N c . Consider the problem (Q) inf π∈Π s,Nc ¯ D π such that ¯ P π ≤ P e,r . Note that D ∗ N
+(P e,r ) is the optimal value for (Q). For a ﬁxed N c let P exh (N c ) and D exh (N c ) denote the average error probability and average delay for the exhaustive service policy (ESP). If P exh (N c ) ≤ P e,r , then ESP is feasible and is optimal for (Q). So
+¯ D ∗ (P e,r ) ≤ D exh (N c ) for any N c such that P exh (N c ) ≤ P e,r . The best upper bound is D u ∆ = D exh (N u c ) = (3N u c − 1)/2 where N u c = min{N c : P exh (N c ) ≤ P e,r }. We have that P exh (N c ) ≤ E[A(1)e −N c E 0 (ρ,Q)+ρA(1) ln M ]. For small ρ we obtain an upper bound N u on N u c . As ρ ↓ 0, it can be shown that P exh ≤ ( 1 + σ 2 /λ 2 )e −N c (E 0 (ρ,Q)−ρλ ln M ) .
+For the lower bound we again consider problem (Q). If for the given N c , P e,r ≤ ¯ P ∗ ∞ (N c ), then no policy π ∈ Π s,N c is feasible. Let N l c = max{N c : P e,r ≤ ¯ P ∗ ∞ (N c ), ∀n < N c , P e,r ≤ ¯ P ∗ ∞ (n)}. The best lower bound D l ∆ = (3(N l c + 1)−1)/2 because by deﬁnition there would exist some feasible policy for N l c + 1 and ESP achieves the minimum possible av- erage delay for N l c + 1. We obtain an approximation N l to N l c by approximating ¯ P ∗ ∞ (N c ) by e −N c (E 0 (ρ,Q)−ρλ ln M ) . Hence,
+and D l,a = (3(N l + 1) − 1)/2. The approximation is expected to be tight as ρ ↓ 0 as then N l c would be large. We note that as P e,r ↓ 0, D u,a − D l,a approaches a constant. We compare D u , D u,a , D l , and D l,a for an example in Section VI. For N c ≤ N l c there are no feasible policies and for N c ≥ N u c ESP is optimal. As ESP is not feasible for N c ∈ {N l c + 1, · · · , N u c − 1} we need to compare D u with the minimum average delay achieved by feasible policies for these values of N c . That is, ¯ D ∗ (P e,r ) = min(D u , min N c ∈{N l
+(P e,r )). The problem of obtaining D ∗ N
+(P e,r ) is considered in the next section.
+In this section we consider the problem (Q) where N c ∈ {N l c + 1, · · · , N u c − 1}. For each N c using [11, Theorem 2.5] or [7, Section 2.4], an optimal policy for (Q) can be shown to be a randomized policy that mixes between two stationary policies. The policies which are mixed are optimal policies for problem (P) inf π∈Π ¯ D π + η ¯ P e,π , where η ≥ 0 is a Lagrange multiplier. We formulate the problem (P) as a Markov decision problem (MDP) with average cost criterion. Note that the study of problem (P) is of independent interest as it arises when
+there are prior constraints on the system that ﬁx N c . The state space of the MDP is given by Z + , the set of all non- negative integers. For every z, the action s ∈ {0, 1, · · · , z} is the number of message symbols that are transmitted. The evolution of the MDP is given by (2). Each stage of the MDP corresponds to N c slots. The single stage cost of the MDP with state z and action s is 1 λN
+(c(z) + ηc s (s)). We note that the tradeoff between the average holding cost c(z) and the average service/error cost c s (s) is one which has been studied extensively in MDP literature, e.g., [5] and [1]. We use [12, Theorem 7.2.3] to prove that there exists an optimal policy for problem (P) which is the minimizer for the following average cost optimality equation (ACOE) :
+where h(z) is the optimal relative value function, and g is the optimal average cost; and an optimal policy is denoted by s ∗ (z), where for each z, s ∗ (z) achieves the minimum in Eq (6).
+We present observations regarding s ∗ (z) and h(z), for truncated state space MDPs, obtained from policy iteration. The observations are assumed to be true in order to obtain an asymptotic characterization of s ∗ (z) and h(z) in Section V-B. We observe the optimal policy to be non-decreasing for a variety of parameter values. We observe that there exists a state z such that c s (s ∗ (z)) = s ∗ (z), ∀z > z (i.e. eventually for large z, all symbols are in error). It is observed that h(z) is approximately linear with slope (η + N c )/λN c and s ∗ (z) = z for large z. The form of optimal policy s ∗ (z) is observed to be as follows : there exist states z 1 and z 2 , z 1 < z 2 such that s ∗ (z) = z for z ∈ {0, · · · , z 1 } and z ∈ {z 2 , · · · }. For z ∈ {z 1 + 1, · · · , z 2 − 1}, we have s ∗ (z) < z and non- decreasing.
+, which motivates the form of the heuristic policy in Section V-C. If the optimal policy is non-decreasing and there exists a state z such that c s (s ∗ (z )) = s ∗ (z ), then for all z ≥ z , all actions s < s ∗ (z ) are sub-optimal. This also means that for all z ≥ z , c s (s) = s for a potentially optimal action s. The ACOE (6) for z ≥ z simpliﬁes to
+We are interested in an asymptotic solution of Eq (7), i.e., we would like to obtain h a (z) such that
+The notion of asymptotic solutions to the ACOE of Markov decision processes was earlier considered in [2] and [13]. Asymptotic solutions were used to obtain near-optimal policies in [2] and [13]. Note that h(z) is always an asymptotic solution.
+Proposition 5.1: An asymptotic solution to (7) is s(z) = z and h(z) = z (N c +η) λN
+Deﬁnition 5.2: z K − z T policy : For z K , z T ∈ Z + , z K ≥ 1, z T > z K , a stationary deterministic policy is deﬁned to be a z K − z T policy if s(z) = z, for 0 ≤ z ≤ z K , s(z) = z K , for z K < z < z T , and s(z) = z, for z ≥ z T .
+As discussed before, the forms of the buffer partitioning policy and of the asymptotic solution of the MDP are the basis for the form of the heuristic policy. Furthermore, the com- putational results in Section V-A show that, for the problem with truncated state space, the optimal policy is similar to a z K − z T policy. An approximately optimal policy can be obtained by choosing z K and z T to minimize the average cost for the corresponding z K − z T policy. In the next section we present a numerical example to show that the heuristic policy approximately achieves the optimal average cost.
+The arrival process is assumed to be a Bernoulli batch (λ, N s ) process with λ = 0.1, i.e., either N s message symbols arrive in a slot with probability λ N
+or none arrive. The compu- tations are done for a truncated MDP with z ∈ {0, ..., 4999}. We consider a discrete memoryless binary symmetric channel with crossover probability 0.05 (C = 0.494 nats/channel-use). For Figures 1 and 2 we ﬁx M = 2 and ρ = 0.9 with the corresponding E 0 (ρ, Q) = 0.3093 (λ ln M < E 0 (ρ, Q)/ρ). In Figure 1 we illustrate the upper bound D u , the approximation D u,a , the lower bound D l , and the approximation D l,a . It is observed that as P e,r ↓ 0, D u − D l approaches a constant. For ρ = 0.9 it is observed that the exponential decay rate of D u is 0.142 while the upper bound on the decay rate is 0.165. For the above parameter values it is observed that D ∗ (P e ) = D u (P e ). We also consider an example with N c ﬁxed in Figure 2. It is
+observed that the tradeoff achieved by the z K − z T policy is quite close to optimal.
+The exponential decay rate of the average probability of error with average delay is observed to be bounded above by two-thirds of the rate of decay of codeword error probability with codeword length. For arrival rates close to capacity, the exhaustive service rate achieves the best upper bound on the exponential decay rate. It remains to be seen whether the two- third multiplicative factor can be improved by considering the tradeoff between average error probability and average queueing delay for a system where both the codeword length and the number s of messages encoded can be controlled. Using the exhaustive service policy an upper bound and an analytical approximation to the tradeoff are obtained. Lower bounds to the tradeoff are also presented. Numerical compu- tations suggest that the heuristic z K − z T policy performs well for small block lengths.
+We thank the reviewers for prompting us to check that our upper bound on decay rate remains unchanged if ρ is optimized as a function of s for ﬁxed Q. This work has been supported by the DRDO-IISc Programme on Advanced Research in Mathematical Engineering.
+[[[ REFS ]]]
+R. A. Berr
+R. G. Gallager
+--
+Communication over fading channels with delay constraints
+----
+I. Bettes
+S. Shamai
+--
+Optimal power and rate control for minimal average delay: The single-user case
+----
+R. G. Gallager
+--
+Information Theory and Reliable Communication
+----
+A. E. Gama
+Y. H. Kim
+--
+Lecture notes on network information theory
+----
+J. M. Georg
+J. M. Harrison
+--
+Dynamic control of a queue with adjustable service rate
+----
+T. Javid
+N. Swamy
+--
+R
+----
+D.-J. M
+A. M. Makowsk
+A. Shwartz
+--
+Estimation and optimal control for constrained markov chains
+----
+P. Meyn
+--
+S
+----
+S. Mus
+E. Telatar
+--
+On the transmission of bursty sources
+----
+
+--
+KCV Kalyanarama Sesha Sayee
+----
+L. I. Sennott
+--
+Constrained average cost markov decision chains
+----
+L. I. Sennott
+--
+Stochastic dynamic programming and the control of queues 
+----
+B. S. Vineet
+U. Mukherji
+--
+Average-delay optimal policies for the point-to-point channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\164.pdf
+[[[ LINKS ]]]
+

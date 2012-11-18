@@ -1,0 +1,158 @@
+[[[ ID ]]]
+87
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Exact Minimum-Repair-Bandwidth Cooperative Regenerating Codes for Distributed Storage Systems
+[[[ AUTHORS ]]]
+Kenneth W. Shum
+Yuchong Hu
+[[[ ABSTR ]]]
+Abstract—In order to provide high data reliability, distributed storage systems disperse data with redundancy to multiple storage nodes. Regenerating codes is a new class of erasure codes to introduce redundancy for the purpose of improving the data repair performance in distributed storage. Most of the studies on regenerating codes focus on the single-failure recovery, but it is not uncommon to see two or more node failures at the same time in large storage networks. To exploit the opportunity of repairing multiple failed nodes simultaneously, a cooperative repair mechanism, in the sense that the nodes to be repaired can exchange data among themselves, is investigated. A lower bound on the repair-bandwidth for cooperative repair is derived and a construction of a family of exact cooperative regenerating codes matching this lower bound is presented.
+Index Terms—Distributed Storage, Regenerating Codes, Era- sure Codes, Repair-Bandwidth, Network Coding.
+[[[ BODY ]]]
+Distributed storage systems such as Oceanstore [1] and Total Recall [2] provide reliable and scalable solutions to the increasing demand of data storage. They distribute data with redundancy to multiple storage nodes and the data can be retrieved even if some of nodes are not available. When erasure coding is used as a redundancy scheme in distributed storage, the task of repairing a node failure becomes non-trivial. A traditional way to repair a failed node is to download and reconstruct the whole data ﬁle ﬁrst, and then regenerate the lost content (e.g., RAID-5, RAID-6). Since the size of the original data ﬁle may be huge, a lot of trafﬁc is consumed for the purpose of repairing just one failed node.
+In order to reduce the total trafﬁc required for repairing, called repair-bandwidth, a new class of erasure codes, called regenerating codes [3], is presented and has a signiﬁcantly lower trafﬁc consumed in regenerating a failed node. The main idea of regenerating codes is to reduce repair-bandwidth from the survival nodes to a new node (called a newcomer), which regenerates the lost content in the failed node. Some con- structions of minimum repair-bandwidth regenerating codes are given in [4], [5]. They are based on exact repair or called exact MBR codes, which means the lost content of the failed node are repaired exactly.
+Most of the studies on regenerating codes in the literature are for the single-failure recovery or one-by-one repair. When
+the number of storage nodes becomes large, the multi-failure case is not infrequent, and we need to regenerate several failed nodes at the same time. In addition, in practical systems such as Total Recall, a recovery process is triggered only after the total number of failed nodes has reached a predeﬁned threshold. These facts motivates the regeneration of multiple failed nodes jointly, instead of repairing in a one-by-one man- ner. A repair process in which the newcomers may exchange packets among themselves, called a cooperative repair or cooperative recovery, is ﬁrst introduced in [6]. We will call the regenerating codes for multiple failures with cooperative repair cooperative regenerating codes. In [7], a special class of cooperative regenerating codes is proposed, in which the newcomers can select survival nodes for repairing ﬂexibly. In [8], an explicit construction of cooperative regenerating code minimizing the storage in each node is given.
+The tradeoff spectrum between repair-bandwidth and stor- age for cooperative regenerating codes is given in [8], [9]. Regenerating codes which attain one end of this spectrum, corresponding to the minimum storage, are considered in [6], [7]. In this paper, we focus on the other end of this spectrum. Codes which minimizes repair-bandwidth is called Minimal Repair-Bandwidth Cooperative Regenerating (MBCR) codes.
+Main Results: After presenting a simple example and demonstrating the basic ideas in Section II, we derive in Sec- tion III a lower bound on the repair-bandwidth in cooperative recovery. An explicit construction of a family of exact MBCR codes matching this lower bound is given in Section IV.
+In this section, we introduce some notations and illustrate the basic idea of cooperative repair.
+Based on the system model introduced in [3] and [6], a ﬁle consisting of B packets is encoded and distributed to n nodes and a data collector can retrieve the ﬁle by downloading data from any k of n nodes. When r nodes fails, r newcomers are selected to repair the failed nodes. The repair process is divided into two phases. In the ﬁrst phase, each of the r newcomers connects to d surviving nodes and downloads some packets. In the second phase, the newcomers exchange some packets among themselves. The objective is to minimize the total number of the packets transmitted (i.e., repair-bandwidth) in the two phases. Next we give an illustration of cooperative repair with parameters n = 4 and d = k = r = 2.
+We initialize the distributed storage system by dividing a data ﬁle into eight data packets A, B, . . . , H, and distribute them to four storage nodes. Each node stores ﬁve packets: four systematic and one parity-check (Fig. 1). The addition “+” is bit-wise exclusive-OR (XOR). The ﬁrst node stores the ﬁrst four packets A, B, C, D, skips the packet E, and stores the sum of the next two packets, F + G. The content of nodes 2, 3 and 4 can be obtained likewise by shifting the encoding pattern to the right respectively by 2, 4 and 6 packets. It is easy to verify that a data collector can rebuild the ﬁle from any two of four nodes in the illustrated code. For example, the data collector which connects to nodes 1 and 2 can reconstruct the eight data packets by downloading A, B, C and F + G from node 1, and D, E, F , and H + A from node 2. Then it can solve for G by subtracting F from F + G, and H by subtracting A from H + A.
+As for the repair process, the illustrated code costs ten packets per any two-failure recovery. Suppose that nodes 1 and 3 fail (see the ﬁrst diagram in Fig. 1). Both newcomers 1 and 3 ﬁrst download four packets from the survival nodes 2 and 4. Then newcomer 1 (resp. newcomer 3) computes the sum B + C (resp. F + G) and sends it to newcomer 3 (resp. newcomer 1). Obviously, a total of ten packets, which are equal to the number of lines (including solid and dashed lines), are transmitted in the network. Similarly, should nodes 2 and 4 fail, the same repair-bandwidth is consumed for regeneration. Suppose that node 1 and 4 fail (see the second diagram in Fig. 1). Both newcomers 1 and 4 ﬁrst download four packets from the survival nodes 2 and 3. Note that among the four downloaded packets, newcomer 1 (resp. newcomer 4) receives one encode packet F + G (resp. D + E) from node 3 (resp.
+node 2). Then newcomer 1 solves for packet B by subtracting C from B + C, and transmits packet B to newcomer 4. Also, newcomer 4 solves for packet A and sends it to newcomer 1. Clearly, a total of ten packet transmissions are sufﬁcient. Similarly, if any pair of two adjacent storage nodes fail, we can also repair them with ten packet transmissions, using the symmetry in the encoding for data distribution.
+In this paper, we assume that the storage nodes are symmet- rical; for the storage cost, each node stores α packets, and for the repair-bandwidth, each newcomer connects to d existing nodes and downloads β 1 packets from each of them, and then sends β 2 packets to each of the r − 1 other newcomers. In this paper, we only consider the case that d ≥ k. The repair- bandwidth per newcomer, denoted by γ, is deﬁned as the total number of the packets each newcomer receives, and thus is equal to
+To formulate the problem, we draw an information ﬂow graph as in [6]. Given parameters n, k, d, r, α, β 1 and β 2 , we construct an information ﬂow graph G = ( V, E) as follows. The vertices are grouped into stages.
+• In stage −1, there is only one vertex S, representing the source node which has the original ﬁle.
+• In stage 0, there are n vertices Out 1 , Out 2 , . . . , Out n , each of them corresponds to an initial storage node. There is a directed edge with capacity α from S to each Out i .
+• For t = 1, 2, 3, . . ., suppose r nodes fail in stage t. Let the indices of these r storage nodes be S t = {j 1 , j 2 , . . . , j r }. For each i ∈ S t , we put three vertices In i , Mid i and Out i in stage t. There are d directed edges, with capacity β 1 from d “out” vertices in previous stages to each In i . For each i ∈ S t , we put a directed edge from In i to Mid i with inﬁnite capacity, and a directed edge from Mid i to Out i with capacity α. For each pair of distinct indices i, j ∈ S t , we draw a directed edge from In i to Mid j with capacity β 2 . The edges with capacity β 1 represent the data transferred from existing storage nodes to newcomers, and the edges with capacity β 2 represent the data exchanged among the newcomers.
+• To a data collector, who shows up after s repair processes have taken place, we put a vertex DC in stage s and connect it with k “out” vertices with distinct indices in stage s or earlier. The capacities of these k edges are set to inﬁnity.
+An example of information ﬂow graph for n = 4 storage nodes and d = r = k = 2 is shown in Fig. 2.
+To derive a lower bound on dβ 1 +(r −1)β 2 for a ﬁle of ﬁxed size B is equivalent to derive a upper bound of B for given capacities β 1 and β 2 in the information ﬂow graph. So we can apply a celebrated max-ﬂow theorem in [10], which says the size of the data ﬁle B cannot be larger than the max-ﬂow from
+S to any data collector (DC). The max-ﬂow is the maximal value of all feasible ﬂows from S to DC. Here, a ﬂow from S to DC, called an (S, DC)-ﬂow, is a mapping F from the set of edges to the set of non-negative real numbers, satisfying (i) for every edge e, F (e) does not exceed the capacity of e, (ii) for any vertex v except the source vertex S and the terminal vertex DC, the sum of F (e) over edges e terminating at v is equal to the sum of F (e) over edges e going out from v,
+The value of an (S, DC)-ﬂow F is deﬁned as ∑
+From the max-ﬂow-min-cut theorem, we can upper bound the value of a ﬂow by the capacity of a cut. For a given data collector DC, an (S, DC)-cut is a partition ( U, ¯ U) of the vertices in the information ﬂow graph, such that S ∈ U and DC ∈ ¯ U, where ¯ U stands for the complement of U in the vertex set V. The capacity of an (S, DC)-cut is deﬁned as the sum of capacities of the edges from vertices in U to vertices in ¯ U. Next, we will use the fact that the value of any (S, DC)-ﬂow is less than or equal to the capacity of any (S, DC)-cut, together with the max-ﬂow theorem in [10], to prove the following theorem.
+Theorem 1. If d ≥ k, the repair-bandwidth dβ 1 + (r − 1)β 2 is lower bounded by
+k(2d + r − k) 	 (1) and this lower bound can be met only when
+Proof: Consider a data collector which downloads data from k out of n storage nodes. By re-labeling the storage nodes, we can assume without loss of generality that the corresponding k “out” vertices be Out 1 , Out 2 , . . . , Out k .
+Suppose that these k “out” vertices belong to stages 1 to s, and for ν = 1, 2, . . . , s, there are ℓ ν “out” nodes in ¯ U in stage ν. By vertex re-labeling, we can assume without loss of generality that Out 1 , Out 2 , . . . , Out ℓ 1 belong to stage t 1 , Out ℓ 1 +1 , Out ℓ 1 +2 , . . . , Out ℓ 1 +ℓ 2 belong to stage t 2 , and so on. For notational convenience, we let ℓ 0 = 0. Consider the (S, DC)-cut with ¯ U consisting of the vertices
+in stage ν, for ν = 1, 2, . . . , s, and DC. We say that the cut thus deﬁned is of type (ℓ 1 , ℓ 2 , . . . , ℓ s ). An example of cut with type (2, 1, 2) is shown in Fig. 3.
+We claim that the capacity of an (S, DC)-cut of type (ℓ 1 , ℓ 2 , . . . , ℓ s ) can be as small as
+In stage 1, there are dℓ 1 , each with capacity β 1 , terminating at In 1 , In 2 , . . . , In ℓ 1 .
+There are ℓ 1 d edges, each with capacity β 1 , terminating at In 1 , In 2 , . . . , In ℓ 1 in stage 1. Also, there are ℓ 1 (r − ℓ 1 ) edges, each with capacity β 2 , terminating at Mid 1 , Mid 2 , . . . , Mid ℓ 1 . Hence, a total of ℓ 1 dβ 1 + ℓ 1 (r − ℓ 1 )β 2 are contributed to the summation in (3). This is the summand corresponding to ν = 1 in (3).
+For the second group of ℓ 2 storage nodes in stage 2, there may be ℓ 1 links from the ﬁrst group of storage nodes, which are not counted in the capacity of the cut. The sum of capacities of edges terminating at the “in” vertices in ¯ U in stage 2 could be as small as ℓ 2 (d − ℓ 1 )β 1 . Together with the sum of capacities of the edges terminating at the “mid” vertices, a total of ℓ 2 (d − ℓ 1 )β 1 + ℓ 2 (r − ℓ 2 )β 2 are contributed to (3). This is the second summand in (3). The rest of the summands can be derived similarly. This ﬁnishes the proof of the claim.
+For a data ﬁle of size B, we should be able to construct a ﬂow of value at least B. Hence B is less than or equal to (3) for all type (ℓ 1 , ℓ 2 , . . . , ℓ s ) with 0 < ℓ ν ≤ r for all ν = 1, 2, . . . , s, and ℓ 1 + . . . + ℓ s = k. After some algebraic manipulations, we have the following upper bound on B,
+We note that if we substitute β 1 and β 2 by 2B/(k(2d+r −k)) and β 2 = B/(k(2d+r −k)) respectively, then we have equality in (4).
+From the cut of type (k, 0, 0, . . . , 0), we have the following constraint,
+If we multiply (5) by 2d, multiply (6) by r − 1, and add the two resulting inequalities, we get
+To see that the lower bound can be met only when β 1 and β 2 are speciﬁed as in the theorem, we notice that (5) and (6) deﬁne an unbounded polyhedral region in the β 1 -β 2 plane, with (2) as a vertex point. If we want to minimize the objective function dβ 1 + (r − 1)β 2 over all point (β 1 , β 2 ) in this region, the optimal point is precisely the point given in (2).
+a = ⌊k/r⌋ and b = k − ra. The upper bound of B in (4) becomes
+Together with the constraint obtained from a cut of type (1, 1, . . . , 1), we set up a linear program and minimize dβ 1 + (r − 1)β 2 over all (β 1 , β 2 ) satisfying the inequalities in (5) and (7).
+Let L 1 be the straight line in the β 1 -β 2 plane by setting the inequality in (5) to equality. Let L 2 be the straight line consisting of point (β 1 , β 2 ) satisfying (7) with equality. We can verify that the intersection of L 1 and L 2 is the point in (2).
+We investigate the slopes of L 1 and L 2 . The slope of L 1 is equal to −(d − (k − 1)/2)/(r − 1), which is larger than the slope of the objective function, −d/(r − 1). For the slope of L 2 , we ﬁrst check that
+− abr > db ⇐= dk − r 2 a(a − 1) − abr > db
+We have used several times that k = ar + b in the above derivation. The last line holds by the assumptions d ≥ k and r ≥ 2. Therefore,
+The slope of L 2 is strictly less than the slope of the objective function. Thus, the optimal point of the linear programming
+problem is the vertex in (2). This completes the proof of Case 2.
+We can now show that the regenerating code discussed in Section II is optimal, in the sense that given the parameters B, d, k and r, the repair-bandwidth matches the lower bound in Theorem 1. We have B = 8 and d = k = r = 2 in the example. From Theorem 1, the repair-bandwidth cannot be less than 8 2 ·2+2−1 2(2 ·2+2−2) = 5. We have shown in Section II that the repair process requires exactly 5 packet transmissions per failed node, and therefore matches the optimal value.
+For non-cooperative or one-by-one repair, it is proved in [3] that the minimum repair-bandwidth per failed node is 2dB/(k(2d + 1 − k)), which turns out to be the same as the left hand side of (1) with r set to 1. If we apply a non-cooperative regenerating code to a distributed storage system with parameters as in Section II, the minimum repair- bandwidth is 	 2 ·2·8 2(2 ·2+1−2) = 5.333. From this simple example, we can see that repair-bandwidth can be further reduced if some data exchange of data among the newcomers is allowed.
+The lower bound of repair-bandwidth in Theorem 1 in fact holds via random linear coding with ﬁeld size large enough. The tightness of the lower bound is established in [11], by showing the existence of MBCR codes which match the lower bound. Thus, the minimum repair-bandwidth for MBCR is indeed equal to B(2d + r − 1)/(k(2d + r − k)).
+We construct in this section a family of exact MBCR code with parameters d = k and n = d + r. In fact, the illustrated code in Section II is a special case in this family.
+The whole ﬁle is ﬁrst divided into stripes. Each stripe consists of B = k(2d + r − k) = kn data packets, considered as elements in GF (q), where q is a prime power. In each stripe let the kn data packets be x 0 , x 1 , . . . , x kn −1 . We divide them into n groups. The ﬁrst group consists of x 0 , x 1 , . . . , x k −1 , the second group consists of x k , x k+1 , . . . , x 2k −1 , and so on. For notational convenience,
+For i = 1, 2, . . . , n, we construct the content of node i as follows. We ﬁrst put the k data packets in the i-th group x i into node i and then n − 1 parity-check packets
+into node i, where “ ·” is the dot product of vectors and ⊕ is modulo-n addition deﬁned by
+x + y 	 if x + y ≤ n, x + y − n if x + y > n.
+Here v j (j = 1, 2, . . . , n −1) are column vectors in a k×(n−1) generating matrix, G = [v 1 v 2 . . . v n −1 ], of a maximal- distance separable (MDS) code over GF (q) of length n − 1 and dimension k. By the deﬁning property of MDS code, any k columns of G are linearly independent of GF (q).
+As for the ﬁle reconstruction processing, suppose without loss of generality that a data collector connects to nodes 1, 2, . . . , k. The systematic packets x 0 , x 1 , . . . , x k 2 −1 in the ﬁrst k groups can be downloaded directly, because they are stored in node 1 to node k uncoded. The jth group of data packets (j > k) (the components in vector x j ) can be reconstructed from x j ·v j −1 , x j ·v j −2 , . . . , x j ·v j −k , by the MDS property. A data collector connecting to any other k storage nodes can decode similarly.
+As for the cooperative repair processing, suppose without loss of generality that nodes k + 1 to n fail at the same time. The repair process proceeds as follows.
+Step 1: For i = 1, 2, . . . , k, node i computes x i ·v n+i −j and sends it to newcomer j, for j = k + 1, k + 2, . . . , n.
+Step 2: For j = k + 1, k + 2, . . . , n, newcomer j downloads k packets x j · v j −1 , x j · v j −2 , . . . , x j · v j −k from nodes 1 to k.
+Step 3: For j = k + 1, k + 2, . . . , n, newcomer j can solve for the systematic packets in x j . Then node j sends x j ·v j+i to node n −i+1, for i = 1, 2, . . . , n−j, and sends x j ·v i to node j −i, for i = 1, 2, . . . , j −k −1.
+In steps 1 and 2, a total of 2k(n − k) = 2kr packets are transmitted. In step 3, each newcomer transmits r −1 packets. The total number of packets required in the whole repair process is 2kr + r(r − 1) = r(2d + r − 1). The number of packets per failed node is therefore 2d + r − 1. According to Theorem 1, the repair-bandwidth is no less than
+Remark: If n = q + 2 for some prime power q, we can use an extended Reed-Solomon (RS) code of length q + 1 in the construction. The alphabet size could be as small as n − 2. We refer the reader to [12] for the construction of extended RS code.
+Example: An example for n = 5, d = k = 3 and r = 2 is shown in Fig. 4. A stripe of ﬁle data is divided into 15 packets x 0 , x 1 , . . . , x 14 . Let q = 2 and G be the generating matrix
+ 1 1 0 0 1 0 1 0 1 0 0 1
+ 
+of a triply-extended Reed-Solomon code over GF (2) [12]. The ith row of the array in Fig. 4 indicates the content of node i. For example, node 4 stores six systematic packets, x 9 , x 10 , x 11 in x 4 , x 1 · v 2 = x 0 , x 2 · v 3 = x 4 , x 3 · v 4 = x 8 , and one parity-check packet x 5 · v 1 = x 12 + x 13 + x 14 .
+Suppose that nodes 4 and 5 fail. In the ﬁrst step, node 1 sends x 1 · v 2 and x 1 · v 1 to newcomers 4 and 5 respectively. Similarly, node 2 sends x 2 · v 3 and x 2 · v 2 , and node 3 sends x 3 ·v 4 and x 3 ·v 3 . In the second step, node 1 transmits x 4 ·v 3 and x 5 ·v 4 to newcomers 4 and 5 respectively. Likewise, node 2 transmits x 4 ·v 2 and x 5 ·v 3 , and node 3 transmits x 4 ·v 1 and x 5 ·v 2 . In the third step, newcomer 4 reconstructs x 4 , and sends
+x 4 ·v 4 to newcomer 5. Also, newcomer 5 reconstructs x 5 , and sends x 5 ·v 1 to newcomer 4. Lastly, the lost packets in nodes 4 and 5 are regenerated in newcomer 4 and 5. The total number of packet transmissions in the whole repair process is equal to 14. The repair-bandwidth per failed node is 7. It matches the theoretic lower bound 15(2 · 3 + 2 − 1)/(3(2 · 3 + 2 − 3)) = 7.
+We give a construction of a family of exact and optimal MBCR codes for d = k and n = d + r. The constructed regenerating code has the advantage of being a systematic code. For example, if we want to look at the content of one particular packet, we only need to contact the node which has a copy of this packet and download the packet directly. Another advantage of this construction is that the requirement of ﬁnite ﬁeld size grows linearly as a function of the number of storage nodes.
+[[[ REFS ]]]
+J. Kubiatowicz et al.
+--
+OceanStore: an architecture for global-scale persistent storage
+----
+R. Bhagwan
+K. Tati
+Y. Cheng
+S. Savage
+G. Voelker
+--
+Total recall: system support for automated availability management
+----
+A. G. Dimakis
+P. B. Godfrey
+Y. Wu
+M. J. Wainwright
+K. Ram- chandran
+--
+Network coding for distributed storage systems
+----
+K. V. Rashmi
+N. B. Shah
+P. V. Kumar
+K. Ramchandran
+--
+Explicit construction of optimal exact regenerating codes for distributed storage
+----
+C. Suh
+K. Ramchandran
+--
+Exact-repair MDS code construction using interference alignment
+----
+Y. Hu
+Y. Xu
+X. Wang
+C. Zhan
+P. Li
+--
+Cooperative recovery of distributed storage systems from multiple losses with network coding
+----
+X. Wang
+Y. Xu
+Y. Hu
+K. Ou
+--
+MFR: Multi-loss ﬂexible recovery in distributed storage systems
+----
+K. W. Shum
+--
+Cooperative regenerating codes for distributed storage systems
+----
+A.-M. Kermarrec
+N. Le Scouarnec
+G. Straub
+--
+Repairing multiple failures with coordinated and adaptive regenerating codes
+----
+R. Ahlswede
+N. Cai
+S.-Y. R. Li
+R. W. Yeung
+--
+Network informa- tion ﬂow
+----
+K. W. Shum
+Y. Hu
+--
+Existence of minimum-repair-bandwidth cooperative regenerating codes
+----
+R. M. Rot
+--
+Introduction to Coding Theory
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\087.pdf
+[[[ LINKS ]]]
+

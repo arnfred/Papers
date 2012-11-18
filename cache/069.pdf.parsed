@@ -1,0 +1,176 @@
+[[[ ID ]]]
+69
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Average Error Exponent of Undetected Error Probability of Binary Matrix Ensembles
+[[[ AUTHORS ]]]
+Kazushi Mimura
+Tadashi Wadayama
+Toshiyuki Tanaka
+Yoshiyuki Kabashima
+[[[ ABSTR ]]]
+Abstract—We evaluate average error exponent of the unde- tected error probability of binary matrix ensembles by applying statistical-mechanics approach, which is called the “quenched” average error exponent. In the exixting analysis, the “annealed” average error exponent, which is the error exponent of the average undetected error probability, has been evaluated. The quenched average error exponent is more suitable to capture typical behaviors. We show that there are some cases where the annealed exponent is overestimated for the irregular sparse matrix ensemble. We also show that the quenched average error exponent is equivalent to the annealed average error exponents for the regular sparse matrix ensemble.
+[[[ BODY ]]]
+Evaluation of the undetected error probability of a given code is a classic problem in coding theory [6], [7]. An error detection scheme, such as automatic repeat request (ARQ), is essentially required for a communication system to achieve highly reliable communications over an unreliable channel. In order to evaluate the performance of a feedback error correc- tion scheme, it is indispensable to know the error detection performance of a code or an ensemble of codes.
+Recently, Wadayama [17] has studied ensemble average of undetected error probability for some classes of binary matrix ensembles such as the random ensemble and Bernoulli ensem- ble, and has shown asymptotic behaviors of error exponents of undetected error probability based on the results on average weight distributions of LDPC codes [8], [9], [1], [13], [14].
+The error exponent of undetected error probability studied in [17] is deﬁned by lim n→∞ (1/n) log 2 E[P U ], where P U is the undetected error probability, where E[·] is the expectation operator deﬁned on the given ensemble, and where n is the code length. We shall call it the annealed average exponent, where the term “annealed” is borrowed from terminology of statistical physics. It is known that the annealed average exponent unveils a typical behavior of a given ensemble when undetected error probabilities of instances in the ensemble is concentrated around its mean in the large- n asymptotic regime, namely P U /E[P U ] → 1 in probability. So far, the following two properties have been proved. The weight distribution for the regular ensemble is concentrated around its ensemble average [12] and the undetected error probability for the random ensemble is also concentrated [17].
+When concentration does not occur, on the other hand, the annealed average exponent may not be a good index for capturing typical behaviors of undetected error probability, because an exponentially large number of code instances with exponentially small values of P U and only a small number of code instances with exceptionally large values of P U may contribute equally to the expectation E[P U ]. In such cases, the quenched average exponent lim n→∞ (1/n)E[log 2 P U ] is
+more suitable for capturing typical behaviors. Although the quenched average exponent thus has signiﬁcant importance for analyzing the undetected error performance of an error detection scheme, its evaluation is not a trivial problem. Exchanging the order of log 2 ( ·) and the expectation E[·] makes the problem much harder, since it prevents use of conventional tools from information theory. Similar problems in which one should treat the quenched average have been discussed in [5], [15], [11], [18], [10]. When the undetected error probability is concentrated for a given ensemble, the quenched exponent coincides with the annealed average exponent.
+Condamin [2] and van Mourik et al. [16] evaluated quenched average weight enumerators for regular sparse ma- trix ensembles, and have shown that they are equal to their annealed counterparts. Di et al. [3] evaluated quenched average weight enumerators for irregular sparse matrix ensembles, and have pointed out that there are some cases where the quenched average weight enumerator is not equal to the annealed one for an irregular sparse matrix ensemble. Since the undetected error probability is a weighted linear combination of the weight enumerator, the undetected error probability can be obtained via the Legendre transformation of the weight enumerator. Although the quenched average error exponent of the undetected error probability has not been evaluated yet.
+In this paper, we focus on regular and irregular sparse matrix ensembles and evaluate their quenched average exponents of the undetected error probability directly, namely without using the weight distribution. We apply a statistical-mechanics approach to evaluate the exponent. This paper is organized as follows. The next section explains the undetected error probability and deﬁnes the error exponent of the undetected error probability. Section III outlines the analysis. In section IV, the results of the analysis are shown. The ﬁnal section is devoted to a summary.
+Let F 2 = {0, 1} be the Galois ﬁeld with two elements, and let H is an m×n binary matrix. The binary linear code C(H) over F 2 is deﬁned by
+C(H) {x ∈ F n 2 : Hx t = 0 m }. 	 (1) The operator t denotes the transpose. The notation 0 m and a boldface letter denote the zero column vector of length m and a binary row vector, respectively. The code length of the code C(H) is n.
+In this paper, we assume a binary symmetric channel (BSC) with crossover probability (0 < < 1/2). The error detection
+scenario considered in this paper is as follows: A codeword x ∈ C(H) is transmitted via the BSC. The receiver computes the syndrome s t = Hy t from the received word y = x ⊕ e, where e = (e 1 , · · · , e n ) ∈ F n 2 denotes an error (row) vector, and where ⊕ denotes the addition over F 2 . The receiver then declares an error detection if s t = 0 m holds.
+The undetected error event is thus deﬁned as the event {e : He t = 0 m and e t = 0 n }. The undetected error probability P U (H) is therefore written as
+where w(x) denotes the Hamming weight of vector x and where I(P) denotes the indicator function which takes 1 if the proposition P is true, and 0 otherwise.
+A matrix ensemble G m,n is deﬁned as a subset of m × n binary matrices, along with a probability measure P (H) deﬁned on it. The ensemble average of f (H) over G m,n is deﬁned as
+1) Regular Ensemble: The ( C, K)-regular ensemble E m,n consists of all binary matrices with K nonzero elements in each row and C nonzero elements in each column, and is accompanied with uniform probability
+where N denotes the total number of such binary matrices. The design rate then becomes R 1 − m/n = 1 − C/K.
+2) Irregular Ensemble: The irregular ensemble S m,n con- sists of those matrices for which the number of nonzero elements in each row is drawn from P K (K) and the number of nonzero elements in each column is drawn from P C (C), and is equipped with uniform probability. More details are presented in Appendix A.
+For a given sequence of matrix ensembles G (1−R)n,n , where R is the design rate satisfying 0 < R < 1, the average unde- tected error probability is usually an exponentially decreasing function of n, The exponent of the undetected error probability thus plays an essential role in understanding the asymptotic behavior. The following deﬁnition of error exponent should therefore be reasonable in discussing the asymptotic behavior of the undetected error probability.
+Deﬁnition 1: (Annealed average error exponent) The asymptotic error exponent of the average undetected error probability is deﬁned by
+Properties of the annealed average error exponent T G of several ensembles have thoroughly been investigated in [17].
+We also consider the quenched average error exponent deﬁned as follows.
+Deﬁnition 2: (Quenched average error exponent) The quenched average error exponent of the undetected error probability is deﬁned by
+n E G (1−R)n,n [log 2 P U (H)], 	 (6) if the limit exists.
+Note that log 2 ( ·) is taken before the expectation E[·] in the deﬁnition of ˆ T G . Using Jensen’s inequality, we have ˆ T G ≤ T G . This suggests that the annealed error exponent T G might give an overestimated value. The quenched averaged error exponent ˆ T G can be considered as a more natural criterion, since the error exponent of each matrix is evaluated before the ensemble average is taken.
+We evaluate the quenched average error exponent ˆ T S using the statistical mechanical method and then obtain the following result.
+Proposition 1: The quenched average error exponent ˆ T S for the irregular ensemble is given by
+¯ C ¯ K
+within the replica symmetric assumption. Here, extr ∗ denotes extremization, which excludes π(x) = δ(x − 1), and δ(x) denotes Dirac’s delta function.
+The functions π(x), ˆ π(ˆ x) are determined by the following saddle-point equations obtained via functional variations:
+When the saddle-point equations have more than one solution, one has to choose the one which gives the largest value of the term extr ∗ [ · · · ] in (7) at = 1.
+For several matrix ensembles, the annealed average error exponents have been obtained via the combinatorial argument based on weight distribution [8], [12], [17]. From our analysis, we can also evaluate the annealed average error exponent as follows.
+Corollary 1: The annealed average error exponent T S for the irregular ensemble is given by
+Outline of analysis of Proposition 1 and Corollary 1 is given in Appendix B.
+Setting P C (C ) = δ(C ; C) and P K (K ) = δ(K ; K) in Proposition 1, where δ(m; n) denotes Kronecker’s delta taking 1 if m = n and 0 otherwise, we obtain the quenched exponent for the regular ensemble as follows.
+Corollary 2: The quenched average error exponent for the (C, K)-regular ensemble is given by
+ˆ T E = − log 2 2 cosh F − C K
+See Appendix B for detail. Similarly, setting P C (C ) = δ(C ; C) and P K (K ) = δ(K ; K) in Corollary 1, we obtain the annealed exponent for the regular ensemble as follows.
+Corollary 3: The annealed average error exponent for the (C, K)-regular ensemble is given by
+For the regular ensemble, it can be conﬁrmed that the quenched average error exponent is identical to the annealed average error exponent, i.e., ˆ T E = T E , provided that all the technicalities in the replica analysis are valid. This property can be ascribed to the concentration occuring for the regular ensemble.
+We compare the quenched average error exponent ˆ T G with the annealed average error exponent T G . The annealed average error exponent can also be obtained via the combinatorial argument based on weight distribution [8], [12], [17]. This exponent is referred to as the combinatorial-argument-based annealed average error exponent T cmb G and is given as
+from Theorem 1 in [17]. Here, f G ( ) is the asymptotic growth rate of the ensemble G (1−R)n,n . One can obtain the combinatorial-argument-based annealed average error expo- nent for the ( C, K)-regular ensemble T cmb E using its asymp- totic growth rate f E ( ) from Theorem 1 in [8], which is given by
+with a solution t > 0 of [(1 + t) K−1 + (1 − t) K−1 ]/[(1 + t) K + (1 − t) K ] = 1 − θ, where h(·) denotes the binary entropy function h(x) = −x log 2 x − (1 − x) log 2 (1 − x). In the same way as the regular ensamble, one can also obtain the combinatorial-argument-based annealed average error ex- ponent for the irregular ensemble T cmb S using its asymptotic growth rate f S ( ) from Theorem 1 in [9].
+Figure 1 shows the quenched average error exponent ˆ T E of (11), the annealed average error exponent T E of (12) and the combinatorial-argument-based annealed average error exponent T cmb E of (13) against the crossover probability for the (2 , 4)- and (3, 6)-regular ensembles.
+We have conﬁrmed that the annealed average error expo- nent T E (= ˆ T E ) is equal to the combinatorial-argument-based annealed average error exponent T cmb E at least within the accuracy of the numerical calculation. This property strongly suggests that the replica analysis is valid.
+For the irregular ensemble, we ﬁnd a signiﬁcant difference between the quenched and the annealed exponents. Figure 2 shows comparison between the quenched average error exponent ˆ T S of (7) and the annealed average error exponent T S of (10) for two irregular ensembles. It can be conﬁrmed that there is a region where ˆ T S ≤ T S holds. The combinatorial- argument-based annealed average error exponent T cmb S is close to the annealed average error exponent T S . One can see that the annealed average error exponent is overestimated. This means that the quenched average error exponent can capture typical behavior which can not be caught by the annealed average error exponent. The analysis addressed here is therefore of signiﬁcance to evaluate the error exponent.
+It should be noted, however, that there might be a region where the replica symmetric assumption does not hold. We consider a function deﬁned by G G ( ) lim n→∞ (n ) −1 log 2 E G (1−R)n,n [(P U (H)) ] which denotes an error exponent with a ﬁnite replica number , i.e., ˆ T G = lim →0 G( ). For this function, d G G ( )/d ≥ 0 holds. This inequality might be however violated in the region where 0 .21 	 0.26 for Fig. 2(a) and 0 .23 	 0.28 for Fig. 2(b). This implies that we need more careful treatment beyond the replica symmetric assumption for such a region. The quenched average exponents
+in these regions are indicated by dotted circles in Fig. 2. In these regions, there are two saddle-points and the saddle- points which give the larger exponents at = 1 are different from those at = 0. This might be related to whether the replica symmetric assumption is valid or not, but it must be investigated in detail. The dash-dotted lines of the quenched exponent in Fig. 2 represent exponents which are given by another saddle-points that are not chosen. This might be related to the maximum exponent, but it must be also studied in detail.
+We have evaluated the quenched and the annealed average error exponents of the undetected error probability of binary matrix ensembles such as the regular ensemble by applying the statistical-mechanical approach. We showed some examples which the annealed exponent gives overestimated values for the irregular sparse matrix ensemble. The quenched exponent, on the other hand, is equivalent to the annealed exponents for the regular ensemble. Part of our future work is analysis of the quenched average error exponent for the non-binary ensembles.
+This work was partially supported by a Grant-in-Aid for Scientiﬁc Research (C) No. 22500136 from the Ministry of Education, Culture, Sports, Science and Technology (MEXT) of Japan.
+We consider the following ensemble G m,n . The matrix H ∈ G m,n has K i nonzero elements in the i-th row and C j nonzero elements in the j-th column.
+Code constructions are described by the connectivity pa- rameter D i j 1 ,··· ,j Ki ∈ {0, 1} which speciﬁes a set of indices j 1 , · · · , j K i corresponding to nonzero elements in the ith row of the sparse matrix H. The connectivity parameter is deﬁned by
+An ensemble of codes is generated as follows. First, Sets of {K 1 , · · · K m } and {C 1 , · · · C n } are sampled independently from identical distributions P K (K) and P C (C), respectively. Secondly, The connectivity parameters D i j 1 ,··· ,j Ki are sampled independently from an identical distribution P(D i j 1 ,··· ,j Ki = 1) = 1 − P(D i j 1 ,··· ,j Ki = 0) = 1/( n K i ). Thirdly, the matrices, which satisfy the condition
+{1, · · · , n} K i −1 |j 2 < · · · < j K i ,j 2 = j, · · · , j K i = j}. We here deﬁne the ensemble average of f (H) with respect to the ensemble G m,n as
+(17) where
+(18) The value 1 − ¯ C/ ¯ K converges to the design rate R 1 −m/n in the large m, n limit, while m/n is kept ﬁnite. Here, we put
+When we choose the one-point distributions P C (C ) = δ(C ; C) and P K (K ) = δ(K ; K), this ensemble G m,n is equivalent to the ( C, K)-regular ensemble E m,n .
+To simplify the calculations, we ﬁrst introduce an isomor- phism between the additive Boolean group ( {0, 1}, ⊕) and the multiplicative bipolar group ( {+1, −1}, ×) of which operator is deﬁned by ˆ e × ˆe ( −1) e⊕e , where ˆ e, ˆe ∈ {+1, −1} and e, e ∈ {0, 1}.
+To evaluate the average error exponent, we apply a ana- lytical method similar to references [5], [15], [18], [10]. Let ˆ e ∈ {+1, −1} n be the bipolar representation of e ∈ {0, 1} n . We hereafter use the bipolar representation ˆ e. The undetected error probability can be rewritten as
+(19) where F = (1/2) ln[(1 − )/ ].
+Averages over the ensemble is carried out by applying the replica method. We assume the replica method gives us the correct value of the quenched average error exponent. Namely, we evaluate
+This gives rise to a set of order parameters q α 1 ,··· ,α k = (1/n) n j=1 Z j ˆ e α 1 · · · ˆe α k , where α 1 , · · · , α k represent replica indices, and the variable Z j comes from enforcing the restriction of (16). To proceed further one has to make an assumption about the order parameter symmetry. As a ﬁrst approximation we assume replica symmetry (RS) in the following order parameters and the related conjugate variables: q α 1 ,··· ,α k = q 1 −1 dxπ(x)x k and ˆ q α 1 ,··· ,α k = ˆ q 1 −1 dˆ xˆ π(ˆ x)ˆ x k , where k is the number of replica indices, q and ˆ q are normalization variables (π(x) and ˆ π(ˆ x) are probability distributions).
+The summation ˆ e∈{±1} n ,ˆ e=1 n ( · · · ) in (19) excludes the case of ˆ e = 1 n . In the large n limit, this summation is equivalent to the full summation not in the case where π(x) = δ(x − 1) is dominant. We then arrive at Proposition 1.
+Substituting = 1 instead of the limit → 0 in (20), one can obtain not the quenched average error exponent but the annealed average error exponent T G . We then have Corollary 1.
+Substituting P C (C ) = δ(C ; C) and P K (K ) = δ(K ; K), we can evaluate the exponent for the ( C, K)-regular ensemble. The saddle-point equations becomes
+One ﬁnds the following solution to the saddle-point equations: π(x) = δ(x − x ∗ ) 	 (23) ˆ π(ˆ x) = δ(ˆ x − ˆ x ∗ ), 	 (24)
+where the pair {x ∗ , ˆ x ∗ } is a solution of simultaneous equations x ∗ = tanh[F + (C − 1) tanh −1 ˆ x ∗ ] 	 (25) ˆ x ∗ = (x ∗ ) K−1 . 	 (26)
+[[[ REFS ]]]
+D. Burshtei
+G. Mille
+--
+IEEE Trans
+----
+S. Condamin
+--
+Study of the weight enumerator function for a Gallager code, project report
+----
+C. D
+A. Montanar
+R. Urbank
+--
+Proc
+----
+R. G. Gallage
+--
+Low Density Parity Check Codes
+----
+Y. Kabashim
+N. Sazuk
+K. Nakamur
+D. Saa
+--
+Phys
+----
+T. Klov
+--
+Codes for Error Detection
+----
+T. Klov
+V. Korzhi
+--
+Error Detecting Codes: General Theory and their Application in Feedback Communication Systems
+----
+S. Litsy
+V. Shevele
+--
+IEEE Trans
+----
+S. Litsy
+V. Shevele
+--
+IEEE Trans
+----
+K. Mimur
+J. Phys
+--
+A: Math
+----
+T. Murayam
+M. Okad
+J. Phys
+--
+A: Math
+----
+V. Rath
+--
+Proc
+----
+T. J. Richardso
+R. L. Urbank
+--
+IEEE Trans
+----
+T. Richardso
+R. Urbank
+--
+Modern Coding Theory
+----
+T. Tanak
+D. Saa
+--
+Tech
+----
+J. van Mouri
+D. Saa
+Y. Kabashim
+--
+Physical Review E, vol
+----
+T. Wadayam
+--
+IEEE Trans
+----
+T. Yan
+T. Tanak
+D. Saa
+--
+Proc
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\069.pdf
+[[[ LINKS ]]]
+

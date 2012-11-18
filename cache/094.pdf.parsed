@@ -1,0 +1,133 @@
+[[[ ID ]]]
+94
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Capacity of the Noncausal Relay Channel
+[[[ AUTHORS ]]]
+Lele Wang
+Mohammad Naghshvar
+[[[ ABSTR ]]]
+Abstract—This paper studies the noncausal relay channel, also known as the relay channel with unlimited lookahead, introduced by El Gamal, Hassanpour, and Mammen. Unlike the standard relay channel model, where the relay encodes its signal based on the previous received output symbols, the relay in the noncausal relay channel encodes its signal as a function of the entire received sequence. In the existing coding schemes, the relay uses this noncausal information solely to recover the transmitted message and then cooperates with the sender to communicate this message to the receiver. However, it is shown in this paper that by applying the Gelfand–Pinsker coding scheme, the relay can take further advantage of the noncausally available information, which can achieve strictly higher rates than existing coding schemes. This paper also provides a new upper bound on the capacity of the noncausal relay that strictly improves upon the cutset bound. These new lower and upper bounds on the capacity coincide for the class of degraded noncausal relay channels and establish the capacity for this class.
+[[[ BODY ]]]
+The relay channel was ﬁrst introduced by van der Meulen [2]. In their classic paper [7], Cover and El Gamal established the cutset upper bound and the decode–forward, partial decode– forward, and compress–forward lower bounds for the relay channel. Furthermore, they established the capacity of the degraded and reversely degraded relay channels and relay channels with feedback.
+The relay channel with lookahead was introduced by El Gamal, Hassanpour, and Mammen [3], who mainly studied the following two classes:
+• Noncausal relay channel (also known as the relay channel with unlimited lookahead ) in which the relay knows its entire received sequence in advance and hence the relaying functions can depend on the whole received block. Lower bounds on the capacity were established by extending (partial) decode–forward coding scheme to the noncausal case. The cutset upper bound for the noncausal relay channel was also established.
+• Causal relay channel (also known as the relay-without- delay channel ) in which the relay has access only to the past and present received sequence. A lower bound for the capacity of this channel was established by combining partial decode–forward and instantaneous relaying coding schemes. The cutset upper bound for the causal relay channel was also established.
+The focus of this paper is on the noncausal relay channel. The existing lower bounds on the capacity of this channel are derived using the (partial) decode–forward coding scheme.
+In particular, the relay recovers (the part of) the transmitted message from the received sequence (available noncausally at the relay) and then cooperates with the sender to coherently transmit this message to the receiver. Therefore, the noncausally available information is used solely to recover (the part of) the transmitted message at the relay. However, the channel conditional pmf can allow the relay to take further advantage of the received sequence by considering it as noncausal side information to help the relay’s communication to the receiver. In this paper, we establish several improved lower bounds on the capacity of the noncausal relay channel based on this observation by combining the Gelfand–Pinsker coding scheme with (partial) decode–forward and compress–forward at the relay. Moreover, we establish a new upper bound on the capacity that improves upon the cutset bound [1, Theorem 17.6]. The new upper bound is shown to be optimal for the class of degraded noncausal relay channels and is achieved by the Gelfand–Pinsker decode–forward coding scheme.
+The remainder of this paper is organized as follows. In Section II, we formulate the problem and provide a brief overview of the existing results. Section III provides the main results of the paper.
+Throughout the paper, we follow the notation in [1]. In particular, a random variable is denoted by an upper case letter (e.g., X, Y, Z) and its realization is denoted by a lower case letter (e.g., x, y, z). By convention, X = ∅ means that X is a degenerate random variable (unspeciﬁed constant) regardless of its support. Let X n k = (X k 1 , X k 2 , . . . , X kn ). We say that X → Y → Z form a Markov chain if p(x, y, z) = p(x)p(y|x)p(z|y). For a ≥ 0, [1 : 2 a ] = {1, 2, . . . , 2 a }, where a is the smallest integer greater than or equal to a. For any set S, |S| denotes its cardinality. The probability of an event A is denoted by P(A).
+Consider the 3-node point-to-point communication system with a relay depicted in Figure 1. The sender (node 1) wishes to communicate a message M to the receiver (node 3) with the help of the relay (node 2). The discrete memoryless (DM) relay channel with lookahead is described as
+(X 1 , X 2 , p(y 2 |x 1 )p(y 3 |x 1 , x 2 , y 2 ), Y 2 , Y 3 , l) 	 (1) where the parameter l ∈ Z speciﬁes the amount of lookahead. The channel is memoryless in the sense that p(y 2i |x i 1 , y i −1 2 , m) = p Y 2 |X 1 (y 2i |x 1i ) and
+A (2 nR , n) code for the relay channel with lookahead consists of
+• an encoder that assigns a codeword x n 1 (m) to each mes- sage m ∈ [1 : 2 nR ],
+• a relay encoder that assigns a symbol x 2i (y i +l 2 ) to each sequence y i +l 2 for i ∈ [1 : n], where the symbols that have nonpositive time indices or time indices greater than n are arbitrary, and
+• a decoder that assigns an estimate ˆ m(y n 3 ) or an error message e to each received sequence y n 3 .
+We assume that the message M is uniformly distributed over [1 : 2 nR ]. The average probability of error is deﬁned as P (n) e = P{ ˆ M = M }. A rate R is said to be achievable for the DM relay channel with lookahead if there exists a sequence of (2 nR , n) codes such that lim n →∞ P (n) e = 0. The capacity C l of the DM relay channel with lookahead is the supremum of all achievable rates.
+The standard DM relay channel corresponds to lookahead parameter l = −1, or equivalently, a delay of 1. The noncausal relay channel which we focus on in this paper is the case where l is unbounded (l = ∞), i.e., the relaying functions can depend on the entire received sequence y n 2 . The purpose of studying this extreme case is to quantify the limit on the potential gain from relaying.
+The noncausal relay channel was initially studied by El Gamal, Hassanpour, and Mammen [3], who established the following lower bounds and cutset upper bound on the capacity C ∞ .
+(2) • Partial decode–forward (PDF) lower bound:
+In this subsection, we establish three lower bounds by considering the received y n 2 sequence at the relay as noncausal side information to help communication.
+Theorem 1 (GP-DF lower bound): The capacity of the non- causal relay channel is lower bounded as
+where the maximum is over all pmfs p(x 1 )p(u|x 1 , y 2 ) and functions x 2 (u, x 1 , y 2 ).
+Proof: The GP-DF coding scheme uses multicoding and joint typicality encoding and decoding. For each message m, we generate a x n 1 (m) sequence and a subcodebook C(m) of 2 n ˜ R u n (l|m) sequences. To send message m, the sender transmits x n 1 (m). Upon receiving y n 2 noncausally, the relay ﬁrst ﬁnds a message estimate ˜ m. It then ﬁnds a u n (l| ˜ m) ∈ C( ˜ m) that is jointly typical with (x n 1 ( ˜ m), y n 2 ) and transmits x n 2 (u n (l| ˜ m), x n 1 ( ˜ m), y n 2 ). The receiver declares ˆ m to be the message estimate if (x n 1 ( ˆ m), u n (l| ˆ m), y n 3 ) are jointly typical for some u n (l| ˆ m) ∈ C( ˆ m). We now provide the details of the proof.
+Codebook generation: Fix p(x 1 )p(u|x 1 , y 2 ) and x 2 (u, x 1 , y 2 ) that attain the lower bound. Randomly and indepen- dently generate 2 nR sequences x n 1 (m), each according to
+p X 1 (x 1i ), m ∈ [1 : 2 nR ]. For each message m ∈ [1 : 2 nR ], randomly and conditionally independently generate 2 n ˜ R sequences u n (l|m), each according to n i =1 p U |X 1 (u i |x 1i (m)), which form the subcodebook C(m). This deﬁnes the codebook C = {(x n 1 (m), u n (l|m), x n 2 (u n (l|m), x n 1 (m), y n 2 )) : m ∈ [1 : 2 nR ], l ∈ [1 : 2 n ˜ R ]}. The codebook is revealed to all parties.
+Relay encoding: Upon receiving y n 2 noncausally, the relay ﬁrst ﬁnds the unique message ˜ m such that (x n 1 ( ˜ m), y n 2 ) ∈ T (n) . Then, it ﬁnds a sequence u n (l| ˜ m) ∈ C( ˜ m) such that (u n (l| ˜ m), x n 1 ( ˜ m), y n 2 ) ∈ T (n) . The relay transmits x 2i = x 2 (u i (l| ˜ m), x 1i ( ˜ m), y 2i ) at time i ∈ [1 : n].
+Decoding: Let > . Upon receiving y n 3 , the decoder declares that ˆ m ∈ [1 : 2 nR ] is sent if it is the unique message such that (x n 1 ( ˆ m), u n (l| ˆ m), y n 3 ) ∈ T (n) for some u n (l| ˆ m) ∈ C( ˆ m); otherwise, it declares an error.
+Analysis of the probability of error: We analyze the probability of decoding error averaged over codes. Assume without loss of generality that M = 1. Let ˜ M be the relay’s message estimate and let L denote the index of the chosen U n codeword for ˜ M and Y n 2 . The decoder makes an error only if one or more of the following events occur:
+for all U n (l| ˜ M ) ∈ C( ˜ M )}, E 1 = {(X n 1 (1), U n (L|1), Y n 3 ) / ∈ T (n) },
+Thus, the probability of error is upper bounded as P(E) = P{ ˆ M = 1}
+≤ P( ˜ E 1 ) + P( ˜ E 2 ) + P( ˜ E 3 ∩ ˜ E c ) + P(E 1 ∩ ˜ E c ∩ ˜ E c 3 ) + P(E 2 ).
+By the law of large numbers (LLN), the ﬁrst term tends to zero as n → ∞. By the packing lemma [1, p. 3.18], the second term tends to zero as n → ∞ if R < I(X 1 ; Y 2 ) − δ( ). Therefore, P( ˜ E) tends to zero as n → ∞ if R < I(X 1 ; Y 2 ) − δ( ). Given ˜ E c , i.e. { ˜ M = 1}, by the covering lemma [1, p. 3.51], the third term tends to zero as n → ∞ if ˜ R > I(U ; Y 2 |X 1 ) + δ( ). By the LLN, the fourth term tends to zero as n → ∞. Finally, note that once m is wrong, U n (l|m) is also wrong. By the packing lemma, the last term tends to zero as n → ∞ if R + ˜ R < I(X 1 , U ; Y 3 ) − δ( ). Combining the bounds and eliminating ˜ R, we have shown that P{ ˆ M = 1} tends to zero as n → ∞ if R < I(X 1 ; Y 2 ) − δ( ) and R < I(X 1 , U ; Y 3 ) − I(U ; Y 2 |X 1 ) − δ ( )
+Remark 3.1: Unlike the coding schemes for the regular relay channel, we do not need block Markov coding for the noncausal relay channel for two reasons. First, from the channel statistics p(y 2 |x 1 ), Y 2 does not depend on X 2 and hence there is no need to make x n 1 correlated with the previous block x n 2 . Second, y n 2 is available noncausally at the relay and hence the signals from the sender and the relay arrive at the receiver in the same block.
+Remark 3.2: Taking U conditionally independent of Y 2 given X 1 and setting X 2 = U , the GP-DF lower bound reduces to the DF lower bound in (2).
+The GP-DF lower bound can be strictly tighter than the DF lower bound as shown in the following example.
+Example 1: Consider a degraded noncausal relay channel p(y 2 |x 1 )p(y 3 |x 1 , x 2 , y 2 ) = p(y 2 |x 1 )p(y 3 |x 2 , y 2 ) depicted in Figure 2. The channel from the sender to the relay is a BEC(1/2) channel, while the channel from the relay to the receiver is clean if Y 2 ∈ {0, 1} and stuck at 1 if Y 2 is an erasure.
+Note that the state of the channel from the relay to the re- ceiver, namely, whether we get an erasure or not, is independent
+of X 1 . The ﬁrst term in both the DF lower bound and the GP- DF lower bound is easy to compute as
+Consider the second term in the DF lower bound. Here X 2 is chosen such that Y 2 → X 1 → X 2 form a Markov chain. By carefully computing the conditional probability p(y 3 |x 1 , x 2 ) =
+p(y 2 |x 1 )p(y 3 |x 2 , y 2 ) in this speciﬁc channel, we can show that X 1 → X 2 → Y 3 form a Markov chain. Thus,
+where (a) follows since X 1 → X 2 → Y 3 form a Markov chain, (b) follows since I(X 2 ; Y 3 ) is fully determined by the marginal distribution p(x 2 , y 3 ), and (c) follows since the channel from X 2 to Y 3 p(y 3 |x 2 ) = y 2 p(y 3 |x 2 , y 2 )p(y 2 ) is a Z channel with crossover probability 1/2 regardless of p(x 1 ). Thus,
+Now consider the second term in the GP-DF lower bound (5) max
+Let U = X 2 = 1, if Y 2 = e, and U = X 2 = Bern(1/2), if Y 2 = 0, 1. Note that here we always have Y 3 = X 2 = U and X 1 → Y 2 → X 2 form a Markov chain. Thus,
+= H(X 2 ) − H(X 2 |X 1 ) + H(X 2 |Y 2 , X 1 ) = I(X 1 ; X 2 ) + H(X 2 |Y 2 ) ≥ H(X 2 |Y 2 ) = 1/2.
+Therefore, R GP-DF = 1/2 > R DF = 0.3219. Moreover, it is easy to see from the cutset bound (4) that the rate 1/2 is also an upper bound, and hence C ∞ = 1/2.
+Next we state two other lower bounds on the capacity of the noncausal relay channel. The proofs are omitted for brevity. An interested reader can refer to [5] for details.
+Theorem 2 (GP-CF lower bound): The capacity of the non- causal relay channel is lower bounded as
+where the maximum is over all pmfs p(x 1 )p(ˆ y 2 |y 2 ) and func- tions x 2 (ˆ y 2 , y 2 ).
+Theorem 3 (GP-PDF-CF lower bound): The capacity of noncausal relay channel is lower bounded as
+C ∞ ≥ max min{I(V, U ; Y 3 ) + I(X 1 ; U, Y 3 |V ) − I(U ; Y 2 |V ), I(V ; Y 2 ) + I(X 1 ; U, Y 3 |V ),
+where the maximum is over all pmfs p(v, x 1 )p(u|v, y 2 ) and functions x 2 (u, v, y 2 ).
+Remark 3.3: Setting V = (V, X 2 ) and U = ∅, the GP-PDF- CF lower bound reduces to the PDF lower bound in (3). Note that the choice of X 2 gives the Markov chain X 2 → V → Y 2 . Furthermore, setting V = ∅ and U = ˆ Y 2 , the GP-PDF-CF lower bound reduces to the GP-CF lower bound in (6).
+In this subsection, we provide an improved upper bound on the capacity of the noncausal relay channel.
+Theorem 4: The capacity of the noncausal relay channel is upper bounded as
+C ∞ ≤ R NUB = max min{I(X 1 ; Y 2 ) + I(X 1 ; Y 3 |X 2 , Y 2 ), I(X 1 , U ; Y 3 ) − I(Y 2 ; U |X 1 )},
+where the maximum is over all pmfs p(x 1 )p(u|x 1 , y 2 ) and functions x 2 (u, x 1 , y 2 ).
+Proof: The ﬁrst term in the upper bound follows from the cutset bound (4). To establish the second bound, identify U i = (M, Y n 2,i+1 , Y i −1 3 ). We have
+where (a) follows by Fano’s inequality, (b) follows by Csisz´ar sum identity, (c) follows since X 1i is a function of M , and (d) follows since the channel p(y 2 |x 1 ) is memoryless and thus (Y n 2,i+1 , M ) → X 1i → Y 2i form a Markov chain. Using the standard time-sharing random variable, we obtain the single-letter upper bound. Finally, we show that it sufﬁces to maximize over p(x 1 )p(u|x 1 , y 2 ) and functions x 2 (u, x 1 , y 2 ). Consider a general pmf p(x 1 )p(x 2 , u|x 1 , y 2 ). By the functional representation lemma [1, Appendix B], there exists a random
+variable V independent of (U, X 1 , Y 2 ) such that X 2 is a function of (U, X 1 , Y 2 , V ). Now deﬁne ˜ U = (U, V ). Then
+min{I(X 1 ; Y 2 ) + I(X 1 ; Y 3 |X 2 , Y 2 ), I(X 1 , U ; Y 3 ) − I(Y 2 ; U |X 1 )}
+Thus, there is no loss of generality in restricting X 2 to be a function of (U, X 1 , Y 2 ).
+Remark 3.4: This upper bound is tighter than the cutset bound. To see this, note that the new upper bound is equivalent to expression (7) with all the remaining steps being equality. On the other hand, the cutset bound can be derived from (7) as
+Theorem 5: The capacity of the degraded noncausal relay channel p(y 2 |x 1 )p(y 3 |x 1 , x 2 , y 2 ) = p(y 2 |x 1 )p(y 3 |x 2 , y 2 ) is
+(8) where the maximum is over all pmfs p(x 1 )p(u|x 1 , y 2 ) and functions x 2 (u, x 1 , y 2 ).
+Proof: In the degraded case, we have I(X 1 ; Y 2 ) + I(X 1 ; Y 3 |X 2 , Y 2 ) = I(X 1 ; Y 2 ). Thus, the GP-DF lower bound in Theorem 1 and the improved upper bound in Theorem 4 coincide.
+In the following, we give an example, motivated by [4, Example 2], where R DF < R GP-DF = C ∞ = R NUB < R CS .
+Example 2: Consider a degraded noncausal relay channel p(y 2 |x 1 )p(y 3 |x 1 , x 2 , y 2 ) = p(y 2 |x 1 )p(y 3 |x 2 , y 2 ) as depicted in Figure 3. The channel from the sender to the relay is BSC(p 1 ), while the channel from the relay to the receiver is BSC(p 2 ) if Y 2 = 0 and BSC(p 3 ) if Y 2 = 1.
+When p 1 = 0.2, p 2 = 0.1, and p 3 = 0.55, we have R DF = 0.2203, R CS = 0.2566,
+The DF lower bound and cutset bound expressions (2) and (4) contain no auxiliary random variable and thus can be computed easily. The maximum in the capacity expression (8) is attained by U ∼ Bern(1/2) independent of (X 1 , Y 2 ) and X 2 = U ⊕ Y 2 , which yields the capacity C ∞ = 0.2453.
+We prove this via a symmetrization argument motivated by Nair [6]. Note that
+min I(X 1 ; Y 2 ), max
+Consider the maximum in the second term for a ﬁxed p(x 1 ). Assume without loss of generality that U = {1, 2, . . . , |U|}. For any conditional pmf p U |X 1 ,Y 2 (u|x 1 , y 2 ) and function x 2 (u, x 1 , y 2 ), deﬁne ˜ U , ˜ X 2 , and ˜ Y 3 as
+= p X 1 ,Y 2 |U (x 1 , y 2 |u), u ∈ U, ˜ x 2 (u, x 1 , y 2 ) = 1 − ˜ x 2 (−u, x 1 , y 2 )
+= x 2 (u, x 1 , y 2 ), (u, x 2 ) ∈ U × {0, 1}, p ˜ Y 3 | ˜ X 2 ,Y 2 (y 3 | ˜ x 2 , y 2 ) = p Y 3 |X 2 ,Y 2 (y 3 | ˜ x 2 , y 2 ), y 3 ∈ {0, 1}.
+H(Y 2 |X 1 , ˜ U = −u) for all u ∈ U, which implies that H(Y 2 |X 1 , U ) = H(Y 2 |X 1 , ˜ U). Similarly, we can show H(Y 3 |X 1 , U ) = H( ˜ Y 3 |X 1 , ˜ U). It can be also easily shown that for any y 2 ∈ {0, 1}, p ˜ X 2 |Y 2 (0|y 2 ) = 1/2, which implies that p ˜ Y 3 (0) = 1/2 and H( ˜ Y 3 ) = 1. Hence,
+= H(Y 3 ) − H(Y 3 |X 1 , U ) − H(Y 2 |X 1 ) + H(Y 2 |X 1 , U ) ≤ H( ˜ Y 3 ) − H( ˜ Y 3 |X 1 , ˜ U) + H(Y 2 |X 1 , ˜ U) − H(Y 2 |X 1 )
+where the last maximum is attained by p ˜ U (u) = p ˜ U (−u) = 1/2 for a single u. Note that from our deﬁnition of ˜ U, this automat- ically guarantees the independence between ˜ U and (X 1 , Y 2 ). Therefore, the maximum in the second term of (9) is attained by ˜ U ∼ Bern(1/2) independent of (X 1 , Y 2 ). Subsequently, we relabel ˜ U as U with alphabet {0, 1}, ˜ Y 3 as Y 3 , and ˜ X 2 as X 2 .
+Now we further optimize the second term in (9), which we have simpliﬁed as
+where (a) follows by the optimal choice of U independent of (X 1 , Y 2 ) and (b) follows since H(Y 3 ) = 1. We maximize (11) over all functions ˜ x 2 (˜ u, x 1 , y 2 ) satisfying x 2 (0, x 1 , y 2 ) = 1 − x 2 (1, x 1 , y 2 ) for all (x 1 , y 2 ) ∈ {0, 1} 2 . By the symmetry of U as described in (10), H(Y 3 |X 1 , U = 0) = H(Y 3 |X 1 , U = 1). Thus,
+H(Y 3 |X 1 , U ) = H(Y 3 |X 1 , 0)p U (0) + H(Y 3 |X 1 , 1)p U (1) = H(Y 3 |X 1 , U = 0)
+By considering all four functions x 2 (u = 0, x 1 = 0, y 2 ) ∈ {0, 1} → {0, 1} and removing the redundant choices by the
+symmetry of the binary entropy function, we have H(Y 3 |X 1 = 0, U = 0) ≥ min{H(p 1 ¯ p 2 + ¯ p 1 ¯ p 3 ), H(p 1 ¯ p 2 + ¯ p 1 p 3 )}. Similarly, H(Y 3 |X 1 = 1, U = 0) ≥ min{H(¯ p 1 ¯ p 2 + p 1 ¯ p 3 ), H(¯ p 1 ¯ p 2 + p 1 p 3 )}. When p 1 = 0.2, p 2 = 0.1, and p 3 = 0.55, the minimum is attained by X 2 = U ⊕ Y 2 for both terms regardless of p(x 1 ). Therefore the second term in (9) simpliﬁes to
+Finally, maximizing min{I(X 1 ; Y 2 ),
+[[[ REFS ]]]
+A. El Gama
+Y.-H. Kim
+--
+Lecture notes on network information theory
+----
+E. C. van der Meulen
+--
+Three-terminal communication channels
+----
+A. El Gamal
+N. Hassanpour
+J. Mammen
+--
+Relay networks with delays
+----
+C. Heegard
+A. El Gamal
+--
+On the capacity of computer memory with defects
+----
+L. Wan
+M. Naghshvar
+--
+On the capacity of the noncausal relay channel
+----
+C. Nair
+--
+Capacity regions of two new classes of two-receiver broadcast channels
+----
+T. M. Cover
+A. El Gamal
+--
+Capacity theorems for the relay channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\094.pdf
+[[[ LINKS ]]]
+

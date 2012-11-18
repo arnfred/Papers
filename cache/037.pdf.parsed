@@ -1,0 +1,157 @@
+[[[ ID ]]]
+37
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+A Potential Function View of Information Theoretic Interference Games
+[[[ AUTHORS ]]]
+Suvarup Saha
+Randall A. Berry
+[[[ ABSTR ]]]
+Abstract—Recently, Berry-Tse introduced a model for informa- tion theoretic games on interference channels, which combines game theory and information theory to analyze the interaction of selﬁsh users. The fundamental quantity in such games is the Nash equilibrium region which has been characterized in several speciﬁc interference channels. This paper uses the game theoretic techniques of potential functions to study this region for general K-user linear deterministic interference channels. In particular, it is shown that the Nash equilibrium region is non-empty for any such K-user interference channel.
+[[[ BODY ]]]
+In network information theory, it is usually assumed that all users cooperatively optimize their communication strategies. This may not be a realistic assumption if users are selﬁsh and are only interested in maximizing their own beneﬁt. Such a situation is naturally modeled as a non-cooperative game. Recently in [9] a framework combining information theory and game theory was developed to model such situations for users communicating over an interference channel (IC). This work introduced the notion of a Nash equilibrium region as the game theoretic counterpart of the capacity region of a network and showed that this region was non-empty for 2 user linear deterministic ICs. This analysis was generalized to 2 user Gaussian ICs in [10] and some special classes of K-user linear deterministic ICs in [12], [13].
+It is well known that in a general non-cooperative game, Nash equilibria may not exist. The existence of equilibria in the interference games studied in [9], [10], [12], [13] was shown on a case by case basis by explicitly constructing encoding and decoding strategies, which satisﬁed the required incentive properties. In this paper, we show that in the case of linear deterministic channels these results follow from an underlying ‘potential’ property of such games, which is closely related to the class of weakly acyclic games studied in [11]. Moreover, this property holds for games on general K-user linear deterministic ICs, enabling us to show that any such channel has a non-empty Nash equilibrium region.
+Other game theoretic approaches for interference channels have been studied before, mainly focusing on Gaussian mod- els, e.g. [1], [2], [8]. However, because of the restriction to the
+use of random Gaussian codebooks or treating the interference as Gaussian noise, the formulation in these works are not strictly information-theoretic in nature.
+The rest of the paper is organized as follows: Section II introduces the formulation of the game. Section III introduces the main result of this paper and describes with motivating examples the approach taken to prove it. The formal proof is provided in Section IV and concluding remarks are provided in Section V.
+We assume that communication starts at time 0. User i = 1, 2, . . . K communicates by coding over blocks of length N i symbols. Transmitter i sends, on block k, information bits b (k) i 1 , . . . , b (k) i,L i by transmitting a codeword denoted by
+= [x (k) i (1), . . . , x (k) i (N i )]. All the information bits are equally probable and independent of each other. Receiver i observes on each block an output sequence through the interference channel, which speciﬁes a mapping from the input sequences of user i = 1, 2, . . . K to the output sequences of user i = 1, 2, . . . K. Note that, in a linear deterministic interference channel as considered in this paper, this mapping is a deterministic one [7]. Given the observed sequence {y (k) i = [y (k) i (1), . . . , y (k) i (N i )], k = 1, 2, . . . , }, receiver i generate guesses ˆ b (k) iℓ for each of the information bit. Without loss of generality, we will assume that each receiver i performs maximum-likelihood decoding on each bit, i.e. ˆ b (k) i is chosen to maximize the a posteriori probability of the observed sequence y (1) i , y (2) i , . . . given the transmitted bit b (k) iℓ .
+A strategy s i of user i is deﬁned by its message encoding, which we assume to be the same on every block and involves:
+• the number of information bits B i and the block length N i of the codewords,
+• the codebook C i , the set of codewords employed by transmitter i,
+i → C i , that maps on each block k the message m (k) i := (b (k) i 1 , . . . b (k) i,B i ) to a transmitted codeword x (k) i = f i (m (k) i , ω (k) i ) ∈ C i ,
+Strategies s 1 , s 2 , . . . s K for each user jointly determine the average bit error probabilities p (k) i := 1 B i B i ℓ =1 P(ˆb (k) iℓ = b (k) iℓ ), i = 1, 2, . . . K.
+The encoder of each transmitter i may employ a stochastic mapping from the message to the transmitted codeword; ω (k) i ∈ Ω i represents the randomness in that mapping. We assume that this randomness is independent between the two transmitters and across different blocks. Furthermore, we assume that each transmitter and its corresponding receiver have access to a source of common randomness, so that the realization ω (k) i is known at both transmitter i and receiver i, but not at the other receiver or transmitter.
+For a given error probability threshold ǫ > 0, we deﬁne an ǫ-interference channel game as follows. Each user i chooses a strategy s i , i = 1, 2, . . . K and receives a pay-off of
+(s 1 , s 2 , . . . s K ) ≤ ǫ, ∀k, 0, otherwise.
+A strategy tuple s = (s 1 , s 2 , . . . s K ) is deﬁned to be (1−ǫ)-reliable provided that they result in an error probability p i (s) < ǫ, ∀i = 1, 2, . . . K. An (1 − ǫ)-reliable pair of strategies is said to achieve the rate-tuple (R 1 , R 2 , . . . R K ).
+For an ǫ-game, a strategy tuple (s ∗ 1 , s ∗ 2 , . . . s ∗ K ) is a Nash equilibrium (NE) if none of the users can unilaterally deviate and improve its pay-off, i.e., if for each user i, there is no other strategy s i such that π i (s i , s ∗ −i ) > π i (s ∗ i , s ∗ −i ). 1 In other words, if user i attempts to transmit at a higher rate than what it is receiving in a Nash equilibrium and none of the other users change its strategy, then user i’s error probability must be greater than ǫ.
+Similarly, a strategy tuple (s ∗ 1 , s ∗ 2 , . . . s ∗ K ) is an η-Nash equilibrium ( η-NE) of an ǫ-game if none of the users can unilaterally deviate and improve its pay-off by more than η, i.e., if for each user i, there is no other strategy s i such that π i (s i , s ∗ −i ) > π i (s ∗ i , s ∗ −i ) + η.
+Note that when a user deviates, it does not care about the reliability of other users but only its own reliability. So in the above deﬁnitions (s i , s ∗ −i ) is not necessarily (1 − ǫ)-reliable.
+Given any ¯ ǫ > 0, the capacity region C of the inter- ference channel is the closure of the set of all rate tuples (R 1 , R 2 , . . . R K ) such that for every ǫ ∈ (0, ¯ ǫ), there exists a (1 − ǫ)-reliable strategy tuple (s), which achieves the rate tuple (R 1 , R 2 , . . . R K ).
+The η-Nash equilibrium region C NE (η) of the interference channel is the closure of the set of rate pairs (R 1 , R 2 , . . . R K ) such that for a given η > 0, there exists a ¯ ǫ > 0 (dependent on η) so that if ǫ ∈ (0, ¯ ǫ), there exists a (1 − ǫ)-reliable strategy tuple (s) that achieves the rate tuple (R 1 , R 2 , . . . R K ) and is an η-NE. Clearly, C NE (η) ⊂ C.
+Also, the Nash equilibrium region C NE of the interference channel is the closure of the set of rate tuples (R 1 , R 2 , . . . R K ) such that if ǫ ∈ (0, ¯ ǫ), there exists a (1 − ǫ)-reliable strategy tuple (s) that achieves the rate tuple (R 1 , R 2 , . . . R K ) and is a Nash Equilibrium.
+A general game need not have a Nash equilibrium in pure strategies. The common approaches for establishing the existence of an equilibrium in games include appealing to certain convexity properties of the game [3] or using so-called ‘potential function’ arguments [4]. The strategy set that each user utilizes in our interference game does not have a natural notion of convexity. However, we are able to ﬁnd a type of potential function, leading to our main result stated next:
+Theorem 1: For any K-user linear deterministic interfer- ence channel, C NE is non-empty.
+Theorem 2: For any η > 0 and any K-user linear deter- ministic interference channel, C NE (η) is non-empty.
+This theorem will be proved in the next section using a sequence of lemmas. Next we give some background to motivate our approach.
+Let S denote the set of all possible strategy tuples for the K users. Note that we do not assume anything about the ﬁniteness of S. Let G ǫ be an ǫ-game for the given interference channel. To prove these theorems, we consider a related ‘stage game’ in which the users repeatedly play G ǫ . At any stage of the game, only one of the K users makes a move by changing its strategy that was adopted in the previous stage. An ‘ η-better reply path’ is a sequence of action proﬁles s 1 , s 2 , . . . s L ∈ S such that for every 1 ≤ ℓ ≤ L − 1, there is exactly one user i ℓ such that s ℓ +1 i ℓ = s ℓ i ℓ , s ℓ +1 −i ℓ = s ℓ −i ℓ and π i ℓ (s ℓ +1 ) > π i ℓ (s ℓ )+η, where s ℓ denotes the strategy proﬁle in the ℓth stage.
+Note that, if at any stage of the game there is no move left for any user on an ‘ η-better reply path’, then the game G ǫ must have reached an η-NE. Thus proving existence of η- NE is equivalent to proving that the game has a convergent η-better reply path.
+Weakly acyclic games 2 are a class of games for which a convergent η-better reply path exists starting at any initial strategy proﬁle s and for any η ≥ 0. Letting η = 0, it follows that such games have an NE. In [11], it is shown that weakly acyclic games in which players have ﬁnite strategy spaces have the following useful characterization:
+A ﬁnite game is weakly acyclic if and only if there exists a potential function φ : S → R such that, for any strategy tuple s ∈ S that is not a Nash equilibrium, there exists a player i with a strategy s ′ i ∈ S i such that π i (s ′ i , s −i ) > π i (s i , s −i ) and φ(s ′ i , s −i ) > φ(s i , s −i ). We note here that the proof of this characterization relies heavily on the fact that S is ﬁnite.
+Our proof of Theorem 2 is based on using a similar potential argument to show the convergence of η-better reply paths in an ǫ-interference game. This requires ﬁrst ﬁnding such a potential function and second generalizing the results in [11] to inﬁnite strategy sets.
+Before we discuss how to choose a potential function, let us brieﬂy review the model from [12] for a general K-user linear deterministic interference game. Linear deterministic in- terference channels, introduced in [7], are easy to visualize and
+have been shown to be closely related to Gaussian interference channels. In the following discussion, n ii denotes the number of ‘direct’ levels from transmitter i to receiver i, whereas, n ji denotes the number of ‘cross’ levels from transmitter i to receiver j. In a symmetric setting, they can be represented by n d and n c , respectively.
+To search for a meaningful potential function there are only a few fundamental quantities like input entropy, output entropy or the information rate that can be made use of, particularly because we make no assumption about the topology of the interference network. One candidate potential φ is the sum of the information rates of all the K users, i.e., φ(s k ) =
+π i (s k ). 3 However, this function does not always satisfy the needed strict monotonicity of a potential function. To see this, consider a 3 user one-to-many symmetric linear determin- istic interference network with n d = 2 and n c = 2 as shown in Figure 1. Suppose at stage k of the game, the strategy tuple
+s k is one where users 1 and 3 are transmitting independent uncoded bits from each of their 2 levels, while user 2 is silent on both the levels. At this stage, π 1 (s k ) = 2 = π 3 (s k ), while π 2 (s k ) = 0 and φ(s k ) = 2 + 2 = 4. At stage k + 1, for any ǫ < 1 2 and η < 2, only user 2 can make a move on an η-better reply path so as to increase its own rate. After such a move it follows from Fano’s inequality that
+where δ goes to zero as ǫ does. 4 Likewise, applying Fano to users 1 and 3, it follows that
+Hence, for ǫ small enough, this choice of φ is not monoton- ically increasing on any better reply path starting from the chosen strategy proﬁle and so cannot be a potential.
+Note that on the better reply path from s k to s k +1 in the previous example, the sum of the output entropies of all the 3 users increases. This leads us to explore another choice of potential, namely the sum of output entropies of all the K users: let φ(s k ) = K i =1 h(y k i ) where, with a slight abuse of notation, y k i is the output signal of the ith user at stage k of the game, and h(·) is the entropy function. 5 We demonstrate through an example that this choice of φ does not entirely serve our purpose either. Consider a 2 user linear deterministic Z interference channel with n 11 = 2, n 12 = 1, n 22 = 3 as shown in Figure 2. Suppose at stage k, user 1 is transmitting an independent bit from its topmost level but is silent on its bottom level, while user 2 is transmitting Bernoulli( 1 2 ) ‘noise’ (as in [14]) from its top most level and uncoded bits from its two lower levels. Thus, we have, π 1 (s k ) = 1, π 2 (s k ) = 2 while φ(s k ) = 2 + 3 = 5. At stage k + 1, for ǫ small enough, there is no move available for user 1 on an η-better reply path. However, for η < 1, user 2 can start transmitting at least η bits of useful information instead of ‘noise’ from its topmost level so that π 2 (s k +1 ) ≥ 2 + η > 2 = π 2 (s k ). After such a change, φ(s k +1 ) ≤ 5 = φ(s k ) so that the potential function deﬁned as above is not monotonically increasing on the η-better reply path. However, we note again that although the sum of output entropies did not increase in going from k to k + 1, the sum of the information rates did go up from 3 to 3 + η.
+With this background, we propose a potential function, which we will use to prove our main result in the next section. Let φ : S → R 2 be deﬁned by
+Further, consider the lexicographic order on φ(s k ) = (a k , b k ) given by
+First note that this choice of potential function works for both the examples considered before. Let us illustrate this new potential function with an example and show how a stage game can reach a Nash equilibrium. Consider a 3 user bi- symmetric linear deterministic interference channel [13] with n d = 2, n c = 1 as shown in Figure 3. A possible play of the game on a better reply path is given in Table I (for η and ǫ arbitrary small).
+To establish Theorem 1 we ﬁrst prove the following useful lemmas which hold for linear deterministic ICs:
+Lemma 1: Given a strategy proﬁle s k for all users, suppose that a single user i changes to a new strategy s k +1 i while all other users keep their strategies ﬁxed. If this new strategy increases (or does not decrease) the output entropy at the user i’s receiver, then there exists a strategy ˜ s k +1 i of user i which leads to the same output entropy as s k +1 i at user i’s recevier and does not decrease the output entropy at any other user’s receiver.
+Proof: This follows from the fact that in case user i, in going from stage k to k + 1, chooses a coding strategy that increases (or does not decrease) the output entropy at its own receiver but reduces its contribution to the output entropies of others, it can transmit extra common randomness [14] such that his eventual contribution to output entropies of other receivers does not decrease from stage k to stage k + 1.
+Lemma 2: Suppose after stage k, the strategy tuple s k is not an η-NE. Then there always exists a strategy tuple s k +1 for the next stage such that φ x (s k +1 ) ≥ φ x (s k ).
+Proof: Since s k is not an η-NE strategy, there is a user i who can make a move on an η-better reply path. In going from
+s k to s k +1 only i changes its strategy so that the contribution of all the other users to φ x remains the same. Also, since i moves in stage k + 1 to increase its own utility (reliable information rate), it can always choose to do so without decreasing its own output entropy. Further, by Lemma 1, corresponding to this strategy, there exists a srtategy which does not decrease the output entropy at any other user’s receiver. Hence, at the end of stage k + 1, φ x does not go below its value in stage k.
+Lemma 3: Suppose after stage k, the strategy proﬁle is not an η-NE and there exists no η-better reply so that φ x (s k +1 ) ≥ φ x (s k ), then there must exist a strategy tuple on the better reply path so that φ y (s k +1 ) ≥ φ y (s k ) + η
+Proof: First note that under a η-better reply, user i’s rate must go up by η and from Fano must satisfy
+for some δ > 0. In going from stage k to k + 1, h(y i |x i ) is unchanged and so either (i) R i increases by η with h(y i ) unchanged or (ii) h(y i ) also increases. Under the assumptions of the Lemma 1, we next argue that (i) must be the case. As- sume that (ii) holds; then from the Lemma 1, there must exist another strategy choice for user i, which also increases h(y i ) and leaves the output entropy of the other users unchanged. Since this move must also be a η-better reply and we have φ x (s k +1 ) > φ x (s k ), it violates the assumptions of the current lemma. Hence, (i) must occur. But since h(y i ) is unchanged, user i can achieve this rate in such a way that the empirical entropy of its new codebook is the same as that at stage k and so every other user can achieve the same rate as in stage k. But since i increases its rate by at least η, we must have φ y (s k +1 ) ≥ φ y (s k ) + η.
+Lemma 4: For any η > 0 and ǫ small enough, there exists an η-better reply path on which φ(·) is a strictly increasing monotonic function.
+Proof: This follows immediately from Lemmas 2 and 3 and the order deﬁned on φ(·).
+Lemma 5: φ(·) converges to a limit on such a better reply path.
+Proof: First note that φ(·) is a bounded function. This is because, the x-component is bounded by the choice of channel model (in a deterministic IC, the entropies of the received symbols at each receiver are uniformly bounded for all possible inputs), whereas, the y-component is bounded by Fano’s inequality. Also, by Lemma 4, φ(·) is a strictly increasing function on such an η-better reply path. Hence the lemma follows from the completeness of R 2 .
+Proof of Theorem 2: It is sufﬁcient to consider a η- better reply path starting at any strategy with maximum total output entropy. Then, by Lemma 3, φ y (s 1 ) must increase by η in each iteration. Hence, this sequence must converge to a constant φ y (s k ) in a ﬁnite time k with s k an η-NE of the ǫ-game. This shows that any ǫ-game has an η-NE with some rate (R 1 , R 2 , . . . R K ). To show that such a rate tuple is in
+C NE , we need to show that (R 1 , R 2 , . . . R K ) is achievable as an η-NE for all ǫ-games with ǫ small enough.
+To do this, consider an η 2 -better reply path. This converges to an η 2 -NE which must also be an η-NE. At such an η-NE, we must have
+which means that rate R i − δ(ǫ) is achievable for any ǫ ′ < ǫ by possibly coding over multiple blocks of size N . But for the given η, we can choose an ǫ small enough, such that η > 4δ(ǫ). We will then have
+where δ(ǫ) → 0 as ǫ → 0. Hence, user i can achieve rate R i − δ(ǫ) but cannot deviate by η in any ǫ-game, for ǫ small enough. This shows that (R 1 − δ(ǫ), R 2 − δ(ǫ), . . . R K − δ(ǫ)) is in C NE (η) for δ(ǫ) small enough.
+Proof of Theorem 1: C NE (η) is a closed set on R K by deﬁnition. Also, by Theorem 2, C NE (η) is non-empty. Further C NE (η) ⊂ C and hence is bounded. Thus, for a given η > 0, C NE (η) is a non-empty compact set. Also, note that if η ′ < η then, C NE (η ′ ) ⊂ C NE (η) because, for a larger η, there are more strategy tuples that qualify for being an η-NE. We can redeﬁne C NE equivalently as C NE = ∩ η> 0 C NE (η) which is clearly non-empty by virtue of the fact that the C NE (η)’s are non-empty, compact and are nested for decreasing values of η. Hence, we have proved Theorem 1.
+In this paper we have considered information theoretic inter- ference games for general K-user linear deterministic channels and shown the existence of Nash equilbria for such games. Our proof shows that these games are similar to weakly acyclic games. Future work in this direction might involve ﬁnding similar results for general Gaussian interference networks, developing algorithms that help the system reach equilibrium
+with reasonable time guarantees and also trying to estimate the efﬁciencies of such equilibria.
+R. Berry would like to thank J. Marden for useful discus- sions on weakly acyclic games.
+[[[ REFS ]]]
+W. Y
+J. Ciof
+--
+Competitive Equilibrium in the Gaussian Inter- ference Channel”, Proceedings of IEEE International Symposium on Information Theory, pp
+----
+S. T. Chung
+S. J. Kim
+J. Lee
+M. Ciofﬁ
+--
+A game-theoretic approach to power allocation in frequency-selective Gaussian interference channels
+----
+J. S. Banks
+J. Duggan
+--
+Existence of Nash Equilibria on Convex Sets
+----
+A. B. MacKenzie
+L. A. DaSilva
+--
+Game Theory for Wireless Engineers
+----
+R. Etkin
+D. Tse
+H. Wang
+--
+Gaussian Interference Channel Capacity to within One Bit
+----
+G. Bresler
+D. Tse
+--
+The Two-User Gaussian Interference Channel: A Deterministic View
+----
+S. Avestimehr
+S. Diggavi
+D. Tse
+--
+Wireless Network Information Flow
+----
+R. Etki
+A. P. Parek
+D. Ts
+--
+Spectrum Sharing in Unlicensed Bands”, IEEE Journal on Selected Areas of Communication, vol
+----
+R. Berry
+D. Tse
+--
+Information Theoretic Games on Interference Channels
+----
+R. Berry
+D. Tse
+--
+Information Theory Meets Game Theory on The Interference Channel
+----
+J. Marden
+G. Arslan
+J. Shamma
+--
+Cooperative Control and Potential Games
+----
+R. Berry
+S. Saha
+--
+On Information Theoretic Interference Games With More Than Two Users
+----
+S. Saha
+R. Berry
+--
+On Information Theoretic Games for Interference Networks
+----
+R. Berry
+D. Tse
+--
+Shannon meets Nash on the Interference Channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\037.pdf
+[[[ LINKS ]]]
+

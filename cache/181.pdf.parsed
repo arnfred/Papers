@@ -1,0 +1,113 @@
+[[[ ID ]]]
+181
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Source-Channel Coding Tradeoff in Multiple Antenna Multiple Access Channels
+[[[ AUTHORS ]]]
+Ebrahim MolavianJazi
+J. Nicholas Laneman
+[[[ ABSTR ]]]
+Abstract—We investigate channel code rates for communica- tion of ﬁnite-dimensional analog sources over a multiple-antenna multiple access channel (MAC) so that the average end-to-end distortions are minimized. Our analysis uses the high-resolution quantization theory for the sources and the high-SNR diversity- multiplexing tradeoff for the MAC. We prove that carefully balanced channel coding rates, usually far from the boundary of the MAC capacity region, are necessary to achieve the optimal distortion exponent in a separated architecture. In particular, for the case of source vectors of equal dimension, we show that the channel interference from multiple users becomes crucial in characterizing the optimal channel coding rates if individual minimization of distortion for each user leads to a heavily loaded regime for the MAC.
+[[[ BODY ]]]
+The problem of joint source and channel coding is a fundamental one in information theory that characterizes how the encoder should communicate the best possible description of the source through the channel. The traditional source- channel theorems are based on the assumption of asymptoti- cally large source and channel code blocklengths and suggest that information be separately source- and channel-encoded at a rate just below the channel capacity.
+In real-world applications, however, the coding blocklengths are usually ﬁnite due to delay and complexity limitations. For example, communication of interactive voice or video over wireless cellular networks have stringent latency requirements demanding relatively short source blocklengths; e.g., CDMA- based IS-95 standard advises voice transmission in blocks of roughly 160 samples [1]. In such regimes, the classical source-channel analyses do not hold, and one should use other tools, such as source quantization theory and channel error exponents, to obtain guidelines for system design. It has been shown that, under these assumptions, there is a fundamental tradeoff between the source coding and channel coding rates [2]–[4]; for a given (high) end-to-end transmission rate, the channel coding rate must be large enough to avoid low-resolution description of the source but small enough to allow sufﬁcient redundancy for combating channel errors. The channel coding rate resulting from this balancing act has been observed to fall well below the channel capacity.
+In this paper, we investigate a multiuser version of this prob- lem, in which several sources are to be communicated over a block fading multiple access channel. Although not necessarily
+optimal in general, we study the separation-based architecture that is practically appealing due to its modular structure and tractable analysis. We consider multiple antennas for all the parties and focus on the moderate to high SNR regime. In such scenarios, the users of the communication system can exploit these multiple antennas to tradeoff their reliability and rate, as characterized by the well-known diversity-multiplexing tradeoff [5], [6]. Our results for the symmetric case show that the multiple-user interference is effective if the receiver’s antennae cannot spatially separate the users’s signals and the source vector dimensions are greater than a certain threshold.
+As illustrated in Figure 1, we are interested in communicat- ing L independent sources of information over a multiple an- tenna multiple access channel. Consider sources U k 1 1 , ..., U k L L
+that take values according to probability density functions f 1 (u k 1 ), ..., f L (u k L ) on compact sets S 1 ⊂ R k 1 , ..., S L ⊂ R k L , respectively. To communicate these sources over the MAC, we use a concatenation of quantizers (source encoders) and channel encoders distributed across the sources. Each source U k j j , j = 1, ..., L, is ﬁrst source coded via an m j -bit quantizer
+where {A j (i)} 2 mj i=1 is a partitioning of the set S j ⊂ R k j into disjoint regions, each represented by the source code- word v k j j (i). As in [2], a permutation π j is applied to the set of m j -bit indices of these source codewords I m j j = i to symmetrize the channel code performance. Finally, for communication over the multiple access channel (MAC), the j th transmitter encodes the binary message π j (I m j j ) into the channel codeword X j using a channel codebook C j (SNR) of blocklength n, rate m j n = r j log SNR, and unit average energy per transmit antenna per symbol per codeword. Here, we consider M antennas for each transmitter and N antennas for the receiver, facilitating a spatial multiplexing gain of r j for user j as SNR → ∞. The channel is a frequency-nonselective Rayleigh block-fading multiple access channel
+with multi-path fading captured by N × M matrices {H j } L j=1 consisting of independent and identically distributed (i.i.d.) CN (0, 1) complex Gaussian entries and noise captured by the N × n matrix W with i.i.d. complex Gaussian CN (0, 1) entries. The channel coding blocklength n is large with respect to noise but short with respect to fading, so that the fading matrices, which are known at the receiver but unknown at the transmitters, remain constant over a single channel coding blocklength but evolve i.i.d from block to block. At the receiver, a channel decoder decides jointly on the L channel codewords, and the inverse permutation π −1 j and dequantization Q −1 j recover the source as ˆ U k j j = V k j j ( ˆ I k j j ).
+The performance of this communication system is charac- terized by the average end-to-end distortion of the sources
+where · p is the p-th power of the Euclidian norm, p(ˆi|i) is the probability of decoding message i as message ˆi, and D iˆ i (Q j ) is the noiseless-channel distortion of the (lossy) quantizer Q j between the source indices i and ˆi
+The system design problem is to determine, for given (ﬁnite) values of source vector dimensions (k 1 , ..., k L ) and channel code blocklength n and as SNR → ∞, the spatial multiplexing gains (r 1 , ..., r L ) of the users such that the average end-to-end distortions ( ¯ D(Q 1 , MAC), ..., ¯ D(Q L , MAC)) are minimized.
+From high-resolution quantization theory, as m j = nr j log SNR → ∞ due to SNR growing asymptotically large,
+any good quantizer has an exponentially decaying noiseless- channel distortion [2], [3]
+where . = denotes equality in exponent in the limit of high SNR.
+The results of Hochwald and Zeger [2] imply that the average end-to-end distortion can be decomposed into a distortion term due to source quantization plus a distortion term due to channel impairments. Speciﬁcally, for permutation functions π j chosen uniformly at random, we have
+D(Q j ) + P e j ,av ˙ ≤ ¯ D(Q j , MAC) ˙ ≤ D(Q j ) + P e j ,max , (2) where P e j ,max and P e j ,av are the maximal and average error probabilities of user j in the MAC, respectively, and ˙ ≤ denotes inequality in exponent in the limit of high SNR.
+In the moderate to high SNR regime, the well-known diversity-multiplexing tradeoff (DMT) [5] is a convenient framework for system analysis and design. For a multiple access channel, Tse and Viswanath and Zheng [6] show that the probability of a “type S error”, in which the channel decoder makes error on messages in the set S ⊆ {1, ..., L} of users, behaves as
+where d ∗ M,N (r) is the well-known DMT function [5]. Al- though the analysis in [6] only considers the average error probability, one can verify that the above result also holds for the maximal error probability: the outage probability is a lower bound for the average and a fortiori maximal error probability, and the random coding error exponent upper bound uses pairwise independence of all codewords of all users and thus applies to each of the codewords, hence an upper bound for the maximal error probability; for details, check [5, p.1082] and [6, p.1872].
+The equality in the exponent of the average and maximal error probability in the limit of high SNR along with (2) implies that
+ 
+  
+since the events {E(S) : S ⊆ {1, ..., K}} are disjoint by deﬁnition. All together, we obtain the following expression for the average end-to-end distortion of each source.
+In this section, we ﬁrst give our main results on the optimal channel coding rates and the corresponding distortion exponents separately for the cases of equal and unequal source vector dimensions, and then compare them with those of the time division multiple access (TDMA) scheme.
+If all source vectors have equal dimensions k 1 = ... = k L = k, the whole communication system is symmetric. Therefore, the optimal strategy for jointly minimizing the average end- to-end distortions is to set all multiplexing gains equal, i.e., r 1 = ... = r L = r. With this symmetry in (4), all sources will have distortions that behave as
+where the last equality is based on the analysis of [6], which asserts that the dominant type of error for a symmetric MAC is either for a single user’s message (|S| = 1) or for all users’ messages (|S| = L).
+As SNR → ∞, the asymptotic end-to-end distortion is minimized by equating the exponents of the three terms in (5). Notice that, the function pnr/k is linearly increasing in r, and recall from [5], [6] that the two DMT curves d ∗ M,N (r) and d ∗ LM,N (Lr) are piece-wise linearly decreasing in r. The optimal r ∗ is thus given by
+(6) To characterize this expression, let r su be the solution to the single-user equation pnr/k = d ∗ M,N (r) and r au the solution to the all-users equation pnr/k = d ∗ LM,N (Lr). Recalling from [6] that the solution of the equation d ∗ M,N (r) = d ∗ LM,N (Lr) is given by r = min(M, N L+1 ), we conclude a similar categorization to that observed for the DMT of a symmetric MAC [6] as follows:
+• If r su < r au < min(M, N L+1 ), then the system is in the lightly loaded regime , r ∗ = r su , and only the DMT for a single user being in error matters.
+• If r su > r au > min(M, N L+1 ), then the system is in the heavily loaded regime , r ∗ = r au , and only the DMT for all users being in error matters.
+• The case r su = r au = min(M, N L+1 ) can be seen as a threshold between these two regimes.
+Our analysis shows that the multiple-user interference af- fects the optimal multiplexing gain and the minimal end-to- end distortion if (i) N < (L + 1)M , i.e., the receiver does not have enough antennas to spatially separate different users’
+signals, and (ii) k > k th , i.e., the source vector dimensions are not small enough, where
+Hence, with sufﬁciently large number of receive antennas N ≥ (L + 1)M or sufﬁciently small source vector dimensions k ≤ k th , multiple-user interference is not dominant and each user can minimize its individual distortion.
+We make the preceding remarks more concrete through the following illustrations for the case of L = 2 users each with M = 2 transmit antennas. Figure 2 compares the optimal multiplexing gain r ∗ as a function of the source vector dimension k for the case of a MIMO-MAC with that of the point-to-point MIMO case without interference [3]. From this plot, one observes that the optimal multiplexing gain is an increasing function of the source vector dimension and, for most values of k, is well below the maximal symmetric
+spatial multiplexing gain lim k→∞ r ∗ = min(M, N L ) of the MAC, i.e., min(2, 2 2 ) = 1 for the case of N = 2 and min(2, 4 2 ) = min(2, 6 2 ) = 2 for the cases of N = 4 and N = 6. Moreover, for a small number of receive antennas, 2 = N < (L + 1)M = 6 and 4 = N < (L + 1)M = 6, a
+threshold exists as given in (7), k th ≈ 333 and k th ≈ 667 respectively, beyond which the optimal r ∗ for the MIMO- MAC is less than that for the single-user MIMO case, while for sufﬁciently large number of receive antennas 6 = N ≥ (L + 1)M = 6, the optimal r ∗ for the point-to-point MIMO and MIMO-MAC is observed to be identical. Figure 3 depicts a similar comparison for the optimal distortion exponent versus the source vector dimension k. The effect of the number of receive antennas on the optimal distortion exponent is similar to that upon the optimal multiplexing gain, except for the fact that the difference in distortions of the MIMO-MAC and the point-to-point MIMO conﬁgurations, if any, appears to be quite small.
+If the source dimensions are not equal, symmetric multiplex- ing gains no longer appear to be optimal. However, one can minimize the sum of the end-to-end distortions of all sources:
+Although we can apply the technique of balancing exponents, the above optimization problem does not lend itself to a tractable analytical solution. Therefore, we restrict attention to numerical study for the case of L = 2 users. For this case, the above optimization problem takes the simpler form:
+Note that, there is a possibility that not one, but a family of multiplexing gains (r ∗ 1 , r ∗ 2 ) lead to the minimal distortion exponent. In such cases, we choose the one which gives the maximal sum-rate.
+Figure 4 shows how asymmetric source dimensions lead to asymmetric rate allocations by illustrating the ratio of optimal multiplexing gains r ∗ 2 /r ∗ 1 as a function of the ratio of source vector dimensions k 2 /k 1 for several values of k 1 selected in different regimes k 1 	 n, k 1 ≈ n, and k 1 	 n. This ﬁgure suggests that, for a small number of receive antennas, the higher-dimensional source requires a greater multiplexing gain, while for a large number of receive antennas, the asymmetry of the source vector dimensions does not matter and the multiplexing gains are essentially allocated equally between the users. Furthermore, Figure 5 gives some sense of how far the optimal multiplexing gains are from the boundary
+of the MAC capacity region by depicting the ratio r ∗ 1 +r ∗ 2 min(2M,N ) for different k 1 and k 2 values as above. This ﬁgure suggests that the optimal sum multiplexing gain of the two users is usually far below the maximal sum multiplexing gain, and this effect is more apparent when at least one of the two source dimensions is small.
+In this subsection, we compare the performance of the optimal joint-decoding MAC operation with that of a time division multiple access (TDMA) scheme. TDMA is a sub- optimal but simple method for multiple users to access a common channel by dividing channel uses among users so that they access the channel in turn. Accordingly, TDMA suffers from smaller rate for users, but beneﬁts from preventing any interference to them. Therefore, in our setup, the communi- cation of different sources will decouple and the distortion
+of each user will be only affected by an appropriate single- user DMT curve. Focusing on the case of source vectors with equal dimensions, the best TDMA strategy is to assign sub-blocks of equal length to each user due to symmetry. By the time-sharing argument of [6, p.1869], the channel coding rate for each user is then given by m TDMA /n =
+the other hand, the source distortion exponent is expressed as D(Q j ) . = 2 − p k m TDMA = SNR − pn k r TDMA . Therefore, the best TDMA scheme chooses its multiplexing gain r ∗ TDMA as the solution of the equation
+The inferior performance of the TDMA scheme in terms of the average end-to-end distortion is easily implied by observing that, for all values of r, the scaled single-user DMT curve d ∗ M,N (Lr) of (8) is strictly below both the original single-user DMT curve d ∗ M,N (r) and the all-users DMT curve d ∗ LM,N (Lr) of (6). Hence, the best TDMA scheme chooses a smaller multiplexing gain and thus achieves a smaller distortion exponent than the optimal MIMO-MAC, as illustrated in Figures 6 and 7 for the case of L = 2 users. One observes that the gap between the performance of the TDMA scheme and that of the optimal MAC operation is often most signiﬁcant for moderate to large values of the source vector dimension.
+We have studied the problem of allocating source and channel coding rates among several information sources to communicate them with the minimal end-to-end distortion. Although classical source-channel theorems in the asymp- totically large blocklength regime usually suggest operating close to the boundary of the channel capacity region, we have shown that for transmission of ﬁnite-dimensional sources over
+block fading channels in the high SNR regime, one needs to avoid such high rates and tolerate source coding with lower resolution so that the channel fading effects can be mitigated. Our results suggest that applications with shorter source vectors may not be dominated by multiple-user interference, and applications with longer source vectors may require more attention to it. It is worth noting that the practically interesting separate architecture studied in this paper may not be optimal in general [7] and other joint techniques such as hybrid digital- analog coding [8] and superposition coding [9] can potentially achieve better distortion exponents.
+This work was supported in part by NSF Grant CCF05- 46618.
+[[[ REFS ]]]
+K. Gar
+--
+V
+----
+B. Hochwald
+K. Zeger
+--
+Tradeoff Between Source and Channel Coding
+----
+T. Holliday
+A. Goldsmith
+V. Poor
+--
+Joint Source and Channel Coding for MIMO Systems: Is It Better to Be Robust or Quick?
+----
+N. Laneman
+E. Martinian
+W. Wornell
+G. Apostolopoulos
+--
+Source-Channel Diversity for Parallel Channels
+----
+L. Zheng
+C. Tse
+--
+Diversity and Multiplexing: A Fundamental Tradeoff in Multiple Antenna Channels
+----
+C. Tse
+P. Viswanath
+L. Zheng
+--
+Diversity-Multiplexing Trade- off in Multiple-Access Channels
+----
+A. Lapidoth
+S. Tinguely
+--
+Sending a Bi-Variate Gaussian Source over a Gaussian MAC
+----
+G. Cairea
+K. Narayanan
+--
+On the Distortion SNR Exponent of Hybrid Digital-Analog Space-Time Coding
+----
+D. Gunduz
+E. Erkip
+--
+Joint Source-Channel Codes for MIMO Block- Fading Channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\181.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,166 @@
+[[[ ID ]]]
+74
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Compressive Identiﬁcation of Linear Operators
+[[[ AUTHORS ]]]
+Reinhard Heckel
+Helmut B¨olcskei
+[[[ ABSTR ]]]
+Abstract—We consider the problem of identifying a linear deterministic operator from an input-output measurement. For the large class of continuous (and hence bounded) operators, under additional mild restrictions, we show that stable identi- ﬁability is possible if the total support area of the operator’s spreading function satisﬁes ∆ ≤ 1/2. This result holds for arbitrary (possibly fragmented) support regions of the spreading function, does not impose limitations on the total extent of the support region, and, most importantly, does not require the support region of the spreading function to be known prior to identiﬁcation. Furthermore, we prove that asking for identiﬁability of only almost all operators, stable identiﬁability is possible if ∆ ≤ 1. This result is surprising as it says that there is no penalty for not knowing the support region of the spreading function prior to identiﬁcation.
+[[[ BODY ]]]
+Identiﬁcation of deterministic linear operators from an input-output measurement is an important problem in many ﬁelds of engineering. Concrete examples include system iden- tiﬁcation in control theory and practice and the measurement of wireless communication channels.
+It is natural to ask under which conditions on the operator, identiﬁcation from an input-output measurement is possible in principle, and how one would go about choosing the probing signal and extracting the operator from the corresponding out- put signal. This paper addresses these questions in generality by considering the (large) class of linear operators that can be represented as a continuous weighted superposition of time- frequency shift operators, i.e., the operator’s response to the signal x(t) is given by
+where s H denotes the spreading function of the operator H. The representation theorem [1, Thm. 14.3.5] states that the action of any continuous (and hence bounded) linear operator, under additional mild restrictions, can be represented as in (1). In the communications literature [2], [3], [4], operators with input-output relation as in (1) are referred to as linear time-varying channels/systems and s H is the delay-Doppler spreading function. For the special case of linear time-invariant (LTI) systems, we have s H (τ, ν) = h(τ )δ(ν), so that (1) reduces to
+The question of identiﬁability of LTI systems is readily an- swered by noting that the system’s response to x(t) = δ(t) is given by its impulse response h(t), which fully characterizes the input-output relation according to (2). LTI systems are
+therefore always identiﬁable, provided that the input signal can have inﬁnite bandwidth and we can observe the output signal over an inﬁnite duration. In the general case (i.e., for LTV systems), the situation is fundamentally different. Speciﬁcally, Kailath’s landmark paper [2] shows that LTV systems with spreading function compactly supported on a rectangle are identiﬁable if and only if the spreading function’s support area satisﬁes ∆ ≤ 1. Bello [3] later pointed out that Kailath’s identiﬁability result continues to hold, even if the support region of s H is scattered across the (τ, ν)-plane, as long as the total support area satisﬁes ∆ ≤ 1. Kozek and Pfander [5] and Pfander and Walnut [6] provided functional-analytic proofs of the results in [2], [3]. Common to [2], [3], [5], [6] is the assumption of the support region of s H being known prior to identiﬁcation. This is clearly restrictive and often impossible to realize in practice.
+Contributions: In this paper, we consider the problem of identifying deterministic linear operators with spreading function compactly supported on an unknown, possibly frag- mented, region in the (τ, ν)-plane. We do not impose limi- tations on the total extent of the support region. Our main result shows that an operator with input-output relation (1) is identiﬁable, without prior knowledge of the spreading function’s support region, if and only if the total support area of s H satisﬁes ∆ ≤ 1/2. We then show that this factor of two penalty—compared to the case where the support region is known in advance [2], [3]—can be eliminated, if one asks for identiﬁability of almost all operators only. This result is surprising as it shows that (for almost all operators) there is no price to be paid for not knowing the spreading function’s support region in advance. We discuss the design of probing signals and we outline an algorithm which, in the noiseless case, provably recovers all operators with ∆ ≤ 1/2. Furthermore, we present an algorithm which, again in the noiseless case, provably recovers almost all operators with ∆ ≤ 1.
+Relation to previous work: Recently Bajwa et al. [7] considered the identiﬁcation of LTV-systems with spreading function s H supported in a rectangle of area ∆ ≤ 1 and consisting of a ﬁnite number of discrete components with unknown delays and Doppler shifts. In the present paper, we allow general spreading functions that can be supported in the entire (τ, ν)-plane with possibly fragmented support region.
+Notation: We use lowercase boldface letters to denote column vectors, e.g., x, and uppercase boldface letters to designate matrices, e.g., X. The superscripts ∗ , H , and T stand for complex conjugation, Hermitian transposition, and transposition, respectively. The space spanned by the columns
+of X is designated by R(X). The entry in the kth row and lth column of X is denoted by [X] k,l . For the vector x, the Euclidean norm is denoted as x 2 and the kth entry of x is [x] k . |Ω| stands for the cardinality of the set Ω. For two sets Ω 1 and Ω 2 we deﬁne set addition as Ω 1 + Ω 2 = {ω : ω 1 + ω 2 , ω 1 ∈ Ω 1 , ω 2 ∈ Ω 2 }. δ(x) denotes the Dirac delta function. For a function f (x), supp(f ) denotes the support set of f . For two functions f (x), g(x), deﬁned on Ω, we write f, g 	 Ω f (x)g ∗ (x)dx for the inner product;
+Given normed linear spaces 1 X, Y , we consider linear operators H : X → Y that can be represented as a con- tinuous weighted superposition of translation operators T τ , with (T τ x)(t) x(t − τ ), and modulation operators M ν with (M ν x)(t) e j2πνt x(t):
+This is a rather general setting, since according to [1, Thm. 14.3.5], any continuous (and hence bounded) linear operator, under additional mild restrictions, can be represented as in (3). In the following, denote the linear space of operators that can be represented according to (3) by H, and deﬁne the inner product on this space by
+Restrictions on the spreading function: We assume that the support region of s H has the form
+where U 	 [0, T ) × [0, 1/T L) is a “fundamental cell” in the (τ, ν)-plane and T ∈ R is a parameter whose role will become clear shortly. The set of “active cells” is speciﬁed by Γ ⊆ Σ {(0, 0), (0, 1), ..., (L − 1, L − 1)}. Consequently, we have τ max = T L and ν max = 1/T . We denote the support area of M Γ as A(M Γ ). Given a general support region for s H , possibly fragmented and spread over the entire (τ, ν)- plane, we can choose T and L such that this region can be approximated arbitrarily well by a support region of the form (4) (see Fig. 1).
+Let us next formally deﬁne the notion of identiﬁability of a set of operators Q ⊆ H. The set Q is said to be identiﬁable from an input-output measurement, if there exists a probing signal x ∈ X such that for each H ∈ Q, the action of the operator on the probing signal, Hx, uniquely determines H, i.e., if there exists an x ∈ X such that
+τ ν
+Identiﬁability is hence equivalent to invertibility of the map- ping
+induced by the probing signal x. Invertibility alone is typically not sufﬁcient as one wants to recover H from Hx in a numerically stable fashion, i.e., we want small errors in Hx to result in small errors in the identiﬁed operator. This requirement implies that the inverse of the mapping (6) must be continuous (and hence bounded), which ﬁnally motivates the following deﬁnition.
+Deﬁnition 1: We say that x stably identiﬁes Q if there exist constants 0 < α ≤ β < ∞ such that for all pairs H 1 , H 2 ∈ Q,
+Furthermore, we say that Q is stably identiﬁable, if there exists an x ∈ X such that x stably identiﬁes Q.
+Note that (7) is stated in terms of differences of operators, since (H 1 − H 2 ) is not necessarily contained in the set Q. The lower bound in (7) guarantees that the inverse of (6) exists and is bounded and hence continuous, as desired. Proving that x stably identiﬁes Q essentially amounts to proving that α > 0 in Deﬁnition 1. The ratio β/α provides a measure for the noise sensitivity of the identiﬁcation process, the closer β/α to one, the better.
+Before stating our main results, we deﬁne the set of oper- ators with s H supported on a given area M Γ :
+In this notation, Kailath [2] discussed the case where M Γ is a (single) rectangle, and Bello [3] analyzed the case where M Γ is an arbitrary region, possibly fragmented and spread over the entire (τ, ν)-plane. We ﬁrst recall the key results in [3], [6] on the identiﬁcation of H M Γ under the assumption of M Γ known:
+Theorem 1 ([3], [6]): Let M Γ be given. The set of oper- ators H M Γ is stably identiﬁable if and only if A(M Γ ) ≤ 1.
+In the following, we consider the set of operators X (∆)
+which consists of all sets H M Γ such that A(M Γ ) ≤ ∆. Our main results are as follows.
+Theorem 2: The set of operators X (∆) is stably identiﬁable if and only if ∆ ≤ 1/2.
+Note that Theorem 2 applies to the union of all sets of operators with spreading function supported on a region with area no larger than ∆, and, in particular, does not need the support region of s H to be known in advance. The main implication of Theorem 2 is that the penalty for not knowing the support region of s H in advance is a factor of two in the support set size of the spreading function. We can eliminate this penalty by relaxing the identiﬁcation requirement to almost all H ∈ X (∆).
+Theorem 3: Almost all H ∈ X (∆) can be stably identiﬁed if ∆ < 1.
+The factor of two penalty in Theorem 2 has the same roots as the factor of two penalty in spectrum-blind sampling [8], [9], [10], [11], sparse signal recovery [12], and in the recovery of signals that lie in a union of subspaces [13]. It was recognized before—in the context of spectrum-blind sampling—that the factor of two penalty can be eliminated by relaxing the recovery requirement to almost all signals [8], [9], [10].
+To prove necessity in Theorem 2 we start with the following lemma which states an equivalent condition on stable identiﬁ- ability of X (∆). This condition is often easier to verify than that in Deﬁnition 1.
+Lemma 1: x stably identiﬁes X (∆) if and only if it stably identiﬁes all sets
+Proof of Lemma 1: 	 Follows immediately by invoking the deﬁnition of stable identiﬁability and noting that α H 1 − H 2 H 	 ≤ 	 (H 1 − H 2 )x 	 ≤ β H 1 − H 2 H , ∀H 1 , H 2 ∈ X (∆) if and only if α H H ≤ Hx ≤ β H H for all H ∈ H M Φ ∪M Θ and for all M Φ , M Θ , with A(M Φ ) ≤ ∆ and A(M Θ ) ≤ ∆, Φ, Θ ∈ Σ.
+Before formally proving necessity in Theorem 2, we com- ment on an important aspect of the difference between known and unknown spreading function support region. If the support region is known and given, by say M Γ , and we consider the set H M Γ , it follows that the difference H 1 − H 2 for H 1 , H 2 ∈ H M Γ satisﬁes (H 1 − H 2 ) ∈ H M Γ . If we, however, consider the set X (∆), we have that H 1 , H 2 ∈ X (∆) does not imply (H 1 − H 2 ) ∈ X (∆) in general. To see this, simply take H 1 , H 2 ∈ X (∆) such that the support regions of H 1 and H 2 have area ∆ and are disjoint. We do, however, have that H 1 − H 2 ∈ X (2∆), ∀H 1 , H 2 ∈ X (∆). This observation lies at the heart of the factor of two penalty in ∆ as quantiﬁed by Theorem 2.
+Necessity in Theorem 2: Follows by taking ∆ > 1/2 and noting that we can ﬁnd M Φ , M Θ with A(M Φ ) = A(M Θ ) = ∆
+and M Φ ∩M Θ = ∅. This implies A(M Φ ∪M Θ ) > 1 and hence application of Theorem 1 to the set H M Φ ∪M Θ establishes that H M Φ ∪M Θ is not stably identiﬁable. By Lemma 1 this then implies that X (∆) is not stably identiﬁable.
+We prove sufﬁciency in Theorem 2 by ﬁnding a probing signal that stably identiﬁes X (∆). Concretely, we choose a weighted T L-periodic train of Dirac impulses
+as probing signal. The speciﬁc choice of the coefﬁcients c = {c 0 , ..., c L−1 } will turn out to be crucial and will be discussed later. The main idea of our proof is to 1) reduce the identiﬁcation problem to that of solving a linear system of L equations with L 2 unknowns, and 2) to apply Lemma 1 to show that a unique solution of this underdetermined system of equations exists whenever ∆ ≤ 1/2 (and c is chosen appropriately).
+Next, deﬁne the Zak transform [14] (with parameter T L) of the signal u(t) as
+for (t, f ) ∈ [0, T L) × [0, 1/T L). The Zak transform of y(t) in (11) is given by Z y (t, f ) =
+where we used the substitution k = k − mL and the last step follows from the Poisson summation formula. Next, we substitute t = t + pT with p ∈ {0, ..., L − 1} and t ∈ [0, T ). This amounts to splitting the fundamental rectangle [0, T L) × [0, 1/T L) of the Zak transform into L “cells” U , where U was deﬁned in Section II, and yields
+where we used the substitution k = p + k and the last step is a consequence of s H (τ, ν) = 0 for (τ, ν) / ∈ [0, T L)×[0, 1/T ), by deﬁnition. We can now rewrite the last equation in vector- matrix form by deﬁning the column vectors z(t, f ) and s(t, f ):
+and s(t, f ) 	 [s 0,0 (t, f ), s 0,1 (t, f ), ..., s 0,L−1 (t, f ), s 1,0 (t, f ), ..., s L−1,L−1 (t, f )] T with
+It is easily seen that the vector s(t, f ), (t, f ) ∈ U , fully characterizes the spreading function. With all deﬁnitions in place, we ﬁnally obtain
+z(t, f ) = A c s(t, f ), (t, f ) ∈ U 	 (13) with the L × L 2 matrix
+where [F] p,m = e −j2π pm L , p, m = 0, ..., L − 1, and C c,k is the diagonal matrix with diagonal entries {c k , c k−1 , ..., c k+1 }.
+The proof will be effected by applying Lemma 1. Concretely we will prove stable identiﬁability of H M Φ ∪M Θ for all pairs M Φ , M Θ with A(M Φ ) ≤ 1/2 and A(M Θ ) ≤ 1/2. By setting M Γ = M Φ ∪ M Θ , this is equivalent to proving stable identiﬁability of H M Γ for all M Γ with A(M Γ ) ≤ 1. We therefore consider H ∈ H M Γ , and note that, by deﬁnition s k,m (t, f ) = 0, ∀(k, m) / ∈ Γ. Denote the vector obtained from s(t, f ) by selecting the entries corresponding to the active cells Γ by s Γ (t, f ) and let A Γ be the matrix containing the columns of A c that correspond to these cells. Then (13) becomes 2
+z(t, f ) = A Γ s Γ (t, f ), (t, f ) ∈ U. 	 (14) Next, we formally relate (14) to the deﬁnition of stable identiﬁability through the following lemma, whose proof is given in the appendix.
+Lemma 2: Let x be given by (10). Then, the bounds α, β in (7) for the set of operators H M Γ are given as
+The proof of sufﬁciency in Theorem 2 is now completed by showing that for all M Γ with A(M Γ ) ≤ 1, H M Γ is stably identiﬁable, i.e., α Γ > 0. This amounts to proving that A Γ has full rank for all M Γ such that A(M Γ ) ≤ 1, i.e., for all Γ ∈ Σ such that |Γ| ≤ L. What comes to our rescue here is a result in [15] which states that for almost all c, each L × L submatrix of A c has full rank. Hence, there exists a c such that α Γ > 0 for all M Γ with A(M Γ ) ≤ 1. In the remainder of the paper, c is chosen such that each L × L submatrix of A c has full rank.
+We next discuss an algorithm for the recovery of operators H ∈ X (∆) from the operator’s response Hx to the probing signal x(t) in (10). We start by noting that recovering H amounts to recovering s H which by (12) is equivalent to recovering s(t, f ) from (13). This will be accomplished by ﬁrst identifying the support set of s H , (i.e., the active cells of s(t, f )), and then solving the resulting linear system of equations (14).
+1) Support set recovery: If we assume that A(M Γ ) ≤ 1/2, then the support set Γ can be recovered from z(t, f ) by solving:
+where the constraint is over all s Γ (t, f ) with |Γ| ≤ L/2. This is a standard problem, and solutions have been proposed in the context of spectrum-blind sampling [8], [9], [11], all involving a correlation matrix, which in our setup becomes Z 	 U z(t, f )z H (t, f )d(t, f ). The main difference to signal recovery in the context of spectrum-blind sampling [8], [9], [11] is that here a function of two variables has to be recovered rather than a function of one variable. Using (14) we can express Z according to
+where S Γ = U s Γ (t, f )s H Γ (t, f )d(t, f ). Using similar argu- ments as in [10], it can be shown that (P0) is equivalent to
+where the constraint is over all Hermitian matrices S Γ ∈ C |Γ|×|Γ| . Since Z is normal, it can be decomposed as Z = QQ H , where the R = rank (Z) columns of the matrix Q ∈ C L×R are orthogonal. As shown by Feng [10], (P0) (and hence (P0)) is equivalent to
+where the constraint is over all G Γ ∈ C |Γ|×R . (P0 ) is known in the literature as the ﬁnite multiple-measurement vector (MMV) problem 3 [16]. Application of [16, Thm. 2.4] ensures that (P0 ) provably recovers the correct support set Γ as long as |Γ| ≤ L/2, i.e., as long as the area of the unknown support set of the spreading function satisﬁes ∆ ≤ 1/2.
+2) Recovery for known support set: Once the support set Γ has been identiﬁed, we solve (14) for s Γ (t, f ), which based on (12) yields s H and hence H. Note that (14) has to be solved over the continuum of values (t, f ) ∈ U . We can expand all quantities in (14) into two-dimensional Fourier series over U , which results in a system of countably many linear equations to be solved.
+We next prove Theorem 3. The proof is inspired by [9, Thm. 1], and is constructive as it speciﬁes the recovery algorithm (for almost all H ∈ X (∆), ∆ < 1). The basic idea is to use a MUSIC-like [17] algorithm based on (16), which allows us to recover Γ under the following two conditions:
+1) ∆ ≤ 1 − 1/L. The penalty of 1/L is technical and can be made arbitrarily small by choosing L large enough.
+2) The functions s k,m (t, f ), (k, m) ∈ Γ, are linearly in- dependent on U , i.e., there is no vector a ∈ C N , a = 0, N = |Γ|, such that a H s Γ (t, f ) = 0, ∀ (t, f ) ∈ U .
+We recognize that almost all H ∈ X (∆) satisfy Condition 2. Proof of sufﬁciency in Theorem 3: The proof is effected
+by establishing that, under Conditions 1 and 2 above, the support set Γ is uniquely speciﬁed by the indices of the columns of U H n A c that are equal to 0. Here, U n is the matrix of eigenvectors of Z corresponding to zero eigenvalues. To see this, we perform an eigenvalue decomposition of Z in (16) to obtain
+where U z contains the eigenvectors of Z, corresponding to the non-zero eigenvalues of Z. Lemma 3 in the appendix establishes that, thanks to Condition 2 above, for almost all H ∈ X (∆), S Γ has full rank. As discussed in Section V, each set of L or fewer columns of A c is linearly independent. Condition 1 ensures that |Γ| ≤ L − 1, which implies that A Γ has full rank for all sets Γ in question. Hence we get from (18) that
+R(U n ) is the orthogonal complement of R(U z ) in C L . It therefore follows from (19) that U H n A Γ = 0. Therefore, the columns of U H n A c that correspond to indices (k, m) ∈ Γ are equal to 0. To conclude the proof, we show, by contradiction, that no other columns of U H n A c are equal to 0. Suppose that U H n a = 0 where a is any column of A c corresponding to an index pair (k , m ) / ∈ Γ. Then a ∈ R(U z ) = R(A Γ ). This would mean that the L or fewer columns of A c corresponding to the indices (k, m) ∈ {Γ ∪ (k , m )} would be linearly dependent. The proof is completed by noting that this stands in contradiction to the fact that—since we assume that c is chosen accordingly—each set of L or fewer columns of A c is linearly independent.
+Proof of Lemma 2: Starting from (14), we get for ﬁxed values of (t, f ) ∈ U
+with α Γ , β Γ deﬁned in (15). Squaring and integrating (20) over U yields
+where the last equality follows from the unitarity of the Zak transform [14]. Similarly, we have
+d(t, f ) = s H 2 = H 2 H . 	 (22) Inserting (22) and (21) into (20) completes the proof.
+Lemma 3: S Γ has full rank if and only if the functions s k,m (t, f ), (k, m) ∈ Γ, are linearly independent on U .
+Proof: Assume that S Γ does not have full rank. Then there exists an a = 0, a ∈ C N such that a H S Γ = 0 and hence a H S Γ a = U a H s Γ (t, f )(a H s Γ (t, f )) H d(t, f ) = 0. Since a H s Γ (t, f )(a H s Γ (t, f )) H ≥ 0, ∀(t, f ) ∈ U , we must have a H s Γ (t, f ) = 0 a.e. on U , which implies that the set s k,m (t, f ), (k, m) ∈ Γ, is linearly dependent on U . Now assume that the set s k,m (t, f ), (k, m) ∈ Γ, is linearly dependent on U . Then, there exists an a = 0 such that
+s Γ (t, f )s H Γ (t, f )d(t, f ), by deﬁnition, we get a H S Γ = 0 which proves that S Γ does not have full rank.
+[[[ REFS ]]]
+K. Gr¨ocheni
+--
+Foundations of Time-Frequency Analysis
+----
+T. Kailath
+--
+Measurements on time-variant communication channels
+----
+P. Bello
+--
+Measurement of random time-variant linear channels
+----
+
+--
+Characterization of randomly time-variant linear channels
+----
+W. Kozek
+G. E. Pfander
+--
+Identiﬁcation of operators with bandlim- ited symbols
+----
+G. Pfander
+D. Walnut
+--
+Measurement of time-variant linear chan- nels
+----
+W. U. Bajwa
+K. Gedalyahu
+Y. C. Eldar
+--
+Identiﬁcation of un- derspread linear systems with application to super-resolution radar
+----
+P. Feng
+Y. Bresler
+--
+Spectrum-blind minimum-rate sampling and reconstruction of multiband signals
+----
+Y. Bresler
+--
+Spectrum-blind sampling and compressive sensing for continuous-index signals
+----
+P. Feng
+--
+Universal minimum-rate sampling and spectrum-blind re- construction for multiband signals
+----
+M. Mishali
+Y. C. Eldar
+--
+Blind multiband signal reconstruction: Compressed sensing for analog signals
+----
+D. L. Donoho
+M. Elad
+--
+Optimally sparse representation in general (nonorthogonal) dictionaries via 1 minimization
+----
+Y. Lu
+M. Do
+--
+A theory for sampling signals from a union of subspaces
+----
+A. J. E. M. Janssen
+--
+The Zak transform: A signal transform for sampled time-continuous signals.
+----
+J. Lawrence
+G. E. Pfander
+D. Walnut
+--
+Linear independence of Gabor systems in ﬁnite dimensional vector spaces
+----
+J. Chen
+X. Huo
+--
+Theoretical results on sparse representations of multiple-measurement vectors
+----
+R. Schmidt
+--
+Multiple emitter location and signal parameter estimation
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\074.pdf
+[[[ LINKS ]]]
+

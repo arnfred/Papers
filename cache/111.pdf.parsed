@@ -1,0 +1,148 @@
+[[[ ID ]]]
+111
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Soft Decode-and-Forward using LDPC coding in Half-Duplex Relay Channels
+[[[ AUTHORS ]]]
+Marwan H. Azmi
+Jun Li
+Jinhong Yuan
+Robert Malaney
+[[[ ABSTR ]]]
+Abstract—This paper proposes a new soft decode-and-forward (SDF) protocol using LDPC codes in the half-duplex relay channels. In order for the encoding of the additional parity-check symbols at the relay to be linear and systematic, we introduce a structured rate-compatible (RC) LDPC code. We then develop the soft-decoding and soft-re-encoding algorithms for the proposed RC-LDPC code, which allows the relay to forward soft messages to the destination when the relay fails to decode the source’s message. Furthermore, we propose a new method, which we refer to as soft fading, to compute the log-likelihood ratio (LLR) of the received signal at the destination for the SDF protocol. We show that our proposed method performs better when compared to a previous reported method in literature.
+[[[ BODY ]]]
+Cooperative communication [1], [2] for wireless networks promise improved transmit diversity and increased spectral efﬁciency. In the context the integration of cooperation and coding, the use of a decode-and-forward (DF) strategy instead of the simple amplify-and-forward (AF) strategy has proven to be a particularly useful in providing additional coding gain [2]. Distributed channel coding (DCC) schemes for the three-nodes relay channel represent one important subset in implementing cooperation with coding. These DCC schemes can be classiﬁed into two groups of capacity achieving codes: the turbo codes [3], [4] and the LDPC codes [5], [6], [7].
+While the DCC schemes using a DF strategy always assume that the source-relay channel is error free, this cannot always be guaranteed in practice. In order to mitigate the effect of error propagation at the relay, the soft DF (SDF) protocol was proposed in [8], [9], [10] using distributed turbo codes. The work in [9] models the soft-errors introduced by the relay as Gaussian noise, which will then be added at the destination when computing the received log-likehood ratio (LLR). However, the work in [10] numerically shows that the LLR distribution at the destination for the turbo code’s used in [9] is not Gaussian. In another class of work [11], distributed turbo product codes (DTPC) with soft information relaying (SIR) over cooperative networks are proposed. In this work we investigate the use of SIR with LDPC codes.
+The main challenge of performing SIR using LDPC codes is the soft-re-encoding at the relay. It is a well known result that the capacity-achieving LDPC codes have irregular degree distributions (i.e. the code has random structure), resulting to the issue of having a low complexity systematic encoder.
+In a relay channel, the encoder becomes more complicated because the rate-compatible (RC) LDPC codes [6] form nested sequence of code bits where the parity bits of higher rate codes for the source-relay channel are embedded in those of lower rate codes for the source-destination.
+This paper represents the ﬁrst attempt to implement SIR within LDPC codes. We propose a structured RC-LDPC code with linear and systematic encoder for the additional parity bits at the relay. Based on this systematic code’s structure, a soft-re-encoding of the additional parity bits at the relay is developed. Then, we propose a new method to compute the LLR of the received signal at the destination under the SDF protocol, where the soft-errors introduced at the relay are described via fading coefﬁcients. We refer to our new method as soft fading. Finally, we show that the proposed soft fading method performs better when compared to a previous reported method in literature.
+The half-duplex relay channel is illustrated in Fig. 1, where one source (S) sends independent messages to the destination (D), and in doing so it is aided by one half-duplex relay (R). Given a time window L, the total of N = N 1 + N 2 symbols are received at D. In a fraction of time tL (namely, broadcast (BC) mode), S broadcasts N 1 symbols that can be received by both R and D. In the remaining fraction of time t L = (1 − t)L (namely, multiple-access (MAC) mode), both S and R transmit N 2 symbols to D simultaneously. We denote the source transmitted signal, relay received signal, relay transmitted signal and destination received signal by using X, V , W and Y (see Fig. 1), respectively. In order
+to distinguish between the transmission modes, we denote the BC mode using subscript 1 and the MAC mode using subscript 2. With the above notations, the half-duplex relay channel is deﬁned by
+V 1 = h SR X 1 + N R 1 	 (1) Y 1 = h SD X 1 + N D 1 	 (2) Y 2 = h SD X 2 + h RD W 2 + N D 2 	 (3)
+where, h ij is the channel realization between node i and node j, while N D 1 and N D 2 are the noise realizations at the destination in BC and MAC modes, respectively, and N R 1 is the noise realization at the relay in BC mode. All N R 1 , N D 1 and N D 2 noises are Gaussian with zero mean and unit variance ( σ 2 = 1), i.e. N(0,1). In this work, the source and the relay transmit with equal power P and BPSK modulation is employed. The nodes S, R and D are assumed to lie on a straight line 1 , where we normalized the distance between S and D to unity, and d denotes the position of R relative to S with 0 ≤ d ≤ 1. With this setup, the channel gains are h SD = 1, h SR = 1 √ d α and h RD = 1 √ (1−d) α , where α is the path-loss exponent. In this paper, we choose α = 2 for our plots. Thus, perfect global channel knowledge is assumed at all received nodes.
+From the achievable rate point of view, the relay coding strategy can achieve two fundamental extremes. In one ex- treme, R and S simultaneously send completely independent information, which interfere with each other; in the other extreme, R and S simultaneously send identical information (i.e. X 2 = W 2 ), which forms a coherent transmission and corresponds to the relay coding strategy in this paper. Based on the latter strategy, S transmits a binary LDPC code w 1 with length N 1 and dimension K in the BC mode, i.e. with rate R 1 = K/N 1 . The code w 1 is deﬁned by a (N 1 − K) × N 1 parity check matrix H 1 . Assuming perfect decoding at R 2 , both S and R transmit another codeword segment w 2 with length N 2 that only contains additional parity-check bits in the MAC mode. Thus, D will receive the full codeword w = [w 1 w 2 ] with rate R c = K/N . This full codeword is deﬁned by a (N − K) × N parity check matrix H as illustrated in Fig. 2(a), which includes H 1 . Note that the sub-matrix H 2 is a lower triangular parity-check matrix. As a consequence of this, w 2 can be linearly encoded at S and R based on the LDPC code w 1 using back-substitution [12]. The rate compatibility and linear encoder of w 2 using H 2 are the properties of the full codeword w = [w 1 w 2 ]. We refer the full LDPC code w = [w 1 w 2 ] as the rate-compatible LDPC codes. Fig. 2(b) summarizes the transmission model using the proposed RC- LDPC codes in the half-duplex relay channels, which can be
+V 1 = √P · h SR · w 1 + N R 1 	 (4) Y 1 = √P · h SD · w 1 + N D 1 	 (5) Y 2 = √P · (h SD + h RD ) · w 2 + N D 2 	 (6)
+where the codeword vectors transmitted in the BC and MAC modes can be expressed as w 1 = [w 1,1 , w 1,2 , . . . , w 1,N 1 ] T and w 2 = [w 2,1 , w 2,2 , . . . , w 2,N 2 ] T , respectively. Simi- larly, the received vectors can be expressed as V 1 = [v 1,1 , v 1,2 , . . . , v 1,N 1 ] T , Y 1 = [y 1,1 , y 1,2 , . . . , y 1,N 1 ] T and Y 2 = [y 2,1 , y 2,2 , . . . , y 2,N 2 ] T .
+In this section, we consider the case where the relay fails to decode LDPC code w 1 , i.e. w 1 = w 1 (refer to Fig. 2(b)), and we explain how the SIR can be performed using the RC-LDPC code structure introduced in the previous section.
+The ﬁrst step required for SIR is the calculation of the LLR L(w 1 /V 1 ) of w 1 from the received sequence V 1 at the relay. Since w 1 is a valid LDPC codeword, this computation can be easily performed using the Belief Propagation (BP) decoder of H 1 . We denote L p (w 1 /V 1 ) as the LLR of w 1 after p iteration of the BP decoder. From the computed LLR values, the soft bits of w 1 is given by
+w 1 = tanh(L p (w 1 /V 1 )/2). 	 (7) The second step required for SIR is the encoding of the
+bits w 2 can be encoded linearly using back-substitution since H 2 has a lower triangular structure. The value of the ﬁrst soft bit w 2,1 in vector w 2 can be calculated using
+where B 1 ( B 2 ) is the set of message nodes incident to check node j that carries the soft information from vector w 1 ( w 2 ), i.e. the message nodes that involve in the parity check equation j. After all soft bits in w 2 have been computed, the signal transmitted from the relay can be written as
+where the power normalization per transmission β can be calculated from the transmitted power constraint at the relay, given by
+Remark 1: For the case where relay can successfully de- code w 1 using the BP decoder of H 1 , the signs of L(w 1 /V 1 ) satisfy all parity check equations spanned by H 1 . When this happens, the soft bit value of w 1,i is either 1 or −1, i.e. the hard decision for a 0 or 1 binary bit ˘ w 1,i . As a consequence, the encoding of a binary bit ˘ w 2,i using back-substitution can be written as [12]
+where the Σ ⊕ and ⊕ symbols denote the summation and addition operators, respectively, in binary ﬁeld. The power normalization for the hard decision encoding is β = 1 because w 2,i ∈ {−1,+1}. Note that this is the standard DF scheme.
+In order to perform the BP iterative decoding using the H matrix, D has to compute the input LLRs for the code- word vectors w 1 and w 2 based on the received signals Y 1 and Y 2 , respectively. Here, we start by discussing the LLR computation for the DF scheme, i.e. for the case where R can correctly decode w 1 . Under the DF scheme, the received LLRs L(y 1,i /w 1,i ) and L(y 2,i /w 2,i ) at D for each bit w 1,i and w 2,i , respectively, can be computed using
+σ 2 · y 1,i 	 (12) L(y 2,i /w 2,i ) = 2 ·
+σ 2 	 · y 2,i . 	 (13) Note that L(y 2,i /w 2,i ) is obtained because S and R coherently transmit the same value of the parity check bit w 2,i .
+For the SDF scheme where R fails to correctly decode w 1 , R will transmit the soft bits βw 2 instead of the hard
+decision bit of w 2 . Under SIR, the received LLR L(y 1,i /w 1,i ) for w 1,i remains the same as in (13), since there are no changes in the transmission of LDPC code w 1 in the BC mode. The only difference is the computation of L(y 2,i /w 2,i ) because S and R are transmitting two different vectors w 2 and βw 2 , respectively, during the MAC mode. Hence, the accurate and precise LLR computation of L(y 2,i /w 2,i ) requires the knowledge of the error probability P r(βw 2,i = w 2,i ).
+In [9], the knowledge of P r(βw 2,i = w 2,i ) was modeled as w 2,i = w 2,i (1 − n s ), where n s is the equivalent noise introduced at R. This noise can then be added when computing the received LLR at D. In this paper, we refer n s as soft noise. The soft noise n s is assumed to be Gaussian with the mean value of µ n s = E {1 − w 2,i · w 2,i } and the variance value of σ 2 n s = E {(1 − w 2,i · w 2,i − µ n s ) 2 } [9]. Now, we will brieﬂy explain how the statistics 3 of n s can be incorporated in the computation of L(y 2,i /w 2,i ) when soft bits w 2 are transmitted by R. Using the soft noise model, the signal transmitted from R in (10) can be written as
+At D, the received signal corresponding to the transmissions from S and R in the MAC mode is given by
+where h E = h SD +h RD β sn (1 −µ n s ) and n E is the equivalent Gaussian noise at D, with zero mean and variance σ 2 E = σ 2 + |h RD β sn | 2 σ 2 n s . The approximated LLR L sn (y 2,i /w 2,i ) can then be computed using
+Here, we propose a new method called the soft fading to incorporate the knowledge of P r(βw 2,i = w 2,i ) when computing the received LLR at D. Our proposed method represents the relationship between the soft bit w 2,i and the correct bit w 2,i in the following manner
+where h s can be seen as the fading coefﬁcient, i.e. the soft bit w 2,i is the received signal of w 2,i through a channel with multiplicative fading of h s . Here, we call h s the soft fading
+variable . Using this method, the received signal at D in MAC mode can be written as
+If we know the probability density function (pdf) of h F , the received LLR of L(y 2,i /w 2,i ) can be written as [13]
+and f H F (h F ) is the pdf of h F . Note that the only random variable in h F is the soft fading variable h s . So, f H
+(h F ) solely depends on the pdf of soft fading variable h s denoted by f H s (h s ) in which its closed form expression is unknown. Even though the full knowledge of f H
+(h s ) is unknown, there are still some important properties about f H s (h s ) that can be obtained by studying the characterization of the soft bits ˆ w 2,i . Below are the two properties of f H
+s ≤ 1. • 0 ≤ E(h 2 s ) ≤ 1: The value of E(h 2 s ) = 0 is achieved
+when R does not transmit any signal to D in the MAC mode, i.e. R remains silent. The value of E(h 2 s ) = 1 is achieved only if w 2,i = w 2,i , which in turn can only occur for the case of DF scheme.
+Since the range of h s is small (i.e. −1 ≤ h s ≤ 1), we can approximate the continuous random variable h s using a discrete random variable h ∗ s without losing much infor- mation. This approximation can be done by quantizing the continuous value of h s into K + 1 discrete values. Let S = {−1,−1+∆,−1+2∆,...,−1+(K −1)∆,+1} be the set of the sample space for h ∗ s , where ∆ is the quantization size 6 . The probability mass function (pmf) of the discrete random variable h ∗ s can be written as
+Now, the challenge is to obtain the pmf of h ∗ s given in (22). Here, we obtain the pmf of h ∗ s by generating the
+histogram of h ∗ s numerically, which can be performed ofﬂine before the real time transmission take place 7 . Once the pmf (histogram) is generated, the normalized factor β sf in (20) can be computed. Finally, the LLR L(y 2,i /w 2,i ) in (21) can be easily approximated and computed using
+We evaluate the performance of the proposed SIR using the RC-LDPC codes for the following half-duplex relay channel; d = 0.29; t = 0.5; w 1 and w = [w 1 w 2 ] have the rate R 1 = 0.9 and R c = 0.45, respectively. Using the results in [14], the capacity bound for the above half-duplex relay channel can be achieved with the transmission power of P = −4.9 dB. The transmission power P is equal to the SNR of the S-D channel because the distance between S and D is normalized to unity, and the noise at D is Gaussian with zero mean and unit variance.
+Before the real time transmission takes place, all statistics of the soft noise and soft fading methods are computed numerically. Fig. 3 illustrates the numerical pmf (histograms) of soft fading variables h ∗ s for different SNR of S-R channel using the proposed RC-LDPC code designed at the rate of
+R 1 = 0.9 and R c = 0.45. Note that the pmf is purely dependent on the quality of S-R channel. While the quality of S-R channel improves, the pmf of soft fading variables h ∗ s becomes closer to the case when S-R channel is error free (i.e. E(h 2 s ) = 1).
+Fig. 4 depicts the simulation results at D using the proposed RC-LDPC code. First, there are two distinct waterfall regions, which correspond to the BER performances for two ideal cases. The ﬁrst waterfall region at low SNR corresponds to the code’s performance under the assumption that the S-R channel is error free. The second waterfall region at higher SNR corresponds to the code’s performance when there is no cooperation from R in MAC mode, i.e. R is always silent in MAC mode. The latter case can also be seen as the code’s performance for direct link transmission from S to D. There is an improvement of about 4 dB between these two ideal cases, which shows the beneﬁt of using relay.
+Next, we evaluate the code’s performance at D when there are transmission errors at R. In the simulations, we ﬁxed the SNR of the S-R channel at 6.25 dB (the Shannon limit is at 5.75 dB) to demonstrate the impact of transmission errors at the relay and how SIR can be applied to mitigate these errors. We start by evaluating the state-of-the-art scheme called Selective DF, where R will only transmit if it can decode w 1 in BC mode. Otherwise, R will just be silent. For Selective DF scheme, the error in S-R channel causes signiﬁcant error ﬂoor performance at D for the SNR region between the two ideal cases. The BER curve then decreases sharply once the SNR is equal or greater than the capacity of the direct transmission since D can decode the full codeword w = [w 1 w 2 ] by only using the received signal from S. The high error ﬂoor performance at the low SNR region for the Selective DF scheme can be signiﬁcantly improved when SIR is applied at R. Unfortunately, performing SIR at the high
+SNR when the S-R channel is in error does not greatly reduce the BER curves as in the case of the Selective DF scheme. However, the high SNR region is not the region of interest for SIR because the purpose of utilizing relay in the ﬁrst place is to help the source’s transmission when the quality of the S-D channel is poor. That is R is not needed if the channel quality between S and D is good in the ﬁrst place. Finally, Fig. 4 demonstrates the performance of SIR using two different LLR computations at D. We can see that our proposed soft fading method achieves better BER performance when compared to the soft noise method introduced in [9].
+This paper proposed a new SDF protocol using structured RC-LDPC codes in the half-duplex relay channels. We devel- oped the soft-decoding and soft-re-encoding algorithms for the proposed RC-LDPC codes. We proposed a new method, which we refer as soft fading, to compute the LLR of the received signal at the destination. We demonstrated that the soft fading method achieves better BER performance as compared to a previous reported method in literature.
+[[[ REFS ]]]
+A. Sendonaris
+E. Erkip
+B. Aazhang
+--
+User cooperation diversity. Part I and Part II
+----
+J. N. Laneman
+D. N. C. Tse
+G. W. Wornell
+--
+Cooperative diversity in wireless networks: Efﬁcient protocols and outage behavior
+----
+B. Zhao
+M. C. Valenti
+--
+Distributed turbo coded diversity for relay channel
+----
+Z. Zheng
+T. M. Duman
+--
+Capacity-approaching turbo coding and iterative decoding for relay channels
+----
+A. Chakrabarti
+A. de Baynast
+A. Sabharwal
+B. Aazhang
+--
+Low density parity check codes for the relay channel
+----
+C. Li
+G. Yue
+M. A. Khojastepour
+X. Wang
+M. Madihian
+--
+LDPC code design for half-duplex cooperative relay
+----
+P. Razaghi
+W. Yu
+--
+Bilayer LDPC codes for decode-and-forward in relay channels
+----
+H. Sneessens
+L. Vandendorpe
+--
+Soft decode and forward improves cooperative communications
+----
+Y. Li
+B. Vucetic
+F. Wong
+M. Dohler
+--
+Distributed turbo coding with soft information relaying in multihop relay networks
+----
+P. Weitkemper
+D. W ¨ubben
+V. K ¨uhn
+K.-D. Kammeyer
+--
+Soft information relaying for wireless networks with error-prone source-relay link
+----
+A. Obiedat
+L. Cao
+--
+Soft Information Relaying for Distributed Turbo Product Codes
+----
+T. J. Richardson
+R. L. Urbanke
+--
+Efﬁcient encoding of low-density parity-check codes
+----
+R. Yazdani
+M. Ardakani
+--
+Linear LLR approximation for iterative decoding on wireless Channels
+----
+A. Chakrabarti
+A. Sabharwal
+B. Aazhang
+--
+Sensitivity of achievable rates for half-duplex relay channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\111.pdf
+[[[ LINKS ]]]
+

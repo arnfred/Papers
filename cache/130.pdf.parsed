@@ -1,0 +1,205 @@
+[[[ ID ]]]
+130
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Almost-perfect secret sharing
+[[[ AUTHORS ]]]
+Tarik Kaced
+[[[ ABSTR ]]]
+Abstract—To split a secret s between several participants, we generate (for each value of s) shares for all participants. The goal: authorized groups of participants should be able to reconstruct the secret but forbidden ones get no information about it. We introduce several notions of non-perfect secret sharing, where some small information leak is permitted. We study its relation to the Kolmogorov complexity version of secret sharing (establishing some connection in both directions) and the effects of changing the secret size (showing that we can decrease the size of the secret and the information leak at the same time).
+[[[ BODY ]]]
+Assume that we want to share a secret – say, a bit string x of length n – between two people in such a way that they can reconstruct it together but none of them can do this in isolation. This is simple, choose a random string r of length n and give r and r ⊕ x to the participants (r ⊕ x is a bitwise XOR of x and r.) Both r and r ⊕ x in isolation are uniformly distributed among all n-bit strings, so they have no information about x.
+The general setting for secret sharing can be described as follows. We consider some ﬁnite set K whose elements are called secrets. We also have a ﬁnite set P of participants. An access structure is a non-empty set Γ whose elements are groups of participants, i.e., a non-empty subset of 2 P . Elements of Γ are called authorized groups of participants (that should be able to reconstruct the secret). Other subsets of P are called forbidden groups (that should get no information about the secret). We always assume that Γ is upward-closed (it is natural since a bigger group knows more) 1 .
+In our initial example K = B n (the set of n-bit strings), P = {1, 2} (we have two participants labeled 1 and 2), and Γ consists of the set {1, 2} only.
+In general, perfect secret sharing can be deﬁned as follows. For every participant p ∈ P a set S p is ﬁxed; its elements are p’s shares. For every k ∈ K we have a tuple of #P dependent random variables σ p ∈ S p . There are two conditions:
+• for every authorized set A ∈ Γ it is possible to reconstruct uniquely the secret k from the shares given to participants in A (i.e., for different secrets k and k the projections of the corresponding random tuples onto the A-coordinates have disjoint ranges);
+• for every forbidden set B / ∈ Γ the participants in B get no information about the secret (i.e., for different secrets
+k and k the projections of the corresponding random tuples onto B-coordinates are identically distributed).
+Various versions of combinatorial schemes were introduced in [6] and [7]. Note that in this deﬁnition we have no probability distribution on the set of secrets. It is natural for the setting when somebody gives us the secret (i.e., the user chooses her password) and we have to share whatever is given to us.
+We consider another setting (as, ﬁrst in [12] and further developped in [8]) where secret is also a random variable. Consider a family of random variables: one (κ) for the secret and one (σ p ) for each participant p. This family is a perfect secret sharing scheme if
+• for every authorized set A the projection σ A = {σ p , p ∈ A} determines κ;
+• for every forbidden set B the projection σ B is indepen- dent with κ.
+These conditions can be rewritten using Shannon infor- mation theory: the ﬁrst condition says that H(κ|σ A ) = 0, and the second says that I(σ B : κ) = 0. Here H(·|·) stands for conditional Shannon entropy and I(· : ·) stands for mutual information. (To be exact, we should ignore events of probability zero when saying that σ A determines κ. To avoid these technicalities, let us agree that our probability space is ﬁnite and all non-empty events have positive probabilities.)
+These deﬁnitions are closely related. Namely, it is easy to see that:
+• Assume that a perfect secret sharing scheme in the sense of the ﬁrst deﬁnition is given. Then for every distribution on secrets (random variable κ ∈ K) we get a scheme in the sense of the second deﬁnition as follows. For each secret k ∈ K we have a family of dependent random variables σ p , and we use them as conditional distribution of participants’ shares if κ = k.
+• Assume that a perfect secret sharing scheme in the sense of the second deﬁnition is given, and all secrets have positive probability according to κ. Then the conditional distributions of σ p with the condition κ = k form a scheme in the sense of the ﬁrst deﬁnition.
+This equivalence shows that in the second version of the deﬁnition the distribution on secrets is irrelevant (as far as all element in K have positive probability): we can change κ keeping the conditional distributions, and still have a perfect secret sharing scheme. The advantage of the second deﬁnition is that we can use standard techniques from Shannon infor- mation theory (e.g., information inequalities).
+The general task of secret sharing can now be described as follows: given a set of secrets K and an access structure Γ construct a secret sharing scheme. This is always possible (see [5], [11]). However, the problem becomes much more difﬁcult if we limit the size of shares. It is known (see [8]) that in the non-degenerate case shares should be at least of the same size as the secret: #S p ≥ #K for every essential participant p. (A participant is essential if we remove it from some authorized group and get a forbidden group. Evidently, non-essential participants can be just ignored.) This motivates the notion of ideal secret sharing scheme where #S p = #K for every essential participant p.
+Historically, the motivating example for secret sharing was Shamir’s scheme (see [18]). It has n participants, authorized groups are groups of t or more participants (where t is an arbitrary threshold). Secrets are elements of a ﬁnite ﬁeld F of size greater than n. To share a secret k, we construct a polynomial
+where the r i are chosen independently and uniformly. The shares are the values P (x 1 ), . . . , P (x n ) for distinct nonzero ﬁeld elements x 1 , . . . , x n (for each participant a non-zero element of the ﬁeld is ﬁxed). Any t participants together can reconstruct the polynomial while for any t − 1 participants all combinations of shares are equally probable (for every k). This scheme is ideal.
+Not every access structure allows an ideal secret sharing scheme. For example, no ideal scheme exists for four partic- ipants a, b, c, d where the authorized groups are {a, b}, {b, c} and {c, d} and all their supersets (see [5], [13]; it is shown there that every secret sharing scheme for this access structure satisﬁes log #S b + log #S c ≥ 3 log #K).
+It is therefore natural to weaken the requirements a bit and to allow non-ideal secret sharing schemes still having shares of reasonable size. For example, we may ﬁx some ρ ≥ 1 and ask whether for a given access structure there exists a perfect secret sharing scheme where max p∈P log #S p ≤ ρ log #K. (The answer may depend on the size of K.)
+Unfortunately, not much is known about this. There are quite intricate lower bounds for different speciﬁc access structures (some proofs are based on non-Shannon inequalities for en- tropies of tuples of random variables, see [4], [17]). The best known lower bounds for sharing m-bit secrets (for some ﬁxed access scheme) are still rather weak, like n log n m (see [9]). On the other hand, the known upper bounds for general access structures are exponential in the number of participants (and rather simple, see [5], [11]).
+The relaxation of the perfectness property is natural when efﬁciency is involved (see [2], [14], [19]). Our attempt here is to encapsulate existing deﬁnitions of non-perfect schemes in the Shannon framework. We consider possible relaxations of the requirements and introduce several versions of almost- perfect secret sharing. By this we mean that we allow limited
+“leaks” of information to forbidden groups of participants. We also consider schemes where authorized groups need some (small) additional information to reconstruct the secret. Such approximately-perfect schemes are quite natural from the practical point of view. Also, the gain in ﬂexibility may help overcome the difﬁculty of constructing efﬁcient perfect schemes which seems related to difﬁcult problems of combi- natorial or algebraic nature.
+Let us discuss possible deﬁnitions for almost-perfect schemes. Now we want to measure the leak of information (or the amount of missing information), and the most natural way is to replace the equations H(κ|σ A ) = 0 and I(σ B : κ) = 0 by inequalities H(. . .) < ε 1 and I(. . .) < ε 2 , for some bounds ε 1 and ε 2 (normally, a small fraction of the amount of information in the secret itself). The problem here is that measuring the information leak and missing information in this way, we need to ﬁx some distribution on secrets, and this looks unavoidable even from the intuitive point of view. Imagine that we have 1000-bit secrets, and the sharing scheme works badly for secrets with 900 trailing zeros (e.g., discloses them to all participants). If the information leak might not be huge for the uniform distribution, since 100 leaked bits are multiplied by 2 −900 probability to have 900 trailing zeros; it can however become signiﬁcant if the secret is not chosen uniformly, e.g. the user chooses a short password padded with trailing zeros.
+An interesting question (that we postpone for now) is how signiﬁcant could be this dependence. One may expect that a good secret sharing scheme remains almost as good if we change slightly the distribution, but we cannot prove any natural statement of this kind. So we have to include the distribution on secrets in all the deﬁnitions.
+Let Γ be an access structure. Let κ and σ p (for all partic- ipants p) be some random variables (on the same probability space, so we may consider their joint distribution). Such a family is called a (not necessarily perfect) secret sharing scheme, and its parameters are:
+• distribution on secrets (in particular, the entropy of κ is important);
+• information rate , H(κ), the entropy of the secret divided by the maximal entropy of a single share;
+• missing information ratio , the maximal value of H(κ|σ A ) for all authorized A, divided by H(κ);
+• information leak ratio , the maximal value of I(σ B : κ) for all forbidden B, divided by H(κ).
+To simplify our statements, we consider asymptotic be- haviors and give the following template deﬁnition of almost- perfect secret sharing:
+Deﬁnition 2.1: An access structure Γ on the set P of par- ticipants can be almost-perfectly implemented with parameters (ρ, ε 1 , ε 2 ) if there exists a sequence of secret sharing schemes for the secret variable κ n , such that
+• the missing information ratio converges to ε 1 as n → ∞; • the information leak ratio converges to ε 2 as n → ∞.
+In this article we introduce several deﬁnitions of almost- perfect secret sharing schemes. Two versions in the framework of Shannon entropy for which we show that the stronger deﬁnition, where we require no missing information, gives the same notion; one version in the framework of Kolmogorov complexity. We prove that all these approaches are asymptoti- cally equivalent (have equivalent asymptotical rates of schemes for each access structure). Hence, we can combine tools of Shannon’s information theory and Kolmogorov complexity to investigate the properties of nonperfect secret sharing schemes.
+Rather than providing constructions or stating trivial coun- terparts of known theorems, we emphasize our study on the behaviour of such schemes. Simple properties of perfect schemes provide new natural questions for nonperfect schemes which are in general not trivial. The main contribution of the paper is the proof of few of such natural properties, namely and Proposition 3.5 and Theorem 5.2 for scaling down a nonperfect scheme while keeping roughly the same information leak ratio.
+We believe our modest contribution is a small step towards a promising path to discover new constructions and theorems in nonperfect secret sharing.
+We consider two versions of approximately-perfect secret sharing schemes, whether we allow missing information or not.
+Deﬁnition 3.1: Let K be a ﬁnite set of secrets, a (ε 1 , ε 2 )- nonperfect secret sharing scheme for secrets in K implement- ing an access structure Γ is a tuple of jointly distributed discrete random variables (κ, σ 1 , . . . , σ n ) such that
+Deﬁnition 3.2: An ε-nonperfect secret sharing scheme is a (0, ε)-nonperfect scheme.
+fer to a ε-nonperfect, resp. (ε 1 , ε 2 )-nonperfect, secret sharing scheme implementing access structure Γ for N -bit secrets with single shares of entropy at most S. We use PS(Γ, N, S) for perfect schemes, i.e., when it is the case that ε 1 and ε 2 are null.
+We now introduce the almost-perfect versions of secret sharing, that denotes an asymptotic sequence of nonperfect schemes for a ﬁxed access structure where the leak can be made negligible as the size of the secret grows.
+Deﬁnition 3.3: We say that an access structure Γ can be almost-perfectly implemented, with parameters (ρ, ε 1 , ε 2 ), if there exists a sequence of nonperfect schemes in the sense of Deﬁnition 3.1 such that parameters converge to (ρ, ε 1 , ε 2 ). i.e., if
+mented without missing information when the nonperfect schemes are in the sense of Deﬁnition 3.2.
+Proposition 3.4: Let Γ be an access structure, the following are equivalement
+• Γ can be almost-perfectly implemented without missing information
+This proposition is a corollary of the following result: one can transform a scheme with some missing information into a scheme without missing information by increasing the size of shares.
+The natural idea to prove this is to add the missing in- formation to authorized groups. This plan is however not trivial to implement efﬁciently since the leak must remain small, hence we can not use a perfect scheme to share the missing information. The plan is to ”materialize” the missing information and add it to each participant. This materialized missing information will only increase the information leak by a small amount. The following proposition shows we can indeed achieve a new leak comparable to the previous one.
+Proposition 3.5: If Γ is an access structure on n partici- pants, then
+Proof: Assume there is a (ε 1 , ε 2 )-NPS(Γ, N, S), let us transform it as follows. Take an authorized set A ∈ Γ, by deﬁnition it holds that H(κ|σ A ) ≤ ε 1 N . Informally, it means that A lacks ε 1 N bits of information about the secret. We materialize this information and add it to A. More precisely, we use the following lemma about conditional descriptions:
+Lemma 3.6: Let α and β be two random variables deﬁned on the same space. Then there exists a variable γ (deﬁned on the same space) such that H(α|β, γ) = 0 and H(γ) ≤ 2H(α|β) + O(1).
+We apply lemma 3.6 to encode the secret k conditional to the shares of A. Since this random variable has entropy at most ε 1 N , the encoding can be done by strings of size at most O(ε 1 N ) + O(1). We add this “conditional description” to any participant of A. Now the participants of A can together determine the secret uniquely. We do the same for all authorized groups in Γ. So, now all authorized groups have all information about the secret.
+We added some additional data to several participants (some participants can obtain several different “conditional descrip- tions” since one participant can belong to several authorized groups). However all additional information given to partici- pants is of size only O(ε 1 N 2 n ), hence, the extra information is given to forbidden groups is at most O(ε 1 N 2 n ). The size of the shares in the new schemes is at most S + O(ε 1 N 2 n ), and we are done.
+An interesting open question about almost-perfect secret sharing is to settle whether it is equivalent to perfect secret sharing or not:
+Question 3.7: Can we achieve essentially better informa- tion rates with almost-perfect schemes than with perfect schemes ?
+A weaker form of this question where leaks are exactly zero has been answered by Beimel et al in [3] (using a result of Mat´uˇs [16]) where they construct a nearly-ideal access structure, i.e. access structure that can be implemented perfectly with an information rate as close to 1 as we want but not equal. In fact, with the same kind of arguments we can construct an almost-perfect scheme for the same access structure with small leaks but information rate exactly one.
+Proposition 3.8: There is an access structure which can be implemented by an almost-perfect scheme with parameters (1, 0, 0) and rate exactly one but has no ideal perfect scheme.
+Proof: An access structure Γ is induced by a matroid M = (Q, C) through s ∈ Q if Γ is deﬁned on the set of participants P = Q\{s} by the upper closure of the collection of subsets A ⊆ P such that A ∪ {s} ∈ C (here C is the set of circuits of the matroid M.) Let F and F − be respectively the access structures induced by the Fano and by the non-Fano matroids (through any point). In [16], Mat´uˇs proved that there exist perfect ideal schemes for F , resp. F − if and only if #K is even, resp. odd.
+Consider an access stucture Γ consisting of disjoint copies of F and F − . From Mat´uˇs argument, Γ cannot be imple- mented ideally by a perfect scheme. Construct a scheme Σ consisting of the concatenation of two independent schemes:
+• a PS(F − , N, M ), constructed from a PS(F − , M, M ) for #K = 2 N + 1 (i.e., M = log(2 N + 1)) where we removed one possible value of the secret.
+Σ is a perfect scheme for Γ with rate 	 N log(2 N +1) . Now instead of using a PS(F − , N, M ) as second scheme, we modify it into a nonperfect scheme by substituting the value of the share ”2 N + 1” by any other possible value. Now there are exactly 2 N shares. It is not difﬁcult to show that Σ is, at most, a ( 3 N , 0)-NPS(Γ, N, N ) i.e., with information rate exactly one.
+We denote ”the” Kolmogorov complexity function by the letter K. Since most variants are equal up to a logarithmic term and our results are asymptotic. For a complete introduction to Kolmogorov complexity and to some techniques used here, we refer the reader to the book [15] and to [20].
+The problem of secret sharing could be studied also in the framework of the algorithmic information theory. The idea is that now a secret sharing scheme is not a distribution on binary strings but an individual tuple of binary strings with corresponding properties of “secrecy”. To deﬁne these “secrecy” properties for individual strings, we substitute Shan- non’s entropy by Kolmogorov complexity and get algorithmic counterparts of the deﬁnition of secret sharing schemes.
+As opposed to Shannon entropy, Kolmogorov complexity provides a framework to talk about hardness of S conditional on X not only on average but for individual instances of the secret (see [1]). Kolmogorov complexity is not computable, but it is a reasonable limit value for all “practical” measures of algorithmic complexity and a very robust measure of
+randomness (it is not sensitive to small variations of S and X). We believe that the intuition from Kolmogorov’s version of secret sharing may be quite adequate for practical applications.
+For Kolmogorov complexity there is no natural way to de- ﬁne an ”absolutely” perfect version of secret sharing scheme. We can deal only with “approximately-perfect” versions of the deﬁnition and make statements in the almost-perfect sense. We deﬁne almost-perfect schemes for Kolmogorov complexity in the same way as we deﬁned (ε 1 , ε 2 )-nonperfect schemes for Shannon’s entropy.
+Deﬁnition 4.1: For an access structure Γ we say that a tuple of binary strings (s, a 1 , . . . , a n ) is a Kolmogorov (ε 1 , ε 2 )- perfect secret sharing scheme for secrets of size N if
+We reuse the template of almost-perfect secret sharing, this time in the Kolmogorov setting using the above version of secret sharing scheme. Thus, it should make sense to talk about almost-perfect secret sharing in the sense of Kolmogorov.
+It turns out the problem of constructing approximately perfect secret sharing schemes in Shannon’s and Kolmogorov’s frameworks are closely related. For every access structure, in both frameworks the asymptotically optimal rates are equal to each other. More precisely, we have the following equivalence:
+Theorem 4.2: Let Γ be an access structure over n partic- ipants and ρ, ε 1 , ε 2 be positive reals, then the following are equivalent:
+• Γ can be almost-perfectly implemented with parameters (ρ, ε 1 , ε 2 ) in the sense of Shannon.
+• Γ can be almost-perfectly implemented with parameters (ρ, ε 1 , ε 2 ) in the sense of Kolmogorov.
+This theorem follows from a more general parallelism, implicit in [10], between Shannon entropy and Kolmogorov complexity. It explain that the class of realizable complexity proﬁles and the class of entropy proﬁles are in some sense very similar.
+The Kolmogorov complexity proﬁle of a tuple [a] = (a 1 , . . . , a n ) of a binary string is deﬁned by the vector K([a]) of Kolmogorov complexities of all pairs, triples . . . of strings a i . So, it consists consists of 2 n − 1 (integer) complexity values, one for each non-empty subset of n strings a i . In the same way we deﬁne the entropy proﬁle H([s]) of a tuple [s] = (s 1 , . . . , s n ) of random variables by replacing K(·) by H(·).
+Theorem 4.3: For every v ∈ R 2 n −1 + 	 the following condi- tions are equivalent:
+• there is a sequence ([s m ]) m∈N of n-tuple of random variables s.t. 1 m H([s m ]) → v
+• there is a sequence ([a m ]) m∈N of n-tuple of binary strings s.t. 1 m K([a m ]) → v
+Here, we attempt to show how to scale up and down any secret sharing scheme. The problem consist of, given a secret
+sharing for N -bit secrets, constructing new secret sharing schemes for -bit secrets where can be arbitrary large or small. While this task is easy in the perfect case, it becomes much more difﬁcult in the non-perfect case when we are concerned with efﬁciency and information leak.
+(a) [scaling down] if there exists a PS(Γ, N, S) then for every positive integer ≤ N there exists a PS(Γ, , S).
+(b) [scaling up] if there exists a (ε 1 , ε 2 )-NPS(Γ, N, S) then for every positive integer q there exists a (qε 1 , qε 2 )-NPS(Γ, qN, qS).
+(a) To scale down, we can reuse the same scheme. Simply restrict the support of the random variable k to 2 values and equip this support with the uniform distribution. Authorized groups can determine the secret uniquely since it was the case in the initial scheme. Forbidden have no information about the secret otherwise they had some information in the initial perfect scheme.
+(b) For scaling up, the new scheme consists of the concate- nation of q independent versions of the initial scheme. Since the new scheme consists of independent copies (a serialization) of the inital scheme, every new entropy value is q times the old entropy value.
+Scaling down of the size of the secret becomes non-trivial for non-perfect secret sharing schemes if we want to keep the same information leak and missing information. If we can ε-nonperfectly share an N -bit secret, then intuitively it seems that we should be able to share one single bit with information leak ratio of about ε. However this statement is quite non- obvious. We formulate a slightly weaker statement (this is the main result of the paper):
+Theorem 5.2: For all c ∈ (0, 1 4 ) there exists an integer N 0 > 0 such that for every access structure Γ on n partic- ipants: if for some ε there exist an ε-NPS(Γ, N, S) where the secret is uniformly distributed, such that
+then there exists an ε -NPS(Γ, 1, S) with ε = 8ε 2 3 , where the secret is uniformly distributed
+Sketch of the proof: Construct a new scheme for a 1-bit secret from the initial scheme in the following way. Given an ε-NPS(Γ, N, S) for a uniformly distributed secret in K = {1, . . . , 2 N }, take a splitting of K into two equal parts, say K 0 and K 1 . Then deﬁne a new scheme as follows: to share the bit i, take a random element of K i and share it with the initial scheme. It is easy to see that this new scheme is indeed an ε -NPS(Γ, 1, S) for a uniformly distributed secret bit with some leak ε . This leak ε depends on the initial choice of the splitting K 0 . We can show that there exists such a splitting with small leak.
+Notice that the secret must be uniformly distributed. The dependency on the probability distribution of the secret is not trivial in the nonperfect case. The assumption nS = O(2 N ) means that the result holds for various kind of access structures
+deﬁned by the trade-off between the parameters n, S and N . Sharing exactly one bit instead of N seems more difﬁcult. We do not know whether this bound can be improved, in particular, can we achieve a leak of O(ε)?
+We introduced a notion of non-perfect secret sharing and its asymptotic version. The new natural questions in this setting are sometimes non-trivial and require a careful and technical analysis. For now, the question of separating perfect and almost-perfect secret sharing remains open.
+The author would like to thank Andrei Romashchenko and Sasha Shen for stimulating discussions, and anonymous reviewers who helped substantially improve the manuscript. This work is partially supported by EMC ANR-09-BLAN- 0164-01 and NAFIT ANR-08-EMER-008-01 grants.
+[[[ REFS ]]]
+L. Antune
+S. Laplant
+A. Pint
+L. Salvador
+--
+Cryptographic security of individual instances
+----
+K. Franklin
+--
+Amos Beimel and Matthew  Weakly-private secret sharing schemes
+----
+
+--
+Amos Beimel, Noam Livne, and Carles Padr´o
+----
+
+--
+Amos Beimel and Ilan Orlov
+----
+
+--
+Josh Cohen Benaloh and Jerry Leichter
+----
+E. F. Brickel
+D. R. Stinson
+--
+Some improved bounds on the informa- tion rate of perfect secret sharing schemes, 1992
+----
+F. Brickel
+M. Davenport
+J. Cryptolog
+--
+Ernest  Daniel  On the classiﬁcation of ideal secret sharing schemes
+----
+R. M. Capocell
+A. De Santi
+L. Gargan
+U. Vaccaro
+J. of Cryptolog
+--
+On the size of shares for secret sharing schemes
+----
+J. Cryptolog
+--
+L´aszl´o Csirmaz
+----
+J. Comput
+--
+Daniel Hammer, Andrei Romashchenko, Alexander Shen, and Nikolai Vereshchagin
+----
+M. It
+A. Sait
+T. Nishizeki
+--
+Secret sharing scheme realizing general access structure
+----
+D. Karni
+W. Green
+E. Hellman
+--
+Ehud  Jonathan  and Martin  On secret sharing systems
+----
+
+--
+Kaoru Kurosawa and Koji Okada
+----
+
+--
+Kaoru Kurosawa, Koji Okada, Keiichi Sakano, Wakaha Ogata, and Shigeo Tsujii
+----
+M. L
+P. Vit´anyi
+--
+An Introduction to Kolmogorov complexity and its applications 
+----
+
+--
+Frantiˇsek Mat´uˇs
+----
+
+--
+Jessica Ruth Metcalf-Burton
+----
+
+--
+Adi Shamir
+----
+K. Srinatha
+N. Tharani Raja
+C. Pandu Rangan
+--
+Non-perfect secret sharing over general access structures
+----
+A. K. Zvonki
+L. A. Levin
+--
+The complexity of ﬁnite objects and the development of the concepts of information and randomness by means of the theory of algorithms
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\130.pdf
+[[[ LINKS ]]]
+

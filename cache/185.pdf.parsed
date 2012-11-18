@@ -1,0 +1,104 @@
+[[[ ID ]]]
+185
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Universal Decoding over Gaussian Fading Channels - Metric Calculation and Performance Evaluation
+[[[ AUTHORS ]]]
+Nir Weinberger
+Meir Feder
+[[[ ABSTR ]]]
+Abstract— In a previous work, a universal decoder in a competitive minimax sense was developed for unknown block fading linear white Gaussian channels. For a given codebook (with ﬁnite blocklength), a high SNR optimal metric for the decoder was found, whose direct calculation requires solving a non-convex optimization problem and may be formidable. In this paper, the metric calculation problem is facilitated by semideﬁnite programming, which leads to a low-complexity approximation for the metric. The competitive minimax performance of the optimal decoder (i.e., its worst case power loss compared to the maximum likelihood decoder, which has full knowledge of the channel) is evaluated, and upper lower bounds are derived for the performance evaluation of non-optimal decoders - the training sequence and the generalized likelihood test decoders.
+[[[ BODY ]]]
+channels, such as the training sequence (TS) or the heuristic generalized likelihood ratio test (GLRT). The TS spends channel time and transmitted power to estimate the channel and suffers from mismatch. In [4][5] the GLRT was shown to be non-minimax optimal. Thus, while practical in some cases, both decoders are not optimal.
+The goal of this paper is twofold and organized as follows. First, based on the system model and the universal decoder previously found (described in section II), a method to effec- tively calculate its metric is developed in section III. Second, methods to evaluate the worst case performance of the optimal decoder, as well as the non-optimal TS and GLRT decoders are given in section IV. A direction for further research is given in section V 1 . Throughout, ˆ h denotes a unity vector in the direction of h, i.e. ˆ h = h/ h . We denote an open ball by B(x 0 , r 2 ) = x ∈ R N | x − x 0 2 < r 2 , the unit sphere by U N = x ∈ R N | N n=1 x 2 n = 1 , and the standard simplex by S N = x ∈ R N | N n=1 x n = 1, x n ≥ 0 2 .
+is given, where each of its M codewords is transmitted with equal probability. The channel operation is parameterized by the fading coefﬁcients h ∈ R K×1 , which is modelled as a deterministic quantity, yet unknown neither at the transmitter side nor at the receiver side. We adopt a block fading model in which the fading coefﬁcients are ﬁxed during a block of consecutive channel symbols and only change from block to block, and the transmitted codeword occupies a single block. The channel output y ∈ R N ×1 upon transmitting the mth codeword is
+y = X m h + w, 	 (1) where w ∼ N (0, I N ). This model ﬁts common communica- tion situations such as inter-symbol interference (ISI), orthog- onal frequency division multiplexing (OFDM) and multiple
+2 decision regions ω m (Ω ml ) and ω l (Ω ml ), and ω q (Ω) ⊆ ω q (Ω ml ), q ∈ {m, l}.
+A conic decoder has decision regions that are cones, viz., y ∈ ω m (Ω) ⇒ γy ∈ ω m (Ω), ∀γ = 0.
+When the channel h is not available at the receiver side of (1), the TS decoder Ω T S can be employed. When using Ω T S , the codewords must be in the form X m = [X T 0 , ˜ X T m ] T where X 0 ∈ R N 0 ×K is a training matrix, satisfying N 0 ≥ K in order to obtain a meaningful estimation of the channel. The channel’s output and the noise can also be factored to y = [y T 0 , ˜ y T ] T , and w = [w T 0 , ˜ w T ] T , where
+square problem, and its solution is given by h ∗ = P −1 0 X T 0 y 0 = h + h e ,
+where P 0 = X T 0 X 0 and h e ∼ N 0, P −1 0 is the error vector. In the second step, Ω T S uses ˜ y ∈ R (N −N 0 )×1 to perform ML decoding assuming that the prevailing channel is h ∗ , and the codebook is ˜ C = ˜ X m ∈ R (N −N 0 )×K M
+. Alternatively, we can use the GLRT decoder, which jointly minimizes the distance in (4) w.r.t. both the channel fading and the codeword,
+y − X m h 2 = argmin
+Thus, the GLRT is a conic decoder, and its decoded codeword is the one that minimizes the distance from y to the projection of y on the codewords subspaces X m , deﬁned as
+In [3], a competitive performance measure of the decoder Ω, was deﬁned as
+d ∗2 (h) . 	 (7) In light of (3), ξ Ω can be interpreted as the worst case power loss of the decoder Ω, compared to the ML decoder, resulting from a complete uncertainty of the fading prevailing. A conic decoder with minimal loss, namely ξ ∗ = sup Ω∈F ξ Ω , is considered optimal in the competitive minimax sense, and termed a conic minimax (CMM) decoder. By deﬁning the sets
+ξ ∗ = sup ξ | W m (ξ) W l (ξ) = ∅, ∀ m = l , (8) and thereupon proved that a CMM decoder can use the metric
+d ∗2 (h) , 	 (9) which resulted the decoder Ω CM M (y) = argmin m ζ m (y).
+Assuming a received vector y, we deﬁne Q m (y) = X T m (I − yy T y T y )X m ,
+that y ∈ W m ( ξ ∗ Γ ) and using (8), y ∈ W l (ξ ∗ ). Utilizing the fact that ζ m (y) ≤ ξ iff y ∈ W m (ξ), and the condition in the theorem we have
+Γ ≤ ˜ ζ l (y), which implies that y ∈ ω m ( ˜ Ω).
+To obtain an approximation for the metric, we take a standard approach and replace the maximization and mini- mization order in (11), and consider a minimax problem in mixed strategies. Letting B(θ) = J j=1 θ j B j , we get that the minimax problem is
+This problem can be reformulated as a semideﬁnite program (SDP) in the variables (t, θ) as
+and this is a convex optimization problem, that can be ef- ﬁciently solved (in polynomial time) by an interior point algorithm [8].
+Let θ ∗ be a solution for (12), and notice that v is the max- imal eigenvalue of B(θ ∗ ). In addition, let ˆ g l ∈ R K×1 ˜ K
+l=1 denote an orthonormal basis for the subspace of the maximal eigenvector, where ˜ K is the multiplicity of v, 1 ≤ ˜ K ≤ K. Let v be the value of
+subject to ˆ g = ˜ K l=1 φ l ˆ g l . 	 (13) Lemma 1: v ≤ v ∗ ≤ v.
+Proof: The right inequality is the celebrated minimax inequality [9]. The left inequality is trivial.
+Finding v requires a ˜ K − 1 dimensional search over U ˜ K , which is exponential in ˜ K. However, ˜ K is only rarely larger than 2, thus the search for v is usually only 1-dimensional. This is because unless the codebook has a very unique structure, the optimal θ ∗ equalizes only the two smallest eigenvalues of B(θ). In the simple case of ˜ K = 1, the following stronger result holds.
+When ˜ K > 1 the result of Lemma 2 may not hold. However, we get the following approximation :
+Deﬁnition 2: Let Γ ∗ = v/v. The minimax approximation ˆ v for v ∗ , is deﬁned by ˆ v = v · √ Γ ∗ . Clearly, v ∗ ∈ A Γ ∗ (ˆ v).
+Example 1: A codebook of M = 10 codewords, with dimensions N = 20 and K = 5, was generated, where each entry in the codeword matrices was drawn N (0, 1), i.i.d. . Then, for 1000 random codewords (drawn from a
+We begin with the performance of the CMM decoder. Theorem 3: For a detectable codebook
+Proof: Equation (8) implies that ξ ml is achievable iff B(X m h, ξ ml · d ∗2 (h)) ∩ B(X l g, ξ ml · d ∗2 (g)) = ∅
+for any h and g. This happens iff the sum of the radii of the balls is smaller than the distance between their centers,
+ξ ml d ∗ (h) + ξ ml d ∗ (g) ≤ X m h − X l g and thus we get that,
+Since d ∗ (ˆ h) > 0 for detectable codebooks, we can change variables d ∗ (ˆ h)h → ˜ h and d ∗ (ˆ g)g → ˜ g. Deﬁnining ˜ h = Γˆ h and ˜ g = Υˆ g (where ˆ h = ˆ g = 1), and utilizing the deﬁnitions of α m (·) and η ml (·, ·) we get a minimization problem for {Γ, Υ} that can be solved analytically
+Since the function in (16) only depends on the ratio Γ Υ , we may assume without loss of generality that Υ = 1 . By inserting the minimizer Γ = α l +η ml α m +η ml back to (16) we obtain (15).
+The next theorem presents upper and lower bounds for the minimax performance of the GLRT decoder.
+. (18) Proof: First, we upper and lower bound d ml (h, Ω GLRT ml ).
+Let ϕ be the minimal (acute) angle between X m h and X l g, over all possible g. The Cauchy-Schwarz inequality implies,
+where the minimizer is g ∗ = P −1 l P lm h. Observing (6), a metric for Ω GLRT ml may be the distance of the received vector y from the codeword subspace X m , or equivalently, by the minimum over ˜ h of the angle between y and X m ˜ h. It follows that any y such that its angle with X m h is smaller than ϕ/2 will be decoded to the mth codeword by Ω GLRT ml , since its angle to X l g must be larger than ϕ/2, for any g. Thus,
+Lemma 4: For x ∼ N (η, Σ) and a symmetric A 0, E exp − x T A x 2 	 = C · exp − η T (A−A(A+Σ −1 ) −1 A T ) η 2
+Theorem 5: Let P 0 = X T 0 X 0 and ˜ P m = ˜ X T m ˜ X m and σ 2 m = 1 + λ max P −1 0 ˜ P m ,
+d ∗2 (ˆ h) 	 . Then 	 1
+functions can be averaged w.r.t. h ∗ using Lemma 4 to obtain the bounds for the error probability. As these bounds are expo- nential, the asymptotic decay of these bounds is immediately found, and can be used in (14) (where the upper bound is given by considering an arbitrarily small in Lemma 3).
+Usually, the codebook is designed so that ML decoding has low complexity. The TS decoder has a similar complexity, and thus can be easily implemented in an unknown channel. In contrast, the CMM decoder, while have better performance than the TS decoder, requires calculating a metric for each codeword, which may be formidable for large codebooks (this is also true for the inferior GLRT). Methods to further reduce its complexity need to be investigated. A possible direction is to decode in two stages. First, a list of ˜ M M codewords is generated, using a low complexity decoder. Second, the CMM decoder is applied only to the list of ˜ M codewords. If the list of
+˜ M codewords contains the original CMM decoded codeword with high probability, then the two stage decoding rule has both close-to-optimal performance and low complexity.
+[[[ REFS ]]]
+T. L. Marzetta
+B. M. Hochwald
+--
+Capacity of a mobile multiple- antenna communication link in rayleigh ﬂat fading
+----
+S. M. Ka
+--
+Fundamentals of statistical signal processing: Detection theory, vol
+----
+N. Weinberger
+M. Feder
+--
+Universal decoding for linear Gaussian fading channels in the competitive minimax sense
+----
+M. Feder
+N. Merhav
+--
+Universal composite hypothesis testing: A competitive minimax approach
+----
+O. Shayevitz
+M. Feder
+--
+Universal decoding for frequency-selective fading channels
+----
+N. Weinberge
+--
+Universal decoding for linear Gaussian fading channels, Ms
+----
+S. M. Ka
+--
+Fundamentals of statistical signal processing: Estimation theory, vol
+----
+S. Boy
+L. Vandenbergh
+--
+Convex Optimization, Cambridge University Press, 2004
+----
+G. Owe
+--
+Game Theory, Third Edition, Academic Press, 1995
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\185.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,153 @@
+[[[ ID ]]]
+137
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Interference mitigation in femto-macro coexistence with two-way relay channel
+[[[ AUTHORS ]]]
+Kiran T. Gowda
+David Gesbert
+Erhan Yilmaz
+[[[ ABSTR ]]]
+Abstract—Motivated by the femtocell networks where cross- tier interference management is crucial to achieve higher system throughput, we consider a basic interference model consisting of a MIMO two-way relay communication network in presence of a one-way point-to-point MIMO communication link. We propose an upper-bound on the maximum degrees of freedom of this channel. Precoders using signal-space alignment strategies at the transmitter and zero-forcing (ZF) receivers are shown to achieve the maximum degrees-of-freedom. The proposed solution is particularly interesting since it allows the macro transmitter to be oblivious to the interfering two-way link, which is an important feature for obtaining distributed solutions.
+[[[ BODY ]]]
+Cooperative communication and relaying have shown to improve performance of communication systems. To increase the channel capacity, several cooperation modes involving relay stations (RSs) have been proposed in the literature [1]– [3]. Following these works, relaying has found applications in cellular networks, mobile ad-hoc networks, and sensor networks due to the potential improvements in system per- formance provided by relaying mechanism.
+Although relaying provides many advantages, the half- duplex constraint at the nodes (a node cannot listen and transmit simultaneously) imposes a loss in degrees-of-freedom (DoF) and therefore limits the achievable spectral efﬁciency. To circumvent the spectral efﬁciency loss in the one-way relay channel, the two-way relay channel (TRC) has recently been proposed: here both nodes exchange information via the intermediate RS [4]–[7]. The key idea in two-way relaying stems from network coding concepts, where it was shown that combining packets at the relay node as against classical routing can improve the system capacity. Note that network coding is a packet level (and hence a higher layer) processing technique, which can be thought of as a decode-and-forward two-way relaying mechanism. Two way relaying in general, is a physical-layer signal-processing technique that exploits the naturally combined signal in the channel/air to get similar gains as digital network coding. This substantially mitigates the loss in degrees of freedom that is otherwise common with half-duplex constrained nodes. Earlier forms of two-way relaying have been called as analog network coding.
+The TRC model considered in this paper consists of two source nodes 1 and 2, wanting to exchange information via a relay node R as shown in Fig 1. This model is called as a separated Two-way Relay Channel (s-TRC) because of no direct link between the source nodes. The relay does not have
+any information of its own to transmit, and only helps 1 and 2 communicate.
+In this paper, unlike previously considered TRC system models, we consider a more general network model as in Fig 2. In addition to the two way relay communication link (involving nodes 1, 2 and R), there is an other interfering link - a macro-transmitter (node Tx-3) communicating to a macro- receiver (node Rx-3) using the same spectrum as the TRC. Since the two links (TRC and macro-link) interfere with each other, interference management will be essential to realize the overall system capacity. Note that this interference channel is also a generalization of the classical interference channel [12], in that one of the links is a two way relay channel.
+Motivation for considering this model comes from Femto- cell networks [11]. The two way channel can be considered as nodes within a femtocell, with the access-point or home basestation acting as the relay node and the macrocell bases- tation can be the macro-transmitter transmitting to a user in the macro cell.
+The high-SNR analysis of TRC has attracted signiﬁcant interest in the recent past. Diversity-Multiplexing gain tradeoff (DMT) analysis for various TRC models has been investigated [8]–[10]. In this paper, we are interested in the DoF (which is a measure of capacity scaling with SNR) of the above interference channel. We show that “signal space alignment” is essential to achieve maximum degrees of freedom of the system.
+For a signal-noise-ratio (SNR) equal to ρ at each receiver, let R i (ρ) be the rate achievable by transmitter i. If C(ρ) = {(R 1 (ρ), R 2 (ρ), R 3 (ρ)) denotes the capacity region for the system, the optimum degrees-of-freedom is deﬁned as
+For a matrix H, H † denotes the transpose-conjugate matrix. The notations I M and 0 M denote the M × M identity matrix and all-zero matrix respectively. We use V(H) to denote all the eigen-vectors of matrix H. Furthermore, V max,K (H) is used to denote the ﬁrst K eigen-vectors corresponding to the eigen- values ordered in the decreasing order. We use the kronecker product notation
+and span(A) to denote the vector space spanned by the columns of matrix A. B. System model
+Each node in the system uses multiple antennas to com- municate. Nodes 1 and 2 both have M antennas while node Tx-3 has M 3 antennas. The relay node and Rx-3 have N R and N 3 number of antennas respectively. Throughout this paper we assume that all the channels are frequency ﬂat, quasi- static channels, and they are all independent of each other. Matrix H ij denotes the channel from transmitter j to receiver i. We also assume that all nodes have complete channel state information.
+All nodes have a half-duplex constraint, so they can either transmit or listen at a time. Communication between nodes 1 and 2 takes place via a two-phase protocol - in the ﬁrst phase (MAC phase) nodes 1 and 2 transmit s 1 (t) and s 2 (t) respectively, while the relay node listens, and in the second phase (BC phase) the relay transmits a linearly processed signal, while the other nodes 1 and 2 listen. On the macro- link, Tx-3 continuously transmits s (1) 3 (t) and s (2) 3 (t) to Rx- 3 in the ﬁrst and second phase respectively. Since we are only interested in the maximum degrees-of-freedom (DoF), we consider the case where the two phases are of equal duration.
+In the ﬁrst-phase, the received signals at the relay and node Rx-3 are given by
+Y 1 (t) = H 1R WY R (t) + H 13 s (2) 3 (t) + Z 1 (t) 	 (4) Y 2 (t) = H 2R WY R (t) + H 23 s (2) 3 (t) + Z 2 (t) 	 (5)
+where W is the N R × N R linear precoding matrix used at the relay node. Henceforth, we drop the time index t for notational simplicity.
+Since the nodes 1 and 2 are aware of the signals trans- mitted in the ﬁrst-phase, they can cancel their respective self- interference and the resulting signal is
+(7) ˜ Y 2 = H 2R WH R1 s 1 + H 2R WH R3 s (1)
+where ˜ Z i denotes the cumulative Gaussian noise at node i. At node Rx-3, we have
+In this section, we derive an upper-bound on the achievable DoF. This bound is obtained through a series of channel enhancements (capacity of enhanced channel contains the capacity of original channel), leading to a classical two-user interference channel for which the DoF is known [12].
+We ﬁrst consider enhancements of receivers i ∈ {1, 2}, by converting a possibly degenerate channel to a non- degenerate channel (full-rank channel matrices). Suppose H iR W = U i Λ i V i with the eigen-values arranged in de- creasing order, then the system ( ˜ Y 1 , ˜ Y 2 , Y 3 ) is equivalent to (U † 1 ˜ Y 1 , U † 2 ˜ Y 2 , Y 3 ) since multiplication by an invertible matrix does not change the capacity. Now, suppose r i = rank(Λ i ) < M , then the TRC (U † 1 ˜ Y 1 , U † 2 ˜ Y 2 ) is equivalent to a truncated system with r i number of antennas at receiver i, since the last M − r i rows in the received signal U † i ˜ Y i do not carry any useful information. Our ﬁrst stage of enhancement therefore considers a channel obtained by replacing matrix Λ i by ˆ Λ i , which is obtained by replacing the zero-eigenvalues of Λ i by a non-zero positive real number α. This clearly is an enhancement since the rates corresponding to the original channel can always be decoded at both receivers, by ignoring the last M − r i rows of the received signal. The enhanced system ( ˆ Y 1 , ˆ Y 2 , Y 3 ) is given by
+For the second stage of enhancement, we consider the case where receivers 1 and 2 can exchange their received signals - this corresponds to perfect cooperation between receivers
+1 and 2. Clearly, such a cooperation can only improve the capacity. The resulting channel can now be seen as a two user MIMO interference channel, with the corresponding signals given by
+With this, following similar approach as in [12], we can formally prove the following:
+Theorem 1: The degrees of freedom (DoF) achievable in a (M, M, M 3 , N R , N 3 ) antenna femto-macro interference chan- nel cannot be more than
+In the rest of this paper, we only consider two speciﬁc scenarios
+1) All nodes with M antennas, in which case the upper- bound in Theorem 1 is equal to M .
+2) M is even, and N R = N 3 = M and M 3 = M 2 , in which case the upperbound is again M .
+In this section, we mainly consider the case when all nodes have M antennas each. Corresponding result for the other case is presented without proof, at the end of this section.
+For the equal antenna case, the upper-bound suggested in the previous section can be achieved by a simple TDD scheme. Let the TRC-link and the macro-link be scheduled to transmit in orthogonal time-slots - the TRC-link uses αT portion of the time-slot with half this duration for transmitting to the relay (MAC-phase) and the other half for the relay to broadcast to the two nodes (BC-phase), and (1 − α)T fraction of the slot is used for the macro-link. It is known and straight-forward to show that a stand-alone (separated) TRC with M antennas at each node, can achieve maximum DoF equal αM (sum-rate scaling). Further more, the DoF for the point-to-point macro- link is equal to (1−α)M . Therefore, the DoF achievable using TDD scheme is equal to the upper-bound M . This essentially proves that M is indeed the optimal DoF of the system.
+While the TDD scheme is optimal, it needs synchronization and coordinated scheduling between the two links. For appli- cations like femtocell networks, which is our main motivation for the proposed problem, the femtocells are user installed
+devices, with minimal coordination/control from the base- station. Naturally, it is expected that coordinated scheduling is unrealistic when one needs the network to scale with number of users and/or femtocells. Also, in the multi-user scenario (multiple TRC-links and multiple macro-links), TDD might not be optimal. Hence, we propose an alternate scheme that is alignment based, which does not require coordination as in the TDD scheme.
+We propose two different alignment solutions based on whether M is even or odd.
+1) M is even: Let the transmit/receive precoding matrix at each nodes 1, 2 and 3, be a complex matrix of dimension M × M 2 . Let W be a M × M matrix chosen such that
+2 . 	 (17) Above choice of W nulls the signal from Tx-3 to the relay node, preventing the interference forwarding from the relay to the TWRC link. While the system equations (7), (8) and (9) suggest that the relay node can potentially be used as a shared relay between the two links (TWRC and macro-link), above choice of W restricts this to relay only supporting the two- way communication link. We show that this choice is optimal as far as DoF is concerned. Such a matrix W is guaranteed to exist if the following alignment conditions are imposed on matrices V 1 and V 2 .
+The above conditions imply that the signal spaces correspond- ing to the users 1 and 2 are aligned at the relay node R as well as macro-receiver 3. This is signiﬁcantly different from the classical interference alignment, since 1 and 2 are interferers for the macro-link alone; and as for the TWRC, its the macro- transmitter 3 who is the single interferer. Yet, alignment of signal spaces 1 and 2 at relay node is essential in achieving the upper-bound. This is possible because of the side-information (self-interference) available at nodes 1 and 2.
+With the relay matrix W chosen as in (16), the received vectors in (7), (8) and (9) can be written as
+x (2) 3 + ˜ Z 1 	 (20) ˜ Y 2 = H 2R WH R1 V 1 x 1 + H 23 V (2)
+Now, if the encoding at the macro-transmitter is independent across phases (i.e., if x (1) 3 and x (2) 3 are independent), the block- diagonal structure of C ensures that Y (2) 3 is independent of x (1) 3 and hence decoding at the macro-receiver can be done independently across phases. The alignment-conditions ensure
+that the interference at macro-receiver 3 are aligned in both phases - to be precise, while (18) ensures alignment in phase 1, (19) ensures alignment in phase 2 since it implies
+We assume that each of the receivers use a ZF based precoding matrix, and hence decodability at each receiver is guaranteed by satisfying the following linear-independence conditions between the signal-subspace and the interference- subspace:
+• Receiver 1 can decode if H 1R WH R2 V 2 H 13 V (2) 3 	 is full-rank
+• Receiver 2 can decode if H 2R WH R1 V 1 H 23 V (2) 3 	 is full-rank
+• Receiver 3 is able to decode phase 1 information if H 33 V (1) 3 H 31 V 1 is full-rank
+• Receiver 3 is able to decode phase 2 information if H 33 V (2) 3 H 3R WH R1 V 1 is full-rank
+Proposition 1: The following choice of beamforming vec- tors achieves DoF equal to M 2 :
+, where e i s are all distinct eigen-vectors of the matrix E = H −1 R2 H R1 H −1 31 H 32 .
+Proof: The ZF condition (16) at the relay is easy to see from the choice of W. Also, the alignment conditions follow by substituting V 1 = H −1 31 H 32 V 2 in both (18) and (19).
+To prove (17), we show that rank(WH R2 V 2 ) = M 2 with probability close to one, and the proof for rank(WH R1 V 1 ) follows similarly. Now, rank(WH R2 V 2 ) < M 2 if and only if
+    
+x α 0 β 0
+    
+where we use F = H −1 R3 H R2 V 2 V ⊥ 2 and G = V (1) 3 	 (V (1) 3 ) ⊥ , that are invertible with very high probabil-
+ity, and x ∈ span(F)∩span(G). Since F and G are invertible with high probability,
+with high probability. Furthermore, since the dimension of the domain { x T α T 0 T β T 0 T T ; x ∈ C M , α, β ∈ C M 2 }
+Finally, to show that the linear-independence conditions are satisﬁed, it is enough to note that the alignment-conditions only involve matrices H 31 , H 32 , H R1 and H R2 , while the precoding matrices at Tx-3 and the relay matrix W are independent of these matrices. In each case, the precoding matrices undergo independent transformations and hence the signal-space and the interference-space at each receiver are linearly independent with high probability.
+Remark 1: While there could be many solutions for align- ment achieving DoF equal to M , the solution in Proposi- tion 1 is particularly interesting since it treats the macro- link transmitter as a primary user in a cognitive radio system, that is oblivious to the existence of a TRC-link (similar to a secondary user system). Hence, the precoders for the macro- link are designed to improve own links. Nodes 1 and 2 (secondary system) optimize their precoders to maximize the system performance, with the knowledge of signals/precoders being used by the primary users.
+Remark 2 (Unequal antenna case): For the equal antenna case, a simple TDD scheme achieves the optimum DoF. But for the case N R = N 3 = M and M 3 = M 2 , we can easily show that the TDD scheme can only achieve αM + (1 − α) M 2
+For this case, the same signal alignment strategy in Proposi- tion 1 works with W = P ⊥ where P is the projection matrix on the subspace spanned by H R3 V (1) 3 .
+2) M is odd: For this case, we follow similar approach as in [13] by considering a two time-slot symbol extension of the channel, with the channel assumed to be ﬁxed over the two slots. With this, the system equations corresponding to (6)-(10) can be written as
+¯ W ¯ H R2 ¯ s 2 + ¯ H 1R ¯ W ¯ H R3 ¯ H 13 ¯ s 3 + ¯ ˜ Z 1 (27) ¯ ˜ Y
+where ¯ s i = s i (2t + 1) T s i (2t + 2) T T = ¯ V i x i now denotes the vector of symbols transmitted from node i ∈ {1, 2} in the ﬁrst-phase of two consecutive time-slots (again using M antennas at each terminal). Similarly, ¯ s (j) 3 =
+= ¯ V (j) 3 x (j) i corresponds to the signal transmitted in the j-th phase (over two time- slots) from node 3. The received vectors and noise vectors correspond to the received signal over two time-slots, and the
+equivalent channel ¯ H ij = H ij ⊗ I 2 is a 2M × 2M block- diagonal matrix representing the extended channel. Note that all transmit-precoding matrices ¯ V i and ¯ V (j) 3 are of dimension 2M × M , and the relay matrix is a 2M × 2M matrix.
+For the symbol extended channel, equivalent expressions are obtained by replacing every matrix with the corresponding extended matrix (with bars) in all the conditions (19)-(22) and also the linear-independence conditions. Note that M should be replaced by 2M in all these equations for appropriate dimensions.
+Following similar approach as in the case of even M , and using techniques from [13], we can show that following choice of precoders achieves DoF equal to M
+0 e 2 0 e 4 · · · e M −1 e M , where e i ∈ V(E), and E = H −1 R2 H R1 H −1 31 H 32 .
+Again, the solution is interesting because the macro-link is oblivious and uses the same solution whether M is odd or even. Only the TRC-link users need to alter the solution for different cases.
+Motivated by the femtocell networks where cross-tier in- terference management is crucial to achieve higher system throughput, we consider a basic interference model consisting of a MIMO two-way relay communication network in presence of a one-way point-to-point MIMO communication link. We propose an upperbound on the DoF. For the case with M antennas at all nodes, we show that the maximum degrees-of- freedom which is M is achievable by simple TDD scheme. However, for the general case a more sophisticated precoder using alignment strategies at the transmitter and ZF receivers are necessary to achieve the maximum DoF.
+The proposed solution is particularly interesting since this can be achieved with the macro transmitter being oblivious to the interfering two-way link.
+This work was supported by funding from Mitsubishi Elec- tric R&D Centre Europe (MERCE), France.
+[[[ REFS ]]]
+T. Cover
+A. El Gamal
+--
+Capacity Theorems for the Relay Channel
+----
+J. N. Laneman
+D. N. C. Tse
+W. Wornell
+--
+Cooperative Diversity in Wireless Networks: Efﬁcient Protocols and Outage Behavior
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative Strategies and Capacity Theorems for Relay Networks
+----
+R. Knopp
+--
+Two-way wireless communication via a relay station
+----
+B. Rankov
+A. Wittneben
+--
+Spectral efﬁcient protocols for half duplex fading relay channels
+----
+T. J. Oechtering
+C. Schnurr
+I. Bjelakovic
+H. Boche
+--
+Achievable rate region of a two phase bidirectional relay channel
+----
+M. P.
+--
+Joint Physical Layer Coding and Network Coding for Bi-Directional Relaying
+----
+D. Gunduz
+A. Goldsmith
+H. Poor
+--
+MIMO Two-way Relay Channel: Diversity-Multiplexing Tradeoff Analysis
+----
+R. Vaze
+R. W. Heath Jr
+--
+On the Capacity and Diversity-Multiplexing Tradeoff of the Two-Way Relay Channel
+----
+P. Mitran
+--
+The Diversity-Multiplexing Tradeoff for Independent Parallel MIMO Channels
+----
+V. Chandrashekhar
+--
+Femtocell networks: a survey
+----
+A. Jafar
+--
+Degrees of Freedom for the MIMO Interference Channel
+----
+R. Cadambe
+A. Jafar
+--
+Interference Alignment and the Degrees of Freedom for the K User Interference Channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\137.pdf
+[[[ LINKS ]]]
+

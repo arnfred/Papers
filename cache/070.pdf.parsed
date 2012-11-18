@@ -1,0 +1,164 @@
+[[[ ID ]]]
+70
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Beating the Gilbert-Varshamov Bound for Online Channels
+[[[ AUTHORS ]]]
+Ishay Haviv
+Michael Langberg
+[[[ ABSTR ]]]
+Abstract—In the online channel coding model, a sender wishes to communicate a message to a receiver by transmitting a codeword x = (x 1 , . . . , x n ) ∈ {0, 1} n bit by bit via a channel limited to at most pn corruptions. The channel is online in the sense that at the ith step the channel decides whether to ﬂip the ith bit or not and its decision is based only on the bits transmitted so far, i.e., (x 1 , . . . , x i ). This is in contrast to the classical adversarial channel in which the corruption is chosen by a channel that has full knowledge on the sent codeword x. The best known lower bound on the capacity of both the online channel and the classical adversarial channel is the well-known Gilbert-Varshamov bound. In this paper we prove a lower bound on the capacity of the online channel which beats the Gilbert- Varshamov bound for any positive p such that H (2p) < 1 2 (where H is the binary entropy function).
+[[[ BODY ]]]
+A classical scenario in coding theory is that of a sender Alice who wants to transmit a message u to a receiver Bob via a binary communication channel. To do so, Alice encodes her message u into a codeword x = (x 1 , . . . , x n ) ∈ {0, 1} n and sends it to Bob, who is expected to recover the message u. However, the channel is allowed to corrupt (possibly probabilistically) at most a p-fraction of the codeword, i.e., to ﬂip at most pn bits in x, for some p ∈ [0, 1]. The goal is to ﬁnd a coding scheme by which Alice can send as many distinct messages as possible while ensuring correct decoding by Bob with high probability (over the encoding, decoding and the channel). Roughly speaking, we say that a code achieves rate R if 2 Rn distinct messages can be sent using codewords of length n. Viewing the channel as a malicious jammer, it is important to specify what information the channel has while deciding on which bits to ﬂip. Such a speciﬁcation deﬁnes the model of communication and strongly affects the obtainable rate of communication.
+In one extreme, there is the classical adversarial model in which the channel has full knowledge on the entire transmitted codeword x. Given x and the coding scheme of Alice and Bob, the channel chooses an error for x. Calculating the maximum achievable rate for such a channel is a fundamental open problem in coding theory. The best known lower bound on the rate is due to Gilbert [7] and Varshmov [18] and equals 1 − H(2p), where H stands for the binary entropy function. Namely, Gilbert and Varshamov show that there exists a subset
+of {0, 1} n of size roughly 2 (1−H(2p))n in which every two distinct vectors have Hamming distance at least 2pn + 1. This implies that if we take the vectors in this set as codewords then a nearest neighbor decoder always recovers the correct sent codeword. On the other hand, the best known upper bound is due to McEliece et al. [13] and is strictly higher than the Gilbert-Varshamov bound for any p ∈ (0, 1 4 ).
+In the second extreme, there are channel models in which the error imposed on the codeword x is completely indepen- dent of x. An example of such a channel is the well-known binary symmetric channel studied (among other channels) by Shannon [17]. In this channel every transmitted bit is ﬂipped independently with probability p, no matter what the sent codeword is. As opposed to the classical adversarial model, the picture here is completely clear, since Shannon proved that 1 − H(p) is a tight lower and upper bound on the maximum achievable rate.
+In this work we continue the line of research in [11], [5], [6] which study the online channel model — a channel model whose strength lies somewhere between the above two extremes. In the online channel model, Alice sends a codeword x bit by bit over a binary communication channel. For each 1 ≤ i ≤ n the channel decides whether to ﬂip the ith bit or not immediately after x i arrives. This means that the channel’s decision depends only on (x 1 , . . . , x i ). As in the adversarial model, the channel is limited to corrupt at most pn of the bits. Roughly speaking, the online channel is stronger than the binary symmetric channel, as an online channel can mimic the random behavior of a binary symmetric channel. On the other hand, the online channel is weaker than the classical adversarial channel, as an online channel is limited to make its decisions in a causal manner. The main theme of this work is to better understand the strength of the online channel model — in particular, does the maximum achievable rate when communicating over online channels resemble that of the classical adversarial channel, that of the binary symmetric channel, or maybe neither?
+Let C online (p) denote the capacity of the online channel, deﬁned as the maximum achievable rate when communicating over an online channel allowed to corrupt at most a p-fraction of the transmitted codeword. We give a rigorous deﬁnition of the capacity C online (p) in Section II. The known bounds on the capacities of the classical adversarial channel and the binary symmetric channel immediately imply some bounds
+on the capacity of the online channel. It is clear that any coding scheme that works for the classical adversarial channel works also for the online channel, and hence C online (p) ≥ 1 − H(2p). On the other hand, the online channel can ﬂip every bit independently with probability p (up to pn of them) ignoring the transmitted codeword x. It is not hard to verify that this implies that Shannon’s upper bound (for the binary symmetric channel) holds for the online channel model as well, that is, C online (p) ≤ 1 − H(p). Recently, this upper bound was improved in [11] for any p ≥ 0.15642. More precisely, it was shown in [11] that for any p ≥ 1 4 no communication with positive rate is possible via the online channel and that for p < 1 4 , C online (p) ≤ 1 − 4p. This implies that the online channel model is strictly stronger than the binary symmetric channel, in the sense that there exist values of p (e.g., p = 1 4 ) for which no communication is possible over the online channel whereas a positive rate is possible for the binary symmetric channel. In [11] no non- trivial lower bounds on C online (p) were presented. The state of the art on the online channel model is given below.
+Theorem I.1 ([11]). For any p ∈ [0, 1 2 ], it holds that 1 − H (2p) ≤ C online (p) ≤ min (1 − H(p), (1 − 4p) + ), where (1 − 4p) + is deﬁned to be 1 − 4p for p < 1 4 and 0 otherwise.
+The problem of coding against online channels over large alphabets was studied in [5], where a full characterization of the capacity is presented. The proofs of the tight upper and lower bounds in [5] use the geometry that ﬁelds of large size enjoy, and it is not clear if these ideas can be extended to the binary case considered in our work.
+To the best of our knowledge, other than the works men- tioned above, communication in the presence of an online channel has not been explicitly addressed in the literature. Nevertheless, we note that the model of online channels, being a natural one, has been “on the table” for several decades and the analysis of the online channel model appears as an open question in the book of Csisz´ar and Korner [3] in the section addressing Arbitrarily Varying Channels (AVC) [1]. (The AVC model encapsulates our online model. For a nice survey on AVCs see [12].) In addition, various variants of online channels have been addressed in the past, for instance [1], [10], [15], [16], [14], [8] – however the models considered
+The Gilbert-Varshamov rate of 1 − H(2p) is the state of the art when communicating over classical adversarial channels. The question whether one can improve upon this rate when communicating over online channels is an intriguing question. An afﬁrmative answer would not only make progress in our understanding of the online channel model but also may hint on a possible separation between the online and classical adversarial channels. In our work we address this question and present a lower bound on the capacity of the online channel that beats the Gilbert-Varshamov bound. More precisely, we prove that for any small enough p, the Gilbert-Varshamov lower bound is not tight for the online channel. This means that for any such p, there exists a coding scheme for the online channel with rate strictly higher than 1 − H(2p). This is the ﬁrst lower bound for the online channel which is not known to hold for the classical adversarial model. Our result is stated below.
+Theorem I.2. For any p such that H (2p) ∈ (0, 1 2 ) there exists a δ p > 0 such that
+Note that H (2p) ∈ (0, 1 2 ) for any p ∈ (0, 1 2 · H −1 ( 1 2 )) ≈ (0, 0.055). We also note that our result holds with respect to the average error criteria (see Section II for a discussion on the error type). Finally, we remark that in order to prove Theorem I.2 we show a lower bound on a much stronger channel model, which we refer to as the two-step model (deﬁned below).
+Our goal in this paper is to show the existence of an encoder and a decoder for the online channel by which Alice and Bob achieve some rate R strictly higher than 1 − H(2p), which is the rate achieved by the Gilbert-Varshamov bound. Instead of dealing directly with the online channel model we consider a stronger channel model, the two-step model, deﬁned as follows. Denote α = R − ε for some small ε > 0. In the ﬁrst step Alice sends the ﬁrst αn bits of her encoded message and the channel (after viewing this transmitted information) decides which bits to ﬂip out of these αn bits. In the second step Alice sends the rest of the codeword and the channel (now with full knowledge on the sent codeword) decides which bits to ﬂip out of the remaining transmission. The number of bits corrupted in the two steps together is limited to be at most pn. Notice that this model is stronger than the online channel model in the sense that any code allowing communication over the two-step model will also allow communication over our model of online channels. Indeed, any adversarial strategy of the online channel model implies a valid strategy for the two- step model achieving the exact same parameters. Therefore, in order to prove our lower bound on the capacity in Theorem I.2 it sufﬁces to consider the two-step model.
+We turn to describe our construction of codes that allow communication over the two-step model with rate R greater
+than 1 − H(2p). We ﬁrst note that no linear code will sufﬁce. This follows from the fact that each codeword x in a linear code has exactly the same “neighborhood structure” (and thus with linear codes the problems of communicating over channels with limited information regarding the codeword x and those with full information are equivalent). We thus turn to study codes which are not linear. A natural candidate is a code in which the codewords are chosen completely at random and the decoder is the nearest neighbor decoder. More precisely, we pick a code C : [2 Rn ] → {0, 1} n such that for every u ∈ [2 Rn ] the codeword C(u) is independently and uniformly chosen from {0, 1} n . Given such a code, Bob outputs a message u ∈ [2 Rn ] that minimizes the Hamming distance between C (u ) and the received corrupted vector.
+In order to prove our theorem, we show that the decoding succeeds with high probability no matter how the adversarial online channel behaves. The intuitive idea is the following. In the ﬁrst step Alice sends a preﬁx m ∈ {0, 1} αn of a codeword where α = R−ε. Since the code C was constructed randomly, for a typical preﬁx m there are exponentially many (about 2 εn ) codewords in C that share m as a preﬁx. This means that the channel is not able to recognize the sent codeword at this point, and therefore it has no good way to decide which bits from m to ﬂip. Roughly speaking, we show that no matter which bits the adversary decides to ﬂip in this ﬁrst step, for most of the codewords that share m as a preﬁx the error imposed by the adversary is in a wrong direction and thus will not enable the adversary to cause a decoding error (after the additional corruption of the second step). In fact, as our analysis shows, for our codes C the best strategy for the adversary is actually to save its ﬂipping power and to corrupt only in the second step of communication. This implies that in our setting the two-step channel will concentrate all its error on the second portion of the codeword! Comparing this state of affairs to the classical channel model in which the error is spread out over the entire codeword sheds light on the reason we are able to improve upon the Gilbert-Varshamov rate of 1 − H(2p). Very loosely speaking, to prove our improved rate, we ﬁrst show that a code C constructed at random is expected to allow successful communication. However, as the events corresponding to correct decoding are not independent of each other, our proof for the existence of the desired code follows a rather delicate analysis. Our analysis holds for the two-step model and thus sufﬁces to prove Theorem I.2.
+In the following Section II we set the channel deﬁnitions used throughout our work. We then turn to prove Theorem I.2 in Section III. Due to space limitations, all our assertions appear without proofs. Complete proofs can be found in the full version of the paper [9] (available online).
+For R > 0, an (n, Rn)-code C is a mapping C : [2 Rn ] → {0, 1} n . The elements of the image of C are called codewords . Deﬁne α = R − ε for some ε > 0 and let m ∈ {0, 1} αn be some preﬁx. Here and throughout our work we ignore rounding issues and assume that αn, Rn and other such expressions are integers. We denote by C m the set of all messages whose codewords have m as a preﬁx,
+i.e., C m = {u ∈ [2 Rn ] | C(u)| [αn] = m}, and by C m the set of all messages whose codewords do not have m as a preﬁx, i.e., C m = [2 Rn ] \ C m . Here C (u)| [αn] denotes the ﬁrst αn characters of C (u). A random code is a mapping C : [2 Rn ] → {0, 1} n such that for every u ∈ [2 Rn ] the codeword C (u) is independently and uniformly chosen from {0, 1} n . Notice that we use C to denote a ﬁxed code and C to denote a code which forms a random variable.
+Consider a code C. Throughout this work, we consider the average error success criteria while communicating over the online channel model. Namely, Alice’s message u is considered as uniformly distributed over [2 Rn ]. Given the message u, Alice deterministically maps u to the codeword C (u) = (x 1 , . . . , x n ) ∈ {0, 1} n and transmits it over the communication channel. For every i ∈ [n] the decision of the channel whether to ﬂip x i or not depends only on (x 1 , . . . , x i ). In addition, the channel is limited to at most pn corruptions. Bob’s goal is to recover u from his received vector.
+The probability of error of C is deﬁned as the average over all u ∈ [2 Rn ] of the probability of error for the message u, i.e., the probability that the message that Bob decodes differs from the message u encoded by Alice. Here, the probability is taken over the random variables of the channel and of Bob. We say that the rate R is achievable if for every ε > 0, δ > 0 and every sufﬁciently large n there exists an (n, (R − δ)n)- code that allows communication with (average) probability of error at most ε. The supremum over n of the achievable rates is called the capacity of the online channel and is denoted by C online (p). We note that the discussion in the introduction regarding the known bounds on the capacity of both the binary symmetric channel and the classical adversarial channel holds for average error (see e.g., [2]).
+One may also consider a deﬁnition for capacity which takes into account the maximum error over messages u and not the average error. In this maximum error (or worst case) setting, if the encoding function of Alice is considered to be deterministic, it is straightforward to verify that online channels have no advantage over the classical adversarial channel. This is no longer the case when one allows random- ization in Alice’s encoding process (referred to as stochastic encoders ). As common in the study of Arbitrarily Varying Channels (e.g., [4]), there is an equivalence between the capacity when considering the models of (a) deterministic encoders and average error criteria and (b) stochastic encoders and maximum error success criteria. This equivalence holds also for the online channel model studied in this work.
+As mentioned before, for our lower bound we consider a two-step model as deﬁned in Section I-C (in which the parameter α = R−ε where ε > 0 is some small constant). The notion of (average error) capacity is deﬁned as done above. As explained in the introduction, any lower bound on the capacity of the two-step model holds also for the online channel model.
+Consider a situation in which Alice transmits a codeword x. Namely, in the ﬁrst step, Alice sends the ﬁrst αn bits of x and
+the channel ﬂips qn of them for some q ∈ [0, min(p, α)]. Let e 1 ∈ {0, 1} αn × {0} (1−α)n be the vector of Hamming weight qn that represents the channel’s corruptions in the ﬁrst step, and let z = x + e 1 be the (partially) corrupted codeword after the ﬁrst step. In the second step Alice sends the remaining (1 − α)n bits of x. Since the channel is limited to a total number of pn corruptions, at most (p − q)n of the bits can be ﬂipped in this step. Let e 2 ∈ {0} αn × {0, 1} (1−α)n be the vector of Hamming weight at most (p−q)n that represents the channel’s corruptions in the second step, and let w = z +e 2 = x + e 1 + e 2 be the corrupted codeword received by Bob.
+Conditioning on the ﬁrst step, namely on the value of z, we are interested in counting the vectors that the channel (in its second step) may enforce Bob to consider in his nearest neighbor decoding. Deﬁne B (p,q) α (z) as the set of all the vectors y ∈ {0, 1} n for which there exists a vector w ∈ {0, 1} n such that
+• w and z agree on the ﬁrst αn bits and the distance between them is at most (p − q)n.
+It is not hard to verify that (a) the original transmitted codeword is in B (p,q) α (z), and (b) if this is the only codeword in B (p,q) α (z) then Bob will decode successfully (thus the name “forbidden ball”). It is also not hard to verify that the size of B (p,q) α (z) does not depend on z and therefore we can denote B (p,q) α = |B (p,q) α (z)| for any z ∈ {0, 1} n .
+In the following claim, which is central to our analysis, we show that log B (p,q) α n 	 is strictly less than H (2p). Notice that this implies that B (p,q) α is signiﬁcantly smaller than the size of the analogously deﬁned “forbidden ball” in the classical adversarial model (the latter being a ball of radius 2pn and of size ∼ 2 H(2p)n ).
+Claim III.1. For any 0 < p < 1 2 · H −1 ( 1 2 ) there exists an η > 0 such that for any 1 − H(2p) ≤ α ≤ 1 − 2p and q ∈ [0, p] it holds that B (p,q) α ≤ 2 (H(2p)−η)n .
+Let C : [2 Rn ] → {0, 1} n be a code chosen at random and let x ∈ {0, 1} n be a codeword sent by Alice. As before, Alice, in the ﬁrst step, sends the preﬁx m = x| [αn] and the channel corrupts qn of its bits via e ∈ {0, 1} αn × {0} (1−α)n for some q ∈ [0, min(p, α)]. In the second step Alice sends the last (1 − α)n bits of x and the channel is allowed to ﬂip at most (p − q)n of these bits.
+After the ﬁrst step, the set of vectors that are of Hamming distance at most pn from a vector that the channel can cause Bob to receive is exactly B (p,q) α (x + e). Therefore, if a nearest neighbor decoder fails then there must be another codeword of C (in addition to x) in B (p,q) α (x + e). In this section we study the probability that B (p,q) α (x + e) contains a codeword with a preﬁx that differs from m and show that it is small no matter what m or e are. Here, the probability is taken over the random construction of C.
+In general, it is not hard to verify that in expectation, indeed a random code C will ensure an exponentially decaying
+decoding error in the case under study (here, the expectation is over the code construction and the error is over the messages of Alice). However, as the events corresponding to correct decoding are not independent of each other, our proof includes a rather delicate analysis. Our proof in this section consists of two parts. In the ﬁrst part, we identify a certain property on codes C, and prove that it holds with very high probability. This property is then used in the second part of our proof, and enables to cope with the dependencies mentioned above. We start by deﬁning our needed property on C.
+A code is considered as good with respect to the pair (m, e) if it has the following two properties: (a) the number of codewords with preﬁx m is close to its expectation and, in addition, (b) the number of codewords that do not start with m but alternatively may cause a decoding error on the transmission of a word that does start with m is not much larger than the expectation. This notion is formally deﬁned below. We then show that for every m and e a code C chosen at random is good with respect to (m, e) with high probability. Recall the deﬁnitions of C m and C m from Section II.
+Deﬁnition III.2. For a natural number n, p > 0, R > 0, ε > 0, α = R−ε, m ∈ {0, 1} αn and e ∈ {0, 1} αn ×{0} (1−α)n of Hamming weight qn for q ∈ [0, min(p, α)], we say that a code C : [2 Rn ] → {0, 1} n is good with respect to the pair (m, e) if
+where Z m is the set of all vectors in {0, 1} n with m as a preﬁx, i.e., Z m = {z ∈ {0, 1} n | z| [αn] = m} .
+Let m be a preﬁx of a codeword sent by Alice and let e be the vector that represents the corruptions made by the channel in the ﬁrst step. For any u ∈ C m deﬁne T u to be the number of codewords of messages from C m in the “forbidden ball” corresponding to u. Namely, T u = |{u ∈ C m | C(u ) ∈ B (p,q) α (C(u) + e)}|. Let P u be an indicator random variable deﬁned to be 1 if T u ≥ 1 and 0 otherwise. Finally, we let P (m,e) denote the number of codewords with preﬁx m whose corresponding “forbidden balls” contain codewords associated with elements from C m . Formally, P (m,e) = u∈C m P u . We stress that messages u with P u = 1 are considered as messages for which the channel may cause a decoding error. Thus one would like to prove that P (m,e) is small.
+Lemma III.3. For every 0 < p < 1 2 · H −1 ( 1 2 ) there exists a δ p > 0 such that for ε ≤ δ ≤ δ p , R = 1 − H(2p) + δ and α = R − ε the following holds for any sufﬁciently large n. The probability that a code C : [2 Rn ] → {0, 1} n chosen at random satisﬁes that for every preﬁx m ∈ {0, 1} αn and e ∈ {0, 1} αn × {0} (1−α)n of Hamming weight at most pn, C is good with respect to (m, e) and P (m,e) < 2 εn/2 , is at least 1 − e −2 Ω(n) .
+In this section we consider decoding errors caused by codewords in C that have preﬁx (of length αn) identical to
+the preﬁx of the transmitted codeword. A way to handle such errors is to verify that for every preﬁx m, our code C does not include (many) pairs of codewords that share m as a preﬁx and are close together, namely of Hamming distance at most 2pn. This is the type of analysis that actually corresponds to the classical adversarial channel, and can be used here as we are considering a special case of decoding errors.
+The following lemma says that a code C : [2 Rn ] → {0, 1} n chosen at random with R < 1 − 4p has only few pairs of codewords that share a preﬁx and have Hamming distance at most 2pn.
+Lemma III.4. For every p ∈ [0, 1 4 ), R < 1 − 4p, a sufﬁciently small ε > 0 and α = R − ε there exists a γ > 0 for which the following holds for any sufﬁciently large n. With probability at least 1 − e −2 Ω(n) a code C : [2 Rn ] → {0, 1} n chosen at random satisﬁes: (a) for every m ∈ {0, 1} αn , 2 εn−1 ≤ |C m | ≤ 2 εn+1 , and (b) for every m ∈ {0, 1} αn , besides at most 2 (α−γ)n of them, there exists a set X m ⊆ C m of size |X m | < 2 (ε−γ)n such that every distinct u 1 , u 2 ∈ C m \ X m satisfy dist H (C(u 1 ), C(u 2 )) > 2pn.
+Equipped with Lemmas III.3 and III.4, we are ready to prove Theorem I.2. Fix 0 < p < 1 2 · H −1 ( 1 2 ) and let δ > 0, ε > 0, γ > 0, R = 1 − H(2p) + δ, α = R − ε and C : [2 Rn ] → {0, 1} n be as in Lemmas III.3 and III.4. Denote by M the set of all m ∈ {0, 1} αn for which there is a set X m ⊆ C m of size |X m | < 2 (ε−γ)n such that every distinct u 1 , u 2 ∈ C m \ X m satisfy dist H (C(u 1 ), C(u 2 )) > 2pn, and by M its complement M = {0, 1} αn \ M . Lemma III.4 guarantees that |M | ≤ 2 (α−γ)n . We restrict the code C to the domain U = [2 Rn ] \ (∪ m∈M X m ) and denote the restricted code by C : U → {0, 1} n . Notice that |U | ≥ 2 Rn − 2 αn · 2 (ε−γ)n = 2 Rn − 2 (R−γ)n ≥ 2 Rn−1 for a sufﬁciently large n. We show that this code and the nearest neighbor decoder supply high probability of correct decoding and hence imply the theorem.
+Let x ∈ {0, 1} n be the codeword sent by Alice and denote by m x = x| [αn] ∈ {0, 1} αn the vector that Alice sends in the ﬁrst step of the two-step model. We ﬁrst show that the probability over Alice’s messages that m x ∈ M is exponentially decaying: Pr m x ∈ M = m∈M |C m | |U | ≤ |M | · 2 εn+1 2 Rn−1 ≤ 2 (α−γ)n · 2 εn+1 2 Rn−1 ≤ 2 −γn+2 . Thus, we may neglect the event that m x ∈ M .
+Now assume that m x ∈ M . Observe that for every m ∈ M the number of codewords of C that start with m satisﬁes |C m \ X m | ≥ 2 εn−1 − 2 (ε−γ)n ≥ 2 εn−2 for a large enough n. In the ﬁrst step of our two-step model the channel outputs m x + e for some e ∈ {0, 1} αn of Hamming weight at most pn. Extend e to a vector e ∈ {0, 1} n by concatenating it to (1 − α)n zeros. We now bound the probability of incorrect decoding averaged over all codewords x with preﬁx m x . We divide our analysis according to the cases discussed in Sections III-B and III-C.
+For the analysis corresponding to Section III-B consider the probability (taken over messages in C m x \ X m x ) that the “forbidden ball” corresponding to x and e contains a codeword with a preﬁx that differs from m x . Recall that this probability
+bounds the probability of a decoding error in the setting of Section III-B, and, by our deﬁnitions, is at most P (mx,e) |C mx \X mx | ≤
+≤ 2 2−εn/2 . Here, the bound on P (m x ,e) holds since the code satisﬁes Lemma III.3.
+For the analysis corresponding to Section III-C, due to our restriction C of C to U and the assumption m x ∈ M , x is the only codeword with preﬁx m x and Hamming distance at most 2pn from x. Hence, the “forbidden ball” corresponding to x does not contain a codeword with a preﬁx that equals m x , implying no decoding error in the setting examined in Section III-C.
+Therefore, the probability (taken uniformly over Alice’s message u ∈ U ) of an incorrect decoding is at most Pr m x ∈ M + Pr [m x ∈ M ] · 2 2−εn/2 ≤ 2 −γn+2 + 2 2−εn/2 = 2 −Ω(n) . All in all, we obtain that the probability of a correct decoding is arbitrarily close to 1 for a sufﬁciently large n, which concludes our proof.
+[[[ REFS ]]]
+D. Blackwel
+L. Breima
+A. J. Thomasian
+--
+The capacities of certain channel classes under random coding
+----
+T. M. Cove
+J. A. Thomas
+--
+Elements of information theory, 2nd edition 
+----
+I. Csisz´a
+J. Korner
+--
+Information Theory: Coding Theorems for Discrete Memoryless Systems, 2nd edition 
+----
+I. Csisz´a
+P. Narayan
+--
+The capacity of the arbitrarily varying channel revisited: Positivity, constraints
+----
+B. K. De
+S. Jagg
+M. Langberg
+--
+Codes against online adversaries
+----
+B. K. De
+S. Jagg
+M. Langber
+A. Sarwate
+--
+Coding against delayed adversaries
+----
+E. N. Gilbert
+--
+A comparison of signalling alphabets
+----
+V. Guruswam
+A. Smith
+--
+Codes for computationally simple channels: Explicit constructions with optimal rate
+----
+I. Havi
+M. Langberg
+--
+Beating the Gilbert-Varshamov Bound for Online Channels
+----
+S. Jagg
+M. Langber
+T. H
+M. Effros
+--
+Correction of Adversarial Errors in Networks
+----
+M. Langber
+S. Jagg
+B. K. Dey
+--
+Binary causal-adversary channels
+----
+A. Lapidot
+P. Narayan
+--
+Reliable communication under channel uncertainty
+----
+R. J. McEliec
+E. R. Rodemic
+H. Rumse
+L. R. Welch
+--
+Jr
+----
+L. Nutma
+M. Langberg
+--
+Adversarial Models and Resilient Schemes for Network Coding
+----
+A. Saha
+S. Mitter
+--
+The necessity and sufﬁciency of anytime capacity for stabilization of a linear system over a noisy communication link, Part I: scalar systems
+----
+A. Sarwate
+--
+Robust and adaptive communication under uncertain interference
+----
+C. E. Shannon
+--
+A mathematical theory of communication
+----
+R. R. Varshamov
+--
+Estimate of the number of signals in error correcting codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\070.pdf
+[[[ LINKS ]]]
+

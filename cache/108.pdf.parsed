@@ -1,0 +1,159 @@
+[[[ ID ]]]
+108
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Bilayer LDPC Convolutional Codes for Half-Duplex Relay Channels
+[[[ AUTHORS ]]]
+Zhongwei Si
+Ragnar Thobaben
+Mikael Skoglund
+[[[ ABSTR ]]]
+Abstract—In this paper we present regular bilayer LDPC convolutional codes for half-duplex relay channels. For the binary erasure relay channel, we prove that the proposed code construc- tion achieves the capacities for the source-relay link and the source-destination link provided that the channel conditions are known when designing the code. Meanwhile, this code enables the highest transmission rate with decode-and-forward relaying. In addition, its regular degree distributions can easily be computed from the channel parameters, which signiﬁcantly simpliﬁes the code optimization. Numerical results are provided for the codes with ﬁnite node degrees over binary erasure channels. We can observe that the gaps between the decoding thresholds and the Shannon limits are impressively small.
+[[[ BODY ]]]
+The relay channel was introduced in 1971 when van der Meulen [1] proposed a channel model consisting of one source, one relay, and one destination. The relay aids the communication between the source and the destination so that increased robustness, higher transmission efﬁciency, and/or larger coverage range can be achieved. As smallest but fun- damental unit of large network topologies, the relay channel has been extensively studied focusing on both theoretical and implementation aspects.
+Decode-and-forward (DF) relaying is the most researched protocol for relay channels. In particular, the design of dis- tributed channel codes has attracted considerable attention. The concept of distributed Turbo coding (DTC) was proposed in [2], which offered a new fashion of distributed code design. Low-density parity-check (LDPC) codes were considered for distributed coding for example in [3], [4] and [5]. Different approaches were presented to optimize LDPC codes for given channel conditions. For LDPC block codes, an irregular degree distribution needs to be derived to match a given channel. For a variety of channel conditions, extensive re-optimization is required. This leads to a high complexity for code adaptation and may not be feasible in practice.
+In this paper we propose to use LDPC convolutional codes for distributed channel coding in relay networks. LDPC con- volutional codes were ﬁrst proposed in [6] as a time-varying periodic LDPC code variation. Then the idea was further developed in, e.g., [7], [8]. Recently, it has been proven analytically in [9] that in the binary erasure channel (BEC) the belief-propagation (BP) decoding threshold of an LDPC
+convolutional code achieves the optimal maximum a posteriori probability (MAP) threshold of the corresponding LDPC block code with the same variable and check degrees. This code in turn approaches the capacity as the node degrees increase. Fur- thermore, regular LDPC convolutional codes allow us to avoid complicated re-optimization of the degree distributions for varying channel conditions. Meanwhile, LDPC convolutional codes enable recursive encoding and sliding-window decoding [8], which dispels the concerns over complexity and delay. Motivated by these useful properties of LDPC convolutional codes, we consider in this paper the design of bilayer LDPC convolutional codes for the relay channel. A similar code construction was proposed in [10] for the wiretap channel. A protograph-based bilayer code was proposed in [11] which applies the concept of bilayer-lengthened codes. In contrast to [11] we present bilayer expurgated codes [5] in this paper.
+In the following, we will discuss the construction of bilayer LDPC convolutional codes for given relay channels. We will prove analytically that the proposed bilayer code is capable of achieving the highest rate with DF relaying in binary erasure channels. Moreover, the regularity of degree distributions sig- niﬁcantly simpliﬁes the code optimization. Numerical results are provided to verify the theoretical analysis.
+In this section, ﬁrstly we introduce the transmission model we use throughout the paper. Then we brieﬂy review the coding strategy which leads to the highest achievable rate [12] with DF relaying. The construction of bilayer codes [5] is described as a practical realization of the coding strategy.
+In this paper, we restrict ourself to the three-node relay channel which is composed of one source, one relay, and one destination. The source ( S) intends to transmit its information to the destination ( D) while the relay (R) provides assistance.
+The system model is shown in Figure 1. Due to practical constraints the relay works in a half-duplex mode, which means it cannot transmit and receive at the same time and the same frequency. This implies that the transmission from the source to the destination is carried out in two phases. In the ﬁrst phase, the source broadcasts while the relay and the destination listen. In the second phase, the relay transmits to the destination while the source keeps silent. We assume the transmissions on the three links to be orthogonal.
+In general we use X i , i ∈ {S, R}, to denote the signals which are transmitted from the source and the relay, and we use Y ij , i ∈ {S, R}, j ∈ {R, D}, for the channel observations of the three links. We use C ij = I(X i ; Y ij ), i ∈ {S, R}, j ∈ {R, D} to denote the capacity of each link. In this paper we assume that perfect channel-state information (CSI) is available for the code construction.
+The highest transmission rate using decode-and-forward protocol for the half-duplex relay channel with orthogonal receive components is given as [12]
+where α is the fraction of channel uses in the ﬁrst phase, and (1 − α) is the fraction of channel uses in the second phase.
+To achieve R DF , in the ﬁrst phase the source employs a capacity-achieving code for the source-relay link which guarantees successful decoding at the relay. This code may not be decodable at the destination due to the poorer channel condition on the source-destination link. Therefore, in the sec- ond phase the relay forwards additional bits to the destination in order to construct an overall lower rate code which is capacity-achieving for the source-destination link. A practical implementation of the idea is presented in the following.
+The construction of bilayer LDPC block codes [5] is real- ized in two steps corresponding to the two transmission phases.
+In the ﬁrst phase, K 1 information bits B are encoded by a length- N 1 codeword X S through a rate- R 1 LDPC code C 1 (i.e., K 1 = N 1 ·R 1 ) with the check matrix H S and transmitted. At the end of the ﬁrst phase, the relay decodes C 1 , using the check matrix H S , and recovers X S .
+At the destination, additional K 2 bits are needed for suc- cessfully decoding X S :
+Therefore, in the second phase the relay generates K 2 new bits (syndrome, S) using the check matrix H R . These K 2 syndrome bits are transmitted to the destination via a channel encoder C 2 of rate R 2 using N 2 channel uses, i.e., K 2 = N 2 ·R 2 . To simplify the discussion, we assume these syndrome bits are perfectly known at the destination after decoding C 2 .
+Then the overall code C is described by the stacked check matrix H, and we have
+X S = 0 S
+That is, at the destination ( N 1 − K 1 ) zero check equations and K 2 non-zero check equations need to be satisﬁed in the decoding. The Tanner graph of a bilayer code example is plotted in Figure 2.
+To achieve the optimal performance, the design of H S and H needs to guarantee that C 1 and C are simultaneously capacity-achieving for the source-relay link and the source- destination link respectively. The authors of [5] approached this target by applying irregular LDPC block codes. Conse- quently, re-optimization is required for every given channel, which results in high complexity and infeasibility. In the next section we will show how this goal can be achieved by using regular LDPC convolutional codes leading to signiﬁcantly reduced optimization overhead.
+If the channel codes C 1 and C 2 are both capacity-achieving, i.e., R 1 = C SR and R 2 = C RD , then the achievable rate in (1) is maximized by
+Later in this paper we will prove that in BECs R DF can be achieved by applying bilayer LDPC convolutional codes.
+In the following we will give a brief introduction to LDPC convolutional codes. Detailed descriptions of LDPC convolu- tional codes can be found in, for example, [6], [8], [9].
+A regular (l, r) binary LDPC convolutional code can be deﬁned by an inﬁnite syndrome former matrix [8]
+   
+where l is the variable degree and r is the check degree. We assume that at each position t (t ∈ (−∞, ∞)) the number of variable nodes is M . Each submatrix H T i (t) (i ∈ [0, w − 1]) is an M × (M l/r) binary matrix and is sparse. For practical
+applications, we have t ∈ [1, L] so that the code is initialized in the beginning and terminated at the end.
+There are many variants of LDPC convolutional codes in the literature. In this paper, as in [9] we denote an LDPC convolutional code by four parameters {l, r, L, w}. We assume that each of the l edges of a variable node at position t uniformly and independently connects to the check nodes in the range [t, t + w − 1], where the parameter w is a positive integer. More precisely, for each variable node at position t, one can deﬁne a constellation c, which is an l- tuple, c = (c 1 , c 2 , ..., c i , ..., c l ), with elements in [0, w−1]. We assume that the edges coming out from the variable node are indexed in an arbitrary but ﬁxed order. Then, the i-th edge is connected to a check node at position t + c i . For each variable node, c is uniformly and independently chosen from the set of all possible constellations. It has been stated in [9] that the {l, r, L, w} code ensemble is capacity achieving and easy to analyze. Experimentally, however, it shows a worse trade- off between rate, threshold and block length compared with another variant which is introduced as in the following.
+The type {l, r, L} ensemble [8], can be considered as a special case of the more general code ensemble mentioned above. For this ensemble, the parameter w always equals l. Exactly one of the l outgoing edges of each variable node at position t is connected to one check node at position [t, ..., t+ (l − 1)], i.e., c i = i − 1 for all i ∈ [1, l]. It was observed through experiments that this type of ensemble provides good performance with moderate M and L when l ≥ 3.
+In this paper, we use the {l, r, L, w} ensemble for theoretical analysis while employing the {l, r, L}ensemble in simulations.
+Firstly, we deﬁne the structure of a bilayer LDPC con- volutional code. We assume the number of variable nodes to be N = M L. The connections between the N variable nodes and the check nodes in the two layers are deter- mined by {l 1 , r 1 , L, w 1 } and {l 2 , r 2 , L, w 2 }, respectively. The parameters l 1 and l 2 are the variable degrees of the two layers, and r 1 and r 2 are the check degrees of the two layers. If w 1 = w 2 ≡ w, we denote the bilayer code by {l 1 , l 2 , r 1 , r 2 , L, w}. Note that only the edges belonging to the same layer are connected to one check node. The structure of the overall syndrome former matrix is illustrated in Figure 3.
+. .. . .. . .. . ..
+The protocol for transmitting a bilayer LDPC convolutional code for the relay channel is similar to the strategy we explained in Section II-C. The information bits from the source are encoded by the single-layer code {l 1 , r 1 , L, w 1 } and
+broadcasted in the ﬁrst phase. After successful decoding, the relay generates the syndrome bits using {l 2 , r 2 , L, w 2 }. These syndrome bits are transmitted to the destination under perfect protection by another channel code in the second phase. The destination decodes the overall code by considering the zero check equations in the ﬁrst layer and the non-zero check equations in the second layer.
+It has been shown in [9] that the {l, r, L, w} ensemble with inﬁnite M has the following properties in the BEC: for the rate of the code R
+and for the decoding threshold lim w→∞ lim
+(4) where ǫ BP and ǫ MAP are respectively the BP threshold and the MAP threshold for decoding. For the BEC, the Shannon limit is deﬁned as the ultimate erasure threshold below which the probability of error tends to zero, i.e., ǫ Sh = 1 − R. If we increase the degrees of the nodes while keeping the rate ﬁxed, the MAP threshold approaches the Shannon limit,
+In the following, we will analyze the performance of the bilayer LDPC convolutional code in the BEC.
+Lemma 1. For r 1 = r 2 = r, the bilayer LDPC convolutional code {l 1 , l 2 , r 1 , r 2 , L, w} has the same design rate as the stan- dard single-layer LDPC convolutional code {l 1 + l 2 , r, L, w}, which is given as
+Proof: Due to the initialization and the termination of the code, at the boundary positions only a fraction of the assigned check nodes are actually connected. We use N C 1 and N C 2 to denote the total number of connected check nodes in the ﬁrst and the second layer, respectively.
+i w
+i w
+By substituting (7) and (8) into (9), and using r 1 = r 2 = r, we obtain (6). The rate of the bilayer LDPC convolutional code is equal to that of the single-layer code {l 1 + l 2 , r, L, w}.
+Lemma 2. In the BEC, the bilayer LDPC convolutional code ensemble {l 1 , l 2 , r 1 , r 2 , L, w} has the same BP threshold as the standard single-layer LDPC convolutional code ensemble {l 1 + l 2 , r, L, w} if r 1 = r 2 = r [10].
+Proof: We use p (i) m,t to denote the erasure probability emitted from a variable node at position t along an edge of the m-th layer in the i-th iteration, m ∈ {1, 2}. Similarly, we deﬁne the erasure probability from a check node in the m-th layer as q (i) m,t . The erasure probability of the channel is ǫ.
+For t / ∈ [1, L], we set p (i) m,t = 0; otherwise, for t ∈ [1, L], we have the following density evolution equations. For the ﬁrst layer of the bilayer LDPC convolutional code, we have
+In the ﬁrst iteration, i.e., when i = 1, p (1) 1,t = p (1) 2,t = ǫ for t ∈ [1, L]. If r 1 = r 2 = r, we get q (1) 1,t = q (1) 2,t . Recursively, we obtain for all i and all t: p (i+1) 1,t = p (i+1) 2,t ≡ p (i+1) t 	 if p (i) 1,t = p (i) 2,t . The density evolution of the bilayer code can then be written in a one-dimensional recursion
+which indicates that the bilayer LDPC convolutional code has the same BP threshold as the {l 1 + l 2 , r, L, w} ensemble.
+If the two layers take the same check degree, i.e., r 1 = r 2 ≡ r, we denote the bilayer LDPC convolutional code as {l 1 , l 2 , r, r, L, w}.
+Theorem 3. In the BEC, the bilayer LDPC convolutional code {l 1 , l 2 , r, r, L, w} achieves the same Shannon limit as the single-layer LDPC convolutional code {l 1 + l 2 , r, L, w}.
+Proof: Based on Lemma 1 and according to (3), we have for the rate of the bilayer code
+The BP threshold of the ensemble {l 1 , l 2 , r, r, L, w} was derived in Lemma 2. According to (4) and (5), we have for r = β(l 1 + l 2 ), where β is a constant,
+This indicates that the BP decoding threshold of the bilayer LDPC convolutional code achieves the same Shannon limit as the single-layer code. Hence, we have proved the theorem.
+For the design of bilayer LDPC convolutional codes in relay channels, ﬁrstly we choose an {l 1 , r, L, w} code which is capacity achieving for the source-relay link. Afterwards the relay generates the syndrome bits using the check matrix of the code {l 2 , r, L, w} and forwards them to the destination. The overall code structure is consequently {l 1 , l 2 , r, r, L, w}. In the following we will show that this overall code is capacity achieving for the source-destination link. In addition, it enables the highest achievable rate R DF of the relay channel.
+Theorem 4. For a binary erasure relay channel, we can ﬁnd an LDPC convolutional code C 1 = {l 1 , r, L, w} achieving the capacity for the source-relay link and simultaneously its bilayer extension C = {l 1 , l 2 , r, r, L, w} achieving the capacity for the source-destination link. Meanwhile, the above code construction provides the highest achievable rate with decode- and-forward relaying as in (1).
+Proof: We assume that the erasure probability for the source-relay link and the source-destination link are ǫ SR and ǫ SD , respectively, and ǫ SR < ǫ SD . The corresponding channel capacities for these two links are
+We use a regular LDPC convolutional code {l 1 , r, L, w} with l 1 /r = ǫ SR for the transmission in the ﬁrst phase. According to (3) −(5), we have
+Hence, C 1 is capacity achieving, and successful decoding can be guaranteed at the relay.
+We assume that the number of variable nodes of C 1 is N V and the number of check nodes of C 1 is N C 1 . If L → ∞, we can ignore the boundary effects. Then asymptotically,
+The number of additional bits needed at the destination is N C 2 = N V (C SR − C SD ) = N V (ǫ SD − ǫ SR ),
+and these bits are provided by the syndrome generated at the relay. At the destination, the total number of check nodes is
+The additional N C 2 check equations bring in rN C 2 edges under the assumption that L → ∞, and the corresponding variable degree l 2 follows as
+and for the ﬁxed ratio (l 1 + l 2 )/r lim
+Therefore, the overall code C achieves the capacity of the source-destination link.
+The number of channel uses in the ﬁrst phase is N 1 = N V . In the second phase, we can use another capacity-achieving LDPC convolutional code to transmit the N C 2 syndrome bits to the destination. Therefore, N 2 = N C 2 /C RD channel uses are needed. The fraction
+From Theorem 4 we can conclude that the proposed reg- ular bilayer LDPC convolutional codes signiﬁcantly simplify the code optimization. Appropriate variable and check node degrees can easily be computed from the parameters of the channels, and a complicated optimization of irregular degree distributions as for example in [5] can be avoided.
+Meanwhile, the bilayer LDPC convolutional code construc- tion is applicable for a wide range of channel conditions. The code rate of C 1 for the source-relay link is asymptotically R 1 = 1 − l 1 /r. If the check degree r → ∞, the rate R 1 is able to achieve any value in the range (0, 1) by varying the variable degree l 1 . Based on the given C 1 , the rate R of the overall code C for the source-destination link can achieve any value in (0, R 1 ] by choosing proper l 2 as r → ∞ since asymptotically R = 1 − (l 1 + l 2 )/r.
+In this section, we give numerical results for bilayer LDPC convolutional codes with type {l, r, L} ensembles in binary erasure relay channels. The source broadcasts its information bits with an {l 1 = 3, r = 10, L = 100} LDPC convolutional code. At each position, the number of variable nodes is set to be M = 2000. At the relay, different values of l 2 ( l 2 ∈ {2, 3, 4, 5}) are chosen. Consequently, bilayer LDPC convolutional codes of different rates are constructed. Note that rate loss is inevitable for ﬁnite L [8]. We compare the decoding thresholds of both the single-layer code and the bilayer codes with the corresponding Shannon limits. It can be seen from Figure 4 that the gaps in between are impressively small. The performance can be further improved if we increase the node degrees while keeping the rates ﬁxed.
+In this paper bilayer LDPC convolutional codes were pro- posed for three-node relay channels. For a binary erasure relay channel, we can ﬁnd a bilayer LDPC convolutional code which is able to simultaneously achieve the capacities of the source-relay link and the source-destination link. Meanwhile,
+this code provides the highest possible transmission rate with decode-and-forward relaying. The regular code structure sig- niﬁcantly reduces the complexity by avoiding the optimization of irregular degree distributions. Moreover, the code construc- tion is applicable for a wide range of channel conditions. Numerical results were provided for the codes with ﬁnite node degrees over binary erasure channels. We can observe that the decoding thresholds are very close to the Shannon limits.
+[[[ REFS ]]]
+E. C. van der Meulen
+--
+Three-terminal communication channels
+----
+B. Zhao
+M. C. Valenti
+--
+Distributed Turbo coded diversity for relay channel
+----
+A. Chakrabarti
+A. de Baynast
+A. Sabharwal
+B. Aazhang
+--
+Low density parity check codes for the relay channel
+----
+J. Hu
+T. M. Duman
+--
+Low density parity check codes over wireless relay channels
+----
+P. Razaghi
+W. Yu
+--
+Bilayer low-density parity-check codes for decode-and-forward in relay channels
+----
+A. Jim´enez Felstr¨om
+K. Sh. Zigangirov
+--
+Time-varying periodic con- volutional codes with low-density parity-check matrix
+----
+A. E. Pusane
+A. J. Felstr¨om
+A. Sridharan
+M. Lentmaier
+K. Sh. Zigangirov
+D. J. Costello
+--
+Implementation aspects of LDPC convolutional codes
+----
+M. Lentmaier
+A. Sridharan
+D. J. Costello
+K. Sh. Zigangirov
+--
+Iterative decoding threshold analysis for LDPC convolutional codes
+----
+S. Kudekar
+T. Richardson
+R. Urbanke
+--
+Threshold saturation via spatial coupling: Why convolutional LDPC ensembles perform so well over the BEC
+----
+V. Rathi
+R. Urbanke
+M. Andersson
+M. Skoglund
+--
+Rate- equivocation optimal spatially coupled LDPC codes for the BEC wiretap channel
+----
+A. Nosratinia
+D. Divsalar
+--
+Bilayer protograph codes for half-duplex relay channels
+----
+M. A. Khojastepour
+A. Sabharwal
+B. Aazhang
+--
+On capacity of Gaussian ’cheap’ relay channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\108.pdf
+[[[ LINKS ]]]
+

@@ -30,15 +30,15 @@ trait InformationExtractor {
    
    // This method finds the first elements matching a condition which are adjacent and returns the list of the remaining ones (after these)
    protected def discardAdjacents(list: List[XMLParagraph], condition: (XMLParagraph) => Boolean): List[XMLParagraph] = {
-	   def discardAdjacents0(l: List[XMLParagraph], accu: Int): List[XMLParagraph] = l match {
-	     case List() => Nil
-	     case x::xs => if(condition(x)) discardAdjacents0(xs, accu + 1)
-	     			   else if(accu == 0) discardAdjacents0(xs, accu) else x::xs
-	   }
-	   
-	   discardAdjacents0(list, 0)
+     def discardAdjacents0(l: List[XMLParagraph], accu: Int): List[XMLParagraph] = l match {
+       case List() => Nil
+       case x::xs => if(condition(x)) discardAdjacents0(xs, accu + 1)
+                     else if(accu == 0) discardAdjacents0(xs, accu) else x::xs
+     }
+
+       discardAdjacents0(list, 0)
    }
-   
+
    // This method takes a list of strings and returns a string containing the concatenation of all the other strings
    protected def concatText(list: List[String]): String = {
 	   def concatText0(l: List[String], accu: String): String = l match {
@@ -85,6 +85,7 @@ trait AbstractExtractor1 extends InformationExtractor{
     // - It is entirely contained in the first page
 	def extractAbstract(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val list = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && p.getPosition.getWidth >= xml.getPage(1).getPosition.getWidth / 3)
+		if(list.isEmpty) return (paragraphs, paper)
 		val xmlFont = xml.getFontsContainer.getXMLFont(list.head.getFontID)
 		val abstractList = filterAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY)).map((p: XMLParagraph) => p.getText.replaceAll("\n", " "))
 		val remainingList = discardAdjacents(list, (p: XMLParagraph) => xmlFont.get.checkID(p.getFontID) && p.hasOption(XMLParagraphOptions.JUSTIFY))
@@ -130,6 +131,7 @@ trait BodyExtractor1 extends InformationExtractor {
     // - It is justified and belongs to one column
 	def extractBody(paper: Paper, xml: XMLDocument, paragraphs: List[XMLParagraph]): (List[XMLParagraph], Paper) = {
 		val firstBodyList = findFirstOf(paragraphs, (p: XMLParagraph) => p.hasOption(XMLParagraphOptions.JUSTIFY) && !p.hasOption(XMLParagraphOptions.NO_COLUMN))
+		if(firstBodyList.length == 0) return (paragraphs, paper)
 		val bodyXmlFont = xml.getFontsContainer.getXMLFont(firstBodyList.head.getFontID)
         
 		// Filter (applying the rules)

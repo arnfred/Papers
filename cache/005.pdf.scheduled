@@ -1,0 +1,175 @@
+[[[ ID ]]]
+5
+[[[ INDEX ]]]
+4
+[[[ TITLE ]]]
+Nonuniform Codes for Correcting Asymmetric Errors
+[[[ AUTHORS ]]]
+Hongchao Zhou
+Anxiao (Andrew) Jiang
+Jehoshua Bruck
+[[[ ABSTR ]]]
+Abstract—Codes that correct asymmetric errors have impor- tant applications in storage systems, including optical disks and Read Only Memories. The construction of asymmetric error correcting codes is a topic that was studied extensively, however, the existing approach for code construction assumes that every codeword could sustain t asymmetric errors. Our main observation is that in contrast to symmetric errors, where the error probability of a codeword is context independent (since the error probability for 1s and 0s is identical), asymmetric errors are context dependent. For example, the all-1 codeword has a higher error probability than the all-0 codeword (since the only errors are 1 → 0). We call the existing codes uniform codes while we focus on the notion of nonuniform codes, namely, codes whose codewords can tolerate different numbers of asymmetric errors depending on their Hamming weights. The goal of nonuniform codes is to guarantee the reliability of every codeword, which is important in data storage to retrieve whatever one wrote in. We prove an almost explicit upper bound on the size of nonuniform asymmetric error correcting codes and present two general constructions. We also study the rate of nonuniform codes compared to uniform codes and show that there is a potential performance gain.
+[[[ BODY ]]]
+Asymmetric error-correcting codes have important applica- tions in storage and communication systems, such as optical ﬁbers, optical disks, VLSI circuits and Read Only Memories. In such systems, the error probability from 1 to 0 is signiﬁcant- ly higher than the error probability from 0 to 1, which is mod- eled by binary asymmetric channel (the Z −channel) where the transmitted sequences only suffer one type of errors, say 1 → 0. Asymmetric error-correcting codes have been widely studied: In [1], Kløve summarized and presented several such codes. In addition, a large amount of effort is contributed to the design of systematic codes [2], [3], constructing single or multiple error-correcting codes [4]–[6], increasing the lower bounds [7]–[9] and applying LDPC codes in the context of asymmetric channels [10].
+However, the existing approach for code construction is similar to the approach taken in the construction of symmetric error correcting codes, namely, it assumes that every code- word could sustain t asymmetric errors. As a result, different codewords might have different reliability. To see this, let’s consider errors to be i.i.d., where every bit that is a 1 can change to a 0 by an asymmetric error with crossover proba-
+bility p > 0. For a codeword x = (x 1 , x 2 , . . . , x n ) ∈ {0, 1} n , let w(x) = |{i : 1 ≤ i ≤ n, x i = 1 }| denote the Hamming weight of x. Then the probability for x to have at most t asymmetric errors is P t (x) = P (t, w(x), p), where
+Since x can correct t errors, P t (x) is the probability of correctly decoding x (assuming codewords with more than t errors are uncorrectable). It can be readily observed that the reliability of codewords decreases when their Hamming weights increase.
+Different from telecommunication applications, in data s- torage we care about the worst-case performance, namely, we need guarantee that every codeword can be correctly decoded with very high probability. In this case, it is not desired to let all the codewords tolerate the same number of asymmetric errors, since the codeword with the highest Hamming weight will become a ‘bottleneck’ and limit the code rate. This motivated us to propose the concept of nonuniform codes, whose codewords can tolerate different numbers of asymmetric errors based on their Hamming weights. The objective is to guarantee the reliability of every codeword. That is, we consider the worst-case instead of the average-case reliability of the codewords. Given this constraint, we would like to maximize the size of the code. Speciﬁcally, let q e < 1 to be maximal tolerated error probability for each codeword and let t(x) denote the number of asymmetric errors that x can correct. Then given a code C, for every codeword x ∈ C, we have P (t(x), w(x), p) ≥ 1 − q e , so that every erroneous codeword can be corrected with probability at least 1 − q e .
+The rest of the paper is organized as follows. In Sec- tion II, we provide some deﬁnitions and properties related to nonuniform codes. In Section III, we give an almost explicit upper bound for the size of nonuniform codes. Two general constructions, based on multiple layers or bit ﬂips, are proposed in Section IV and Section V. Finally, Section VI studies the asymptotic rates of nonuniform codes and uniform codes (both upper bounds and lower bounds). An extended version of this paper with detailed proofs and explanations is given in [16].
+A code C is called a nonuniform (n, p, q e ) code if for each codeword x ∈ C, it can correct t(w(x)) asymmetric errors, where
+That implies each codeword in C can be recovered with probability at least 1 −q e . The maximum size of a nonuniform (n, p, q e ) code is denoted by B β (n, p, q e ).
+As comparison, most existing error-correcting codes are uni- form codes. For a code C of codeword length n, the Hamming weight of its codewords is at most n. (And in many existing asymmetric error-correcting codes, the maximum codeword weight indeed equals n [1].) So we deﬁne C to be an uniform (n, p, q e ) code if every codeword can correct t asymmetric errors, where
+The maximum size of an uniform (n, p, q e ) code is denoted by B α (n, p, q e ).
+Lemma 1. For any 0 < p, q e < 1 and integer w in [0, n], we have 0 ≤ t(w + 1) − t(w) ≤ 1 for a nonuniform (n, p, q e ) code.
+Given two binary vectors x = (x 1 , . . . , x n ) and y = (y 1 , . . . , y n ), we say x ≤ y if and only if x i ≤ y i for all 1 ≤ i ≤ n. Let S s (x) be the set of vectors obtained by changing at most s 1’s in x into 0’s, i.e.,
+Let S s ′ ,s (x) be the set of vectors obtained by changing at most s ′ 0’s in x into 1’s or at most s 1’s in x into 0’s, i.e.,
+The following properties of nonuniform codes can be easily proved, as the generalizations of those for uniform codes, including Lemmas 2.2, 2.3, 3.2, 3.3 in [1].
+Lemma 2. Code C is a nonuniform (n, p, q e ) code if and only if S t(w(x)) (x)
+∈ C with x ̸= y.
+Lemma 3. There always exists a nonuniform (n, p, q e ) code of the maximum size that contains the all-zero codeword.
+Given a nonuniform code C, let C r denote the number of codewords with Hamming weight r in C, i.e.
+Lemma 4. Let C be a nonuniform (n, p, q e ) code and t(w) is deﬁned in (1). For integer r in [0, n], let s be an integer
+such that 0 ≤ s ≤ t(r − s) and let k = max{z|0 ≤ z ≤ n, z − (t(z) − s) ≤ r}, then we have
+where k = max {z|0 ≤ z ≤ n, z − t(z) ≤ r}. This inequality will be used to get an almost explicit upper bound for the size of nonuniform codes.
+We now derive an almost explicit upper bound for the size of nonuniform codes, followed the idea of Kløve [11] for uniform codes. First, we deﬁne
+z r , where the maximum is taken over the following constraints:
+2) z 0 = 1; 3)
+Then M β (n, p, q e ) is an upper bound for B β (n, p, q e ). Here, condition 2) is given by Lemma 3, and condition 3) is given by Equ. (2) from Lemma 4. Our goal in this section is to ﬁnd an almost explicit way to express M β (n, p, q e ).
+z r is maximized over z 0 , z 1 , ..., z n in the problem above. Let
+Let m = max {w|k −t(k) > w}. Then it can be proved that for all r < w ≤ m, Z w <
+) .
+Now, we construct a new group of real numbers z ∗ 0 , z ∗ 1 , ..., z ∗ n such that
+3) z ∗ r = z r for r ̸= h, r ̸= k with
+z r is maximized over the constrains. So the lemma is true.
+Similarly, using the same idea as above, we can get the following lemma.
+z r is maximized over z 0 , z 1 , ..., z n in the problem above. Let
+Now let y 0 , y 1 , ..., y n be a group of optimal solutions to z 0 , z 1 , ..., z n that maximize
+z r . Then y 0 , y 1 , ..., y n satisfy the condition in Lemma 6. We see that y 0 = 1. Then based on Lemma 6, we can get y 1 , ..., y n uniquely by iteration. Hence, we have the following theorem for the upper bound M β (n, p, q e ).
+Theorem 7. Let y 0 , y 1 , ..., y n be deﬁned by 1) y 0 = 1;
+) ], ∀ max{s|1 ≤ s ≤ n, s ≤ t(s)} < r ≤ n.
+This theorem provides an almost explicit expression for the upper bound M β (n, p, q e ), which is much easier to calculate than the equivalent expression deﬁned at the beginning of this section.
+In [1], Kløve summarized some constructions of uniform codes for correcting asymmetric errors. The code of Kim and Freiman was the ﬁrst code constructed for correcting multiple asymmetric errors. Varshamov [12] and Constrain and Rao [13] presented some constructions based group theory. Later, Delsarte and Piret [14] proposed a construction based on ‘expurgating/puncturing’ with some improvements given by Weber et. al. [15]. In this section, we propose a general construction of nonuniform codes based on multiple layers.
+From the deﬁnition of nonuniform codes, we know that t(w) can be easily and uniquely determined by p, q e . So a question arises: if n, t(w) (for 0 ≤ w ≤ n) are given, how to construct a nonuniform code efﬁciently? Intuitively, we can divide all the codewords of a nonuniform code into at most t(n) + 1 layers such that all the codewords in the i th layer (with 0 ≤ i ≤ t(n)) can tolerate at least i asymmetric errors. In other words, the code is the combination of up to t(n) + 1 uniform codes, each of which corrects a different number of asymmetric errors. However, we cannot design such a code by constructing
+codewords independently for different layers, because a simple combination of several independent codes may violate the error correction requirements of the nonuniform codes, due to the interference between two neighbor layers. Our idea is simple: let’s ﬁrst construct a code which can tolerate t(n) asymmetric errors. Then we add some codewords to the lowest t(n) layers such that the codewords in the top layer keep unchanged and they still can tolerate t(n) asymmetric errors, and the codewords in the other layers can tolerate up to t(n) −1 asymmetric errors. Iteratively, we can continue to add many codeword into the lowest t(n) −1 layers ... Based on this idea, given n, t(w), we construct layered codes as follows.
+Theorem 8 (Layered Codes). Let k = t(n) and let C 0 , C 1 , ..., C k be k + 1 binary codes of codeword length n, where C 0 ⊃ C 1 ⊃ ... ⊃ C k and for 0 ≤ t ≤ k, the code C t can correct t asymmetric errors. Let
+≥ w(y).
+However, we know that x ∈ C t ′ (w(x)) ⊆ C t ′ (w(y)) and y ∈ C t ′ (w(y)) , therefore S t ′ (w(y)) (x)
+t ′ (w(y)) (y) = ø. Furthermore, we have S t(w(x)) (x)
+We see that the constructions of layered codes are based on the provided group of codes C 0 , C 1 , ..., C k such that C 0 ⊃ C 1 ⊃ ... ⊃ C k and for 0 ≤ t ≤ k, the code C t can correct t asymmetric errors. Examples of such codes include Varshamov codes [12], BCH codes, etc. One constructions of BCH codes can be described as follows: Let (α 0 , α 1 , ..., α n −1 ) be n distinct nonzero elements of G 2 m with n = 2 m − 1. For 0 ≤ t ≤ k, let
+In the above example, assume x is a codeword in C t and y = x + e is a received word with error e, then there is an efﬁcient algorithm to decode y into a codeword, which is denoted by D t (y). If y has at most t asymmetric errors, then D t (y) = x. In the following theorem, we show that the layered codes proposed above also have an efﬁcient decoding algorithm if D t ( ·) (for 0 ≤ t ≤ k) are provided and efﬁcient.
+Theorem 9 (Decoding of Layered Codes). Let C be a layered code, let x ∈ C be a codeword, and let y = x + e be a received word such that |e| = N(x, y) ≤ t(w(x)). (Here e is the asymmetric-error vector.) Then there exists at least one integer t such that
+3) y ≤ D t (y) and N (D t (y), y) ≤ t(w(D t (y))). For such t, we have D t (y) = x.
+Proof: If we let t = t ′ (w(x)), then we can get that t satisﬁes the conditions and D t (y) = x. So such t exists.
+Now we only need to prove that once there exists t satis- fying the conditions in the theorem, we have D t (y) = x. We prove this by contradiction. Assume there exists t satisfying the conditions but z = D t (y) ̸= x. Then N(z, y) ≤ t(w(z)) and N (x, y) ≤ t(w(x)), which contradicts the property of the layered codes.
+According to the above theorem, to decode a noisy word y, we can check all the integers between t ′ (w(y)) and t ′ (w(y) + t ′ (w(y))) to ﬁnd the value of t. Once we ﬁnd the integer t satisfying the conditions in the theorem, we can decode y into D t (y) directly. (Note that t ′ (w(y) + t ′ (w(y))) − t ′ (w(y)) is normally much smaller than w(y). It is approximately
+w(y) when w(y) is large.) We see that this decoding process is efﬁcient if D t (.) is efﬁcient for 0 ≤ t ≤ k.
+Many non-linear codes designed to correct asymmetric errors do not yet have efﬁcient encoding algorithms. Namely, it is not easy to ﬁnd an efﬁcient encoding function f : {0, 1} k → C with k ⌊log |C|⌋. On the other hand, in [12], Varshamov showed that linear codes have nearly the same ability to correct asymmetric errors and symmetric errors (for the uniform code case). In this subsection, we focus on the approach of designing nonuniform codes for asymmetric errors with efﬁcient encoding schemes, by utilizing the well studied linear codes for symmetric errors.
+We can use a linear code to correct t(n) asymmetric errors directly, but this method is inefﬁcient not only because the decoding sphere for symmetric errors is greater than the sphere for asymmetric errors (and therefore an overkill), but also because for low-weight codewords, the number of asymmetric errors they need to correct can be much smaller than t(n).
+Our idea is to build a “ﬂipping code” that uses only low-weight codewords (speciﬁcally, codewords of Hamming weight no more than ∼ n 2 ), because they need to correct fewer asymmetric errors and therefore can increase the code’s rate. In the rest of this section, we present two different constructions. A. First Construction
+First, construct a linear code C (like BCH codes) of length n with generator matrix G that corrects t( ⌊ n 2 ⌋) symmetric errors. Assume the dimension of the code is k. For any binary message u ∈ {0, 1} k , we can map it to a codeword x in C such that x = uG. Next, let x denote a word obtained by ﬂipping all the bits in x such that if x i = 0 then x i = 1 and if x i = 1 then x i = 0; and let y denote the ﬁnal codeword corresponding to u. We check whether w(x) > ⌊ n 2 ⌋ and construct y in the following way:
+⌋ x11...1 	 otherwise
+Here, the auxiliary bits (0’s or 1’s) are added to distinguish that whether x has been ﬂipped or not, and they form a repetition code to tolerate errors.
+The corresponding decoding process is straightforward: Assume we received a word y ′ . If there is at least one 1 in the auxiliary bits, then we “ﬂip” the word by changing all 0’s to 1’s and all 1’s to 0’s; otherwise, we keep the word unchanged. Then we apply the decoding scheme of the code C to the ﬁrst n bits of the word. Finally, the message u can be successfully decoded if y ′ has at most t( ⌊ n 2 ⌋) errors in the ﬁrst n bits.
+In the previous construction, several auxiliary bits are need- ed to protect one bit of information, which is not very efﬁcient. In this section, we try to move this bit into the message part of the codewords in C. This motivates us to give the following construction.
+Let C be a linear code with length n that corrects t ′ sym- metric errors (we will specify t ′ later). Assume the dimension of the code is k. Now, for any binary message u ∈ {0, 1} k −1 of length k − 1, we get u ′ = 0u by adding one bit 0 in front of u. Then we can map u ′ to a codeword x in C such that
+where G is the generator matrix of C in systematic form and the length of v is n − k. Let α be a codeword in C such that the ﬁrst bit α 1 = 1 and its weight is the maximal one among all the codeword in C, i.e.,
+Generally, w(α) is very close to n. In order to reduce the weights of the codewords, we use the following operations: Calculate the relative weight
+where + is the binary sum, so x + α is to ﬂip the bits in x corresponding the ones in α. So far, we see that the maximal weight for y is ⌊n − w(α) 2 ⌋. That means we need to select t ′ such that
+t ′ = t( ⌊n − w(α) 2
+In the above encoding process, for different binary mes- sages, they have different codewords. And for any codeword y, we have y ∈ C. That is because either y = x or y = x + α, where both x and α are codewords in C and C is a linear code. The decoding process is very simple: Given the received word y ′ = y + e, we can always get y by applying the decoding scheme if |e| ≤ t ′ . If y 1 = 1, that means x has been ﬂipped based on α, so we have x = y + α; otherwise, x = y. Then the initial message u = x 2 x 3 ...x k .
+When n is sufﬁciently large, the codes based on ﬂips above become nearly as efﬁcient as a linear codes correcting t( ⌊ n 2 ⌋) symmetric errors. (We deﬁne the codes’ efﬁciency in Section VI.) It is much more efﬁcient than designing a linear code correcting t(n) symmetric errors. Note that when n is large and p is small, these codes can have very good performance on efﬁciency. That is because when n is sufﬁciently large, the efﬁciency of an optimal nonuniform code is dominated by the codewords with the same Hamming weight w d ( ≤ n 2 ), and w d approaches n 2 as p gets close to 0. We can intuitively understand it based on two facts when n is sufﬁciently large: (1) There are at most n2 n(H( wd n )+δ) codewords in this optimal nonuniform code. (2) When p becomes small, we can get a nonuniform code with at least 2 n(1 −δ) codewords. So when n is sufﬁciently large and p is small, we have w d → n 2 . Hence, the optimal nonuniform code has almost the same asymptotic efﬁciency with an optimal weight-bounded code (Hamming weight is at most n/2), which corrects t(n/2) errors.
+Beside simplicity and efﬁciency, another advantage of these codes is that they do not require the Z-channel to be perfect, i.e., it is allowed to have 0 → 1 errors with very small probability (as long as this probability is smaller than the probability of 1 → 0 errors). All these properties make these codes very useful in practice. However, when p is not small, how to design efﬁcient nonuniform codes with simple encoding/decoding schemes is still an open problem.
+Given (n, p, q e ), we can deﬁne the efﬁciency of uniform codes as η α (n, p, q e ) 	 log 2 B α (n,p,q e ) n 	 and deﬁne the efﬁ- ciency of nonuniform codes as η β (n, p, q e ) log 2 B β (n,p,q e ) n 	 . In this section, given 0 < p, q e < 1, we study the asymp- totic behavior of η α (n, p, q e ) and η β (n, p, q e ) as n → ∞. Table I summarizes the upper bounds and lower bounds of η α (n, p, q e ) n →∞ and η β (n, p, q e ) n →∞ obtained in our full paper [16]. We plot them in Fig. 1. The gap between the bounds for the two codes indicates the potential improvement in efﬁciency by using the nonuniform codes (compared to using uniform codes) when the codeword length is large.
+This work was supported in part by the NSF CAREER Award CCF-0747415, the NSF grant ECCS-0802107, and by an NSF-NRI award.
+[[[ REFS ]]]
+T. Kløve
+--
+Error correcting codes for the asymmetric channel
+----
+K. A. S. Abdel-Ghaffar
+H. C. Ferreira
+--
+Systematic encoding of the Varshamov-Tenengol’ts codes and the Constantin-Rao codes
+----
+B. Bose
+S. Al-Bassam
+--
+On systematic single asymmetric errorcor- recting codes
+----
+S. Al-Bassam
+R. Venkatesan
+S. Al-Muhammadi
+--
+New single asymmetric error-correcting codes
+----
+Y. Saitoh
+K. Yamaguchi
+H. Imai
+--
+Some new binary codes correcting asymmetric/unidirectional errors
+----
+L. G. Tallini
+B. Bose
+--
+On a new class of error control codes and symmetric functions
+----
+T. Etzion
+--
+Lower bounds for asymmetric and unidirectional codes
+----
+Z. Zhang
+X. Xia
+--
+New lower bounds for binary codes of asymmetric distance two
+----
+F. Fu
+S. Ling
+C. Xing
+--
+New lower bounds and constructions for binary codes correcting asymmetric errors
+----
+C. Wang
+S. R. Kulkarni
+H. V. Poor
+--
+Density evolution for asymmetric memoryless channels
+----
+T. Kløve
+--
+Upper bounds on codes correcting asymmetric errors
+----
+R. R. Varshamov
+--
+A class of codes for asymmetric channels and a problem from the additive theory of numbers
+----
+S. D. Constantin
+T. R. N. Rao
+--
+On the theory of binary asymmetric error-correcting codes
+----
+P. Delsarte
+P. Piret
+--
+Bounds and constructions for binary asym- metric error-correcting codes
+----
+J. H. Weber
+C. de Vroedt
+D. E. Boekee
+--
+Bounds and constructions for binary codes of length less than 24 and asymmetric distance less than 6
+----
+H. Zhou
+A. Jiang
+J. Bruck
+--
+Nonuniform codes for correcting asymmetric errors in data storage
+[[[ META ]]]
+xmlpapertitle -> Nonuniform Codes for Correcting Asymmetric Errors
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\005.pdf
+xmlauthors -> Hongchao Zhou, Anxiao (Andrew) Jiang, Jehoshua Bruck
+xmlroom -> -
+[[[ LINKS ]]]
+

@@ -1,0 +1,166 @@
+[[[ ID ]]]
+136
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Maximum Achievable Rates in the Decode-Forward Diamond Channel
+[[[ AUTHORS ]]]
+Mahdi Zamani
+Amir K. Khandani
+[[[ ABSTR ]]]
+Abstract—This paper studies the problem of two-hop transmis- sion from a single-antenna source to a single-antenna destination via two single-antenna relays. The relays operate in a full-duplex mode and they are not capable of buffering data. The links from the source to the relays and from the relays to the destination are considered to be Rayleigh block fading and there is no direct link between the source and the destination. There is also no link between the relays. Consequently, the half-duplex mode is a direct result of the full-duplex mode with frequency or time division. All nodes are assumed to be oblivious to their forward- channel gains, however, they have perfect information about their backward-channel gains. We also assume a stringent decoding delay constraint of one fading block that makes the deﬁnition of ergodic (Shannon) capacity meaningless. Hence, we adopt the broadcast approach (multi-layer coding) to maximize the expected-rate received at the destination. For this purpose, the decode-forward (DF) relaying adopting the broadcast approach is proposed. The main feature of the proposed scheme is that the layers being decoded at both relays are added coherently at the destination although each relay has no information about the number of layers being successfully decoded by the other relay. It is proved that the optimum strategy maximizing the throughput and expected-rate is to send uncorrelated signals over the relays. The maximum throughput is analytically formulated. An achievable rate as well as upper-bounds are presented for the maximum expected-rate of the channel.
+[[[ BODY ]]]
+The information theoretic aspects of wireless networks, have recently received wide attention. Fading is often used for modeling the wireless channels [1]. The growing demand for quality of service (QoS) and network coverage inspires the use of several intermediate wireless nodes to help the communication among distant nodes, which is referred to as relaying. Many papers analyze the information theoretic and communication aspects of relay networks. An information theoretic view of the three-node relay channel was proposed by Cover and El Gamal in [2], which was generalized in [3] for multi-user and multi-relay networks.
+The problems of transmission between a disconnected source and destination via two parallel intermediate nodes are analyzed in [4] for the Additive White Gaussian Noise (AWGN) channels and in [5] for the case where the relays transmit in orthogonal frequency bands/time slots. Diversity gains in a parallel relay network using distributed space-time
+codes, where channel state information (CSI) is only at the receiver, was presented in [6].
+Here, we consider the problem of data multicasting through two parallel relays. A good example for such networks is a TV broadcasting system from a satellite to cellphones through base stations where users with higher qualities channels might receive additional services, like high deﬁnition TV signal [7]. The growing adoption of broadcast mobile TV services suggests that it has the potential to become a mass market application. However, the quality and success of such services are governed by guaranteeing a good coverage, particularly in areas that are densely populated. This paper suggests the use of relays to provide better coverage in such strategically important areas. The main transmitter which is a central TV broadcasting unit (like a satellite) use two parallel relays in each area with large density to improve coverage. According to the large number of relay pairs covering their respective areas and also the large number of users in each designated area, neither the main transmitter nor the relays can access the forward-channel state information. With no delay constraint, the ergodic nature of the fading channel can be experienced by sending very large transmission blocks, and the ergodic capacity is well studied [1]. According to the stringent delay constraint for the problem in consideration, the transmission block length is forced to be much shorter than the dynamics of the slow fading process, though still large enough to yield a reliable communication. The performance of such channels are usually evaluated by outage capacity. The notion of capacity versus outage was introduced in [8] and [1]. Shamai and Steiner [9] proposed a broadcas approach (multi- layer coding) for a single user block fading channel with no CSI at the transmitter, which maximizes the expected- rate decoded at the receiver. The more code layers, the more expected-rate. They evaluated the most expected-rate using a continuous-layer (inﬁnite-layer) code. This idea was applied to the two-hop single-relay channel in [10] and a channel with collocated users in [11]. Multi-layer coding can also achieve the maximum expected-rate in a block fading multiple-access channel with no CSI at the transmitters [12]. The optimized trade-off between the QoS and network coverage in a multicast network was derived in [7] using the broadcas approach.
+In this paper, we study multi-layer coding for the two- hop channel with parallel relays (the diamond channel) where neither the transmitter nor the relays access the forward- channels . We assume that channel gains are ﬁxed during two
+blocks of transmission. The relays can not buffer multiple packets and also handle large delays. Considering the decode- forward (DF) relying, in conjunction with multi-layer coding, we present a scheme to increase the average achievable rate at the destination. In the proposed scheme, each relay tries to decode as many layers as it can and then forward the decoded layers to the destination. The common layers, decoded at both relays, are decoded at the receiver cooperatively. Note that the relays do not have any information about the number of layers being decoded by the other relay. The receiver decodes from the ﬁrst layer up to the layer that the channel condition allows. After decoding all common layers, the layers decodable at just one relay are decoded. It is proved that the optimal coding strategy is transmitting uncorrelated signals via the relays.
+The rest of the paper is organized as follows. In section II, the preliminaries and setting of the problem are elaborated. In section III, the maximum throughput of the diamond channel is derived. Then, an achievable rate and two upper-bounds for multi-layer coding are presented in section IV. Finally, section V concludes the paper.
+Throughout the rest of this paper, we represent the expected operation by E(.), and the probability of event A by P {A}. The notation “ ln” is used for natural logarithm, and rates are expressed in nats. We denote f x (.) and F x (.) as the probability density function (pdf ) and the cumulative density function (cdf ) of random variable x, respectively. For every function F (x), let deﬁne F (x) = 1 − F(x) and ˙ F (x) = dF (x) dx . We denote matrices in boldface such as Q, and tr (Q) denotes the trace of the matrix Q. s o is the optimum solution for the variable s. ∗ , † , and |.| represent the conjugation, matrix conjugate transpose, and absolute value operator, respectively. CN(0,1) denotes the complex circularly symmetric Gaus- sian distribution with zero mean and unit variance. W(.) is
+the Lambert W -function, which is the inverse function of f (W ) = W e W . E 1 (x) is the exponential integral function, which is ∞ x e −t t dt, x 0. For convenience in presentation, let us denote E |X i | 2 = 1, ∀i.
+Here, some previous results are reviewed in order to enhance the lucidity of the next sections. Consider a one to one block fading channel with single-antenna transmitter and single- antenna receiver. The received signal is Y = hX + Z, where X is the transmitted signal with the total average power P s , h ∼ CN(0,1) is the fading coefﬁcient, and Z ∼ CN(0,1) is the independent and identically distributed (i.i.d.) AWGN.
+Consider X as a single-layer code with rate R = ln (1 + P s s ). The maximum throughput received at the des- tination is R m sl = max s e −s ln (1 + P s s ). The optimum so- lution for s will be s o = 1 W 0 (P
+Continuous-layer coding, a.k.a. broadcast approach, achieves the most expected-rate of the channel. In this scheme, the transmitter sends a continuum of multi-layer codes and the receiver decodes the received signal from the ﬁrst layer up to the layer that its backward-channel conditions allow. The optimized power allocation among layers was solved in [9] and the maximum expected-rate of the channel is given by
+Let us ﬁrst restate the system model. As Figure 1 shows, the destination receives data via two parallel relays and there is no direct link between the source and the destination. The source is sending a signal X with the total average power EX 2 = P s , and the received signal at the i’th relay is denoted by Y r i = h r i X + Z r i , i = 1, 2. The i.i.d. AWGN at the i’th relay is represented by Z r i ∼ CN(0,1), and h r i ∼ CN(0,1) is the channel coefﬁcient from the transmitter to the i’th relay. The i’th relay forwards a signal X r i to the destination with the total average power EX 2 r i = P r . Hence, the received signal at the destination is Y = h 1 X r 1 + h 2 X r 2 + Z, where Z ∼ CN(0,1) is the i.i.d AWGN and h i ∼ CN(0,1) is the channel coefﬁcient from the i’th relay to the receiver. All h
+i and h r i are assumed to be constant during two transmission blocks. Obviously, channel gains a i = |h i | 2 and a r i = |h r i | 2 have exponential distribution.
+Note that the transmitter as well as both relays and the receiver are equipped with one antenna. We assume that the relays operate in a full-duplex mode and they are not capable of buffering data over multiple coding blocks or rescheduling tasks. Since there is no link between the relays, the half-duplex mode is a direct result of the full-duplex mode with frequency or time division.
+In single-layer coding, a signal X = γX 1 with power P s and rate R = ln(1 + P s s ) is transmitted, where γ 2 = P s . The i’th relay decodes and forwards the received signal in case a r i s. If a r i < s, then a r i is replaced by zero. The coding scheme at the relays is a space-time code in the Alamouti code sense [13]. At time t, the ﬁrst relay sends αX (t) while the other relay sends βX (t + 1). To satisfy the relays power constraint, it is required that α 2 = β 2 = P r . At time t + 1, the ﬁrst and the second relays send −αX ∗ (t + 1) and βX ∗ (t), respectively. The relay with a r i < s simply sends nothing. The following Theorem proves the optimality of the scheme.
+Theorem 1- In single-layer DF of the diamond channel, the maximum throughput is achieved by sending uncorrelated signals over the relays. the maximum throughput is given by
+, 1.212 . Proof:
+Consider Q = P r 1 ρ ρ 1 as the transmit covariance matrix, i.e., Q = E X r 1 X ∗ r 2 . Let deﬁne F eq (s) as follows
+where a = 1 P r hQh † and h = h 1 h 2 . The ﬁrst term in the right hand side of (3) represents the case of decoding the signal at both relays and the receiver. The second and third terms represent the probability of decoding the signal at only one relay and the receiver. The maximum throughput of the diamond channel in general form is
+. Since Q is non-negative deﬁnite, one can write it as Q = UDU † , where D = P r 1 + ρ 	 0 0 	 1 − ρ is non-negative
+diagonal and U = 1 √2 1 1 1 −1 is unitary. Since h 1 and h 2 are independent complex Gaussian random variables, each with independent zero-mean and equal variance real and imaginary parts, the distribution of h = hU is the same as that of h [14]. As a result,
+Jorswieck and Boch [15] proved that in an uncorrelated MISO channel with no CSI at the transmitter, but perfect CSI at the receiver, for every transmission rate, the optimal transmit strategy minimizing the outage probability is to use a fraction of all available transmit antennas and perform equal power allocation with uncorrelated signals. Therefore, the solution of max ρ,tr (D) 2P r P ln 1 + h Dh † 	 ln(1 + P s s ) is ρ = 0 or ρ = 1.
+F ρ =0 eq (s) F ρ =1 eq (s), ∀s s c 	 (6) In the remainder of the proof, we show that in case ρ = 1, s o
+s c . But ∀s s c , F ρ =0 eq (s o ) F ρ =1 eq (s o ) and as a result, ρ o = 0, i.e., the optimum correlation coefﬁcient between the relay
+signals maximizing the throughput of DF diamond channel is zero.
+Assume that s o maximizes R(s) = F ρ =1 eq (s) ln (1 + P s s ). Hence, ˙ R(s o ) = 0. Deﬁning f ρ =1 eq (s) = ˙ F ρ =1 eq (s), we get
+. As such, we get
+Noting F ρ =1 eq (s) = e −s + 2 (1 − e −s ) e − Ps Pr s 2 e − ( 1+ Ps 2Pr ) s , we have
+, 1.212 , we have
+r (s) < s, ∀s s t . 	 (9) The derivative of g (s) over P s is
+(10) Therefore, g (s) is a monotonically increasing function of P s and its minimum is in P s = 0. As a result,
+Comparing (9), (11), r (0) = 2P r P s > 0 and g(0) = 0 yields r (s) > g(s) s = 0
+r (s) < g(s) s s t . 	 (12) Applying (12) to (8) gives
+˙ R(s) < 0 s s t . 	 (13) As R(s) is a continuous function, according to (13), 0
+s o < s t . Noting s t < s c , (6) yields F ρ =0 eq (s o ) > F ρ =1 eq (s o ) and as a result, ρ o = 0. Thus, a = a 1 +a 2 . Substituting the channel gain cdf s in (3), the maximum throughput of the DF diamond channel is given by (2), which is achievable by applying the aforementioned distributed space-time code.
+In the previous section, the maximum throughput of the channel has been determined by sending a single-layer code. Increasing the number of code layers results in a higher average achievable rate at the destination. In this section, we derive an achievable rate and two upper-bounds for multi-layer coding.
+Since continuous-layer coding for the problem of interest can not be directly solved by variations methods, we choose a ﬁnite-layer code and proceed as follows. The transmitter sends a K-layer code X = K l =1 γ l X l to the relays, where γ 2 l represents the power allocated to the l’th layer with rate
+. The relays start decoding the received signal from the ﬁrst layer up to the layer that their backward-channel conditions allow. Then, the relays re-encode and forward the decoded layers to the receiver. We start the encoding procedure by stating the following corollary of Theorem 1.
+Corollary 1- In multi-layer DF for the diamond channel, the relay signals at each layer must be uncorrelated in order to achieve the maximum expected-rate.
+Due to the lack of space, the proof is not stated, but can be completed by following the steps in the proof of Theorem 1 and using the fact that
+Assume that the ﬁrst and the second relays decode M and N layers out of the whole K transmitted layers, respectively, according to their corresponding backward-channel. Note that channel conditions do not change during two consecutive blocks of transmissions. Corollary 1 demonstrates that un- correlated signals must be transmitted over the relays. For this purpose, inspired by the Alamouti code [13], the fol- lowing scheme is proposed. At time t, the ﬁrst relay sends
+α l X l (t) while the other relay sends K l =1 β l X l (t + 1). At time t + 1, the ﬁrst and the second relays send
+β l = P r , β l = 0 for l = N + 1, ..., K. The received signal at the receiver is
+(15) One may express a matrix representation for (15) as
+−Y ∗ (t+1) = K l =1 h 1 α l h 2 β l −h ∗ 2 β l h ∗ 1 α l X l (t) X l (t+1) + Z (t) −Z ∗ (t+1) . (16)
+The receiver starts decoding the code layers in order, from the ﬁrst layer up to the highest layer that is decodable. To decode the l’th layer, after decoding the ﬁrst l − 1 layers,
+the channels are separated into two parallel channels by multiplying both sides of (16) by h
+h ∗ 2 β l h 1 α l . Therefore, ˜ Y (t)
+(17) ˜ Z (t) and ˜ Z (t+1) are two independent i.i.d AWGN, each with power a 1 α 2 l + a 2 β 2 l .
+The interference power caused by upper layers while de- coding the l’th layer is
+Thus, the probability that the l’th layer can be correctly decoded at the receiver is
+Hence, the expected-rate at the destination using this scheme can be written as follows
+Theorem 2- In the diamond channel, the above result implies that the following expected-rate is achievable.
+β 2 l = P r , where α l and β l are zero for the layers which are not decoded at the relays.
+Remark- One important feature of the proposed scheme is that the layers being decoded at both relays are added coher- ently at the receiver although each relay has no information about the number of layers being successfully decoded by the other relay.
+Here, two upper-bounds for the DF scheme are derived. Let deﬁne an upper-bound model as a diamond channel with uninformed transmitters, in which the channel gains of the transmitter-relay links are both max {a r 1 , a r 2 }, and that of the relay-destination links are a 1 and a 2 . With respect to
+Corollary1, this channel can be modeled by a two-hop single- relay channel with the channel gains a r = max {a r 1 , a r 2 } and a = a 1 + a 2 for the transmitter-relay link and the relay- destination link, respectively. Clearly, the maximum expected- rate of this model yields an upper-bound on the problem of interest.
+The optimum relaying strategy in the upper-bound model is decode-forward. The most expected-rate of two-hop single- relay channels has been studied in [10]. Here, only the ﬁnal solution is mentioned as
+I s (0) = P s , I r (0 |a r = y) = P r . 	 (23) As the maximum transmission rate of the relay can not exceed its successfully decoded rate, the constraint on rate is
+Substituting F a r (x) = e −x (2 − e −x ) and F a (x) = (1 + x )e −x in (22), we come up with the upper-bound as follows, which does not lend itself to a closed form formulation.
+Proposition 1- In the DF diamond channel, the maximum expected-rate at the destination is bounded by
+(25) subject to the power and rate constraints (23) and (24), respectively.
+The cutset bound of the upper-bound model results in a closed form expression. Due to space limitations, we only summarize the results below.
+Proposition 2- The cutset bound of the upper-bound model is speciﬁed by min {R 1 , R 2 }, where
+= 1 + P s s 1 and 1 + s 2 − s 2 2 − P r s 3 2 = 0, respectively.
+Figure 2 shows the maximum throughput, the maximum expected-rate of two-layer coding, and the upper-bounds for the diamond channel, where P r = −10dB-30dB and P s = 0dB.
+The main goal of the paper is to maximize the throughput and expected-rate in the diamond channel with Rayleigh block fading links and uninformed transmitters. To this end, decode- forward relaying, in conjunction with multi-layer coding, inspired by the degraded broadcast channels, is applied. It is proved that in the decode-forward diamond channel, the
+throughput and the expected-rate are maximized by sending uncorrelated signals over the relays. The maximum throughput is analytically formulated. Furthermore, an achievable rate as well as two upper-bounds are presented for multi-layer coding.
+The authors wish to thank A. Bayesteh for helpful discus- sions.
+[[[ REFS ]]]
+E. Biglieri
+J. Proakis
+S. Shamai
+--
+Fading channels: Information theoretic and communication aspects
+----
+T. M. Cover
+A. E. Gamal
+--
+Capacity theorems for the relay channel
+----
+G. Kramer
+M. Gastpar
+P. Gupta
+--
+Cooperative strategies and capacity theorems for relay networks
+----
+B. Schein
+R. Gallager
+--
+The Gaussian parallel relay network
+----
+A. Sanderovich
+S. Shamai
+Y. Steinberg
+G. Kramer
+--
+Communica- tion via decentralized processing
+----
+Y. Hua
+Y. Chang
+Y. Mei
+--
+A networking perspective of mobile parallel relays
+----
+S. R. Mirghaderi
+A. Bayesteh
+A. Khandani
+--
+On the maximum achievable rates in wireless multicast networks
+----
+L. H. Ozarow
+S. Shamai
+A. D. Wyner
+--
+Information theoretic considerations for cellular mobile radio
+----
+S. Shamai
+A. Steiner
+--
+A broadcast approach for a single-user slowly fading MIMO channel
+----
+A. Steiner
+S. Shamai
+--
+Single-user broadcasting protocols over a two-hop relay fading channel
+----
+
+--
+Broadcast cooperation strategies for two colocated users
+----
+P. Minero
+D. Tse
+--
+A broadcast approach to multiple access with random states
+----
+S. Alamouti
+--
+A simple transmit diversity technique for wireless com- munications
+----
+E. Telatar
+--
+Capacity of multi-antenna Gaussian channels
+----
+E. Jorswieck
+H. Boche
+--
+Information theory outage probability in multiple antenna systems
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\136.pdf
+[[[ LINKS ]]]
+

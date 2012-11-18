@@ -1,0 +1,103 @@
+[[[ ID ]]]
+170
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Security Notions for Information Theoretically Secure Encryptions
+[[[ AUTHORS ]]]
+Mitsugu Iwamoto
+Kazuo Ohta
+[[[ ABSTR ]]]
+Abstract—This paper is concerned with several security notions for information theoretically secure encryptions deﬁned by the variational (statistical) distance. To ensure the perfect secrecy (PS), the mutual information is often used to evaluate the statistical independence between a message and a cryptogram. On the other hand, in order to recognize the information theoretically secure encryptions and computationally secure ones comprehensively, it is necessary to reconsider the notion of PS in terms of the variational distance. However, based on the variational distance, three kinds of deﬁnitions for PS are naturally introduced, but their relations are not known. In this paper, we clarify that one of three deﬁnitions for PS with the variational distance, which is a straightforward extension of Shannon’s perfect secrecy, is stronger than the others, and the weaker two deﬁnitions of PS are essentially equivalent to the statistical versions of indistinguishability and semantic security.
+[[[ BODY ]]]
+Perfect secrecy (PS) is a strong security notion which is secure against an adversary with unbounded computing power. Perfect secrecy was deﬁned by Shannon [1], and he proved that perfect secrecy is achieved by one time pad (Vernam) cipher [2]. Furthermore, in order to achieve perfect secrecy, Shannon also proved in [1] that the entropy of a key must be greater than the entropy of a message, which makes perfect secrecy quite impractical.
+Roughly speaking, PS is deﬁned by the statistical indepen- dence between a message M and a cryptogram C. Speciﬁcally, we often require almost statistical independence between C and M to ensure PS. We note here that two metrics can be used to measure the almost statistical independence, i.e., the mutual information and the variational (statistical) distance. In general, the mutual information is often used in information theoretic cryptography since it guarantees stronger security compared to the security notions based on the variational distance due to Pinsker’s inequality. On the other hand, the variational distance is often used in computationally secure cryptography: For instance, indistinguishability (IND) and semantic security (SS) are deﬁned in terms of the variational distance. We note that several researchers recently discussed one time pad cipher under the security notions developed in computationally secure cryptography. For instance, Russel– Wang [3] introduced entropic security based on semantic security, and they succeeded in shortening the key length of a symmetric key cryptosystem which is secure against an unbounded adversary. In addition, Dodis–Smith [4] introduced another security notion which is closely related to indistin- guishability, and they gave the other realization of entropic security by using extractors [5].
+Given the above backgrounds, we are interested in PS deﬁned by the variational distance, and its relation to IND and
+SS, which will be some help for comprehensive understanding of information theoretically secure encryptions and computa- tionally secure ones. However, as we will see in Deﬁnition 2, three kinds of deﬁnitions of PS denoted by PS ∗M (ε), PS C ∗ (ε), and PS CM (ε) can be naturally introduced in terms of the variational distance. It is obvious that these three notions of PS are the same when ε = 0. However, in the case of ε > 0, their relations are not known. In this paper, we will point out that PS ∗M (ε) is stronger than the others by showing a pathological example. Furthermore, it will be proved that the remaining two deﬁnitions PS C ∗ (ε) and PS CM (ε) guarantee essentially the same security as the statistical versions of IND and SS.
+The rest of this paper is organized as follows: In Section II, notations and three variations of PS are introduced. Statistical IND is introduced in section III, and the relations between PS and statistical IND are clariﬁed. A relation between statistical IND and statistical SS is proven in Section IV. Finally, a gap between one of three variations of PS and the other security notions are pointed out in Section V. Technical lemmas are provided in Appendix.
+Let M , K, and C be random variables taking values in ﬁnite sets M, K, and C, which correspond to sets of messages, keys, and cryptograms, respectively. For a random variable X taking values in a ﬁnite set X and an element x ∈ X , denote by P X (x) a probability of X = x. Let P(X ) be the totality of probability distributions over X .
+A symmetric key cryptography Σ consists of a probability distribution P K ∈ P(K) of a key, and a pair of an encryption function Enc : M × K → C, and a decryption function Dec : C × K → M, i.e., Σ def = (P K , Enc, Dec). Note that K is chosen independently of a message M , and Enc and Dec are deterministic maps. Suppose that a message is generated according to a probability distribution P M ∈ P(M). Then, the probability distribution P C of a cryptogram is determined by P M , P K and Enc. Let P CM be a joint probability distribution of a cryptogram C and a message M , and denote by P C |M a conditional distribution of a cryptogram when a message is given. Denote by 2 C |M an |C| × |M| transition probability matrix 1 associated with {P C |M (c |m)} c ∈C,m∈M , i.e., each element of 2 C |M corresponds to P C |M (c |m) for c ∈ C and m ∈ M. The following theorem states fundamental properties of P C |M for symmetric key encryptions. The proof is provided in Appendix A.
+Theorem 1: If a key K is chosen independently of a mes- sage M , it holds that 2
+Furthermore, in the case of |C| = |M|, there exists a symmetric key cryptosystem Σ satisfying (1) iff (if and only if) the probability transition matrix 2 C |M is doubly stochastic 3 .
+Hence, we assume that the conditional probability distribu- tion P C |M (c |m), c ∈ C, m ∈ M is naturally deﬁned by (1) if a symmetric key cryptosystem Σ is given.
+Deﬁnition 1 (Perfect secrecy, [1]): A symmetric key cryp- tosystem Σ = (P K , Enc, Dec) guarantees perfect secrecy if
+Deﬁnition 1 means that no information of a message can be obtained from a cryptogram since a priori probability distribution P M of a message coincides with a posteriori probability distribution of M computed by an adversary using a cryptogram.
+∀c ∈ C, ∀m ∈ M, P C |M (c |m) = P C (c) 	 (3) ∀c ∈ C, ∀m ∈ M, P CM (c, m) = P C (c)P M (m) (4)
+since (2) means that random variables M and C are statisti- cally independent.
+We are now consider relaxed deﬁnitions of perfect secrecy. That is, we deﬁne almost independence between a message M and a cryptogram C given by (2)–(4) in terms of the variational (statistical) distance 4 denoted by d( ·, ·).
+Deﬁnition 2: For a real number ε ∈ [0, 1], we say that a symmetric key cryptosystem Σ is PS ∗M (ε)–, PS C ∗ (ε)–, or PS CM (ε)–secure if Σ satisﬁes the following conditions:
+∀c ∈ C, d(P M |C ( ·|c), P M ( ·)) ≤ ε PS C ∗ (ε): ∀P M ∈ P(M),
+∀m ∈ M, d(P C |M ( ·|m), P C ( ·)) ≤ ε PS CM (ε): ∀P M ∈ P(M),
+As shown above, PS ∗M (0), PS C ∗ (0) and PS CM (0) are equivalent to (2)–(4), respectively, and they are all equivalent. In this paper, we are interested in relations among these security notions when ε is positive and sufﬁciently small. The main results of this paper are summarized as follows:
+• PS ∗M (ε) is the strongest among three security notions in Deﬁnition 2, which reﬂects the observation that PS ∗M (ε) is the most straightforward extension of (2) in Deﬁnition 1.
+• Two security notions in Deﬁnition 2 except for PS ∗M (ε) are equivalent to each other, and they are essentially equivalent to the statistical versions of indistinguishability
+and semantic security which will be introduced later. As a result, it is clariﬁed that indistinguishability and semantic security are weaker security notions even if they are formulated in information theoretically secure setting.
+We reformulate the security notion of indistinguishability denoted by IND(ε) which is suitable for information theoret- ically secure setting. Then, we discuss the relation between IND(ε) and three notions of perfect secrecy presented in Deﬁnition 2.
+It is easy to see that (3) is also represented as ∀m 0 , ∀m 1 ∈ M, ∀c ∈ C, P C |M (c |m 0 ) = P C |M (c |m 1 ) 5 , which is equiva- lent to
+Note that (5) implies that cryptograms corresponding to ar- bitrarily chosen messages m 0 and m 1 cannot be statistically distinguished.
+We now relax the condition given by (5) using a real number ε ∈ [0, 1] such that
+According to the deﬁnition of variational distance, d(P X , P Y ) ≤ ε can be rewritten as
+Note that, (8) is the deﬁniton of computational indistin- guishability if the function f is restricted to the family of functions which can be computed in polynomial time [7, 8]. Hence, we introduce a security notion of statistical indistin- guishability based on (8) as follows.
+Deﬁnition 3: For a real number ε ∈ [0, 1], we say that a symmetric key cryptosystem Σ is statistically ε– indistinguishable (IND(ε)–secure, for short) if Σ satisﬁes (6) (and also (8)).
+Remark 1: Statistical indistinguishability introduced by Dodis–Smith [4] looks different from Deﬁnition 3, but it is easy to show that they are essentially the same.
+In the following, we clarify the relation among security notions in Deﬁnitions 2 and 3.
+Theorem 2: For an arbitrary ε ∈ [0, 1], a symmetric key cryptosystem Σ is PS C ∗ (ε)–secure iff Σ is IND(ε)–secure. Proof of Theorem 2: Observe for every m ∈ M that
+= 1 2
+First, we show that Σ is PS C ∗ (ε)–secure if Σ is IND(ε)– secure. In this case, we assume that ∀m, ∀m ∈ M, d(P C |M ( ·|m), P C |M ( ·|m )) ≤ ε, and hence, from (9) we have
+= ε 	 (10) and hence Σ is PS C ∗ (ε)–secure.
+We prove the converse. Suppose that Σ is PS C ∗ (ε)–secure. Substitute both m = m 0 and
+The next theorem implies an equivalence between IND(ε) and PS CM (ε).
+Theorem 3: For an arbitrary ε ∈ [0, 1], a symmetric key cryptosystem Σ is PS CM (ε)–secure if Σ is IND(ε)–secure. Conversely, if Σ is PS CM (ε)–secure, it is IND(2ε)–secure.
+Proof of Theorem 3: This proof is essentially the same with Theorem 2. Observe that d(P CM , P C P M ) can be calculated as follows:
+= 1 2
+We show that Σ is PS CM (ε)–secure if Σ is IND(ε)–secure. In this case, we have from (13) that
+if ∀m, ∀m ∈ M, d(P C |M ( ·|m), P C |M ( ·|m )) ≤ ε. Hence, if Σ is IND(ε)–secure, it is also PS CM (ε)–secure.
+Then, suppose that Σ is PS CM (ε)–secure. Then, substitut- ing
+We have proved that PS C ∗ (ε), PS CM (ε), and IND(ε) are the same security notions. On the other hand, in section V, we show an example that PS ∗M (ε) is stronger security notion than the others in the case of ε > 0.
+We consider the relation between perfect secrecy and se- mantic security in information theoretically secure setting. Here, IND(ε) also plays a crucial role.
+Deﬁnition 4 (Statistical semantic security, [3]): For every real number ε ∈ [0, 1] we say that a symmetric key cryptosys- tem Σ = (P K , Enc, Dec) is statistically ε–semantic secure (SS(ε)–secure, for short) if, for an arbitrary distribution of a message P M ∈ P(M) and for an arbitrary map f : C → {0, 1}, there exists a random variable G f that depends on f but is independent of M , so that for every map h : M → {0, 1}, it holds that
+Intuitively, Deﬁnition 4 implies that a cryptogram C is almost useless to obtain any one bit information of a message M , since (17) implies that, in order to guess one bit informa- tion h(M ) of a message M , there is no difference between by using a cryptogram C and a map f , and by using f only with a random coin.
+Remark 2: In [3], (t, ε)–entropic security is deﬁned if a symmetric key cryptosystem Σ satisﬁes Deﬁnition 4 for every message with min-entropy t, and it is shown that the key length is reduced to n − t + ω(log n) bits for (t, n −ω(1) )– entropic security 6 . Hence, Deﬁnition 4 coincides with (0, ε)– entropic security. Furthermore, it is pointed out in [3] that (0, 0)–entropic security is equivalent to PS in Deﬁnition 1.
+We are interested in the relation between PS introduced in Deﬁnition 2, and statistical semantic security SS(ε) when ε > 0. To see this, we show the following relation between IND(ε) and SS(ε).
+Theorem 4: For arbitrary ε ∈ [0, 1], if a symmetric key cryptosystem Σ is IND(ε)–secure, then Σ is also SS(ε)–secure. Conversely, if Σ is SS(ε)–secure, then it is also IND(4ε)– secure.
+Proof of Theorem 4: First, we prove that Σ is SS(ε)–secure if Σ is IND(ε)–secure. This proof is essentially the same with the proof appeared in [8] under computationally secure setting. Let M ∗ be a random variable of a message which is independent of the legitimate message M . Then, assume that the random variable G f is generated by P C |M (c |m) and M ∗ , i.e., we deﬁne that G f def = f (C ∗ ) where P C ∗ (c) def = ∑
+Let us deﬁne an indicator function  f,h : C × M → {0, 1} for maps f and h such that
+Then, the left hand side of (17) can be evaluated as |Pr {f(C) = h(M)} − Pr {G f = h(M ) }|
+where f h,m 0 : C → {0, 1} is deﬁned by f h,m 0 (c) = 1 iff  f,h (c, m) = 1. Then, due to the deﬁnition of IND(ε) given by (5), it is easy to see that (19) can be bounded from above by
+Conversely, we show that Σ is IND(4ε)–secure if Σ is SS(ε)–secure. Assuming that a symmetric key cryptosystem Σ is SS(ε)–secure, there exist an arbitrary f : C → {0, 1} and a random variable G f that depends on f but is independent of M , and (17) holds for an arbitrary h : M → {0, 1}.
+Now, letting h be a map that always outputs 1 for every m ∈ M, it holds for arbitrary f : C → {0, 1} that
+Pr {f(C) = 1} − Pr {G f = 1 } ≤ ε 	 (20) which is equivalent to
+Pr {f(C) = } Pr {h(M) = } ≤ Pr {f(C) = h(M)} − Pr {G f = h(M ) } + ε
+Similarly, by evaluating the upper bound of Pr {f(C) = }, ∈ {0, 1}, we have
+Pr {f(C) = h(M)} − ∑
+Applying Lemma 1 in Appendix B to this inequality 7 , it holds that
+Since P M ∈ P(M) is arbitrary, we set P M in the same way as (15) for arbitrarily ﬁxed m 0 , m 1 ∈ M, and let h(m) = δ m 0 (m) which is deﬁned by (11). Then, (27) becomes
+Pr {M = m 0 } Pr {f(C) = 1 | M = m 0 } − ∑
+Therefore, d(P C |M ( ·|m 0 ), P C |M ( ·|m 1 )) ≤ 4ε is established for every m 0 , m 1 ∈ M.
+We show an exmaple of a symmetric key cryptosystem Σ that is IND(ε)–secure (and hence, it is also PS C ∗ (ε)– and PS CM (ε)–secure) with arbitrarily small ε > 0, while it is PS ∗M (ε )–secure with ε ≥ 1/2. This fact means that PS ∗M (ε) is stronger than the other security notions. We note that PS ∗M (ε) is a straightforward extension of Shannon’s perfect secrecy given by (2) in Deﬁnition 1.
+Example 1: For an arbitrary even integer n, deﬁne C = {c 1 , c 2 , . . . , c n } and M = {m 1 , m 2 , . . . , m n }. Then, consider the following n ×n probability transition matrix corresponding to P C |M such that
+     
+    
+where δ = ε/2 ∈ (0, n −1 ], and the (i, j) element of 2 C |M is equal to P C |M (c i |m j ). From Theorem 1, note that there exists a symmetric key cryptosystem Σ ex corresponding to (29) since it is doubly stochastic.
+It is easy to check that d(P C |M ( ·|m i ), P C |M ( ·|m j )) is equal to 0 or 2δ (= ε) for each m i , m j ∈ M. Hence, 2 C |M realizes a IND(ε)–secure symmetric key cryptosystem (and hence, it is also PS C ∗ (ε)–, and PS CM (ε)–secure).
+On the other hand, for uniformly distributed messages, i.e., P M (m i ) = 1/n, ∀m i ∈ M, it is easy to see that the the transition probability matrix 2 M |C corresponding to a family of posteriori conditional probability distributions {P M |C (m |c)} c ∈C,m∈M corresponds to the transposed matrix of 2 C |M . Hence, in this case
+which implies that Σ ex is PS ∗M (ε )–secure with 8 ε ≥ nδ/2. In particular, ε ≥ 1/2 for every n if ε = 2/n (= 2δ) which can be arbitrarily small for sufﬁciently large n.
+In this example, the symmetric key cryptosystem Σ ex given by (29) violates d(P M |C ( ·|c), P M ( ·)) ≤ ε with the negligibly small probability Pr {C = c 1 ∨ C = c 2 } = 2/n if P M is uniform and n is sufﬁciently large, although it is required by PS ∗M (ε)–security to satisfy d(P M |C ( ·|c), P M ( ·)) ≤ ε for every c ∈ C. On the other hand, Σ ex is still considered to be secure under the other security notions since they focus on the probability distribution of C and the probability that such insecure cryptograms are output is negligible.
+The authors would like to thank Prof. Hideki Imai in Chuo University, Prof. Ryutaroh Matsumoto in Tokyo Institute of Technology, and Mr. Yusuke Sakai in University of Electro- Communications for their helpful comments. The work of the ﬁrst author, M. Iwamoto is partially supported by the MEXT Grant-in-Aid for Young Scientists (B) No. 20760236.
+Observe that a random variable C of a cryptogram is ob- tained by C = Enc(M, K), where M and K are independent random variables of a message and a key, respectively, and Enc : M×K → C is a deterministic map of encryption. Hence, the joint probability distribution P CM (c, m) of a cryptogram and a message can be represented as
+= Pr {Enc(M, K) = c, M = m} =
+= P M (m)Pr {Enc(m, K) = c} , 	 (31) where the marked equality holds since M and K are indepen- dent. Hence, we have (1).
+In what follows, we consider the case of |M| = |C|. In this case, if k ∈ K is ﬁxed, there exists a bijection π k : M → C since every cryptogram c ∈ C can be uniquely decrypted by k ∈ K. Hence, for each k ∈ K, let Π k ∈ {0, 1} n ×n be a permutation matrix which corresponds to the bijection π k . Then, it is easy to see that the probability transition matrix induced by Enc and K can be represented as
+which is doubly stochastic. Conversely, due to Birkoff–von Neumann Theorem, there exists a pair of P K (k) and Π k , k ∈ K, satisfying (32) if 2 C |M is doubly stochastic.
+Lemma 1: For two binary random variables X and Y over a set {0, 1}, and for ε ∈ [0, 1], the following two inequalities are equivalent:
+We show that (33) ⇒ (34) since (34) ⇒ (33) is obvious. Letting P XY (x, y), x, y ∈ {0, 1} be a joint probability distribution of X and Y given by TABLE I, (33) is equivalent to
+a + d − (a + b)(a + c) − (c + d)(b + d) ≤ ε. (35) Since it holds that a + b + c + d = 1, (35) becomes |ad−bc| ≤ ε/2. Furthermore, using a + b + c + d = 1 again, we have
+2 (36) P XY (1, 1) − P X (1)P Y (1) = d − (c + d)(b + d) ≤ ε 2 (37)
+Remark 3: Note that (33) ⇒ (34) does not generally hold if X and Y are not binary random variables.
+[[[ REFS ]]]
+
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\170.pdf
+[[[ LINKS ]]]
+

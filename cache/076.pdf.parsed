@@ -1,0 +1,185 @@
+[[[ ID ]]]
+76
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Sparse Signal Recovery from Sparsely Corrupted Measurements
+[[[ AUTHORS ]]]
+Christoph Studer
+Patrick Kuppinger
+Graeme Pope
+Helmut Bölcskei
+[[[ ABSTR ]]]
+Abstract—We investigate the recovery of signals exhibiting a sparse representation in a general (i.e., possibly redundant or incomplete) dictionary that are corrupted by additive noise admitting a sparse representation in another general dictionary. This setup covers a wide range of applications, such as image inpainting, super-resolution, signal separation, and the recovery of signals that are corrupted by, e.g., clipping, impulse noise, or narrowband interference. We present deterministic recovery guarantees based on a recently developed uncertainty relation and provide corresponding recovery algorithms. The recovery guarantees we ﬁnd depend on the signal and noise sparsity levels, on the coherence parameters of the involved dictionaries, and on the amount of prior knowledge on the support sets of signal and noise.
+[[[ BODY ]]]
+We consider the problem of identifying the sparse vec- tor x ∈ C N a from M linear and non-adaptive measurements collected in the vector
+z = Ax + Be 	 (1) where A ∈ C M ×N a and B ∈ C M ×N b are deterministic and general (i.e., not necessarily of the same cardinality and pos- sibly redundant or incomplete) dictionaries, and e ∈ C N b is a sparse noise vector. The support set of e and the corresponding nonzero entries can be arbitrary; in particular, e may also depend on x and/or the dictionary A.
+This recovery problem occurs in numerous applications, some of which are described next:
+• Clipping: Non-linearities in analog-to-digital converters often cause signal clipping, e.g., [2]. Speciﬁcally, instead of the M -dimensional signal vector y = Ax of interest, the device in question delivers g a (y), where the function g a (y) realizes entry-wise signal clipping to the interval [−a, +a]. Setting B = I M , where I M denotes the M ×M identity matrix, and rewriting (1) as z = y + e with e = g a (y) − y, we see that signal clipping is contained in the model (1). The nonzero entries of e are those for which clipping occurred; the vector e will therefore be sparse if the clipping level is chosen high enough. Here it is essential that the noise vector e be allowed to depend on the vector x and/or the dictionary A.
+• Impulse noise: In numerous applications, one has to deal with the recovery of signals corrupted by impulse
+noise [3]. Speciﬁc applications include, e.g., reading out from unreliable memory or recovery of audio signals im- paired by click/pop noise. The model in (1) incorporates such impairments by setting B = I M and identifying e with the impulse-noise vector.
+• Narrowband interference: In many applications one is interested in recovering audio, video, or communication signals that are corrupted by narrowband interference. Such impairments typically exhibit a sparse representa- tion in the frequency domain, which amounts to setting B = F M in (1), where F M denotes the M × M discrete Fourier transform matrix.
+• Super-resolution and inpainting: Our framework also encompasses super-resolution [4] and inpainting [5] for images, audio, and video signals. In both applications, only a subset of the entries of the (full-resolution) signal vector y = Ax is available. The missing entries are accounted for by choosing the vector e so that the entries of z = y + e, corresponding to the missing entries in y, are set to some (arbitrary) value. The missing entries of y are then ﬁlled in by recovering x from z followed by computing y = Ax. Note that in both applications, the dictionary A is typically redundant, i.e., A has more columns than rows, which demonstrates the need for recovery results that apply to redundant dictionaries.
+• Signal separation: The decomposition of audio or video signals into two distinct components also ﬁts into our framework. A prominent example is the separation of texture from cartoon parts in images [5]. In this appli- cation, one chooses the dictionaries A and B such that texture parts can be sparsely represented in A and cartoon parts are sparsely represented in B. Signal separation then amounts to extracting the sparse vectors x and e, simultaneously, from z = Ax + Be, where z represents the image to be decomposed; Ax corresponds to the texture part, and Be represents the cartoon part.
+Naturally, it is of signiﬁcant interest to identify fundamental limits on the recovery of x (and e, in the case of signal separation) from z in (1). For the noiseless case z = Ax such recovery guarantees are known [6], [7] and typically set limits on the maximum allowed number of nonzero entries of x. For the case of unstructured noise, i.e., z = Ax + n with no constraints imposed on n apart from n 2 < ∞, recovery
+Contributions: We derive conditions that guarantee perfect recovery of x (and e) from the sparsely corrupted observation z. Speciﬁcally, based on an uncertainty relation for pairs of general dictionaries presented in [1], we ﬁnd recovery guarantees that depend on the number of nonzero entries in x and e, and on the coherence parameters of the dictionaries A and B. These recovery guarantees are obtained for the following different cases: i) The support sets of both x and e are known (prior to recovery), ii) the support set of only x or only e is known, iii) the number of nonzero entries of only x or only e is known, and iv) nothing is known about x and e. We formulate recovery algorithms and derive corresponding performance guarantees.
+Notation: Lowercase boldface letters stand for column vectors and uppercase boldface letters designate matrices. For the matrix M, we denote its transpose, conjugate transpose, and pseudo-inverse by M T , M H , and M † , respectively. The kth column of M is designated by m k and the kth entry of m is [m] k . The space spanned by the columns of M is denoted by R(M). Throughout the paper, we assume that the columns of the dictionaries A and B have unit 2 -norm. The M × M identity matrix is denoted by I M , the M × N all zeros matrix is 0 M,N , and 0 M stands for the all-zeros vector of dimension M . The 2 -norm of the vector x is denoted by x 2 , x 1 stands for the 1 -norm of x, and x 0 designates the number of nonzero entries in x. Sets are designated by upper-case calligraphic letters; the cardinality of the set T is |T |. The complement of a set S is denoted by S c . For two sets S 1 and S 2 , s ∈ (S 1 + S 2 ) means that s is of the form s = s 1 + s 2 , where s 1 ∈ S 1 and s 2 ∈ S 2 . The set of subsets of S of cardinality less than or equal to n is denoted by ℘ n (S). The support set of the vector m, i.e., the index set corresponding to the nonzero entries of m, is designated by supp(m). The matrix M T is obtained by retaining the columns of M with indices in T ; the vector m T is obtained analogously from the vector m. For x ∈ R, we set [x] + = max{x, 0}.
+Recovery of the vector x from the sparsely corrupted measurement z = Ax + Be corresponds to a sparse-signal recovery problem subject to structured (i.e., sparse) noise. In this section, we brieﬂy summarize existing results for sparse- signal recovery from noiseless measurements, and we re- view recovery results available for unstructured and structured noise.
+If we do not impose additional assumptions on x, the problem of recovering x from the (noiseless) observation y = Ax with A being redundant (i.e., M < N a ) is obviously ill-posed. However, assuming that x is sparse changes the situation drastically. More speciﬁcally, one can recover x by solving
+This results, however, in prohibitive computational complexity, even for small problem sizes. Two of the most popular and computationally tractable alternatives to solving (P0) are basis pursuit (BP) [6] and orthogonal matching pursuit (OMP) [7]. BP amounts to solving
+OMP is a greedy algorithm that iteratively constructs a sparse representation of y. Recovery guarantees are usually expressed in terms of the sparsity level n x = x 0 and the coherence of the dictionary A deﬁned as µ a = max k, ,k= a H k a . As shown in [6], [7], a sufﬁcient condition for x to be the unique solution of (P0) applied to y = Ax and for BP and OMP to deliver this solution is
+Recovery guarantees in the presence of unstructured (and deterministic) noise, i.e., z = Ax + n with no constraints imposed on n apart from n 2 < ∞, were derived in, e.g., [8], [9]. The corresponding results guarantee that a suitably modiﬁed version of BP recovers an ˆ x satisfying
+x − ˆ x 2 < C n 2 provided that n x < (1 + µ −1 a )/4, where C > 0 depends on µ a and n x . Another result in [8] states that OMP delivers the correct support set (but does not perfectly recover the nonzero entries of x) provided that
+where |x min | denotes the absolute value of the component of x with smallest nonzero magnitude. This recovery condition yields sensible results only if n 2 /|x min | is small. Recovery guarantees in the case of stochastic noise n can be found in [9], [10]. We ﬁnally point out that perfect recovery of x is, in general, impossible in the presence of unstructured noise.
+C. Recovery Guarantees in the Presence of Structured Noise Special cases of the general setup (1) were considered
+in [2], [3], [11]–[14]. Speciﬁcally, in [11] it was shown that for A = F M and B = I M , perfect recovery of the M - dimensional vector x is possible if 2n x n e < M , where n e = e 0 . We emphasize that this result assumes the support set of e to be known (prior to recovery), an assumption that is often difﬁcult to meet in practice. It is interesting to observe that the condition 2n x n e < M is—in contrast to the recovery guarantee (3)—independent of the 2 -norm of the noise vector, i.e., Be 2 may, in principle, be arbitrarily large. We note that the recovery guarantees reported in [11] are based on an uncertainty relation that puts limits on how sparse a given signal can simultaneously be in the Fourier basis and in the identity basis. The present paper is heavily inspired by this observation.
+In [2], [12]–[14] probabilistic recovery results for A i.i.d. zero-mean Gaussian or a randomly sub-sampled unitary matrix and B an orthonormal basis (ONB) were reported.
+Based on the uncertainty relation in [1, Thm. 1], we next derive conditions that guarantee perfect recovery of x from the sparsely corrupted measurement z under different assumptions on prior knowledge about the support sets of signal and noise. Speciﬁcally, these conditions depend on the number of nonzero entries of x and e, and on the coherence parameters µ a and µ b of the dictionaries A and B, respectively, and the mutual coherence µ m = max k, a H k b . To simplify notation, we deﬁne the function
+In the remainder of the paper, X denotes supp(x) and E stands for supp(e). We furthermore assume that 1 µ m > 0.
+We start with the case where both X and E are known (prior to recovery). The values of the nonzero entries of x and e are unknown, of course. This scenario is relevant, for example, in applications requiring recovery of clipped band-limited signals with known spectral support X (i.e., A = F M and B = I M ).
+We ﬁrst rewrite the input-output relation in (1) according to z = D X ,E s X ,E with the concatenated dictionary D X ,E = [ A X B E ] and the stacked vector s X ,E = x T X e T E T . It is now important to realize that we can recover the stacked vector s X ,E perfectly and hence the nonzero entries of both x and e, if D X ,E has full column rank and the pseudo-inverse is given by D † X ,E = (D H X ,E D X ,E ) −1 D H X ,E . In this case, we get s X ,E according to
+The following theorem states a sufﬁcient condition for D X ,E to have full column rank, and hence for the pseudo-inverse D † X ,E to exist. This condition depends on the coherence parameters µ a , µ b , and µ m , of the involved dictionaries A and B and on X and E only through the cardinalities |X | and |E|, i.e., the number of nonzero entries in x and e, respectively.
+Theorem 1: Let z = Ax + Be with X = supp(x) and E = supp(e). Deﬁne n x = x 0 and n e = e 0 . If
+then the concatenated dictionary D X ,E = [ A X B E ] has full column rank.
+Consequently, if (5) holds, one can perfectly recover x (and also e) from z using (4).
+Next, we ﬁnd recovery guarantees for the case where E is known and X is unknown (prior to recovery). A prominent application for this setup is the recovery of clipped band- limited signals, where the spectral support of x is unknown (i.e., A = F M , B = I M , and X is unknown), E is known and corresponds to the set of clipped entries. The case where X
+is known and E is unknown can be treated similarly (see [1] for details).
+The setting of E known and X unknown was considered previously in [11] for the special case A = F M and B = I M . The recovery condition (8) in Theorem 2 below extends the result in [11, Thms. 5 and 9] to pairs of general dictionaries A and B.
+Theorem 2: Let z = Ax + Be where E = supp(e) is known. Consider the problem
+then the unique solution of (P0, E ) applied to z = Ax + Be is given by x and (BP, E ) delivers this solution.
+Solving (P0, E ) requires a combinatorial search, which re- sults in prohibitive computational complexity, even for moder- ate problem sizes. The convex relaxation (BP, E ) can, however, often be solved more efﬁciently.
+Rather than solving (P0, E ) or (BP, E ), we may compute the projection onto the orthogonal complement of R(B E ) according to:
+where R E = I M − B E B † E . This leaves us with the standard problem of recovering x from the modiﬁed measurement outcome ˆ z = R E Ax. Since the columns of R E A will, in general, not have unit 2 -norm, an assumption underlying the threshold in (2), we normalize the modiﬁed dictionary R E A by rewriting (9) as
+where ∆ is the diagonal matrix with elements [∆] , = 1/ R E a 2 , = 1, . . . , N a , and ˆ x ∆ −1 x. Now, R E A∆ plays the role of the dictionary (with normalized columns) and ˆ x is the unknown sparse vector that we wish to recover. Obviously, supp(ˆ x) = supp(x) and x can be recovered from ˆ x by noting that x = ∆ˆ x. The following theorem shows that (8) is sufﬁcient to guarantee the following: i) The columns of B E are linearly independent (guaranteeing the existence of B † E ), ii) R E a 2 > 0 for = 1, . . . , N a , and iii) no nonzero vector x ∈ C N a satisfying x 0 ≤ 2n x lies in the kernel of R E A. Hence, (8) guarantees perfect recovery of x from (10).
+Theorem 3: If (8) is satisﬁed, the unique solution of (P0) applied to ˆ z = R E A∆ˆ x is given by ˆ x. Furthermore, BP and OMP applied to ˆ z = R E A∆ˆ x are guaranteed to recover the unique (P0)-solution.
+For the case of X known and E unknown the recovery guarantee (8) is replaced by [1]
+We next consider the case where neither X nor E are known, but knowledge of either x 0 or e 0 is available (prior to recovery). A possible corresponding application scenario would be the recovery of a sparse pulse-stream with unknown pulse-locations from measurements that are corrupted by elec- tric hum with unknown base-frequency but known number of harmonics (e.g., limited by the acquisition bandwidth). We state our main result for the case n e = e 0 known and n x = x 0 unknown. The case where n x is known and n e is unknown can be treated similarly.
+Theorem 4: Let z = Ax+Be, deﬁne n x = x 0 and n e = e 0 , and assume that n e is known. Consider the problem
+ 
+where P =℘ n e ({1, . . . , N b }). The unique solution of (P0, n e ) applied to z = Ax + Be is given by x if
+Proof: The proof is similar to that of Theorem 2. The corresponding details can be found in [1].
+We emphasize that (P0, n e ) exhibits prohibitive compu- tational complexity, in general. Unfortunately, replacing the
+0 -norm of ˜ x in the minimization in (12) by the 1 -norm does not lead to a computationally tractable algorithm, as the constraint A˜ x ∈ ({z} + E ∈ P R(B E )) speciﬁes a non- convex set, in general. Nonetheless, the recovery threshold in (13) is interesting as it completes the picture on the impact of knowledge about the support sets of x and e on the recovery thresholds (see Section IV).
+Finally, we consider the case where no knowledge about the support sets X and E is available (prior to recovery). A typical application scenario for this setting is the decomposition of images into two distinct features, i.e., into a part that exhibits a sparse representation in A and another part exhibiting a sparse representation in B.
+Recovery guarantees for this case follow from results in [15] for the concatenation of general (possibly redundant or in- complete) dictionaries. This can be seen by writing (1) as z = Dw with D = [A B] and w = [x T e T ] T . In particular, it was shown in [15, Eq. 10] that the unique solution of (P0) applied to z = Dw is given by w and, furthermore, in [15, Eq. 13] that this solution is delivered by BP and OMP applied to z = Dw, if the number of nonzero entries of w is less than a corresponding sparsity threshold. These thresholds (i.e., [15, Eqs. 10 and 13]) are more restrictive than those in (5), (8), (11), and (13) (cf. Section IV), which reﬂects the fact that additional knowledge about the support sets X and E can only improve the recovery guarantees.
+Comparing the recovery thresholds (5), (8), (11), and (13) (Cases I-III), we observe that the price to be paid for not knowing the support set X or E is a reduction of the recovery threshold by a factor of two. For example, consider the recovery thresholds (5) and (8). For given n e ∈ [0, 1 + 1/µ b ], solving (5) for n x yields
+Hence, knowledge of X (prior to recovery) allows for twice as many nonzero entries in x compared to the case where X is unknown. This factor-of-two penalty has the same roots as the well-known factor-of-two penalty in spectrum-blind sampling [16]–[18].
+The factor-of-two penalty is illustrated in Fig. 1, where we plot the recovery thresholds (5), (8), (11), (13), and (for completeness) [15, Eq. 13] (which guarantees that w is recovered through BP and OMP in Case IV without knowledge about X or E ) for µ a = µ b = 0.05 and µ m = 0.1. In particular, we can see that for a ﬁxed error sparsity level, e.g., n e = 6, for the case where both X and E are known the threshold evaluates to n x < 8; when only E is known we have n x < 4. For a ﬁxed signal sparsity level, e.g., n x = 4, we can furthermore see that in the case where only n e is known we can tolerate only n e < 3 errors, compared to n e < 6 in the case when E is known but X is unknown. Finally, for Case IV where no knowledge about the support sets is available, the recovery threshold is worse than in the case where n e is known.
+We prove the full column-rank property of D X ,E by show- ing that if (5) is satisﬁed, there is a unique pair (x, e) with supp(x) = X and supp(e) = E such that z = Ax + Be. Assume that there exists an alternative pair (x , e ) such that
+z = Ax + Be with supp(x ) ⊆ X and supp(e ) ⊆ E (i.e., the support sets of x and e are contained in X and E , respec- tively); this would then imply that A(x − x ) = B(e − e). Since both x and x are supported in X it follows that x − x
+is also supported in X , which implies x − x 0 ≤ n x . Similarly, we get e − e 0 ≤ n e . Deﬁning p = x − x and P = supp(x − x ) ⊆ X , and, similarly, q = e − e and Q = supp(e − e) ⊆ E, we obtain the following chain of inequalities:
+≥ [1 − µ a (|P| − 1)] + [1 − µ b (|Q| − 1)] + /µ 2 m (14) ≥ [1 − µ a (n x − 1)] + [1 − µ b (n e − 1)] + /µ 2 m (15)
+where (14) follows from the uncertainty relation [1, Cor. 2] and (15) is a consequence of |P| ≤ n x and |Q| ≤ n e . Obviously, (15) contradicts the assumption in (5), which completes the proof.
+We begin by proving that x is the unique solution of (P0, E) applied to z = Ax + Be. Assume that there exists an alternative vector x that satisﬁes Ax ∈ ({z} + R(B E )) with x 0 ≤ n x . This would imply the existence of a vector e with supp(e ) ⊆ E, such that A(x − x ) = B(e − e). Since supp(e) = E and supp(e ) ⊆ E , we have supp(e − e) ⊆ E and hence e − e 0 ≤ n e . Furthermore, since both x and x have at most n x nonzero entries (at possibly different positions), we have x − x 0 ≤ 2n x . Deﬁning p = x − x
+and P = supp(x − x ), and, similarly, q = e − e and Q = supp(e − e) ⊆ E, we obtain the following chain of inequalities
+≥ [1 − µ a (|P| − 1)] + [1 − µ b (|Q| − 1)] + /µ 2 m (16) ≥ [1 − µ a (2n x − 1)] + [1 − µ b (n e − 1)] + /µ 2 m (17)
+where (16) follows from the uncertainty relation [1, Cor. 2] and (17) is a consequence of |P| ≤ 2n x and |Q| ≤ n e . Obviously, (17) contradicts the assumption in (8), which concludes the ﬁrst part of the proof.
+We next prove that x is also the unique solution of (BP, E ) applied to z = Ax + Be. Assume that there exists an alternative vector x satisfying Ax ∈ ({z} + R(B E )) with
+where (18) is a consequence of the reverse triangle inequality. Now, the 1 -norm of x can be smaller than or equal to that of x only if P X p 1 ≥ P X c p 1 . This would then imply that P X p 1 ≥ 0.5 p 1 . Deﬁning q = e − e and Q =
+supp(e − e), and noting that supp(e) = E and supp(e ) ⊆ E, it follows that |Q| ≤ n e . Setting P = X (with |X | = n x ), we obtain the following chain of inequalities:
+µ 2 m 	 (19) ≥ [1 − µ a (2n x − 1)] + [1 − µ b (n e − 1)] + /(2µ 2 m ) 	 (20)
+where (19) follows from the uncertainty relation [1, Thm. 1] applied to the difference vectors p and q, and by using the fact that P X p 1 ≥ 0.5 p 1 . Furthermore, (20) is a consequence of |P| = n x and |Q| ≤ n e . Rewriting (20), we obtain
+2n x n e ≥ [1 − µ a (2n x − 1)] + [1 − µ b (n e − 1)] + /µ 2 m . (21) Since (21) contradicts the assumption in (8), this proves that x is the unique solution of (BP, E) applied to z = Ax + Be.
+[[[ REFS ]]]
+C. Studer
+P. Kuppinger
+G. Pope
+H. Bölcskei
+--
+Recovery of sparsely corrupted signals
+----
+J. N. Laska
+P. Boufounos
+M. A. Davenport
+R. G. Baraniuk
+--
+Democracy in action: Quantization, saturation, and compressive sens- ing
+----
+R. E. Carrillo
+K. E. Barner
+T. C. Aysal
+--
+Robust sampling and reconstruction methods for sparse signals in the presence of impulsive noise
+----
+S. G. Mallat
+G. Yu
+--
+Super-resolution with sparse mixing estima- tors
+----
+M. Elad
+J.-L. Starck
+P. Querre
+D. L. Donoho
+--
+Simultaneous cartoon and texture image inpainting using morphological component analysis (MCA)
+----
+D. L. Donoho
+M. Elad
+--
+Optimally sparse representation in general (nonorthogonal) dictionaries via 1 minimization
+----
+J. A. Tropp
+--
+Greed is good: Algorithmic results for sparse approxima- tion
+----
+D. L. Donoho
+M. Elad
+V. N. Temlyakov
+--
+Stable recovery of sparse overcomplete representations in the presence of noise
+----
+J. A. Tropp
+--
+Just relax: Convex programming methods for identifying sparse signals in noise
+----
+Z. Ben-Haim
+Y. C. Eldar
+M. Elad
+--
+Coherence-based performance guarantees for estimating a sparse vector under random noise
+----
+D. L. Donoho
+P. B. Stark
+--
+Uncertainty principles and signal recovery
+----
+J. N. Laska
+M. A. Davenport
+R. G. Baraniuk
+--
+Exact signal recovery from sparsely corrupted measurements through the pursuit of justice
+----
+N. H. Nguyen
+T. D. Tran
+--
+Exact recoverability from dense corrupted observations via 1 minimization
+----
+J. Wright
+Y. Ma
+--
+Dense error correction via 1 -minimization
+----
+P. Kuppinger
+G. Durisi
+H. Bölcskei
+--
+Uncertainty relations and sparse signal recovery for pairs of general signal sets
+----
+P. Feng
+Y. Bresler
+--
+Spectrum-blind minimum-rate sampling and reconstruction of multiband signals
+----
+Y. Bresler
+--
+Spectrum-blind sampling and compressive sensing for continuous-index signals
+----
+M. Mishali
+Y. C. Eldar
+--
+Blind multi-band signal reconstruction: Compressed sensing for analog signals
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\076.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,186 @@
+[[[ ID ]]]
+32
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+k -nearest neighbor estimation of entropies with conﬁdence
+[[[ AUTHORS ]]]
+Kumar Sricharan ∗
+Raviv Raich +
+Alfred O. Hero III ∗
+[[[ ABSTR ]]]
+Abstract —We analyze a k-nearest neighbor (k-NN) class of plug-in estimators for estimating Shannon entropy and R´enyi entropy. Based on the statistical properties of k- NN balls, we derive explicit rates for the bias and vari- ance of these plug-in estimators in terms of the sample size, the dimension of the samples and the underlying probability distribution. In addition, we establish a central limit theorem for the plug-in estimator that allows us to specify conﬁdence intervals on the entropy functionals. As an application, we use our theory in anomaly detection problems to specify thresholds for achieving desired false alarm rates.
+Index Terms —entropy estimation, k-NN density estima- tion, plug-in estimation, central limit theorem, conﬁdence intervals
+[[[ BODY ]]]
+Shannon entropy ( − log f (x)f (x)dx) and R´enyi en- tropy ( 1 1−α log f α (x)dx, α ∈ (0, 1)) arise in applica- tions of machine learning, signal processing and statis- tical estimation. Entropy based applications for image matching, image registration and texture classiﬁcation are developed in [1, 2]. Entropy functional estimation is fundamental to independent component analysis in signal processing [3]. Entropy has also been used in Internet anomaly detection [4] and data and image compression applications [5]. Several entropy based nonparametric statistical tests have been developed for testing statistical models including uniformity and normality [6]. Param- eter estimation methods based on entropy have been developed in [7].
+In these applications, the entropy must be estimated empirically from sample realizations of the underlying densities. This problem has received signiﬁcant atten- tion in the mathematical statistics community. Several estimators of Shannon entropy and R´enyi entropy have been proposed for general multivariate densities f . These include consistent estimators based on entropic graphs [8], gap estimators [9], nearest neighbor distances [10, 11, 12, 13], convex risk minimization [14] and kernel density estimates [15]. However, general results on rates
+of convergence of estimators are unavailable. Since the rate of convergence relates the number of samples to the performance of the estimator, convergence rates have great practical utility. In this paper we derive convergence rates for data-split versions of k-nearest neighbor (k-NN) estimators of Shannon and R´enyi entropies proposed by Goria et.al. [10] and Leonenko et.al. [11] respectively.
+The results in this paper improve upon existing re- sults on k-NN estimators available in literature. Go- ria et.al. [10] and Leonenko et.al. [11] show that the estimators they propose are asymptotically unbiased and consistent. Liiti¨ainen et.al. [12] provide rates of convergence of the bias of these k-NN estimators. Evans et.al. [16] establish an upper bound on the rates of decay of the variance, while the authors of [8] provide upper bounds on the ℓ 1 rate of convergence.
+Our analysis improves on this work by establishing exact rates of decay of the bias and variance of data- split versions of the estimators proposed by Goria et.al. and Leonenko et.al.. Our analysis exploits a close re- lation between density estimation and the geometry of proximity neighborhoods in the data sample. Finally, while experimental evidence was provided supporting a Gaussian limit for k-NN estimators of R´enyi entropy in Leonenko et.al. [11], our theory establishes a CLT for k- NN estimators of arbitrary functionals, including R´enyi entropy. We apply these results to derive conﬁdence intervals for Shannon and R´enyi entropy.
+The reminder of the paper is organized as follows. Section II formulates the problem and introduces the data-split plug-in estimator. The main results concerning the bias, variance and asymptotic distribution of these estimators are stated in Section III and the consequences of these results are discussed. We validate our theory with simulations in Section IV. In Section V, we use our theory to detect anomalies in wireless sensor networks at speciﬁed false alarm rate. Conclusions are given in Section VI. Additional details on proofs and results are given in our technical report [17].
+Notation: We will use bold face type to indicate random variables and random vectors and regular type face for constants. We denote the expectation operator by the symbol E and the variance operator as V [X] = E [(X − E[X]) 2 ]. We denote the bias of an estimator by B .
+We are interested in estimating entropy functionals G(f ) of d-dimensional multi-variate densities f with bounded support S, where G(f ) has the form
+Here, µ denotes the Lebesgue measure and E denotes statistical expectation w.r.t density f . We require that the density f be uniformly bounded away from 0 and ﬁnite on the support S, i.e., there exist constants ǫ 0 , ǫ ∞ such that 0 < ǫ 0 < ǫ ∞ < ∞ such that ǫ 0 ≤ f (x) ≤ ǫ ∞ ∀x ∈ S. We also assume that the density f has continuous partial derivatives of the third order. We ﬁnally assume that i.i.d realizations {X 1 , . . . , X N , X N +1 , . . . , X N +M } are available from the density f .
+The plug-in estimator is constructed using a data splitting approach as follows. The data sample is ran- domly subdivided into two parts {X 1 , . . . , X N } and {X N +1 , . . . , X N +M } of N and M points respectively. In the ﬁrst stage, we estimate the k-NN density estimator ˆf at the N points {X 1 , . . . , X N } using the M realiza- tions {X N +1 , . . . , X N +M }. Subsequently, we use the N samples {X 1 , . . . , X N } to approximate the functional G(f ) to obtain the plug-in estimator:
+ˆ G (f ) = 1 N
+Let d(X, Y ) denote the Euclidean distance between points X and Y and d (k) X denote the Euclidean distance between a point X and its k-th nearest neighbor amongst X N +1 , .., X N +M . The k-NN region is S k (X) = {Y : d(X, Y ) ≤ d (k) X } and the volume of the k-NN region is V k (X) = S
+dZ. The standard k-NN density estimator [18] is deﬁned as ˆ f (X) = k−1 MV
+Let ˆ H be the Shannon entropy estimate ˆ G(f ) with the choice of functional g(x) = − log(x). Let ˆI α be the estimate of the R´enyi α-integral estimate ˆ G(f ) with the choice of functional g(x) = x α−1 and the R´enyi entropy estimator to be ˆ H α = (1 − α) −1 log(ˆI α ).
+Deﬁne ˜ H = ˆ H + [log(k − 1) − Ψ(k − 1)], where Ψ(.) is the digamma function, and ˜I α = [(Γ(k +
+(1 − α))/Γ(k))(k − 1) α−1 ] −1 ˆI α . Also deﬁne the cor- responding R´enyi entropy estimator to be ˜ H α = (1 − α) −1 log(˜I α ). We note that the estimators ˜ H and ˜ H α correspond to data-split versions of the Shannon and R´enyi entropy estimators of Goria et.al. [10] and Leo- nenko et.al. [11] respectively.
+The bias of ˜ H and ˜ H α was previously derived by Liiti¨ainen et.al. [12]. Because [(Γ(k+(1−α))/Γ(k))(k− 1) α−1 ] → 1 and Ψ(k − 1) − log(k − 1) → 0 as k → ∞, the estimators ˜ H and ˜ H α will have identical variance up to leading terms as ˆ H and ˆ H α respectively. Likewise, ˜ H and ˜ H α , when suitably normalized, will converge to the same distribution as the estimators ˆ H and ˆ H α respectively.
+We now state the main theorems corresponding to the bias, variance and asymptotic distribution of ˆ H ( g(x) = − log(x)) and ˆ H α ( g(x) = x α−1 ) and sketch the proofs for these theorems. We assume that k grows logarithmically in M , i.e. k = Θ(log(M )). Let Y denote a random variable with density f and deﬁne c(X) = Γ (2/d) ((d + 2)/2)f −2/d (X)tr[∇ 2 (f (X))].
+This theorem on the bias of the estimator is due to Liiti¨ainen et.al. [12]
+Theorem III.1. The bias of the plug-in estimator ˆ G (f ) is given by
+k M
+where c 1 and c 2 are constants which depend on the underlying density f and the choice of functional g only.
+Proof: From the work done by Liiti¨ainen et.al. [12], it follows that
+Theorem III.2. The variance of the plug-in estimator ˆ G (f ) is given by
+where c 4 	 = 	 V [g(f (Y), Y)] and c 5 	 = V [f (Y)g ′ (f (Y), Y)].
+Proof: Deﬁne the set S ′ to be the set of points X ∈ S whose 2k-NN ball S 2k (X) lies in the interior of the density. Deﬁne
+˜ G (f ) = 1 N
+The principal idea in establishing this result involves Taylor series expansions of the functional g(ˆf(X), X) about the true value g(f (X), X), and subsequently using the moment properties of k-NN density estimates.
+Observe that P r(Y ∈ S ′ ) = O((k/M ) 1/d ). From the work done by Evans et.al. [16], we can state that V ( ˆ G (f ) − ˜ G (f )) = O(k 5 /M ). Because k = Θ(log(M )), we have O(k 5 /M ) × O((k/M ) 1/d ) = o(1/M ). The theorem follows by using the Cauchy- Schwartz inequality.
+Our result is an improvement on the results of Evans et.al. in that we are able to provide the exact leading terms for the variance.
+In addition to the results on bias and variance shown in the previous section, we show that our plug-in estimator, appropriately normalized, weakly converges to the nor- mal distribution. We study the asymptotic behavior of the plug-in estimates under the following limiting conditions: (a) k/M → 0, (b) k → ∞, and (c) N → ∞. As shorthand, we will collectively denote the above limiting assumptions by ∆ → 0.
+Theorem III.3. The asymptotic distribution of the nor- malized plug-in estimator ˆ G (f ) is given by
+Proof: Deﬁne the random variables {Y M,i ; i = 1, . . . , N } for any ﬁxed M as
+The key idea here is to recognize that Y M,i are exchangeable random variables. Blum et.al. [19] showed that for exchangeable 0 mean, unit variance random
+variables Z i , the sum S N = 1 √N N i=1 Z i converges in distribution to N (0, 1) if and only if Cov(Z 1 , Z 2 ) = 0 and Cov(Z 2 1 , Z 2 2 ) = 0. In our case,
+Cov(Y M,i , Y M,j ) = O(1/M ), Cov(Y 2 M,i , Y 2 M,j ) = O(1/M ).
+As M gets large, we then have that Cov(Y M,i , Y M,j ) → 0 and Cov(Y 2 M,i , Y 2 M,j ) → 0. We then extend the work by Blum et.al. to show that convergence in distribution to N (0, 1) holds in our case as both N and M get large. These ideas are rigorously treated in Appendix E, [17].
+The CLT for k-NN estimators of R´enyi entropy was alluded to by Leonenko et.al. [11] by inferring from experimental results. Theorem III.3 formally establishes the CLT for k-NN estimators of R´enyi and Shannon entropy.
+We validate our theory using using the 2 dimensional mixture density f m = pf β + (1 − p)f u ; f β : Beta density with parameters a=4,b=4; f u : Uniform density; Mixing ratio p = 0.8. Constants c i ; i = 1, 2..5 are estimated using Monte-Carlo methods [20].
+We show the Q-Q plot of the normalized Shannon entropy estimate and the standard normal distribution in Fig. 1. The linear Q-Q plot validates Theorem III.3 on asymptotic normality of the plug-in estimator. Using the CLT, we plot the 95% conﬁdence intervals for the entropy functional as a function of sample size in Fig. 2.
+We apply our theory to the problem of anomaly detec- tion in wireless sensor networks. Our objective is not an
+extensive comparison with competing anomaly detection methods, but rather to demonstrate the applicability of our theory to a real world application. The experiment was set up on a Mica2 platform, which consists of 14 sensor nodes randomly deployed inside and outside a lab room. Wireless sensors communicate with each other by broadcasting and the received signal strength (RSS), deﬁned as the voltage measured by a receiver’s received signal strength indicator circuit (RSSI), was recorded for each pair of transmitting and receiving nodes. There were 14 × 13 = 182 pairs of RSSI measurements over a 30 minute period, and each sample was acquired every 0.5 sec. During the measuring period, students walked into and out of lab at random times, which caused anomaly patterns in the RSSI measurements. Finally, a web camera was employed to record activity for ground truth.
+The mission of this experiment is to use the 182 RSS sequences to detect any intruders (anomalies). To remove the temperature drifts of receivers we pre-process the data by removing their local mean values. Let y i [n] be the pre-processed n-th sample of the i-th signal and denote y[n] = (y 1 [n], . . . , y 182 [n]) ′ .
+We now estimate the Shannon entropy for each 1- dimensional, 182 sample sequence y[n] using the es- timator ˜ H. We detect anomalies by thresholding the entropy estimate ˜ H[n]. A time sample n is regarded to be anomalous if the entropy estimate ˜ H[n] exceeds a speciﬁed threshold. We seek to choose the threshold appropriately for achieving a desired false alarm rate.
+To this end, we estimate the entropies ˜ H[n] for the time instants n = 1, . . . , 50 when no anomalies were known to have occurred and subsequently estimate the mean µ and variance σ 2 of the entropy estimates for this nominal time interval n ∈ [1, 50]. Using these
+estimates of the mean and variance, we use the central limit theorem III.3 to set the threshold t α for a given false alarm rate α as t α = µ+z α/2 σ where z α/2 is the z- score corresponding to coverage 1 − α. This threshold t α is then used to detect anomalies at time instants n > 50.
+We note that the data in this experiment is not i.i.d. due to dependence between successive time samples, and therefore does not conform to assumptions of our theory. This dependence results in marginally higher entropy estimates at non-anomalous time instants immediately preceding and succeeding anomalous time intervals as compared to entropy estimates at nominal time instants farther away from anomalous activity. This is corrobo- rated by Fig. 3, which shows the ground truth and the normalized entropy estimator response ( ˜ H[n] − t α with false alarm rate α = 0.05) as a function of time.
+The desired and corresponding observed false alarm rates in this experiment are shown in the table above. De- spite the non i.i.d. nature of the data due to dependence between time samples, the observed false alarm rates is only marginally higher than the desired false alarm rate. This result suggests that our theory can be applied to problems where there is dependence in the data.
+ROC curves corresponding to the entropy estimator are shown in Fig. 4 in addition to the ROC curves using the subspace method of Lakhina et.al. [4] and the covariance based estimator of Chen et.al. [21]. It is clear that the detection performance using the entropy estimator is marginally better than the subspace and covariance based
+methods of Lakhina et.al. and Chen et.al. respectively. The Area under the ROC curves were found to be 0.9784, 0.9722 and 0.9645 for the entropy, covariance and sub- space based anomaly detection methods respectively.
+We proposed a class of data-split k-NN density plug- in estimators for estimating Shannon and R´enyi entropies of densities that are bounded strictly away from 0. We derived the bias, variance and mean square error of the estimator in terms of the sample size, the dimension of the samples and the underlying probability distribu- tion. In addition, we developed a central limit theorem for these estimators and used our theory to specify conﬁdence intervals on the entropy. Finally, we used our entropy estimator to perform anomaly detection in wireless sensor networks and used our asymptotic theory to set thresholds appropriately to achieve speciﬁed false alarm rates.
+Using the theory presented in the paper, one can specify the minimum necessary sample size required to obtain requisite accuracy in entropy estimates. This in turn can be used to predict and optimize performance in applications like structure discovery in graphical models and dimension estimation for support sets of low intrinsic dimension. See [17] for more details on these applica- tions.
+This work is partially funded by the Air Force Ofﬁce of Scientiﬁc Research, grant number FA9550-09-1-0471. The authors would like to thank Neal Patwari for design- ing the experiment and collecting the data.
+[[[ REFS ]]]
+A. O. Hero
+B. Ma
+O. Michel
+J. Gorman
+--
+Applications of entropic spanning graphs
+----
+H. Neemuchwala
+A. O. Hero
+--
+Image registration in high di- mensional feature space
+----
+E. G. Miller
+J. W. Fisher
+--
+ICA using spacings estimates of entropy
+----
+A. Lakhina
+M. Crovella
+C. Diot
+--
+Mining anomalies using trafﬁc feature distributions
+----
+A. Jain
+--
+Image data compression: A review
+----
+O. Vasicek
+--
+A test for normality based on sample entropy.
+----
+B. Ranneby
+--
+The maximum spacing method. an estimation method related to the maximum likelihood method.
+----
+A. O. Hero
+J. Costa
+B. Ma
+--
+Asymptotic relations between minimal graphs and alpha-entropy
+----
+B. van Es
+--
+Estimating functionals related to a density by class of statistics based on spacing
+----
+M. N. Goria
+N. N. Leonenko
+V. V. Mergel
+P. L. N. Inverardi
+--
+A new class of random vector entropy estimators and its applications in testing statistical hypotheses
+----
+N. Leonenko
+L. Prozanto
+V. Savani
+--
+A class of r´enyi information estimators for multidimensional densities
+----
+E. Liiti¨ainen
+A. Lendasse
+F. Corona
+--
+A boundary corrected expansion of the moments of nearest neighbor distributions
+----
+Q. Wang
+S. R. Kulkarni
+S. Verd´u
+--
+Divergence estimation of continuous distributions based on data-dependent partitions
+----
+X. Nguyen
+M. J. Wainwright
+M. I. Jordan
+--
+Estimat- ing divergence functionals and the likelihood ratio by convex risk minimization
+----
+P. B. Eggermont
+V. N. LaRiccia
+--
+Best asymptotic normality of the kernel density entropy estimator for smooth densities
+----
+D. Evans
+--
+A law of large numbers for nearest neighbor statistics
+----
+K. Sricharan
+R. Raich
+A. O. H. III
+--
+Empirical estimation of entropy functionals with conﬁdence
+----
+D. O. Loftsgaarden
+C. P. Quesenberry
+--
+A nonparametric estimate of a multivariate density function
+----
+J. Blum
+H. Chernoff
+M. Rosenblatt
+H. Teicher
+--
+Central limit theorems for interchangeable processes
+----
+V. C. Raykar
+R. Duraiswami
+--
+Fast optimal bandwidth selection for kernel density estimation
+----
+Y. Chen
+A. Wiesel
+A. O. Hero
+--
+Robust shrinkage estimation of high-dimensional covariance matrices
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\032.pdf
+[[[ LINKS ]]]
+

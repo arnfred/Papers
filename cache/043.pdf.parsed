@@ -1,0 +1,119 @@
+[[[ ID ]]]
+43
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+An Alternative To Decoding Interference or Treating Interference As Gaussian Noise
+[[[ AUTHORS ]]]
+Kamyar Moshksar
+Akbar Ghasemi
+Amir K. Khandani
+[[[ ABSTR ]]]
+Abstract—This paper addresses the following question regard- ing Gaussian networks: Is there an alternative to decoding inter- ference or treating interference as Gaussian noise? By answering this question we aim to establish a benchmark for practical systems where multiuser decoding is not a common practice. To state our result, we study a decentralized network of one Primary User (PU) and one Secondary User (SU) modeled by a two-user Gaussian interference channel. The primary transmitter is constellation-based, i.e., PU is equipped with a modulator and its code-book is constructed over a modulation signal set. SU utilizes random Gaussian codewords with controlled transmission power that guarantees a certain level of Interference-to-Noise Ratio (INR) at the primary receiver. Both users are unaware of each other’s code-book, however, SU is smart in the sense that it is aware of the constellation set of PU. While interference at the primary receiver is modeled as additive Gaussian noise, the secondary receiver can utilize the structure of PU’s modulator as side information to decode its message without decoding the message of PU. The instantaneous realizations of symbols in a codeword transmitted by PU are unknown to both ends of SU’s direct link, however, the sample space of such symbols is available to SU. This makes the interference plus noise at the secondary receiver be a mixed Gaussian process. Invoking entropy power inequality and an upper bound on the differential entropy of a mixed Gaussian vector, we develop an achievable rate for SU that is robust to the structure of PU’s modulation signal set and only depends on its constellation size and the dimension of the euclidean space that the constellation points lie in. Moreover, we obtain an achievable rate for PU using Fano’s inequality in conjunction with a Gallager-type upper bound on the probability of error in decoding constellation points at the primary receiver. The developed achievable rates for PU and SU enable us to show that the sum rate can be improved compared to a scenario where both users employ Gaussian codewords and treat each other as Gaussian noise.
+[[[ BODY ]]]
+It is known [1] that the capacity region of an IC can be achieved if both users treat each other as noise, however, the optimum code-books are hard to characterize. In fact, it is difﬁcult to identify the optimum random codes that achieve the capacity region of an IC. Recently, it was simultaneously shown in [2] that Gaussian code-books can achieve the sum- rate of the two-user Gaussian IC in the low Signal-to-Noise Ratio (SNR) regime.
+The main difﬁculty in characterizing the optimum random codes stems in the competitive situation that occurs in an IC.
+It is well-known [3] that in an additive noise channel if the distribution of the input is Gaussian, the worst additive noise under a constraint on the variance of noise is a Gaussian one. Also, a direct application of the Maximum Entropy Lemma shows that the optimum distribution for the input to an additive Gaussian noise channel under a constraint on the power of the input signal is Gaussian. As such, an attempt to maximize the mutual information between the input and output of any user decreases the mutual information between the input and output of the other user. A novel approach is reported in [3] where the authors show that non-Gaussian code-books may result in strictly better sets of achievable rates in various competitive scenarios including Gaussian ICs.
+In this paper we pose the following question regarding Gaussian networks:
+Is there an alternative to decoding interference or treating interference as Gaussian noise?
+By answering this question we aim to establish a bench- mark for practical systems where multiuser decoding is not a common practice. To present our results, we focus on a decentralized network of one PU and one SU. This setup is well explored in the context of cognitive radios. We consider a decentralized network of one PU and one SU modeled by a two-user IC shown in Fig. 1. The crossover gain from the primary transmitter to the secondary receiver is h pu,su = √a, the crossover gain from the secondary transmitter to the
+primary receiver is h su,pu = √b, both forward gains are 1 and the maximum transmission power for PU and SU is P pu and P su , respectively. It is assumed that the primary transmitter is constellation-based , i.e., PU is equipped with a modulator that maps its information onto a ﬁnite set of 2 τ signal points in R m for some m, τ ∈ N. We assume SU employs random Gaussian codewords. Both users are unaware of each other’s code-book, however, SU is smart in the sense that it is aware of PU’s constellation and the channel gains. Note that the network is decentralized, i.e., SU only sneaks into the network and there is no cooperation between the two users, e.g., orthogonal schemes such as Time-Division-Multiplexing (TDM) are not viable.
+We point out that SU is only aware of PU’s modulation scheme and not its code-book or message. This is in contrast to the assumption made in the literature on cognitive radios where the secondary transmitter is aware of PU’s message. Therefore, the secondary transmitter in our setup is unable to perform Gel’fand-Pinsker coding. Moreover, the secondary receiver is unable to perform multiuser decoding, as SU is unaware of PU’s code-book. SU is liable to regulate its transmission power such that the INR at the primary receiver is below a certain threshold denoted by INR th .
+As an alternative approach, one may consider a scenario where both users employ random Gaussian codewords and treat each other’s interference as Gaussian noise. We refer to this scheme simply as Gaussian Encoding/Minimum Distance Decoding . We show that if PU is constellation-based and SU matches its decoder to the actual mixed Gaussian distribution of interference plus noise, the sum rate of the network may be increased compared to the Gaussian Encoding/Minimum Distance Decoding scheme. Using Fano’s inequality and a Gallager-type upper bound on the probability of error in decoding the constellation points at the primary receiver, an achievable rate is developed for PU that depends on both τ and m. Combining this with the achievable rate developed for SU, we are able to demonstrate the supremacy of our approach in terms of sum rate compared to the Gaussian Encoding/Minimum Distance Decoding scheme. Additionally, a tradeoff is revealed between the rate of PU and that of SU by varying the modulation parameters τ and m.
+Notation- The set of real, rational and natural numbers are shown by R, Q and N, respectively. Random quantities are shown in bold such as x with realization x. The trans- pose of a vector x is denoted by x t . The notation x n = (x 1 , x 2 , ··· ,x n ) t denotes a sequence of size n that is also interpreted as a column vector of size n. A sequence of size n whose elements are zeros is shown by 0 n . The binary entropy function is shown by H (x) −xlog x − (1 − x)log(1 − x) for x ∈ [0,1]. The dirac delta function is denoted by δ(·). For any two matrices A and B, A B implies that B − A is a non-negative deﬁnite matrix. For a square matrix A, tr(A) and det(A) are the trace and determinant of A, respectively. For a vector x, x = √x t x denotes the Euclidean norm of x. A Gaussian sequence x n (equivalently, a Gaussian vector) of length n with mean a n and covariance matrix C is shown
+by N(a n , C). The PDF of this Gaussian sequence is denoted by g(x n ; a n , C).
+Let us consider the decentralized network of one primary and one secondary transmitter-receiver pairs shown in Fig. 1. The primary transmitter is constellation-based, i.e., PU’s code- words are independently generated over PU’s constellation set. To avoid relying on a speciﬁc modulation scheme, we consider a randomized modulation scenario for PU. For m ∈ N, let a transmission frame at PU’s transmitter consist of m consecutive transmission slots. Upon each transmission frame, for some τ ∈ N, PU’s modulator generates a number 2 τ of random vectors s 1 , ··· ,s 2 τ in R m as follows:
+1- A number 2 τ of i.i.d. random vectors t 1 , ··· ,t 2 τ in R m are generated such that
+where P pu is the average transmission power at the primary transmitter.
+The vectors s 1 , ··· ,s 2 τ are called the constellation points of PU. After s 1 , ··· ,s 2 τ are being generated, a number τ of bits at the input of PU’s modulator are mapped to an index J ∈ {1,2,··· ,2 τ }. The vector
+is then transmitted over the channel in m consecutive trans- mission slots. This whole process repeats independently for the next transmission frame.
+T pu is revealed to both ends of PU and SU non-causally. We remark that as far as the elements of t 1 , ··· ,t 2 τ are generated independently based on a continuous distribution, then any two of these vectors are different almost surely. This is assumed to be the case throughout the paper. It is easy to see that
+The secondary transmitter generates its codewords based on a Gaussian distribution independently from symbol to symbol and transmits a symbol x su in its codeword in one transmission slot. Moreover, we require a power constraint at the secondary transmitter given by
+where P su is the total available power at the secondary trans- mitter, INR th is the maximum tolerable INR at the primary receiver and P su is the actual transmission power of SU that guarantees the INR requirement at the primary receiver.
+Assuming all channels are slot synchronous, a number m of consecutive symbols in a codeword of SU, denoted by the vector x m su , are transmitted along with the transmission of x pu . Denoting the received sequences at PU and SU by y m pu and y m su , respectively, we have
+In these expressions, z m pu ∼ N(0 m , I m ) and z m su ∼ N(0 m , I m ) are the ambient noise sequences at the primary and secondary receivers, respectively.
+In what follows, we study the decoding procedures at the secondary and primary receivers and develop achievable rates for both users.
+1) Treating Mixed Gaussian Interference: As mentioned in section II, SU is unaware of the code-book of PU, however, the random set T pu is revealed to SU non-causally. Hence, SU can use this knowledge as side information in order to decode its message without performing interference decoding.
+The secondary receiver models the interference plus noise by a mixed Gaussian distribution. In fact, the conditional PDF of x pu appearing in (9) is given by
+Let us denote the interference plus noise vector in (9) by w su ∈ R m , i.e.,
+is achievable for SU. Since w su is a mixed Gaussian sequence and x m su is a Gaussian sequence, y m su is also mixed Gaussian. This makes I(x m su ; y m su |T pu ) = h(y m su |T pu ) − h(w su |T pu ) have no closed expression. Next, we derive a computable lower bound on this quantity. Using the conditional entropy power inequality [7],
+(15) Trivially,
+Next, we develop an upper bound on h(w su |T pu ). We need the following Lemma:
+Lemma 1 Let t ∈ N and z ∈ R t be a mixed Gaussian random vector with PDF p z (z ) = L l =1 α l g(z; µ l , C l ) where α l ∈ (0, 1) for 1 ≤ l ≤ L and L l =1 α l = 1. Then,
+Remark- Note that − L l =1 α l log α l in Lemma 1 is the discrete entropy of the probability sequence (α 1 , ··· ,α L ) t .
+According to (12), p w su ( ·|T pu = T pu ) represents a mixed Gaussian PDF with 2 τ different Gaussian components. Thus, a direct application of Lemma 1 to (12) yields
+Invoking the Conditional Maximum Entropy Lemma [7], one can obtain another upper bound on h(w su |T pu ) given by
+where Cov(w su |T pu ) is the covariance matrix of the Mini- mum Mean Square Error (MMSE) for estimating w su given T pu . It is easy to see that
+Using the fact that log det( ·) is non-decreasing along the cone of positive-deﬁnite matrices and by (19) and (20),
+h(w su |T pu ) ≤ m 2 log(2πe)+ m 2 min 2τ m , log (1 + aP pu ) . (22)
+By (13), (15), (16) and (22), any transmission rate R su < R ∗ su is achievable for SU where
+Note that the right side of (23) only depends on log |T pu | m = τ m and does not depend on the structure of T pu .
+Noting that SU generates its codewords according to a Gaus- sian distribution and the primary receiver has no knowledge of SU’s code-book, it treats SU as additive Gaussian noise. According to (8), the interference plus noise at PU’s receiver is √ b x m su + z m pu ∼ N(0 m , (1 + bP su )I m ). It is clear that any data rate
+is achievable by PU. However, there is no closed expression for I(x pu ; y m pu |T pu ) as y m pu is a mixed Gaussian vector with conditional PDF
+(25) As such, one needs to develop a lower bound on I(x pu ; y m pu |T pu ).
+Recalling t 0 in (2), we deﬁne x pu x pu +t 0 . There exists a unique random index J ∈ {1,2,··· ,2 τ } such that x pu = t J . Moreover, let
+Since SU knows T pu , it can construct y m pu . It is clear that y m pu and y m pu carry the same information in the sense that
+Let us consider a sub-optimum strategy where the primary receiver applies hard decoding. Observing y m pu , PU ﬁnds J ∈ {1,2,··· ,2 τ } as an estimate of J given by the Maximum- Likelihhod (ML) rule
+Since J ↔ y m pu ↔ J forms a Markov chain, one can apply data processing inequality [5] to get
+pu ). 	 (29) where (a) is due to independence of J and T pu (constructing T pu and selecting the index J such that (4) holds are independent procedures) and (b) holds since J is uniformly
+where (a) follows by Fano’s inequality [5] and (b) is by Jensen’s inequality and concavity of H ( ·). Let the elements of each constellation vector t i for 1 ≤ i ≤ 2 τ be generated independently according to a continuous distribution q( ·) with bounded support T ⊂ R. Equation (26) represents m consec- utive uses of an additive white Gaussian noise channel where the noise variance is 1+bP su . It is well-known [8] that the av- erage probability of error E T pu Pr J = J |T pu = T pu
+dy. (33)
+Finding the optimum q( ·) and ρ in (32) is a difﬁcult task. For tractability reasons, we select ρ, T and q(·) as
+ρ ∗ = 1, 	 (34) T ∗ = t ∈ R : |t| ≤ 3P pu (1 − 2 −τ ) , 	 (35)
+Note that these particular assignments still result in a valid upper bound on the probability of error in (31). Deﬁne
+Let the product mν ∗ be large enough to guarantee 2 −mν ∗ < 1 2 . Using the fact that H (.) is increasing in the interval 0, 1 2 and by (30) and (31),
+It might be interesting to investigate the achievable sum rate of the system. Based on the lower bounds developed in (23) and (40), we can develop a lower bound SR ∗ on the sum rate in the network given by
+Assuming both PU and SU adopt the Gaussian Encod- ing/Narest Neighbor Decoding scheme, the achievable sum rate of the system is given by
+(42) Computing SR ∗ in closed form is not tractable as ﬁnding the optimum m and τ in (41) is a difﬁcult task. To circumvent this difﬁculty, we develop a lower bound on SR ∗ and show that it is larger than SR (G) for certain ranges of the system parameters. Let the system parameters a, b, P pu , P su and INR th be such that
+If both m and τ tend to inﬁnity 1 such that the ratio τ m = β ∈ Q is a ﬁxed rational number and 2
+then by (38), ν ∗ = Λ ∗ − β is a positive constant that does not depend on m. Therefore, the term 2 −mν ∗ tends to zero and hence, R ∗ pu approaches β = τ m . It is notable that PU can not achieve more than β and hence, it attains its highest achievable rate in this case. Therefore, the achievable sum rate SR ∗ is bounded from below as
+where (a) is due to (43) and (44) and (b) is due to the fact that β + 1 2 log 1 + P su 2 2β is an increasing function of β. For example, let us consider a scenario with a = 0.5, b = 0.25 and INR th = 10dB. Fig. 2 (a) offers a comparison between the lower bound on SR ∗ given in (45) with SR (G) . It is seen how SU can utilize its knowledge about PU’s modulation scheme to improve sum rate as far as P pu is sufﬁciently small. We also need to check the validity of (43) which is essential in the development of the lower bound on SR ∗ . This is demonstrated
+20 	 25 	 30 	 35 	 40 2 2.5
+3 3.5
+4 4.5
+P pu (dB) A chi ev ab le Sum Ra te (b it s/ se c/ hz )
+20 	 25 	 30 	 35 	 40 1 2 3 4 5 6 7
+P pu (dB) (b it s/ se c/ h z)
+[[[ REFS ]]]
+R. Ahlswede
+--
+Multi-way communication channels
+----
+A. Motahari
+K. Khandani
+--
+Capacity bounds for the Gaussian interference channel
+----
+E. Abbe
+L. Zheng
+--
+Coding along Hermite polynomials for Gaussian noise channels
+----
+K. Moshksar
+A. Bayesteh
+A. K. Khandani
+--
+Randomized resource allocation in decentralized wireless networks
+----
+T. M. Cove
+J. A. Thoma
+--
+Elements of information theory”, John Wiley and Sons, Inc
+----
+R. M. Gray
+--
+Entropy and information theory
+----
+A. El Gamal
+Y. H. Kim
+--
+Lecture notes on network information theory
+----
+G. Gallager
+--
+Information theory and reliable communication
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\043.pdf
+[[[ LINKS ]]]
+

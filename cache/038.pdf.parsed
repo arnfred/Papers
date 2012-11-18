@@ -1,0 +1,140 @@
+[[[ ID ]]]
+38
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Asymptotic Enumeration of Binary Matrices with Bounded Row and Column Weights
+[[[ AUTHORS ]]]
+Erik Ordentlich
+Farzad Parvaresh
+Ron M. Roth
+[[[ ABSTR ]]]
+Abstract—Consider the set A n of all n × n binary matrices in which the number of 1’s in each row and column is at most n/2. We show that the redundancy, n 2 − log 2 |A n |, of this set equals ρn + o(n), for a constant ρ ≈ 1.42515.
+[[[ BODY ]]]
+Let A n denote the set of all n × n binary matrices in which the number of 1’s in each row and column is at most n/2. The main contribution of this paper is provid- ing an asymptotically tight expression for the redundancy, n 2 − log 2 |A n |, of the set A n . Speciﬁcally, we prove the following theorem; hereafter, Q(·) denotes the cumulative dis- tribution function of the normal distribution N (0, 1), namely, Q(x) = (1/
+Our study of the redundancy of A n is motivated, in part, by the potential application of coding arbitrary bit streams into elements of A n . Such coding schemes, in turn, may be used for limiting parasitic current in next generation memory technologies based on crossbar arrays of resistive devices [1] (see also [2]). Coding schemes into A n are presented in a related submission [3]; while these schemes have efﬁcient implementation, their redundancy is 2n.
+We mention the related problem of computing the redun- dancy of the set S n which consists of all matrices in A n that are also symmetric and have an all-zero main diagonal. This problem was studied in [4] and [5], and the redundancy,
+− log 2 |S n |, was shown to be ρn/2 + O(n 1/2 ), where ρ is the same constant as in Theorem 1. In fact, the results of [4] and [5] apply more generally to sets of symmetric matrices where the number of 1’s in each row (and column) is at most a prescribed integer d = n/2 + O(n 1/2+ε ), and for each such d, the redundancy was computed therein to within an additive term that goes to 0 as n goes to inﬁnity.
+As it turns out, there is also a close connection between the size of A n and the number of stable points of inﬁnite- range spin glass memory, which also can be related to stable
+points of Hopﬁeld Memory [6]. In [7], the authors consider the following spin-glass model. A spin glass can be seen as a real n-vector σ = (σ 1 σ 2 . . . σ n ) whose entries are the spins taking on ±1; the interaction between the spins is represented by a symmetric n × n matrix J = (J ij ), whose entries above the main diagonal are independently identically distributed (i.i.d.) N (0, 1) and the main diagonal is all-zero. Each spin value σ i changes to a new value σ i according to the rule:
+where sgn(·) is the sign function. It is shown in [7] that the expected number of the ﬁxed points of (1) (where σ = σ) equals κ · 2 n(1−(ρ/2)) , where κ ≈ 1.0505 and ρ is—again— the very same constant as in Theorem 1. In fact, some parts of our proof of Theorem 1 were inspired by [7].
+The rest of this paper is devoted to proving Theorem 1. We split the proof into proving lower and upper bounds on the size of A n , in Sections II and III, respectively. The proofs of our bounds make use of a strong result by Canﬁeld et al. [8], who gave an asymptotically tight expression for the number of n × n binary matrices with row sums equaling prescribed integers s 1 , s 2 , . . . , s n and column sums equaling t 1 , t 2 , . . . , t n , provided that the values s i (respectively, t j ) are sufﬁciently close to each other (in a well-deﬁned sense to be recalled in Theorem 3 below). A key ingredient in the proof of our lower bound consists of estimating the sum of the expressions of [8] over all values of s i and t j that satisfy the conditions of [8] yet do not exceed n/2. The proof of our upper bound is based, in part, on controlling the error term incurred to the expression of [8] when the values s i and t j are skewed to violate the conditions required in [8].
+This section contains the proof of the following lower bound.
+We start by quoting a specialized version of the result of Canﬁeld et al. [8]. For positive integer vectors s =
+(s 1 s 2 . . . s n ) and t = (t 1 t 2 . . . t n ) whose L 1 norms, denoted |s| and |t|, are the same, let B(s, t) denote the set of all n × n binary matrices with row sums equal to s and column sums equal to t.
+Theorem 3: Given such s and t, write µ = |s|/n = |t|/n, λ = µ/n, A = 1 2 λ(1−λ), R = n i=1 (s i − µ) 2 , and C = n j=1 (t j − µ) 2 . Fix some ε > 0, and suppose that the following four conditions hold: (i) |s i −µ| = O(n 1/2+ε ) for all i; (ii) |t j − µ| = O(n 1/2+ε ) for all j; (iii) 5(1 − 2λ) 2 /(3A)
+Fixing some small ε > 0, we will bound |A n | from below by summing |B(s, t)| over pairs (s, t) that satisfy conditions (i)–(ii) of Theorem 3, with the additional requirement that no entry in s or t exceeds n/2. Denote by 1 the all-one vector in Z n and, for the ﬁxed ε, let ∆ = ∆(n, ε) denote the set of all vectors u = (u i ) n i=1 that belong to the lattice Z n (respectively, Z n + (1/2)·1) if n is even (respectively, odd) and, in addition, 0 u i n 1/2+ε for all i. Also, let
+where the equality follows from Theorem 3 (with |u| = n 2 /2 − n 2 λ) and Remark 1, since, by construction, (s, t) = ((n/2)·1−u, (n/2)·1−v) satisfy the conditions of the theo- rem and of Remark 1 for all (u, v) ∈ Γ.
+Proof: We can approximate the factorials in (3) using Stirling’s formula [9]
+w e
+All of the exponential terms in Stirling’s approximation cancel out and the constant factor Ω(1) collects the error terms e θ/12w , where w is at least Ω(n) in all cases for (u, v) in Γ.
+Next, consider the Taylor expansion of (c+x+1/2) log(c+ x) about x = 0:
+c + x + 1 2
+4 , 	 (7) where ξ ∈ [0, x] if x 0 and ξ ∈ [x, 0] if x < 0. We can apply this expansion to the various terms of this form appearing in the logarithm of (6) with c equal to either n 2 /2 or n/2. The linear and cubic terms are identical except for sign for the approximations involving the terms n 2 /2±|u| and thus cancel out, and the same holds for the terms n/2 ± u i and n/2 ± v i . Concerning the other terms, without going into details, we note that because u i , v j n 1/2+ε (and hence |u| = |v| n 3/2+ε ) for (u, v) ∈ Γ, the only terms that result in contributions of magnitude greater than O(n 4ε ) are 2|u| 2 /n 2 − 2 u 2 /n − 2 v 2 /n. Collecting terms and simplifying results in (4).
+To compute the bound in Lemma 4, we need to do the summation over all vectors (u, v) in the set Γ. The next lemma shows that, in fact, we still get a lower bound even if we sum over the larger set ∆ × ∆ instead.
+and denote by L the set of all values for which D( ) is strictly positive; it is easy to see that |L| = n 3/2+ε + O(1). We have:
+The result follows by combining the last two inequalities. Lemma 6:
+where R = R(n, ε) denotes the real n-dimensional cube [0, n 1/2+ε ] n .
+Proof: We bound the change in the value of the integrand when its argument u is (upward) quantized to a nearby lattice point (of Z n or Z n + (1/2)·1). To this end, we ﬁnd upper and lower bounds on the ratio
+where u ∈ ∆(n, ε) and ω ∈ [0, 1] n . The expression (8) can be written as
+Let Σ denote the n × n (covariance) matrix (nI + 1 · 1 t )/4, where I is the n × n identity matrix and (·) t denotes transpo- sition. Also, let U be an n-dimensional jointly normal random vector with covariance Σ and zero mean. Then,
+exp −u t Σ −1 u/2 (det(2πΣ)) 1/2
+where the last equality is easily veriﬁed. It follows from Lemmas 5 and 6 that
+To complete the proof of Theorem 2, we compute an estimate of the probability in (9). To this end, we will borrow the idea of [7] of “simulating” the random vec- tor U through an (n+1)-dimensional random vector Y = (Y 0 Y 1 Y 2 . . . Y n ) whose entries are i.i.d. N (0, 1). Speciﬁcally, let V = (V 1 V 2 . . . V n ) be a random vector function of Y
+Clearly, V is a zero-mean jointly normal vector, and a simple calculation reveals that it has the same covariance matrix Σ as U ; hence, V and U have precisely the same distribution.
+Conditioning on Y 0 = y, the entries of V become statistically independent and, so,
+n 2π
+By using the Laplace saddle point method as in [7], we can approximate (11) within a constant factor by
+For large n, the maximum is attained at a (positive) x which is much smaller than n ε , and for such an x, we can approx- imate Q(x − 2n ε ) by exp{−(x − 2n ε ) 2 /2}/ 2π(2n ε − x). Denoting x 0 = argmax x Q(x)e −x 2 /2 , we thus obtain
+The proof of Theorem 2 is now completed by combining the latter equation with (9).
+Our approach is similar to that of the previous section in that we bound the summation of |B(s, t)| over the set of integer valued row–column sums (s, t) ∈ [0, n/2] × [0, n/2] satisfying |s| = |t|. The challenge we face here is that we must now account for (s, t) that do not satisfy the assumptions of Theorem 3, and hence for which the theorem says nothing about |B(s, t)|. Our ﬁrst step in addressing this challenge is to show, using standard techniques, that the summation of |B(s, t)| over certain “bad” choices of values for s, t, such as those for which |s| = |t| is too small, can be neglected. This step eliminates many, but not all, choices of (s, t) that do not satisfy conditions (i)–(ii) of Theorem 3. To handle these remaining cases, we prove an upper bound on the ratio |B(s, t)|/|B(s , t )| when s and t respectively majorize s and t (see [10] and the discussion below). Given any (s, t) ∈ [0, n/2]×[0, n/2], we then ﬁnd a suitable anchor point (s , t ) in the set of row–column sums satisfying conditions (i)–(ii) which is also majorized by (s, t). We then obtain an upper bound on |B(s, t)| by combining the ratio bound with the bound on |B(s , t )| from Theorem 3. The resulting bound
+turns out to be quite similar to the combinatorial portion of (3), but with some factorials depending on the anchor point (s , t ). After a series of approximations along the lines of Section II, we arrive at a bound that corresponds to the expected value of a certain product under the same jointly normal distribution as in the previous section and is analyzed similarly. Key aspects of the proof are the “bad” set deﬁnition, which includes (s, t) for which various approximations may be inaccurate, and an analytically tractable, yet sufﬁciently tight choice for the anchor point mapping.
+Let the sets ∆ and Γ be as their respective counterparts ∆ and Γ in Section II, but with an upper bound of n/2, as opposed to n 1/2+ε , on each entry. Let
+u i < n 2
+Next, deﬁne T g = (∆ g × ∆ g ) ∩ Γ and T b = (T g ) c ∩ Γ , and partition A n into
+We then have the following lemma (the proof of which is omitted due to space limitations).
+The bounding of |A g n | is more involved and shall require using the anchor point technique mentioned above. We begin with the following lemma (we again omit the proof).
+Lemma 9: For any integer vectors s, t ∈ [0, n/2] n with |s| = |t|, if s i −1 s j +1 (where we assume w.l.o.g. that j > i) then, for s = (s k ) n k=1 = (s 1 . . . s i −1 . . . s j +1 . . . s n ):
+|B(s, t)| |B(s , t)|
+|B(t, s)| |B(t, s )|
+A vector x majorizes vector x if and only if |x| = |x | and k i=1 ˜ x i 	 k i=1 ˜ x i for each k, where ˜ x denotes x with entries reordered from largest to smallest (i.e., ˜ x 1 ˜ x 2 . . .) and similarly for ˜ x .
+Lemma 10: For any integer vectors s, t, s , t ∈ [0, n/2] n with |s| = |t| and with s and t, respectively, majorizing s and t ,
+Proof: Since B(s, t) remains the same even if we permute the entries of s or of t, we assume hereafter in the proof that the entries in each of the vectors s, t, s , and t are sorted from largest to smallest. A well known consequence of majorization is that s can be obtained from s by a ﬁnite sequence of transformations in which s i is increased by 1 and
+s j is decreased by 1 for some pair of indexes i < j. Applying Lemma 9 for each such transformation results in
+(14) with each net increment or decrement of an entry respectively contributing a factor in the numerator or denominator of (14). The expression (13) is obtained by rewriting the products appearing in (14) as ratios of factorials, simplifying, and suitably permuting the resulting factorials.
+For row–column counts (s , t ) satisfying conditions (i)–(iv) of Theorem 3, let B(s , t ) denote the combinatorial portion of the RHS of (2) (namely, ignoring the exp{·} term). Given (u, v) ∈ T g , the following then follows from Lemma 10 and Theorem 3:
+where u and v (when subtracted from (n/2)·1) satisfy conditions (i)–(ii) of Theorem 3 and are respectively majorized by u and v. We now note that for u, v in T g , |(n/2)·1−u| and |(n/2)·1−v|, and hence, by majorization, |(n/2)·1−u | and |(n/2)·1−v | are such that Remark 1 applies. It then follows that, with (u, v) and (u , v ) as above,
+We are now in a position to prove the following counterpart of Lemma 4.
+(16) where each u is (an anchor point which is) an image of u under a prescribed mapping ∆ g → ∆ such that u satisﬁes conditions (i)–(ii) of Theorem 3 and is majorized by u.
+Proof: As in the proof of Lemma 4, for (u, v) ∈ ∆ g , we approximate the factorials in (15) using (5), which yields an expression identical to (6) but with (n/2 + u i ) n/2+u i +1/2 and (n/2+v i ) n/2+v i +1/2 in place of the non-primed corresponding terms. Notice that for u, v ∈ ∆ g , the largest entries are constrained so that Stirling’s approximation is applied in all cases with w > 0 and the error term is thus well deﬁned. The Stirling exponential terms, in this case, cancel due to |u| = |u | and |v| = |v |, which follow by majorization, while the error terms e θ/12w > 1 in the denominator approximations can be dropped to yield an upper bound. The remaining error terms collectively contribute at most a constant factor.
+Again, as in the proof of Lemma 4, we next approximate the terms of the form (c + x + 1/2) log(c + x) in the logarithm using the Taylor expansion (7), where c = n 2 /2 or c = n/2. The resulting terms involving powers of |u| are dealt with as in Lemma 4, since |u| n 3/2+ε for elements of ∆ g , which was the case there as well. The only non-negligible term is thus 2|u| 2 /n 2 , as before. The analysis of the powers of u i , u i , v i , v i is more complicated and is left for the full paper. It establishes that the only non-negligible contributions of u i , u i , v i , v i are − u 2 /n − u 2 /n − v 2 /n − v 2 /n. All other terms can be dropped to obtain an upper bound, or have collective magnitude of at most O(n ε ). The squared summation in (16) is obtained by writing 2|u| 2 /n 2 = |u| 2 /n 2 + |v| 2 /n 2 and summing over the product set ∆ g × ∆ g containing T g .
+We next specify a good choice for the anchor point u for a given u ∈ ∆ g . Assume without loss of generality that u 1 u 2 . . . u n . For ε < ε, set η = (η j ) n j=1 to be
+. . . η n . Let ˆ η j = η j and ˇ η j = η j for j = 1, 2, . . . , n. Readily, we can see that | ˆ η| |u| and | ˇ η| |u|. So, there exists an index J such that if we choose u j = ˆ η j for j J and u j = ˇ η j for j > J then |u | = |u|. It is obvious that the resulting u will satisfy conditions (i)–(ii) of Theorem 3 since the difference between the largest and smallest entries is less than n 1/2+ε (for sufﬁciently large n). To see that the majorization constraint is also satisﬁed, note ﬁrst that by design |u | = |u|. Secondly, note that u 1 u 2 . . . u n and that there exists an index J such that u j u j for j J and u j u j for j > J . It is not hard to show that this implies that u majorizes u . Moreover, it is not hard to see that
+Again, paralleling Section II, we next prove the following integral bound.
+(18) Proof: First, we incorporate the above speciﬁcation and
+lower bound (17) for the anchor points into (16) resulting in an upper bound. By regrouping terms of the resulting exponent in the summand we obtain the exponent of the integrand in (18). The summation is then replaced by an integration over the set of unit cubes containing points in ∆ g , and the error in the integration relative to the summation can be bounded using the technique of Lemma 6 and the fact that |u| 	 n 3/2+ε for elements of ∆ g . The domain of integration can then be enlarged to obtain (18).
+where U = (U 1 U 2 . . . U n ) is the jointly normal vector deﬁned in Section II and 1(·) stands for the indicator function. By using the equivalent representation of U given by (10) and the resulting conditional independence we get that the integral in (18) equals
+Finally, using the Laplace saddle point method, the value of the integral can be approximated (within a constant factor) by
+e −x 2 /2 Q(x) − Q(x − 2n ε ) + √
+For large n, the maximum is attained at a (positive) x which is much smaller than n ε , and for such an x, each expression Q(x − g(n)), where g(n) ∈ 2n ε ,
+2 n ε , n/2 , can be approximated by exp{−(x − g(n)) 2 /2}/ 2π(g(n) − x). Denoting x 0 = argmax x {Q(x)e −x 2 /2 }, the approximations of the integral in (18) then yield
+Noting that ρ < 2, Theorem 7 then follows from Lemma 8 and (19).
+[[[ REFS ]]]
+E. Ordentlich
+G. M. Ribeiro
+R. M. Roth
+G. Seroussi
+P. O. Vontobel
+--
+Coding for limiting current in memristor crossbar memories
+----
+D. B. Strukov
+R. S. Williams
+--
+Four-dimensional address topology for circuits with stacked multilayer crossbar arrays
+----
+E. Ordentlich
+R. M. Roth
+--
+Low complexity two-dimensional weight constrained codes
+----
+O. Riordan
+A. Selby
+--
+The maximum degree of a random graph
+----
+B. D. McKay
+I. M. Wanless
+N. C. Wormald
+--
+Asymptotic enumer- ation of graphs with a given bound on the maximum degree
+----
+J. J. Hopﬁeld
+--
+Neural networks and physical systems with emergent collective computational abilities
+----
+E. C. Posner
+R. J. Mceliece
+--
+The number of stable points of an inﬁnite-range spin glass memory
+----
+E. R. Canﬁeld
+C. Greenhill
+B. D. McKay
+--
+Asymptotic enumeration of dense 0–1 matrices with speciﬁed line sums
+----
+M. Abramowit
+I. Stegu
+--
+Handbook of Mathematical Functions With Formulas, Graphs, and Mathematical Tables 
+----
+A. W. Marshal
+I. Olki
+--
+Inequalities: Theory of Majorization and Its Applications , volume 143 of Mathematics in Science and Engineering , Academic Press, London, 1979
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\038.pdf
+[[[ LINKS ]]]
+

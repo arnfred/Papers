@@ -1,0 +1,155 @@
+[[[ ID ]]]
+169
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Degrees of Freedom Region for an Interference Network with General Message Demands
+[[[ AUTHORS ]]]
+Lei Ke †
+Aditya Ramamoorthy †
+Zhengdao Wang †
+Huarui Yin ∗
+[[[ ABSTR ]]]
+Abstract— We consider a single hop interference network with K transmitters, each with an independent message and J receivers, all having the same number (M ) of antennas. Each receiver requests an arbitrary subset of the messages. This generalizes the well-known K user M antenna interference channel, where each message is requested by a unique receiver. For this setup, we derive the exact degrees of freedom (DoF) region. Our achievability scheme generalizes the interference alignment scheme proposed by Cadambe and Jafar ’08. In particular, we achieve general points in the DoF region by using multiple base vectors and aligning the interference at each receiver to its largest (in the DoF sense) interferer. As a byproduct of our analysis, we recover the DoF region for the original interference channel.
+[[[ BODY ]]]
+Interference alignment has emerged as a technique with many different applications in the area of wireless communica- tions [1]–[4]. Receivers in a wireless setting have to contend with interference from undesired transmitters in addition to ambient noise. The traditional viewpoint has been to treat in- terference as noise, which is suboptimal from a capacity view- point, though practical from an implementation standpoint. The basic idea of interference alignment is to appropriately precode the transmissions so that interference from undesired transmitters is aligned at the intended receivers, thus making it signiﬁcantly better than treating interference as noise. This technique has the useful property of enabling the alignment simultaneously at all the receivers, thus allowing each user to transmit at approximately half the rate (in the high signal- to-noise ratio (SNR) scenario) that would be obtained in the absence of interference. The idea of interference alignment has been successfully applied to different interference networks [1]–[3], [5], demonstrating unlimited capacity potential when the SNR tends to inﬁnity.
+The seminal work of Cadambe and Jafar [2] considers a unicast scenario where there are K transmitters each with a single message, intended for a unique receiver, i.e., there are K transmitter receiver pairs. The total degrees of freedom
+(DoF) that one can obtain under different channel models is established when each transmitter and receiver has M antennas [2], [6].
+There are wireless applications where a common message may be demanded by multiple receivers, such as in a wireless video streaming — each broadcast message may be requested by a group of receivers. General message request sets have been considered in [7] where each message is assumed to be requested by an equal number of receivers. Ergodic interfer- ence alignment is employed and an achievability scheme is proposed. However, only the achievable sum rate is derived. The precise DoF region has not been identiﬁed. Our work in this paper allows for general (unequal) message requests, and we have derived the exact DoF region. The work in [7] has been further extended to the multi-hop equal-length network in [8].
+A related effort is the study of the compound multiple-input single-output (MISO) broadcasting channel (BC) [9], [10], where the channel between the base station and mobile user is drawn from a ﬁnite set. As pointed out in [9], the compound BC can be viewed as a BC with common messages, where each messages is requested by a group of receivers. Therefore, the total DoF of compound BC is also the total DoF of a BC with different multicast groups. It is shown that using real interference alignment scheme [6], [11], the outer bound of compound BC [12] can be achieved regardless of the number of channel states one user can have.
+In this paper, we consider a natural generalization of the multiple unicasts scenario considered in previous works. We consider a setup where there are K transmitters, each with a unique message. However there can be J (not necessarily K) receivers, each of which is interested in some arbitrary subset of the K messages, i.e., we consider interference networks with general message demands. This includes as a special case, for instance, multiple unicasts and multiple multicasts. Our main observation is that by appropriately modifying the achievability scheme of [2], we can achieve general points in the DoF region. We also provide a matching converse bound, that serves to establish the exact DoF region. To our best knowledge, the exact DoF region in this scenario has not been considered before.
+The paper is organized as follows. The system model is given in Section II. We develop an outer bound on the
+degrees of freedom region of this system, and then show it is achievable in Section III. Finally, Section IV concludes our paper.
+We use the following notation: boldface uppercase (low- ercase) letters denote matrices (vectors). R , Z, C are the real, integer and complex numbers sets. We deﬁne R + K := {(x 1 , x 2 , . . . , x K ) : x k ∈ R, x k ≥ 0, 1 ≤ k ≤ K}; Z + K can be similarly deﬁned. We use CN (0, 1) to denote the circularly symmetric complex Gaussian (CSCG) distribution with zero mean and unit variance. For a matrix A, [A] pq is the (p, q)th entry. And for a vector a, [a] p is the pth entry. For two matrices A and B, A ≺ B means that the column space of A is a subspace of the column space of B.
+We consider a single hop interference network with K transmitters and J receivers. Each transmitter has one and only one independent message. For this reason, we do not distinguish the indices for messages and that for transmitters. Each receiver can request an arbitrary set of messages from multiple transmitters. Let M j be the set of indices of those messages requested by receiver j. We assume all the trans- mitters and receivers have M antennas. The channel between transmitter k and receiver j at time instant t is denoted as H jk (t) ∈ C M ×M , 1 ≤ k ≤ K, 1 ≤ j ≤ J. We assume that the elements of all the channel matrices at different time instants are independently drawn from some continuous distri- bution. In addition, the channel gains are bounded between a positive minimum value and a ﬁnite maximum value to avoid degenerate channel conditions. The received signal at the jth receiver can be expressed as
+where z j ∈ C M is an independent CSCG noise with each entry CN (0, 1) distributed, and x k (t) ∈ C M is the transmitted signal of the kth transmitter satisfying the following power constraint
+Henceforth, we shall refer to the above setup as an inter- ference network with general message demands. In this work, our objective is to study the DoF region of an interference network with general message demands when there is perfect CSI at receivers and global CSI at transmitters. Denote the capacity region of such a system as C(P ). The corresponding DoF region is deﬁned as follows:
+If J = K and M j = {j}, ∀j, the general model we considered here will reduce to the well-known K user M antenna interference channel as in [2].
+In this section, we prove the DoF region of the interference network with general message demands. Our main result can be summarized as the following theorem.
+Theorem 1: The DoF region of an interference network with general message demands with K transmitters and J receivers, is given by
+We now show the region given by (1) is an outer bound based on a genie argument [3]. Suppose that for receiver j, there is a genie who provides all the interference messages except for the interference message with the largest DoF. If there are several such messages having the largest DoF, the genie withholds the one with the smallest index. Speciﬁcally, the index of this interference message withheld by the genie is denoted as
+All other interference messages are revealed by the genie to receiver j. If M c j is an empty set, we deﬁne d δ j = 0.
+With the genie’s help, all interference messages except for message δ j can be removed. Since the requested messages M j can be decoded, they can be subtracted from the received signal. It is evident that since message δ j needs to be decoded by some receiver, it hold that d δ j ≤ M using the point-to- point channel DoF constraint. Therefore, receiver j can also decode message δ j after subtracting all the other messages as it has M antennas as well. Hence, it follows due to multiple access channel outer bound that any achievable DoF point (d 1 , d 2 , . . . , d K ) must satisfy
+B. Achievability of DoF region with single antenna transmit- ters and receivers
+We ﬁrst consider the achievability scheme when all the transmitters and receivers have single antennas. The multiple antenna case can be reduced to the single antenna case and be discussed later. It is evident that we only need to show any point in D satisfying
+is achievable, for otherwise the messages can be renumbered appropriately. We now present a modiﬁed scheme based on [2]. Denote τ as the duration of the time expansion in number of symbols (to be determined later). Here and after, we use
+the superscript ˜ to denote the time expanded signals. Hence, ˜ H jk = diag(H jk (1), H jk (2), . . . , H jk (τ )), which is a size
+The achievability scheme is based on interference alignment over a time expanded channel. Denote the beamforming col- umn set of transmitter k as ˜ V k . Based on (2), we impose the following relationship on the cardinality of all the beamform- ing column sets of the transmitters:
+With this arrangement, we have δ j = min{k|k ∈ M c j }. At receiver j, we always align the interference messages with larger indices to the interference message with index δ j , which is the interference message with the largest DoF.
+that enforces the interference from message n to be aligned to the interference of message m at receiver j. Based on (3), for any T [j] m,n matrix, we always have n > m.
+In other words, C is a set of vectors denoting all the alignment constraints. There exists a one-to-one mapping from a vector (m, n, j) in C to the corresponding matrix T [j] m,n .
+For any rational DoF point d within D and satisfying (2), we can choose a positive integer κ, such that
+Towards this end, we propose to use multiple base vectors. A base vector is a vector from which the beamforming column set is generated. The total number of base vectors is ¯ d 1 . Denote all the base vectors as w i , 1 ≤ i ≤ ¯ d 1 . Transmitter k will use base vectors w i , 1 ≤ i ≤ ¯ d k to construct its beamforming column set, and the same base vectors will be used by transmitters 1, 2, . . . , k − 1 as well, see Fig. 1. The elements of w i are independent and identically drawn from some continuous distribution. In addition, we assume that the absolute value of the elements of w i are bounded between a positive minimum value and a ﬁnite maximum value, in the same way that entries of H jk (t) are bounded (see Section II).
+Denote Γ = |C|, which is the total number of T [j] m,n matrices as well. Let l be a positive integer, we propose to use τ = κ(l + 1) Γ fold time expansion.
+The beamforming column sets can be generated in the follow- ing way
+which is the number of matrices whose exponents are within {0, 1, . . . , l − 1}, while the other Γ − Γ k matrices can be raised to the power of l. It is evident that Γ K = Γ, and Γ 1 = 0.
+ii) Transmitter K uses ¯ d K base vectors. For base vector w i , 1 ≤ i ≤ ¯ d K , it generates the following l Γ columns
+where α m,n,j ∈ {0, 1, . . . , l − 1}. Hence, the total number of columns of ˜ V K is ¯ d K l Γ .
+iii) Similarly, transmitter k uses ¯ d k base vectors. For base vector w i , 1 ≤ i ≤ ¯ d k , it generates l Γ k (l + 1) Γ−Γ k columns
+α m,n,j ∈ {0, 1, . . . , l} 	 n > k α m,n,j ∈ {0, 1, . . . , l − 1} 	 n ≤ k
+In summary, the beamforming design is shown in (5). 4) Alignment at the receivers
+Assume (k, k ′ , j) ∈ C, so that message k ′ needs to be aligned with message k < k ′ at receiver j. We now show that this is guaranteed by our design. Let w i , 1 ≤ i ≤ ¯ d k ′ be a base vector used by transmitter k ′ , and hence also used by transmitter k. From (4), the beamforming vectors generated by w i at transmitter k can be expressed as (6), whereas those at the transmitter k ′ can be expressed as (7).
+Comparing the ranges of α k,k ′ ,j in (6) and (7), i.e., the middle terms, it can be veriﬁed that the columns in (7) multiplied with T [j] k,k ′ , will be a column in (6), ∀(k, k ′ , j) ∈ C. That is, message k ′ can be aligned to message k for any j such that (k, k ′ , j) ∈ C.
+The alignment scheme works due to the following reasons. i) Let α m,n,j (k) denote the exponent of the (m, n, j) term
+for ˜ V k . The construction of the beamforming column set guarantees that
+(8) by setting
+With (8), we are guaranteed all vectors in ˜ V n , when left multiplied with T [j] m,n (which has the effect of increasing
+the exponent of T [j] m,n by one), generates a vector that is within the column set of ˜ V m . Hence the alignment is ensured.
+For other terms where k is not m or n, max α m,n,j (k) can be either l or l − 1.
+ii) The base vectors used by transmitter n are also used by transmitter m < n. This guarantees that if the interference from transmitter n needs to be aligned with that from transmitter m < n, the alignment is ensured, combined with equation (8).
+It is evident that ˜ V k is a tall matrix of dimension κ(l + 1) Γ × ¯ d k l Γ k (l + 1) Γ−Γ k . We also need to show it has full column rank by using Lemma 1 (see appendix) to show that its upper square submatrix is full rank. Notice that all the entries are monomials and the random variables of the monomial are different in different rows. In addition, for a given row r, 1 ≤ r ≤ ¯ d k l Γ k (l + 1) Γ−Γ k , any two entries have different exponents. This is because they either have different random variables from w i , 1 ≤ i ≤ k, thus with different exponents of w i , or they share same variable from w i but the exponents that are associated with random variables from channel matrices are different. Therefore, based on Lemma 1, ˜ V k has full
+Finally, we need to ensure that the interference space and signal space are independent for all the receivers. Let the set of messages requested by receiver j be M j = {m 1,j , m 2,j , . . . , m β j ,j }, where β j = |M j |. For receiver j to be satisﬁed the following matrix
+needs to have full rank for all 1 ≤ j ≤ J. Notice that for any point within D
+always holds (recall M = 1). Therefore Λ j is a matrix that is either tall or square. For any row r of its upper square sub- matrix, its elements can be expressed in the following general
+The elements from different blocks (that is, different [ ˜ H jk ˜ V k ], k ∈ M j ∪ {δ j }) are different due to the fact that H jk (r)’s are different, hence the monomials do not have the same random variables. Within one ˜ H jk ˜ V k , two monomials are different either because they have different [w i ] r , 1 ≤ i ≤ ¯ d k , or, if they have the same [w i ] r , the associated exponents α m,n,j are different. Thus matrix Λ j has the following properties.
+iii) No two elements in the same row have the same expo- nents.
+Therefore, Λ j has full column rank as its entries satisfy Lemma 1.
+Combining the interference alignment and the full-rank arguments, we conclude that any point d satisfying (1) is achievable.
+C. Achievability of DoF region with multiple antenna trans- mitters and receivers
+The achievability when all the transmitters and receivers have M antennas is based on antenna splitting argument as in [2]. Notice that after splitting them to an interference network with M K transmitters and M J receivers, the achievability with single antenna users can be applied directly to achieve the region. For any transmitter k, each antenna will transmit a message of DoF equal to d k /M .
+We derived the DoF region of an interference network with general message demands. Our achievability scheme for a general point in the DoF region operates by generating beamforming columns with multiple base vectors over time ex- panded channel, and aligning the interference at each receiver to its largest interferer. We show in the full version of our paper [13] that the number of time expansion can be further reduced by modifying the alignment constraints. Our analysis also allows us to recover the DoF region for the original K user M antenna interference channel.
+It would be interesting to consider general message demand structures in other interference networks. For instance, if transmitters have multiple messages, the receiver demands may result in alignment constraints that cannot be satisﬁed in a simple manner. One such example is the wireless X network [3], where there is still a gap between the currently achievable total DoF and that given by the outer bound when the transmitters and receivers have multiple antennas.
+Lemma 1: [3, Lemma 1] Consider an M ×M square matrix A such that a ij , the elements in the ith row and jth column of A, is of the form
+where x [k] i are random variables and all exponents are integers, α [k] ij ∈ Z. Suppose that
+1) x [k] i |{x [k ′ ] i ′ , ∀(i, k) = (i ′ , k ′ )} has a continuous cumula- tive probability distribution.
+In other words, each random variable has a continuous cdf conditioned on all the remaining variables. Also, any two terms in the same row of the matrix A differ in at least one exponent.
+Note: When all the x [k] i ’s are independently generated from some continuous distribution, the ﬁrst condition in this lemma still holds.
+[[[ REFS ]]]
+S. Jafar
+S. Shamai
+--
+Degrees of freedom region of the MIMO X channel
+----
+V. Cadambe
+S. Jafar
+--
+Interference alignment and degrees of freedom of the K user interference channel
+----
+V. Cadambe
+S. Jafar
+--
+Interference Alignment and the Degrees of Freedom of Wireless x Networks
+----
+M. Maddah-Ali
+A. Motahari
+A. Khandani
+--
+Signaling over MIMO Multi-Base Systems: Combination of Multi-Access and Broadcast Schemes
+----
+C. Suh
+D. Tse
+--
+Interference Alignment for Cellular Networks
+----
+A. Ghasemi
+A. S. Motahari
+A. K. Khandani
+--
+Interference Alignment for the K User MIMO Interference Channel
+----
+B. Nazer
+M. Gastpar
+S. Jafar
+S. Vishwanath
+--
+Interference align- ment at ﬁnite SNR: General message sets
+----
+A. Abdel-Hadi
+S. Vishwanath
+--
+On multicast interference alignment in multihop systems
+----
+T. Gou
+S. A. Jafar
+C. Wang
+--
+On the degrees of freedom of ﬁnite state compound wireless networks - settling a conjecture by Weingarten et. al
+----
+M. A. Maddah-Ali
+--
+ On the Degrees of Freedom of the Compound MIMO Broadcast Channels with Finite States
+----
+A. S. Motahari
+S. O. Gharan
+M.-A. Maddah-Ali
+A. K. Khandani
+--
+Real Interference Alignment: Exploiting the Potential of Single Antenna Systems
+----
+H. Weingarten
+S. Shamai
+G. Kramer
+--
+On the compound MIMO broadcast channel
+----
+L. Ke
+A. Ramamoorthy
+Z. Wang
+H. Yin
+--
+Degrees of Freedom Region for an Interference Network with General Message Demands
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\169.pdf
+[[[ LINKS ]]]
+

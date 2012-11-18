@@ -104,5 +104,3 @@ class XMLDocument(fontsContainer: XMLFontsContainer, pages: List[XMLPage]) {
 	def getPage(pageNumber: Int): XMLPage = (pages.filter(p => p.getNumber == pageNumber)).head
 	def getParagraphs: List[XMLParagraph] = paragraphs
 }
-
-

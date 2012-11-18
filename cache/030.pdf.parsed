@@ -1,0 +1,156 @@
+[[[ ID ]]]
+30
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Rank Minimization over Finite Fields
+[[[ AUTHORS ]]]
+Vincent Y. F. Tan ∗†
+Laura Balzano ∗
+Stark C. Draper ∗
+[[[ ABSTR ]]]
+Abstract—This paper establishes information-theoretic limits in estimating a ﬁnite ﬁeld low-rank matrix given random linear measurements of it. Necessary and sufﬁcient conditions on the number of measurements required are provided. It is shown that these conditions are sharp. The reliability function associated to the minimum-rank decoder is also derived. Our bounds hold even in the case where the sensing matrices are sparse. Connections to rank-metric codes are discussed.
+Index Terms—Rank minimization, Finite ﬁelds, Reliability function, Sparse measurement matrices, Rank-metric codes
+[[[ BODY ]]]
+The problem of matrix completion [1]–[3] has been well- studied in recent years. Essentially, one is given a (small) subset of entries of a low-rank matrix and one is required to estimate all the the remaining entries. This problem has a variety of applications from collaborative ﬁltering to obtaining the minimal realization of a linear system. Algorithms based on the nuclear-norm (sum of singular values) convex relaxation of the rank function have enjoyed tremendous successes.
+A generalization of the matrix completion problem is the rank minimization problem [4] where, instead of being given entries of the low-rank matrix, one is given linear measure- ments of it. The nuclear-norm heuristic has also been proven to be extremely effective in ﬁnding the unknown matrix. Results from the literature are typically of the following ﬂavor: If the number of measurements exceeds a small multiple of the product of the dimension of the matrix and its rank, then the nuclear-norm heuristic is guaranteed to yield the same (optimal) solution as the exact rank-minimization problem.
+The bulk (if not all) of the rank minimization literature deals with the case where the entries of the unknown matrix are from the reals R. In this paper, we focus on the case where the elements of the matrix belong to a ﬁnite ﬁeld F q . Arithmetic is performed in the ﬁeld and the rank is also computed with respect to F q . Such a problem has applications in coding theory as well as distributed storage and interference alignment [5]. We derive information-theoretic limits on the number of measurements needed for estimating the matrix given linear measurements. In this paper, we are not as concerned with the computational complexity of recovering the unknown low-rank matrix as compared to the fundamental limits of doing so. However, we will comment on possible practical rank minimization techniques over ﬁnite ﬁelds by
+drawing analogies between rank minimization and the class of codes known as rank-metric codes [6]–[8].
+There are four key contributions in this paper. Firstly, by using Fano’s inequality, we derive a necessary condition on the number of measurements required for estimating a matrix from linear measurements. We have a weak and strong converse; the latter providing the rate of convergence of the error probability to unity (over all estimators). Secondly, we demonstrate that the so-called min-rank decoder (similar to Csisz´ar’s α-decoder [9]) achieves the information-theoretic lower bound on the number of measurements under the condition that the elements of the sensing (or measurement) matrices are drawn indepen- dently and uniformly from F q . Thirdly, we derive the reliability function (error exponent) of the min-rank decoder by using de Caen’s lower bound on the probability of a union [10]. Finally, we show that as long as the fraction of non-zero entries of the sensing matrices scales as Ω( log n n ), the min-rank decoder achieves the information-theoretic lower bound. This result opens the possibility for the development of decoding algorithms based on sparse parity-check matrices.
+Our work is partially inspired by [11] where fundamental limits for compressed sensing over ﬁnite ﬁelds were derived. To the best of the authors’ knowledge, the work by Vishwanath in [3] is the only one that deals with matrix completion (or rank minimization) over ﬁnite alphabets in an information- theoretic setting. It was shown using typicality arguments that the number of measurements required is within a logarithmic factor of the lower bound. Our setting is different because we assume that we have linear measurements instead of randomly sampled entries. We are able to show that the achievability and converse match for a family of sensing matrices.
+The family of codes known as rank-metric codes [6]–[8] is similar to the rank minimization problem over ﬁnite ﬁelds. We comment on connections in Section VI and [12].
+In this paper we adopt the following set of notation: San- serif font (e.g., y), bold-face upper-case (e.g., X), bold- face lower-case (e.g., w) denote random quantities, matrices and vectors respectively. Sets (and events) are denoted with calligraphic font. For a prime power q, we denote the Galois (ﬁnite) ﬁeld with q elements as F q . The set of m × n matrices with entries in F q is denoted as F m ×n q . For simplicity, we let
+[k] := {1, . . . , k} and y k := (y 1 , . . . , y k ). For a matrix M, ∥M∥ 0 and rank(M) denote the number of non-zero elements in M and the rank of M in F q respectively.
+We are interested in the following model: Let X be an unknown square 1 matrix in F n ×n q 	 whose rank is less than or equal to r, i.e., rank(X) ≤ r. We assume that the rank- dimension ratio γ := r/n is constant as n grows. We would like to recover X from linear measurements
+In (1), the sensing matrices H a ∈ F n ×n q , a ∈ [k] are chosen according to some probability mass function (pmf). The k scalar measurements y a ∈ F q , a ∈ [k] are available to estimate X. We will allow k to depend on n, i.e., k = k(n). Multiplication and addition in (1) are performed in F q .
+Our model is somewhat different from the matrix comple- tion problem [1]–[3]. In the matrix completion setup, a subset of entries Ω ⊂ [n] 2 in the matrix X is observed and one would like to “ﬁll in” the rest assuming the matrix is low-rank. This corresponds to the case where the sensing matrix H a is only non-zero in a single position and assuming H a ̸= H a ′ for all a ̸= a ′ , the number of measurements is k = |Ω|. In our measurement model in (1), we do not assume that ∥H a ∥ 0 = 1.
+We are interested in estimating the matrix X given y k . Our goal in this paper is to characterize necessary and sufﬁcient conditions on the number of measurements k as n becomes large assuming a particular pmf governing the sensing matrices H a . In the sequel, we will leverage the following lemma:
+Lemma 1 (Bounds on number of low-rank matrices [6]). Let Ψ q (n, r) be the number of matrices in F n ×n q of rank less than or equal to r. Then the following bounds hold:
+This section presents a necessary condition on the scaling of k with n for the matrix X to be recovered reliably, i.e., for the error probability in estimating X to tend to zero as n grows. As with all other converse statements in information theory, it is necessary to assume a statistical model on the unknown object, in this case X. Hence, in this section, we denote the unknown low-rank matrix as X. We also assume that X is drawn uniformly at random from the set of matrices in F n ×n q of rank less than or equal to r = γn. For an estimator ˆ X(y k , H k ) whose range is the set of all F n ×n q -matrices whose rank is less than or equal to r, we deﬁne the event E n := { ˆ X ̸= X}.
+Proposition 2 (Weak converse). Fix ε > 0 and assume that X is drawn uniformly at random from all matrices of rank less than or equal to r. Also, assume X is independent of H k . If,
+then for any estimator ˆ X whose range is the set of F n ×n q - matrices whose rank is less than or equal to r, P(E n ) ≥ ε/3 for all n sufﬁciently large.
+Proposition 2 states that the number of measurements k must exceed 2nr − r 2 = 2γ(1 − γ/2)n 2 for recovery of X to be reliable. From a linear algebraic perspective, this means we need at least as many measurements as degrees of freedom. The proof involves an elementary application of Fano’s inequality and is included for completeness.
+Proof: Consider the following lower bounds: P( ˆ X ̸= X) (a) ≥ H(X |y k , H k ) −1 log
+− I(X; y k |H k ) − 1 log q Ψ q (n, r)
+− H(y k |H k ) − 1 log q Ψ q (n, r)
+where (a) is by Fano’s inequality, (b) because y a ∈ F q so H(y k |H k ) ≤ H(y k ) ≤ kH(y 1 ) ≤ 1 and ﬁnally, (c) is due to the uniformity of X. Hence, if k satisﬁes (3) for some ε > 0, then k/log q Ψ q (n, r) ≤1−ε/2 for all n sufﬁciently large by (2). Hence, (4) is larger than ε/3 for all n sufﬁciently large.
+We emphasize that the assumption that the sensing matrices H a , a ∈ [k] is statistically independent of the unknown low-rank matrix X is important. This assumption is not a restrictive one in practice since the sensing mechanism is usually independent of the unknown matrix.
+In this section, we provide sufﬁcient conditions for the recovery of X (a deterministic low-rank matrix) given y k . To do so consider the following optimization problem:
+That is, among all matrices that satisfy the linear constraints in (1), we ﬁnd the one whose rank is the minimum. We call (5) the min-rank decoder. Denote the set of minimizers to (5) as S ⊂ F n ×n q . If S is a singleton set, we denote the unique optimizer to (5) as X ∗ . The optimization problem is intractable unless there is additional structure on the sensing matrices H a (See Section VI). The form of the minimization problem is reminiscent of Csisz´ar’s so-called α-decoder for linear codes [9]. In [9], Csisz´ar analyzed the error exponent of the decoder that minimizes a function α( · ) [e.g., the entropy H( · )] of the empirical distribution of a sequence subject to the sequence satisfying a set of F q -linear constraints.
+In this section, we will also provide the functional form of the reliability function (error exponent) for this recovery problem. We will then generalize the model in (1) to the case where the measurements y k may be noisy.
+We now assume that each element in each sensing matrix is drawn independently and uniformly at random from F q , i.e.,
+P([H a ] i,j = h) = 1/q for all h ∈ F q . We call this the uniform measurement model. We also deﬁne the error event to be
+Note that as we consider {|S| > 1} to be an error, we demand the solution to (5) to be unique. We can now exploit ideas from [11] to demonstrate the following result:
+Proposition 3 (Achievability). Fix ε > 0. Under the uniform measurement model, if
+Note that the number of measurements stipulated by Propo- sition 3 matches the information-theoretic lower bound in (3). In this sense, the min-rank decoder prescribed by the optimiza- tion problem in (5) is optimal. We remark that the packing- like achievability proof [11] is much simpler than in the one presented in [3] (albeit in a slightly different setting).
+Proof: To each Z ∈ F n ×n q 	 that is not equal to X and whose rank is less than or equal to rank(X), deﬁne the event
+Then we note that P(E n ) = P(∪ Z ̸=X:rank(Z)≤rank(X) A Z ) since an error occurs if and only if there exists a Z ̸= X such that (i) Z satisﬁes the linear constraints (ii) its rank is less than the rank of X. Furthermore, we claim that P(A Z ) = q −k for every Z ̸= X. This follows because
+where (a) follows from the fact that the H a are i.i.d. matrices and (b) from the fact Z − X ̸= 0 and every non-zero element in a ﬁnite ﬁeld has a (unique) multiplicative inverse so P(⟨Z− X, H 1 ⟩ = 0) = q −1 for every Z ̸= X. Now by combining (9) with the use of the union of events bound, we have
+where (a) follows from the upper bound in (2). Thus, we see that if k satisﬁes (7), the exponent in (10) is less than −εγ(1 − γ/2) + o(1) and hence P(E n ) → 0.
+We have shown in the previous section that the min- rank decoder is optimal in the sense that the number of measurements required for it to decode X reliably matches the lower bound on k. It is also interesting to analyze the rate at which P(E n ) decays to zero for the min-rank decoder.
+To do so, we deﬁne 2 R := 1 − lim n →∞ k/n 2 , assuming the limit exists. Also deﬁne the reliability function or error
+Unlike the usual deﬁnition of the reliability function, the normalization in (11) is 1/n 2 since X is n ×n. 3 The following proposition provides an upper bound for the reliability function assuming the min-rank decoder is used.
+Proposition 4 (Upper bound on E(R)). Let ˜ γ := rank(X)/n and assume that ˜ γ is constant. Under the uniform measurement model and assuming the min-rank decoder is used,
+The proof of this result hinges on the pairwise independence of the events A Z and de Caen’s inequality [10].
+Proof: Let (Ω, F, P) be a probability space. The inequal- ity by de Caen states that for events B 1 , . . . , B M ∈ F, the probability of the union can be lower bounded as
+In order to apply (13) to our setup, we need to compute the probabilities P(A Z ) and P(A Z ∩ A Z ′ ). The former is q −k as argued in (9). Note that since the the uniform measurement model is assumed, P(A Z ∩A Z ′ ) = q −2k if Z ̸= Z ′ and P(A Z ∩ A Z ′ ) = P(A Z ) = q −k if Z = Z ′ . Now, we apply (13) to P(E n ) noting that E n is the union of all A Z such that Z ̸= X and rank(Z) ≤ rank(X) =: ˜r. Then,
+where (a) is from the bounds in (2). Assuming 1 − R ≥ 2˜ γ (1 −˜γ/2), the normalized logarithm of the error probability can now be simpliﬁed as
+where we used the fact that q n 2 [2˜ γ(1 −˜γ/2)+o(1)−k/n 2 ] → 0. This shows that E(R) is upper bounded by the RHS of (14). The case where 1 − R < 2˜γ (1−˜γ/2) results in E(R) = 0 because P(E n ) fails to converge to zero as n → ∞.
+Proof: The lower bound on E(R) follows directly from achievability in (10). The upper bound is given in (14).
+We have a precise characterization of the reliability function E(R). Observe that pairwise independence of the events A Z is crucial. This is a consequence of the linear measurement
+model in (1). Note that the events A Z are not jointly indepen- dent. But the beauty of de Caen’s bound allows us to exploit the pairwise independence to lower bound P(E n ) and thus to obtain a tight upper bound on E(R). To draw an analogy, just as linear codes achieve capacity in symmetric DMCs as only pairwise independence is required, de Caen’s inequality allows us to move the exploitation of pairwise independence into the error exponent domain and make statements about the error exponent behavior of ensembles of linear codes.
+We conclude of this section by commenting how the min- rank decoder can be modiﬁed if the measurements y k are corrupted by noise from the ﬁnite ﬁeld. Now, instead of having access to noiseless measurements, we have
+where w = (w 1 , . . . , w k ) ∈ F k q is a deterministic but unknown noise vector. We assume that ∥w∥ 0 = ⌊σn 2 ⌋ for some noise level σ ∈ (0, k/n 2 ]. Consider the following generalization of the min-rank decoder:
+The optimization variables are X ∈ F n ×n q and w ∈ F k q . The parameter λ > 0 (which is allowed to depend on n) governs the tradeoff between the rank of X and the sparsity of w. Let H b ( · ) denote the binary entropy function.
+Proposition 6 (Achievability under noisy measurement model). Fix ε > 0 and choose λ = 1 n . Assuming the uniform measurement model and that ∥w∥ 0 = ⌊σn 2 ⌋, if
+Since the prefactor in (18) is a monotonically increasing function in the noise level σ, the number of measurements degrades as σ increases, agreeing with intuition. Note that the regularization parameter λ is independent of σ. The factor of 3 (instead of 2) in (18) arises due in part to the uncertainty in the locations of the non-zero elements of w. The proof of Proposition 6 is given in [12]. The analysis can also be extended to the case where the noise vector is random.
+In the previous section, we focused exclusively on the case where the elements of the sensing matrices H a , a ∈ [k] are drawn independently and uniformly at random from F q . However, there is substantial motivation to consider different ensembles of sensing matrices. For example, in low-density parity check (LDPC) codes, the parity check matrix (analogous to the set of H a matrices) is sparse. The sparsity aids in decoding via the sum-product (belief propagation) algorithm as the resulting Tanner (factor) graph is sparse.
+In this section, we analyze the scenario where the sensing matrices are sparse. More precisely, each element of each matrix H a is assumed to be an independently and identically distributed random variable with associated pmf
+δ/(q − 1) h ∈ F q \ {0} . 	 (19) Observe that if δ is small, then the probability that a randomly selected entry in H a is zero is close to unity. In the rest of this section, we allow δ to depend on n but we do not make the dependence of δ on n explicit for ease of exposition. The question we would like to answer is: How fast can δ decay with n such that the min-rank decoder is still reliable?
+Theorem 7 (Achievability under sparse measurement model). Fix ε > 0 and let δ be any sequence in Ω( log n n ). If there exists a positive integer N ε such that (7) holds for all n > N ε , then P(E n ) → 0 as n → ∞.
+Note that the sparsity-factor δ of the sensing matrices is allowed to tend to zero albeit at a controlled rate of Θ( log n n ). Thus, each H a is allowed to have, on average, Θ(n log n) non- zero entries (out of n 2 entries). The scaling rate is reminiscent of the number of trials required for success in the so-called coupon collector’s problem. Indeed, we need at least an entry in a row and an entry in a column of X to be sensed (by a sensing matrix H a ) for the min-rank decoder to succeed. The number of measurements required in the sparse sensing case is exactly the same as in the case where the elements of H a are drawn uniformly at random from F q in Proposition 3. In fact it also matches the information-theoretic lower bound. The following lemma is used in the proof of Theorem 7.
+Lemma 8. Let d Z := ∥X−Z∥ 0 . The probability of A Z , denoted as θ(d Z ; δ, q, k), is only a function of d Z and is given as
+Lemma 8 can be proved by induction on d and by observing that the pmf of [H a ] 1,1 + [H a ] 1,2 is the circular convolution of P (h; δ, q) with itself. The function θ(d; δ, q, k) is monotoni- cally decreasing in d and is also upper bounded by (1 −δ) k for all d. We now provide a sketch of the proof of Theorem 7. The basic idea is to partition all possibly “misleading” matrices Z into subsets based on their Hamming distance from X.
+Proof: We can upper bound the probability P(E n ) as: P(E n ) (a) ≤ n 2 ∑
+where in (a) we partition the sum over Z into classes of matrices which differ from X by d entries and in (b), we partition the resulting sum into two parts in accordance to the fractional parameter β (which is allowed to depend on n). We denote the two sums in (21) as A n and B n respectively. Now,
+where in (a) we used Lemma 1 and in (b) we used Lemma 8. Consider the choice of parameters: β = Θ( δ log n ) and δ = Ω( log n n ). Then, both (22) and (23) tend to zero as n → ∞ if k satisﬁes (7) for all n sufﬁciently large.
+The natural question at this juncture is whether the “relia- bility function” can be computed for this sparse measurement model. The events A Z are no longer pairwise independent and so it is not straightforward to compute P(A Z ∩A Z ′ ). Thus, de Caen’s bound may not be tight as in the uniform measurement model in Section IV. By the choice of (β, δ) our bounding technique in Theorem 7 only ensures that
+for some C ∈ (0, ∞). Thus, instead of having a speed 4 of n 2 in the large-deviations upper bound, we have a speed of n log n. This is because δ ∈ o(1). Whether the speed n log n is optimal is open. Also, is there a tradeoff between the sparsity factor δ and a bound on the number of measurements?
+There is a natural correspondence between the rank min- imization problem and rank-metric decoding [6], [7]. In the former, we solve a problem of the form (5). In the latter, the code typically consists of all matrices that lie in the kernel of some linear operator H, i.e., the code C = ker(H) ⊂ F n ×n q . A particular codeword C ∈ C is transmitted. The received word is given as R = C + X, where X is assumed to be a low-rank “error” matrix. The optimization problem is then
+which is identical to the min-rank problem in (5) with the identiﬁcation of the error matrix X ≡ R − C. In general, solving (25) is intractable (NP-hard) but it is known that if the linear operator H admits a favorable algebraic structure, then learning a sufﬁciently low-rank X (and thus C) from R can be done in polynomial time. More precisely, the class
+of Gabidulin codes [13], which are rank-metric analogs of Reed-Soloman codes, not only achieves the Singleton bound (and thus has maximum rank distance), but decoding can be achieved using a modiﬁed form of the Berlekamp-Massey algorithm. However, the structured nature of codes (and in particular the mutual dependence between the equivalent H a matrices) does not permit the line of analysis we adopted.
+Another promising direction was adopted in [8] where the authors assumed that the error matrix X is drawn uniformly at random from all matrices of known rank r. The authors constructed a code in which they ﬁrst learned the rowspace of X before adopting a message-passing strategy to complete the reconstruction. However, the structured codebook violates the assumptions for our preceding analyses to hold. Nonetheless, by writing X = UV T for matrices U, V ∈ F n ×r q , we see that if the rowspace is known, all that remains unknown in X is the U matrix. Thus, in principle, we can solve the system of linear equations ⟨H a , UV T ⟩ = y a , a ∈ [k] for U to complete the recovery of X. This is a subject of current investigation. The ideas in [8] were extended in [14] where the authors computed the capacity of various matrix-valued channels over ﬁnite ﬁelds as well as devised “error trapping” codes to achieve capacity.
+In this paper, we derived fundamental limits for recovering a low-rank matrix over a ﬁnite ﬁeld given linear measurements. We showed that even if the sensing matrices are exceedingly sparse, reliable recovery is still possible with as few measure- ments as the lower bound stipulates. In the longer version of this paper [12], we draw further comparisons between our work and rank-metric codes, comment on the coding-theoretic interpretations of the results herein and suggest a procedure to reduce on the complexity of min-rank decoding.
+[[[ REFS ]]]
+E. J. Cand`es
+T. Tao
+--
+The power of convex relaxation: near-optimal matrix completion
+----
+B. Recht
+--
+A simpler approach to matrix completion
+----
+S. Vishwanath
+--
+Information theoretic bounds for low-rank matrix completion
+----
+B. Recht
+M. Fazel
+P. A. Parrilo
+--
+Guaranteed minimum-rank solutions of linear matrix equations via nuclear norm minimization
+----
+D. S. Papailiopoulos
+A. G. Dimakis
+--
+Distributed Storage Codes Meet Multiple-Access Wiretap Channels
+----
+P. Loidreau
+--
+Properties of codes in rank metric
+----
+D. Silva
+F. R. Kschischang
+R. K¨otter
+--
+A rank-metric approach to error control in random network coding
+----
+A. Montanari
+R. Urbanke
+--
+Coding for network coding
+----
+I. Csisz´ar
+--
+Linear codes for sources and source networks: Error expo- nents, universal coding
+----
+D. de Caen
+--
+A lower bound on the probability of a union
+----
+S. Draper
+S. Malekpour
+--
+Compressed Sensing over Finite Fields
+----
+V. Y. F. Tan
+L. Balzano
+S. C. Draper
+--
+Rank minimization over ﬁnite ﬁelds: Fundamental limits and coding-theoretic interpretations
+----
+E. M. Gabidulin
+--
+Theory of codes with maximum rank distance
+----
+D. Silva
+F. R. Kschischang
+R. K¨otter
+--
+Communication over ﬁnite- ﬁeld matrix channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\030.pdf
+[[[ LINKS ]]]
+

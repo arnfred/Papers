@@ -1,0 +1,163 @@
+[[[ ID ]]]
+121
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The Capacity Per Unit Energy of Large Wireless Networks
+[[[ AUTHORS ]]]
+Sudeep Kamath
+Urs Niesen
+Piyush Gupta
+[[[ ABSTR ]]]
+Abstract—We study the scaling of the capacity per unit energy of a wireless network as a function of the number of nodes and the deployment area. We show that in a network of n nodes located randomly in a region of area scaling linearly with n and communicating over Gaussian fading channels with power path- loss exponent α, the per-node capacity per unit energy scales essentially as Θ(n 1 −α/2 ) in the low path-loss regime (2 ≤ α ≤ 3) and essentially as Θ(n −1/2 ) in the high path-loss regime (α ≥ 3 ); while if the area is held constant, it scales essentially as Θ(n) and Θ(n (α −1)/2 ) in the low and high path-loss regimes, respectively. We propose a novel communication scheme, phase- aligned amplify-and-forward, which is shown to be order-optimal in the low path-loss regime—no other known scheme achieves the same scaling. We show that the well-known multi-hop scheme is order-optimal in the high path-loss regime.
+[[[ BODY ]]]
+Traditionally, communication energy efﬁciency in wireless networks has been studied from the perspective of a single link or canonical multi-user channels. In particular, Verd´u [1], [2] introduced the notion of link capacity per unit cost, modifying the Shannon-theoretic objective of maximizing the number of bits reliably transmitted per use of the channel to the number of bits reliably transmitted per unit energy, and characterized the capacity per unit cost for certain point- to-point and broadcast/multi-access channels. These results, however, do not easily generalize to larger networks. In fact, even for the traditional metric of maximizing the number of bits per channel use, the exact communication limits are unknown for even simple networks, such as the relay and interference channels.
+Nonetheless, in the last decade or so, exciting progress has been made toward approximately characterizing the capacity of large wireless networks. This question was ﬁrst studied by Gupta and Kumar [3], who focused on asymptotic behavior of the network capacity. In particular they showed that under a model of communication called the protocol model, the per- node rate for random source-destination pairing with uniform trafﬁc can scale at most as O(n −1/2 ). They further showed that essentially the same scaling can be achieved by a simple scheme based on multi-hop communication. Subsequent work on this topic has focused on removing the protocol model
+assumption made in [3], and instead considered Gaussian fading channels with a power-loss of r −α for signals sent over a distance of r for path-loss exponent α ≥ 2. In a series of papers, upper bounds on the achievable rates for random source-destination pairing have been derived (see [4]– [6] and references therein). On the other hand, in another stream of work (see [5], [7] and references therein) it was shown that in the low path-loss regime (α ≤ 3), cooperative communication schemes signiﬁcantly outperform multi-hop communication. In particular, ¨Ozg¨ur et al. [5] introduced a hierarchical cooperative communication scheme achieving the optimal per-node rate scaling of Θ(n 1 −α/2±ε ), ε > 0, in an extended network (i.e., network located in an area Θ(n)), and showed that multi-hop communication is scaling-optimal in the the high path-loss regime (α ≥ 3). In this paper, we aim to combine the paradigms of energy efﬁciency and approximate capacity analysis of large wireless networks. While the scaling of energy efﬁciency of large net- works under certain speciﬁc trafﬁc patterns, such as broadcast from a single source (see [8] and references therein) and multiple unicast with relatively few source-destination pairs (up to √n pairs with n nodes in the network, see [9]), has been studied in the literature, it has not been analyzed under more general trafﬁc patterns.
+Our contribution in this paper is to characterize the scaling of the capacity per unit energy of large wireless networks under the Gaussian fading channel model with path-loss exponent α ≥ 2. We show that the multi-hop scheme [3] is order-optimal in the high path-loss regime. For energy-efﬁcient communication in the low path-loss regime, we introduce a new achievable scheme called phase-aligned amplify-and- forward. The scheme operates in two stages. In stage I, the source nodes transmit their messages to a set of relay nodes. In stage II, these transmissions are forwarded by the relay nodes to the destination nodes. This forwarding in stage II is done at opportune time slots where the channel phases are aligned with the ones observed in stage I such as to allow a beamforming gain at each destination for its respective signal. We show that this scheme is order-optimal in the low path-loss regime up to a poly-logarithmic factor in the number of nodes n . No other known scheme matches the performance of this scheme for the capacity per unit energy in the aforementioned regime. We note that the scaling-optimal scheme for capacity
+per unit energy depends only on the path-loss exponent and not on the area-scaling exponent, a behavior in stark contrast to that exhibited by the scaling-optimal schemes for capacity [10].
+The remainder of the paper is organized as follows. We start with the description of the network and channel models in Section II. We present the main results of the paper in Section III. In Section IV, we introduce and analyze the phase-aligned amplify-and-forward scheme.
+Consider n nodes distributed independently and uniformly at random on a square of area n ν , for area-scaling exponent ν ≥ 0. Two special cases are worth mentioning. For ν = 0, the network area is constant as a function of number of nodes n; this is referred to as a dense network. For ν = 1, the network area scales linearly with the number of nodes n; this is referred to as an extended network. The nodes are paired up uniformly at random into source-destination pairs for unicast, each node being the source for one unicast session and destination for another. All n unicast sessions are at uniform rate.
+Nodes communicate over Gaussian channels with phase fad- ing and power path loss. More speciﬁcally, if the transmission by node u in a given time slot t is x u (t), then the reception of node v in that time slot is
+with path-loss exponent α ≥ 2, with θ u,v (t) being uniformly distributed in [0, 2π) and independent 1 across node pairs (u, v) and across different time slots t, and with z v (t) ∼ CN(0,1) independent across different nodes v and across different time slots t. We assume full channel state information (CSI) is available at all the nodes, i.e. all nodes know the realization of θ u,v (t) for each (u, v) at the beginning of time slot t.
+Deﬁnition. (R, P ) is an ε-achievable rate-power pair (0 < ε < 1) for a network realization if for every γ > 0, there exists T 0 such that for all T ≥ T 0 there exists a code of block length T that achieves a rate of R −γ for each unicast session, with an average transmit power no more than P at each node, and achieves an error probability no more than ε, where the error event is deﬁned to take place if any of the unicast sessions fails to deliver the intended message correctly.
+Deﬁnition. Given a network realization of size n. Its capacity per unit energy ˜ C(n) is
+We point out that R and P denote per-node rate and per- node power constraints, respectively.
+Our main result is the following. Theorem 1. For every α ≥ 2, there exist constants K 1 , K 2 > 0 such that for all ν ≥ 0, 2
+lim n →∞ P K 1 log (1 −α)/2 (n) ≤ ˜ C(n) n e(ν,α) ≤ K 2 log α+5 (n) = 1, where
+The proof of Theorem 1 is presented in Section IV. The theorem shows that
+log(n) p → e(ν,α), 	 (1) i.e., the capacity per unit energy ˜ C(n) behaves as n e(ν,α) ±o(1) . Theorem 1 is, however, stronger since the upper and lower bounds on ˜ C(n) differ only by a poly-logarithmic factor in n.
+We now provide a brief description of the communication scheme achieving the inner bound in Theorem 1. Interestingly, the structure of the scheme depends on the path-loss exponent α , but not on the area-scaling exponent ν. For the range 2 ≤ α ≤ 3, we introduce a new scheme called phase-aligned amplify-and-forward. In this scheme, source nodes transmit their messages to the destination nodes with the help of relays, which are chosen to be at the same order distance from both of them (see Fig. 1). In stage I of the scheme, the source nodes transmit their messages to the relay nodes using Gaussian codebooks. In stage II, these transmissions are forwarded by the relay nodes to the destination nodes. This forwarding is done at opportune time slots where the channel phases allow a beamforming gain at each destination for its respective signal. In other words, this two-stage relaying strategy allows the multi-path signals to be added coherently for all the source- destination pairs simultaneously.
+It is worth emphasizing that both the simultaneous trans- missions of sources in the ﬁrst stage and beamforming from relay nodes in the second stage are crucial aspects of the above scheme. While the energy gain due to the latter is to be expected, the former ensures that the relay nodes receive enough signal power so as to not end-up wasting too much energy amplifying noise in the second stage, as well as that the relay nodes still operate with low enough power to be in the energy-efﬁcient near-linear regime when transmitting in the second stage.
+For the range α ≥ 3, we use the well-known multi-hop scheme. The matching (in the scaling sense) outer bound in Theorem 1 establishes that the above schemes are scaling- optimal with respect to data rates per unit energy.
+It is interesting to compare the scaling-optimal scheme with respect to rate per unit energy to the scaling-optimal scheme with respect to rate alone. As we pointed out earlier, for a
+given (ν, α) pair the scaling-optimal scheme with respect to rate per unit energy depends only on the path-loss exponent α and not on the area-scaling exponent ν. On the other hand, the scaling-optimal scheme with respect to rate alone depends on both α and ν [10].
+The upper bound on the capacity per unit energy in Theo- rem 1 can be obtained by suitably adapting the approach in [5], [10], [14]. The lower bound on capacity per unit energy in Theorem 1 in the high path-loss regime (α ≥ 3) is based on mult-hop communication, and the rate per unit energy it achieves follows from the arguments in [3]. Due to space constraints, we omit the details of both proofs. The lower bound on capacity per unit energy in the low path-loss regime (2 ≤ α < 3) is based on phase-aligned amplify-and-forward, which we analyze in detail next.
+In this section, we consider the low path-loss regime 2 ≤ α < 3 . In this regime, and for the special case of dense networks (ν = 0), the hierarchical cooperation scheme [5] achieves a per-node rate of Θ(n −ε ) for any ε > 0. A higher per-node rate of Θ(1) is achievable using the interference alignment scheme [15]. However, the factor n ε increase in rate comes at the cost of increased energy consumption: while hierarchical cooperation requires a per-node power of O( 1 n ), the interference alignment scheme requires a per-node power of Θ(1).
+We now describe a new scheme, called phase-aligned amplify-and-forward. For the case of dense networks, this scheme achieves a per-node rate of Θ(1) while consuming a power of only O( 1 n ). Thus, for dense networks, phase-aligned amplify-and-forward achieves the same constant per-node rate as interference alignment with the same power requirement as the hierarchical cooperation scheme.
+The situation is analogous for extended networks, where phase-aligned amplify-and-forward has the same energy con- sumption as hierarchical relaying, but achieves a rate that is a factor n ε higher.
+The following lemma summarizes the rate this scheme achieves, proving the lower bound in Theorem 1 for α ∈ [2,3).
+The matching (in the scaling sense) upper bound in Theorem 1 shows that this scheme is optimal up to a polylogarithmic factor in n for 2 ≤ α < 3.
+ν = 0 , so that the nodes are placed on a square of unit area. Divide the network into seven vertical sections of dimensions 1 × 1 7 each. We have between 1 2 · n 7 and 2 · n 7 nodes in each vertical section with high probability (w.h.p.). Further, the number of source-destination pairs with sources in one vertical section and destinations in another (possibly identical) vertical section lies between 1 2 · n 49 and 2 · n 49 w.h.p.
+Consider all possible pairs of sections. We time-share be- tween these 49 pairs, handling in each time slot the messages from the sources in the ﬁrst section to the destinations in the second section of the pair. For each such source section and destination section, we choose a third vertical section that is at least at distance √n/7 from both the source and destination sections (see Fig. 1). Since there are seven vertical sections, such a choice of relay section is always possible. As will become clear in the following, this choice of relay nodes is made to avoid near-far effects.
+Let us restrict attention to one group of source-destination pairs with an appropriately chosen vertical section consisting of relay nodes. Denote by S, D, and R the source, destination, and relay nodes, respectively. By construction |S| = |D|. Moreover, with high probability,
+2 n/49 ≤ |S| = |D| ≤ 2n/49 	 (2) and 	 1
+2 n/7 ≤ |R| ≤ 2n/7. 	 (3) Note that, by the choice of relay nodes,
+2 −α/4 ≤ |h s,r (t)|,|h r,d (t)| ≤ 7 α/2 , 	 (4) for all s ∈ S,r ∈ R,d ∈ D, in any time slot t.
+The communication scheme consists of two stages. The sources transmit in stage I. The relays receive in stage I and transmit a scaled copy of their observations to the destinations in stage II, appropriately reshufﬂed, as described next.
+(t) into 8 equal divisions of [0, 2π), and call the resulting quantized phase ˆθ s,r (t). Perform the same quantization procedure for (r, d) ∈ R × D. The quantized channel space H has size
+t 2 such that ˆθ s,r (t 1 ) = − ˆθ r,d (t 2 ) for all s ∈ S,r ∈ R,d ∈ D with d the intended destination for source s. Note that this means the non-quantized phases satisfy
+|θ s,r (t 1 ) + θ r,d (t 2 )| ≤ π/4, 	 (5) for a source-destination pair (s, d) and for any relay node r ∈ R. In other words, the phase alignment ensures that the forwarded signal is (approximately) beamformed by the relays to the desired destination (see Fig. 2).
+Note that with the above procedure, times of reception at the relay in stage I and times of retransmission in stage II are paired up. We now argue that in a large enough block, most time slots can be successfully paired in this manner.
+Given a block of length L, each quantized phase state appears in stage I as well as stage II at least L(1−δ)/|H| and at most L(1 + δ)/|H| times with probability at least 1− |H|
+, for any δ > 0 [16, Lemma 1.2.12]. Fix δ = 1/2. By choosing L large, this probability can be made as close to 1 as desired. Consider now two such blocks of length L. The ﬁrst block is used for stage I of the communication scheme, and the second block for stage II. Match the ﬁrst L/2|H| copies of each quantized phase state in stage I with the corresponding ﬁrst L/2|H| copies in stage II. The unpaired time slots are not used for any transmission, resulting in a loss in rate of at most a factor 2 w.h.p.
+Consider the following two paired time slots t 1 , t 2 , and let (s 1 , d 1 ) be a speciﬁc source-destination pair. Note that, by the pairing procedure, t 2 > t 1 . In stage I, each source transmits according to an independently generated Gaussian codebook with average power constraint 1/n. Relay r receives
+E |y r (t 1 )| 2 = 1 n s ∈S |h s,r (t 1 )| 2 + 1 ≤ 1 n |S|7 α + 1
+where we have used (4) for the ﬁrst inequality and (2) for the second one. In stage II, each relay node r rescales its
+observation y r (t 1 ) by a factor 1/σ√n and transmits at time t 2 , x r (t 2 ) := 1 σ√n y r (t 1 ). Note that E |x r (t 2 )| 2 ≤ 1 n , and hence the signal transmitted at the relay nodes satisﬁes an average power constraint of 1/n. The destination d 1 for source s 1 receives
+The received signal y d 1 (t 2 ) at destination d 1 has three components: The desired signal, interference, and noise. Con- ditioned on the the channel gains, the desired signal at d 1 is NC(0,P(t 1 , t 2 )) with
+Again conditioned on the channel gains, the interference at d 1 is NC(0,I(t 1 , t 2 )) with
+is the interference power due to source s. Conditioned on the channel gains, the noise at d 1 is NC(0,N(t 1 , t 2 )) with
+Let A denote the event ˆθ s,r (t 1 ) = − ˆθ r,d (t 2 ) ∀ s ∈ S,r ∈ R,d ∈ D with (s,d) being a source-destination pair. By using sub-codes of length L/2|H| and appropriate rate for each quantized channel state, over the two blocks of length L we can hence achieve a rate from s 1 to d 1 of
+I(t 1 , t 2 ) + N(t 1 , t 2 ) A , (6) where the expectation is over the channel gains, and where the factor 1/196 accounts for the loss of 1/2 due to transmitting over two blocks of length L, the loss of 1/2 due to only pairing up half of each block, and the loss of 1/49 due to time sharing between all 49 possible source-destination sectors.
+We now analyze the terms appearing in (6). Conditioned on A, we have
+(t 1 )h r,d 1 (t 2 ) 2 ≥ 1 σ 2 n 2 |R|2 −α/2 cos(π/4) 2
+where the ﬁrst inequality follows from (4) and (5), and the second inequality follows from (3). Now note that, condi- tioned on A and for s ∈ S,s = s 1 , the random variables {θ
+(t 1 ), θ r,d 1 (t 2 ) : r ∈ R} are mutually independent. Thus, E[I s (t 1 , t 2 )|A] = E 1 σ 2 n 2
+where in (a) we have used that the cross terms upon expanding the square yield zero in expectation from the conditional mutual independence noted earlier, and where (b) follows from (3) and (4). Thus, we have
+Combining this with (6), we can achieve a rate R per source- destination pair of at least
+≥ 1 196 log 1 + 1/(196 · 2 α+1 σ 2 ) 4 · 7 2α −3 /σ 2 + 2 · 7 α −1 /σ 2 + 1 := K 1 .
+Here (a) follows from (7) and (9) and monotonicity, since log(1+ x y+z ) is monotonically increasing in x for ﬁxed y, z > 0 and monotonically decreasing in z for ﬁxed x, y > 0; (b) follows from convexity of log(1+ x y+z ) in y for ﬁxed x, z > 0 and Jensen’s inequality; (c) follows from (8) and again from monotonicity, since log(1 + x y+z ) is monotonically decreasing in y for ﬁxed x, z > 0. Note that the constant K 1 depends only on α. Thus, it is possible to achieve a constant rate per user while using a power of 1/n per node, so
+Thus, running the above phase-aligned amplify-and-forward scheme with power constraint n αν/2 −1 , we achieve a constant throughput K 1 per node. This shows that
+˜ C(n) ≥ K 1 n 1 −αν/2 = K 1 n e(ν,α) , for α ∈ [2,3) and ν ≥ 0, proving Lemma 2.
+We have characterized the scaling of the capacity per unit energy of large wireless networks under a Gaussian phase- fading model with power path-loss exponent α ≥ 2. We have provided a new achievable scheme, phase-aligned amplify- and-forward, that is scaling-optimal for the capacity per unit energy in the low path-loss regime, 2 ≤ α ≤ 3. We also have shown that the multi-hop communication scheme is scaling- optimal in the high path-loss regime, α ≥ 3. One drawback of our proposed phase-aligned amplify-and-forward scheme is the large delay associated with it. Constructing schemes that match the performance of phase-aligned amplify-and-forward, but have smaller delay, would be of interest.
+[[[ REFS ]]]
+S. Verd´u
+--
+On channel capacity per unit cost
+----
+S. Verd´u
+--
+Spectral efﬁciency in the wideband regime
+----
+P. Gupta
+P. R. Kumar
+--
+The capacity of wireless networks
+----
+L.-L. Xie
+P. R. Kumar
+--
+On the path-loss attenuation regime for positive cost and linear scaling of the transport capacity in wireless networks
+----
+A. ¨Ozg¨ur
+O. L´evˆeque
+D. N. C. Tse
+--
+Hierarchical cooperation achieves optimal capacity scaling in ad hoc networks
+----
+M. Franceschetti
+M. D. Migliore
+P. Minero
+--
+The capacity of wireless networks: Information theoretic and physical limits
+----
+S. Aeron
+V. Saligrama
+--
+Wireless ad hoc networks: Strategies and scaling laws for the ﬁxed SNR regime
+----
+A. Jain
+S. R. Kulkarni
+S. Verd´u
+--
+Multicasting in large random wireless networks: Bounds on the minimum energy per bit
+----
+A. F. Dana
+B. Hassibi
+--
+On the power efﬁciency of sensory and ad hoc wireless networks
+----
+A. ¨Ozg¨ur
+R. Johari
+D. N. C. Tse
+O. L´evˆeque
+--
+Information- theoretic operating regimes of large wireless networks
+----
+M. Franceschetti
+M. D. Migliore
+P. Minero
+--
+The capacity of wireless networks: Information-theoretic and physical limits
+----
+A. ¨Ozg¨ur
+O. L´evˆeque
+D. N. C. Tse
+--
+Linear capacity scaling in wireless networks: Beyond physical limits?
+----
+S.-H. Lee
+S.-Y. Chung
+--
+On the capacity scaling of wireless networks: Effect of ﬁnite wavelength
+----
+U. Niesen
+P. Gupta
+D. Shah
+--
+On capacity scaling in arbitrary wireless networks
+----
+U. Niesen
+--
+Interference alignment in dense wireless networks
+----
+I. Csisz´a
+J. K¨orne
+--
+Information Theory: Coding Theorems for Discrete Memoryless Systems
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\121.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,170 @@
+[[[ ID ]]]
+162
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the Stability Region of Multi-Queue Multi-Server Queueing Systems with Stationary Channel Distribution
+[[[ AUTHORS ]]]
+Hassan Halabian
+Ioannis Lambadaris
+Chung-Horng Lung
+[[[ ABSTR ]]]
+Abstract—In this paper, we characterize the stability region of multi-queue multi-server (MQMS) queueing systems with stationary channel and packet arrival processes. Toward this, the necessary and sufﬁcient conditions for the stability of the system are derived under general arrival processes with ﬁnite ﬁrst and second moments. We show that when the arrival processes are stationary, the stability region form is a polytope for which we explicitly ﬁnd the coefﬁcients of the linear inequalities which characterize the stability region polytope.
+[[[ BODY ]]]
+Stability region or network capacity region of a commu- nication network is the closure of the set of all arrival rate vectors for which there exists a resource allocation policy that can stabilize the system [1]–[3]. Having the stability region of a network characterized by a set of convex inequalities, we can obtain a precise solution for network fairness optimization problems with the general form of (1).
+In (1), N is the number of trafﬁc sources. By r = (r 1 , r 2 , ..., r N ), we denote the admitted rate vector, λ n is the input rate of each source n and Λ denotes the stability re- gion. Functions f n (r n ) are non-decreasing and concave utility functions. The choice of f n (r n ) determine the desired fairness properties of the network. The goal of this paper is to char- acterize the network capacity region of Multi-Queue Multi- Server (MQMS) queueing systems with stationary channel dis- tribution (i.e., Λ for MQMS system). Such queueing systems are used to model multiuser wireless networks with multiple orthogonal subchannels such as OFDMA access networks. The resource allocation in such networks can be modelled as the server allocation problem in multi-queue multi-server queueing systems with time varying channel conditions [4]– [9].
+The stability problem in wireless queueing networks was mainly addressed in [1]–[3], [5], [9]–[11]. In [3], the authors introduced the notion of capacity region of a queueing net- work. They considered a time slotted system and assumed that arrival processes are i.i.d. sequences and the queue length process is a Markov process. In [10], they characterized the network capacity region of multi-queue single-server system with time varying ON-OFF connectivities. They also proved
+that for a symmetric system i.e., with the same arrival and connectivity statistics for all the queues, LCQ (Longest Con- nected Queue) policy maximizes the capacity region and also provides the optimal performance in terms of average queue occupancy (or equivalently average queueing delay). In [1], [2] and [11], the notion of network capacity region of a wireless network was introduced for more general arrival and queue length processes.
+The problem of server allocation in multi-queue multi-server systems with time varying connectivities was mainly addressed in [4]–[7], [9]. In [5], Maximum Weight (MW) policy was proposed as a throughput optimal server allocation policy for MQMS systems with stationary channel processes. However, in [5] the conditions on the arrival trafﬁc to guarantee the stability of MW were not explicitly mentioned. In our previous work [9], we characterized the network capacity region of multi-queue multi-server systems with time varying ON-OFF channels. We also obtained an upper bound for the average queueing delay of AS/LCQ (Any Server/Longest Connected Queue) policy which is the throughput optimal server alloca- tion policy for such systems.
+In this paper, we characterize the stability region of multi- queue multi-server queueing system with stationary channel and arrival processes. Toward this, the necessary and sufﬁcient conditions for the stability of the system are derived for general arrival processes with ﬁnite ﬁrst and second moments. For stationary arrival processes, these conditions establish the network stability region of such systems. Our contribution in this work is to characterize the stability region as a convex polytope speciﬁed by a ﬁnite set of linear inequalities that can be numerically tabulated and used to solve network optimization problem (1). We further introduce an upper bound for the average queueing delay of MW policy which is a throughput optimal policy for MQMS systems.
+The rest of this paper is organized as follows. Section II describes the model and notation required throughout the paper. In section III, we discuss about some preliminary deﬁnitions (stability deﬁnition, polytope, etc.) used in the paper. In section IV, we will derive necessary and sufﬁcient conditions for the stability of our model and also ﬁnd an upper bound for the average queue occupancy (or average queueing delay). Section V summarizes the conclusions of the paper.
+Before we proceed to describe the model, we introduce basic notations often used throughout the paper. Other no-
+Fig. 1: Multi-queue multi-server queueing system with station- ary channel distribution
+tations are introduced whenever it is necessary. Through this paper, all the vectors are considered to be row vectors. The time average of a function f (t) is denoted by f (t), i.e., f (t) = lim t→∞ 1 t t τ =1 f (τ ). The operator “ ” is used for entry-wise multiplication of two matrices. By 1 K ( 0 K ), we denote a row vector of size K whose elements are all identically equal to “1” (“0”). The cardinality of a set is shown by | · |. For any vector α = (α 1 , α 2 , ..., α N ) and a non- empty index set U = {u 1 , u 2 , ..., u |U | } ⊆ {1, 2, ..., N } and u 1 < u 2 < ... < u |U | , we deﬁne α U = (α u 1 , α u 2 , ..., α u |U | ).
+We consider a time slotted queueing system with equal length time slots and equal length packets. The model consists of a set of parallel queues N = {1, 2, ..., N } and a set of identical servers K = {1, 2, ..., K} (Figure 1). Each server can serve at most one queue at each time slot, i.e., we do not have server sharing in the system. At each time slot t, the capacity of each link between each queue n ∈ N and server k ∈ K is assumed to be C n,k (t) packets/slot. We assume that C n,k (t) ∈ M where M = {m ∈ Z + | m ≤ M } for given M . Therefore, at each time slot t, the channel state may be expressed by an N × K matrix of C(t) = (C n,k (t)) , n ∈ N , k ∈ K, C n,k (t) ∈ M. The channel process is deﬁned as {C(t)} ∞ t=1 with the state space S. Note that S is a ﬁnite set with |S| = (M + 1) N K . We label each element of S by a positive integer index s ∈ {1, 2, ..., (M + 1) N K }. Suppose that the channel state matrix associated to the channel state s is denoted by C s . The channel state of the system is assumed to have stationary distribution, with stationary probabilities π s = Pr(C(t) = C s ).
+Assume that the arrival process to each queue n ∈ N at time slot t (i.e., the number of packet arrivals during time slot t) is represented by A n (t). Thus, the arrival vector at time slot t is denoted by A(t) = (A 1 (t), A 2 (t), ..., A N (t)). Assume that E[A 2 n (t)] < A 2 max < ∞ for all t. Each queue has an inﬁnite buffer space. New arrivals are added to each queue at the end of each time slot. Let X(t) = (X 1 (t), ..., X N (t)) be the queue length process vector at the end of time slot t after adding new arrivals to the queues.
+A server scheduling policy at each time slot should decide on how to allocate servers (from set K) to the queues (in set N ). This must be accomplished based on the available information about the channel state of the system at time slot t (which is C(t)) and also the queue length process at the beginning of time slot t (which is X(t − 1)). In other words, at each time slot t, the scheduler has to determine an allocation
+We can easily observe that the queue length process evolves with time according to the following rule.
+where (·) + is deﬁned as follows: For an arbitrary vector v of size |v|, (v) + is a vector of the same size whose i’th element (v) + i = v i if v i ≥ 0 and zero otherwise.
+We begin with introducing the deﬁnition of strong stability in queueing systems [1], [2], [11]. Other deﬁnitions can be found in [3], [10], [12]. Consider a discrete time single queue system with an arrival process A(t) and service process µ(t). Assume that the arrivals are added to the system at the end of each time slot. Hence, the queue length process X(t) evolves with time according to the following rule.
+Deﬁnition 1: A queue satisfying the conditions above is called strongly stable if
+1 t
+Naturally for a queueing system we have the following deﬁnition [1].
+Deﬁnition 2: A queueing system is called to be strongly stable if all the queues in the system are strongly stable.
+In this paper, we use the strong stability deﬁnition and from now we use “stability” and “strong stability” interchangeably.
+In this part, we will have a brief review on the notion of convex polytopes and some fundamental properties of them. These concepts are needed when describing the stability region of MQMS system in section IV.
+Deﬁnition 3: A convex polytope is deﬁned as the convex hull of a ﬁnite set of points [13], [14].
+According 	 to 	 the 	 Weyl’s 	 Theorem 	 [13], 	 a polytope in R N always can be expressed by a set
+x ∈ R N | α x T ≤ β , = 1, 2, ..., L for some positive integer L and α ∈ R N and β ∈ R.
+Dimension Theorem [13]: For a polytope P ⊂ R N , di- mension of P is equal to N minus the maximum number of linearly independent equations satisﬁed by all the points in P .
+Deﬁnition 4: An equality ax T ≤ b is called valid for polytope P if for every point x 0 ∈ P , ax T 0 ≤ b.
+Deﬁnition 5: A face of polytope P is deﬁned as F = {x ∈ P | ax T = b} where inequality ax T ≤ b is a valid inequality for P .
+We call the hyperplane ax T 0 = b associated to the valid inequality ax T 0 ≤ b a face deﬁning hyperplane for P if its associated face is not empty. In other words, ax T 0 = b is a face deﬁning hyperplane for P if it intersects with P on at least one point. Note that P has ﬁnitely many faces. However, the face deﬁning hyperplanes of a polytope can be inﬁnite.
+Deﬁnition 6: A facet of polytope P is a maximal face distinct from P [14]. In other words, all faces of P with dimension dim(P) − 1 are called facets of P.
+Redundancy Theorem in Polytopes: Face deﬁning hyper- planes (inequalities) describing faces of dimension less than dim(P) − 1 are redundant [13].
+Redundancy theorem states that to describe a polytope completely, only facet deﬁning hyperplanes (inequalities) are sufﬁcient.
+We introduce the departure matrix H N ×K (t) 	 = (H n,k (t)), n ∈ N , k ∈ K in which H n,k (t) represents the total number of packets served by server k from queue n at time slot t. Obviously H n,k (t) ≤ C n,k (t). Thus, the departure process from queue n at time slot t would be 	 K k=1 H n,k (t). The following equality illustrates the evolution of queue length process with time.
+Let G be the class of deterministic policies in which at each state of the system, each policy g ∈ G allocates the servers according to a predetermined allocation matrix. Therefore, each deterministic policy g is speciﬁed by |S| allocation matrices I (g) s , s ∈ S. Note that set I is a ﬁnite set and since the channel state space is also ﬁnite, set G is ﬁnite.
+A deterministic policy g will result into an average trans- mission rate for each queue n. Let R (g) n denote the time averaged transmission rate provided to queue n and R (g) := (R (g) 1 , R (g) 2 , ..., R (g) N ). It follows that,
+Each rate vector R (g) determines a single point in R N + . Now, consider the convex hull of all the points R (g) , g ∈ G in R N + , i.e., R = conv.hull(R (g) ).
+According to the above discussion and deﬁnition of convex polytope, we can show that the set of achievable transmission rate vectors R is speciﬁed by a polytope. Henceforth, we denote the achievable transmission rate polytope by P .
+Note that convex hull representation of the stability region may not be suitable to use in network optimization problems like (1). Since it does not provide mathematical statements in a form to be used as the constraints in (1). In the following,
+we will characterize the stability region by a set of linear inequalities. To introduce the necessary conditions for the stability of MQMS system we need to prove a series of Lemmas (Lemmas 1 to 5). In this paper, the proofs were skipped due to space limitation.
+Lemma 1: If the MQMS system is strongly stable under a server allocation policy ∆, then for any vector α = (α 1 , α 2 , ..., α N ) ∈ R N + we have
+1 t
+1 t
+Lemma 2: If the MQMS system is strongly stable under a server allocation policy ∆, then E[A(t)] ∈ P.
+Lemma 3: If the MQMS system is strongly stable under a server allocation policy ∆, then for all α ∈ R N +
+As we can see, the number of inequalities deﬁned in (8) is inﬁnite. Note that each inequality in (8) determines a valid inequality for polytope P . It is not hard to show that the hyperplanes associated to the valid inequalities of (8) are all face deﬁning hyperplanes of polytope P . To see this, let I α denote a set of allocation matrices of {I α s , s ∈ S} that maximizes the right hand side of (8), i.e.,
+Note that I α is not unique and there may be more than one set of allocation matrices of I α whose elements maximize α(C s I)1 T K . According to (6) and deﬁnition of polytope P , 	 s∈S π s (C s I α s ) 1 T K T ∈ P . On the other hand,
+π s (C s I α s ) 1 T K T is located on the hyperplane as- sociated to (8). In other words, the hyperplane associated to (8) touches polytope P . So, the set of inequalities of (8) are all face deﬁning hyperplanes of polytope P . According to redundancy theorem in polytopes [13], not all the face deﬁning hyperplanes of a polytope are required to determine a polytope completely. The inequalities corresponding to the facets of a polytope are just sufﬁcient to characterize a polytope. In the following, we will characterize the facets of polytope P .
+Let V denote the set of vectors α ∈ R N + with the following property, i.e.,
+In other words, a vector α belongs to set V if for any partitioning of elements of vector α into two non-empty disjoint (sub)vectors in which all the elements of each vector are not identically equal to zero, there exists at least one non- zero element in each vector, the ratio of which is equal to ratio of two non-zero elements of set M. To clarify the deﬁnition of set V consider the following example.
+Example: Let M = {0, 1, 2} and N = 4. Consider vector α 1 = (1, 2, 5, 10). We can partition α 1 to α 1 {1,2} = (1, 2) and
+α 1 {3,4} = (5, 10). Note that there exist no elements in α 1 {1,2} and α 1
+whose ratio is 1 or 2 and therefore, α 1 / ∈ V . Another example is the vector α 2 = (0, 2.5, 0, 0) in which for any partitioning of the vector into two non-empty disjoint parts, one part will always have all the elements identically equal to zero. Therefore, α 2 ∈ V .
+In the following we will show that any vector in R N + − V cannot form a facet deﬁning hyperplane for polytope P and therefore the inequalities derived by the vectors of set R N + − V are redundant to characterize polytope P .
+Lemma 4: The hyperplane associated to the valid inequality of (8) is not a facet deﬁning hyperplane of P if α ∈ R N + − V .
+Set V is an inﬁnite set. However, we can show that set V is ﬁnite up to multiplication of vectors by positive scalars. To show this, we deﬁne set W =
+set W N = {(α 1 , α 2 , ..., α N ) | α n ∈ W }. We can prove the following Lemma.
+Lemma 5: There exists V ⊆ W N such that any vector α ∈ V can be written as α = qβ for some β ∈ V and q > 0.
++ 1 N . Since V ⊆ W N , therefore |V | ≤ |W N | − 1 (excluding the vector 0 N ).
+We now introduce the necessary conditions for the stability of MQMS system with stationary channel distributions by the following theorem.
+Theorem 1: If there exists a server allocation policy under which the system is stable, then
+Note that according to Theorem 1, in order to characterize polytope P , we have to specify all the elements of set V which can be obtained after considering all possible vectors α ∈ W N − 0 N and removing redundancies following (10). This can be done using numerical computations. We may also use α ∈ W N −0 N instead of α ∈ V in (11). Although by using W N − 0 N we may obtain some redundant inequalities, since |W N − 0 N | < ∞ we still have a ﬁnite number of inequalities to describe polytope P . Table I depicts V and |W N | − 1 for some simple cases of N = 2, 3 and M = 1, 2, 3, 4.
+Corollary 1: For an MQMS system with stationary arrival processes, we have E[A(t)] = λ = (λ 1 , λ 2 , ..., λ N ) and the necessary conditions for the stability of the system would be
+Corollary 2: For an MQMS system with ON-OFF chan- nels, we have W = {0, 1} and therefore the necessary conditions for the stability of the system become
+In a special case considered in [9] where the channels are modelled by independent Bernoulli random variables with E[C n,k (t)] = p n,k , the necessary conditions for the stability of the system are given by
+In this case, the total number of inequalities needed to describe the polytope P is equal to 2 N − 1.
+Consider a server allocation policy which determines the allocation matrix at each time slot t by solving the following maximization problem.
+This policy is called Maximum Weight (MW) and was ﬁrst introduced in [3], [5]. According to the constraints on al- location matrix I, we can easily conclude that MW policy allocates the servers by the following rule: At each time slot t, MW policy allocates each server k to queue n who has the maximum X n (t − 1)C n,k (t). In the special case where the channels are ON-OFF, the policy is equivalent to AS/LCQ (Any Server/Longest Connected Queue) introduced in [9]. In the following, we derive sufﬁcient conditions for the stability of our model and prove that MW stabilizes the system as long as condition (16) is satisﬁed. An upper bound is also derived for the time averaged expected number of packets in the system.
+Theorem 2: The MQMS system is stable under MW if for all t
+Furthermore, the following bound for the average expected “aggregate” occupancy holds.
+1 t
+where δ is the maximum positive number such that for all t we have E[A(t)] + δ1 N ∈ P .
+Corollary 3: For an MQMS system with stationary arrival processes, we have E[A(t)] = λ and the sufﬁcient conditions for the stability of the system under MW policy become αλ T < s∈S π s max I∈I α(C s I)1 T K , α ∈ V .
+According to Corollaries 1 and 3 and the deﬁnition of network capacity region, we can conclude that for an MQMS system with stationary channel distribution and stationary arrival processes, the stability region is characterized by (12).
+Consider an MQMS system with ON-OFF channels. For such a system, the MW policy is equivalent to AS/LCQ policy introduced in [9]. In AS/LCQ the policy takes an arbitrary ordering of servers (to be allocated to the queues) and then for each server, AS/LCQ allocates it to its longest connected queue (LCQ). Note that in such a system, W = {0, 1} and therefore we will have the following corollary.
+Corollary 4: The MQMS system with ON-OFF channels is stable under AS/LCQ if for all t
+In a special case where the channels are modelled by inde- pendent Bernoulli random variables with E[C n,k (t)] = p n,k , AS/LCQ stabilizes the system if
+C. Stability Region for Fluid Model MQMS Systems with Stationary Continuous Channel Distributions
+We will consider a time slotted ﬂuid model MQMS system with stationary channel distributions. In this case, the amount of work that arrives into (and departs from) the queues is considered to be a continuous process. We also assume that the channel state of the link from each queue to each server is modelled by a continuous random variable. The channel state matrix in the ﬂuid model MQMS system is deﬁned as C(t) = (C n,k (t)) , n ∈ N , k ∈ K, C n,k (t) ∈ R + . We assume that the channel state follows a stationary distribution f C (c). f C is the joint distributions of all C n,k variables. We can easily check that in the ﬂuid model MQMS system, set V is equivalent to R N + as in the ﬂuid model MQMS system, set M is replaced with R + . Therefore, stability region for the ﬂuid model system is characterized by the following set of inequalities.
+Note that in order to characterize the stability region of the ﬂuid model system we need to compute an inﬁnite number of integrals in (20). In fact, the stability region of ﬂuid model system is characterized by inﬁnite number of half spaces which means that the stability region is a convex surface. In this case, depending on the channel distribution and dimension of the system, we could characterize the stability region by a limited number of non-linear inequalities instead of inﬁnite number of linear inequalities as we show in the following example.
+Example: Consider a ﬂuid model MQMS system with two queues and one server. Suppose that the channel state variables C 1,1 and C 2,1 are independent and follow exponen- tial distribution with means µ 1 and µ 2 , respectively. Such a modelling is used to model slow Rayleigh fading channels with low SNR where the approximation log(1+x) 	 x is valid for small positive x. We can show that the stability region for this example is described by
+for λ 1 ≥ 0 and λ 2 ≥ 0. The derivation of (21) is skipped because of space limitation. As we can see from equation (21), the stability region in this example is characterized by just one non-linear inequality (21) and two linear inequalities λ 1 ≥ 0 and λ 2 ≥ 0. The stability region for this example for µ 1 = 2 and µ 2 = 1 is illustrated in Figure 2.
+In this paper, we characterized the stability region polytope of multi-queue multi-server (MQMS) queueing systems with stationary channel and packet arrival processes by a ﬁnite set of linear inequalities given by (12). We also argued that in general it may be (computationally) hard to quantify set V from set W N . In this case, we can use set W N itself instead of V in (12) as V ⊆ W N , although we may have some redundant inequalities. We also considered the stability region for a ﬂuid model MQMS. In this case, we determine the stability region by an inﬁnite set of linear inequalities given by (20). Finally, by use of an example we showed that depending on the channel distribution and number of queues, we may characterize the stability region by a ﬁnite set of non-linear inequalities instead of inﬁnite set of linear inequalities.
+[[[ REFS ]]]
+L. Georgiadi
+M. J. Neel
+L. Tassiula
+--
+Resource Allocation and Cross Layer Control in Wireless Networks
+----
+M. J. Neely
+--
+Dynamic power allocation and routing for satellite and wireless networks with time varying channels
+----
+L. Tassiulas
+A. Ephremides
+--
+Stability properties of constrained queueing systems and scheduling policies for maximum throughput in multihop radio networks
+----
+S. Kittipiyakul
+T. Javidi
+--
+Delay-optimal server allocation in multi- queue multi-server systems with time-varying connectivities
+----
+T. Javidi
+--
+Rate stable resource allocation in ofdm systems: from waterﬁlling to queue-balancing
+----
+S. Kittipiyakul
+T. Javidi
+--
+Resource allocation in ofdma with time- varying channel and bursty arrivals
+----
+H. Al-Zubaidy
+I. Lambadaris
+I. Viniotis
+--
+Optimal resource scheduling in wireless multi-service systems with random channel connectivity
+----
+A. Ganti
+E. Modiano
+J. N. Tsitsiklis
+--
+Optimal transmission scheduling in symmetric communication models with intermittent con- nectivity
+----
+H. Halabian
+I. Lambadaris
+C.-H. Lung
+--
+Network capacity region of multi-queue multi-server queueing system with time varying con- nectivities
+----
+L. Tassiulas
+A. Ephremides
+--
+Dynamic server allocation to paral- lel queues with randomly varying connectivity
+----
+M. J. Neely
+E. Modiano
+C. E. Rohrs
+--
+Dynamic power allocation and routing for time varying wireless networks
+----
+S. Asmusse
+--
+Applied Probability and Queues
+----
+J. Le
+--
+A First Course in Combinatorial Optimization
+----
+A. Schrijve
+--
+Theory of Linear and Integer Programming
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\162.pdf
+[[[ LINKS ]]]
+

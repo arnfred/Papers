@@ -1,0 +1,162 @@
+[[[ ID ]]]
+193
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+High Rate Fibonacci Polynomial Codes
+[[[ AUTHORS ]]]
+Mostafa Esmaeili
+Morteza Esmaeili
+T. Aaron Gulliver
+[[[ ABSTR ]]]
+Abstract—A new class of high rate Fibonacci polynomial based error-correcting codes is introduced. For integers m, n, x ≥ 1, a square encoding matrix Q n 2m (x) of order 2m and the corre- sponding decoding matrix Q −n 2m (x) are provided. It is shown that a higher code rate is obtained than with the original Fibonacci polynomial based codes.
+[[[ BODY ]]]
+The Fibonacci sequence and its extensions have played key roles in many ﬁelds of science and engineering including high energy physics, cryptography and more recently coding theory [1]-[8]. The classical Fibonacci sequence is deﬁned by the recurrence relation f n = f n −1 + f n −2 , n ≥ 3, with initial values f 1 = f 2 = 1. This sequence has been extended in many ways, two of which have been used in coding theory. These are known as the p-Fibonacci sequence [9], and the Fibonacci polynomials [10]. The p-Fibonacci sequence is deﬁned by the recurrence relation
+F 0 (x) = 0, F 1 (x) = 1, F 2 (x) = x,
+The polynomials for n = 3 and 4 are F 3 (x) = x 2 + 1 and F 4 (x) = x 3 + 2x, respectively. Substituting x with a positive integer, the x-Fibonacci numbers are obtained. Table I shows the x-Fibonacci numbers for 1 ≤ x ≤ 4. It has been shown in [11] that as n grows, the ratio of two consecutive Fibonacci numbers converges to σ := (x +
+The square p + 1 × p + 1 matrix Q p is introduced in [9]. The Q p matrix of order p + 1 for p = 1, 2, 3 is given below.
+The nth, n ≥ 1, power of these matrices was employed in [8] to introduce Fibonacci coding theory.
+In [10], square matrices Q m (x) of order m ≥ 2, consisting of Fibonacci polynomials as their elements, were introduced. For 2 ≤ m ≤ 4, Q m (x) is provided below.
+It is proven in [10] that the nth power, n ≥ 2, of Q m (x) has the form Q n m (x) = (A B), where
+       
+       
+              
+              
+The matrix Q n m (x) was employed in [10] to provide a channel coding technique. Compared to the Q p matrices, this method has the advantage of an inﬁnite number of encod- ing/decoding matrices of a constant order and power. However,
+to achieve good error-detection, a high value of n is needed. This in turn results in a low code rate.
+In this paper, we construct a new class of encoding/decoding matrices for which small values of n can be used to realize the desired error correcting capabilities. This provides a con- siderable improvement in code rate compared to that with a large n.
+The rest of the paper is organized as follows. In Section 2, the encoding and decoding matrices are introduced along with their properties. Section 3 gives the Fibonacci polynomial encoding and decoding algorithms. In Section 4, a useful rela- tion between the elements of a codeword matrix is presented. Section 5 provides a comparison of the proposed method with the original Fibonacci polynomial based error-correcting code design.
+Consider the 2 × 2 matrix Q 2 (x) introduced in [10]. For any x ≥ 1, we have det(Q 2 (x)) = −1. Using induction on n ≥ 1, it is easy to see that
+By applying the determinant theorem, we have det(Q n 2 (x)) = ( −1) n . Now consider the extension of Q 2 (x), denoted Q 2m (x), m ≥ 1, shown below.
+          
+x 1 0 0 . . . 0 0 1 0 0 0 . . . 0 0 0 0 x 1 . . . 0 0 0 0 1 0 . . . 0 0 .. . .. . .. . . .. ... ... .. .
+0 0 0 0 . . . x 1 0 0 0 0 . . . 1 0
+          
+It is easy to see that det(Q 2m (x)) = ( −1) m . For simplicity, we will denote Q 2m (x) by
+     
+. . . .. . .. . 	 . . . . . . 0
+    
+where each 0 represents a 2 ×2 zero matrix, that is Q 2m (x) = I m ⊗ Q 2 (x). We will use Q n 2m (x), the nth power of Q 2m (x), n, m ≥ 1, as the encoding matrix in the Fibonacci coding technique. Theorem 1 shows how Q n 2m (x) can be obtained.
+     
+. . . .. . .. . 	 . . . . . . 0
+     
+Proof The proof is by induction on n. It is easy to see that (1) holds for n = 1. Suppose it holds for n = k. Then, for n = k + 1 we have
+   
+   
+   
+   
+   
+  
+For instance, for m = 2 and n = 5, we have Q 5 4 (x) = 
+As mentioned previously, Q n 2m (x) will be used as the encoding matrix. Therefore, the decoding matrix is the inverse of Q n 2m (x), namely Q −n 2m (x). Theorem 2 shows how Q −n 2m (x) can be acquired.
+Theorem 2: For n, m ≥ 1, we have the following 2m×2m matrix 
+    
+.. . .. . 	 . . . . . . 0
+    
+Proof Similar to Theorem 1, the proof is by induction on n. It is easy to see that (2) holds for n = 1. Suppose it holds for n = k. Then Q −(k+1) 2m 	 = A × B, where
+   
+   
+   
+  
+    
+  
+The basic idea behind the encoding and decoding algorithms given in this section is the same as in [10]. The main difference is the change of encoding/decoding matrices in order to obtain higher code rates. For completeness, we present the general encoding/decoding method. In this coding scheme, the message is a square matrix M of even order with positive elements. There are no restriction on how this can be done, so the user has complete freedom in arranging the data. For example, the message 3457812632150985 can be represented in the following two ways
+   
+3 4 5 7 8 1 2 6 3 2 1 5 0 9 8 5
+  
+However, it turns out that if the entries of M have equal lengths, the encoding process will be more efﬁcient. After the sender and receiver have agreed on positive integers x ̸= 0, m and n, the encoding matrix Q n 2m (x) is given by (1). The codeword message matrix E is obtained by multiplying Q n 2m (x) from the right by M . For example, suppose x = 1, m = 2, n = 7 and M is the 4 × 4 matrix given above. Then
+   
+21 13 0 0 13 8 0 0
+0 0 21 13 0 0 13 8
+   
+   
+3 4 5 7 8 1 2 6 3 2 1 5 0 9 8 5
+   
+   
+167 97 131 225 103 60 81 139
+63 159 125 170 39 98 77 105
+   
+   
+  
+The elements of E are transmitted in the order e 1 , e 2 , . . . , e 16 followed by det(M ), the determinant of the message matrix. If the elements are received without error, the message is obtained by multiplying E and Q −n 2m , giving
+   
+   
+The error detection and correction processes are explained in detail in [10]. The same procedures apply to this Fibonacci polynomial coding technique. The only difference is that the relation between the entries of the codeword matrix in [10] hold for any two consecutive rows while in this coding method,
+the relationship holds only between the ith and (i + 1)th rows for i ∈ {1, 3, 5, . . . , 2m − 1}. To demonstrate the application of this relation and the error detection and correction process, an example is provided below.
+Example 1: Suppose the sender and receiver have agreed on m = 1, x = 2, n = 14 and that the message matrix is
+Assume that the received sequence of numbers is 6332179, 19133454, 2622834, 7925332 and −1624. Using the determi- nant relation det(E) = (det(Q 2m (x))) n ×det(M), we obtain 6332179 × 7925332 − 19133454 × 2622834 = 747169792 ̸= ( −1) 14 ×−1624, indicating that errors have occurred. First we consider one-fold error patterns (i.e., only one element of E is received in error). Four different cases have to be considered. Suppose we predict that the element located in the ﬁrst row and ﬁrst column is incorrect, that is the codeword message matrix has the following form, where r denotes the element in error 	 (
+r 	 19133454 2622834 7925332
+we obtain r = 6330460.724. This number is wrong, since all the elements of E are integers. A similar process shows that the other cases of one-fold error patterns do not yield an acceptable solution. Next we consider two-fold error patterns. Suppose that the two elements of the ﬁrst row are incorrect. In this case E has the following form where p and q denote the elements in error
+Using the relation between the elements of E (see Section IV) with σ = 2+
+Again, as these numbers are not integers, both are wrong. In a similar manner, all other two-fold error patterns do not yield an acceptable solution. Now we proceed to the three-fold error patterns, for which there are four cases
+(ii), ( s 19133454
+where a, b, c, d, e, g, s, t, u, v, w and y are the elements re- ceived in error. Using the relation among the elements of E we have 
+         
+b = σ × 7925332 = 19133444, 	 (i) d = σ × 262834 = 634537.4074, (ii) u = 19133454 σ 	 = 7925336.143, 	 (iii) w = 6332179 σ = 2622874.422. 	 (iv)
+The elements of E should be integers, hence only case (i) can correspond to a three-fold error. Assuming this and using the determinant relation, the following integer values for a and c are obtained
+By substituting a = σ ×c and b = 19133444 into the equation above, we obtain c = 26228333 and a = 6332079, and therefore
+In this section, we derive a relation among the entries of a given codeword message matrix E. This relation is given by Theorem 3, and can be used to check if the elements have been received in error. Thus, it can also be used in the error- correction process.
+Theorem 3: Consider a codeword matrix E. Let e i,j and e i+1,j , i = 1, 3, . . . , 2m − 1, 1 ≤ j ≤ 2m, be two consecutive elements of E located in the jth column. Then the following relation holds
+Example 2: Consider the codeword matrix given in (3). In this case, we have the following
+In this section, we investigate the proposed Fibonacci coding technique from the code rate perspective. The code rate deﬁned in [10] is
+where l(m ij ) and l(e ij ) are the decimal lengths of the ele- ments of M and E, respectively, located in the ith row and jth column. Since the proposed coding method uses square matrices to encode messages, this deﬁnition is also suitable for the coding technique given here. It is not hard to show that the maximum rate is achieved when all the matrix entries have the same decimal length. Under this condition, and considering the
+notation ℓ given in the previous section, the code rate deﬁned above simpliﬁes to
+where ℓ ′ and q denote the decimal length and the maximum decimal length of the elements of E and Q n 2m (x), respectively.
+5For instance, Consider the codes deﬁned by the triples (ℓ 1 , m 1 , x 1 ) = (7, 3, 1) and (ℓ 2 , m 2 , x 2 ) = (12, 3, 2). Using the approach in [10], the codes with these parameters have rates r 1 = 0.7 and r 2 = 0.5, respectively. With the coding scheme proposed in this paper, the codes with these parameters have rates r 1 = 7 7+2 = 0.78 and r 2 = 12 12+2 = 0.86, respectively.
+In this paper, a Fibonacci polynomial based channel coding technique was presented which has an improved code rate. For integers m, x, n ≥ 1, a 2m × 2m matrix Q n 2m (x), the nth power of Q 2m (x) was introduced. All the entries of this matrix are Fibonacci polynomials, and it is used to encode a message matrix. Each message matrix M is a 2m × 2m matrix with positive integer numbers as entries. The encoding/decoding matrices and the error detection/correction methods for this algorithm were provided.
+[[[ REFS ]]]
+A. Stakhov
+--
+The golden section in the measurement theory
+----
+K. Sen
+R. P. Agarwal
+--
+Golden ratio in science, as random sequence source, its computation, and beyond
+----
+M. Asci
+D. Tasci
+--
+On Fibonacci, Lucas and special orthogonal poly- nomials
+----
+A. Stakhov
+B. Rozin
+--
+Theory of Binet formulas for Fibonacci and Lucas p-numbers
+----
+M. Esmaeili
+--
+On the weakly superincreasing distributions and the Fibonacci-Hessenberg matrices
+----
+M. Esmaeili
+--
+More on the Fibonacci sequence and Hessenberg matrices
+----
+M. Esmaeili
+M. Esmaeili
+--
+Polynomial Fibonacci-Hessenberg matri- ces
+----
+P. Stakhov
+--
+Fibonacci matrices, a generalization of the “Cassini formula” and a new coding theory
+----
+M. Basu
+B. Prasad
+--
+The generalized relations among the code elements for Fibonacci coding theory
+----
+M. Esmaeili
+M. Esmaeili
+--
+A Fibonacci-polynomial coding method with error detection and correction
+----
+S. Falcon
+A. Plaza
+--
+On k-Fibonacci sequences and polynomials and their derivatives
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\193.pdf
+[[[ LINKS ]]]
+

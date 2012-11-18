@@ -1,0 +1,190 @@
+[[[ ID ]]]
+128
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Nested linear codes achieve Marton’s inner bound for general broadcast channels
+[[[ AUTHORS ]]]
+Arun Padakandla
+S. Sandeep Pradhan
+[[[ ABSTR ]]]
+Abstract— In several multi-terminal communication systems, it has been noted that the average performance of linear code ensemble is better than that of the standard unstructured code ensemble. However, it is well-known that linear code ensembles cannot achieve the point-to-point capacity of an arbitrary discrete memoryless channel. In this paper, we study nested linear codes and prove they achieve capacity of arbitrary discrete memoryless point to point channel with and without channel state information at the transmitter. Furthermore, we prove nested linear codes achieve Marton’s inner bound, the largest known inner bound for the general discrete broadcast channel.
+[[[ BODY ]]]
+The broadcast channel was deﬁned and the problem of characterizing it’s capacity region was proposed by Cover [1]. Using a binning technique similar to that proposed by Gelfand and Pinsker [2] and superposition coding [1], an inner bound to the capacity region was derived by Marton [3]. A generalization [4, p. 391, Problem 10(c)], [5] of Marton’s inner bound to accommodate common information is the largest known inner bound to the capacity region. Having established computability of Marton’s inner bound, Gohari and Anantharam [6] have identiﬁed channels for which Marton’s inner bound and the only known computable outer bound, derived by Nair and El Gamal [7], do not match. The problem of characterizing the capacity region of the general broadcast channel thus remains open.
+The above inner bounds have been obtained by averaging error probability over the entire collection of code books, not restricting to any particular sub collection. While this is the prevalent technique in information theory, strictly larger rate regions have been achieved for certain problems by restricting averaging to structured code ensembles. K¨orner and Marton [8] have derived larger achievable rate regions for the problem of reconstructing modulo-2 sum of distributed binary sources, by restricting to linear codes. Philosof and Zamir [9] have proved nested linear codes achieve capacity of a particular binary additive multiple access channel with distributed side information. The above works study particular problem set- tings - reconstruction of binary sum, additive channels. Based on correlated binning of source/reconstruction vectors using algebraic codes, Krithivasan and Pradhan [10] have proposed
+a new framework for communicating information from dis- tributed encoders observing correlated sources to a centralized decoder. Firstly, this framework is applicable to a large class of problems including distributed function computation, joint quantization of distributed sources etc. Secondly, rate regions derived using this technique subsumes Berger-Tung [11] rate region and strictly improves it for certain problems. These results indicate potential gains achievable through structured code ensembles for multi-terminal communication settings.
+Motivated by these and other [12], [13] such results, we derive a rate region achievable by nested linear codes for the general broadcast channel. In particular, we prove nested linear codes achieve Marton’s inner bound. As a simple corollary, this proves nested linear codes achieve capacity of point to point channels (PTP) and PTP with state known at transmitter (PTP-STx). The signiﬁcance of our contribution is three fold. Firstly, this maybe viewed as a ﬁrst step in deriving potentially improved inner bounds to the broadcast channel capacity region using structured code ensembles. Secondly, codes that achieve capacity of PTP, and binning technique proposed in [2] for PTP-STx have proved to be building blocks for designing codes for multi-terminal channels. Our study establishes nested linear code analogues for these building blocks for potential use in other multi-terminal settings. Thirdly, nested linear codes are of independent interest.
+Linear and nested linear codes are subjects of considerable interest. Elias [14] proved linear codes achieve capacity of binary symmetric channels and a reformulation [15], [8] of this result proved linear codes can compress a source down to it’s entropy. Wyner [15] proved linear codes achieve Slepian-Wolf [16] rate region for a pair of binary symmetric sources. The above studies were restricted to particular settings - symmetric sources and channels. Indeed, Ahlswede [17] proved linear codes are suboptimal for arbitrary PTP. Gallager [18] proved that linear codes followed by a nonlinear mapping achieve capacity of arbitrary PTP. A benign relaxation of linearity enables Krithivasan and Pradhan [10] prove nested linear codes achieve the Berger-Tung [11] rate distortion region for arbitrary sources and in particular the Shannon rate distortion function of a single source.
+Our encoding and decoding techniques are similar to that proposed by Marton. The encoding proposed by Marton may be viewed as a generalization of that proposed in [2], where the
+codeword of one user can be thought of channel state. Each receiver performs single user decoding. Essential aspects of the proof are thus captured in proving achievability of PTP- STx capacity. We therefore prove nested linear codes achieve capacity of PTP-STx in section III and in the interest of brevity restrict proof of achievability of Marton’s inner bound to an outline in section V.
+We begin with some remarks on notation. Unless otherwise stated, F q will denote the ﬁnite ﬁeld with q elements. Log- arithms and exponentials are to base q. Entropy is measured in units of q-bits, where 1 q-bit is log 2 q bits. For M ∈ N, [M ] := {1, 2, · · · , M }. If A and B are ﬁnite sets and f : A → B is a map, the n-letter extension of f denoted f n : A n → B n is deﬁned f (a n ) := (f (a i ) : i = 1, 2, · · · , n).
+A PTP-STx is a single input single output channel whose channel transition probabilities depend on a state variable S. A precise deﬁnition is provided below.
+Deﬁnition 1: A point to point channel with state known at transmitter S, p S , X, Y, p Y |X,S , abbreviated PTP-STx, con- sists of (i) a ﬁnite set S of states, (ii) a probability distribution p S deﬁned on S, (iii) a ﬁnite input alphabet set X, (iv) a ﬁnite output alphabet set Y, and (v) a collection of probability mass functions p Y |X,S (·|x, s) deﬁned on Y, one for each pair (x, s) ∈ X × S.
+Throughout this paper, we assume all channels are (i)time invariant, (ii) memoryless, and (iii) used without feedback.
+We assume knowledge of state sequence at transmitter non causally, and thus transmitted vector is a function of message and channel state. A precise deﬁnition follows.
+Deﬁnition 2: An PTP-STx code (n, M, e, d) consists of (i) an index set M = [M] of messages, (ii) an encoder map e : S n × M → X n , and (iii) a decoder map d : Y n → M.
+Assuming a uniform distribution on the set of messages, we deﬁne the average error probability of a code as follows.
+Deﬁnition 3: The error probability of the code (n, M, e, d) conditioned on the message m ∈ M is deﬁned as
+The average error probability of the code (n, M, f, g) is deﬁned as P ξ (e, d) = M m=1 1 M P ξ,m (e, d).
+A nested linear code over F q consists of two linear codes, an inner and outer code. The inner code is contained within the outer code. Coset shifts of inner code within the outer code form a collection of bins. For technical reasons, we permit the outer code to be shifted by a constant bias.
+Deﬁnition 4: A nested linear code (n, k, l, g, ∆g, b n ) over F q consists of (i) a collection of vectors
+a k g + m l ∆g + b n : a k ∈ F k q , m l ∈ F l q that deﬁnes an outer linear code, and (ii) the collection a k g + b n : a k ∈ F k q that deﬁnes the inner linear code.
+The encoding technique and structure of our code is similar to that proposed in [2]. A code therein is based on an auxiliary
+code deﬁned over an auxiliary alphabet set U . This auxiliary code is a collection of bins, one for each message in the set of messages. Each bin is a collection of vectors in U n . The encoder uses the message to index a bin and chooses a codeword within this bin as a function of the channel state S n . This codeword is mapped to a input vector on X n using a map evaluated component wise. The auxiliary code and the map deﬁne a code for the PTP-STx. We restrict attention to those codes whose auxiliary code is a nested linear code over some ﬁnite ﬁeld. With an abuse of notation, we deﬁne a code for PTP-STx as nested linear if it is based on an auxiliary nested linear code.
+Deﬁnition 5: A PTP-STx code n, q l , e, d is nested linear if there exists (i) a nested linear code (n, k, l, g, ∆g, b n ) over F q and (ii) a map f : F q × S → X such that e(m l , s n ) ∈
+We now proceed towards deﬁning a rate region achievable using codes that are nested linear.
+let P p S , p Y |X,S be the collection of random vectors (U, X, S, Y ) : Ω → U × X × S × Y such that (i) U = F q is a ﬁnite ﬁeld, (ii) P (S = s) = p S (s), (iii) P (Y = y|X = x, S = s) = p Y |X,S (y|x, s), (iv) U − (X, S) − Y is a Markov chain, and (v) there exists a map f : U × S → X such that X = f (U, S).
+= [0, I(U ; Y ) − I(U ; S)] and α p S , p Y |X,S be the closure of ∪ Z∈P ( p
+We now prove achievability of α p S , p Y |X,S using codes that are nested linear.
+Theorem 1: Let S, p S , X, Y, p Y |X,S be a PTP-STx. If R ∈ α p S , p Y |X,S , then for every η > 0, > 0 and sufﬁciently large n, there exists a PTP-STx code (n, M, e, d) that satisﬁes (i) the PTP-STx code (n, M, e, d) is nested linear, (ii) log M n ≥ R − η, and (iii) P ξ (e, d) ≤ .
+Proof: We begin with an outline. As is typical in information theory, we prove existence by averaging the error probability over the ensemble of nested linear codes. Let R ∈ α(Z), where Z = (U, X, S, Y ) : Ω → U × X × S × Y
+is a random vector, X = f (U, S) and U = F q . Pick generator matrices G ∈ F k×n q , ∆G ∈ F l×n q and bias vector B n ∈ F n q mutually independently and uniformly from their respective range spaces. G and ∆G are generator matrices of inner code and it’s shifts within the outer code respectively. The message set is F l q , outer code is
+and the m l -th bin (coset) is U n (a k , m l ) : a k ∈ F k q . Having observed message M l and channel state sequence S n , the encoder looks for a vector in M l -th bin that is jointly typical with S n . If it ﬁnds one such vector, say U n (a k , M l ), then f n (U n (a k , M l ), S n ) is transmitted. Else the encoder declares an error. The decoder observes received vector Y n and identiﬁes bins that contains a vector jointly typical with Y n .
+If there is exactly one such bin, the corresponding bin index is the decoded message. Else an error is declared.
+We now characterize error events. The encoder declares error if no vector in M l -th bin is jointly typical with S n . Let θ δ (S n ) : = a k ∈F k
+1{ (U n (a k ,M l ),S n )∈T n δ }. An error occurs if θ δ
+(S n ) = 0. We prove that if k n > 1 − H (U |S), then P (θ δ
+and assume the encoder transmits a typical sequence with high probability. The decoder declares an error if either it ﬁnds (i) no vector in the outer code jointly typical with Y n or (ii) vectors in multiple cosets jointly typical with Y n . The proba- bility of the former event falls exponentially with block length. This follows from Markov chain condition and conditional frequency typicality. We now characterize the latter event. Let ξ m l , Y n =
+falls exponentially with n. By choosing k n and k+l n arbitrarily close to 1 − H (U |S) and 1 − H (U |Y ) respectively, l n ≈ H (U |S) − H (U |Y ) = I(U ; Y ) − I(U ; S) can be achieved.
+We now get to the details. Recall G ∈ F k×n q , ∆G ∈ F l×n q , B n ∈ F n q and M l ∈ F l q are mutually independent random objects uniformly distributed on their respective range spaces. We begin with some preliminaries.
+Remark 1: For a k ∈ F k q , m l ∈ F l q , U n (a k , m l ) is uniformly distributed. Mutual independence and uniform distribution of random objects involved enable us verify this by a counting argument. For any g ∈ F k×n q , ∆g ∈ F l×n q , there exists a unique b n ∈ F n q such that a k g + m l ∆g + b n = u n . The probability in question is therefore q kn q ln q kn q ln q n = 1 q n . It is easy to see P U n (0 k , m l ) = u n = P U n (˜ a k , M l ) = ˜ u n = P U n (ˆ a k , m l ) = ˆ u n = 1 q n for any a k , ˜ a k , ˆ a k ∈ F k q and u n , ˜ u n , ˆ u n ∈ F n q .
+Remark 2: If a k , ˜ a k ∈ F k q , a k = ˜ a k , m l ∈ F l q and u n , ˜ u n ∈ F n q , we claim P U n (a k , m l ) = u n , U n (˜ a k , m l ) = ˜ u n =
+= P U n (a k , m l ) = u n P U n (˜ a k , m l ) = ˜ u n . We ﬁrst note P U n (a k , m l ) = u n , U n (˜ a k , m l ) = ˜ u n 	 = P U n (a k , m l ) = u n , (˜ a k − a k )G = (˜ u n − u n ) . We now employ a similar counting argument. Since ˜ a k = a k , ∃j 	 ˜ a j = a j . Given arbitrary ∆g ∈ F k×n q 	 and rows g 1 , · · · , g j−1 , g j+1 , · · · , g k of g ∈ F k×n q , choose g j : = (˜ a j − a j ) −1 (˜ u n − u n − i=j (˜ a i − a i ) g i ). This choice uniquely determines b n (as in remark 1) and therefore the probability in question is
+= 1 q 2n . Following a similar argument, one can prove P U n (0 k , m l ) = u n , U n (0 k , ˆ m l ) = ˜ u n = 1 q 2n = P U n (0 k , m l ) = u n P U n (0 k , ˆ m l ) = ˜ u n .
+(S n ) = 0). We employ a second moment method similar to that used in [19]. By frequency typicality, P (S n / ∈ T δ
+(s n ) is a function of G, ∆G and B n and these random objects are independent of S n , and (2) from Cheybyshev inequality.
+n (a k , M l ) = u n , U n (˜ a k , M l ) = ˜ u n
+where second term in (3) follows from Remark 2. Since Var θ δ
+(S n ) = 0) ≤ q −n( k n −(1−H(U |S))− 3δ 8 ) + 4 . By choosing δ > 0 sufﬁciently small, k n can be made arbitrarily close to 1 − H (U |S) and probability of encoding error can be made arbitrarily small by choosing a sufﬁciently large block length.
+It remains to upper bound probability of decoding er- ror. We claim statistical independence of a bin, say
+U n (ˆ a k , ˆ m l ), ˆ m l = m l . Let u n a k ∈ F n q for each a k ∈ F k q , and ˆ u n ∈ F n q . We claim
+If (u n a k +ˆ a k − u n 0 k ) = (u n a k − u n 0 k ) + (u n ˆ a k − u n 0 k ) for some pair a k , ˆ a k ∈ F k q , the LHS and ﬁrst term of RHS are zero and equality holds. Else, we have
+= P (a k G = u n a k − u n 0 k : a k ∈ F k q , m l ∆G + B n = u n 0 k , ˆ m l ∆G + B n = ˆ u n − u n ˆ a k )
+= P (a k G = u n a k − u n 0 k : a k ∈ F k q )P (m l ∆G + B n = u n 0 k , ˆ m l ∆G + B n = ˆ u n − u n ˆ a k ) (4)
+= P (a k G = u n a k − u n 0 k : a k ∈ F k q )P (m l ∆G + B n = u n 0 k ) P ( ˆ m l ∆G + B n = ˆ u n − u n ˆ a k ) (5)
+P ( ˆ m l ∆G + B n = ˆ u n − u n ˆ a k ) (6) = P (U n (a k , m l ) = u n a k : a k ∈ F k q )P (U n (ˆ a k , m l ) = ˆ u n , )
+where (4) and (6) follow from independence of ∆G, B n and G (5) follows from Remark 2, and the last equality follows from Remark 1. We summarize the key aspect of the above observation in the following remark.
+Remark 3: The transmitted vector, denoted E S n , M l , is a function of m l -th bin. The above claim implies E S n , m l and U n (ˆ a k , ˆ m l ) are statistically independent if m l = ˆ m l .
+We now upper bound P ∪ ˆ m l =M l ξ ˆ m l , Y n ≥ 1 . By the union bound, we have
+4 	 (9) ≤ q
+Since k n > 1 − H(U |S), (E n (S n , M l ) and S n are jointly typical. By conditional frequency typicality Y n ∈ T δ (Y |E n (S n , M l ), S n ) with high probability and therefore (7) is true. To verify (8), we note
+Y n = y n ) = P (M l = m l , S n = s n , E(s n , m l ) = x n ) P (U n (ˆ a k , ˆ m l ) = u n )P (Y n = y n |M l = m l , S n = s n ,
+where (11) follows from Remark 3. (9) follows from the bound on conditional typical set T δ (U |y n ) when y n ∈ T δ
+. From (10), we note that k+l n can be made arbitrarily close to 1 − H(U |Y ) by choosing δ sufﬁciently small. Decoding error probability can be made arbitrarily small by choosing n sufﬁciently large. This completes the proof.
+Deﬁnition 7: A two user discrete broadcast channel X, Y 1 , Y 2 , p Y 1 ,Y 2 |X , abbreviated DBC consists of (i) a ﬁnite
+input alphabet set X, (ii) two ﬁnite output alphabet sets Y 1 and Y 2 , and (iii) a collection of probability mass functions p Y 1 ,Y 2 |X (·, ·|x) deﬁned on Y 1 × Y 2 , one for each x ∈ X.
+Deﬁnition 8: A DBC code (n, M 0 , M 1 , M 2 , e, d 1 , d 2 ) consists of (i) three index sets M i = [M i ] : i = 0, 1, 2, of messages, (ii) an encoder map e : M 0 × M 1 × M 2 → X n , and (iii) two decoder maps d i : Y n i → M 0 × M i for i = 1, 2.
+Deﬁnition 9: The error probability of DBC code (n, M 0 , M 1 , M 2 , e, d 1 , d 2 ) conditioned on message triple (m 0 , m 1 , m 2 ) ∈ M 0 × M 1 × M 2 is deﬁned as
+The 	 average 	 error 	 probability 	 of 	 code (n, M 1 , M 2 , e, d 1 , d 2 ) is deﬁned as ζ (e, d 1 , d 2 ) =
+Deﬁnition 10: A DBC code (n, M 0 , M 1 , M 2 , e, d 1 , d 2 ) is nested linear if there exists (i) a triple (n, k i , l i , g i , ∆g i , d n i ) : i = 0, 1, 2 of nested linear codes over F q and (ii) a map f : F q × F q × F q → X such that e(m 0 , m 1 , m 2 ) ∈
+We now proceed towards deﬁning an achievable rate region using nested linear codes.
+Deﬁnition 11: For DBC (X, Y 1 , Y 2 , p Y 1 ,Y 2 |X ), let Q(p Y 1 ,Y 2 |X) be the collection of random vectors (W, U, V, X, Y 1 , Y 2 ) : Ω → W × U × V × X × Y 1 × Y 2 that
+satisfy (i) W = U = V = F q , (ii) P (Y 1 = y 1 , Y 2 = y 2 |X = x) = p Y 1 Y 2 |X (y 1 , y 2 |x), (iii) (W, U, V ) − X − (Y 1 , Y 2 ) is a Markov chain, and (iv) there exists a map f : W×U ×V → X such that X = f (W, U, V ).
+   
+  
+R 0 + R 1 ≤ I(U W ; Y 1 )R 0 + R 2 ≤ I(V W ; Y 2 ) R 0 + R 1 + R 2 ≤ min {I(W ; Y 1 ), I(W ; Y 2 )} +I(U ; Y 1 |W ) + I(V ; Y 2 |W ) − I(U ; V |W )
+   
+  
+Theorem 2: Let (X, Y 1 , Y 2 , p Y 1 ,Y 2 |X ) be a DBC and (R 0 , R 1 , R 2 ) ∈ r(p Y 1 ,Y 2 |X ). For every η > 0, 	 > 0 and sufﬁciently large n, there exists a DBC code (n, M 0 , M 1 , M 2 , e, d 1 , d 2 ) that satisﬁes (i) the DBC code is nested linear, (ii) log M i n ≥ R i − η for i = 0, 1, 2, and (iii) ζ(e, d 1 , d 2 ) ≤ .
+We only outline a proof. Build three nested linear codes (n, k i , l i , G i , ∆G i , B n i ) : i = 0, 1, 2 over F q (= W = U = V), denoted C i by picking each of G i ∈ F k i ×n q , ∆G i ∈ F l i ×n q and B i ∈ F n q independently and uniformly over their respective range spaces. We note C 0 , C 1 , C 2 are statistically independent. We recall, inner code of C i contains q k i vectors (in each bin) and C i contains q l i such bins. F l 0 q is the common message set and F l i q is private message set of user i. Encoder observes message triple (m l 0 0 , m l 1 1 , m l 2 2 ) and looks for a jointly typical triple (w n , u n , v n ) ∈ W n × U n × V n such that w n is a vector in m l 0 0 -th bin of C 0 , u n in m l 1 1 -th bin of C 1 and v n in m l 2 2 - th bin of C 2 . If it ﬁnds such a triple, say (w n , u n , v n ), then f n (w n , u n , v n ) is transmitted. Else it declares an error. Having received Y n i , decoder of user i, identiﬁes all bin pairs in C 0 ×C i that contains a pair of vectors jointly typical with Y n i . If there is exactly one such bin pair, it declares the indices of this bin pair as the decoded message. Else it declares an error.
+We now outline an analysis of error probability. The encoder declares an error if no triple of vectors in the corresponding bins are jointly typical. If k 0 n > 1 − H(W ), k 1 n > 1 − H(U |W ) and k 2 n > 1 − H(V |U, W ), it can be shown by second moment method (proof of theorem 2), the probability of this event falls exponentially with n. Decoder of user i declares error if it ﬁnds either (ii) no pair in C 0 × C i , or (ii) pairs of vectors in multiple bin pairs, jointly typical with Y n i . By frequency typicality and Markov chain condition, probability of former event falls exponentially with n. If
+< min {1 − H(W |Y 1 ), 1 − H(W |Y 2 )}, k 1 +l 1 n < 1 − H(U |W, Y 1 ) and k 1 +l 1 n < 1 − H(V |W, Y 2 ), the probability of the latter event falls exponentially with n. Therefore probabil- ity of decoding error can be made arbitrarily small by choosing n sufﬁciently large. We now compute the rates achieved. The rate of common message can be made arbitrarily close to
+min {I(W ; Y 1 ), I(W ; Y 2 )}. Private information can be sent to user 1 at rate arbitrarily close to l 1 n ≈ 1 − H(U |W, Y 1 ) − (1 − H(U |W )) = I(U ; Y 1 |W ) and to user 2 at rate l 2 n ≈ 1 − H(V |W, Y 2 )−(1−H(V |U, W )) = I(V ; Y 2 |W )−I(U ; V |W ).
+(1) If U = X = S = F q and f (u, s) = u + s modulo-q, then f n (U n (a k , m l )) : a k ∈ F k q , m l ∈ F l q is a nested linear
+code. Else, an embedding into a sufﬁciently large ﬁnite ﬁeld, analogous to that proposed by Krithivasan and Pradhan [10], results in a nested linear code over the resulting ﬁnite ﬁeld.
+(2) The outer code over F q contains q n(1−H(U |Y )) vectors which in general is larger than q nI(U ;Y ) , yet decoding is successful. A linear code of rate R contains an exponen- tially smaller fraction of typical vectors. Indeed, a code of rate R(> 1 − H(U )) contains q n(R−(1−H(U ))) typical se- quences with high probability. Hence the outer code contains
+tors. Therefore, one is able to stack more vectors in the outer code and yet decode successfully. Alternatively, one is forced to enlarge the bins to ﬁnd a single typical sequence.
+[[[ REFS ]]]
+T. Cover
+--
+Broadcast channels
+----
+S. I. Gel’fand
+M. S. Pinsker
+--
+Coding for channel with random parameters
+----
+K. Marton
+--
+A coding theorem for the discrete memoryless broadcast channel
+----
+I. Csisz´a
+J. K¨ orne
+--
+Information Theory: Coding Theorems for Discrete Memoryless Systems , 2nd ed
+----
+S. I. Gel’fand
+M. S. Pinsker
+--
+Capacity of a broadcast channel with one deterministic component
+----
+A. A. Gohari
+V. Anantharam
+--
+Evaluation of Marton’s inner bound for the general broadcast channel
+----
+A. Nair
+--
+An outer bound to the capacity region of the broadcast channel
+----
+J. K¨orner
+K. Marton
+--
+How to encode the modulo-two sum of binary sources (corresp.)
+----
+T. Philosof
+R. Zamir
+--
+On the loss of single-letter characterization: The dirty multiple access channel
+----
+D. Krithivasan
+S. S. Pradhan
+--
+Distributed source coding using abelian group codes
+----
+S.-Y. Tung
+--
+Multiterminal source coding
+----
+B. Nazer
+M. Gastpar
+--
+Compute-and-forward: Harnessing interfer- ence through structured codes
+----
+B. Nazer
+M. Gastpar
+S. A. Jafar
+S. Vishwanath
+--
+Ergodic inter- ference alignment
+----
+P. Elias
+--
+Coding for noisy channels
+----
+A. Wyner
+--
+Recent results in the shannon theory
+----
+D. Slepian
+J. Wolf
+--
+Noiseless coding of correlated information sources
+----
+R. Ahlswede
+--
+Group codes do not achieve shannon’s channel capacity for general discrete channels
+----
+R. G. Gallage
+--
+Information Theory and Reliable Communication
+----
+A. El Gamal
+E. van der Meulen
+--
+A proof of marton’s coding theorem for the discrete memoryless broadcast channel (corresp.)
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\128.pdf
+[[[ LINKS ]]]
+

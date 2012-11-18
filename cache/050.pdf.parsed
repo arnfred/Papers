@@ -1,0 +1,54 @@
+[[[ ID ]]]
+50
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+About the Reliability Function of Symmetric Channel under List Decoding
+[[[ AUTHORS ]]]
+Vladimir Blinovsky
+[[[ ABSTR ]]]
+Abstract—We complete the derivation of the formula for the reliability function of q-ary symmetric channel under list decoding for zero rate.
+[[[ BODY ]]]
+Let [q] = {1,...,q} and [q] n − set of n−tuples with elements from [q]. Let also 2 [q] be the family of subsets from [q] n . We say that S L ⊂ 2 [q] is L−partition of [q] n , iff each point x ∈ [q] n belongs to exactly L elements from S
+To say precisely we assume that S L is multiset i.e. some elements from S L can have multiplicities more than one in S L . For given L−partition S L we choose the set Y = {y} ⊂ [q] n , |Y | = |S L |, in such a way that to each Y i ∈ S L correspond unique point y i ∈ Y. Note, that Y is also multiset. Let the discrete memoryless channel deﬁned by its transition probabilities p(z|y), z,y ∈ [q] n . Next we describe the scheme of transition of messages and list decoding. The input of the channel are coding words from Y. The output of the channel is some word z ∈ [q] n . The output of the list decoder is the set of L codewords from Y - {y
+1 , . . . , y L }, such that z ∈ ∩ L i=1 Y i , Y i ∈ S L . We say that list decoding error occur if y ∈ {y
+1 , . . . , y L }. Using the above (usual) scheme of transmitting and decoding we can deﬁne the maximal P m (n, q, S L , Y ) and average ¯ P (n, q, S L , Y ) probabilities of the list decoding error:
+Next we optimize these probabilities over choice of S L and Y. Let Ω be the family of all L−partitions of [q] n , then
+At last let’s R 1 = o(1), R 1 n → ∞, n → ∞. Deﬁne the values (R > 0):
+Here in LHS we omit the dependence on q and assume next that q is ﬁxed. It can be shown [1] that second and last limits exist if instead of lim sup consider lim:
+In the paper [2] (see also [3]) we obtain the following expression for E L (0) :
+of the probability of list decoding error in discrete memoryless channel at zero rate in general case is solved. However in the particular case of symmetric channel optimization over the choice of {p j } in (1) can be done explicitly. Remind, that q−ary symmetric channel can be deﬁned by its transition probabilities
+p ∈ [0,(q−1)/q]. In the case of symmetric channel minimum over {p j } in (1) achieves when p j = 1/q. Here using simple arguments, we prove this fact. Note, that in the case q = 2 this fact was established in [4]. Actually in [4] was proved considerably more general result from which follows our fact. In the case q = 2, denote E sim,2 L (0) = E L (0). Then we have
+and to prove that minimum in the last expression achieved when λ = 1/2, it is sufﬁcient to prove ∪−convexity of the sum under the minimum. The proof of the convexity reduced to the proof of the inequalities
+b =δ b,0 , a
+conjecture that these inequalities are true was stated for ex. in [5] and was proved in [4]. Following the logic of the case q = 2 one can propose that for the arbitrary q sum under the minimum in the following expression
+this sum, from which it follows that the minimum in the last expression achieved when p j = 1/q. However note, that convexity is much more strong property in our case (it is not even clear whether convexity is true when q > 2) and we are going to give another quite natural and simple proof that the minimum of the last expression achieved when p j = 1/q.
+A. Proof of the explicit formula for reliability function in symmetric channel under list decoding
+Let’s p 1 + p 2 = c. We denote ψ = 1 L+1 ln (1 −p)(q−1) p , then  (j 1 ,...,j q ),  j s =L+1 p j 1 1 · ... · p j q q  L+1 j 1 , . . . , j q ×
+× (λ 2 −1−j (1 − λ) j − λ j (1 − λ) 2 −1−j ). Because µ(j + 1, ψ) < µ(j, ψ), j ≤  − 1, the derivation χ 
+is negative when 0 < λ < 1/2 and positive when 1 > λ > 1/2. Consequently χ achieves its minimum at λ = 1/2. From here it follows that minimum in (3) achieves when p j = 1/q. Proof is completed.
+[[[ REFS ]]]
+
+--
+R
+----
+
+--
+V
+----
+
+--
+R
+----
+
+--
+V
+----
+
+--
+V
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\050.pdf
+[[[ LINKS ]]]
+

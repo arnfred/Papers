@@ -1,0 +1,290 @@
+[[[ ID ]]]
+7
+[[[ INDEX ]]]
+6
+[[[ TITLE ]]]
+On Codes that Correct Asymmetric Errors with Graded Magnitude Distribution
+[[[ AUTHORS ]]]
+Eitan Yaakobi
+Paul H. Siegel
+Alexander Vardy
+Jack K. Wolf
+[[[ ABSTR ]]]
+Abstract—In multi-level ﬂash memories, the dominant cell er- rors are asymmetric with limited-magnitude. With such an er- ror model in mind, Cassuto et al. recently developed bounds and constructions for codes correcting t asymmetric errors with mag- nitude no more than . However, a more reﬁned model of these memory devices reﬂects the fact that typically only a small num- ber of errors have large magnitude while the remainder are of smaller magnitude.
+In this work, we study such an error model, in which at most t 1 errors of maximum magnitude 1 and at most t 2 errors of maximum magnitude 2 , with 1 < 2 , can occur. We adapt the analysis and code construction of Cassuto, et al. for the reﬁned error model and assess the relative efﬁciency of the new codes. We then consider in more detail speciﬁc constructions for the case where t 1 = t 2 = 1, 1 = 1, and 2 > 1.
+[[[ BODY ]]]
+The topic of asymmetric error-correcting codes over non- binary alphabets has attracted considerable attention in the past few years, largely due to its relevance in the context of multi-level ﬂash memories. However, research on asymmet- ric codes has a long history. A number of papers appeared in the 1960’s, e.g., [3], [14], [20], [21]. Constructions and upper bounds on such codes were given in, e.g., [2], [8], [9], [12], [13], [16], [23] and constructions of systematic asymmetric error-correcting codes were studied in [4].
+Flash memories are comprised of ﬂoating gate cells. The charge stored in a cell, also called the cell’s level, is used to represent data. While it is possible to increase a cell level by injecting charge to the cell, reducing its level is not possible unless its entire containing block is ﬁrst erased [5]. One of the dominant error mechanisms of ﬂash memory cells results from over-programming the cells [7], [18], [24]. These errors can not be physically corrected unless the entire containing block is erased and thus it is crucial to design error-correcting codes that correct asymmetric errors of limited-magnitude. Further- more, the ability to correct such errors can enable the pro- gramming of the cells to be less accurate and thus faster.
+In [6], Cassuto et al. designed codes which correct t asym- metric errors of limited-magnitude . In this model, an error can only increase the erroneous symbol by at most levels. Systematic optimal codes for this model that correct all asym- metric and symmetric errors of limited-magnitude were given by Elarief and Bose [11]. In [17], the case of correcting a single asymmetric error ( t = 1) of limited-magnitude was studied, and the results improved upon those given by Cas- suto et al. for this scenario. Asymmetric error-correcting codes for binary and non-binary alphabets were recently presented by Dolecek [10]. Codes correcting all unidirectional errors of limited-magnitude were studied in [1]. Another related error model assumes that if the cell level is x then the level can
+only be reduced to any value less than x. Code constructions were given in [15], and a short survey was given in [16].
+These previously proposed codes and bounds for the non- binary case mainly deal with the case of t asymmetric errors of limited-magnitude . However, it is likely that only a few cells will suffer from an error of large magnitude and that most of the erroneous cells will suffer from an error of a smaller magnitude [24]. In this work, we will present code construc- tions that correct t 1 asymmetric errors of magnitude at most
+1 and t 2 asymmetric errors of magnitude at most 2 , where 1 < 2 . This model can be naturally generalized to a wider
+The rest of the paper is organized as follows. In Sec- tion II, we formally deﬁne the error models we discuss in this work. Section III reviews the construction by Cassuto et al. [6] for asymmetric limited-magnitude error-correcting codes and presents a construction of codes that correct asym- metric limited-magnitude errors, where the errors can only be a multiple of some ﬁxed known integer. In Section IV, we present the main code construction of the paper for the correction of asymmetric errors in the new error model and discuss its efﬁciency with respect to the scheme by Cassuto et al. [6]. Finally, in Section V, we discuss efﬁcient code constructions for t 1 = t 2 = 1, 1 = 1, and 2 > 1.
+In this work, the memory elements, called cells, have q states: 0, 1, . . . , q − 1. For a vector x = ( x 1 , . . . , x n ) , we let wt ( x ) denote its Hamming weight, i.e. wt ( x ) = |{ i | x i = 0 }| . First, let us deﬁne asymmetric limited-magnitude errors.
+Deﬁnition. An error vector e = ( e 1 , e 2 , . . . , e n ) is called a t- asymmetric -limited-magnitude error if
+An [ n, q, t, ] error-correcting code C is called a t-asymmetric -limited-magnitude error-correcting code if it is a q-
+ary code of length n which can correct all t-asymmetric -limited-magnitude errors.
+We extend the last deﬁnition to error vectors with two different limited-magnitudes.
+Deﬁnition. An error vector e = ( e 1 , e 1 , . . . , e n ) is called a ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited-magnitude error if
+An [ n, q, ( t 1 , t 2 ) , ( 1 , 2 )] error-correcting code C is called a ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited-magnitude error- correcting code if it is a q-ary code of length n which can
+correct all ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited-magnitude errors.
+That is, the error model is such that there are at most t 1 + t 2 errors; at most t 2 of these errors have magnitude between
+1 + 1 and 2 and the magnitude of the rest of the errors is at most 1 .
+2 . Then, the number of ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited- magnitude errors is
+Proof: For any ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited- magnitude error vector, the number of errors of magnitude between 1 + 1 and 2 is at most t 2 . Assume this number is i, 0 	 i 	 t 2 , then the number of error vectors with i such errors is ( n i )( 2 − 1 ) i . There are at most t 1 + t 2 − i more errors of magnitude at most 1 and so for any error vector with i errors between 1 + 1 and 2 , the number of ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited-magnitude error vectors is ∑ t 1 +t 2 −i j=0 ( n−i j ) j 1 . Therefore, the total number of such error
+There are two error models that can be considered. The er- rors can or cannot wrap-around. That is, in the ﬁrst case, if the transmitted word is c and the error vector is e then the received word is ( c + e ) mod q, while in the latter case we require that c + e 	 ( q − 1, . . . , q − 1 ) . In many practical applications like multi-level ﬂash memories, it is common to assume that errors do not wrap-around. However, the construc- tions we present can work in some cases for both models.
+The goal of this work is to construct ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited-magnitude error-correcting codes. The con- struction of such codes is based on a recent construction by Cassuto et al. [6] of t-asymmetric -limited magnitude error-correcting codes. We now review the construction in [6]. For a vector x = ( x 1 , . . . , x n ) , and a positive integer m, we deﬁne the vector x mod m to be
+The code Σ will be called the base code used to construct C . The following theorem was proved in [6].
+Theorem 2. The code C is an [ n, q, t, ] error-correcting code if the code Σ corrects t or fewer symmetric errors. If q > 2 , the converse is true as well.
+Decoding: Let c ∈ C be the transmitted codeword and y = c + e the received word, where e is a t-asymmetric -limited- magnitude error vector. Let
+Then, since c mod ( + 1 ) ∈ Σ, the word z suffers at most t symbol errors. These errors can be found using the decoder
+of the code Σ. That is, the value of e mod ( + 1 ) is found and thus also the error vector e.
+Remark 1. As mentioned in [6], we will also assume here, for the simplicity of the encoding procedure, that ( + 1 )| q, and the construction corrects wrap-around errors as well. However it is possible to modify the encoding procedure also for the case where ( + 1 ) q, while sacriﬁcing the ability to correct wrap-around errors.
+Encoding: The encoding procedure, as presented in [6], can use any encoding procedure for Σ. However, for our construction, we will require that Σ be systematic 1 . If r is the redundancy of Σ then the encoder’s input is a vec- tor ( u 1 , u 2 ) ∈ { 0, . . . , q − 1 } n−r × { 0, . . . , q +1 − 1 } r . Let v 1 ∈ { 0, . . . , } r be the systematic encoder’s output of Σ when applied to ( u 1 mod ( + 1 )) . Then the encoder’s output of C is c, where
+Note that c ∈ { 0, . . . , q − 1 } n , ( c mod ( + 1 )) ∈ Σ and distinct input vectors generate distinct output vectors.
+In the rest of the paper, we present code constructions that are based on the codes we just described. When we refer to an [ n, q, t, ] code C , we refer to a code that is designed in Con- struction 1 which is constructed using a base code Σ. While Σ is constructed over an alphabet of size + 1 and has to correct t symbol errors, it is possible to use other codes over larger al- phabets that correct t-asymmetric -limited-magnitude errors that wrap around (see Construction 1A in [6]). Either choice of Σ will work in our constructions.
+In fact, assume one wants to construct [ n, q, t, 1 ] error- correcting codes. According to Construction 1, Σ is a binary code, however if q is an odd integer the construction does not necessarily result in a good code. A different construc- tion of [ n, q, t, 1 ] error-correcting codes was recently given by Dolecek [10]. Yet another construction is presented in the next theorem and provides the code Σ to be used as an [ n, p, t, 1 ] error-correcting code in order to construct an [ n, q, t, 1 ] error-correcting code where p is a prime integer that divides q. We omit the proof due to space limitations.
+Theorem 3. Let p, t, m, n be four positive integers such that p is a prime number, t 	 p − 1, and n = p m − 1. Let α ∈ GF ( p m ) be a primitive element. Then, the matrix H,
+   
+   
+is a parity-check matrix of an [ n, p, t, 1 ] error-correcting code of dimension m − t over GF ( p ) .
+Before we proceed to the next section and construct ( t 1 , t 2 ) - asymmetric ( 1 , 2 ) -limited-magnitude error-correcting codes, we construct a family of codes that correct errors of the fol- lowing magnitudes:
+s, 2s, 3s, . . . , s, for some positive integers s, .
+Deﬁnition. An error vector e = ( e 1 , . . . , e n ) is called a t- asymmetric ( , s ) -multiple-spaced limited-magnitude error if
+An [ n, q, t, , s ] error-correcting-code C is called a t- asymmetric 	 ( , s ) -multiple-spaced 	 limited-magnitude error-correcting code if it is a q-ary code of length n which can correct all t-asymmetric ( , s ) -multiple-spaced limited-magnitude errors.
+The next theorem gives a construction of [ n, q, t, , s ] error- correcting-codes.
+Theorem 4. Let n, q, t, , s be positive integers and assume that there exists an [ n, q s , t, ] error-correcting code C 1 . Then, there exists an [ n, q, t, , s ] error-correcting code C 2 of the same size.
+Proof: The new code C 2 is deﬁned as follows. c ∈ C 2 if and only if 1 s · c ∈ C 1 .
+Assume that c ∈ C 2 and y = c + e is the received word, where e is a t-asymmetric ( , s ) -multiple-spaced limited-magnitude error. We use the decoding procedure of C 1 , where the input is 1 s · y . Note that,
+Since 1 s · c ∈ C 1 , we can consider 1 s · c + 1 s · e to be the input to the decoder of C 1 , where 1 s · e is a t-asymmetric - limited-magnitude error. Thus, the decoder of C 1 can decode the error vector 1 s · e and multiplying it by s gives with the original error vector e.
+A code will be called perfect if it attains the sphere packing bound for t-asymmetric -limited-magnitude errors [6].
+Theorem 5. If the code C 1 is perfect and s | q, then the code C 2 is perfect as well.
+n i
+where q = q s . The size of the code C 2 is |C 2 | = s n · |C 1 | and the number of errors is ∑ t i=0 ( n i ) i . Therefore,
+n i
+n i
+Theorem 4 gives us the construction as well as the decod- ing procedure for the new code C 2 . Its encoding procedure is derived from the encoding procedure of C 1 . Assume that C 1 is constructed as described earlier in this section using a base code Σ of length n and redundancy r which corrects t symbol errors over an alphabet of size + 1 and it has a systematic encoder. Then, Σ is also the base code for C 2 . For the simplic- ity of the encoder we assume that s ( + 1 )| q. The encoder’s input is a vector
+The vector c satisﬁes c ∈ { 0, . . . , q − 1 } n , 1 s · c ∈ C 1 and the outputs of two different input vectors are different. Thus, the encoding procedure follows the construction of C 2 .
+Remark 2. Let us explain the intuition behind this construc- tion. Assume that q is a power of two and every cell level is represented as a sequence of log 2 q bits. If we construct asymmetric error-correcting codes where = 1, then the base code Σ is binary and the encoding and decoding of the q-ary code are implemented on the LSB of each cell. For asymmet- ric ( , s ) -multiple-spaced limited-magnitude error-correcting codes, assume that = 2 and s is also a power of two, say the i-th power, where 2 i < log 2 q − 1, then the base code Σ is again binary and the encoding and decoding of the q-ary code are implemented on the i-th digit of each cell.
+In this section, we present a construction of ( t 1 , t 2 ) - asymmetric ( 1 , 2 ) -limited-magnitude 	 error-correcting codes. The construction uses the codes proposed by Cassuto et al. [6] which were reviewed in Section III. We will de- scribe the encoding procedure and then show its correctness by the success of its decoding procedure.
+1 < 2 , and let 2 = 	 2 1 +1 . Let C 1 be an [ n, q, t 1 + t 2 , 1 ] error-correcting code and let C 2 be an [ n, q, t 2 , 2 , 1 + 1 ] error-correcting code. Let Σ 1 and Σ 2 be the base codes that are used to generate the codes C 1 and C 2 , respectively. Both base codes are of length n, and they have redundancy r 1 and r 2 , respectively. They also have systematic encoders. We construct the code C by means of the following encoding procedure. The input to the encoder is a vector
+The encoding of these information symbols is carried out in two steps. First, let v 2 be the systematic encoder’s output of Σ 2 applied to the vector
+Then, we calculate v 3 to be the systematic encoder’s output of Σ 1 applied to ( u 1 mod ( 1 + 1 ) , u 2 mod ( 1 + 1 )) . Finally, the encoder’s output is c = ( c 1 , c 2 , c 3 ) , where c 1 = u 1 , c 2 =
+Remark 3. We assume here that r 1 + r 2 n. However, if this is not the case we can modify the construction to be applicable in this scenario.
+Before we show the correctness of this construction, let us prove a few properties of ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited- magnitude errors. Assume that e is a ( t 1 , t 2 ) asymmetric ( 1 , 2 ) -limited-magnitude error. First note that this error vector can be written as e = e 1 + e 2 , where
+Lemma 7. The error vector e 1 is a ( t 1 + t 2 ) -asymmetric 1 - limited-magnitude error.
+Lemma 8. The error vector e 2 is a t 2 -asymmetric ( 2 , 1 + 1 ) - multiple-spaced limited-magnitude error.
+Proof: For each i, 1 i n, if e i 	 1 then e 2,i = 0 and therefore wt ( e 2 ) t 2 . Furthermore,
+In the next theorem we will prove the correctness of this construction by showing the success of its decoding procedure.
+Theorem 9. The code C generated by Construction 2 is an [ n, q, ( t 1 , t 2 ) , ( 1 , 2 )] error-correcting code.
+Proof: The proof follows from the decoding procedure of the code C . Assume the received word is y = c + e where e is a ( t 1 , t 2 ) -asymmetric ( 1 , 2 ) -limited-magnitude error vector. As mentioned above, we write the error vector in the form e = e 1 + e 2 , where e 1 = e mod ( 1 + 1 ) and e 2 = e − e 1 . From Lemma 6, c + e 2 ∈ C 1 and from Lemma 7, e 1 is a ( t 1 + t 2 ) - asymmetric 1 -limited magnitude error vector. Therefore, by applying the decoder of C 1 to the received word y, the error vector e 1 is decoded and the decoder’s output is y = c + e 2 .
+According to Lemma 8, the error vector e 2 is a t 2 - asymmetric ( 2 , 1 + 1 ) -multiple-spaced limited-magnitude error. However, note that c is not a codeword of C 2 . In fact, c is the encoded codeword, which is the output of the en- coder of C 1 . Its input, which is the output of the encoder of C 2 , is c , where for all 1 	 i 	 n − r 1 , c i = c i , and for n − r 1 + 1 i n, c i = c i − ( c i mod ( 1 + 1 )) . But, the decoder of C 2 decodes a t 2 -asymmetric ( + 1 ) -multiple
+2 -limited-magnitude error by calculating 1
+Therefore, the error output of the decoder of C 2 is e 2 and we successfully receive the transmitted codeword c.
+In order to evaluate this code construction we compare it to the codes by Cassuto el al. [6]. Clearly, for all positive in- tegers t 1 , t 2 , 1 , 2 such that 1 	 2 , every [ n, q, t 1 + t 2 , 2 ] error-correcting code is also an [ n, q, ( t 1 , t 2 ) , ( 1 , 2 )] error- correcting code. In case that t 1 and t 2 are roughly the same, it turns out that our construction is inferior. The reason is that the number of errors found by C 1 is t 1 + t 2 and the number of errors found by C 2 is t 2 . Even though the magnitude of
+the errors is smaller than 2 , the total number of errors found by the two codes is t 1 + 2t 2 , as opposed to t 1 + t 2 errors corrected by an [ n, q, t 1 + t 2 , 2 ] code. Since the sizes of the two codes depend on the sizes of their base codes, in order to give an accurate comparison, one needs to know the exact sizes of these base codes. If all the base codes were perfect or close to be perfect then it is possible to show that, approx- imately, if t 1 t
+, then our scheme is superior. For example, if n = 1000 and 1 = 1, 2 = 4, t 1 = 6, t 2 = 1, our construction yields better codes. Consider another example of [ n, q, ( n − 1, 1 ) , ( 1, 2 )] error-correcting codes, where 12 | q. Then, the size of the best [ n, q, n, 2 ] error-correcting codes will be q 3 n , while our construction achieves codes of size
+We saw in the previous section that if the values of t 1 and t 2 are roughly the same then our construction does not nec- essarily outperform the construction by Cassuto et al. Here, we consider one case where it is possible to achieve bet- ter code constructions. We start with a construction of an [ n, q, ( 1, 1 ) , ( 1, 2 )] error-correcting code.
+Theorem 10. Let q, m be positive integers such that m > 1 and 3 | q, and C 1 is the code constructed in Theorem 3 where n = 3 m − 1, p = 3, t = 2. Then, the code C , deﬁned as,
+Proof: Let c be the transmitted codeword, y = c + e the received word where e is a ( 1, 1 ) -asymmetric ( 1, 2 ) -limited magnitude error, and s 1 = ∑ n i=1 y i α i , s 2 = ∑ n i=1 y i α 2i . The sum of the received symbols can have either odd or even par- ity, modulo 2.
+Odd sum-parity: ∑ n i=1 y i ≡ 1 ( mod 2 ) . There are two possible cases.
+2) The weight of e is two, one error is of magnitude one and the other one is of magnitude two.
+In the ﬁrst case, we get s 1 = α i , s 2 = α 2i = s 2 1 , where i is the error location. In the second case, s 1 = α i 1 + 2α i 2 , s 2 = α 2i 1 + 2α 2i 2 , where i 1 , i 2 are the error locations and
+Hence we can distinguish between these two cases. The error location error in the ﬁrst case is easy to ﬁnd. In the second case, we decode as follows:
+From this we can determine the location of the error with mag- nitude one and, therefore, also the location of the error with magnitude two.
+Even sum-parity: ∑ n i=1 y i ≡ 0 ( mod2 ) . There are three cases:
+3) The weight of e is two and both errors have magnitude one.
+In the ﬁrst case, we get s 1 = s 2 = 0. In the second case, s 1 = 2α i , s 2 = 2α 2i = 2s 2 1 , where i is the error location. In the third case, we can show as before that s 2 = 2s 2 1 . Hence, we can distinguish between the three cases and the error locations in each case can again be easily determined.
+Assume q is even. The size of the code C 1 is 3 n−2m and, as deﬁned, the size of C is q n 2·9 m . On the other hand, suppose that we use Construction 1 to design an [ n, q, 2, 2 ] error correcting code C with the same parameters n and q. If the base code Σ is an optimal linear code that corrects two errors over GF ( 3 ) , its redundancy is at least log 3 ( 2n 2 + 1 ) = 2m + 1, and therefore the size of the code C is at most q n 3 2m + 1 < q n 2·9 m .
+The last construction can be extended to [ n, q, ( 1, 1 ) , ( 1, )] error-correcting codes for arbitrary . Here, we will use location-correcting codes, introduced by Roth and Seroussi [19]. These codes ﬁnd the locations of errors whose values are known. For the case t = 2, such a code over F = GF ( p m ) is constructed by the parity check-matrix
+where S = { α 1 , . . . , α n } is a weak Sidon set of the multi- plicative group F ∗ of F. We omit the details due to the lack of space and leave them to an extended version of this work.
+In this paper, we studied a new error model for multi-level ﬂash memories based upon a graded distribution of asymmet- ric errors of limited magnitudes. Using a recent construction by Cassuto et al. [6] of asymmetric limited-magnitude error- correcting codes, we developed a family of codes that correct asymmetric errors with magnitudes a multiple of some ﬁxed integer. We then utilized these two classes of codes to con- struct codes that correct t 1 asymmetric errors of magnitude no more than 1 and t 2 errors of magnitude no more than 2 , where 1 < 2 . Finally, we discussed efﬁcient constructions for the special case where t 1 = t 2 = 1, 1 = 1, and 2 > 1.
+This work was supported in part by the University of Cal- ifornia Lab Fees Research Program, Award No. 09-LR-06- 118620-SIEP, the Center for Magnetic Recording Research at the University of California, San Diego, and the Intel Ph.d. Fellowship Program.
+[[[ REFS ]]]
+R. Ahlswede
+H. Aydinian
+L. Khachatrian
+L. Tolhuizen
+--
+On q- ary codes correcting all unidirectional errors of a limited magnitude
+----
+S. Al-Bassam
+R. Venkatesan
+S. Al-Muhammadi
+--
+New single asym- metric error-correcting codes
+----
+M. Berger
+--
+A note on error detecting codes for asymmetric channels
+----
+B. Bose
+S. Al-Bassam
+--
+On systematic single asymmetric error- correcting codes
+----
+P. Cappellett
+C. Goll
+P. Oliv
+E. Zanon
+--
+Flash Memories, Boston: Kluwer Academic, 1999
+----
+Y. Cassuto
+M. Schwartz
+V. Bohossian
+J. Bruck
+--
+Codes for asym- metric limited-magnitude errors with application to multi-level ﬂash memories
+----
+M. Compagnoni
+S. Spinelli
+R. Gusmeroli
+L. Lacaita
+S. Beltrami
+A. Ghetti
+A. Visconti
+--
+First evidence for injec- tion statistics accuracy limitations in NAND Flash constant-current Fowler-Nordheim programming
+----
+D. Constantin
+N. Rao
+--
+On the theory of binary asymmetric error-correcting codes
+----
+P. Delsarte
+P. Piret
+--
+Bounds and constructions for binary asymmet- ric error-correcting codes
+----
+L. Dolececk
+--
+Towards longer lifetime of emerging memory technolo- gies using number theory
+----
+N. Elarief
+B. Bose
+--
+Optimal, systematic, q-ary codes correcting all asymmetric and symmetric errors of limited magnitude
+----
+T. Etzion
+--
+New lower bounds for asymmetric and unidirectional codes
+----
+F. Fu
+A. Ling
+C. Xing
+--
+New lower bounds and constructions for binary codes correcting asymmetric errors
+----
+V. Freeman
+--
+Optimal error detection codes for completely asymmet- ric binary channels
+----
+T. Helleseth
+T. Kløve
+--
+On group-theoretic codes for asymmetric channels
+----
+T. Kløve
+--
+Error correcting codes for the asymmetric channel
+----
+T. Kløve
+B. Bose
+N. Elarief
+--
+Systematic single limited magnitude asymmetric error correcting codes
+----
+N. Mielke
+T. Marquart
+N. Wu
+J. Kessenich
+H. Belgal
+E. Schares
+F. Triverdi
+E. Goodness
+R. Nevill
+--
+Bit error rate in NAND ﬂash memories
+----
+M. Roth
+G. Seroussi
+--
+Location-Correcting Codes
+----
+R. Varshamov
+--
+On some speciﬁcs of asymmetric error-correcting lin- ear codes
+----
+R. Varshamov
+M. Tenenholtz
+--
+A code for correcting a single asymmetric error
+----
+C. Wang
+R. Kulkarni
+V. Poor
+--
+Density evolution for asymmet- ric memoryless channels
+----
+H. Weber
+C. de Vroedt
+E. Boekee
+--
+Bounds and constructions for binary codes of length less than 24 and asymmetric distance less than 6
+----
+E. Yaakobi
+J. Ma
+L. Grupp
+H. Siegel
+S. Swanson
+K. Wolf
+--
+Er- ror characterization and coding schemes for ﬂash memories
+[[[ META ]]]
+xmlpapertitle -> On Codes that Correct Asymmetric Errors with Graded Magnitude Distribution
+pdf -> E:\testDataset\007.pdf
+parsed -> yes
+linked -> yes
+xmldate -> -
+file -> E:\testDataset\007.pdf
+xmlauthors -> Eitan Yaakobi, Paul H. Siegel, Alexander Vardy, Jack K. Wolf
+xmlroom -> -
+[[[ LINKS ]]]
+1 17
+----
+2 28
+----
+3 26
+----
+4 5
+----
+5 99
+----
+6 74
+----
+8 62
+----
+9 9
+----
+10 7
+----
+11 6
+----
+12 51
+----
+13 8
+----
+14 23
+----
+15 20
+----
+16 5
+----
+17 8
+----
+18 5
+----
+19 23
+----
+20 12

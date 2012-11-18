@@ -1,0 +1,99 @@
+[[[ ID ]]]
+6
+[[[ INDEX ]]]
+5
+[[[ TITLE ]]]
+Reed-Muller codes, elementary symmetric functions and asymmetric error correction
+[[[ AUTHORS ]]]
+Luca G. Tallini
+Bella Bose
+[[[ ABSTR ]]]
+Abstract—This paper shows that the ﬁrst order Reed-Muller codes punctured in one component fall into a class of t- asymmetric error correcting (t-AEC) codes with very fast decod- ing. Hence, these linear Reed-Muller codes give a nice example of t-AEC codes which are very simple to both encode and decode. Decoding of these codes is much simpler than the usual t-SEC BCH code decoding because the syndromes, which are based on elementary symmetric functions of the received word, directly give the number of errors and the error locator polynomial. The result is based on some interesting properties which are proven in general for geometry codes.
+Index Terms—Reed-Muller codes, geometry codes, asymmetric errors, Z-channel.
+[[[ BODY ]]]
+In the usual binary symmetric data transmission channel both 0 to 1 (0 → 1) and 1 to 0 (1 → 0) errors are possible. However, in the binary asymmetric channel (or Z-channel) all the errors are always of one type only, say 1 → 0. For example, let X = 0011, Y = 0001 and Z = 1001. If X is the transmitted word, in a binary symmetric channel it is possible to erroneously receive Y or Z, whereas in an asymmetric channel it is possible to receive Y only. Many physical channels can be modeled as asymmetric channel, among these there are optical ﬁbers, optical disks, VLSI circuits and memories and Read Only Memories [1]. In [2], the authors described a class of t-AEC codes which are very simple to decode but for which no simple encoding procedure is known. In many cases the information rate of these codes is as good as or better than the corresponding one for t-SEC BCH codes. For most of the linear codes, such as BCH codes, Goppa codes, etc. the decoding is done using three steps: 1) calculate the syndromes from the received word, which are the power sums of the error locations; 2) from the power sums ﬁnd the error location polynomial. The coefﬁcients of this error location polynomials are the elementary symmetric functions of the error locations; 3) from the error location polynomial ﬁnd the roots, which give the error positions and then complement the corresponding erroneous bits. Now, step 2) is the most difﬁcult part. For asymmetric error correcting codes given in [2], it was shown that the syndromes can be easily calculated from the received word using the elementary symmetric functions (instead of the power sums) in such a way that the syndrome directly gives the number of errors and the error location polynomial. Thus, when the errors are of asymmetric type, the decoding becomes much simpler and so, these methods can be successfully applied in practical systems. This paper shows that the punctured ﬁrst order Reed-Muller
+codes [3, page 377] fall in the class of t-AEC codes introduced in [2]. Hence, these Reed-Muller codes are very simple to both encode and decode when used to correct asymmetric errors. The result is based on some interesting properties which are proven in general for geometry codes. In [6], [5], and [4], a general key equation is developed and it turns out to be useful in decoding a very wide class of old and new codes in a different manner; for the binary and non-binary cases. In particular, the t-AEC codes introduced in [2] fall in this class, and hence, the punctured ﬁrst order Reed-Muller codes do too. So, using the general key equation, a minimum Hamming distance 2d + 1 punctured ﬁrst order Reed-Muller code (which has minimum asymmetric distance d + 1) can be used to simultaneously correct up to t 0 0 → 1 errors and t 1 1 → 0 errors, with d = t 0 + t 1 . The key equation gives an error correcting procedure which is as simple as solving a particular t × t linear system, with t = min{t 0 , t 1 }. In general, such a system can be solved by at most t steps (instead of d = t + max{t 0 , t 1 } steps) of the Extended Euclidean Algorithm. As mentioned, in the case of asymmetric error correction (i. e., t 0 = 0), the elementary symmetric functions of the received word directly give the error locator polynomial, making the decoding procedure extremely simple. However, it might be more realistic for a channel to be not totally asymmetric and to behave in such a way to make only few, say t 0 = 1, 0 → 1 errors, and many, say t 1 = 30, 1 → 0 errors per transmitted word. In this case, by using the punctured Reed-Muller codes, correcting the received word is essentially as simple as correcting t = min{1, 30} = 1 (instead of d = 31) symmetric errors. Section II recalls the key equation and explains how this can be used to decode the punctured Reed-Muller codes in a very efﬁcient manner. Section III proves the main result: the punctured Reed-Muller codes fall into the class of t-AEC codes introduced in [2] and extended in [6], [5] and [4].
+Some notations from [6], [5] and [4] are needed. Let ZZ 2 = {0, 1} be the binary alphabet. Given any binary word X ∈ ZZ n+1 2 of length n + 1, let supp(X) indicate the support of X, that is, the subset of the index set, say, [0, n] def = {0, 1, 2, . . . , n}, where X is different from 0. For example, if n = 6 and X = 100110 ∈ ZZ 6 2 then supp(X) = {0, 3, 4} ⊆ [0, 5]. Let 2 S indicate the power set of a set S. It is very well known that the function supp : ZZ n+1 2 → 2 [0,n] is a one-to-one correspondence whose inverse function is usually called characteristic function of sets. The word/vector which is the image of a set through
+the characteristic function is called the incidence vector of the set. In the previous example, X = 100110 ∈ ZZ 6 2 is the incidence vector of the set supp(X) = {0, 3, 4} ∈ 2 [0,5] . In this paper, we will identify ZZ n+1 2 with 2 [0,n] and binary words X ∈ ZZ n+1 2 with their support X ≡ supp(X) ⊆ [0, n]. Here, m-ary words are also considered for 2 ≤ m ≤ +∞. So, should X = x 0 x 1 . . . x n be a word of length n + 1 over the m-ary alphabet ZZ m = {0, 1, . . . , (m − 1)} ⊆ ZZ +∞ def = IIN, then supp(X) is a subset of the index set [0, n] where every element i ∈ [0, n] is counted with its multiplicity , m X (i) = x i ∈ ZZ m , given by the i-th component of X. Namely, X ≡ supp(X) is a multiset on [0, n], and we simply let the weight of X to be w(X) = |X| = |supp(X)| = i∈[0,n] x i = i∈[0,n] m X (i). Let ∂X def = {i ∈ [0, n] : x i = m X (i) = 0} ∈ ZZ n+1 2
+be the set of indices where X is different from 0 and note that ∂X can be regarded as a subset of [0, n]. The multiset supp(X) should not be confused with the (proper) set ∂X. For example, if m = 3, n = 3 and X = 2012 ∈ ZZ 4 3 then supp(X) = {0, 0, 2, 3, 3}, ∂X = 1011 ≡ {0, 2, 3} ⊆ [0, 4] and the usual Hamming weight of X is w H (X) = |∂X| = 3 = |supp(X)| = w(X) = 5. Deﬁne the total order in ZZ m as 0 ≤ 1 ≤ . . . ≤ (m − 1) and, for all x, y ∈ ZZ m , let the natural subtraction operation in ZZ m be deﬁned as x . − y def = 0 if x ≤ y, and x . − y def = x − y if x > y; where “−” indicates the usual integer subtraction. Then, given any two words/multisets X, Y ∈ ZZ n+1 m , the words/multiset operations X ∩ Y ∈ ZZ n+1 m , X ∪ Y ∈ ZZ n+1 m , X + Y ∈ IIN, and X . − Y ∈ ZZ n+1 m are
+deﬁned as the digit by digit minimum, maximum, natural addition and . − operation between X and Y , respectively. For example, if m = 3, n = 3, X = 0122 and Y = 1220 then X ∩ Y = 0120, X ∪ Y = 1222, X . − Y = 0002
+and Y . − X = 1100. Let the integer scalar product between c ∈ IIN and X = x 0 x 1 . . . x n ∈ ZZ n+1 m ⊆ IIN n+1 be deﬁned as c · X = cx 0 cx 1 . . . cx n ∈ ZZ n+1 c(m−1)+1 ⊆ IIN n+1 . For example, if X = 2012 ∈ ZZ 4 3 ⊆ IIN 4 then 3 · X = 6036 ∈ ZZ 4 7 ⊆ IIN 4 .
+Given any two word X, Y ∈ ZZ n+1 m , we say that X is contained in Y and write X ⊆ Y if, and only if, X = X ∩ Y . For ex- ample, 0120 ≡ {1, 2, 2} ⊆ {0, 1, 2, 3, 3, 4, 4} ≡ 1122. Under this multiset interpretation, the m-ary “symmetric distance” between two words/submultisets X and Y can be deﬁned as
+For example, if X = 0120 = {1, 2, 2} and Y = 2011 = {0, 0, 2, 3} then X . − Y = 0110 = {1, 2} and Y . − X = 2001 = {0, 0, 3}, and so, d S (X, Y ) = 5 and d A (X, Y ) = 3. Note that for m = 2, d S (X, Y ) and d A (X, Y ) coincide with the usual Hamming and asymmetric distances respectively.
+Let K be any ﬁeld and S ∈ ZZ n+1 m be a multiset on K such that ∂S = {a 0 , a 1 , . . . , a n } ⊆ K is a set of n + 1 distinct elements in K. Assume a 0 = 0 ∈ S ⊆ K. Obviously, in our identiﬁcation word/multiset, the proper set ∂S can be chosen as the index set by just identifying the element a i ∈ ∂S with
+i ∈ [0, n], for all i ∈ [0, n]. As in [4], given any m-ary word X = x 0 x 1 . . . x n ∈ ZZ n+1 m let the polynomial associated with X be formally deﬁned as
+Note that the set of roots of the polynomial σ X (z), each root counted with its multiplicity, coincides with the multiset X = {1/a i ∈ K : i ∈ X} ≡ X, where here 1/0 def = 0 ∈ K. Let
+be the h-th elementary symmetric function of the elements of X = {a i ∈ K : i ∈ X} ≡ X ⊆ S. Note that, for all h = 1, 2, . . ., σ h (X) = σ h (X − x 0 · {0}), where x 0 = m X (0) is the 0-th component of X. Hence σ X−x 0 ·{0} (z) = n i=1 (1− a i z) x i = 1 + σ 1 (X)z + σ 2 (X)z 2 + . . . . The following key equation holds [6], [5], [4].
+for all X, Y ⊆ S, σ X (z)σ Y . −X (z) = σ Y (z)σ X . −Y (z). (2) Assume that X is sent and Y is received. Having some partial information on X (such as, σ X (z) mod a certain polynomial) and having Y (i. e., σ Y (z)), the receiver can ﬁnd the error polynomials σ X . −Y (z) and σ Y . −X (z) with Key Equation (2). Note that the receiver can recover the error patterns E + = (Y . − X) and E − = (X . − Y ) completely by ﬁnding the roots of σ Y . −X (z) and σ X . −Y (z), respectively. Note that the computation of σ Y (z) from Y ∈ ZZ n+1 m can be efﬁciently done as explained in [2], [6], [5]. The class of codes which can be efﬁciently decoded using Key Equation (2) as mentioned in Section I is the following [6], [5], [4]. C σ,p def =
+{X ⊆ S: σ X (z) = c X σ(z) mod p(z), c X ∈ K . − {0}} ; (3) where p(z), σ(z) ∈ K[z] are polynomials over the ﬁeld K. In the binary case, it is shown in [6], [5] that d A (C σ,p (n + 1)) ≥ ∂p − ∂ gcd(σ, p) def = d + 1 and so the codes C σ,p (n + 1) can be used to simultaneously correct up to t 0 0 → 1 errors and t 1 1 → 0 errors, with d = t 0 + t 1 (the result has been extended also to the m-ary case in [4]). Now, consider the punctured ﬁrst order Reed-Muller code RM ∗ (1, h) [3, page 377] which is over the binary alphabet and has length n = 2 h −1. In Section III, we show that if we let K = GF (2 h ), S = ∂S = K − {0} and |S| = n = 2 h − 1, then
+Hence, RM ∗ (1, h) falls into the easy to decode class of, say, σ-codes (3). In particular, if C = RM ∗ (1, h) is used to correct errors over the Z-channel (no 0 → 1 errors), X ∈ C is sent and Y is received then σ X (z) = 1 mod z d+1 , with d = (n + 1)/4 − 1, and σ X . −Y (z) = σ ∅ (z) = 1. Hence, (2) reduces to σ Y . −X (z) = σ Y (z) mod z d+1 ; that is, the syndrome σ Y (z) mod z d+1 is exactly equal to the error locator polynomial and so decoding to correct d 1 → 0 errors is straightforward.
+Let n = 2 h − 1 and consider K = GF (2 h ) = {a 0 = 0, a 1 = 1, a 2 = α, . . . , a n = α n−1 }. Now, K can be regarded as the set of the points of the euclidean geometry of dimension h over the ﬁeld GF (2), usually denoted as EG(h, 2), whose coordinates are the column vectors a 0 , a 1 , a 2 , . . . , a n . On the other hand, the set K − {0} = {a 1 , a 2 , . . . , a n } can be regarded as the set of the points of the projective geometry of dimension h − 1 over the ﬁeld GF (2), usually denoted as P G(h − 1, 2), whose coordinates are the column vectors a 1 , a 2 , . . . , a n (which are deﬁned up to the non-zero constant 1 ∈ GF (2) = {0, 1}; and so, each a i ∈ K represents one and only one point of P G(h − 1, 2)). For s ∈ [−1, h], let s − EG(h, 2) be the binary linear code generated by the incidence vectors of the dimension δ ∈ [s, h] subspaces of EG(h, 2). Now, let RM (s, h) be the binary linear s-th order Reed-Muller code of length n + 1 = 2 h , dimension k = 1 + h 1 + h 2 . . . + h s and minimum Hamming distance d H = 2 h−s (please, refer to [3, pages 370–385]). It can be shown that (h − s) − EG(h, 2) = RM (s, h). On the other hand, for s ∈ [−1, h], let s − P G(h − 1, 2) be the binary linear code generated by the incidence vectors of the dimension δ ∈ [s, h−1] subspaces of P G(h−1, 2). Then, (h−s)−P G(h− 1, 2) = RM ∗ (s, h), where RM ∗ (s, h) indicates the punctured RM (s, h) in the 0-th coordinate (please, see the Deﬁnition in [3, pages 377]). Note that (h − 1) − EG(h, 2) = RM (1, h) has length n + 1 = 2 h , dimension k = 1 + h and min- imum Hamming distance d H = 2 h−1 . On the other hand, (h − 2) − P G(h − 1, 2) = RM ∗ (1, h) has length n = 2 h − 1, dimension k = 1 + h and minimum Hamming distance d H = 2 h−1 −1. With regard to RM (1, h) = (h−1)−P G(h, 2) and RM ∗ (1, h) = (h − 2) − P G(h − 1, 2) we have the following.
+Theorem 1 (Main Theorem): Let n = 2 h − 1, K = GF (2 h ) = {a 0 = 0, a 1 , a 2 , . . . , a n } and σ X (z) be deﬁned as in (1). We have RM (1, h) =
+Hence, if S = K − {0} then n = |S| = 2 h − 1 and RM ∗ (1, h) = (h − 2) − P G(h − 1, 2) =
+The proof of Theorem 1 is a consequence of Theorem 3. In fact, it can be proved even more. Relation (7) of The- orem 3 implies that for all X ∈ RM ∗ (1, h), all but at most h + 1 coefﬁcients of σ X (z) are equal to 0 ∈ K: all except the σ i (X) such that the binary representation of i is 1 l 0 h−l , l = 0, 1, . . . , h. For example, if h = 5 then X = 000 1101 1101 0100 0010 0101 1001 1111 ∈ RM ∗ (1, h)
+and σ X (z) = 1 + α 12 z 8 + α 18 z 12 + α 21 z 14 + α 7 z 15 + α 24 z 16 (here the primitive polynomial used to deﬁne K = GF (2 5 ) = {0, 1, α, α 2 , . . . , α 30 } is p(α) = 1 + α 2 + α 5 ).
+In order to prove Theorem 1 we need to introduce some notation and prove some theorems. Given a ﬁeld K with
+be the set of all the linear combinations of the ﬁeld elements p 0 , p 1 , . . . , p δ . For example, L(p 0 ) = {0, p 0 }, L(p 0 , p 1 ) = {0, p 0 , p 1 , p 0 + p 1 } and L(p 0 , p 1 , p 2 ) = {0, p 0 , p 1 , p 0 + p 1 , p 2 , p 0 + p 2 , p 1 + p 2 , p 0 + p 1 + p 2 }. Without restriction let K = GF (2 h ), h ∈ IIN, and regard the elements of K as vectors over the ground ﬁeld GF (2) = ZZ 2 . If p 0 , p 1 , . . . , p δ ∈ K are independent vectors, the set L(p 0 , p 1 , . . . , p δ ) ⊆ K is a dimension δ + 1 vector subspaces of the vector space (GF (2 h ), +, GF (2), ·) of dimension h. In geometric terms, the set L(p 0 , p 1 , . . . , p δ ) is nothing but a linear subspaces of dimension δ + 1 passing through the origin of EG(h, 2): the euclidean space of dimension h over GF (2). On the other hand, the set L(p 0 , p 1 , . . . , p δ ) − {0} ⊆ K − {0} can be regarded as a linear subspace of dimension δ of the projective space P G(h − 1, 2). In general, if p 0 , p 1 , . . . , p δ ∈ K is any set of vectors whose rank is rank(p 0 , p 1 , . . . , p δ ) = ρ+1 ≤ δ +1, then L(p 0 , p 1 , . . . , p δ ) = 2 δ−ρ · ∂L(p 0 , p 1 , . . . , p δ ) ∈ ZZ 2 h 2 δ−ρ and ∂L(p 0 , p 1 , . . . , p δ ) is a vector subspace of dimension ρ+1 of the vector space (GF (2 h ), +, GF (2), ·). In the full paper we prove the following general theorem.
+Theorem 2: Let K be any ﬁeld and S a multiset over K such that ∂S = {a 0 , a 1 , . . . , a n } ⊆ K is a set of n + 1 distinct elements of K. For all X = x 0 x 1 . . . x n = {p 1 , p 2 , . . . , p |X| } ⊆ S let σ X (z) be deﬁned as in (1) and
+˜ X def = X . − x 0 · {0} = 0x 1 . . . x n . Also, for all a ∈ K deﬁne the translation of X by a as
+(z) = σ Y a (z)/z m Ya (0) can be expressed in term of the σ j (X)’s as
+σ 1 (X)z(1 − az) |X|−1 + σ 2 (X)z 2 (1 − az) |X|−2 + σ 3 (X)z 3 (1 − az) |X|−3 + σ 4 (X)z 4 (1 − az) |X|−4 +
+Theorem 3: Let K be any ﬁnite ﬁeld, H ≤ K be a subﬁeld of K and S be a multiset over K such that ∂S = {a 0 , a 1 , . . . , a n } = K is the set of the n + 1 distinct elements of K. Recall that K can be regarded as a vector space over the scalar ﬁeld H with the addition and scalar multiplication being the addition and multiplication in the ﬁeld K. Now, for all δ ∈ IIN and p 0 , p 1 , . . . , p δ ∈ K, deﬁne the multisets over K as
+X 1 def = L(p 0 , p 1 ) def = {c 0 p 0 + c 1 p 1 : c 0 , c 1 ∈ H} ∈ IIN n+1 , .. .
+If q = |H|, q prime power, then the following polynomial equation holds,
+Note that in the above equation all but at most δ+2 coefﬁcients of σ ˜ X
+(z) are equal to 0 ∈ K and σ ˜ X δ (z) = 1 mod z (q−1)q δ independently from any choice of p 0 , p 1 , . . . , p δ ∈ K.
+Proof: The proof of (7) is by induction on δ. For the base case δ = 0, note that X 0 = {cp 0 : c ∈ H} and so, from Lagrange’s theorem on groups applied to the multiplicative group of the ﬁeld H,
+with σ q−1 (X 0 ) = σ q−1 (H)p q−1 0 = −p q−1 0 . Hence, (7) holds true for δ = 0.
+Now we assume (7) true for δ − 1 and prove it for δ ∈ IIN. To this aim, deﬁne the multisets over K
+and note that X δ = c∈H Y c ∈ IIN n+1 , where the addition is the component-wise integer addition. This implies that σ X δ (z) = c∈H σ Y c (z), and so
+whereas, from (6) with a = cp δ ∈ K and |X δ−1 | = q δ (this can also be proven by induction), it follows that for all c ∈ H,
+Since K is a ﬁnite ﬁeld its characteristic is a prime number p = char(K) = char(H) ∈ IIN and q h is a power of p for all h ∈ IIN. Hence, from the Frobenius automorphism properties, from (9) and from Lagrange’s theorem on groups applied to the multiplicative group of the ﬁeld H, σ ˜ Y
+Hence, from (8), σ ˜ H (z) = c∈H (1 − cz) = 1 − z q−1 , (9) and from the Frobenius automorphism properties, σ ˜ X
+ 
+ 
+ 
+ 
+  
+Theorem 4: Let K = GF (q h ) be any ﬁnite ﬁeld, H = GF (q) ≤ K be a subﬁeld of K and S be a multiset over K such that ∂S = {a 1 , . . . , a n } = K − {0} is the set of the n distinct non-zero elements of K. Then K can be regarded as the support of the euclidean geometry EG(h, q) of dimension h over H. In this geometry, the incidence vectors ˜ X δ = X δ ∩ ∂S ∈ ZZ n 2 of the subspaces of dimension δ + 1 deprived of the origin (i. e., 0 ∈ K) are code words of C σ(z)=1,p(z)=z (q−1)qδ =
+Proof: The proof is a direct consequence of Theorem 3 if p 0 , p 1 , . . . , p δ ∈ K are assumed to be independent vectors of the vector space K over the scalar ﬁeld H.
+Proof of Theorem 1: It is well known that the binary linear code RM ∗ (1, h) is exactly equal to the set of the incidence vectors of the subspaces of dimension 0, h − 1 and h deprived of the origin. Hence, the theorem follows from Theorem 4.
+This work was supported by the National Science Founda- tion Grants CCF-0701452 and CCF-0728810.
+[[[ REFS ]]]
+M. Blau
+--
+Codes for Detecting and Correcting Unidirectional Errors, IEEE Computer Society Press, Los Alamitos, Calif
+----
+B. Bose
+S. Cunningham
+--
+Asymmetric error correcting codes
+----
+F. J. MacWilliam
+N. J. A. Sloan
+--
+The Theory of Error Correcting Codes , North-Holland, 1977
+----
+L. G. Tallini
+B. Bose
+--
+On L 1 -distance error control codes
+----
+L. G. Tallini
+B. Bose
+--
+On decoding some error control codes using the elementary symmetric functions
+----
+L. G. Tallini
+B. Bose
+--
+On a new class of error control codes and symmetric functions
+[[[ META ]]]
+xmlpapertitle -> Reed-Muller codes, elementary symmetric functions and asymmetric error correction
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\006.pdf
+xmlauthors -> Luca G. Tallini, Bella Bose
+xmlroom -> -
+[[[ LINKS ]]]
+

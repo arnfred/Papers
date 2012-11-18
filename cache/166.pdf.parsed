@@ -1,0 +1,131 @@
+[[[ ID ]]]
+166
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Vector Perturbation Precoding for the MIMO Gaussian Broadcast Channel
+[[[ AUTHORS ]]]
+Yuval Avner
+Benjamin M. Zaidel
+Shlomo Shamai (Shitz)
+[[[ ABSTR ]]]
+Abstract—Precoding schemes in the framework of vector per- turbation (VP) for the multiple-input multiple-output (MIMO) Gaussian broadcast channel (GBC) are investigated. The VP scheme, originally a “one-shot” technique, is generalized to encompass processing over multiple time instances. Using lattice- based extended alphabets (“perturbations”), and considering the inﬁnite time-span extension limit, a lower bound on the achiev- able sum-rate using the generalized VP scheme is analytically obtained, by which it is shown to achieve the optimum sum-rate in the high signal-to-noise ratio (SNR) regime (both in terms of degrees-of-freedom and power offset). The above lower bound is constructively obtained by means of an efﬁcient practically oriented suboptimum transmit energy minimization algorithm, which has merits of its own, and it demonstrates the signiﬁcant performance enhancement that can be obtained by preprocessing over multiple symbol instances, potentially eliminating the gap to the ultimate performance at high SNRs. For the 2 × 2 MIMO GBC, the VP scheme is generalized further, and an inner bound for the entire achievable rate region is obtained, by which an interesting correspondence is identiﬁed to the ultimate capacity region, as obtained by “dirty paper” coding (DPC).
+[[[ BODY ]]]
+The multiple-input multiple-output (MIMO) Gaussian broadcast channel (GBC) is widely investigted in recent years, in view of the growing demand for high data-rate communi- cation in wireless systems. The capacity region of the MIMO GBC was found in [1] to coincide with the “dirty paper” cod- ing (DPC) achievable region [2] [3]. However, the prohibitive complexity of DPC motivates the search for alternative, more practical (and unavoidably suboptimal) transmission schemes.
+Linear precoding schemes constitute a simple alternative to DPC at the expense of reduced performance. Among these, zero-forcing (ZF) precoding is a particularly straightforward approach, employing channel inversion to completely elim- inate multiuser interference. The channel inversion operation may, however, lead to a signiﬁcantly increased transmit energy (referred to in the sequel as the “energy penalty”) in cases in which the channel transfer matrix is ill conditioned.
+In order to bridge the gap to the ultimate performance limits, several practically oriented nonlinear precoding schemes have also been considered. In particular, the vector perturbation (VP) scheme [4] attracted considerable attention in recent years. In essence, the scheme employs a linear front-end combined with a nonlinear processing block that minimizes the energy penalty induced by the linear front-end. The latter energy minimization is performed by means of input alphabet relaxation (see [5], [6] for a generalized formulation). The
+scheme was originally deﬁned as a “one-shot” technique, where the preprocessing is performed on a per-symbol basis.
+The analytical analysis of the VP scheme is not at all trivial. This mainly has to do with the nature of the energy penalty minimization, which in fact amounts to an NP-hard problem when the alphabet relaxation scheme is lattice-based. Com- monly, such systems are analyzed via Monte-Carlo simulations that estimate uncoded symbol error probabilities, bounds on the low and high signal-to-noise ratio (SNR) performance, or bounds on the resulting energy penalty (see, e.g., [4], and references in [6]). Recently, however, the spectral efﬁciency of the VP scheme has been analytically derived using tools from statistical physics [6], while considering the large system limit (i.e., when both the number of users and transmit antennas grow large, while their ratio goes to some ﬁnite constant).
+Considering a MIMO GBC with M transmit antennas and K ≤ M single antenna users, the VP scheme is generalized in this paper to encompass preprocessing over multiple time instances . The generalized scheme is referred to as time domain vector perturbation (TDVP) , and borrows ideas from the framework of lattice encoding-decoding for additive white Gaussian noise (AWGN) channels [7]. Using these tools, while focusing on a ZF front-end and the inﬁnite time-span extension limit, we rigorously derive an achievable rate region under the ZF-TDVP approach. The derivation is constructive and based on a suboptimal energy minimization algorithm, that avoids the NP-hard problem of ﬁnding the relaxed alphabet lattice points that minimize the energy penalty. We prove that the corresponding achievable sum-rate approaches the sum- rate capacity of the MIMO GBC at high-SNR, facilitating the potential optimality of TDVP in this regime. In addi- tion, the above algorithm supports optimized power allocation among users, which is rarely considered in the VP literature. The performance enhancement compared to the original VP scheme (i.e., without time domain generalization), and to linear ZF, is also discussed. To conclude the analysis, while considering the two users case, the TDVP scheme is further generalized to include a more general form of linear front- end. For this generalized setting, an achievable rate region is derived, revealing an interesting correspondence between TDVP and the ultimate DPC scheme.
+The rest of this paper is organized as follows. The channel model and the ZF-TDVP approach are presented in Section II. The corresponding achievable rates for K users are presented in Section III. The achievable rate region for a generalized
+TDVP scheme is presented for the two-users case in Section IV. Finally, Section V ends this paper with some concluding remarks.
+Matrices are denoted by boldface capital letters, and vectors are denoted by boldface lower case letters. We use (·) T and (·) † to denote the transpose and conjugate transpose operations, respectively. The (k, m)-th entry of a matrix A is denoted by A k,m and its m-th row by a [m] . Scalars are denoted by normal typeface. Vectors whose entries are samples in the time domain are denoted by ¯ r [r 1 , . . . , r n ] T , where r i is the i-th element of the vector, and a time span of n samples is considered. · represents the 2 -norm of a vector. We use ¯ ¯ ( · ) to denote Kn-dimensional vectors, composed of the K-fold concatenation of n-dimensional time-domain vectors corresponding to different users, i.e., ¯ ¯ r 	 ¯ r T 1 . . . , ¯ r T K T .
+For a lattice Λ ∈ C n , we use V to denote its Voronoi region, σ 2 (Λ) to denote its second moment per dimension, and G n (Λ) to denote its normalized second moment [7]. For ¯ x ∈ C n , let Q V (¯ x ) denote the quantization operation which maps the closest lattice member to ¯ x. Accordingly, the modulo lattice operation satisﬁes [¯ x ] mod Λ = ¯ x − Q V (¯ x ).
+At time instance i, the MIMO GBC channel can be repre- sented by
+where y i ∈ C K is the vector of signals received by the K users, t i ∈ C M is the transmitted vector, H ∈ C K×M denotes the channel transfer matrix, which is assumed to be full rank and constant during transmission, and z i ∼ N C (0, I) denotes the vector of zero-mean circularly symmetric complex AWGNs at the receivers of the different users. Full chan- nel state information is assumed available at the transmit- ter, while the receivers are cognizant of their own channels only. The channel input is subject to the power constraint
+We ﬁrst describe the standard (“one-shot”) VP method [4], using the generalized formulation in [5]. Accordingly, messages to the users are independently encoded, and we
+denote a code symbol destined to user l, at some arbitrary time instance i, by u i l , and the corresponding code alphabet by U l ∈ C (assumed of ﬁnite support). The encoders’ output vector u i [u i 1 , . . . , u i K ] T is taken as the input to a nonlinear precoding block that produces a K-dimensional vector x i . The vector x i is the input to a linear front-end, where it is multiplied by the front-end matrix T ∈ C M ×K . The transmitted signal at time instance i is hence t i = T x i .
+The nonlinear precoding block minimizes the overall trans- mit energy (or “energy penalty”) using relaxation of the input alphabet, as explained next. Deﬁning J T † T , the energy penalty induced by the vector x i is
+The alphabet relaxation for user l is speciﬁed by a union of disjoint sets B l = u
+l , as well as additional elements, all representing the same symbol u l . We focus in this paper on extended (“relaxed”) alphabets that form a lattice, so that B(u l ) = u l + λ, where λ is some element in a lattice Λ l ∈ C. Thus, u
+= [u l + λ l ] mod Λ l , ∀λ l ∈ Λ l . Ambiguity is avoided if all elements of U l belong to the fundamental Voronoi region of Λ l . The vector x i is chosen to satisfy
+Unless otherwise stated, we restrict the discussion to the case in which the front-end matrix T is the Penrose-Moore generalized inverse of the channel transfer matrix, i.e., a ZF front-end T = H † (HH † ) −1 (this restriction is alleviated in Section IV). In such case the users experience interference-free channels of the form
+The achievable sum-rate is hence R = K l=1 R l , where R l denotes the achievable rate by user l, and the power constraint is satisﬁed as long as 1 n n i=1 (x i ) † J x i ≤ P.
+The generalization of the VP method to preprocess over n > 1 time instances, is referred to here as TDVP. At the price of longer coding delays (and an inevitable increase in complex- ity, see a note in [8]), TDVP is done by considering vectors of symbols of length n, {¯u l } K l=1 , and performing the alphabet re- laxations vector-wise while employing n-dimensional lattices. Accordingly, considering the whole preprocessing block, the nonlinear precoder’s output ¯ ¯ x ∈ C K·n = ¯ x T 1 . . . , ¯ x T K T is given by
+As described above, the ZF front-end induces interference free AWGN channels between the outputs of the nonlinear precoding block and the receivers: ¯ y l = ¯ x l + ¯ z l , l = 1, . . . , K.
+Since we focus here on lattice-based alphabet relaxation, it is useful to consider lattice-based transmission approaches for the single user AWGN channel, as in [7], which were shown therein to be capacity achieving for large dimensional lattices.
+For a transmission block of length n, the standard memo- ryless AWGN channel can be represented as
+where z i ∼ N C (0, 1). The transmitted codeword is ¯ u = [u 1 , u 2 , . . . , u n ] T with power constraint 1 n n i=1 u i 2 ≤ σ 2 . Let Λ be a lattice, with Voronoi region V, such that σ 2 (Λ) = σ 2 . Let ¯ v and ¯ d be two independent random variables (r.v.’s), uniformly distributed over V, where ¯v is the information bearing signal, and ¯ d is a random dither assumed known to both transmitter and receiver (“common randomness”). Following [7], the transmitted signal is deﬁned as
+u 2 = σ 2 . For some scalar α, referred to as the “inﬂation factor”, the receiver performs the following operation
+where ¯ y is speciﬁed by (6). The achievable information rate of this channel is [7]:
+It is well known, however, that there exist lattices such that lim n→∞ G n (Λ) = (πe) −1 [7]. Hence, deﬁning R (α, σ 2 )
+lim n→∞ 1 n I (¯v; ¯y ), and applying simple time-sharing, the rates R(α, σ 2 ) = max β∈(0,1] βR (α, σ 2 β ) are achievable. In particular, one can achieve the rates
+where ˜α 	 σ 2 1+σ 2 (note that R(˜ α, σ 2 ) is the channel capacity). The above lattice-based encoding-decoding scheme can
+be combined with ZF-TDVP in the following way. Let the messages destined to the users be encoded (independently) as in (7), emphasizing that different lattices may be used for different users (see Figure 1). Now assume that the alphabet relaxation scheme for user l is based on the lattice Λ l α
+, such that the nonlinear precoder’s output for user l can be represented as ¯ x l = ¯ u l + 1 α
+¯ λ l , ¯ λ l ∈ Λ l , and the minimization of the energy penalty is modiﬁed to (cf. (3))
+Then, assuming that each of the users employs the modulo receiver speciﬁed by (8), it is straightforward to see that the rate region deﬁned by {R l ≤ R(α l , σ 2 l )} K l=1 is achievable. The powers allocated to the users {σ 2 l } should be chosen to satisfy the overall power constraint 1 n n i=1 (˜ x i ) † J ˜ x i ≤ P.
+This section presents an achievable rate region for ZF-TDVP combined with lattice-based encoding-decoding. In view of the analytical complexity of the exact solution to (11), the achievable region is obtained via a suboptimal algorithm for minimizing the energy penalty. Using this algorithm, an upper bound on the minimum energy penalty is derived, which in turn provides an inner bound to the achievable region.
+For some permutation π on the user ordering, let H (π) = G (π) Q (π) be the QR-type decomposition of the corresponding channel transfer matrix H (π) , where G (π) is lower triangular and Q (π) has orthonormal rows. Also, let ˆ R π (P ) denote the following rate region
+Theorem 3.1: For the M × K MIMO GBC deﬁned in (1) the following rate region is achievable using ZF-TDVP
+Proof Outline: Particularizing ﬁrst to K = 2, then for some user ordering l = 1, 2, let ¯ u l be uniformly distributed over V l , whose second moment per dimension is σ 2 l . Consider the following suboptimal energy minimization algorithm:
+Step 1: Set ¯ λ 1 = ¯0, so that ¯ x 1 = ¯ u 1 (see (11)). Step 2: Calculate
+where E(¯u 1 , ¯ u 2 + ¯ γ 2 ) is the sum expression in (11) with the restriction of Step 1 (note that ¯ γ 2 might not belong to Λ 2 ). Step 3: Set ¯ λ 2 = Q V 2 (¯ γ 2 ), α 2 = 1, so that ¯ x 2 = ¯ u 2 + ¯ λ 2 .
+Employing the above algorithm, the achievability of the rates in (12) follows from Section II-D, for some second moments per dimension {σ 2 1 , σ 2 2 }. It still remains to show that the second moments must satisfy the power constraint in (12). Note that Step 3 above implies that ¯ x 2 = − J 2,1 J
+¯ u 1 − [¯γ 2 ] mod Λ 2 , where the latter term is uniformly distributed over V 2 and independent of ¯ u 1 (in view of (14)). Hence, substituting ¯ x 1 and ¯ x 2 into (11), the power constraint follows immediately.
+The generalization to K > 2 users relies on extending the energy minimization algorithm, setting ¯ λ π(1) = ¯0, for a given user ordering π, and then employing successive steps of convex optimization followed by quantization, in the spirit of steps 2 and 3 above, to obtain the perturbations λ π(l) K l=2 . The power constraint is then obtained following some tedious algebra. The theorem is ﬁnally established by considering time-sharing between all possible user permutations. The reader is referred to [8] for the detailed proof.
+For a given user ordering (omitting for simplicity the permutation index), let c l 	 |G l,l | −2 . Then, the maximum achievable sum-rate by Theorem 3.1 is
+where [x] + max(x, 0), 1(·) denotes the step function, and ν is the solution to the waterﬁlling-type equation
+The waterﬁlling interpretation here is illustrated in Figure 2. Assume without loss of generality, for some j, that c 2 ≤ ... ≤ c j ≤ c 1 e ≤ c j+1 ≤ ... ≤ c K . The area to be ﬁlled contains one “step” of height c 1 (corresponding to R(˜ α, σ 2 1 )). The rest of the surface is divided by inﬁnitesimally thin walls, whose heights are c l e (corresponding to R(1, σ 2 l ), l = 2, . . . , K). All walls, as well as the “step”, are ordered from left to right by height. Water is poured so that the total volume of water is P .
+Theorem 3.2: The ZF-TDVP achieves the sum-capacity of the MIMO GBC in the high-SNR limit, i.e.,
+Proof: The proof relies on the correspondence between ZF-TDVP and the ZF-DP scheme proposed in [3]. The ZF- DP scheme is based on the QR-type decomposition of H, as deﬁned above. Accordingly, the transmitted signal is given by t i = Q † x i , where x i is the information bearing signal, which generates an effective triangular channel structure y i = Gx i . Thus, effectively, each user experiences interference from users of preceding indices only, whose impact is eliminated by successively employing DPC, while treating the signals destined to previously encoded users as noncausally known interference. The achievable rate region of ZF-DP is hence
+which coincides with the sum-rate capacity in the limit of high- SNR [3]. Theorem 3.2 then follows immediately in view of (15). Note that the optimality here is both in terms of degrees- of-freedom and the high-SNR power offset (see, e.g., [9]).
+The discussion so far focused on large dimensional lattices whose normalized second moment approaches (πe) −1 . This property made the rates {R(α l , σ 2 l )} in (10) achievable. To better understand the impact of TDVP, it is useful to consider the case of cubic lattices, which turns the setting equivalent to the original VP approach of [4]. Note that the energy penalty expression (the power constraint in (12)) does not depend on the actual choice of lattice. Therefore, since for cubic lattices G(Λ) = 1 6 , (9) implies that the rates R l = R(α l , σ 2 l )−log( πe 6 ) are achievable, which lets us conclude that
+Another interesting comparison is to the sum-rate capacity of linear ZF. Since the high-SNR power offset of linear ZF depends on the channel realization (see, e.g., [3], [9]), we consider here the following expected result of [9], which holds for the case in which H square (i.e., K = M ), with i.i.d. zero- mean unit variance circularly symmetric complex Gaussian entries (“a Gaussian H ”):
+As expected, since log 2 ( πe 6 ) < 1, (21) indicates that VP is superior to linear ZF at high SNR, and this holds for any number of users. The performance enhancement of VP becomes more pronounced as the number of users increases.
+Numerical results for the spectral efﬁciency, corresponding to the sum-rate by Theorem 3.1, are shown in Figure 3 for M = K = 2 and a Gaussian H (averaged over 10 4 channel realizations). The maximum spectral efﬁciency (achieved using DPC), as well as the spectral efﬁciency of linear ZF with optimal users selection [3], are also included for comparison. The results show that ZF-TDVP approaches the maximum spectral efﬁciency in both low-SNR and high-SNR regimes (a proof for low-SNR optimality can be found in [8]). An intermediate interval of E b N
+is observed in which linear ZF outperforms ZF-TDVP, noting, however, that Theorem 3.1
+only provides a lower bound to the achievable sum-rate with ZF-TDVP.
+As shown in the proof of Theorem 3.1, the achievable rate region of ZF-TDVP has a particular equivalence to that of ZF-DP [3]. This equivalence implies that for a given ordering of the users, the same rates as obtained by ZF-DP can be obtained by ZF-TDVP, except for the loss of “1” in the log term for users 2, . . . , K. The schemes differ in the roles of the linear front-end and the underlying encoding scheme. With ZF-DP the linear front-end does not eliminate all multiuser interference, while the latter is effectively pre- canceled using DPC. In contrast, ZF-TDVP employs a linear front-end that completely eliminates multiuser interference. It is combined with a nonlinear block that minimizes the front-end induced energy penalty, and yields the same SNRs. The chosen coding scheme is adequate for an interference free AWGN channel. This equivalence raises the question of whether similar observations can be made with respect to DPC and an appropriately generalized form of TDVP. This question is addressed in the following.
+Consider the 2×2 MIMO GBC. Any point in its capacity re- gion is obtained as follows (ignoring time-sharing for simplic- ity). Let B ∈ C 2×2 denote the precoding matrix of the DPC scheme [3]. The transmitted signal is given by t i = B † x i , noting that in general both users experience interference. For a particular ordering, assume that the impact of interference to the second user is eliminated using DPC. Constraining the information bearing signal to satisfy E xx † = I, the power constraint is given by Tr BB † ≤ P, and the following rate pair is achievable:
+(22) For an equivalent TDVP setting, the linear front-end matrix T should induce an interference free channel for user 2, while user 1 still experiences interference. Consider T = H † (HH † ) −1 V , where V is upper triangular. Using this linear front-end, let ¯ x 1 = ¯ u 1 and ¯ x 2 = ¯ u 2 + ¯ λ 2 . As shown in [8], there exist V and ¯ λ 2 such that the following holds.
+Theorem 4.1: For any point in the capacity region of the 2 × 2 MIMO GBC speciﬁed by (22), under the same power constraint, the following rate pair is achievable using TDVP:
+(23) Figure 4 illustrates the achievable rate region of the gen-
+eralized TDVP approach, as well as the capacity region, the achievable region using linear ZF with optimum user selection and power allocation [3], and the achievable regions using ZF-DP and ZF-TDVP (as speciﬁed by Theorem 3.1). The correspondence between the rate region obtained using the generalized TDVP and the DPC (capacity) rate region is clearly shown in the ﬁgure. Similar correspondence is also observed between the rate regions of ZF-TDVP and ZF-DP.
+A generalized VP scheme for the MIMO GBC was intro- duced, where precoding encompasses multiple time instances (TDVP). Employing lattice-based coding, as well as input alphabet relaxation, while considering the inﬁnite time-span limit, the scheme was analytically shown to achieve the sum- rate capacity in the high-SNR limit. Furthermore, relying on “good” lattices [7], the generalized scheme was shown to regain the “shaping loss” typical to standard VP schemes, where the complex integer (“cubic”) lattice is commonly used for alphabet relaxation [4]. In addition, an interesting correspondence between generalized VP schemes and DPC was revealed, indicating that, at least for 2 ×2 channels, both schemes obtain the same rate regions, up to the loss of “1” in the log term for the non-interfered user with TDVP.
+This research was supported by the Israel Science Foun- dation (ISF) and by the Commission in the framework of the FP7 Network of Excellence in Wireless COMmunications NEWCOM++ (contract N. 216715).
+[[[ REFS ]]]
+H. Weingarten
+Y. Steinberg
+S. Shamai (Shitz)
+--
+The capacity region of the Gaussian multiple-input multiple-output broadcast channel
+----
+M. H. M. Costa
+--
+Writing on dirty paper
+----
+G. Caire
+S. Shamai (Shitz)
+--
+On the achievable throughput of a multiantenna Gaussian broadcast channel
+----
+B. M. Hochwald
+C. B. Peel
+A. L. Swindlehurst
+--
+A vector-perturbation technique for near-capacity multiantenna multiuser communication-part II: perturbation
+----
+R. M¨uller
+D. Guo
+A. Moustakas
+--
+Vector precoding for wireless MIMO systems and its replica analysis
+----
+B. M. Zaidel
+R. R. M¨uller
+A. L. Moustakas
+R. de Miguel
+--
+Vector precoding for Gaussian MIMO broadcast channels: Impact of replica symmetry beaking
+----
+U. Erez
+R. Zamir
+--
+Achieving 1 2 log(1+SNR) on the AWGN channel with lattice encoding and decoding
+----
+Y. Avner
+B. M. Zaidel
+S. Shamai (Shitz)
+--
+On vector perturbation precoding for the MIMO Gaussian broadcast channel
+----
+J. Lee
+N. Jindal
+--
+High SNR analysis for MIMO broadcast channels: Dirty paper coding versus linear precoding
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\166.pdf
+[[[ LINKS ]]]
+

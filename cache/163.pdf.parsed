@@ -1,0 +1,125 @@
+[[[ ID ]]]
+163
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Queueing Behavior of the Gilbert-Elliott Channel: BCH Codes and Poisson Arrivals
+[[[ AUTHORS ]]]
+Fatemeh Hamidi-Sepehr
+Yi Cai
+Henry D. Pﬁster
+Jean-Francois Chamberland
+[[[ ABSTR ]]]
+Abstract—This paper considers the queueing performance of a communication system that transmits BCH-coded data over the correlated-error channel ﬁrst studied by Gilbert and Elliott in the 1960s. For some arrival processes, one can join the queue length and channel state so that the pair forms a Markov chain; this provides a powerful tool to analyze the tail probability of the queue. For Bernoulli packet arrivals, this approach works but does not allow for fair comparisons between different block- length codes. In this paper, a Poisson arrival model is assumed in order to make fair comparisons between codes with arbitrary block length and code rate. This enables one to optimize code parameters for delay-sensitive communication systems over time- varying channels. Finally, the analysis is supported through a Monte Carlo simulation.
+[[[ BODY ]]]
+Contemporary wireless communication systems must be designed to accommodate the wide range of applications that comprise today’s digital landscape. For example, mobile devices must now support heterogeneous data ﬂows with both delay and bandwidth requirements. In this paper, we focus on the relationship between the queueing behavior and the chosen coding strategy. In particular, we study the performance of the queueing system as a function of the block length and code rate.
+Forward error-correcting codes have played an instrumental role in digital communication systems over the past decades. It is well-known that one can improve the transmission reliability by increasing the block length of the code. However, with the stringent delay requirements of modern wireless communica- tion systems, one might prefer to use shorter codes. Using shorter block-length codes produces more decoding failures and undetected errors. Consequently, packet retransmissions can lead to queue buildups at the transmitter and cause even larger latencies. In this article, we explore the trade-offs between queueing and coding for communication systems with very strict delay requirements.
+Previously, optimum code-rate selection was studied for ran- dom codes on a Gilbert-Elliott erasure channel with Bernoulli arrivals [1]. In this paper, we consider a modiﬁed scenario, where the arrivals are Poisson and Elliott’s generalization of
+Gilbert’s channel (i.e., both states have random errors) is used [2], [3]. These assumptions are more reasonable in practice and also allow one to make fair comparisons between systems whose error-correcting codes have different block lengths. In particular, the coding analysis is related to [3] and considers error-correction based on binary BCH codes with bounded distance decoding. Our main contribution is the extension of the previous analysis to Poisson arrivals and channels with errors.
+The remainder of this article is organized as follows. The ﬁnite-state channel model is described in Section II. A detailed study of the coding strategy is given in Section III. The arrival and departure processes of the data packets at the transmitter, and the effect of feedback information bits are studied in Section IV. The Markov chain model for evaluating the queue behavior is constructed in Section V. The numerical results showing the performance of our communication system is presented in Section VI. Finally, we offer some conclusions in Section VII.
+The term Gilbert-Elliott channel is now used to refer to a wide class of ﬁnite-state fading channels that model com- munication links with memory. In this paper, we use the term Gilbert-Elliott channel to refer to a two-state binary symmetric channel that has a good state g, with error probability ε g , and a bad state b, with error probability ε b . This model captures both the uncertainty associated with transmitting bits over a noisy channel and the correlation over time. To model the time-evolution of the wireless channel, the channel state is governed by a ﬁnite-state Markov chain. Let the probability of transition from state g to b be α and the transition probability in the reverse direction be β. The transition probability matrix is therefore given by
+A graphical interpretation of this channel is illustrated in Fig. 1. We employ the random variable C n to denote the state of the channel at time n. The entry [P] c,d of the probability matrix P denotes the probability of the channel transition to state d given that the current state is c, i.e., Pr(C n+1 = d|C n = c). Similarly, Pr(C n+N = d|C n = c) can be obtained by looking for the corresponding entry of P N .
+In this article, we analyze the queueing behavior of the system in terms of the block-length N and the code-rate r. To complete the analysis, we need to ﬁnd the conditional distribution of the number of errors during N consecutive uses of the channel. Let E denote the number of errors (occurring in a data block); the distribution of E can be derived using the matrix
+Let x j be the linear functional which maps a polynomial in x to the coefﬁcient of x j . Then we can derive the following conditional probability
+Later we will use this distribution to compute the condi- tional probabilities of decoding failure and undetected error. Closed-form recursions for these values have been derived a number of times previously (e.g., in [3], [4]).
+In this section, we introduce the error-correcting codes used in our framework. Suppose we have a length-L packet to be transmitted over the Gilbert-Elliott error channel. In our analysis, we assume this packet is divided to M segments each containing K information bits (the last segment is zero padded, if necessary, to have K bits). A coding scheme is applied to each segment of K information bits and converts it to a codeword of length N (we alternatively use “codeword” or “block” for the coded segments). Afterwards, these codewords are transmitted over the error channel. Here, we use a primitive binary BCH code of minimum distance d min , which is capable of correcting up to t ∗ = d min −1 2 	 errors. This leads to N = 2 m − 1, with m ≥ 2, and a single optimal K for each d min [5, p. 486]. So we optimize the performance of the system, over these admissible parameters.
+At the receiver, the bounded distance decoder either de- codes the data or detects transmission failure and requests retransmission. Let t ≤ t ∗ be the maximum number of errors to be corrected. If the number of errors is greater than t, then the decoder will either send a retransmission request via instantaneous feedback or suffer an undetected error. If a decoding failure occurs, we assume that instantaneous feed- back allows the immediate retransmission of the codeword. Since undetected errors are possible, this is a bit optimistic.
+Therefore, we sometimes choose t to be strictly smaller than t ∗ in order to reduce the rate of undetected errors.
+We can express the average probability of decoding failure as a function of t
+where “fail” denotes the failure event, F (t, e) Pr(fail | E = e) = 1 {z∈Z| z>t} (e), and 1 A (·) is the indicator function of the set A.
+The probability of undetected error also plays an important role in our performance analysis. Previously, we discussed bounded distance decoding of up to t errors. Here, we note that the decoder can also detect up to ¯ t ≥ t errors occurring during a codeword. By using different error detection and correction capabilities, we can improve the system performance and lower the probability of undetected error. We assume that the codeword is mapped to the channel using a uniform random interleaver and, therefore, that all error patterns consisting of e errors are equally probable (e.g., see [3]). The conditional probability of undetected error is equal to
+where c, d ∈ {g, b} and W (e) is the decoder error probability deﬁned as the ratio of the number of weight e error patterns lying within distance t from a codeword to the total number of weight e words in the whole code space. This is similar to what is derived in [6] for the case of binary symmetric channel. Notice that in the derivation of W (e), we use the weight distribution of a t ∗ = t+¯ t 2 error-correcting BCH code where t + ¯ t = d min − 1. Using the enhanced error- detection capability and choosing ¯ t = d min − 1 − t, results in fewer undetected errors. The main problem is that the weight distributions are unknown or too complicated for most BCH codes. Still, one can approximate the weight distribution of a binary primitive BCH code by a binomial-like distribution [6]. It has been shown that for moderately large block lengths, W (e) is well approximated by 2 −mt ∗ t s=0 N s . As a result, the probability of undetected error is approximately
+Further, we can compute the average probability of unde- tected error U (t, ¯ t) as c,d∈{g,b} Pr(C 1 = c)U (t, ¯ t, c, d) . This approximation is supported through numerical simulations.
+Let the packet arrival process be a Poisson process with ar- rival rate λ (packets per channel use). This means that, during the codeword interval N , λ N = λN packets arrive on average. Assume that the number of bits in each data packet is an i.i.d.
+random process whose marginal distribution is geometric with parameter ρ ∈ (0, 1). Thus, the PMF of the packet length, for
+The departure process is determined by the parameters of the Gilbert-Elliott channel and the code-rate r. Generally, a lower code-rate will yield a smaller probability of decoding failure, but also generates more data segments to be transmit- ted. Thus, for a given channel model, we can vary the block length N and code rate r to ﬁnd the optimal value.
+Once we have selected N and r, for a data packet with length L, we need to successfully decode M = L rN
+codewords to complete the entire transmission of the packet. The distribution of M is Pr(M = m) = (1 − ρ r ) m−1 ρ r for m = 1, 2, . . ., where ρ r 1 − (1 − ρ) rN . Notice that the transmitter queue will discard segments of a data packet if and only if the receiver has acknowledged that it had successfully decoded the corresponding codewords.
+Now, we consider the use of feedback information to inform the transmitter about failures. Since this is a complicated problem in general, we assume the use of a symmetric com- munication system, where both terminals are transmit/receive using the same protocol. This allows us to include both the feedback information and the arriving data segment within one block, and treat the feedback as a few overhead bits. In this way, the feedback bits are also protected by coding. Obviously, this process will affect the number of segments in each packet. If h bits in every codeword transmission are used as feedback, then we have M = 	 L (K−h) segments in each arriving packet. So, the parameter ρ r will be modiﬁed as ρ r = 1 − (1 − ρ) (K−h) .
+One important issue in analyzing a queueing system is taking care of the stability. This system will be stable as long as the packet service rate of the system is larger than the packet arrival rate. To calculate the service rate, notice that in each codeword transmission, the packet leaves the queue if the current codeword corresponds to the last segment of the packet and it is transmitted successfully. We deﬁne an event “success” to denote the successful decoding; the corresponding conditional success probability is obtained as
+The service rate is obtained as µ N = ρ r S(t) packets per codeword transmission and the system stability factor λ N µ
+can be computed; as long as this fraction is less than unity, the queueing system remains.
+We use Q s to denote the number of packets waiting in the transmitter queue; the corresponding channel state at the same instant is represented by C sN +1 . Grouping the channel state and the queue length allows us to construct a Markov process, U s = (C sN +1 , Q s ) . This system is a discrete-time Markov chain (DTMC) of the M/G/1 type and there are many
+established techniques to evaluate such systems (e.g., see [7] for a continuous-time example).
+Regarding the previous derivations, we can calculate the transition probability as
+Next, we derive an expression for the ﬁrst term of the product. Suppose Q s = q s is the current number of data packets in the queue. The possible values for Q s+1 are then restricted to the
+where a i = e −λN (λN ) i i! is the probability that i data packets arrive during the transmission of one codeword. When the queue is empty, {Q s = 0}, the transition probability is given by Pr(Q s+1 = i|E = e, Q s = 0) = a i .
+Using these equations, we can get the probability transition matrix of the Markov process {U s } . For convenience, ﬁrst we introduce the following mathematical notation for q ∈ N 0 and
+Next, we review the matrix geometric method which is used to ﬁnd the stationary distribution of the Markov chain. The stationary distribution of the system is denoted by a semi- inﬁnite vector π. Let π(2q + 1) = Pr(C = b, Q = q) and π(2q + 2) = Pr(C = g, Q = q). Then π = [π 0 π 1 π 2 . . .], where π q is known as the qth level of the Markov chain and we have π q = [π(2q + 1) π(2q + 2)]. Using this notation, we can apply the main equation πT = π, where T is the transition probability matrix and we can represent it in block-partitioned
+   
+ˆ A ˆ F (1) ˆ F (2) ˆ F (3) · · · B A F (1) F (2) · · · 0 B 	 A F (1) · · ·
+   
+here “ A ”, “ F ”, and “ B ” represent local, forward, and back- ward transition rate blocks, respectively. The superscript (i) shows that there are i more data packets in the queue at the transmitter for the next channel state, and the hat designates the transitions when the queue is empty. More speciﬁcally, we have
+where L = A − I . Then, the stationary probability vectors π j associated with T are given by
+F (l) G l−j ( j ≥ 0) . The initial vector π 0 is uniquely determined by normalization and can be found by solving
+symbol “ ♦ ” is an operator that discards the last column of the corresponding matrix.
+Proof: Since the proof for continuous time [7], is based on solving π ˜ T = 0, we can simply deﬁne ˜ T = T − I and obtain a proof for πT = π.
+In this section, we evaluate our approach using parameters based on a realistic application. The application is voice over IP (VoIP) for an EVDO system that is a 3G component of CDMA2000 [8]. This system provides an uplink sector capacity of 500 Kb/s with 16 active users per sector [9]. For a VoIP system with more users and lower per-user rates, this is somewhat optimistic. So, we choose a total uplink rate of 460 Kb/s per sector, which gives a rate of R = 28.75 Kb/s for each active user.
+The enhanced variable rate codec (EVRC), which is used by CDMA2000 systems for low bit-rate speech, generates a voice packet every 20 ms. EVRC uses four different frame types corresponding to different bit-rates: full rate gives 171 bits, 1 2 rate gives 80 bits, 1 4 rate gives 40 bits, and 1 8 rate gives 16 bits. We use the rough estimate of the relative frequencies for
+the speech coder states from [8]. Moreover, as the header size for voice packets are usually very large relative to the voice payload, we assume ROHC compression is used to reduce the overhead to 4 bytes. Under these assumptions, the average voice packet size is 1 ρ = i f i (l i + Overhead) = 88.55 bits, where f i is the relative frequency of state i , and l i is the frame size for state i. It is also worth mentioning that we have assumed h = 2 feedback bits in each block. Since packets are generated every 20 msec, we ﬁnd that λ = 50 packets per second and we receive an average of 50 R packets per channel use.
+We can determine the parameters of the Gilbert-Elliott error channel model based on QPSK modulation, a vehicular mobile user speed of 20 mph, and a carrier frequency of 2.1 GHz. This implies that the normalized Doppler frequency is f D T s = 0.00082, where f D is the Doppler frequency and T s = 2 R is the symbol transmission time. Setting the SNR threshold for transitions between good and bad states as a common value of γ th = 2 dB and the average received SNR of ¯ γ = 15 dB allows us to the formulas given in [4] to evaluate the model parameters α = ρf D T s
+= 0.3938 and β = ρf D T s
+2π = 0.0202, where ρ = 10 (γt−¯ γ) / 20 . The probability of error in the good and bad states is chosen to be ε g = α+β α
+f γ (γ)P e−QP SK (γ) = 0.3713, where f γ (γ) is the probability distribution of the received SNR γ and P e−QP SK (γ) = 1 − (1 − Q(
+The goal of this section is to minimize the tail probability of the queue over the code parameters N and K. Using a Poisson arrival process allows us to make fair comparisons between codes with different block lengths. The arrival rate λ, in packets per channel use, is ﬁxed and we analyze a system where all packets arriving during one codeword time are counted at the start of the next block. This sampled arrival process is also Poisson but with arrival rate λN , in packets per codeword.
+One weakness of our closed-form analysis is that we cannot handle undetected block errors in a realistic manner (e.g., via late detection when the packet CRC fails). Therefore, we assume there is a genie which informs the receiver whenever an undetected block decoding error occurs. For this reason, we require that the system has a probability of undetected error less than 10 −5 and we do not accept any (N, K) pair which violates this constraint. Therefore, we optimize the tail probability of the queue over all admissible values of N , K, and t satisfying the undetected error probability constraint.
+To perform this optimization, we ﬁrst evaluate the tail prob- abilities without changing the error-detecting capability. Then, for those values of K with high probability of undetected error, we decrease t so that ¯ t = t ∗ −t increases and results in smaller probability of undetected error. As we are also interested is maximizing the error-correcting capability, we decrease t until
+the system meets the error-detecting condition and then stop. The values of N and K for which this procedure gives poor performance are ignored. The results of this approach, in terms of the tail probability of the queue having length greater than or equal to τ = 5, are shown in Fig. 3. As we can see, for a given block length, neither the shortest segment length nor the longest provides the best performance. The same observation also holds for the block length, and larger codewords do not necessarily give better queueing performance. Therefore, there are interior optimum points for both N and K. In Fig. 3, we see that the optimum code parameters are (N, K) = (63, 36). For (N, K) = (127, 71), the tail probability of the queue is also very close to the optimum value. The probability of undetected error is also shown for both of these points, which are marked with dotted circles in Fig. 3. The decoding parameters for these points are (t, ¯ t) = (4, 6) for the (63, 36) code, and (t, ¯ t) = (9, 9) for the (127, 71) code. We have performed the same optimization for the probability of buffer overﬂow when τ = 10; the results suggest that the optimum value of the code parameters has very little dependence on τ .
+, for the (N, K) pairs evaluated in Fig. 3. As we discussed, the stability factor should be less than unity for the system to be stable and this stability region is shown with dark color in Fig. 4. We can see in Fig. 3 that for (N, K) = (31, 6) the tail probability is very close to unity; but the system is stable at this point. So, although the tail probability for τ = 5 is a reasonable measure of how crowded the queue is, it is too coarse to reveal whether the system is stable or not.
+To verify our analytical results, we also performed Monte Carlo simulations of the system. This is particularly important because our analysis assumes the existence of a genie that reports undetected errors. To understand the effect of the genie, we performed simulations both with and without the genie. The genie-aided simulation results match the analysis almost perfectly (as they should). When there is no genie, we assume that the undetected block error will be detected by the packet CRC. Fig. 3 shows the simulation results for N = 63 without the genie. Our main observation is that, as long as the probability of undetected error is relatively small, both the coding and queueing performance predicted by the analysis matches the system simulation without the genie.
+In this paper, we have studied the queueing behavior of coded communication over a Gilbert-Elliott channel with correlated errors. The block length and code rate of binary BCH codes can be optimized to minimize the tail probability of the queue under a constraint on the probability of undetected error. To improve this trade off, we employ different thresholds for error-correcting and error-detecting capabilities. We have also evaluated the analysis framework using the parameters of a CDMA2000 3G system for VoIP communication. For these model parameters, the tail probability of the queue is computed numerically and minimized over a set of speciﬁc code parameters (N, K, t, ¯ t). Moreover, the best parameters seem to be essentially independent of the buffer overﬂow threshold chosen. The results and assumptions associated with the numerical analysis are also supported by Monte Carlo simulations. Finally, while all the plots we discussed in this section depend on the system parameters, the overall methodology also applies to a wide range of applications and parameters.
+[[[ REFS ]]]
+P. Parag
+J.-F. Chamberland
+H. D. Pﬁster
+K. R. Narayanan
+--
+On the queueing behavior of random codes over a Gilbert-Elliott erasure chan- nel
+----
+E. N. Gilbert
+--
+Capacity of a burst-noise channel
+----
+E. O. Elliott
+--
+Estimates of error rates for codes on burst-noise channels
+----
+L. Wilhelmsson
+L. B. Milstein
+--
+On the effect of imperfect inter- leaving for the Gilbert-Elliott channel
+----
+S. B. Wicke
+--
+Error Control Systems for Digital Communication and Storage 
+----
+M. Kim
+J. Lee
+--
+Undetected error probabilities of binary primitive BCH codes for both error correction and detection
+----
+A. Riska
+E. Smirni
+--
+Exact aggregate solutions for M/G/1-type Markov processes
+----
+S. Ahso
+M. Ilya
+--
+VoIP handbook: Applications, technologies, reliability, and security 
+----
+N. Bhushan
+C. Lott
+P. Black
+R. Attar
+Y. Jou
+M. Fan
+D. Ghosh
+J. Au
+--
+CDMA2000 1x EV-DO revision A: A physical layer and MAC layer overview
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\163.pdf
+[[[ LINKS ]]]
+

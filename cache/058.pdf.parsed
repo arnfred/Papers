@@ -1,0 +1,194 @@
+[[[ ID ]]]
+58
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Secure Lossy Source-Channel Wiretapping with Side Information at the Receiving Terminals
+[[[ AUTHORS ]]]
+Joffrey Villard
+Pablo Piantanida
+Shlomo Shamai (Shitz)
+[[[ ABSTR ]]]
+Abstract—The problem of secure lossy source-channel wire- tapping with arbitrarily correlated side informations at both receivers is investigated. This scenario consists of an encoder (referred to as Alice) that wishes to compress a source and send it through a noisy channel to a legitimate receiver (referred to as Bob). In this context, Alice must simultaneously satisfy the desired requirements on the distortion level at Bob, and the equivocation rate at the eavesdropper (referred to as Eve). This setting can be seen as a generalization of the conventional problems of secure source coding with side information at the decoders, and the wiretap channel. Inner and outer bounds on the rate-distortion-equivocation region for the case of arbitrary channels and side informations are derived. In some special cases of interest, it is shown that separation holds. By means of an ap- propriate coding, the presence of any statistical difference among the side informations, the channel noises, and the distortion at Bob can be fully exploited in terms of secrecy.
+[[[ BODY ]]]
+Consider a system composed of three nodes (or sensors) where each one is measuring an analogue source (or random ﬁeld) as a function of time. In order to make reliable decisions, one of these sensors (referred to as Bob) can be helped by another one (referred to as Alice), which will transmit some compressed version of its own measurement through a noisy wireless channel. The third sensor (referred to as Eve) can listen to the wireless medium, and capture some information during the communication. Considering that Eve is not to be trusted (she is an eavesdropper), Alice wishes to leak the least possible amount of information about its source.
+The above scenario involves most of the major information- theoretic issues on (secure) source and channel coding. In fact, the information-theoretic notion of secrecy was ﬁrst introduced by Shannon in [1], where security is measured through the equivocation rate, i.e., the remaining uncertainty about the message, at Eve. In terms of source coding, Slepian and Wolf [2], and Wyner and Ziv [3] introduced the problem of source coding with side information at the decoder. The corre- sponding secure scenarios i.e., involving an eavesdropper with its own side information, have been recently studied in [4]–[8]. Secure source coding scenarios involving a secure rate-limited
+Figure 1: Secure lossy source-channel wiretapping in the presence of side information at the receivers.
+channel between Alice and Bob, which allows the use of secret keys, have also been studied in various works [9]–[12]. On the other hand, extensive research has been done during the recent years on secure communications over noisy channels. The wiretap channel was introduced by Wyner [13], who showed that it is possible to send information with perfect secrecy as long as the channel of Bob is less noisy than the channel of Eve. Csiszàr and K´’orner [14] extend this result to the setting of general broadcast channels with arbitrary equivocation rate (allowing also a common message to both receivers). Several extensions of the wiretap channel have since been done (cf. [10], [15]–[17] and references therein). Whereas, secure lossy source-channel coding problems have received fewer attention. In a recent work [15], Merhav considered such a setting by assuming that Eve has a degraded channel with degraded side information with respect to Bob, and that a secret key can be shared between Alice and Bob.
+In this paper, we investigate the general problem of secure lossy source-channel wiretapping, with arbitrarily correlated side informations as depicted in Fig. 1. The main goal is to understand how Alice can take advantage of the presence of statistical differences among the side informations and the channel noises to reveal the minimum amount of information to Eve, and satisfy the required distortion level at Bob. It should be emphasized that the central difﬁculty of this problem lies in the evaluation of the equivocation at Eve. We derive single-letter characterizations of inner and outer bounds on the general rate-distortion-equivocation region (in Section II). Section III provides special cases for which separation holds. The sketches of the proofs are relegated to Sections IV and V. Finally, Section VI presents discussions and an application example to binary sources.
+For any sequence (x i ) i∈N ∗ , notation x n k stands for the collection (x k , x k+1 , . . . , x n ). x n 1 is simply denoted by x n . Entropy is denoted by H(·), and mutual information by I(·; ·). Let X, Y and Z be three random variables on some alphabets with probability distribution p. If p(x|y, z) = p(x|y) for each x, y, z, then they form a Markov chain, which is denoted by X −− Y −− Z. The set of nonnegative real numbers is denoted by R + . For each x ∈ R, notation [x] + stands for max(0; x).
+In this section, we give a more rigorous formulation of the context depicted in Fig. 1. Let A, B, E , X , Y, and Z be six ﬁnite sets. Alice, Bob, and Eve observe the sequences of ran- dom variables (A i ) i∈N ∗ , (B i ) i∈N ∗ , and (E i ) i∈N ∗ , respectively, which take values on A, B, and E , resp. For each i ∈ N ∗ , the random variables A i , B i , and E i are distributed according to the joint distribution p(a, b, e) on A × B × E . Moreover, they are independent across time i. Alice can also communicate with Bob and Eve through a discrete memoryless channel with input X on X , and outputs Y , Z on Y, Z, respectively. This channel is deﬁned by its transition probability P (Y Z|X).
+Let d : A×A → [0 ; d max ] be a ﬁnite distortion measure i.e., such that 0 ≤ d max < ∞. We also denote by d the component- wise mean distortion on A n × A n i.e. , for each a n , b n ∈ A n , d(a n , b n ) = 1 n n i=1 d(a i , b i ).
+Deﬁnition 1: An (n, m)-code for source-channel coding in this setup is deﬁned by
+• A (stochastic) encoding function at Alice F : A n → X m , deﬁned by some transition probability P X m |A n (·|·),
+The rate of such a code is deﬁned as quantity m/n (channel uses per source symbol ).
+Deﬁnition 2: A tuple (k, D, ∆) ∈ R 3 + is said to be achiev- able if, for any ε > 0, there exists an (n, m)-code (F, g) s.t.:
+m n
+E d(A n , g(Y m , B n )) ≤ D + ε , 1
+when the input of the channel X m is the output of the encoder F (A n ). The set of all achievable tuples is denoted by R ∗ and is referred to as the rate-distortion-equivocation region.
+The following theorem gives an inner bound on R ∗ i.e. , it deﬁnes region R in ⊂ R ∗ . The proof is outlined in Section IV.
+Theorem 1 (Inner Bound): The set of all tuples (k, D, ∆) in R 3 + such that there exist random variables U , V , Q, T on some ﬁnite sets U , V, Q, T , respectively, with joint distribution p(uvqtabexyz) = p(u|v) p(v|a) p(abe) p(q|t) p(t|x) p(xyz),
+and a function ˆ A : V × B → A, verifying the following inequalities, is achievable:
+I(U ; A|B) ≤ kI(Q; Y ) , I(V ; A|B) ≤ kI(T ; Y ) , D ≥ E d(A, ˆ A(V, B)) ,
+The ﬁrst two inequalities in Theorem 1 correspond to sufﬁ- cient conditions for the transmission of two source layers U , V
+in channel variables Q, T , resp. The ﬁrst layer (U → Q) can be seen as a common message which is considered to be known at Eve, as shown by the term H(A|U E) in the equivocation. The second layer (V → T ) forms a private message which is (partially) protected by adding an independent random noise [14], [17]. The term inside the brackets in the fourth inequality corresponds to the information that Eve can still obtain on this protected layer.
+The following theorem gives an outer bound on R ∗ i.e. , it deﬁnes region R out ⊃ R ∗ . The proof is outlined in Section V.
+Theorem 2 (Outer Bound): For each achievable tuple (k, D, ∆), there exist random variables U , V , Q, T on some ﬁnite sets U , V, Q, T , respectively, and a function
+ˆ A : V × B → A, such that p(uvqtabexyz) = p(uv|a)p(abe) p(q|t)p(t|x)p(xyz), and
+I(V ; A|B) ≤ kI(T ; Y ) , D ≥ E d(A, ˆ A(V, B)) ,
+Notice that the inner and outer bounds do not meet in general. In Section III, we provide several cases where R in is optimal. In fact, there are two main differences between R in and R out :
+• The ﬁrst inequality of Theorem 1, which is needed in our scheme to characterize the equivocation at Eve, may not be optimal for the general case,
+• The Markov chain U −− V −− A −− (B, E) is assumed in Theorem 1 while only (U, V ) −− A −− (B, E) is proved for arbitrary codes in Theorem 2.
+In traditional separated schemes, two stand-alone compo- nents successively perform source and channel coding, as depicted in Fig. 2. However the proposed scheme (which achieves region R in ) does not satisfy this separation principle: The source encoder outputs two layers (as in [8]) which are further encoded by using the channel code for a broadcast channel with a conﬁdential message [14]. This results in two independent (but not stand-alone) source and channel compo- nents leading to statistically independent source and channel variables (as in [18] for Slepian-Wolf coding over broadcast channels) i.e., “operational” separation holds (see Fig. 3). As a matter of fact, the ﬁrst inequality of Theorem 1 i.e., I(U ; A|B) ≤ kI(Q; Y ), prevents from separately choosing variables U and Q which would maximize the equivocation rate at Eve.
+In this section, we characterize the optimality of the inner bound R in for some special cases.
+Deﬁnition 3: Random variable B is less noisy than E w.r.t. A, if I(U ; B) ≥ I(U ; E) for each r.v. U s.t. U −− A −− (B, E) form a Markov chain. This relation is denoted by B A E.
+Proposition 1: If B A E, then region R ∗ reduces to the set of all tuples (k, D, ∆) ∈ R 3 + such that there exist random variables V , Q, T on some ﬁnite sets V, Q, T , respectively, with joint distribution p(vqtabexyz) = p(v|a)p(abe)p(q|t)p(t|x)p(xyz), and a function ˆ A : V × B → A, verifying the following inequalities:
+I(V ; A|B) ≤ kI(T ; Y ) , D ≥ E d(A, ˆ A(V, B)) ,
+Remark 1: In this case, the optimal coding reduces to a Wyner-Ziv source encoder [3] followed by a classical wiretap channel encoder [14], [17], and hence the conventional sepa- ration principle holds (Fig. 2).
+Proof: The above region is achievable by setting variable U to a constant value in Theorem 1. On the other hand, the third inequality of Theorem 2 writes:
+Since B A E, and U −− A −− (B, E) form a Markov chain, I(A; B|U ) − I(A; E|U ) ≤ I(A; B) − I(A; E). Moreover
+H(A|U E) ≤ H(A|E). In this case, the outer bound R out is thus included in (and consequently equal to) R in .
+If the informations at Eve (both side information, and channel output) are degraded versions of Bob’s ones i.e., if
+both Markov chains A −− B −− E, and X −− Y −− Z hold, then Proposition 1 reduces to the results in [15]. In this case, variable Q is set to a constant value, and T = X.
+Proposition 2: If Z X Y , then region R ∗ reduces to the set of all tuples (k, D, ∆) ∈ R 3 + such that there exist random variables U , V on some ﬁnite sets U , V, respectively, with joint distribution p(uvabexyz) = p(u|v)p(v|a)p(abe)p(xyz), and a function ˆ A : V × B → A, verifying the following inequalities:
+I(V ; A|B) ≤ kI(X; Y ) , D ≥ E d(A, ˆ A(V, B)) ,
+Remark 2: In this case, the optimal scheme reduces to a secure source encoder [8] followed by a conventional channel encoder, and hence separation principle holds (Fig. 2).
+Proof: The above region is achievable by setting Q = T = X in Theorem 1. However, a new proof is needed to obtain the converse part of Proposition 2. Here, auxiliary variables are deﬁned as follows, for each i ∈ {1, . . . , n}, and each j ∈ {1, . . . , m}:
+U i = ( 	 B n i+1 , E i−1 , Y m ) , V i = (A i−1 , B i−1 , B n i+1 , E i−1 , Y m ) ,
+Q j = ( E n , Y j−1 , Z m j+1 ) , T j = (A n , E n , Y j−1 , Z m j+1 ) .
+Now, both U i −− V i −− A i −− (B i , E i ), and Q j −− T j −− X j −− (Y j , Z j ) form Markov chains. Following the arguments given at Section V, we can deﬁne new auxiliary variables verifying the above Markov chains and the following inequalities:
+I(V ; A|B) ≤ kI(T ; Y ) , D ≥ E d(A, ˆ A(V, B)) ,
+Since Z X Y , and Q− −T − −X− −(Y, Z) form a Markov chain, I(T ; Y |Q) − I(T ; Z|Q) ≤ 0. Noting that I(T ; Y ) ≤ I(X; Y ),
+Deﬁning the transmitted rate as R = kI(X; Y ), Proposi- tion 2 provides the rate-distortion-equivocation region in the secure source coding setup [8, Theorem 1].
+The proof is based on the use of a secure source coding scheme [8], and a channel coding scheme for wiretap chan- nel [14], [17]. Full details are omitted due to the lack of space and will be provided in an extended version of this paper.
+Source Encoder: The source encoder is formed of two layers corresponding to variables U , V , with respective rates R 1 , R 2 . Random binning a la Wyner-Ziv [3] is performed prior to transmission. The next constraints ensure that Bob can decode (U, V ) from bin indices (r 1 , r 2 ) with an arbitrarily small error probability:
+Bits Recombination: Bin indices (r 1 , r 2 ) are mapped to indices r c and r p , with respective rates R c , R p , through a one-to-one mapping, such that r 1 = M (r c ) for some mapping M . This requires the following constraints:
+Channel Encoder: The channel encoder is composed of two layers corresponding to variables Q, X, transmitting messages r c , r p , respectively. Following [14], [17], an independent random noise r f , with rate R f s.t. R f < kI(X; Z|Q), is also transmitted with message r p . The following constraints ensure that Bob can decode r c , (r p , r f ) from his channel output Y with an arbitrarily small probability of error:
+Distortion at Bob: Provided the above constraints are ver- iﬁed, Bob can decode V with an arbitrarily small probability of error, and compute an estimate ˆ A of A with mean distortion E[d(A, ˆ A(V, B))].
+Equivocation Rate at Eve: After some algebraic manipula- tions, it can be proved that the proposed scheme achieves any equivocation rate verifying the following inequality:
+The proof (which is omitted here due to the lack of space) follows the arguments of both [8, Section IV-A], and [17, Section 2.3], and relies on relation r 1 = M (r c ).
+End of Proof: Putting all inequalities together, using Fourier-Motzkin elimination, and preﬁxing an arbitrary DMC P (X|T ) to the DMC P (Y, Z|X) prove Theorem 1.
+Due to the lack of space, we only provide some of the basic ideas underlying the proof of Theorem 2. Details will be provided in an extended version of this paper.
+For each i ∈ {1, . . . , n} (resp. each j ∈ {1, . . . , m}), deﬁne the source (resp. channel) auxiliary random variables U i , V i (resp. Q j , T j ) as
+U i = ( 	 B n i+1 , E i−1 , Z m ) , V i = (A i−1 , B i−1 , B n i+1 , E i−1 , Y m ) ,
+Q j = ( B n , Y j−1 , Z m j+1 ) , T j = (A n , B n , Y j−1 , Z m j+1 ) .
+Note that (U i , V i ) −− A i −− (B i , E i ), and Q j −− T j −− X j − − (Y j , Z j ) form Markov chains.
+Rate: Using the chain rule for conditional mutual informa- tion, the Markov chain (A i , Y m ) −− (A i−1 , B n ) −− E i−1 , and the fact that random variables A i , B i , and E i are in- dependent across time, we can prove that I(A n ; Y m |B n ) =
+From the chain rule, and the non-negativity of mutual information, we can also prove the following upper bound: I(A n ; Y m |B n ) ≤ m j=1 I(T j ; Y j ).
+Distortion at Bob: Bob reconstructs g(Y m , B n ). The i- th coordinate of this estimate is g i (Y m , B i−1 , B i , B n i+1 )
+ˆ A i (V i , B i ). The component-wise mean distortion at Bob thus writes:
+1 n
+Equivocation Rate at Eve: From the chain rule for condi- tional entropy, and the Markov chain A i −− (A n i+1 , E i , Z m ) −
+− (B n i+1 , E n i+1 ), we can prove the following upper bound on the equivocation at Eve:
+Using the Markov chain B n −− A n −− Z m , we expand the equivocation at Eve as follows:
+Following [14, Section V], [17, Section 2.4], we can prove that ∆ c = m j=1 I(T j ; Y j |Q j ) − I(T j ; Z j |Q j ), and following [8, Section IV-B], ∆ s = 	 n i=1 H(A i |V i B i ) + I(A i ; B i |U i ) − I(A i ; E i |U i ).
+End of Proof: Following the usual technique, we deﬁne independent random variables K, and J , uniformly distributed over the sets {1, . . . , n}, and {1, . . . , m}, respectively. We also deﬁne random variables A = A K , B = B K , E = E K , U = (K, U K ), V = (K, V K ), X = X J , Y = Y J , Z = Z J , Q = (J, Q j ), and T = (J, T j ). (U, V ) −− A −− (B, E) and
+Q −− T −− X −− (Y, Z) still form Markov chains. Using these deﬁnitions, we prove the three inequalities of Theorem 2. Since they only involve marginal distributions of auxiliary variables, w.r.t. corresponding source/channel variables i.e., p(uv|a) and p(qt|x), we can deﬁne new auxiliary variables ˜ U , ˜ V , ˜ Q, and ˜ T , with identical marginal distributions, such that the (global) joint distribution writes p(uvqtabexyz) = p(uv|a)p(abe)p(q|t)p(t|x)p(xyz) i.e. source and channel vari- ables are independent.
+Consider the source model depicted in Fig. 4, where the source is binary and the side information at Bob, resp. Eve, is the output of a binary erasure channel (BEC) with erasure probability β ∈ [0, 1], resp. a binary symmetric channel (BSC) with crossover probability ∈ [0, 1/2], with input A. The communication channel is similar to the one of [13]: It consists of a noiseless channel from Alice to Bob, and a BSC with crossover probability ζ ∈ [0, 1/2], from Alice to Eve.
+This model is of interest since neither Bob nor Eve can always be a lessnoisy decoder for all values of (β, ). Let h 2 denotes the binary entropy function given by h 2 (x) = −x log 2 (x) − (1 − x) log 2 (1 − x). According to the values of the parameters (β, ), it can be shown by means of standard manipulations [19] that the side informations satisfy the properties summarized in Fig. 5.
+From now on, let the distortion level at Bob be zero i.e., he performs lossless reconstruction, and assume for simplicity that the source is uniformly distributed i.e., Pr {A = 0} = Pr {A = 1} = 1/2. We focus on rate k = 1 channel use per source symbol. Under these assumptions, the inner bound of Theorem 1 is maximized by choosing V = A and a uniformly distributed binary auxiliary random variable U (resp. Q), produced as the output of a BSC with crossover probability u ∈ [0, 1/2] (resp. q ∈ [0, 1/2]), and input A (resp. X), as stated by the following proposition (which proof is omitted due to the lack of space).
+Proposition 3: In the case considered in this section, region R in reduces to the set of all tuples (k = 1, D = 0, ∆) such that there exist u, q ∈ [0, 1/2] satisfying
+Notice that if β ≤ 4 (1 − ) then B A E, and hence Proposition 1 holds i.e., the above inner bound is optimal.
+Let now assume that Bob does not have any side information i.e. , β = 1, and let = ζ = 0.1 so that A −− E −− B form a Markov chain, and neither Proposition 1, nor Proposition 2 applies. This setting provides a counterexample for the general optimality of the inner bound in Theorem 1. Numerical optimization over u and q in Proposition 3 indicates that the proposed scheme achieves an equivocation rate ∆ = 0.056, while a naive analogue scheme consisting of directly plugging the source on the channel achieves ∆ = 0.258. Furthermore, the latter concides with the outer bound of Theorem 2.
+The above example shows that a naive joint source-channel scheme may achieve better performance in some cases. At ﬁrst look, this is not surprising since it is well-known that joint source-channel coding/decoding is a must for broadcast channels without secrecy constraints [20], [18]. However, the
+Figure 5: Relative properties of the side informations as a function of (β, ).
+secure setting is rather different because Alice only wants to help one receiver (Bob), while she wants to blur the other one (Eve). Therefore, the intuition indicates that the optimal strategy would be the opposite i.e., separation between source and channel encoders, as in Propositions 1 and 2.
+[[[ REFS ]]]
+C. Shannon
+--
+Communication theory of secrecy systems
+----
+D. Slepian
+J. Wolf
+--
+Noiseless coding of correlated information sources
+----
+A. Wyner
+J. Ziv
+--
+The rate-distortion function for source coding with side information at the decoder
+----
+V. Prabhakaran
+K. Ramchandran
+--
+On secure distributed source coding
+----
+D. Gunduz
+E. Erkip
+H. Poor
+--
+Secure lossless compression with side information
+----
+
+--
+Lossless compression with security constraints
+----
+R. Tandon
+S. Ulukus
+K. Ramchandran
+--
+Secure source coding with a helper
+----
+J. Villard
+P. Piantanida
+--
+Secure lossy source coding with side information at the decoders
+----
+H. Yamamoto
+--
+Coding theorems for Shannon’s cipher system with correlated source outputs, and common information
+----
+
+--
+Rate-distortion theory for the Shannon cipher system
+----
+R. Li
+W. Trapp
+--
+Securing wireless communications at the physical layer 
+----
+N. Merhav
+--
+On the Shannon cipher system with a capacity-limited key- distribution channel
+----
+A. Wyner
+--
+The wire-tap channel
+----
+I. Csiszar
+J. Korner
+--
+Broadcast channels with conﬁdential mes- sages
+----
+N. Merhav
+--
+Shannon’s secrecy system with informed receivers and its application to systematic coding for wiretapped channels
+----
+
+--
+Special issue on information theoretic security
+----
+Y. Lian
+H. Poo
+S. Shama
+--
+Information theoretic security
+----
+E. Tuncel
+--
+Slepian-Wolf coding over broadcast channels
+----
+C. Nair
+--
+Capacity regions of two new classes of 2-receiver broadcast channels
+----
+M. Gastpar
+B. Rimoldi
+M. Vetterli
+--
+To code, or not to code: lossy source-channel communication revisited
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\058.pdf
+[[[ LINKS ]]]
+

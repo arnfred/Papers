@@ -1,0 +1,173 @@
+[[[ ID ]]]
+167
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Block Triangularization: A New Linear Precoding Strategy for Gaussian MIMO BC
+[[[ AUTHORS ]]]
+Junyoung Nam
+Giuseppe Caire
+Jeongseok Ha
+[[[ ABSTR ]]]
+Abstract—Finding an optimal linear precoding transmission strategy still remains an open problem, since it cannot be transformed to a convex problem. In this paper, we introduce some condition under which a duality of the rate regions of MMO broadcast channel (BC) and MIMO multiple-access channel (MAC) with linear precoding is established. In particular, we convert the non-convex and untractable sum rate optimization problem at hand to a well-structured dual problem like the dirty-paper coding (DPC) strategy. We provide sum-rate analysis of the proposed linear precoding strategy, referred to as block triangularization (BT), and address its optimality at high SNR. Speciﬁcally, we show that not only BT, but also the more familiar block diagonalization (BD) strategy is asymptotically optimal at high SNR. However, BT is shown to be always at least as good as BD over the entire SNR range. A sum-rate optimal solution at any SNR for the proposed BT strategy is also found.
+[[[ BODY ]]]
+Caire and Shamai [2] presented an achievable rate region of the multiple antenna Gaussian BC using DPC and proved DPC to achieve the sum capacity of two-user multiple-input multiple-output (MIMO) BC. The DPC strategy was later proved to achieve the sum capacity [13], [14] and the capacity region of general Gaussian MIMO BC [15]. On the other hand, linear precoding is a low complexity but suboptimal transmis- sion strategy that achieves the same degrees of freedom as DPC. The best known linear precoding techniques are zero- forcing (ZF) and BD [10].
+The BC-MAC duality is known in terms of rate regions for DPC (hereafter referred to as rate-region duality), and in terms of signal-to-interference-and-noise ratios (SINRs) for both DPC and linear precoding (hereafter SINR duality). A general SINR duality result for the rate regions of vector Gaussian BC and vector Gaussian MAC under linear precoding was presented by Viswanath and Tse [13] in the case of multiple- input single-output (MISO), where the SINR duality directly translates into a rate-region duality. This SINR duality was immediately generalized to MIMO. However, the well-known SINR duality does not imply a rate-region duality for the MIMO case. The capacity region of the Gaussian MIMO BC based on DPC can be evaluated by using the rate-region duality between MIMO BC and MIMO MAC [14], [15]. However, there has been no such duality between rate regions of MIMO BC and MIMO MAC with linear precoding. Hence, the achievable rate-region evaluation problem could not be cast in a convex form and an optimal linear precoding is unknown.
+In this work, we consider an information theoretic approach to the linear precoding strategy in a K-user Gaussian MIMO BC, assuming that the channel state information is known at both the sender and the receivers and that we have more transmit antennas than aggregate receive antennas. Then, we provide a rigorous duality result for rate regions of MIMO BC and MIMO MAC with linear precoding, subject to certain orthogonality conditions that we refer to as BT constraints. Previous duality claims did not lead to effective algorithms for an achievable rate region of MIMO BC with linear precoding. In contrast, our rate-region duality yields a non-convex but well-structured problem and hence lead to efﬁcient numerical computation for the rate region achievable by BT.
+To the best of our knowledge, ﬁnding a sum-rate optimal linear precoding strategy is still an open problem even at asymptotically high SNR due to the non-convexity of the problem. It has been previously reported in several works (e.g., [3] and [12]) that there is a signiﬁcant gap between (nonlinear) DPC and linear precoding strategies especially at high SNR. However, it is not known whether this gap is ﬁrm by a fundamental difference between the two strategies or is just from local optima due to the non-convexity of linear precoding optimization problems and hence reducible. Moreover, it has been observed that BD and other sophisticated linear precoding strategies tends to be equivalent in sum rate at high SNR (e.g., [12]).
+In this paper, we solve these open problems. First, the sum rate of BT is shown to be lower-bounded by that of BD and this lower bound becomes tight at high SNR. Then, as a consequence of this result, we show that BT is an asymptotically optimal linear precoding strategy in the high SNR regime and so is BD. Hence, no linear precoding strategy can outperform BD and BT at asymptotically high SNR.
+In order to obtain optimal transmit covariance matrices for the dual BT problem, we transform its non-convex objective function to a difference of two convex (DC) functions, yielding a problem very similar to the well-investigated DC program- ming [6]. It is well known in the literature of global optimiza- tion that a DC problem can be optimally and efﬁciently solved. The canonical DC function is deﬁned on a compact convex subset of R n . However, our DC-like function is rather deﬁned on a convex set of positive semideﬁnite (PSD) matrices. To overcome this hurdle, we use a known result on the cone of PSD matrices [5]. Finally, we provide numerical results for
+sum-rate comparison of DPC, BT and BD, and of optimization algorithms proposed for BT.
+We consider a Gaussian MIMO BC with an M -antenna sender (base-station in downlink) and K receivers (users), each with N -antenna. The channel models of BC and MAC can be written as y y y i = H H H i x x x + n n n i , i = 1, · · · , K, and y y y MAC =
+H H H ∗ i x x x i + n n n, where H H H i ∈ C N ×M is the channel matrix that receiver i sees in BC and n n n i ∼ N c (0, III) is a complex circularly symmetric additive white Gaussian noise (AWGN). We assume that H H H i has full row rank for all i throughout this paper. The sum rate capacity of the MIMO BC (denoted as C BC ) was shown to be achievable by DPC [13], [14]. An achievable rate of user i by DPC is
+where user π(K) is encoded ﬁrst, user π(K − 1) second and user π(1) last. Furthermore, the capacity region of the Gaussian MIMO BC is given by
+where co denotes the convex closure operator, π de- notes all permutations over K users, deﬁned by π = {π(1), π(2), · · · , π(K)}, and the rate tuple R DPC consists of
+The capacity region of the dual MIMO MAC with a sum power constraint is C DMAC 	 =
+log III + i∈S H H H ∗ i Ξ i H H H i , ∀S ⊆ {1, · · · , K} and an achievable rate of user i for S = {1, · · · , K} is given
+. It is well-known that the capacity regions C BC and C DM AC coincide [13], [14], [15].
+We begin with showing a rate region, achievable by linear precoding, that takes the same form of R DPC in (2). This is obtained by imposing an appropriate condition on the linear precoder. In particular, we require that for i > j, the columns of P P P i of user i lie in the null space of H H H j and thus no interference from user i is leaked into user j. To compare, the columns of ˆ P P P i of BD lie in the null space of H H H j of all other users j = i. Thus, we will refer to a linear precoding strategy with such a constraint as block triangularization (BT), since the system matrix [H H H ∗ 1 , · · · , H H H ∗ K ] ∗ [P P P 1 , · · · , P P P K ] is now made to take on a block (lower) triangular form. As a special case, if we make the equality constraint more restrictive such that H H H j P P P i = 0 0 0 for i = j instead of i > j, then BT reduces to BD.
+where Σ i = P P P i P P P ∗ i , or, equivalently, {H H H j P P P i = 0 0 0 : i > j} is said as the BT constraint.
+Incorporating the BT constraint into the sum power constraint of MIMO BC, we can deﬁne the following compact feasible set as Σ π 	 Σ π(i) ∈ C N ×N : Σ π(i)
+0, K i=1 Tr(Σ i ) ≤ P, H H H π(j) Σ π(i) = 0 0 0 ∀i > j , where π runs over all permutations of K users since the BT constraint depends on user ordering. The set Σ π(i) is convex since the additional constraint (3) just leads the columns of Σ π(i) (or P P P π(i) ) to lie in a subspace (i.e., the null space of H H H π(j) ) and any subspace is a convex cone [1]. Then, a rate region of MIMO BC achievable by BT can be written as R B,BT =
+: ∀i . Note that the rate tuple formula of BT above takes on the same form as that of DPC in (1). Thus, BT can be interpreted as a linear precoding version of DPC in this sense. The BT strategy depends on the ordering of users, as in the MIMO BC with DPC. However, we will replace the subscript π(i) with the natural ordering i hereafter for notational simplicity.
+Since an optimization problem with a linear matrix equality constraint is in general difﬁcult to directly solve, we need to make such a constraint implicit. To do so, an equivalent prob- lem is given next. The simple LMI constraint in (3) enables us to obtain an equivalent problem and a corresponding dual MAC by using “eliminating equality constraints” approach [1] and by following [14]. In order to ﬁnd appropriate elimination matrices {T T T i } that can make the LMI constraints implicit, we begin with arranging the matrix equality constraints. The multiple LMI constraints in Deﬁnition 1 for each Σ i can be rewritten as the single LMI constraint: H i P P P i = 0 0 0 where H i 	 [H H H ∗ 1 , · · · , H H H ∗ i−1 ] ∗ . To satisfy the BT constraint, the column vectors of P P P i must lie in the orthogonal complement of the subspace row(H i ), where row(A A A) denotes the row space of A A A, since the elimination matrix should be a matrix whose range is the null space (kernel) of H i [1, Sec. 10.1].
+Let Q Q Q i ∈ C M ×M denote the unitary matrix from the QR decomposition such that H ∗ i = Q Q Q i R R R i = Q Q Q i0 , Q Q Q i1 R R R i with Q Q Q i1 consisting of the last ν i columns of Q Q Q i , where ν i (K − i + 1)N . With T T T 1 = III, we can then choose the elimination matrix T T T i ∈ C M ×ν i as 1
+Note that T T T i can be found by the QR decomposition such that Q Q Q i (or T T T i ) and R R R i are unique with positive diagonal entries in R R R i , since H ∗ i ∈ C M ×(i−1)N is of full column rank [4, Th. 5.2.2]. The precoding matrix P P P i ∈ C M ×N can now be expressed in terms of the new variable φ i ∈ C ν i ×N as P P P i = T T T i φ i or, equivalently Σ i = T T T i Φ i T T T ∗ i , where Φ i = φ i φ ∗ i .
+Using Σ i = T T T i Φ i T T T ∗ i , which replaces Σ i with the new variable Φ i , we now have R B,BT = co
+where we used Tr(Σ i ) = Tr(Φ i ) and H H H i,j = H H H i T T T j will be referred to as the virtual channel that the signal intended for user j virtually experiences at receiver i.
+Using the idea of effective channel and ﬂipped channel [11], [14], we can claim that the BT constraint acts as a postprocessor to the transmit beamforming matrices {φ i } in BC and in turn as a preprocessor to the receive beamforming matrices in MAC by ﬂipping the effective channel, e.g., (III N + j<i H H H i,j Φ j H H H ∗ i,j ) −1/2 H H H i,j for user i. That is, due to this dual BT constraint, the received signal for decoding the signal intended for user i in the dual MAC should be premultiplied by T T T ∗ i prior to receive beamforming, as shown by y y y MAC,i T T T ∗ i y y y MAC .
+Then, a rate region of the dual MAC with a sum power constraint achievable by BT is given by
+III ν i + j≥i H H H ∗ j,i Ξ j H H H j,i III ν i + j>i H H H ∗ j,i Ξ j H H H j,i
+where Π S denotes the collection of all possible permutations of the subset S ⊆ {1, · · · , K}. Unlike the dual MAC for DPC, (5) requires the permutation π since the intrinsic dual BT constraint depends on the ordering of users. Note that the rate tuple formulae in (5) are neither a concave nor a convex function of the covariance matrices. Nonetheless, we will present an efﬁcient way to ﬁnd an optimal sum rate achievable by BT in Section V. Therefore we can ﬁnd boundary points of R M,BT in a similar way, since a boundary point of R M,BT is given by either a boundary point of R M BT for some π and {Ξ i } or a convex combination of boundary points of some R M BT . Now, we establish a duality of MIMO BC and MIMO MAC with BT in the following theorem.
+Theorem 1 (duality): A rate region of the MIMO BC achievable by BT equals to a rate region of the dual MIMO MAC with the dual BT and sum power constraints.
+III ν i + j>i H H H ∗ j,i Ξ j H H H j,i the effective channels of the ith user in MAC and BC are written as B B B −1/2 i H H H ∗ i,i A A A −1/2 i 	 and A A A −1/2 i H H H i,i B B B −1/2 i , respectively. We can have the following MAC-to-BC transformation
+where F F F i and G G G i follow from the SVD of the effective channel B B B −1/2 i H H H ∗ i,i A A A −1/2 i 	 such that B B B −1/2 i H H H ∗ i,i A A A −1/2 i 	 = F F F i K K K i G G G ∗ i .
+where A A A −1/2 i H H H i,i B B B −1/2 i 	 = F F F i K K K i G G G i ∗ via SVD. Then, the rest of the proof is almost the same as [14], since the rate region formulae of BC and MAC with BT given in Section II which implicitly retain the BT constraint take on almost the same form as (2) except for the virtual channel matrices {H H H i,j }, rather than {H H H i }, and the permutation in the dual MAC.
+In this section, we present a fundamental difference between BT and BD. Roughly speaking, their transmit covariance matrices are shown to correspond to the MMSE and zero- forcing receive ﬁlters in the dual MAC, respectively. An asymptotic analysis on sum rates achievable by BT, BD, and general linear precoding will be given as well.
+Let C sum BT denote the maximum sum rate of MIMO BC achievable by BT and C sum BD the maximum sum rate achievable by BD [10]. It follows from Theorem 1 that C sum BT can be obtained by solving the sum rate maximization problem of the dual MAC
+where R M BT,i is given in (5). By omitting the permutation π again, the constraints in (8) can be deﬁned as the following convex set: U 	 Ξ : Ξ i 0, K i=1 Tr(Ξ i ) ≤ P , where Ξ {Ξ i } K i=1 ∈ U . The primal BC problem with BT and the dual MAC problem with BT will be referred to as the primal BT problem and the dual BT problem, respectively. We devote the rest of this section to an asymptotic sum-rate analysis of BT, compared to BD and general linear precoding.
+Let ˆ Q Q Q i denote the unitary matrix of the QR decompo- sition of ˆ H i 	 [H H H ∗ 1 , · · · , H H H ∗ i−1 , H H H ∗ i+1 , · · · , H H H ∗ K ] ∗ such that
+ˆ H ∗ i = ˆ Q Q Q i ˆ R R R i = [ ˆ Q Q Q i0 , ˆ Q Q Q i1 ] ˆ R R R i , where ˆ Q Q Q i1 consists of the last N columns of ˆ Q Q Q i . Similar to BT, we can then deﬁne the virtual channel of BD for user i by ˆ H H H i = H H H i ˆ T T T i where ˆ T T T i 	 ˆ Q Q Q
+. The maximum sum rate achievable by BD can be written as C sum BD = max Θ i 0, K
+where R BD,i = log III N + ˆ H H H ∗ i Θ i ˆ H H H i with Θ i being a transmit covariance matrix of user i.
+A key tool in this paper is given next. We ﬁrst present some deﬁnitions. Consider the following QR decomposition:
+where Q Q Q i1 consists of the last N columns of Q Q Q i ∈ C ν i ×ν i and hence Q Q Q i1 is the submatrix of Q Q Q i whose columns span the orthogonal complement to row(H i ). And let us deﬁne T T T i ∈ C ν i ×N by T T T i Q Q Q i1 such that H i T T T i = 0 0 0. For i > j, consider another QR decomposition given by
+where Q Q Q j,i1 denotes the last ν i columns of Q Q Q i ∈ C ν j ×ν j . We deﬁne T T T j,i ∈ C ν j ×ν i as T T T j,i Q Q Q j,i1 such that H j,i T T T j,i = 0 0 0.
+Lemma 1: The elimination matrices ˆ T T T i and T T T i of BD and BT for user i are related as ˆ T T T i = T T T i T T T i . Furthermore, T T T i can be decomposed in terms of T T T j for i > j such that T T T i = T T T j T T T j,i .
+Proof: We ﬁrst show that ˆ T T T i can be decomposed in terms of T T T i . Notice that the columns of ˆ T T T i span the orthogonal complement to row( ˆ H i ) (i.e., the null space of ˆ H i ) and that
+ˆ H i = [H ∗ i , H H H ∗ i+1 , · · · , H H H ∗ K ] ∗ . We provide another way to obtain such a ˆ T T T i in two steps.
+The ﬁrst step is that multiplying T T T ∗ i to ˆ H ∗ i , we have T T T ∗ i ˆ H ∗ i = 0 0 0, · · · , 0 0 0, T T T ∗ i H H H ∗ i+1 , · · · , T T T ∗ i H H H ∗ K , which the equal- ity immediately follows from the fact that H i T T T i = 0 0 0 by deﬁnition of T T T i . Next, we observe that row( ˆ H i T T T i ) is equiv- alent to row(H i ), where H i is deﬁned in (9), since zero (row) vectors have no impact on a row space. Thus it is sufﬁcient to ﬁnd the column vectors that span the orthogonal complement to row(H i ) rather than row( ˆ H i T T T i ). Removing the zero vectors from T T T ∗ i ˆ H ∗ i , we have the QR decomposition in (9). By deﬁnition of T T T i , it is easy to see that the columns of T T T i T T T i also form a basis of the null space of ˆ H i such that
+Then, the ﬁrst matrix identity follows from recalling that all the elimination matrices ˆ T T T i , T T T i , and T T T i are supposed to be uniquely chosen by using the uniqueness of the (thin) QR decomposition [4, Th. 5.2.2]. Similarly, we can show the second identity, based on (13).
+Now, we are ready to discuss a fundamental fact on BT and BD.
+Proof: (Sketch) While BT premultiplies T T T ∗ i to y y y MAC as mentioned earlier, BD does ˆ T T T ∗ i . Given y y y MAC,i , BT uses the MMSE ﬁltering to reach R M BT,i . On the other hand, using the ﬁrst identity in Lemma 1, we observe that BD further premultiplies T T T ∗ i to y y y MAC,i ∈ C ν i such that ˆ T T T ∗ i y y y MAC = T T T ∗ i T T T ∗ i y y y MAC = T T T ∗ i y y y MAC,i . That is, BD removes the re- maining interference in y y y MAC,i that comes from an arbitrary choice of {Ξ j : j > i} by a sort of zero-forcing, block diagonaization. Accordingly, we obtain (11).
+The following theorem shows that the sum rate of BT is always greater than or equal to that of BD.
+where the equality holds if and only if the channel matrices {H H H i : ∀i} are mutually orthogonal or SNR goes to inﬁnity.
+Proof: (Sketch) From Lemma 2, (12) can be easily shown. And the ﬁrst equality condition is trivial. Then it remains to prove the second equality condition. Suppose that the optimum covariance matrix of user i in the dual BT problem (8) is a uniform power allocation at asymptotically high SNR. The asymptotic optimality of the uniform power allocation is veriﬁed by a more general statement in [8]. Thus, we choose Ξ i = γIII for all i, where γ 	 P KN , at high SNR. Then, R M BT,i can be rewritten as R M BT,i = log III ν i + III ν i + γ j>i H H H ∗ j,i H H H j,i −1 γH H H ∗ i,i H H H i,i = log III N + γH H H i,i III ν i + γ j>i H H H ∗ j,i H H H j,i −1 H H H ∗ i,i .
+[H H H ∗ i+1,i , · · · , H H H ∗ K,i ] ∗ . At asymptotically high SNR, we can further manipulate the inverse matrix in the equation above as follows: III ν i + γ j>i H H H ∗ j,i H H H j,i −1 = III ν i + γH ∗ i H i −1 = V i III ν i + γD 2 i −1 V ∗ i 	 V i J J J i J J J ∗ i V ∗ i , where V i and D i are
+from the SVD of H i such that H i = U i D i V ∗ i , denotes equivalence in the limit as P → ∞, J J J i 	 0 0 0 I I I νi−di with d i = rank(D i ) so that ν i − d i = N , and the last eqaulity follows from the fact that III ν i + γD 2 i is diagonal. It is clear that the column vectors consisting of V i J J J i span the orthogonal complement to row(H i ). Recall that such a matrix V i J J J i can be also obtained by the QR decomposition of H ∗ i in (9). That is V i J J J i = T T T i . Then, we have R M BT,i 	 log III N + γH H H i,i T T T i T T T ∗ i H H H ∗ i,i = log III N + γ ˆ H H H i,i ˆ H H H ∗ i,i , where the second equality follows from the ﬁrst identity in Lemma 1. Finally, we can easily see that the asymptotic sum rate of BT is given at high SNR by C sum BT 	 KN log P − KN log KN +
+From several works (e.g., [3] and [12]), there exits a signiﬁcant gap between DPC and linear precoding strategies especially at high SNR. Moreover, we observe that BD and some sophisticated linear precoding strategies tends to be equivalent in sum rate at high SNR (e.g., [12]). However, it is unknown whether this gap and phenomenon are from a fundamental difference between the two strategies or just from local optima due to the non-convexity of the general linear precoding optimization problem. To answer the question, we provide next an asymptotic analysis.
+Proof: We can show (13) using Lemma 1 in a similar way to the proof of Theorem 2. For more details, see [8].
+As a straightforward corollary of Theorems 2 and 3, it is clear that BD is asymptotically optimal in sum rate achievable by linear precoding at high SNR as well. Therefore, no linear precoding strategy can be better than BD at asymptotically high SNR. Furthermore, the signiﬁcant gap between DPC and linear precoding is from a fundamental difference, rather than local optima of non-convex linear precoding problems.
+Let f : U → R denote the objective function of the dual BT problem (8) deﬁned by f (Ξ) 	 K i=1 R M BT,i . We ﬁrst observe that f (Ξ) is non-convex in Ξ, as in a general linear precoding problem. To overcome this difﬁculty, we resort to a DC problem in the global optimization literature.
+Deﬁnition 2: Let X be a compact convex subset of R n . A global minimization problem is called a DC problem on X, if it can be expressed in the form min x x x∈C g(x x x) − h(x x x), where g(x x x) and h(x x x) are convex functions in x x x ∈ X.
+We now show that the non-convex objective function f (Ξ) in the dual BT can be rewritten as the following difference of two convex functions: f (Ξ) = h(Ξ) − g(Ξ), where g(Ξ) = − K i=1 log III ν i + j≥i H H H ∗ j,i Ξ j H H H j,i and h(Ξ) = − K−1 i=1 log III ν i + j>i H H H ∗ j,i Ξ j H H H j,i are convex in Ξ ∈ U . Thus, we can reformulate the dual BT problem (8) as
+Notice that in order to apply the theory and algorithms developed for DC programming, typically stated for functions deﬁned on subsets of R n , we redeﬁne the domain of our problem (14). That is, U is a subset of PSD matrices instead of a subset X of R n . Thus, the available global optimization algorithms for DC and its variants cannot be directly used for our sum-rate maximization problem. We will avoid this hurdle by using the theory on the cone of PSD matrices [5].
+Let W denote a feasible set of n × n PSD matri- ces satisfying a trace constraint. Let p : W → Z ⊆ R n 2 denote an invertible mapping deﬁned by p(X X X) = x x x where X X X ∈ W and x x x = [x 11 ,
+√ 2 (x 12 ), · · · , √
+2 (x 21 ), x 22 , · · · , x nn ] T ∈ Z with x ij being the (i, j)th element of X X X. Then, we have its inverse mapping p −1 : Z → W such that p −1 (x x x) = X X X. Since W is a space of Hermitian PSD matrices with a trace constraint, it can be written as an intersection of convex cone and halfspace in R n 2 .
+Now, let us turn to our problem. First, we naturally gen- eralize the foregoing result on the mapping p as a mapping q : U → V ⊆ R KN ×N to handle the set Ξ ∈ U of K PSD matrices such that ξ = q(Ξ) with ξ ∈ V and its inverse Ξ = q −1 (ξ). Then, Lemma 3 follows.
+Lemma 3: The dual BT problem (8) can be reformulated as a standard global concave minimization problem.
+Proof: By the aforementioned result on the cone of PSD matrices and the mapping q, the minimization problem (14) can be rewritten in terms of ξ instead of the set Ξ of matrix variables as min t, ξ∈V,g (ξ)−t≤0 t − h (ξ), where t is a slack variable, and g = g ◦ q −1 and h = h ◦ q −1 preserve the convexity of g and h.
+We can use one of the existing global optimization algo- rithms, appropriate for our problem. In this paper, we employ the prismatic branch-and-bound (PBnB) algorithm [6].
+Suppose that H H H i has i.i.d. entries ∼ N c (0, 1). The total transmit power P is adjusted such that SNR here refers to SNR per receive antenna. We have observed that the PBnB algorithm that guarantees a global optimum can be used in the dual BT problem (8). However, the algorithm is compu- tationally expensive especially when KN is large. Thus, we need suboptimal but computationally more efﬁcient algorithms for BT. Two multiuser water-ﬁlling algorithms can be found in [8]: BT water-ﬁlling algorithm and its simpliﬁed one.
+Fig. 1 shows sum rates of BT, BD and signal-to-leakage ra- tio (SLNR) [9] compared to DPC in MIMO BC for M = KN . Here, the optimal BT, near-optimal BT, and simpliﬁed BT indicate the sum rates generated by the PBnB, BT water- ﬁlling, and simpliﬁed algorithms, respectively. It would be worth to mention that one can ﬁnd many other linear precoding schemes and algorithms. To our knowledge, the local optimal results in [3, Fig. 4] and [12, Fig. 2]) are best up to date. Interestingly, we can ﬁnd that the sum rate of the optimal BT in Fig. 1 is equivalent to the previous local optimal results.
+Finally, the BT strategy can be non-trivially extended to the case of M < KN . Such an extension can be found in [8].
+Numerical results therein show the same observation as Fig. 1, i.e., the achievable sum rate by BT is also the same as the previous best local optimal results in this case. Recalling that BT is a special case of the general linear precoding, this result is surprising. A further study would be to see if BT can capture the essence of general linear precoding at any SNR.
+[[[ REFS ]]]
+S. Boy
+L. Vandenbergh
+--
+Convex Optimization, Cambridge Univer- sity Press, New York, NY, 2004
+----
+G. Caire
+S. Shamai
+--
+On the achievable throughput of a multiantenna Gaussian broadcast channel
+----
+S. S. Christensen
+R. Agarwal
+E. Carvalho
+J. Ciofﬁ
+--
+Weighted sum- rate maximization using weighted MMSE for MIMO-BC beamforming design
+----
+G. H. Golu
+C. F. Van Loa
+--
+Matrix Computations, 3rd edition, Johns Hopkins University Press, 1996
+----
+R. D. Hill
+S. R. Waters
+--
+On the cone of PSD matrices
+----
+R. Horst
+T. Q. Phong
+V. Thoai
+J. de Vries
+--
+On solving a D.C. programming problem by a sequence of linear programs
+----
+J. Lee
+N. Jindal
+--
+High SNR analysis of MIMO broadcast channels: dirty paper coding versus linear precoding
+----
+J. Nam
+G. Caire
+J. Ha
+--
+Block triangularization: a new linear precoding strategy for Gaussian MIMO broadcast channels
+----
+M. Sadek
+A. Tarighat
+A. H. Sayed
+--
+A leakage-based precoding scheme for downlink multi-user MIMO channels
+----
+Q. H. Spencer
+A. L. Swindlehurst
+M. Haardt
+--
+Zero-forcing methods for downlink spatial multiplexing in multiuser MIMO channels
+----
+E. Telatar
+--
+Capacity of multi-antenna Gaussian channels
+----
+A. J. Tenenbaum
+R. S. Adve
+--
+Linear processing and sum throughput in the multiuser MIMO downlink
+----
+P. Viswanath
+D. N. C. Tse
+--
+Sum capacity of the vector Gaussian broadcast channel and uplink-downlink duality
+----
+S. Vishwanath
+N. Jindal
+A. Goldsmith
+--
+Duality, achievable rates, and sum-rate capacity of Gaussian MIMO broadcast channels
+----
+H. Weingarten
+Y. Steinberg
+S. Shamai
+--
+The capacity region of the gaussian multiple-input multiple-output broadcast channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\167.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,138 @@
+[[[ ID ]]]
+177
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Multilevel Coding Schemes for Compute-and-Forward
+[[[ AUTHORS ]]]
+Brett Hern
+Krishna Narayanan
+[[[ ABSTR ]]]
+Abstract—We consider the design of coding schemes for the wireless two-way relaying channel when there is no channel state information at the transmitter. In the spirit of the compute and forward paradigm, we present a multilevel coding scheme that permits the recovery of a class of functions at the relay. We deﬁne such a class of functions and derive rates that are universally achievable over a set of channel gains when this class of functions is used at the relay. We develop our framework with general modulation formats in mind, but numerical results are presented for the case where each node transmits using the QPSK constellation. Numerical results with QPSK show that substantially higher rates are achievable with our proposed approach than those achievable by always using a ﬁxed function or adapting the function at the relay but coding over GF(4).
+Index Terms—Network coding, multilevel coding, two-way relaying, compute-and-forward
+[[[ BODY ]]]
+Physical layer network coding (PLNC) or Compute and Forward is a new paradigm in wireless networks where each relay in a network decodes a function of the transmitted messages and broadcasts the value of this function to the other nodes in the network. This has been shown to provide signiﬁcant increase in achievable rates for some networking problems [1], [2], [3]. An example of such a problem where compute and forward has been shown to be effective is the two-way relaying problem shown in Fig. 1. Node A has data to send to node B and vice versa. The relay R is included to assist in this communication, and it is assumed that there is no direct link between nodes A and B. Near optimal coding schemes have been designed for this problem for the case where there is no fading in the channel in [2], [3], [4] and for the case when there is fading but the transmitter has perfect channel state information in [5].
+In this paper, the complex channel coefﬁcients h A and h B are assumed to be perfectly estimated at each receiver but unknown to each transmitter. For this scenario, the authors in [6] introduce a scheme called denoise-and-forward which uses channel dependent denoising functions at the relay to minimize the symbol error probability. The relay chooses denoising functions so that the distance proﬁle for constellation points with different labels is optimized. This improves the symbol error rate for transmissions between nodes A and B, however,
+denoising is performed purely at the symbol level. There is no natural extension to include error correction at the relay.
+Recently, a scheme called compute-and-forward, which al- lows both adaptation of decoding functions and error correc- tion at the relay has been presented in [7]. In this scheme, the relay decodes an integer combination of the transmitted codewords, where the integer combination is adapted accord- ing to the channel gains. They show that such a scheme can be implemented using nested lattice codes to take advantage of the duality between modulus arithmetic on prime order ﬁelds and the modular operations of lattice decoding. Their scheme requires the construction of inﬁnite dimensional lattices which is not practical. The results in [7] are extended in a remarkable way in [8], where an algebraic framework is provided to design lattices over principal ideal domains. However, their proposed coding scheme is also based on large dimensional lattice codes.
+In this paper, we propose a compute and forward scheme based on multilevel coding (MLC). Unlike the coding schemes in [7], [8], our proposed scheme does not result in a lattice code and uses only linear codes over prime ﬁelds (for example, binary linear codes) and, is hence, practical. Yet, it facilitates error correction for a larger class of decoding functions than those proposed in [7]. This is because the class of functions for our scheme is derived from the large set of non-singular square matrices over F p in place of the set of non-zero elements in large prime order ﬁelds. To the best of our knowledge, such an idea of using multilevel coding and exploiting the linearity over the prime ﬁeld to adaptively decode linear functions of transmitted codewords is new. Another important contribution in this paper is that our proof for the achievability of rates with
+the proposed multilevel coding scheme requires a non-trivial extension of the proof of achievability of rates for multilevel coding for the point to point case.
+This paper is organized as follows. The key elements of the problem are outlined in Section II. Our proposed solution is detailed in Section III. The rate which can be achieved by our scheme for the MA stage is given in Section IV. These rates are numerically determined for an example where nodes A and B transmit using a QPSK constellation in Section V. Key results are reiterated in Section VI.
+Each node in the relay network is assumed to be half-duplex, so communication is split into two stages, a multiple access (MA) stage and a broadcast (BC) stage. We assume perfect synchronization between the transmitters and mainly focus on the MA stage in this paper.
+Nodes A and B each encode their binary messages u A and u B into codewords v A ∈ C A and v B ∈ C B where C A and C B are the codebooks used at the nodes A and B respectively. These codewords are mapped to sequences of
+symbols s A , s B ∈ Q N with |Q| = 2 . The relay receives noisy observations of the sum of these symbol sequences according to
+where h A and h B are complex fading coefﬁcients, and w R is complex additive white Gaussian noise (AWGN) with variance N 0 .
+The main idea proposed in this paper is the construction of a coding scheme such that the relay can reliably decode some function of v A and v B for a desired set of channel conditions H ⊂ C 2 . Speciﬁcally, we jointly design codes C A and C B and a set of decoding functions F such that, for any (h
+A , h B ) ∈ H, there exists f ∈ F such that the relay can reliably decode f (v A , v B ) from y R . We require that, given the output of f (v A , v B ), node A (B) must be able to unambiguously decode v B (v A ) using its knowledge of v A (v B ). For a given f ∈ F, we will deﬁne an induced codebook at the relay as the codebook corresponding to f i.e.
+It is important to understand the structure of C f,R since the probability of error in decoding f (v A , v B ) from y R depends on h A , h B , and C f,R . The main advantage of our proposed scheme is that it guarantees that choosing one codebook C A and C B at the transmitter can result in a good induced codebook C
+f,R for a class of functions F. More speciﬁcally, it guarantees C f,R is a member of the ensemble of random coset codes which is an optimal ensemble for achieving the uniform input information rate for the equivalent channel between f (v A , v B ) and y R for all f ∈ F.
+The broadcast stage is fairly standard and is identical to that considered in [2], [3].
+The system model for the multilevel encoder for nodes A and B and the channel model for the MA stage is shown in Fig. 2. The encoder at nodes A and B uses MLC with a different coset of the same linear code C used at each bit level. For a detailed description of MLC and achievable rates for the point to point channel, see [9].
+The encoder is described as it pertains to node A to simplify notation. First, the message u A is split into sub- vectors u 1 A , ..., u A which form rows of an × K matrix
+ 
+ 
+Each u k A , {1,..., } is encoded with a linear code C with gener- ator matrix G to get codewords γ 1 A , ..., γ A . These codewords from the rows of an × N matrix Γ A = U A G. Finally, a random binary vector λ k A is added to each γ k A . Since each λ k A can be thought of as coset leaders of a random coset of the original linear code. We obtain a codeword of a random coset given by v k A = λ k A ⊕ γ k A , k ∈ {1,.., }. The random coset leaders form an × N matrix Λ A . The resulting coset codewords v k A form the rows of a binary × N matrix X A given by
+ 
+ 
+Thus each code C k A , k ∈ {1,..., } will be a different coset of C. The k th row v k A of X A is then a codeword of C k A , and the n th column x A [n] is the binary address vector of the n th symbol of s A . The n th binary address vector x A [n] ∈ F 2 maps to a symbol s A [n] ∈ Q through the use of a symbol mapping function M : F 2 → Q. It should be mentioned here that much of the intuition about the main result in the paper is best obtained by ignoring the fact that cosets are used at
+each layer and simply considering the use of identical linear codes at each level in the MLC scheme. The coset matrix Λ A is included to symmetrize the effective channel at the relay (i.e. Λ A is necessary for the proofs to be correct).
+As mentioned previously, the goal of the proposed scheme is to allow the relay to decode a function of the transmitted codewords. If nodes A and B encode their messages as described, the set of decoding functions F which the relay can use for decoding is deﬁned as follows.
+Deﬁne D as the set of × binary matrices which are invertible using operations over F 2 . The set of functions we consider is given by
+Therefore a given f ∈ F is deﬁned by some D A , D B ∈ D from which the relay should attempt to decode a matrix X f,R given by X f,R = [D A D B ] X A X
+Due to the linearity of [D A , D B ] and G, we can express the desired matrix X f,R as
+B G ⊕ Λ B = [D A D B ] U A U
+Here, we see that the matrix X f,R can be written in terms of an effective message U f,R and coset matrix Λ f,R which can be computed separately based on f . Thus the rows of X f,R are codewords from a different coset code of C. Note that f is applied elementwise to the sequences s A and s B .
+To illustrate the importance of choosing the decoding func- tion f depending on (h A , h B ), consider an example with Q = {1,j,−1,−j} = {M(00),M(01),M(11),M(10)} (i.e. QPSK with Gray Labeling). Further, let h
+h B = e jθ B , and θ = θ A − θ B be the phase difference. Consider the decoding functions f 1 (x A , x B ) = [x 1 A ⊕x 1 B , x 2 A ⊕ x 2 B ], f 2 (x A , x B ) = [x 1 A ⊕ x 2 B , x 2 A ⊕ x 1 B ]. The resulting constellation Q R at the relay is shown for different values of θ in Fig. 3. Note that the complex coordinates of the constellation points are exactly the same, but their labels are different based on θ and f ∈ {f 1 , f 2 }. When θ ≈ 0, f 1 appears to have better performance than f 2 in terms of the distances between points with unequal labels. The situation is reversed when θ ≈ π 2 . This shows that the performance for a ﬁxed decoding function can vary widely with θ even when both |h A | and |h B | are large. In order for nodes A and B to be able to unambiguously
+decode their desired messages, the authors in [6] show that f must satisfy
+Lemma 1: For any D A , D B ∈ D, a decoding function f (x A , x B ) = [D A D B ] x A x
+Proof: The full proof is omitted for space, but follows from the invertibility of D A and D B .
+For a given f and ﬁxed channel gains h A and h B the achievable rate region is given by the following theorem. This theorem is the key contribution of this paper.
+Choose a subset S ⊆ {1,..., } and deﬁne S = {1,..., } \ S. Divide S into p non-empty disjoint subsets S 1 , ..., S p so that
+. At last, let each row of X A and X B be encoded using a different coset of the same linear code C. Then there exists a linear code C of rate R for which the relay can reliably decode X f,R as long as R satisﬁes
+For the special case when = 2, the set of bounds described by (9) are equivalent to
+R < min{ 1 2 I(Y R ; X 1 R , X 2 R ), I(Y R ; X 1 R |X 2 R ), I(Y R ; X 2 R |X 1 R ), I(Y R ; X 1 R , X 2 R |X 1 R ⊕ Z 1 , X 2 R ⊕ Z 1 ) }. 	 (10)
+That is, {X 1 R ⊕Z 1 , X 2 R ⊕Z 1 } and {X 1 R ⊕X 2 R } carry the same information about X 1 R and X 2 R .
+Proof: The detailed proof is not included here because of space limitations. However, the key steps in the proof are outlined below.
+Our proof uses the standard approach of deriving upper bounds on the probability of error for a joint typicality decoder averaged over a carefully chosen ensemble of codes. The ensemble considered here is the ensemble obtained by using random cosets of the same linear code for the different sig- nalling levels in the multilevel coding scheme. The linear code is chosen from the ensemble of linear codes with randomly chosen entries in the generator matrix. The use of the same linear code in each level is an important ingredient in our proposed scheme since we allow the relay to freely take linear combinations of codewords from different signalling levels. However, this is also what complicates the proof. The ensemble used here is different from the often used ensemble of random coset codes used at each level in the multilevel coding scheme since the latter ensemble allows for independently chosen codes at each level. While the latter ensemble has been used widely to obtain achievable rates for MLC for the point to point channel and the multiple access channel, the former ensemble has not been analyzed in detail in the literature. The key contribution of our proof in the Appendix is to derive the achievable rates with the former ensemble with identical linear codes at each level.
+This can be accomplished since the use of the same linear code at each level ensures that for each f ∈ F, C k f,R , k ∈ {1,..., } is a member of the ensemble used at the transmitters. The main complication that arises from this is that the pairwise
+independence assertion that is required in typical channel coding proofs [10] does not hold for certain classes of error events. Particularly, it is possible for the relay to correctly decode some rows of X f,R while others may be in error. We handle this by splitting the union bound for error probability into separate classes of error events which are conditionally pairwise independent.
+The bound for the = 2 case can be derived by letting S,S,S 1 , S 2 ⊆ {1,2} take the following values respectively.
+1 = {1}} {S = {2},S = {1},S 1 = {2}} {S = {1,2},S = ∅,S
+1 = {1,2}}. 	 (11) Notice that the ﬁrst three terms in (10) are also required by the proof for the general MAC channel. The last bound is a result of the requirement that each signaling level uses a coset of the same linear code.
+We say that a rate R is universally achievable over the set H ⊂ C 2 if there exists a ﬁxed linear code C of rate R and
+coset matrices Λ A and Λ B such that for every (h A , h B ) ∈ H, the relay can reliably decode X f,R for some f ∈ F. That is some X f,R can be decoded with arbitrarily small probability of error in the usual information-theoretic sense. The main result in this section is the following theorem.
+Theorem 2: For a ﬁxed f ∈ F and (h A , h B ), deﬁne R f (h A , h B ) as the supremum of rates satisfying (9) where x
+f,R = f (x A , x B ). For any ﬁnite set of channel gains, H ⊂ C 2 , any rate R such that
+Proof: The above result follows from the fact that the MLC scheme with transmission rate R is universal in the sense that the induced codebooks are simultaneously optimal for decoding any function f ∈ F if R f (h A , h B ) > R. This permits the relay to decode any function f for which R < R f (h A , h B ) since R f (h A , h B ) corresponds to the information rate corresponding to the uniform i.i.d distribution.
+Hence, for every (h A , h B ) ∈ H we can choose a function f at the receiver such that R f (h A , h B ) > R and the result follows. The proof for the existence of a single coset code {C,Λ A , Λ B } which is good for the ﬁnite set H is omitted for space.
+Note that in order for this problem to be practically inter- esting, the set H should be meaningfully deﬁned.
+As an example, consider the case where nodes A and B transmit symbols from a QPSK constellation with Gray Labeling. Fig. 4(a) shows a plot of the achievable information rate R f (h A , h B ) as given in (10) for each function f ∈ F dependent on the phase difference θ = θ A − θ B for an SNR of 7 dB. H is the set of channel gains
+where θ A , θ B ∈ {0, π m , ..., 2π } for a ﬁnite integer m. Thus |H| is ﬁnite but approximates a the selection of any value of θ
+A and θ B arbitrarily closely. The dotted line indicates the universally achievable rate in bits per complex symbol for the proposed scheme which satisﬁes Theorem 2 for H. Note that different functions provide the best performance for different values of θ which reiterates the substantial beneﬁt of decoding adaptively. Notice that a small increase in rate makes reliable decoding impossible for any f ∈ F for a signiﬁcant range of θ; however, there are many (h A , h B ) ∈ H such that ∃f ∈ F for which reliable decoding is possible.
+It is interesting to use this QPSK example to compare our MLC scheme to the case where nodes A and B encode their a data in F 4 using a linear code C GF 4 of rate R GF 4 . The relay uses the set of decoding functions F GF 4 corresponding to linear combinations of codewords in F 4 of the form
+The value of I(Y R ; f (X A , X B )) for each possible f ∈ F GF 4 is plotted as a function of θ in Fig. 4(b) with an SNR of 7 dB. Again the dotted line represents universally achievable rate for the H in (13).
+These numerical results illustrate that the proposed MLC scheme facilitates better decoding ﬂexibility at the relay than coding over F 4 for this example. In fact, an analysis of these functions based on the labeling of points in Q R shows that F GF 4 ⊂ F. However, this improved ﬂexibility comes at the cost of additional rate constraints on each f ∈ F. The thick dashed line in Figs. 4(a) and 4(b) represents the rate which is achievable if the relay decodes using some f which is equivalent to the componentwise xor operation for multilevel coding or ﬁnite ﬁeld addition for F 4 . The difference between these curves illustrates the effects of the additional rate constraints imposed by (9). In Fig. 4(a) the last term I(Y R ; X 1 R , X 2 R |X 1 R ⊕ Z 1 , X 2 R ⊕ Z 1 ) in (10) is dominant if θ ≈ π 2 for determining the achievable rate for this function. In Fig. 4(b) we see that this term does not need to be satisﬁed if nodes A and B use a linear code in F 4 .
+The universally achievable rate for the H in (13) (i.e. the constant value given by the dotted line in Figs. 4(a) and 4(b)) is plotted as a function of SNR in Fig. 4(c) for the cases where the relay uses F or F GF 4 . This value asymptotically approaches 1.5 bits per symbol for coding over F 4 . From Fig. 4(b), this appears to occur because F GF 4 does not provide the relay with a decoding function which works well when θ ≈ π 2 . This represents an extreme case, because the event |h A | = |h B | occurs with probability zero for many random fading processes. However, this illustrates that for PLNC it is possible
+for the universally achievable rate to be limited by speciﬁc (h A , h B ) ∈ H even if each |h A | and |h B | is large. While the proposed scheme is better than choosing only one decoding function, it still does not entirely eliminate the interference that results from the signal constellations not aligning perfectly at the receiver. Hence, the achievable rate in the high SNR regime will be limited by this interference in addition to the limitation imposed by a ﬁnite-sized constellation.
+In this paper, we have proposed a coding scheme based on MLC for compute and forward or PLNC for the case when the channel is perfectly estimated at each receiver but unknown to each transmitter. We showed that MLC allows for decoding of a set of functions of the transmitted messages and the relay can choose one function from this set depending on the channel coefﬁcients. In Theorem 1, we obtained an achievable rate for a ﬁxed decoding function and channel realizations. In Theorem 2, we obtained a numerically computable expression for the universally achievable information rate over a set of channel realizations. Numerical results for QPSK suggest that the proposed scheme signiﬁcantly outperforms the use of a ﬁxed decoding function with binary linear codes and is better than using linear codes over F 4 .
+[[[ REFS ]]]
+P. Popovski
+T. Koike-Akino
+--
+Coded bidirectional relaying in wire- less networks
+----
+M. P. Wilson
+K. R. Narayanan
+H. D. Pﬁster
+A. Sprintson
+--
+Joint physical layer coding and network coding for bi-directional relaying
+----
+B. Nazer
+M. Gastpar
+--
+Lattice coding increases multicast rates for Gaussian multiple-access networks
+----
+W. Nam
+S. Chung
+Y. Lee
+--
+Capacity bounds for two-way relay channels
+----
+M. Wilson
+K. Narayanan
+--
+Power allocation strategies and lattice based coding schemes for bi-directional relaying
+----
+T. Koike-Akino
+P. Popovski
+V. Tarokh
+--
+Optimized constellations for two–way wireless relaying with physical network coding
+----
+B. Nazer
+M. Gastpar
+--
+Compute-and-forward: Harnessing interfer- ence through structured codes
+----
+C. Feng
+D. Silva
+F. Kschischang
+--
+An algebraic approach to physical-layer network coding
+----
+U. Wachsmann
+R. Fischer
+J. Huber
+--
+Multilevel codes: Theoretical concepts and practical design rules
+----
+R. Gallage
+--
+Information theory and reliable communication
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\177.pdf
+[[[ LINKS ]]]
+

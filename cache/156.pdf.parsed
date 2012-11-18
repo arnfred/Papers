@@ -1,0 +1,112 @@
+[[[ ID ]]]
+156
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On the St. Petersburg Paradox
+[[[ AUTHORS ]]]
+Thomas M. Cover
+[[[ ABSTR ]]]
+Abstract—We 1 ask what is the appropriate price c to pay to receive an amount X ≥ 0, X ∼ F (x). This is known as the St. Petersburg paradox if Pr{X = 2 k } = 2 −k , k = 1, 2, . . . Here EX = ∞. Is any price c aceptable ? We consider this distribution as well as the distribution Pr{X = 2 2 k } = 2 −k , k = 1, 2, . . . , which might be called the super St. Petersburg paradox in which not only is EX equal to inﬁnity, but E log X is inﬁnity as well.
+Let µ r = (EX r ) 1/r denote the r th mean of X. We identify three critical costs, µ −1 = 1/E(1/X), µ 0 = e E ln X , and µ 1 = EX, and conclude that we want some of X if c ≤ µ 1 , and that taking all of X is growth optimal if c ≤ µ −1 . Thus all prices c are attractive in the St. Petersburg game.
+[[[ BODY ]]]
+Bernoulli asked for the appropriate price c to play what has become to be known as the St. Petersburg paradox. Here one pays c to receive an amount X, where Pr{X = 2 k } = 2 −k , k = 1, 2, . . . But the expected value of X is inﬁnite. Does this mean one should be willing to pay any price c? The answer is yes. But why?
+Bernoulli answered this by considering a logarithmic utility for money, noting that E ln X < ∞, and ﬁnding the price c with equivalent utility. The arbitrariness of log utility has caused trouble ever since [10].
+Others have resolved this by truncating X, arguing that X shouldn’t be greater than the amount of money on earth. Again, this arbitrary “ﬁx by hand” is unsatisfying.
+Feller [7] found the number of repeated plays n needed to make X 1 +X 2 +. . .+X n exceed nc with high probability, thus making the distribution palatable. Interesting, but this changes the question (see also [6],[11]).
+We will argue that any price c is acceptable, but we want less and less of the gamble (keeping the rest of our stake in cash) as c grows. Allowing fractions of the gamble gives us the freedom to take advantage of the opportunity (at any price) and, as we will see, yields a competitively optimal one-shot result while also achieving the maximum relative growth rate of our wealth.
+We will identify the crucial roles of µ 1 = EX, µ 0 = e E ln X , and µ −1 = 1/E(1/X) in specifying the critical costs c for the gamble X/c. We also deﬁne a relative growth rate ∆(b 1 ||b 2 ) between two investment strategies, which is always
+ﬁnite even when the growth rate W (b) is not. This leads, for any cost c, to an optimal value of b, 0 ≤ b ≤ 1, having the properties (1) maximum growth rate W ∗ , (2) maximum relative growth rate ∆ ∗ with respect to any other mixture strategy, and (3) competitive optimality. All these criteria have natural one-shot interpretations as well as repeated play interpretations.
+Let X = 2 k , with probability 2 −k , k = 1, 2, . . . The cost of the gamble X is c > 0. Thus c dollars (ducats in Bernoulli’s paper) yields X in return. We now imagine that the gamble X is divisible into smaller amounts. So a $1 investment should buy a fraction 1 c of X, yielding X c in return. Now suppose the gambler has 1 unit of initial wealth and decides to invest a proportion b, 0 ≤ b ≤ 1, in the St. Petersburg random variable and keep the proportion 1 − b in cash, resulting in the random wealth S(X) = 1 − b + b X c .
+Deﬁne the expected log wealth W (b, c) by W (b, c) = E ln(1 − b + bX c ). We note in passing that
+for iid X i , where · = denotes equality to ﬁrst order in the exponent . We wish to maximize W (b, c) over 0 ≤ b ≤ 1. Differentiating, we have
+Note that W (b) is concave and W (0) = E X c − 1. Thus we will want some of X if W (0) > 0, ie c ≤ EX. So any price c up to EX is attractive. Since EX = ∞ in St. Petersburg, all prices c are attractive. How attractive? For this we ﬁnd the optimizing b ∗ as a function of c. We note, as shown in Bell and Cover (1980) that the log optimal b ∗ has both the properties of growth optimality and of competitive optimality, i.e. for any other choice b,
+S n (b ∗ ) S n (b)
+Until this point we have been following Bell and Cover (1980,1988).
+Suppose that the gambler can buy a share of the game. For example, if he invests c/2 units in the game, he receives 1/2 a share and a return X/2, where Pr(X = 2 k ) = 2 −k , k = 1, 2, . . . . Suppose X 1 , X 2 , . . . are i.i.d. according to this distribution and the gambler reinvests all his wealth each time. Thus his wealth S n at time n is given by
+This limit is ∞ or 0, with probability one, accordingly as c < c ∗ or c > c ∗ . We ﬁnd the “fair” entry fee c ∗ .
+1 n
+and therefore S n goes to inﬁnity or 0 according to whether E log X is greater or less than log c. Therefore
+Hence a fair entry fee is 4 units if the gambler is forced to invest all his money. The resulting wealth S in this case takes values 1 2 , 1, 2, 4, . . . with respective probabilities
+More realistically, the gambler should be allowed to keep a proportion b = 1 − b of his money in his pocket and invest the rest in the St. Petersburg game. His wealth at time n is then
+b + bX i c
+be the optimal growth rate and let b ∗ be the corresponding investment in St. Petersburg.
+Note that W (0, c) = 0, and W (1, c) = E log X − log c = 2 − log c. Thus the exponent W (1, c) of growth rate is positive only if log c < 2.
+If the base of the logarithm is e (which we use for ease of differentiation) we write W e (b, c) = E ln(¯ b + bX/c) and W e (b, c) = E X/c−1 ¯ b+bX/c . The maximizing b is the same for W and W e . Differentiating W e (b, c) to ﬁnd the optimum value of b, we obtain
+There is no explicit solution for the b that maximizes W for a given value of c, so we solve this numerically.
+We have illustrated the results with four plots. The ﬁrst (Figure 1) shows W (b, c) as a function of b and c. The second (Figure 2) shows b ∗ as a function of c. The third (Figure 3) and the fourth (Figure 4) show W ∗ and 2 W ∗ as a function of c.
+From Figure 2, it is clear that b ∗ is less than 1 for c > 3. We can also see this analytically by calculating the slope
+at b = 1. First observe that W (b, c) is a strictly concave function of b given c.
+− 2 −k + 1 c = ∞, W = 0 when b = 0, and W is concave.
+) . Thus, we have gone from critical values of c going from the arithmetic mean, to the geometric mean, to the harmonic mean.
+Now let us consider what we might call the Super St. Petersburg problem,
+where the prize money distribution rises so fast that not only is EX = ∞, but E log X = ∞ as well. The pay- offs are then 2, 8, 128, 32768, . . . with respective probabilities
+Thus taking all of X (i.e. letting b = 1) will cause the wealth S n = n i=1 X i c to go to inﬁnity super exponentially fast. So the investor should take all of it, right? Well no, there is a strong reason to choose the investment proportion b strictly less than 1, even when E log X = ∞. To see why, we introduce the notion of relative growth rate, the growth rate of one investor with respect to another. Let,
+∆(b 1 ||b 2 ) = E log b 1 + b 1 X/c b 2 + b 2 X/c
+where investor i invests proportion b i , i = 1, 2 in the gamble X/c. In repeated plays we have,
+Without loss of generality, for the ensuing discussion, we let the reference portfolio b 2 = 1 2 (any b 2 ∈ (0, 1) will do). Then,
+is bounded for all X > 0, so ∆(b|| 1 2 ) is ﬁnite and concave in b. Let b ∗ maximize
+over 0 ≤ b ≤ 1. We set ∂ ∂b ∆(b|| 1 2 ) = E X/c−1 b+bX/c log 2 e = 0, and solve for b ∗ . Note that this is the same equation that deﬁned b ∗ for the original St. Petersburg game. But here b ∗ maximizes the relative growth rate of wealth.
+The growth rate relatively optimal b ∗ for Super St. Peters- burg is given in Figure 5. The gain in growth rate relative to the (1/2, 1/2) portfolio is shown in Figure 6, for both Super St. Petersburg and the original St. Petersburg gambles.
+We are offered a gamble X ∼ F (x), X ≥ 0, at cost c. We are allowed to bet any proportion b of our current wealth on this gamble. This results in wealth S = 1 − b + bX c . We ﬁnd that we always want some of X, ie the log optimal b ∗ is strictly positive if c < EX. Finally, we identify the harmonic mean 1/E(1/X) as the critical value c ∗ such that we want all of X, ie b ∗ = 1, for any cost c ≤ c ∗ = 1/E(1/X). For costs c ∗ < c < EX, the proportion b ∗ of wealth invested in X lies strictly in (0, 1).
+The proportion b ∗ yields wealth S ∗ which is both short run and long run optimal.
+The expected value of X is misleading. Instead, the geomet- ric mean is an appropriate quantity to maximize, which in turn leads to the harmonic mean as the critical price. Maximizing
+the geometric mean yields competitive optimality and relative growth optimality.
+We conclude that all entry costs c are fair for the St. Petersburg gamble, and we will always want to invest a portion of our wealth.
+The author would like to thank Kartik Venkat for valuable discussions and help with the preparation of the graphs.
+[[[ REFS ]]]
+M. Bell
+M. Cover
+--
+Competitive optimality of logarithmic investment
+----
+M. Bell
+M. Cover
+--
+Game-Theoretic Optimal Portfo- lios
+----
+D. Bernoulli
+--
+Exposition of a new theory on the measurement of risk
+----
+L. Breiman
+--
+Optimal gambling systems for favorable games
+----
+M. Cove
+J. Thoma
+--
+T
+----
+S. Csorgo
+R. Dodunekova
+--
+Limit theorems for the Petersburg game
+----
+W. Feller
+--
+Note on the law of large numbers and ’fair’ games
+----
+C. MacLea
+O. Thor
+T. Ziemb
+--
+L
+----
+A. Martin-Lof
+--
+A limit theorem which clariﬁes the ‘Petersburg paradox’
+----
+P. A.
+--
+St. Petersburg paradoxes: defanged, dissected, and historically described
+----
+L. Gy¨ orﬁ
+P. Kevei
+--
+On the rate of convergence of the St. Petersburg game
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\156.pdf
+[[[ LINKS ]]]
+

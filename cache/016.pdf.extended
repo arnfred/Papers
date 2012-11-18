@@ -1,0 +1,144 @@
+[[[ ID ]]]
+16
+[[[ INDEX ]]]
+15
+[[[ TITLE ]]]
+Energy-Optimized Lossless Compression: Rate-Variability Tradeoff ∗
+[[[ AUTHORS ]]]
+Yihong Wu †
+Erik Ordentlich
+Marcelo J. Weinberger
+[[[ ABSTR ]]]
+Abstract—We pose the problem of energy-optimized lossless compression and analyze a simple compression framework in which energy consumption is given by a weighted sum of two components, respectively proportional to the compression rate and to the average number of bit ﬂips that occur in a certain hardware register. The latter component, which we term variability, is meant to serve as a proxy for the energy consumption of the computations underlying the compression step. Our results include bounds on the rate-variability tradeoff for symbol-wise compression of discrete memoryless sources and a characterization of the asymptotically optimum tradeoff between rate and variability for block-wise compression.
+[[[ BODY ]]]
+In a wide range of data acquisition systems, the goal of lossless compression is to reduce transmission or storage energy. However, since better compression is obtained at the expense of more complicated encoding operations, optimizing for compression alone may degrade the overall energy efﬁ- ciency of the system. Indeed, in [1], [2] it is shown through extensive experiments on an embedded processor that with several typical compression tools (LZ77, LZW, BWT, PPM), there is a net energy increase when compression is applied before transmission relative to the transmission of uncom- pressed data, as a result of computation. These works conclude that optimizing compression efﬁciency alone is not necessarily the best approach to minimizing total energy consumption. This conclusion applies even more when the goal is to reduce storage energy, since the relative weight of computation is larger in this case. This motivates the problem of designing efﬁcient compressors to minimize total energy consumption. Such energy-optimized compressors could prove useful for embedded systems with severely limited resources, e.g., sensor networks and cyber-physical systems.
+As a ﬁrst step toward a rigorous study of energy-optimized lossless compression, we consider a simple framework for lossless compression in which code dependent energy con- sumption is predominantly comprised of two components. The ﬁrst component is proportional to the compression rate (e.g., storage, transmission, etc.), while the second is proportional to the code variability, i.e., the average number of bit ﬂips
+required to write a new codeword to a register. This energy model corresponds to an encoder based on a lookup table as it takes into account the switching activities in the digital system induced by the dynamics of encoding operations. It is motivated by the fact that the power consumption of CMOS circuits consists of static and dynamic power dissipation, where the latter dominates [3] and is proportional to the transition frequency of the logical signal. Excessive switching activity may cause larger peak and average power dissipation [4]. This model has been studied in coding for low-power I/O [5], where switching on the data bus is the main contributor to the power dissipation. Note that our energy consumption model does not include decompression and is, therefore, of primary relevance to systems in which decompression occurs infrequently or is carried out in a separate platform without resource constraints. Clearly, there are scenarios in which decompression energy consumption is important, but we leave its study for future work.
+In the above framework, we model the total average energy expenditure of the compressor as a weighted sum of average codeword length and code variability. To gain insight into designing energy-optimized compressors, it is a fundamental problem to determine the optimal tradeoff between com- pression rate and variability. The main contribution of this paper consists of non-asymptotic bounds on the achievable rate-variability region that are asymptotically tight in the memoryless case. The performance of practical codes is also analyzed and compared to the optimal frontier. To simplify the presentation, we focus on preﬁx codes. However, the same conclusions hold for all uniquely decodable codes [6, p. 92] that are not necessarily preﬁx-free, as well as for near-lossless ﬁxed-length codes.
+In contrast to traditional lossless compression problems which focus on codeword length assignment, code variability depends on individual binary codewords. In fact, there can ex- ist two preﬁx codes with the same pointwise codeword lengths but different variability. Another difﬁculty of our problem comes from the non-linear effect of code concatenation on variability: the codeword length of the concatenation of two codes is the sum of the constituent codeword lengths, while variability does not follow this linear relationship.
+A related problem, known as malleable coding, is proposed in [7], which also concerns minimizing not only the average
+codeword length, but also the cost when changing the rep- resentation to match an updated message with respect to a general edit cost. The solution of the malleable coding problem is left open in [7]. Our result provides an explicit solution under the restrictions of identical ﬁxed-length component codes, Hamming distance, and a decoupled (independent) modiﬁcation channel.
+In our analysis of the optimal tradeoff between compression rate and variability in Section IV, we will allow for the possibility of compressing symbols in blocks of length n. The achievability result will require n to grow, which, in our simple compression framework (as explained in more detail in the next section), would translate into an exponentially growing lookup table. Thus, for sufﬁciently large n, the exponentially growing energy expended on table lookups, as dictated by, e.g., growing wire lengths, which is not included in our model, may dominate the energy consumption corresponding to rate and variability. In view of this observation, the achievability analysis is relevant primarily as a contribution to the malleable coding setting of [7], where variability may also model other costs of data storage such as device wear, of signiﬁcance to ﬂash-based and emerging non-volatile storage technologies. The converse result, on the other hand, which holds for all block lengths n, is very much relevant also to the energy optimization problem as well.
+Consider a lossless data compression framework that works according to the following steps:
+1) The compressor fetches a data symbol from the incoming data stream;
+2) Using the binary representation of the symbol as the address, a codeword is read from the codebook stored in a lookup table;
+3) The compressor writes the codeword to a binary register from left to write, without overwriting bits beyond the end of the codeword;
+4) The content of the register, up through the end of the last codeword, is stored to non-volatile memory or transmit- ted.
+The energy consumption of the ﬁrst step is independent of the coding method. The cost of the second and fourth step is afﬁne in the codeword length, with the addressing step being largely independent of the code, while the cost of the third step is proportional to the code variability, which is the average number of bit ﬂips required to update the register. Therefore, we can model the expected code-dependent portion of the total energy consumption as a weighted sum of code length and variability.
+To formulate the problem mathematically, let X be a random variable taking values in a ﬁnite alphabet X . Let c : X → {0, 1} ∗ be a preﬁx code and C = c(X). Denote
+by L = (C) the codeword length and max the maximal length of codewords. Let C(i) be the i th bit of C if i ≤ L; otherwise C(i) = Λ (empty symbol), so that C(i) can take on three values. The average codeword length of c can be written as
+Next, we deﬁne the code variability. Consider a discrete memoryless source (DMS) {X t } with marginal distribution P X . Denote C t = c(X t ). Let R t (i) be the i th bit of the register at time t, with R 0 (i) = 0 for each i. According to our framework, for t > 0, the contents of the register satisfy the following Markov dynamics:
+= P { (C t ) ≥ i, C t (i) = 1|R t−1 (i) = 0} 	 (4) = P { (C t ) ≥ i, C t (i) = 1} 	 (5) = P {C(i) = 1} . 	 (6)
+Similarly, the transition probability from 1 to 0 is P {C(i) = 0}. Therefore, assuming state probabilities are row vectors, for each i, the Markov chain {R t (i) : t ≥ 1} is time- homogeneous with transition matrix
+P {C(i) = 1} P {C(i) = 1} P {C(i) = 0} P {C(i) = 0}
+Hence, the stationary distribution π(i) = (π(i) 0 , π(i) 1 ) exists, and is given by
+Letting R t = [R t (1), . . . , R t ( )], the variability of code c is deﬁned as the number of bits we need to ﬂip per encoding operation in the steady state:
+where d H denotes the Hamming distance and the last equality follows from (8) – (9). The memory of the rewrite process is captured by the stationary distribution. From (2) and (12), it is interesting to notice that V and L only depend on the marginal distribution of the compressor output bits. In the special case of ﬁxed-length codes, the variability is simply the expected Hamming distance between two independent codewords.
+For a given random variable X, the optimization of energy consumption for our simple framework and energy model will depend on the region of achievable (L, V)-pairs of all preﬁx codes. The following upper bound follows directly from applying the inequality
+V L
+To establish a lower bound on V we use the following lemma.
+Proof: This result can be proved via induction on the maximal codeword length. Instead, we give an operational proof by constructing a lossless compression scheme for the DMS P , whose average compression rate is the right-hand side of (15), hence not exceeding H(P ). In this scheme, we ﬁrst apply the compressor c to X 1 , . . . , X n independently sampled from P , to obtain variable-length strings C 1 , . . . , C n . Then, for each i, 1 ≤ i ≤ max , we form a binary word B i consisting of {C t (i) : L t ≥ i} ordered in increasing t, and apply a Huffman code to B i . Clearly, C 1 , . . . , C n can be reconstructed from {B i , 1 ≤ i ≤ max } since, due to the preﬁx property of the underlying code c, the unspeciﬁed locations i in which C i = Λ are implicitly available. Since the average code length is no more than H(B i ) + 1 bits, and H(B i ) = nP {L ≥ i}h(P {C(i) = 1|L ≥ i}), the expected normalized total code length is upper bounded by
+max /n + 	 i P {L ≥ i}h(P {C(i) = 1|L ≥ i}), the right- hand side of (15) plus an arbitrarily small term.
+We also deﬁne the functions v : [0, 1] → [0, 1 2 ] and w : [0, 1] → [0, 1 2 ] by
+v(p) = 2p(1 − p), 	 (16) w(z) = v(h −1 (z)), 	 (17)
+where h −1 : [0, 1] → [0, 1 2 ] is the inverse of the binary entropy function h on [0, 1 2 ]. Lemma 2 below, whose proof is omitted, states properties of these functions.
+Lemma 2. 1) w is a strictly increasing and strictly convex function, with w(0) = 0 and w(1) = 1 2 .
+2) For any a > 0, the function u a : [a, ∞) → (0, a 2 ] deﬁned by u a (x) = x · w a x is strictly decreasing and strictly convex, with u a (a) = a 2 .
+In view of (12), (16), and the equality between the addends of (1) and (2), V takes the form
+Theorem 2. For any preﬁx code, V L
+Proof: Using (18), V
+where (22) is due to the convexity of w and (1), while (23) follows from the monotonicity of w and Lemma 1.
+We note that Theorems 1 and 2 together imply that any code that exactly attains the source entropy will necessarily have variability equal to half of the entropy.
+In this section, we allow for the possibility of compressing symbols in blocks of length n and determine the optimal asymptotic achievable tradeoff between L and V. We consider the following two types of achievable regions. The ﬁrst type consists of operating points of all preﬁx codes.
+Deﬁnition 1. Let X n be independently sampled from P . The collection of all operating points of preﬁx codes for X n is deﬁned as
+The collection of operating points of all preﬁx codes with different blocklength is deﬁned as
+Deﬁnition 2. A pair (˜ L, ˜ V) is said to be achievable for P if there exists a sequence of preﬁx codes c n : X n → {0, 1} ∗ , such that
+n = ˜ V. 	 (26) The achievable region R(P ) is the collection of all achievable pairs for P .
+By Deﬁnitions 1 and 2, we have R(P ) = cl lim sup
+Notice that even though a code on blocks of length i deﬁnes a code on blocks of length 2i by concatenation, the sequence of regions R (n) (P ) is not necessarily nested, due to the complicated dynamics of code concatenation and its non-linear effect on the variability. Indeed, while the codeword length of the concatenation of two codes is the sum of individual code lengths, the variability is in general strictly larger than the sum of individual code variabilities. This property follows from the fact that the dynamics of two constituent codes are intertwined when concatenated. Thus, it is surprising that, as the next theorem shows, R ∗ (P ) and R(P ) are in fact equal.
+= (l, v) : l ≥ H(P ), w H(P ) l
+≤ v l
+≤ 1 2
+If we normalize both L and V by the source entropy H(P ), denoting the normalized pair by (¯ L, ¯ V), the achievable region is independent of the source statistics (see Fig. 1):
+2 . 	 (31) Therefore, changing the source distribution only scales the achievable region in Fig. 1 but does not alter its shape. Note that the vertex (1, 1 2 ) corresponds to optimal compression. In (31) the “efﬁcient frontier”, corresponding to the lower boundary, is of primary interest for optimal codes, although the upper bound can help assess how much better a particular code is relative to the worst possible tradeoff. Notice that the shape of this boundary follows from the second part of Lemma 2.
+Proof of Theorem 3: The converse part of the proof follows from Theorems 1 and 2.
+We shall prove the achievability of the lower boundary. For any > 0, let
+where ˆ H(x n ) denotes the empirical entropy of x n . Let M n de- note the collection of types P of sequences in T n and T P the set of sequences x n with type P. Thus, T n = P∈M
+T P and |M n | is upper bounded by (n + 1) |X | . Moreover, P {X n ∈ T n } → 1 and, by [8, Chapter 1, Lemma 2.3] and (32), for any P ∈ M n and sufﬁciently large n,
+where logarithms are taken to base 2. Clearly, the lower boundary can be parametrized as
+h(α) 	 n. 	 (35) We prove the existence of a preﬁx code c α : X n → {0, 1} ∗ such that
+L(c α ) = L (α) + o(n) 	 (36) V(c α ) ≤ v(o(1) + α)L (α) + o(n). 	 (37)
+To this end, we encode T n as follows, so that the marginal distribution of codeword bits is close to α: 1
+Step 1 : If x n / ∈ T n , encode it with ‘0’ followed by an uncompressed representation of x n using n log |X | bits.
+Step 2 : If x n ∈ T P with P ∈ M n , encode it with a ’1’ followed by x n encoded according to the following constant weight code. Let
+where δ= (1 − )/(H(P ) + 2 ). Clearly, (α)/L (α) < α, and it is easy to see, by (33) and (35), that the set L of L (α)-bit binary vectors with Hamming weight (α) is, for sufﬁciently large n, larger than |T P |. The constant weight code of interest is then obtained by injectively mapping T P into L in such a way that all vectors in L that are cyclic shifts of a mapped vector are included in the image before other vectors. The resulting code is thus nearly a cyclic code, in the sense that with the exception of an exponentially negligible fraction of at most L (α) − 1 codewords, all cyclic shifts of a codeword are also codewords. Following the constant weight encoding, encode the type of x n using a ﬁxed-length code of |X | log(n + 1) = o(n) bits. Then append it to the codeword obtained above.
+Note that for x n ∈ T n , the codeword length is ﬁxed at L (α) + o(n). Since P {X n / ∈ T n } → 0, the above code c α encodes X n losslessly with average length (36). Next,
+we analyze its normalized variability. First, we bound the conditional marginal distribution of the codeword bits C(i), 2≤i≤L (α)+1. Since P {L ≥ i} ≥ P {X n ∈ T n } = 1 − o(1),
+(39) = P {C(i) = 1} + o(1) (40)
+where (43) follows from the fact that all sequences of a given type have the same probability and are thus conditionally uniformly distributed among each cyclic shift of each code- word with constant weight (α) (with the small exceptional set noted above contributing the new o(1) term, which is independent of i), and (44) follows from the fact noted above that (α)/L (α) < α.
+Note that for i>L (α)+1+|X | log(n+1), P {L ≥ i} = o(1) and for i> max{L (α)+1+|X | log(n+1), 1 + n log |X |}, P {L ≥ i} = 0. Since v is increasing in [0, 1 2 ], by (18) and the preceding considerations, we obtain (37), which implies the
+By the arbitrariness of > 0, the continuity of v(·), the parametrization (34), and α ∈ (0, 1 2 ], the lower boundary is achievable.
+Minimizing the total energy consumption over all possible preﬁx codes, we deﬁne
+where λ is the cost of bit ﬂipping relative to the average cost of codeword length. Therefore, E(λ) is simply the Fenchel- Legendre transform of the (strictly convex) lower boundary of region R ∗ (P ) in (30), namely
+λ ¯ l w 1 ¯ l
+Interestingly, there is a critical slope at ¯ l = 1: d ¯ l · w 1 ¯ l
+which is the most negative slope on the lower boundary. This implies that the minimizer of (45) is the vertex (1, 1/2) for all
+≈ 5.17. Therefore, E(λ) = λ 2 + 1 H(P ) for all λ ≤ 5.17, that is, if the cost of variability is sufﬁciently cheap (i.e., cheaper than 5.17 times the cost of codeword length), the best strategy is to minimize compression rate.
+We apply the family of Golomb codes [9] with parameter M ranging from 1 to 256 to truncated geometric distributions and plot its rate-variability tradeoff in Fig. 2. Numerical results suggest that Golomb codes operate close to the boundary.
+The unary code is a special case of Golomb codes (M = 1). As a sanity check of Theorem 3, Fig. 3 plots the operating points of the unary code of length 8 for randomly generated sources. Of course, all points lie in the region given by Theorem 3. From numerical results, we see that the unary code operates fairly close to the optimal boundary if the source alphabet is sorted according to decreasing probabilities; otherwise, the gap to optimal performance is substantial.
+[[[ REFS ]]]
+K. Barr
+K. Asanovi´c
+--
+Energy aware lossless data compression
+----
+K. C. Barr
+K. Asanovi´c
+--
+Energy-aware lossless data compression
+----
+K. Eshraghia
+N. West
+--
+Principles of CMOS VLSI design: a systems perspective 
+----
+M. Tehranipour
+M. Nourani
+K. Arabi
+A. Afzali-Kusha
+--
+Mixed RL-Huffman encoding for power reduction and data compression in scan test
+----
+M. Stan
+W. Burleson
+--
+Bus-invert coding for low-power I/O
+----
+D. J. MacKa
+--
+Information theory, Inference, and Learning Algorithms
+----
+L. Varshney
+J. Kusuma
+V. Goyal
+--
+Malleable coding with edit- distance cost
+----
+I. Csisz´a
+J. K¨orne
+--
+Information Theory: Coding Theorems for Discrete Memoryless Systems 
+----
+W. Golomb
+--
+Run-length encodings
+[[[ META ]]]
+xmlpapertitle -> Energy-Optimized Lossless Compression: Rate-Variability Tradeoff ∗
+pdf -> E:\testDataset\016.pdf
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\016.pdf
+xmlauthors -> Yihong Wu †, Erik Ordentlich, Marcelo J. Weinberger
+xmlroom -> -
+[[[ LINKS ]]]
+

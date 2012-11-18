@@ -79,9 +79,10 @@ object TalkRooms extends PaperSource {
  */
 trait ExtendPaper {
 
-  def extend(papers : List[Paper], sources : List[PaperSource]) : List[Paper] = {
-
-    papers.map(p => {
+  def extend(paperPos: String, papers : Option[List[Paper]], sources : List[PaperSource]) : List[Paper] = {
+    println("BEGIN OF PAPERS EXTENSION")
+	val loadedPapers = if(papers == None) CacheLoader.load(paperPos, Cache.scheduled) else papers.get
+    val finalPapers = loadedPapers.map(p => {
 
       var result : Paper = p
 
@@ -96,6 +97,9 @@ trait ExtendPaper {
       // return result
       result
     })
+    
+    println("END OF PAPERS EXTENSION")
+    finalPapers
   }
-
+  
 }

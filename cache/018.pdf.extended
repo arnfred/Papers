@@ -1,0 +1,135 @@
+[[[ ID ]]]
+18
+[[[ INDEX ]]]
+17
+[[[ TITLE ]]]
+Efﬁcient Beamforming Algorithms for MIMO Multicast with Application-Layer Coding
+[[[ AUTHORS ]]]
+Michał Kaliszan ∗†
+Emmanuel Pollakis †
+Sławomir Sta´nczak ∗†
+[[[ ABSTR ]]]
+Abstract—A communication scheme for the multiple antenna multicast fading channel is proposed, in which the transmission is coded at the application layer over a number of channel realizations. The scheme gives rise to a novel multicast transmit beamforming problem. The properties of the proposed scheme are presented, in particular the scaling of the achievable rate for the increasing number of users is investigated and the rate is shown not to decrease to zero, which is an improvement over multicast schemes without coding, e.g. so-called max-min transmit beamforming. Algorithms for solving the resulting beamforming problem are proposed and evaluated in simulation.
+[[[ BODY ]]]
+The broadcast property of the wireless channel makes it naturally suitable for multicast applications, since a single transmission may be simultaneously received by a number of users. On the other hand, the wireless channel is subject to fading, and multiple antenna techniques are used to combat its detrimental effects. Max-min multicast beamforming, which aims at maximizing the performance of the weakest link, although in general suboptimal, yields very good results at moderate requirements [1]. The problem is shown to be NP- hard, however convex relaxation is possible [2]. The funda- mental limitation of the max-min beamforming consists in the fact that as the number of users grows to inﬁnity, the achievable rate decreases to zero [1]. These considerations led to the joint beamforming and admission control problem [3], [4] where a subset of users is selected so that certain quality- of-service requirements can be satisﬁed.
+In this work, we investigate a scheme in which the multicast transmission is coded over a number of channel realizations. This allows for a ﬂexible choice of users which are included in the actual physical-layer multicast transmission at any time instant. Such an approach is known as opportunistic multi- casting or opportunistic multicast scheduling (OMS) [5]. The main contributions of this paper include presenting conditions for the optimality of the transmission strategy, formulating, as a result, a novel beamforming problem which is shown to be dependent only on the current channel state, and proposing two algorithms for solving the problem.
+The model under study is a downlink multicast MIMO wireless communications network with K users. The set of all users is denoted as K = {1, 2, . . . , K}. The transmitter (base station, BS) is equipped with N T antennas and each receiver (user) with N R antennas. Denoting the scalar transmit signal as x, the received signal vector at the k-th receiver is given by:
+where: v is the transmit beamforming vector (transmit beam- former) satisfying v ∈ V := {x ∈ C N T : ||x|| 2 = 1}, n k ∈ C N R is the additive Gaussian noise vector whose entries are i.i.d. circular symmetric complex Gaussian random variables with unit variance, and H k ∈ C N R ×N T is the channel matrix from the transmitter to the k-th receiver. We assume block fading channel model, so that channel matrices H k are constant for the entire duration of transmission block and change from block to block in an i.i.d. manner. The channel matrix H k is known to the transmitter and to the k-th receiver. Each channel is subject to Rayleigh fading so that H k for each k is a matrix containing i.i.d. circular symmetric Gaussian random variables with unit variance CN (0, 1). For notational convenience, all channels are collected in the matrix ˜ H := [H 1 H 2 ...H K ]. Furthermore, we assume constant trans- mit power P and receive beamformers u k with ||u k || 2 = 1 for each k ∈ K, so that the signal-to-noise ratio (SNR) for user k yields:
+At times, when considering the MISO case (single receive antenna), or when considering ﬁxed receive beamformers u k , we make use of the notation: h H k := u H k H k denoting the effective channel of the k-th user. Now, the SNR determines the maximum rate R inst k achievable by user k:
+The dependence of the maximum instantaneous rate R inst k on the receive beamformer u k is intentionally omitted as the the optimal receive beamforming vector in the considered scenario is uniquely determined by the channel matrix and the transmit beamformer so that u k = u k (H k , v).
+The goal of multicast transmit beamforming is to allow for the transmission of the common message to all users with the highest possible rate. An adequate performance metric is the highest rate achievable over all transmit beamformer vectors and we will refer to it as the multicast beamforming capacity C mc for a given channel realization ˜ H:
+This formulation gives rise to the so-called max-min trans- mit beamforming problem. The optimal beamforming vector v (maxmin) is given by:
+The problem deﬁned above can be shown to be NP-hard [2]. For the MISO case, a convex relaxation [6] was proposed, which leads to semideﬁnite program and thus can be efﬁciently solved by appropriate solvers. Based on this approach, algo- rithms for the MIMO case were proposed in [7].
+The multicast beamforming capacity decreases to zero when the number of users K grows to inﬁnity. In [1], scaling laws for several transmission strategies in the MISO case were provided. The capacity in the case of multimode transmit beamforming, which is less restrictive than solving (4), was shown to scale as O( 1 K 1/NT ), providing thus the upper bound for the multicast beamforming capacity. As for the multicast beamforming in the sense of (3), a lower bound was proposed in [1] to be O( 1 K 2+1/NT ). This lower bound can be improved by observing that the multicast beamforming performance is at least as good as the performance in the SISO/SIMO case, where a single transmit antenna is used.
+Proposition 1: As K → ∞, the multicast beamforming capacity C mc ( ˜ H ) scales at least as O( 1 K 1/NR ).
+1 N T where 1 N T ∈ C N T is a vector of all ones. The effective transmitter for user k is then equal to b k := 1 √N
+H k 1 N T , which is a circularly symmetric Gaussian random vector with unit variance. Under optimal receive beamforming u ∗ k = b k /||b k || 2 and SNR k = P ||b k || 2 2 . This is equivalent to the SIMO channel with N R receive antennas. For each k, SNR k is a χ 2 -distributed random variable with 2N R degrees of freedom. The minimum of K such random variables with K → ∞ scales as O( 1 K 1/NR ) [1]. The considered beamforming strategy is at most within a fraction 1 N T from the optimal transmit beamforming in terms of the minimum SNR at the receivers. Now, considering log(1 + a) ≈ a for a → 0 concludes the proof.
+The main disadvantage of the max-min multicast beam- forming discussed in Section III is the fact that the multicast
+beamforming capacity C mc ( ˜ H ) decreases to zero when the number of users goes to inﬁnity. This can be alleviated by using an appropriate coding scheme so that it is not required anymore for the transmission rate to be adapted to the SNR of the worst link.
+In the remaining part of this paper, we extend the model considered in Section II by adding the time dimension. Now, instead of a single transmission block, we consider a sequence of T ∈ N + transmission blocks. For each n ∈ {1, 2, . . . , T }, the channels are constant (but random) and denoted ˜ H (n). Accordingly, this notation can be extended to all variables introduced in Section II, however the time index n will be omitted when this does not lead to confusion.
+We consider delay-tolerant applications in the sense that the users are interested in maximizing throughput at the expense of delay. This corresponds in our model to the acceptable delay in the order of T blocks. Such applications may include distribution of large amounts of data, e.g. media content.
+Under these assumptions, a code over T transmission blocks can be used. This gives rise to the opportunistic multicast scheduling scheme (see e.g. [5]). It is assumed that during block n, user k can decode on the physical layer the entire block of data if SNR k (n) ≥ γ th (n), where γ th (n) is the minimum SNR required for decoding and depends on the transmission rate R mc (n) during block n. If SNR k (n) < γ th (n), no data is received (erasure). Effectively, users per- ceive the communication to take place over an erasure channel. Therefore, an error-correcting code for the erasure channel used on top of the existing physical layer is made responsible for recovering the original data. Since the code is implemented on the application layer, no modiﬁcations to the physical layer are necessary which means that this scheme can be applied to a broad class of systems.
+A class of codes which is particularly suitable for the application in the considered scenario are the rateless codes for the erasure channel. Important code designs belonging to this class include LT-codes [8] and Raptor codes [9]. For instance a Raptor code is within ǫ of the capacity of the erasure channel for any probability of erasure, where ǫ may be made arbitrary small, and has a linear complexity of encoding and decoding [9]. This results in a greater ﬂexibility, since the code rate does not have to be chosen a priori (no efﬁciency-robustness tradeoff) and allows for practical implementations even for large T .
+In the system without outer coding scheme, the instanta- neous transmission rate is bounded by the capacity of the weakest link. In the considered scheme, however, the trans- mission rate R mc (n) during the n-th transmission block is an optimization variable. Now, we deﬁne the set of active users S n as the set of users whose maximum supportable rate R inst k (n) given by (2) is greater or equal to the transmission rate R mc (n) so that all active users can decode data transmitted during block n. We have S n = {k ∈ K : R inst k (n) ≥ R mc (n)}.
+Consider a sequence of variables {S n } T n =1 , where T is a number of time blocks. For each n, transmit beamforming vector v (n) is chosen according to some strategy, which yields the resulting values SNR k (n). The amount of data decoded by user k during block n is then equal to R kn := 1 k ∈S n R mc (n), where 1 (·) denotes the indicator function. Thus, assuming a perfect erasure correction code, the average effective rate attained until time T is given by:
+¯ R k (T ) = 1 T
+Now we deﬁne the coded multicast beamforming capacity to be the maximum average rate ¯ R k (T ) achievable by any user as T → ∞:
+where π(n) := (R mc (n), v(n)) with v(n) ∈ V is the resource allocation decision (transmission strategy) during block n.
+Proposition 2: The optimal transmission strategy π ∗ for achieving the coded multicast beamforming capacity C cmc is π ∗ (n) = arg max π (n) |S n |R mc (n) for every n ∈ N.
+1 K
+1 K
+1 T
+Hence π ∗ maximizes 1 K K k =1 ¯ R k (T ) for an arbitrary T ∈ N. Clearly we have
+¯ R k (T ) ≤ 1 K
+with equality for any T ∈ N if and only if F (T ) = 1 where F (T ) := max k ¯ R k (T )/ min k ¯ R K (T ) ≥ 1. Let π be any strat- egy that randomly chooses R mc (n) for any n ∈ N independent of its past choices and let {R mc (n)} ∞ n =1 and {S n } ∞ n =1 be the corresponding sequences. Suppose that P is the set of all such strategies and note that π ∗ ∈ P. Since R inst k (n), n ∈ N, k ∈ K is identically distributed, it follows from the deﬁnition of S n that this is also true for R kn , n ∈ N, k ∈ K regardless of the choice of R mc (n). Now since the choice of R mc (n) does not depend on the past, the law of large numbers implies that ¯ R k (T ) = 1 T T n =1 R kn converge to the corresponding expected values E{R kn } which are independent of k and n. 1
+In consequence, we have F (T ) → 1 as T → ∞ for any π ∈ P implying equality in (8) for T → ∞. So, since π ∗ ∈ P and, by (8), ¯ C cmc (T ) ≤ ¯ C avg (T ) for all T , one obtains
+Since the optimization is performed independently for each transmission block, we can drop the time index n. We deﬁne thus the transmit beamforming problem for multicast with application-layer coding to be:
+Note that the receive beamformers u k may either be ﬁxed, which effectively reduces the problem to the MISO case, or they can be assumed to be optimal linear receivers. Optimal receive beamforming vectors are given by u ∗ k = H k v ||H
+and are thus dependent solely on v, and neither on S nor on R mc . C. Problem properties
+The problem can be shown to be NP-hard by establishing the connection to [3]. However, the problem of ﬁnding the maximum of R mc |S| simpliﬁes greatly if the transmit beam- forming vector v is ﬁxed. The problem is then reduced to ﬁnding the optimal transmission rate R mc (and therefore the optimal subset S) and can be solved efﬁciently according to the following proposition.
+Proposition 3: For a ﬁxed transmit beamforming vector v and ﬁxed receive beamforming vectors u k = u k (H k , v), let {SNR k m } K k =1 be the sequence of SNRs ordered such that SNR k 1 ≥ SNR k 2 ≥ ... ≥ SNR k K . Now, the maximum of R mc |S| is equal to max m ∈{1,2,...,K} m log(1 + SNR k m ).
+Sketch of the proof: For a ﬁxed sequence of SNRs, there are K possible subsets S (m) with S (m) = {k 1 , k 2 , . . . , k m } and S (1) ⊆ S (2) ⊆ . . . ⊆ S (K) . Thus, for a given subset S (m) we have
+An important property of the multicast with outer coding consists in the fact that the coded multicast beamforming capacity does not decrease to zero as number of users grows to inﬁnity.
+Proposition 4: As K → ∞, we have C cmc ∼ O(1), i.e. C cmc is asymptotically constant in the number of users K.
+Proof: Consider transmission strategy π 0 with v (n) = [1, 0, . . . , 0] T and u k (n) = [1, 0, . . . , 0] T and R mc (n) = arg max R mc (n) |S(n)|R mc for all k, n. Assume a ﬁxed n so that the time index can be omitted. We have SNR k = |H (11) k | 2 for all k which are i.i.d. exponential random variables with mean 1. Ordering the SNRs such that SNR k 1 ≥ SNR k 2 ≥ ... ≥ SNR k K it follows from Proposition 3 that:
+Then, as K → ∞, we have m K log(1 + SNR k m ) → P (X > γ) log(1 + γ) with γ = SNR k m where X is an exponential random variable with mean P. The maximum of the latter expression (which corresponds to the goodput maximization problem considered in [10]) can be evaluated analytically:
+where W 0 is the Lambert W function. Similarly to the proof of Proposition 2, we deﬁne
+1 T
+Now it can be shown (see proof of Proposition 2) that the coded multicast beamforming capacity C cmc π 0 under strategy π 0 satisﬁes C cmc π 0 = lim inf T →∞ ¯ C avg π 0 (T ) which allows us to conclude that
+Note that necessary conditions for exchanging the order of limits are satisﬁed as both inner limits exist and ¯ C avg π 0 (T ) converges uniformly to its limit (i.e. W 0 (P )) for any T . Since the assumed beamforming strategy π 0 is feasible and in general suboptimal we obtain C cmc ≥ W 0 (P ) > 0. Furthermore, as K → ∞, C cmc is also bounded from above by a constant, since for any k, n, R kn has a ﬁnite expected value bounded by log(1+2P N T N R ) (see proof of Proposition 2) so that for any T we have
+¯ C cmc (T ) ≤ 1 K
+1 T
+This shows that C cmc is bounded from below and above by a constant, which completes the proof.
+In this section, we propose algorithms for solving coded multicast beamforming problem (10). For simplicity, we con- sider the MISO case, the algorithms can be however extended to the MIMO case by incorporating propositions from [7].
+The subset search is based on a direct reformulation of the problem. Note that under the constraints of problem (10), we have:
+1: compute v ∗ = max v ∈V min k ∈K SNR k by solving (4) compute M ∗ = K log(1 + min k ∈K SNR k (v ∗ ))
+SNR k by solving (4) 7: 	 SNR min (S −k ) = min k ∈S
+In [4], a simple iterative algorithm was proposed for computing the transmit beamforming vector in the MISO multicast scenario. Two modes of operation are possible with the algorithm: (1) maximize the number of users which support a given SNR threshold, or (2) maximize the minimum SNR achieved by a subset with a required number of users. Assume that v i is the transmit beamforming vector in iteration i of the algorithm. Then, the corresponding values SNR k (v i ) for k ∈ K are computed and sorted. A subset of active users is now chosen according to selected mode of operation (1) or (2), and the weakest user ˆ k (i.e. with the smallest SNR among all active users) in the subset is identiﬁed. The transmit beamformer v i +1 is then computed by making a gradient step towards the selected user ˆ k. Under assumption of unit noise variance, this yields v i +1 = v i + µh ˆ k h H ˆ k v i with subsequent normalization v i +1 = v i+1 ||v i+1 || 2 and with some stepsize µ > 0.
+Now, we propose to modify the algorithm in order to (ap- proximately) solve problem (10). Our algorithm is motivated by the following observation. Assume again that v i is the transmit beamforming vector in the i-th iteration. The optimal
+transmission rate R mc i and the optimal subset S i can be deter- mined efﬁciently according to Proposition 3. Informally speak- ing, three possibilities are identiﬁed for improving the perfor- mance in the sense of increasing |S| log(1 + min k ∈S SNR k ): 1) attempt to increase the SNR of the best user among the inactive users so that it becomes active and |S| is incremented, 2) increase the SNR of the weakest user among the active users so that min k ∈S SNR k increases, 3) improve the SNR of the second weakest user among the active users so that |S| is decremented, but this is compensated for by the increase in min k ∈S SNR k . This is summarized in Algorithm 2.
+with v (k) = v(k)/||v(k)|| 2 for k = k 1 , k 2 , k 3 8: 	 compute R mc (k) and S(k) using Prop. 3
+9: 	 k ∗ = arg max k ∈{k 1 ,k 2 ,k 3 } |S(k)|R mc (k) 10: 	 v i +1 = v(k ∗ ), i = i + 1
+The algorithms proposed in Section V were evaluated using simulations. The parameters used in the simulations were as follows: N T = 4, N R = 1, P = 1. For modiﬁed Lozano’s algorithm µ = 0.03. Fig. 1 demonstrates the convergence behavior of Algorithm 2 for K = 20 users and for one selected channel realization. In Fig. 2, the performance of the proposed algorithms: Algorithm 1 (SS) and Algorithm 2 (ML) is compared with the max-min beamforming approach (4). We simulated T = 100 channel realizations and calculated the average rate per user. It can be observed that both SS and ML eventually outperform the max-min beamforming. The SS performs almost full search over all subsets of users and can be considered nearly optimal for solving (10). In order to show more clearly the point where coded multicast outperforms the max-min approach, the case S = K was excluded from execution (note that otherwise SS is never worse than max- min). The performance of the ML algorithm is within an almost constant gap to SS and is achieved at a signiﬁcantly smaller computational complexity.
+[[[ REFS ]]]
+N. Jindal
+Z.-Q. Luo
+--
+Capacity limits of multiple antenna multicast
+----
+N. Sidiropoulos
+T. Davidson
+Z.-Q. Luo
+--
+Transmit beamforming for physical-layer multicasting
+----
+E. Matskani
+N. Sidiropoulos
+Z.-Q. Luo
+L. Tassiulas
+--
+Joint mul- ticast beamforming and admission control
+----
+A. Lozano
+--
+Long-term transmit beamforming for wireless multicast- ing
+----
+P. K. Gopala
+H. E. Gamal
+--
+Opportunistic multicasting
+----
+Z.-Q. Luo
+N. Sidiropoulos
+P. Tseng
+S. Zhang
+--
+Approximation bounds for quadratic optimization with homogeneous quadratic con- straints
+----
+D. Tomecki
+S. Stanczak
+M. Kaliszan
+--
+Joint optimization of transmit and receive beamformers in a multicast MIMO system with power control
+----
+M. Luby
+--
+LT codes
+----
+A. Shokrollahi
+--
+Raptor codes
+----
+I. Bettesh
+S. Shamai
+--
+Optimal power and rate control for minimal average delay: The single-user case
+[[[ META ]]]
+xmlpapertitle -> Efﬁcient Beamforming Algorithms for MIMO Multicast with Application-Layer Coding
+pdf -> E:\testDataset\018.pdf
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\018.pdf
+xmlauthors -> Michał Kaliszan ∗†, Emmanuel Pollakis †, Sławomir Sta´nczak ∗†
+xmlroom -> -
+[[[ LINKS ]]]
+

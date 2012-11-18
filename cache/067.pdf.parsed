@@ -1,0 +1,148 @@
+[[[ ID ]]]
+67
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+On Error Correction Capability of Bit-Flipping Algorithm for LDPC Codes
+[[[ AUTHORS ]]]
+Wen-Yao Chen
+Chung-Chin Lu
+[[[ ABSTR ]]]
+Abstract—The error correction capability of bit-ﬂipping de- coding algorithm for low density parity-check (LDPC) codes is studied by introducing variable node adjacency (VNA) graphs which are derived from Tanner graphs of LDPC codes. For codes with column weight λ and girth g = 8, it can be shown that error patterns of weight less than or equal to λ − 1 can be corrected. This result implies that the bit-ﬂipping algorithm could decode up to the random error-correcting capability over binary symmetric channel for girth 8 codes whose random error- correcting capability is equal to λ − 1.
+Index Terms—Low density parity-check codes, bit-ﬂipping algorithm, Tanner graphs, variable node adjacency graphs.
+[[[ BODY ]]]
+The bit-ﬂipping (BF) algorithm is a simple and easy to implement, iterative hard-decision decoding algorithm for low density parity-check (LDPC) codes over binary symmetric channels [1] [2]. At each iteration, the decoder computes the check sums for each variable node and a variable node which satisﬁes the ﬂipping criterion is ﬂipped. A variable node is said to satisfy the ﬂipping criterion if it has more than or equal to a threshold number of unsatisﬁed check sums [3].
+In this paper, we mainly focus on the case that the ﬂipping threshold is the largest number of unsatisﬁed check sums among variable nodes, i.e., the column of the parity-check matrix. That is, we solve the error vector e n ×1 in
+where s = [s 1 , s 2 , . . . , s r ] t is the syndrome vector, H = [h 1 , h 2 , . . . , h n ] is the parity-check matrix, r n ×1 is the re- ceived codeword and e = [e 1 , e 2 , . . . , e n ] t is the error vector, by the following recursive procedure:
+2. 	 i = arg min 1 ≤j≤n w H (s − h j ), where w H () is the Hamming weight;
+s = s − h i ; e i = e i + 1, i.e., the error value e i is ﬂipped.
+3. 	 If s ̸= 0 and the number of iterations is less than a given threshold number, goto 2.
+There are works in the literature on the error correction capability of the bit-ﬂipping algorithm if the threshold num- ber of unsatisﬁed check sums is set to λ 2 [4]–[7]. Sipser and Spielman used expander graph argument to analyze the
+bit-ﬂipping algorithm [4]. Burshtein showed that almost all members of a code ensemble with column weight at least four can correct a linear fraction of errors by bit-ﬂipping, and improved the fraction factor [5]. The expansion argument was also used by Chilappagari et al [6]. They showed that a column weight λ and girth g LDPC code can correct errors of weight up to 1 2 n 0 ( λ 2 , g 2 ), where n 0 ( ·, ·) is the Moore bound [8]. Chilappagari and Vasi´c proved that for a column weight three code to correct t errors, it has to have a girth > 2t by studying the structure of trapping sets [7].
+Our approach is to deﬁne a special kind of graphs, called variable node adjacency (VNA) graphs, which are able to describe the number of check nodes connected between any pair of variable nodes. Then it can be shown that, without using the expansion factor argument, a column weight λ and girth g = 8 LDPC code can correct up to λ − 1 errors by BF algorithm. Note that 1 2 n 0 ( λ 2 , g 2 ) = λ 2 , if girth g = 8.
+The rest of the paper is organized as follows. Deﬁnitions and notations are given in Section II. The case of girth ≥ 6 is discussed in section III. The VNA graph is deﬁned and its properties are discussed in Section IV. Section V is on the error correction capability of BF algorithm for codes with girth ≥ 8. A conclusion is given in Section VI.
+Deﬁnition 1: Given a vector v = (v 1 , v 2 , . . . , v r ) t over the binary ﬁeld, the support set supp(v) of v is deﬁned as
+Given two binary vectors v and v ′ , the intersection supp(v) ∩ supp(v ′ ) of their support sets is denoted as I s (v, v ′ ).
+Thus, the Hamming distance of two binary vectors v and v ′ can be computed as
+The LDPC codes discussed are deﬁned by parity-check matrices H of size r ×n over the binary ﬁeld and have regular
+column weight λ. Since the columns of a parity-check matrix correspond to variable nodes of its Tanner graph, all variable nodes are labeled by columns of the matrix.
+Given a graph G with vertex set V and edge set E, a path of length l in the graph G is denoted as (v 1 , v 2 ), (v 2 , v 3 ),. . . , (v l , v l+1 ), where v i ∈ V , (v i , v i+1 ) ∈ E, 1 ≤ i ≤ l, v i ’s are distinct vertices. If v l+1 = v 1 , (v 1 , v 2 ), (v 2 , v 3 ),. . . , (v l , v l+1 ) is a cycle of length l. The degree of a vertex v ∈ V is denoted by deg G (v), where the subscript G in deg G is used to emphasize the graph G we refer.
+We discuss the error correction capability of the BF algo- rithm for binary LDPC cods with girth g ≥ 6. While the result in this section is already known in the literature, we present the proof for this result as it will be helpful to understand how girth can be used to derive conditions for guaranteed error correction.
+In the following, without loss of generality, we assume that the ﬁrst t bits of the transmitted n bits are corrupted, i.e., the syndrome is
+Lemma 1: If h i ∈ {h 1 , h 2 , . . . , h t } and h k / ∈ {h 1 , h 2 ,. . . , h t }, then w H (s − h i ) < w H (s − h k ) if and only if
+=w H (s − h i − (−h i )) + w H (h k ) − 2|I s (s, h k ) | =w H (s − h i ) + w H (h i ) − 2|I s (s − h i , h i ) |
+Theorem 1: The BF algorithm can correct all error patterns of weight less than λ+1 2 if the girth g of a Tanner graph of an LDPC code is ≥ 6.
+Proof: Given h i ∈ {h 1 , h 2 , . . . , h t } and h k / ∈ {h 1 , h 2 ,. . . , h t }, we want to ﬁnd a condition of t such that the inequality (2) in Lemma 1 holds, by ﬁnding an upper bound for |I s (s − h i , h i ) | + |I s (s, h k ) |. Since the girth g ≥ 6, each pair of columns of the parity-check matrix has at most one nonzero bit at the same position, i.e., |I s (h j , h l ) | ≤ 1, for 1 ≤ j ̸= l ≤ n. Because there are t − 1 summands in
+s − h i = h 1 + h 2 + · · · + h i −1 + h i+1 · · · + h t , we must have
+|I s (s − h i , h i ) | + |I s (s, h k ) | ≤ 2t − 1
+< 2( λ + 1 2
+) − 1, if t < λ + 1 2
+that is, the step 2 of the BF algorithm always ﬁnds the correct location of an error bit if the number of errors t < λ+1 2 .
+The results in inequalities (3) and (4) follow from the condition of girth ≥ 6. If girth ≥ 8, we can have a tighter upper bound for |I s (s −h i , h i ) |+|I s (s, h k ) | in inequality (2). Before discussing the case of girth ≥ 8, we introduce a special kind of graphs derived from Tanner graphs in the next section.
+We now introduce a graph in order to derive an upper bound of |I s (s − h 1 , h 1 ) | + |I s (s, h 1 ) | in inequality (2), which has been shown to be related to the error correction capability of the BF decoding algorithm in the previous section.
+Deﬁnition 2: A variable node adjacency (VNA) graph G VNA (v 1 , v 2 , . . . , v t ) induced by variable nodes v 1 , v 2 , . . ., v t of a girth g ≥ 8 Tanner graph is a graph whose vertex set consists of only variable nodes v 1 , v 2 , · · · , v t and whose edge set is built in the following procedure:
+Step 1.An edge is built between two variable nodes v 1 and v 2 if and only if there exists a check node c of the Tanner graph, to which variable nodes v 1 and v 2 are adjacent;
+Step 2.Reduce each subgraph induced by a maximal clique of size ≥ 3 into a tree by removing edges in the subgraph.
+Remark 1: If the reduced subgraphs of maximal cliques in Step 2 are star graphs, the VNA graph is exactly the inverse edge-vertex incidence graph deﬁned in [6].
+Remark 2: If the girth of Tanner graph is ≥ 8, at most one check node c is adjacent with v 1 and v 2 . Thus, there are no multiple edges between variable nodes in a VNA graph.
+The following two examples demonstrate the two steps in Deﬁnition 2.
+         
+1 0 0 1 0 1 1 0 0 0 1 0 0 0 1 0 1 1 0 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 1
+         
+be a submatrix of a parity-check matrix of an LDPC code. The corresponding induced subgraph of Tanner graph and a VNA graph G VNA (h 1 , h 2 , . . . , h 5 ) are shown in Fig. 1, where no clique of size ≥ 3 exists in Step 1.
+     
+1 0 0 0 1 1 1 1 0 1 0 0 0 0 1 0 0 0 0 1
+     
+be a submatrix of a parity-check matrix of an LDPC code. The corresponding induced subgraph of Tanner graph and a VNA graph G VNA (h 1 , h 2 , h 3 , h 4 ) are shown in Fig. 2, where there is a maximal clique of size 4 in Step 1.
+Example 2 demonstrates why we need Step 2 in Deﬁnition 2. Since all h i , 1 ≤ i ≤ 4, are checked by a common check node, the graph deﬁned only by Step 1 in Deﬁnition 2 is a clique (each pair of nodes are adjacent) of size 4 and has 3- cycles. Since the purpose to introduce VNA graphs is to ﬁnd tighter upper bounds for the inequalities in (3) and (4) based on the girth of the Tanner graph, a VNA graph has to reﬂect the girth of its corresponding Tanner graph, and therefore each subgraph induced by a maximal clique of size ≥ 3 must be reduced to a tree in Step 2.
+By the above discussion, and referring to Fig. 3, we have the following properties of a VNA graph.
+Property 1: Consider a girth ≥ 8 Tanner graph, a VNA graph G = G VNA (v 1 , v 2 , . . . , v t ) and the graph G 1 deﬁned in Step 1.
+(a) The girth of G is at least half of the girth of the Tanner graph [6], where the girth of an acyclic graph is deﬁned to be ∞ as a convention.
+(b) If the syndrome is s = h 1 + h 2 + · · · + h t , then the degree deg G (h i ) is an upper bound of the number N of distinct check sums (nodes) checking h i as well as other variable nodes in {h 1 , h 2 , . . . , h t } \ {h i }, which implies
+(c) Let u i = λ −deg G (h i ). Then the number of check sums checking h i only is at least u i . All of these check sums are equal and nonzero. An example is shown in Fig. 3.
+(d) By (c), if deg G (h i ) < λ 2 , then u i > λ 2 , and hence |{j; h ji = s j = 1 }| > λ 2 .
+Having knowledge about VNA graphs from the previous section, we can improve the error correction capability of the BF algorithm for LDPC codes with girth g ≥ 8.
+Again, WLOG, we assume the ﬁrst t bits of the transmitted codeword of length n are incorrect and the syndrome s = h 1 + · · ·+h t . Let G = G VNA (h 1 , h 2 , . . . , h t ), d i = deg G (h i ), i = 1, 2, . . . , t, and
+Theorem 4: If the number of error t ≤ λ − 1, where λ is the column weight of the code, then
+Proof: By considering a VNA graph G ′ 	 = G VNA (h 1 , h 2 , . . . , h t , h k ) so that G is a subgraph, we claim that
+1) deg G ′ (h k ) = 0. By, Property 1 (b), we have |I s (s, h k ) | ≤ deg G ′ (h k ) = 0. Then
+2) deg G ′ (h k ) ̸= 0, i.e., h k is adjacent to h i , for some 1 ≤ i ≤ t. Let deg G ′ (h i ) = d, then
+d − 1 = deg G (h i ) =d i
+Suppose h k is also adjacent to a neighbor of h i , says h j . Then there is a triangle passing h k , h i and h j , as shown in Fig. 4. This result contradicts to the fact that, by Property 1 (a), G ′ has girth ≥ 4. Therefore, h k must not be adjacent to any of the d − 1 neighbors among h 1 , h 2 , . . . , h t of h i , in other words, deg G ′ (h k ) ≤ t − (d −1). Then, by Property 1 (b), |I s (s, h k ) |, the number of unsatisﬁed check sums checking h k , must satisﬁes |I s (s, h k ) | ≤ deg G ′ (h k ) ≤ t − (d − 1), and then the inequality in (6) holds since
+≤ deg G (h i 0 ) + t − (d − 1) by Property 1 (b) = d i 0 + t − (d − 1)
+≤ (d − 1) + t − (d − 1) by Eq. (7) = t.
+Remark 3: Theorem 4 implies that an LDPC code of girth ≥ 8 must have minimum distance d min ≥ 2λ − 1. Thus for LDPC codes of girth ≥ 8 and minimum distance 2λ or 2λ−1,
+e.g. LU (3, q) codes constructed by Kim et al, having girth 8, column weight q and minimum distance 2q [11], the bit- ﬂipping algorithm can correct errors up to their random error- correction capability over binary symmetric channels.
+By deﬁning a variable node adjacency graph from the Tanner graph of a LDPC code, we have shown that the bit- ﬂipping algorithm can correct λ − 1 errors if the girth g is 8.
+The authors would like to thank the reviewers and TPC members for their comments that improved the presentation of this paper.
+[[[ REFS ]]]
+R. G. Gallager
+--
+Low density parity check codes
+----
+
+--
+Low Density Parity Check Codes
+----
+Y. Kou
+S. Lin
+M. Fossorier
+--
+Low-density parity check codes based on ﬁnite geometry: a rediscovery and new results
+----
+M. Sipser
+D. A. Spielman
+--
+Expander codes
+----
+D. Burshtein
+--
+On the error correction of regular LDPC codes using the ﬂipping algorithm
+----
+S. K. Chilappagari
+D. V. Nguyen
+B. Vasi´c
+M. W. Marcellin
+--
+On the guaranteed error correction capability of LDPC codes
+----
+S. K. Chilappagari
+B. Vasi´c
+--
+Error-correction capability of column- weight-three LDPC codes
+----
+N. Bigg
+--
+Algebraic Graph Theory
+----
+L. Zeng
+L. Lan
+Y. Y. Tai
+S. song amd S. Lin
+K. Abdel-Ghaffer
+--
+Construction of non-binary quasi-cyclic LDPC codes: A ﬁnite ﬁeld approach
+----
+N. Alon
+S. Hoory
+N. Linial
+--
+The Moore bound for irregular graphs
+----
+J.-L. Kim
+U. N. Peled
+I. Perepelitsa
+V. Pless
+--
+Explicit construction of families of LDPC codes with no 4-cycles
+----
+S. K. Chilappagari
+B. Vasi´c
+M. W. Marcellin
+--
+Guaranteed error correction capability of codes on graphs
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\067.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,111 @@
+[[[ ID ]]]
+104
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Vector Broadcast Channels: Optimality of Threshold Feedback Policies
+[[[ AUTHORS ]]]
+Tharaka Samarasinghe
+Hazer Inaltekin
+Jamie Evans
+[[[ ABSTR ]]]
+Abstract—Beamforming techniques utilizing only partial chan- nel state information (CSI) has gained popularity over other com- munication strategies requiring perfect CSI thanks to their lower feedback requirements. The amount of feedback in beamforming based communication systems can be further reduced through se- lective feedback techniques in which only the users with channels good enough are allowed to feed back by means of a decentralized feedback policy. In this paper, we prove that thresholding at the receiver is the rate-wise optimal decentralized feedback policy for feedback limited systems with prescribed feedback constraints. This result is highly adaptable due to its distribution independent nature, provides an analytical justiﬁcation for the use of threshold feedback policies in practical systems, and reinforces previous work analyzing threshold feedback policies as a selective feedback technique without proving its optimality. It is robust to selﬁsh unilateral deviations. Finally, it reduces the search for rate-wise optimal feedback policies subject to feedback constraints from function spaces to a ﬁnite dimensional Euclidean space.
+[[[ BODY ]]]
+O ((log n) ) [9] while maintaining optimal throughput scaling at the downlink, where n is the total number of users in the system and ∈ (0, 1).
+In all these previous works, it was implicitly assumed that threshold feedback policies are optimal to maximize com- munication rates without any formal proof. This assumption is intuitive (and even holds in the limit without feedback constraints [7], [9]), but its proof is not straightforward due to coupling effects of users’ feedback rules on the aggregate rate function over multiple beams for ﬁnite systems with ﬁnite feedback constraints. In [9], the optimality of threshold feedback policies among the class of homogenous feedback policies was brieﬂy discussed. In this work, we formally analyze the optimality of more general threshold feedback policies by allowing them to be heterogenous under ﬁnite feedback constraints. Unlike [2], [7], [8] focusing on the asymptotic throughput scaling with feedback amounts (i.e., the number of users contending for the uplink channel access) growing large as the total number of users increases, our results in this paper hold for any ﬁnite number of users with ﬁnite feedback constraints.
+Our contributions and the organization of the paper are as follows. We precisely deﬁne feedback policies and formulate the problem of ﬁnding the optimal feedback policy maxi- mizing aggregate communication rate under ﬁnite feedback constraints as a function optimization problem in Section II. We prove that the rate-wise optimal feedback policy solving this optimization problem is a threshold feedback policy in Section III. Section IV provides a discussion on these results, and Section V concludes the paper. Our results are distribution independent, provide an analytical justiﬁcation for the use of threshold feedback policies in practical systems, and strengthen previous work on thresholding as an appropriate selective feedback scheme. They also form a basis for the op- timum threshold selection problem analyzed in our companion paper [10].
+Consider a vector broadcast channel in which a BS com- municates with mobile users through M different beams simultaneously. The BS has M transmitter antennas, and users have one receiver antenna. The beams are assumed to be statistically identical, and users experience statistically independent channel conditions. We let γ i,m be the SINR at
+where r (F , Γ) is the instantaneous downlink communication rate under F , and expectation is taken over the random SINR matrices. The result of the maximum operation is zero when G m (F (Γ)) is an empty set, which implies that zero rate is achieved on a particular beam if no user requests this beam. r m (F , Γ) and R m (F ) denote the instantaneous communica- tion rate and the ergodic sum rate on beam m, respectively. Note that r m (F , Γ) = log 1 + max i∈G m (F (Γ)) γ i,m , and R m (F ) = E Γ [r m (F , Γ)]. Also, the sum rate achieved on an event A under F is written as R (F , A) = E Γ [r (F , Γ) 1 A ]. We will use R (F ) as the performance measure of a given feedback policy along the rate dimension.
+We are interested in maximizing the ergodic sum rate under ﬁnite feedback constraints. To this end, we select the average number of users feeding back per beam Λ(F ) as the performance measure along the feedback dimension. Since beams are statistically identical, this measure can be written as Λ(F ) = n i =1 Pr {F i (Γ) selects beam 1} for beam sym- metric policies. The resulting rate maximization problem can be written as
+This is not an easy optimization problem to solve since the optimization is over function spaces [11]. Also, the objective function is not necessarily convex [12]. We will convert the function optimization problem in (2) into an optimization problem over R n by proving the optimality of threshold feedback policies. A general threshold feedback policy is deﬁned as follows.
+Deﬁnition 2: We say T = (T 1 , T 2 , · · · , T n ) is a general threshold feedback policy (GTFP) if, for all i ∈ N , there is a threshold τ i such that T i (γ i ) generates a feedback packet containing SINR values {γ i,k } k∈I i if and only if γ i,k ≥ τ i for all k ∈ I i ⊆ M. We call it a homogenous general threshold feedback policy if all users use the same threshold τ , i.e., τ i = τ for all i ∈ N .
+We note that a user can be allocated to multiple beams ac- cording to this deﬁnition. Another class of threshold feedback policies limiting each user to request at most one beam, which is, of course, the beam achieving the maximum SINR, has been widely studied in the literature [2], [7]–[9]. We call this class of feedback policies maximum SINR threshold feedback policies, and formally deﬁne them as follows.
+Deﬁnition 3: T = (T 1 , T 2 , · · · , T n ) is a maximum SINR threshold feedback policy (MTFP) if, for all i ∈ N , there is a threshold τ i such that T i (γ i ) produces a feedback packet requesting beam m and containing γ i,m as the sole SINR information if and only if b i = m and γ i ≥ τ i .
+For a given set of threshold values, it is not hard to see that the GTFP (corresponding to these threshold values) always achieves a rate at least as good as the rate achieved by the MTFP (corresponding to the same threshold values) because users request all the beams with SINR values above their thresholds under GTFP, which includes the best beam with the highest SINR. Since maximum SINR values are also fed
+To this end, for a given F = (F 1 , F 2 , · · · , F n ) , we let G − 1 1 (F (Γ)) = {i ∈ N : i = 1 & i ∈ G 1 (F (Γ))}. That is, G − 1 1 (F (Γ)) is the random set of users containing all users requesting beam 1 under F , except for the ﬁrst user. The superscript −1 is used to indicate that all users but user 1 requesting beam 1 are included in G − 1 1 (F (Γ)). The maximum beam 1 SINR value achieved by a user in this random set is denoted by ¯ γ 1 (F ), and it is equal to ¯ γ 1 (F ) =
+Consider now another decentralized feedback policy F 1 = (T 1 , F 2 , · · · , F n ) . That is, we only allow user 1 to switch to the threshold feedback rule T 1 with threshold value τ 1 determined as above. Then, for almost all realizations of Γ, we have ¯ γ 1 (F ) = ¯ γ 1 F 1 = ¯ γ 1 . Therefore, the difference between R (F ) and R F 1 depends only on the rate achieved by user 1 under two feedback policies.
+We are interested in proving R (F ) ≤ R (T ). A brief sketch of the proof is as follows. We will ﬁrst prove that R (F ) ≤ R F 1 . Let Γ − 1 be the SINR matrix containing SINR values of all users except those of the ﬁrst user. Let also R (F |Γ − 1 ) = E Γ [r (F , Γ) |Γ − 1 ] be the conditional average rate achieved by F for a given Γ − 1 . Then, it is enough to show that R F 1 |Γ − 1 ≥ R (F|Γ − 1 ) for almost all Γ − 1 . This result implies that the aggregate communication rate increases if user 1 switches to a threshold feedback rule regardless of feedback rules of other users. Repeating the same steps for other users i ∈ {2, 3, · · · , n} one-by-one, we end up with the threshold feedback policy T after n steps, and conclude that R (T ) ≥ R (F ).
+Before giving the proof details, we will ﬁrst perform a preliminary analysis. For the rest of this part of the paper, F 1 will represent the decentralized feedback policy derived from a given decentralized feedback policy F as above. When we switch from F to F 1 , we can identify three main types of events: neutral, loss and gain events. On the neutral event, we will continue to achieve the same downlink throughput under both feedback policies. On the loss event, we will lose some data rate when we switch from F to F 1 . Finally, on the gain event, we will gain some data rate when we switch from F to F 1 . The difference R F 1 − R (F) depends on the average rates lost and gained on the loss and gain events. To show that R F 1 − R (F) ≥ 0, we need to characterize loss and gain events precisely. We ﬁrst formally deﬁne these events, and then provide their further characterizations suitable for our analysis in Lemmas 1 and 2.
+Deﬁnition 4: When we switch from F to F 1 , the loss, gain and neutral events on beam 1 are deﬁned as
+A L = Γ ∈ R M ×n + 	 : r 1 F 1 , Γ < r 1 (F , Γ) , 	 (3) A G = Γ ∈ R M ×n + 	 : r 1 F 1 , Γ > r 1 (F , Γ) 	 (4)
+Similar to the above arguments, user 1 will not request beam 1 under F 1 on the event A L since γ 1 ∈ S L 1 . This means
+The purpose of the maximum operator is to obtain a tighter lower bound. By using (6), (7), (8) and (9), we can write R 1 F 1 |Γ − 1 − R 1 (F |Γ − 1 ) ≥
+Pr (A G |Γ − 1 ) (log (1 + max (τ 1 , γ 1 )) − log (1 + γ 1 )) +Pr (A L |Γ − 1 ) (log (1 + ¯ γ 1 ) − log (1 + τ 1 )) .
+To conclude the proof, we need to analyze two different cases separately. If ¯ γ 1 ≥ τ 1 , then it directly follows that R 1 F 1 |Γ − 1 − R 1 (F |Γ − 1 ) ≥ 0. If ¯ γ 1 < τ 1 , then we have
+Since ¯ γ 1 < τ 1 , we have Pr (A G |Γ − 1 ) = Pr γ 1 ∈ ¯ S R 1 , and Pr (A L |Γ − 1 ) ≤ Pr γ 1 ∈ S L 1 . Since Pr γ 1 ∈ ¯ S R 1 = Pr γ 1 ∈ S L 1 , we also have R 1 F 1 |Γ − 1 −R 1 (F |Γ − 1 ) ≥ 0 for ¯ γ 1 < τ 1 . This proves that R 1 F 1 |Γ − 1 ≥ R 1 (F |Γ − 1 ) for almost all Γ − 1 .
+This theorem shows that if a user starts using a threshold feedback rule, the system will beneﬁt in terms of ergodic sum rate regardless of the feedback rules all other users. This result leads to the following key ﬁnding.
+Theorem 2: For any beam symmetric general decentralized feedback policy F , there exists a GTFP T such that Λ (F ) = Λ (T ) and R (T ) ≥ R (F ).
+Proof: For a given F = (F 1 , F 2 , · · · , F n ) , let T = (T 1 , T 2 , · · · , T n ) be the GTFP constructed as above. Let F k = (T 1 , · · · , T k , F k +1 , · · · , F n ) for 1 ≤ k ≤ n. When k = n, we have F n = T . By Theorem 1, we have R (F ) ≤ R F 1 ≤ · · · ≤ R (F n ). Since Λ (F ) = Λ F 1 =
+In this part, we will provide similar results for MTFPs. Under a maximum SINR decentralized feedback policy, each user requests only the beam achieving the maximum SINR if the feedback conditions are met, e.g., see Deﬁnitions 1 and 3. Proving the optimality of MTFPs in the set of maximum SINR feedback policies is similar to the proof we gave for the optimality of GTFPs in Theorems 1 and 2. There are only some subtle differences. Now, the thresholds are set such that Pr {b i = 1 and γ i ≥ τ i } = Pr {γ i ∈ F B i }. The deﬁnition of F B i can be further reﬁned in which user i requests beam 1 if and only if b i = 1 and γ i satisﬁes some feedback conditions. The deﬁnitions of other sets and events of interest require only some subtle modiﬁcations, too. For example, A L can now be deﬁned as A L = Γ ∈ R M ×n + 	 : γ 1 ∈ S L 1 & ¯ γ 1 < γ 1
+MTFPs. Given the same utility function R (F 1 , F 2 , · · · , F n ) for all users, the selﬁsh optimization problem faced by user i can be stated as choosing a beam symmetric decentralized feedback rule maximizing her utility given other users’ feed- back rules without increasing the feedback level. Theorem 1 shows that the dominant strategy is to switch from F i to the corresponding threshold rule T i . As a result, the set of GTFPs constitute the set of Nash equilibria for this feedback rule selection game, and therefore GTFPs are also stable operating points from a game theoretic point of view.
+In this paper, we have established the structure of rate- wise optimal decentralized feedback policies for opportunistic vector broadcast channels under ﬁnite feedback constraints. In particular, we have shown that threshold feedback policies are optimal to maximize data rates for such channels under ﬁnite feedback constraints. Our results do not depend on speciﬁc fading statistics, and hold for most common fading distribu- tions including Rayleigh, Ricean and Nakagami distributions. They form an analytical justiﬁcation for the use of threshold feedback policies in practical systems, and reinforce previous work on thresholding as a selective feedback policy to reduce feedback levels. Since each threshold feedback policy can be associated with a threshold vector in R n + , these results also reduce the search for rate-wise optimal feedback policies from function spaces to ﬁnite dimensional Euclidean spaces.
+[[[ REFS ]]]
+P. Viswanath
+D. Tse
+R. Laroia
+--
+Opportunistic beamforming using dumb antennas
+----
+M. Shariff
+B. Hassibi
+--
+On the capacity of MIMO broadcast channels with partial side information
+----
+M. Costa
+--
+Writing on dirty paper
+----
+H. Weingarten
+Y. Steinberg
+S. Shamai
+--
+The capacity region of the Gaussian MIMO broadcast channel
+----
+D. Gesbert
+M. Alouini
+--
+How much feedback is multi-user diversity really worth?
+----
+Y. Xu
+J. Zhao
+Y. Cai
+--
+User selection based on feedback threshold for MIMO broadcast channels
+----
+J. Diaz
+O. Simeone
+Y. Bar-Ness
+--
+Asymptotic analysis of reduced- feedback strategies for MIMO Gaussian broadcast channels
+----
+M. Pugh
+B. D. Rao
+--
+Reduced feedback schemes using random beamforming in MIMO broadcast channels
+----
+T. Samarasinghe
+H. Inaltekin
+J. Evans
+--
+The feedback-capacity tradeoff for opportunistic beamforming
+----
+T. Samarasinghe
+H. Inaltekin
+J. Evans
+--
+Vector broadcast channels: Optimal threshold selection problem
+----
+D. G. Luenberge
+--
+Optimization by Vector Space Methods
+----
+H. Inaltekin
+T. Samarasinghe
+J. Evans
+--
+Rate optimal limited feedback policies for the MIMO downlink
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\104.pdf
+[[[ LINKS ]]]
+

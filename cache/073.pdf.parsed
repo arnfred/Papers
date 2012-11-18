@@ -1,0 +1,170 @@
+[[[ ID ]]]
+73
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The Dispersion of Inﬁnite Constellations
+[[[ AUTHORS ]]]
+Amir Ingber
+Ram Zamir
+Meir Feder
+[[[ ABSTR ]]]
+Abstract—In the setting of a Gaussian channel without power constraints, proposed by Poltyrev, the codewords are points in an n-dimensional Euclidean space (an inﬁnite constellation) and their optimal density is considered. Poltyrev’s “capacity” is the highest achievable normalized log density (NLD) with vanishing error probability. This capacity as well as error exponents for this setting are known. In this work we consider the optimal NLD for a ﬁxed, nonzero error probability, as a function of the codeword length (dimension) n. We show that as n grows, the gap to capacity is inversely proportional (up to the ﬁrst order) to the square-root of n where the proportion constant is given by the inverse Q-function of the allowed error probability, times the square root of 1 2 . In an analogy to similar result in channel coding, the dispersion of inﬁnite constellations is 1 2 nat 2 per channel use. We show that this optimal convergence rate can be achieved using lattices, therefore the result holds for the maximal error probability as well. Connections to the error exponent of the power constrained Gaussian channel and to the volume-to-noise ratio as a ﬁgure of merit are discussed.
+[[[ BODY ]]]
+Coding schemes over the Gaussian channel are traditionally limited by the average/peak power of the transmitted signal [1]. Without the power restriction (or a similar restriction) the channel capacity becomes inﬁnite, since one can space the codewords arbitrarily far apart from each other and achieve a vanishing error probability. However, many coded modulation schemes take an inﬁnite constellation (IC) and restrict the usage to points of the IC that lie within some n-dimensional form in Euclidean space (a ’shaping’ region). Probably the most important example for an IC is a lattice [2], and examples for the shaping regions include a hypersphere in n dimensions, and a Voronoi region of another lattice [3].
+In 1994, Poltyrev [4] studied the model of a channel with Gaussian noise without power constraints. In this setting the codewords are simply points in the n-dimensional Euclidean space. The analog to the number of codewords is the density γ of the constellation points (the average number of points per unit volume). The analog of the communication rate is the normalized log density (NLD) δ 	 1 n log γ. The error probability in this setting can be thought of as the average error probability, where all the points of the IC have equal transmission probability (precise deﬁnitions follow later on in
+the paper). Poltyrev showed that the NLD δ is the analog of the rate in classical channel coding, and established the analog term to the capacity, the highest achievable NLD for coding on the unconstrained Gaussian channel with vanishing error probability, denoted δ ∗ . Random coding and sphere packing error exponent bounds were also derived, which are analogous to Gallager’s error exponents in the classical channel coding setting [5], and to the error exponents of the power-constrained AWGN channel [6], [5].
+In classical channel coding the channel capacity gives the ul- timate limit for the rate when arbitrarily small error probability is required, and the error exponent quantiﬁes the (exponential) speed at which the error probability goes to zero when the rate is ﬁxed (and below the channel capacity). Another question that is of interest is the following: for a ﬁxed error probability ε, what is the optimal (maximal) rate that is achievable when the codeword length n is ﬁxed. While the exact answer for this question for any ﬁnite n is still open (see [7] for the current state of the art), the speed at which the optimal rate converges to the capacity is known. By letting R ε (n) denote the maximal rate for which there exist communication schemes with codelength n and error probability at most ε, it is known that for a channel with capacity C [8][7]:
+where Q −1 (·) is the inverse complementary standard Gaussian CDF. The constant V , termed the channel dispersion, is the variance of the information spectrum i(x; y) log P XY (x,y) P
+for a capacity-achieving distribution. (1) holds for discrete memoryless channels (DMCs), and was recently extended to the (power constrained) AWGN channel [9][7].
+In this paper we are interested in ﬁnding out whether the behavior demonstrated in (1) exists in the setting of a Gaussian channel without power constraints. We answer this question to the positive. The main result is the following: for a given, ﬁxed, nonzero error probability ε, denote by δ ε (n) be the maximal NLD for which there exists an IC with dimension n and error probability at most ε. Then
+where δ ∗ is the ultimate limit for the NLD with any dimension [4], given by 1 2 log 1 2πeσ 2 where σ 2 is the variance of the
+additive Gaussian noise (logarithms are taken w.r.t. to the natural base e).
+In the achievability part we use lattices (and the Minkowski- Hlawka theorem [10]). Because of the regular structure of lattices, our achievability result holds in the stronger sense of maximal error probability. The proof technique used is somewhat different than that used by Poltyrev in [4]. The non- asymptotic form of the achievability result here can be more easily evaluated than the bound in [4] (it can be shown that the bounds are actually equivalent [11]). In the converse part of the proof we consider the average error probability and any IC (not only lattices), therefore our result (2) holds for both average and maximal error probability, and for any IC (lattice or not).
+Another ﬁgure of merit for lattices (that can be deﬁned for general ICs as well) is the volume-to-noise ratio (VNR), which generalizes the SNR notion [12] (see also [13]). The VNR quantiﬁes how good a lattice is for channel coding over the unconstrained AWGN at some given error probability ε. It is known that for any ε > 0, the optimal (minimal) VNR of any lattice approaches 2πe when the dimension n grows [12]. As a consequence of the paper’s main result we show the asymptotical behavior of the optimal VNR.
+In the next section we discuss the relations of our result to the error exponent theory and to the power constrained AWGN channel. The main result is presented and proved in Section III. In Section IV we obtain the asymptotic behavior of the optimal VNR as a consequence of the main result. Due to space limitations only proof outlines are provided. Detailed proofs as well as ﬁnite dimensional analysis can be found in [11].
+By the similarity of Equations (1) and (2) we may isolate the constant 1 2 and identify it as the dispersion of the uncon- strained AWGN setting. In this section we discuss this fact and its relation to classical channel coding and to the power- constrained AWGN channel.
+One interesting property of the channel dispersion theorem (1) is the following connection to the error exponent. Under some mild regularity assumptions, the error exponent can be approximated near the capacity by
+where V is the channel dispersion. The fact that the error exponent can be approximated by a parabola with second derivative 1 V was already known to Shannon (see [7, Fig. 18]). This property holds for DMCs and for the power constrained AWGN channel and is conjectured to hold in more general cases. Note, however, that while the parabolic behavior of the exponent hints that the gap to the capacity should behave as O 1 √n , the dispersion theorem cannot be derived directly from the error exponent theory. Even if the error probability
+was given by e −nE(R) exactly, (1) cannot be deduced from (3) (which holds only in the Taylor approximation sense).
+Analogously to (3), we examine the error exponent for the unconstrained Gaussian setting. For NLD values above the critical NLD δ cr 	 1 2 log 1 4πeσ 2 (but below δ ∗ ), the error exponent is given by [4]:
+By straightforward differentiation we get that the second derivative (w.r.t. δ) of E (δ, σ 2 ) at δ = δ ∗ is given by 2, so according to (3), it is expected that the dispersion for the unconstrained AWGN channel will be 1 2 . This agrees with our main result and its similarity to (1), and extends the correctness of the conjecture (3) to the unconstrained AWGN setting as well. It should be noted, however, that our result provides more than just proving the conjecture: there exist examples where the error exponent is well deﬁned (with second derivative), but a connection of the type (3) can only be achieved asymptotically with ε → 0 (see, e.g. [14]). Our result (2) holds for any ﬁnite ε, and also gives the exact 1 n log n term in the expansion (see Theorem 1 below).
+Another indication that the dispersion for the unconstrained setting should be 1 2 comes from the connections to the power constrained AWGN. While the capacity 1 2 log(1 + P ) , where P denotes the channel SNR, is clearly unbounded with P , the form of the error exponent curve does have a nontrivial limit as P → ∞. In [3] it was noticed that this limit is the error exponent of the unconstrained AWGN channel (sometimes termed the ’Poltyrev exponent’), where the distance to the capacity is replaced by the NLD distance to δ ∗ . By this analogy we examine the dispersion of the power constrained AWGN channel at high SNR. In [7] the dispersion was found, given (in nat 2 per channel use) by
+This term already appeared in Shannon’s 1959 paper on the AWGN error exponent [6], where its inverse is exactly the second derivative of the error exponent at the capacity (i.e. (3) holds for the AWGN channel). It is therefore no surprise that by taking P → ∞, we get the desired value of 1 2 , thus completing the analogy between the power constrained AWGN and its unconstrained version. This convergence is quite fast, and is tight for SNR as low as 10dB (see Fig. 1).
+Theorem 1: Let ε > 0 be a given, ﬁxed, error probability. Denote by δ n (ε) the optimal NLD for which there exists an n-dimensional inﬁnite constellation with error probability at most ε. Then, as n grows,
+We prove the result after we deﬁne the notations and preset a key lemma required for the proof.
+We adopt most of the notations of Poltyrev’s paper [4]: Let Cb(a) denote a hypercube in R n :
+Let Ball (y, r) denote a hypersphere in R n and radius r > 0, centered at y ∈ R n :
+and let Ball (r) denote Ball(0, r). V n 	 π n/2 Γ(n/2+1) denotes the volume of an n dimensional hypersphere with radius 1 [2].
+Let S be an IC. We denote by M(S,a) the number of points in the intersection of Cb(a) and the IC S, i.e. M(S,a) |S Cb(a)|. The density of S, denoted by γ(S), or simply γ, measured in points per volume unit, is deﬁned by
+n log γ. 	 (10) It will prove useful to deﬁne the following:
+Deﬁnition 1 (Expectation over a hypercube): Let f : S → R be an arbitrary function. Let E a [f (s)] denote the expectation of f (s), where s is drawn uniformly from the code points that reside in the hypercube Cb(a):
+Throughout the paper, an IC will be used for transmission of information through the unconstrained AWGN channel with noise variance σ 2 (per dimension). The additive noise shall be denoted by Z = [Z 1 , ..., Z n ] T . An instantiation of the noise vector shall be denoted by z = [z 1 , ..., z n ] T .
+For s ∈ S, let P e (s) denote the error probability when s was transmitted. When the maximum likelihood (ML) decoder is used, the error probability is given by P e (s) = Pr{s+Z /∈ W (s)}, where W(s) is the Voronoi region of s, i.e. the convex
+polytope of the points that are closer to s than to any other point s ′ ∈ S. The maximal error probability is deﬁned by
+and the average error probability is deﬁned by P e (S) limsup
+This key lemma regarding the norm of a Gaussian vector is used in the proof of the main result.
+Lemma 1: Let Z = [Z 1 , ..., Z n ] T be a vector of n zero- mean, independent Gaussian random variables, each with mean σ 2 . Let r > 0 be a given arbitrary radius. Then the following holds for any dimension n:
+where Q(·) is the standard complementary cumulative distri- bution function, · is the usual ℓ 2 norm, and
+Proof outline: The proof relies on the convergence of a sum of independent random variables to a Gaussian random variable, i.e. the central limit theorem. We ﬁrst note that
+Let Y i = Z 2 i −σ 2 σ 2 √2 and let S n 	 1 √n n i=1 Y i . It is easy to verify that both Y i and S n have zero mean and unit variance. It follows that
+S n is a normalized sum of i.i.d. variables, and by the central limit theorem converges to a standard Gaussian random vari- ables. The Berry-Esseen theorem (see, e.g. [15, Ch. XVI.5]) quantiﬁes the rate of convergence in the cumulative distribu- tion function sense, and states that for any α > 0
+where T = E[|Y i | 3 ]. The proof of the lemma is completed by applying the Berry-Esseen theorem to the RHS of (17).
+In the direct part we show that for any ﬁxed, nonzero error probability ε > 0, there exist lattices with error probability at most ε and NLD δ according to (6). The result holds for both average and maximal error probability since we use lattices. Note that for lattices density (in code points per volume unit) is γ = (det Λ) −1 , and the NLD is δ = 1 n log γ = − 1 n log det Λ.
+Let Λ be a lattice that is used as an IC for transmission over the unconstrained AWGN. We analyze the error probability of the ML decoder.
+Suppose that the zero lattice point was sent, and the noise vector is z ∈ R n . An error event occurs when there is a nonzero lattice point λ ∈ Λ whose Euclidean distance to z is less than the distance between the zero point and noise vector. We denote by E the error event. We condition on the radius
+P e (Λ) = Pr{E} = E t [Pr {E | z = t}] =
+where the last inequality holds for any r > 0. f R (·) denotes the PDF of the noise radius. The conditional error probability Pr {E | z = t} can be rewritten and bounded by
+where the inequality follows from the union bound. Averaging w.r.t. to the radius of the noise vector gives
+Note that the last integral has a bounded support (w.r.t. λ) - it is always zero if λ ≥ 2r. Therefore we can apply the Minkowski-Hlawka (MH) theorem [10, Lemma 3, p. 65], and conclude that for any γ > 0 there exist a lattice Λ with density γ whose error probability is upper bounded by
+≤ γ λ∈R n r 0 f R (t) Pr {λ ∈ Ball(z, z ) | z = t}dtdλ + Pr{ z > r ∗ }.
+Remarkably, the last integral evaluates to V n r 0 f R (t)t n dt (see [11]), and we conclude that for any γ there exists a lattice with error probability upper bounded by
+We note that the above non-asymptotic bound on the best achievable error probability is easier to evaluate than the corresponding bound in [4, Eq. (23)], and in fact, both bounds can shown to be equivalent [11].
+Let ε > 0 be the desired error probability. Determine r s.t. Pr( Z > r) = ε 1 − 1 √n and γ s.t. γV n r 0 f R (t)t n dt =
+ε √n . This way it is assured that the error probability is not greater than ε. Deﬁne α n s.t. r 2 = nσ 2 (1 + α n ) (recall that r implicitly depends on n as well). Lemma 1 and some algebra lead to
+So far, we have shown the existence of a lattice Λ with error probability at most ε. The NLD is given by
+The required result follows using (20), the Stirling approxi- mation for V n , the Taylor approximation for log(1 + x), and a careful evaluation of the integral r 0 f R (t)t n dt (see [11] for more details).
+In the direct part we have shown the existence of good ICs with NLD that approaches the NLD capacity δ ∗ . These ICs were lattices, and the convergence to δ ∗ was of the order 	 1 2n Q −1 (ε). We now show that this is the optimal convergence rate, for any IC (not only for lattices). The results in the converse part are concerned with the average error probability P e (S). A lower bound on the average error probability is clearly a lower bound on the maximal error probability as well.
+The proof of the converse part has three parts. First we prove the converse for ICs where all the Voronoi cells have equal volume. Then we extend the proof to ICs with some mild regularity properties, and only then prove the converse for any IC.
+. Such ICs include the important class of Lattices, as well as many other constellation types. Suppose s ∈ S is sent. Let r be the radius of a sphere with the same volume as the Voronoi region W (s), i.e. |W(s)| = 1 γ = e −nδ = r n V n , or r = e −δ V − 1 n n . By the equivalent sphere argument [4][16], the probability that the noise leaves W (s) is lower bounded by the probability to leave a sphere of the same volume:
+By assumption, all the Voronoi regions have the same volume. Therefore the bound (21) holds for any s ∈ S, and also for the average error probability ε.
+The probability Pr{ Z ≥ r}, or Pr{ Z 2 ≥ r 2 }, is equal to the CDF of a χ 2 random variable with n degrees of freedom. There is no known closed-form expression for the CDF of this probability distribution. In [4], this probability is lower bounded by exp[−n(E L − o(1))], where E L is a function of δ and σ 2 only (and not n). This gives the sphere packing exponent for this setting. In [16], this probability was calculated as a sum of n/2 elements that gives the exact expression, but its asymptotic behavior is hard to characterize. Here we use the normal approximation in order to determine
+the behavior of the NLD δ with n where the error probability ε remains ﬁxed.
+where T is a constant given in (15). The desired result (6) then follows from the Stirling and Taylor approximations.
+1) There exists a radius r 0 > 0, s.t. for all s ∈ S, the Voronoi cell W (s) is contained in Ball(s, r 0 ).
+2) The density γ(S) is given by lim a→∞ M(S,a) a n (rather than lim sup in the original deﬁnition).
+Let S be a regular IC. For s ∈ S, we denote by v(s) the volume of the Voronoi cell of s, |W(s)|. We also de- ﬁne the average Voronoi cell volume of a regular IC by v(S) lim sup a→∞ E a [v(s)]. It can be shown that for a regular IC, the average volume is the inverse of the density,
+Let SPB (v) denote the probability that the noise leaves a sphere of volume v. By the equivalent sphere argument we have P e (s) ≥ SPB(v(s)) for all s ∈ S. It can be shown that SPB (v) is a convex function of the volume v. We now extend the equivalent sphere bound to the average volume as well:
+(a) follows from the sphere bound for each individual point s ∈ S, (b) follows from the Jensen inequality and the con- vexity of SPB (·), and (c) follows since SPB(·) is continuous.
+Following the same steps as in the constant Voronoi volume case extends the converse to the case of regular ICs as well.
+The ﬁnal step in the converse proof is the extension to non- regular ICs. Such ICs include constellations which are semi- inﬁnite (e.g. contains points only in half of the space), and also constellations in which the density oscillates with the cube size a (and the formal limit γ does not exist). This is done with the aid of a regularization process - for any IC S with NLD δ and error probability ε, there exists a regular IC S ′ with NLD δ ′ and error probability ε ′ which are close to δ and ε respectively. Then we apply the converse result on the regular IC S ′ and get the desired result. The technical details of the proof and the regularization process can be found in [11].
+where σ 2 (ε) is the noise variance s.t. the error probability is exactly ε. This dimensionless ﬁgure of merit offers another way to quantify the goodness of the lattice for coding over the unconstrained AWGN channel for a given error probability ε. Note that the VNR is invariant to scaling of the lattice, and that the deﬁnition can be extended to general inﬁnite constellations. The deﬁnition here follows [12] (in [13] the same quantity is deﬁned but differs by a factor of 1 2πe ).
+The minimum possible value of µ(Λ, ε) over all lattices in R n is denoted by µ n (ε), and it is known that for any 1 > ε > 0, lim n→∞ µ n (ε) = 2πe (see, e.g. [13] [12]). Using the main result of the paper we can show how µ n (ε) approaches 2πe:
+Theorem 2: For a ﬁxed error probability ε > 0, The optimal VNR µ n (ε) is given by
+n . (25) Proof outline: By deﬁnition, the following holds for any σ 2 :
+(note that δ ε (n) depends on σ 2 as well). (25) follows from algebraic manipulations of the main result (6).
+[[[ REFS ]]]
+G. D. Forney Jr.
+G. Ungerboeck
+--
+Modulation and coding for linear Gaussian channels
+----
+J. H. Conwa
+N. J. A. Sloan
+--
+Sphere packings, lattices and groups, ser
+----
+U. Erez
+R. Zamir
+--
+Achieving 1/2 log(1+SNR) over the additive white Gaussian noise channel with lattice encoding and decoding
+----
+G. Poltyrev
+--
+On coding without restrictions for the AWGN channel
+----
+R. G. Gallage
+--
+Information Theory and Reliable Communication
+----
+C. E. Shannon
+--
+Probability of error for optimal codes in a gaussian channel
+----
+Y. Polyanskiy
+H. Poor
+S. Verd´u
+--
+Channel coding rate in the ﬁnite blocklength regime
+----
+V. Strassen
+--
+Asymptotische absch¨atzungen in shannons informa- tionstheorie
+----
+Y. Polyanskiy
+V. Poor
+S. Verd´u
+--
+Dispersion of Gaussian channels
+----
+E. Hlawk
+J. Shoißengeie
+R. Taschne
+--
+Geometric and Analytic Numer Theory
+----
+A. Ingber
+R. Zamir
+M. Feder
+--
+Finite dimensional inﬁnite constel- lations
+----
+R. Zamir
+--
+Lattices are everywhere
+----
+G. D. F. Jr.
+M. D. Trott
+S.-Y. Chung
+--
+Sphere-bound-achieving coset codes and multilevel coset codes
+----
+A. Ingber
+M. Feder
+--
+Parallel bit-interleaved coded modulation
+----
+W. Felle
+--
+An Introduction to Probability Theory and Its Applications, Volume 2 (2nd Edition)
+----
+V. Tarokh
+A. Vardy
+K. Zeger
+--
+Universal bound on the performance of lattice codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\073.pdf
+[[[ LINKS ]]]
+

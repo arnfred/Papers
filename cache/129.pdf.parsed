@@ -1,0 +1,137 @@
+[[[ ID ]]]
+129
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Capacity Region of a Class of Deterministic K -Receiver Broadcast Channels with Degraded Message Sets
+[[[ AUTHORS ]]]
+Hon Fah Chong
+Ying-Chang Liang
+[[[ ABSTR ]]]
+Abstract—In this paper, we establish the capacity region of a new class of deterministic K-receiver broadcast channels with degraded message sets, where the output Y i , i ∈ {1, . . . , K}, is a deterministic function of the channel input X and user i requires messages (M 1 , . . . , M i ). In this class of deterministic broadcast channels, the outputs Y 1 → Y 2 → Y 3 . . . → Y K form a Markov chain for a sufﬁcient class of input probability distributions p (x) ∈ P. The main idea of the coding strategy is to allow user i to decode not only its own messages (M 1 , . . . , M i ), but also part of the messages (M i+1 , . . . , M K ) intended for user j ∈ {i + 1, i + 2, . . . , K}. We then show that the achievable rate region attains the capacity region of this new class of deterministic K-receiver broadcast channels.
+[[[ BODY ]]]
+A K-receiver broadcast channel (BC) with degraded mes- sage sets, (M 1 , . . . , M K ), where user i ∈ {1, . . . , K} requires messages (M 1 , . . . , M i ) is shown in Fig. 1. User 1 is only able to decode the lowest quality version M 1 , user 2 is able to decode the next higher quality version (M 1 , M 2 ), and so on. Such a conﬁguration may correspond to the situation where content e.g., video or music, is being broadcast with different levels of quality.
+Korner and Marton [1] established the capacity region of the the two-receiver BC with degraded message sets, (M 1 , M 2 ), where M 1 is the common message intended for both users and M 2 is the private message intended only for user 2. It was later conjectured [2, Conj. 5] that a straightforward extension of the Korner-Marton region to the three-receiver multilevel BC would be optimal. In this channel, the output of receiver 2 is a degraded version of the output of receiver 1; there are two messages, (M 1 , M 2 ), where M 1 is the common message intended for all three users and M 2 is the private message intended for only user 1. However, Nair and El Gamal [3] showed that a straightforward extension of the Korner-Marton region was strictly suboptimal and that the capacity region could be attained by allowing user 3 to decode part of the message M 2 intended for user 1. Later on, Chong and Liang [4] established the capacity region for the Gaussian MIMO three-receiver multilevel BC.
+In a similar line of research, Prabhakaran et al. considered the K-receiver MIMO linear deterministic BC with degraded message sets [5]. They established the complete solution
+for the three-user case. For the general K-user case, they characterized the solution for two cases: (i) where there is one common message M 1 and another private message M K for user K (i.e., M 2 = . . . = M K−1 = ∅) and (ii) where there is one common message M 1 and another message M 2 to be de- coded by all users except user 1 (i.e., M 3 = . . . = M K = ∅). In [6], Saeedi et al. extended the result to the case where there is one common message M 1 and another message M 3 to be decoded by all users except for users 1 and 2 (i.e., M 2 = M 4 = M 5 . . . = M K = ∅). An important ingredient used was to allow the users who decode only the common message to decode part of the message M 3 as well. However, the complete characterization of the capacity region of general linear deterministic BCs with degraded message sets remains unresolved.
+In [3, Thm. 2], Nair and El Gamal established an achievable rate region for the general three-receiver BC with three- degraded message sets. However, an extension to an arbitrary K-receiver case seems difﬁcult.
+In this paper, we make use of a simpler coding strategy that allows us to establish a compact description of an achievable rate region for the general K-receiver case. We make use of the same ideas in [3] and [6] by allowing user i to decode part of the messages (M i+1 , . . . , M K ) not intended for itself. Finally, we show that our coding strategy attains the capacity region of a new class of deterministic BC, the essentially degraded deterministic BC.
+In Section II, we ﬁrst provide some formal deﬁnitions of the general K-receiver BC with degraded message sets as well
+as the essentially degraded deterministic K-receiver BC. In Section III, we determine an achievable rate region for the general K-receiver BC with degraded message sets. In Section IV, we establish the capacity region of the essentially degraded deterministic K-receiver BC with degraded message sets. We also consider a speciﬁc linear deterministic BC to show that this is indeed a new class of BCs for which the capacity region was formerly unknown.
+A K-receiver discrete BC consists of a ﬁnite input alphabet X , K ﬁnite output alphabets Y 1 , Y 2 ,. . .,Y K and a conditional joint probability distribution p (y 1 , . . . , y K |x), with the condi- tional marginal distributions given by
+Since there is no cooperation between the receivers, the capacity region of the BC depends on the conditional joint probability distribution p (y 1 , . . . , y K |x) only through the con- ditional marginal distributions.
+A BC is said to be deterministic if the conditional joint prob- ability distribution p (y 1 , . . . , y K |x) is a matrix with elements being either 0 or 1.
+A 2 N R 1 , . . . , 2 N R K , N code for a BC with degraded message sets consists of messages (M 1 , . . . , M K ) uniformly distributed over 1, . . . , 2 N R 1 . . . × 1, . . . , 2 N R K , an en- coding function
+The average probability of error is deﬁned as the probability that the decoded messages are not equal to the transmitted messages, i.e.,
+A rate tuple (R 1 , R 2 , . . . , R K ) is said to be achievable for the BC if there exists a sequence of codes with P (N ) e → 0 as N → ∞. The capacity region is the closure of the set of achievable rates.
+In [7], Nair generalized the notion of the less noisy receiver and more capable receiver to the essentially less noisy receiver and essentially more capable receiver. Following a similar line of thought, we give the following deﬁnition for a sufﬁcient class of probability distributions for a deterministic K-receiver BC with degraded message sets as well as the deﬁnition of an essentially degraded deterministic BC.
+Deﬁnition 1: A class of distributions P = {p (x)} on the input alphabet X is said to be a sufﬁcient class of distributions for a deterministic K-receiver BC with degraded message sets if the following holds: Given any input probability distribution p (x), there exists a probability distribution q (x) that satisﬁes
+q (x) ∈ P 	 (2) H (Y i ) p ≤ H (Y i ) q , i = 1, 2, . . . , K. 	 (3)
+The notation H (Y i ) p denotes the entropy of the output Y i when it is generated with an input distribution p (x).
+Deﬁnition 2: A deterministic K-receiver BC is essentially degraded if there exists a sufﬁcient class of distributions P such that whenever p (x) ∈ P, we have
+Remark 1: We note that the deﬁnition of an essentially degraded deterministic K-receiver BC is not restricted to the degraded BC (for which the capacity region is known) since we do not require the following Markov chain to hold:
+Hence, Y i , i ∈ {1, . . . , K − 1}, is not necessarily a degraded version of Y j , j ∈ {i + 1, . . . , K}. Furthermore, we do not require (4) to hold for all input probability distributions, only for a sufﬁcient class of distributions P.
+In this section, we ﬁrst establish an achievable rate region for the general K-receiver BC with degraded message sets. This will allow us to readily establish the capacity region of the essentially degraded deterministic K-receiver BC in the next section. The main result for this section is given in the following theorem:
+Theorem 1: An achievable rate region for the K-receiver broadcast channel with degraded message sets shown in Fig. 1 is given by the set of all non-negative K-tuples (R 1 , . . . , R K ) satisfying
+for some joint input distribution p (u 1 , u 2 , . . . , u K−1 , x)
+Remark 2: The achievable rate region described above is convex and therefore, the use of a time-sharing auxiliary random variable is unnecessary.
+Remark 3: Excluding the non-negativity rate constraints, there are a total of 2 K − 1 inequalities describing our achiev- able rate region. For K = 2, we have
+R 1 ≤ I (U 1 : Y 1 ) R 1 + R 2 ≤ I (X; Y 2 )
+This coincides with the capacity region of the two-receiver BC with degraded message sets. For K = 3, we have
+R 1 ≤ I (U 1 ; Y 1 ) R 1 + R 2 ≤ I (U 2 ; Y 2 )
+R 1 + R 2 ≤ I (U 1 ; Y 1 ) + I (U 2 ; Y 2 |U 1 ) R 1 + R 2 + R 3 ≤ I (X; Y 3 )
+R 1 + R 2 + R 3 ≤ I (U 1 ; Y 1 ) + I (X; Y 3 |U 1 ) R 1 + R 2 + R 3 ≤ I (X; Y 3 |U 2 ) + I (U 2 ; Y 2 )
+It is relatively easy to show that the above attains the capacity region of the three-receiver multilevel BC with two-degraded message sets considered by Nair and El Gamal [3, Thm. 1].
+In addition, by choosing appropriate auxiliary random vari- ables in [3, Thm. 2] (the roles of receiver 1 and 3 are exchanged and setting U V 3 U 1 and V 2 (U 1 , U 2 )), we obtain the same inequalities as above. Hence, our achievable rate region for the three-receiver BC with three-degraded message sets is subsumed by [3, Thm. 2]. However, it is not entirely clear that [3, Thm. 2] is strictly larger for the three- receiver case. Moreover, the achievable rate region in Theorem 1 allows for a compact description and can be readily extended to an arbitrary number of receivers.
+We split the rate of the message M k , k ∈ {1, 2, . . . , K}, into k parts (W k,1 , . . . , W k,k ) with rates (R k,1 , . . . , R k,k ) as shown in (8). We introduce K − 1 auxiliary random variables U 1 , U 2 ,. . ., U K−1 where
+X 	 R K,K R 1 	 R 2 	 R K
+The messages (W 1,1 , W 2,1 , . . . , W K,1 ) is represented by U 1 , the messages (W 2,2 , . . . , W K,2 ) is represented by U 2 and so on. Receiver 1 then ﬁnds M 1 by decoding U 1 , receiver 2 ﬁnds (M 1 , M 2 ) by decoding (U 1 , U 2 ) and so on. We now provide the details of the proof.
+We ﬁrst ﬁx the input probability distribution (7). The codebook is then constructed as follows:
+1) First, we generate 2 N (R 1,1 +R 2,1 +...+R K,1 ) independent codewords of length N , u N 1 = (u 1,1 , . . . , u 1,N ), drawn according to
+dent codewords of length N , u N 2 = (u 2,1 , . . . , u 2,N ), for each codeword u N 1 (w 1 ) and drawn according to
+Label u N 2 (w 1 , w 2 ), w 2 ∈ 1, 2, . . . , 2 N (R 2,2 +...+R K,2 ) . 3) Generate 2 N (R k,k +R k+1,k +...+R K,k ) conditionally inde-
+pendent codewords of length N , u N k (w 1 , . . . , w k ), for each codeword u N k−1 (w 1 , . . . , w k−1 ), k = 3, . . . , K, and drawn according to
+We then label the codewords u N k (w 1 , . . . , w k ), w k ∈ 1, 2, . . . , 2 N (R k,k +...+R K,k ) .
+For simplicity of notation, we assume that U 0 ∅ and U K X.
+Randomly distribute the 2 N R k indices of message M k , k ∈ {1, 2, . . . , K}, into one of 2 N (R k,1 +R k,2 +...+R k,k ) bins, where
+To transmit the message (M 1 , M 2 , . . . , M K ), we ﬁrst deter- mine the index (w k,1 , w k,2 , . . . , w k,k ) of the bin where the index of the individual message M k , k ∈ {1, 2, . . . , K}, resides. We then transmit the codeword
+The receivers then decode the messages as follows: Receiver k, k ∈ {1, . . . , K}, determines the unique ( ˆ w 1 , . . . , ˆ w k ) such that
+If there are none such or more than one such, an error is declared.
+For receiver 1, we can readily see that an arbitrarily small probability of error can be achieved for large N if
+Similarly for receiver 2, we can readily see that an arbitrarily small probability of error can be achieved for large N if
+For any receiver k ∈ {1, 2, . . . , K}, an arbitrarily small probability of error can be achieved for large N if
+(12) We note that there are a total of K 2 (1 + K) rate inequalities. Similarly, there are K 2 (1 + K) non-negativity rate constraints
+We apply the Fourier-Motzkin procedure to eliminate R i,j , i ∈ {1, . . . , K}; j ∈ {1, . . . , i}, from (12)-(14). The Fourier- Motzkin elimination with equalities proceed as follows:
+2) Eliminate R i,j , j = 2, 3, . . . , i, by combining all in- equalities containing R i,j with different signs.
+Due to the fact that the message M k , with rate R k , is divided into k parts, of rate R k,1 , R k,2 , . . . , R k,k , and dis- tributed across the auxiliary random variables U 1 , U 2 , . . . , U k as shown in (8), after Fourier-Motzkin elimination, the relevant
+inequalities remaining must be a combination of inequalities of the form
+• a L = 1 and a l ∈ {0, 1}, l = 1, 2, . . . , L − 1. • b M,1 ≥ L and b 1,2 = 0.
+• J is either 0 or a combination of other mutual information quantities I (.).
+We note that of all the inequalities of the form (15), the inequalities in Theorem 1 are the only non-redundant ones. Finally, we note that the inequalities in Theorem 1 are merely combinations of inequalities in (12)-(14). Hence, after Fourier- Motzkin elimination, the only non-redundant inequalities are those in Theorem 1.
+Theorem 2: The capacity region for the essentially de- graded deterministic K-receiver BC with degraded mes- sage sets is given by the set of all non-negative K-tuples (R 1 , . . . , R K ) satisfying
+for some p (x) ∈ P, where P is any sufﬁcient class of probability distributions.
+Achievability: We ﬁrst consider the achievability by restrict- ing the probability distributions p (x) to the sufﬁcient class of probability distributions. Let us set U i 	 (Y 1 , . . . , Y i ) in Theorem 1. Hence,
+forms a Markov chain. We prove the achievability of Theorem 2 by induction. Let us consider the ﬁrst term, A 1 , in Theorem 1. We note that
+Assuming that A i = H (Y i ), i = 1, 2, . . . , k − 1, we wish to show that A k = H (Y k ). We note that
+where (a) follows from the assumption that A i = H (Y i ), i = 1, 2, . . . , k −1; (b) follows from the fact that for any p (x) ∈ P (the deﬁnition for an essentially degraded deterministic K- receiver BC), we have
+Converse: To prove the converse, it is relatively easy to note from Fano’s inequality that
+Moreover, from the deﬁnition of a essentially degraded deter- ministic BC, it is clear that we can restrict our union to be over distributions p (x) ∈ P, where P is any sufﬁcient class of probability distributions.
+Remark 4: We note that we may relax the deterministic constraint on the outputs of all the receivers. The capacity region still holds if the output of the K th receiver is not a deterministic function of the input. The K th inequality is now given by
+We now consider a speciﬁc linear deterministic K-receiver BC. Let X i , i = 1,. . .,K + 1, lie in an m i dimensional vector space F m i , where F is a ﬁnite ﬁeld. The input X = (X 1 , . . . , X K+1 ) to the channel lies in an m = m 1 + m 2 + . . . m K+1 dimensional vector space F m . The received signal Y j ∈ F n j , j = 1, 2, . . . , K, at receiver j is given by
+where n j = n j,1 + n j,2 and the channel matrix H j,1 is an n j,1 × m j matrix in F and the channel matrix H j,2 is an n j,2 × m j+1 matrix in F.
+We wish to show that this is an essentially degraded deterministic K-receiver BC. We ﬁrst note that
+Therefore, if we consider the class of probability distributions P 0 , where for any p (X) ∈ P 0 , we have
+then P 0 must be a sufﬁcient class of probability distributions. Since P 0 consists of the class of distributions for independent X i , i ∈ {1, 2, . . . , K + 1}, we note that Y 1,1 , (Y 1,2 , Y 2,1 ), (Y 2,2 , Y 3,1 ),. . ., (Y K−1,2 , Y K,1 ) and Y K,2 are independent.
+Hence, for any p (X) ∈ P 0 , we must have the following Markov chain
+Therefore, the linear deterministic BC that we consider here is an essentially degraded deterministic BC and its capacity region with degraded message sets is given by Theorem 2.
+Remark 5: As the output of receiver Y j is not a degraded version (even if we restrict our attention to only probability distributions in P 0 ) of the output of receiver Y j+1 , j ∈ {1, 2, . . . , K − 1}, this is not a degraded BC. Moreover,
+does not hold for all probability distributions (or even for all p (x) ∈ P 0 ). Therefore, the linear deterministic BC that we consider cannot be arranged as a sequence of less noisy receivers or more capable receivers [8] (as well as essentially less noisy or essentially more capable receivers in the line of [7]).
+In this paper, we determine the capacity region of a new class of deterministic BCs, the essentially degraded deter- ministic BCs, with degraded message sets. For this class of deterministic BCs, we only need to consider input probability distributions in a sufﬁcient class of probability distributions P. Moreover, Y 1 → . . . → Y k forms a Markov chain for any input distribution p (x) ∈ P. To prove the capacity region, we ﬁrst determine an achievable rate region for the general K-receiver BC with degraded message sets. The main idea in our coding strategy is to allow user i, i ∈ {1, 2, . . . , K − 1}, decode part of the messages intended for other users (not intended for itself). Finally, we show that our achievable rate region attains the capacity region of the essentially degraded deterministic BC with degraded message sets.
+[[[ REFS ]]]
+J. Korner
+K. Marton
+--
+General broadcast channels with degraded message sets
+----
+S. Borade
+L. Zheng
+M. Trott
+--
+Multilevel broadcast networks
+----
+C. Nair
+A. E. Gamal
+--
+The capacity region of a class of three-receiver broadcast channels with degraded message sets
+----
+H. F. Chong
+Y. C. Liang
+--
+The capacity region of the Gaussian MIMO three-receiver multilevel broadcast channel
+----
+V. Prabhakaran
+S. N. Diggavi
+D. N. C. Tse
+--
+Broadcasting with degraded message sets: A deterministic approach
+----
+S. Saeedi
+S. Diggavi
+C. Fragouli
+V. Prabhakaran
+--
+On degraded two message set broadcasting
+----
+C. Nair
+--
+Capacity regions of two new classes of two-receiver broadcast channels
+----
+J. Korner
+K. Marton
+--
+A source network problem involving the comparison of two channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\129.pdf
+[[[ LINKS ]]]
+

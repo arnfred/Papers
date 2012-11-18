@@ -1,0 +1,220 @@
+[[[ ID ]]]
+12
+[[[ INDEX ]]]
+11
+[[[ TITLE ]]]
+On Secure Index Coding with Side Information
+[[[ AUTHORS ]]]
+Son Hoang Dau
+Vitaly Skachek
+Yeow Meng Chee
+[[[ ABSTR ]]]
+Abstract—Security aspects of the Index Coding with Side Information (ICSI) problem are investigated. Building on the results of Bar-Yossef et al. (2006), the properties of linear index codes are further explored. The notion of weak security, considered by Bhattad and Narayanan (2005) in the context of network coding, is generalized to block security. It is shown that the linear index code based on a matrix L, whose column space code C(L) has length n, minimum distance d and dual distance d ⊥ , is (d − 1 − t)-block secure (and hence also weakly secure) if the adversary knows in advance t ≤ d − 2 messages, and is completely insecure if the adversary knows in advance more than n − d ⊥ messages. Strong security is examined under the conditions that the adversary: (i) possesses t messages in advance; (ii) eavesdrops at most µ transmissions; (iii) corrupts at most δ transmissions. We prove that for sufﬁciently large q, an optimal linear index code, which is strongly secure against such an adversary, has length κ q +µ+2δ. Here κ q is a generalization of the min-rank over F q of the side information graph for the ICSI problem in its original formulation in the work of Bar- Yossef et al.
+[[[ BODY ]]]
+The problem of Index Coding with Side Information (ICSI) was introduced by Birk and Kol [1]. It considers a commu- nications scenario with one server and many clients. Each client misses a certain part of the data, due to intermittent reception, limited storage capacity or any other reasons. Before the transmission starts, the clients let the server know which packets they already have in their possession, and which packets they are interested to receive. The server needs to deliver all the messages each client requests, yet spending a minimum number of transmissions. As it was shown in [1], the server can signiﬁcantly reduce the number of transmissions by coding the messages.
+Possible applications of index coding include communica- tions scenarios, in which a satellite or a server broadcasts a set of messages to a set clients, such as daily newspaper delivery or video-on-demand. ICSI can also be used in opportunistic wireless networks [2].
+The ICSI problem has been a subject of several recent studies [3]–[8]. This problem can be viewed as a special case of the Network Coding (NC) problem [9], [10]. In particular,
+it was shown in [7] that every instance of the NC problem can be reduced to an instance of the ICSI problem.
+In this paper, we initiate a study of the security aspects of linear index coding schemes. For each linear index code, we have a matrix L, which represents a linear encoding function (it will be deﬁned formally in the sequel). We introduce a notion of block security and establish two bounds on the security level of a deterministic linear index code based on L. The analysis makes use of the minimum distance and the dual distance of C(L), the code spanned by the columns of L. While the dimension of this code corresponds to the number of transmissions in the scheme, the minimum distance characterizes its security strength.
+We also introduce a natural generalization of the ICSI problem, called the Index Coding with Side and Restricted Information (ICSRI) problem. The results on the security of linear index codes are employed to analyze the existence of solutions to the ICSRI problem.
+Finally, we consider linear index codes which use random messages. We establish new bounds on the length of such linear ICs, which are resistant to errors, eavesdropping, and information leaking. We also show that the coset coding technique (which has been successfully employed in network coding literature, see [11], [12]) yields an optimal strongly secure linear index code.
+Whereas most of the known results on the security aspects of network coding were derived for the multicast scenario, the ICSI problem can be modeled as a special case of the non-multicast NC problem ( [7], [8]). Being modeled in that way, the symbols transmitted on a set of special edges, which carry the side information, are not allowed to be corrupted. By contrast, for network coding any edge can be corrupted. These two differences suggest that the existing results on the security in network coding can not be directly generalized to index coding.
+For detailed proofs, we refer the reader to the full version of this paper [13].
+Let F q be the ﬁnite ﬁeld of q elements, where q is a power of prime, and F ∗ q = F q \{0}. Let [n] = {1, 2, . . . , n}. The
+support of a vector u ∈ F n q is deﬁned by supp(u) = {i ∈ [n] : u i = 0}. Suppose E ⊆ [n]. We write u E whenever supp(u) ⊆ E. Let e i denote the unit vector, which has a one at the ith position, and zeros elsewhere. In the sequel, we use many standard notions from coding theory such as (Hamming) weight, minimum distance, dual distance, linear [n, k, d] q codes, dual codes, MDS codes (for instance, see [14]). We recall the following well-known result in coding theory.
+Theorem 2.1 ( [15], p. 66): Let C be an [n, k, d] q code with dual distance d ⊥ and M denote the q k × n matrix whose q k rows are codewords of C. If r ≤ d ⊥ − 1 then each r-tuple from F q appears in an arbitrary set of r columns of M exactly q k−r times.
+For a vector Y = (Y 1 , Y 2 , . . . , Y n ) and a subset B = {i 1 , i 2 , . . . , i b } of [n], where i 1 < i 2 < · · · < i b , let Y B denote the vector (Y i 1 , Y i 2 , . . . , Y i b ). For an n × k matrix M , let M i denote the ith row of M , and M [j] its jth column. For a set E ⊆ [n], let M E denote the |E| × k sub-matrix of M formed by rows of M which are indexed by the elements of E. For a set F ⊆ [k], let M [F ] denote the n × |F | sub- matrix of M formed by columns of M which are indexed by the elements of F .
+The Index Coding with Side Information problem considers the following scenario. There is a unique sender (or source) S, who has a vector of messages x = (x 1 , x 2 , . . . , x n ) ∈ F n q in his possession, which is a realized value of a random vector X = (X 1 , X 2 , . . . , X n ). X 1 , X 2 , . . . , X n hereafter are assumed to be independent uniformly distributed random variables over F q . There are also m receivers R 1 , R 2 , . . . , R m . For each i ∈ [m], R i has some side information, i.e. R i owns a subset of messages {x j } j∈X i , X i [n]. In addition, each R i , i ∈ [m], is interested in receiving the message x f (i) , for some demand function f : [m] → [n]. Here we assume that f (i) / ∈ X i for all i ∈ [m]. Let X = (X 1 , X 2 , . . . , X m ). An instance of the ICSI problem is given by a quadruple (m, n, X , f ).
+Deﬁnition 3.1: A (deterministic) index code (IC) over F q for an instance (m, n, X , f ) of the ICSI problem, referred to as an (m, n, X , f )-IC over F q , is an encoding function E : F n q → F N q , such that for each receiver R i , i ∈ [m], there exists a decoding function D i : F N q × F |X i | q → F q , satisfying
+The parameter N is called the length of the IC. When the IC E is used, S broadcasts a vector E(x) of length N over F q .
+Deﬁnition 3.2: An IC of the shortest possible length is called optimal. An IC is said to be linear if its encoding function E is a linear transformation over F q . In other words, E (x) = xL, for all x ∈ F n q , where L is an n × N matrix over F q . The matrix L is called the matrix corresponding to the IC E. We also refer to E as the IC based on L. Notice that the length of E is the number of columns of L.
+Hereafter, we assume that the sets X i , for all i ∈ [m], are known to S. Moreover, we also assume that E is known to each receiver R i , i ∈ [m]. In practice this can be achieved by a preliminary communication session, when the knowledge of the sets X i , for all i ∈ [m], and of the code E are disseminated between the participants of the scheme.
+Let C(L) = span q ({L[j] T } j∈[N ] ), the subspace spanned by the (transposed) columns of L. The following lemma was implicitly formulated in [3] for the case where m = n, f (i) = i for all i ∈ [m], and q = 2. However, it can be formulated in a more general form as follows.
+Lemma 3.1: Let L be an n × N matrix over F q . Assume that S broadcasts xL. Then, for each i ∈ [m], the receiver R i can reconstruct x f (i) if there exists a vector u ∈ F n q satisfying u X i and u + e f (i) ∈ C(L).
+Proof: Assume that u X i and u + e f (i) ∈ C(L). Since u + e f (i) ∈ C(L), there exist β ∈ F N q such that u + e f (i) = βL T . By taking the transpose and pre-multiplying by x, we obtain that x(u + e f (i) ) T = (xL)β T . Therefore, x f (i) = xe T f (i) = (xL)β T − xu T . Observe that R i is able to ﬁnd u and β from the knowledge of L. Moreover, R i is also able to compute xu T since u X i . Additionally, R i knows xL, which is transmitted by S. Therefore, R i is able to compute
+Remark 3.2: It follows from Lemma 3.1 that L corresponds to a linear (m, n, X , f )-IC over F q if C(L) ⊇ span q ({u (i) + e f (i) } i∈[m] ), for some u (i) X i , i ∈ [m]. We show later in Corollary 4.3 that this condition is also necessary. Finding such an L with minimal number of columns by careful selection of u (i) ’s is a difﬁcult task (in fact it is NP-hard to do so, see [3], [16]), which, however, yields a linear coding scheme with the minimal number of transmissions.
+In this section, we assume presence of an adversary A which can listen to all the transmissions. In other words, A knows xL. The adversary is assumed to possess side information {x j } j∈X A , where X A [n] (A knows x X A ). The strength of an adversary is deﬁned to be |X A |. Denote X A = ([n]\X A ).
+Deﬁnition 4.1: Suppose that S possesses a vector of mes- sages x ∈ F n q , which is a realized value of X. Suppose also that A possesses x X A . Consider a linear (m, n, X , f )-IC over F q based on L.
+1) For B ⊆ X A , A is said to have no information about x B if H(X B |XL, X X A ) = H(X B ), where H(·) is a binary entropy function.
+2) The IC is said to be b-block secure against X A if for every b-subset B ⊆ X A , A has no information about x B . It is said to be b-block secure against all adversaries of strength t (t ≤ n − 1) if it is b-block secure against X A for every X A ⊂ [n], |X A | = t.
+3) The IC is said to be weakly secure against X A if it is 1-block secure against X A . It is said to be weakly secure
+against all adversaries of strength t (t ≤ n − 1) if it is weakly secure against X A for every t-subset X A of [n].
+4) The IC is said to be completely insecure against X A if A is able to determine x i for all i ∈ X A . It is said to be completely insecure against any adversary of strength t (t ≤ n − 1) if it is completely insecure against X A for every t-subset X A of [n].
+We introduce the following new lemma, which is a general- ization of Lemma 3.1. It provides both necessary and sufﬁcient conditions for successful reconstruction of the information by A. Note that A in Lemma 4.1 (and similarly in Theorem 4.7) can be viewed as a legitimate receiver. Thus, Lemma 4.1 also provides necessary and sufﬁcient conditions for a receiver to be able (or not) to recover certain messages.
+Lemma 4.1: Let L be an n × N matrix over F q and let S broadcast xL. For a subset B ⊆ X A = [n]\X A , the adversary A (or any participant who owns x X A ), after listening to all transmissions, has no information about x B if and only if
+∀u X A , ∀α i ∈ F q with α i , i ∈ B, not all zero: u +
+In particular, for each i ∈ X A , A has no information about x i if and only if u + e i / ∈ C(L) for all u X A .
+Corollary 4.2: Let L be an n × N matrix over F q and assume that S broadcasts xL. Then for each i ∈ [m], the receiver R i can reconstruct x f (i) if and only if there exists u (i) ∈ F n q such that u (i) X i and u (i) + e f (i) ∈ C(L).
+Corollary 4.3: The matrix L corresponds to a linear (m, n, X , f )-IC over F q if and only if for all i ∈ [m], there exists u (i) ∈ F n q satisfying u (i) X i and u (i) + e f (i) ∈ C(L).
+Remark 4.4: It follows from Corollary 4.3 that L corre- sponds to a linear (m, n, X , f )-IC over F q if and only if C(L) ⊇ span q ({u (i) + e f (i) } i∈[m] ), for some u (i) X i , i ∈ [m]. Deﬁne
+then κ q is the shortest possible length of a linear (m, n, X , f )- IC over F q . This is precisely the min-rank over F q of the side information graph of an ICSI instance in the case m = n and f (i) = i for all i ∈ [n], which was introduced in [3], [17].
+Corollary 4.5: The length of an optimal linear (m, n, X , f )-IC over F q is κ q = κ q (m, n, X , f ).
+Theorem 4.6: Consider a linear (m, n, X , f )-IC over F q based on L. Let d be the minimum distance of C(L).
+1) This IC is (d − 1 − t)-block secure against all adversaries of strength t ≤ d − 2. In particular, it is weakly secure against all adversaries of strength t = d − 2.
+2) This IC is not weakly secure against at least one adversary of strength t = d−1. Generally, if there exists a codeword
+of C(L) of weight w, then this IC is not weakly secure against at least one adversary of strength t = w − 1.
+3) Every adversary of strength t ≤ d − 1 can determine a list of q n−t−N vectors in F n q which includes x.
+Proof: We only prove part 1) here. Assume that t ≤ d−2. By Lemma 4.1, it sufﬁces to show that for every t-subset X A of [n] and for every (d − 1 − t)-subset B of X A ,
+∀u X A , ∀α i ∈ F q with α i , i ∈ B, not all zero : u +
+For such u and α i ’s, we have wt(u + i∈B α i e i ) = wt(u) + wt( i∈B α i e i ) ≤ t + (d − 1 − t) = d − 1 < d. Moreover, as supp(u) ∩ B = ∅ and α i ’s, i ∈ B, are not all zero, we deduce that u + i∈B α i e i = 0. Hence u + i∈B α i e i / ∈ C(L).
+In general, the IC based on L might still be block secure against some adversaries of strength t for t ≥ d. However, as the next theorem shows, if the size of X A is sufﬁciently large, then A is able to determine all the messages in {x j } j∈X
+Theorem 4.7: The linear IC based on L is completely insecure against any adversary of strength t ≥ n − d ⊥ + 1, where d ⊥ denotes the dual distance of C(L).
+Proof: Suppose that |X A | = t ≥ n − d ⊥ + 1. By Corollary 4.2, it sufﬁces to show that for each j ∈ X A , there exists u ∈ F n q satisfying u X A and u + e j ∈ C(L).
+Indeed, take any j ∈ X A , and let ρ = n − t ≤ d ⊥ − 1. Consider the ρ indices which are not in X A . By Theorem 2.1, there exists a codeword c ∈ C(L) with c j = 1 and c = 0 if
+such that u X A , as follows. For ∈ X A , we set u = c , and for / ∈ X A , we set u = 0. Then c = u + e j . Hence by Corollary 4.2, the adversary can reconstruct x j .
+When C(L) is an MDS code, we have n − d ⊥ + 1 = d − 1, and hence the two bounds established in Theorems 4.6 and 4.7 are actually tight. The following example further illustrates the results stated in these theorems.
+Example 4.1: Let n = m = 7, q = 2, and f (i) = i for all i ∈ [m].
+Receiver Demand {x j } i∈X i R 1 	 x 1 	 {x 6 , x 7 } R 2 	 x 2 	 {x 5 , x 7 } R 3 	 x 3 	 {x 5 , x 6 }
+R 4 	 x 4 	 {x 5 , x 6 , x 7 } R 5 	 x 5 	 {x 1 , x 2 , x 6 } R 6 	 x 6 	 {x 1 , x 3 , x 4 } R 7 	 x 7 	 {x 2 , x 3 , x 6 }
+For i ∈ [7], let u (i) ∈ F 7 2 such that supp(u (i) ) = X i . Con- sider an IC based on L with C(L) = span q ({u (i) + e i } i∈[7] ). We can take L to be the matrix whose set of columns is {L[i] = u (i) + e i } i∈[4] . Then C(L) is a [7, 4, 3] 2 Hamming code with d = 3 and d ⊥ = 4. Following the coding scheme,
+S broadcasts the following four bits: s i = x(u (i) + e i ) T , i ∈ [4]. Each R i , i ∈ [7], can compute x(u (i) + e i ) T by using a linear combination of s 1 , s 2 , s 3 , s 4 . Then, each R i can subtract xu (i)T (his side information) from x(u (i) + e i ) T to retrieve x i = xe T i . Since d = 3, if one message is leaked, the adversary has no information about any other particular message. If none of the messages are leaked, then the adver- sary has no information about any group of 2 messages. On the other hand, if t ≥ 4 messages are leaked, the adversary is able to determine the remaining 7 − t messages.
+D. Application: Index Coding with Side and Restricted Infor- mation
+In this section, we consider an extension of the ICSI problem, which we call the Index Coding with Side and Restricted Information (ICSRI) problem. This problem arises in applications such as audio and video-on-demand. Consider a client who has subscribed to certain media content, and has not subscribed to some other content. The content provider wants to restrict this client from obtaining a content which he is not eligible for, even though he might be able to obtain it “for free” from the transmissions provided by the server.
+The arguments of an instance (m, n, X , Z, f ) of the ICSRI problem are similar to their counterparts for the ICSI problem. The new additional parameter, Z = (Z 1 , Z 2 , . . . , Z m ), repre- sents the sets Z i ⊆ [n] of message indices that the respective receivers R i , i ∈ [m], are not allowed to obtain. The goal is that at the end of the communication round, the receiver R i has the message x f (i) in its possession, for all i ∈ [m], and it has no information about x j for all j ∈ Z i . The notion of a linear (m, n, X , f )-IC over F q is naturally extended to that of a linear (m, n, X , Z, f )-IC over F q . Let
+The following proposition provides a necessary and sufﬁcient condition for a linear IC to be also a solution to an instance of the ICSRI problem.
+Proposition 4.8: The linear (m, n, X , f )-IC over F q based on L is also a linear (m, n, X , Z, f )-IC if and only if C(L) ∩ F (m, n, X , Z, f ) = ∅.
+Example 4.2: Consider an instance (m, n, X , Z, f ) of the ICSRI problem where m, n, X , and f are deﬁned as in Example 4.1. Moreover, Z = (Z 1 , Z 2 , . . . , Z 7 ), where Z 1 = {2, 3, 4, 5}, Z 2 = {1, 3, 4, 6}, Z 3 = {1, 2, 4, 7}, and Z 4 = Z 5 = Z 6 = Z 7 = ∅. Consider the IC based on L constructed in Example 4.1. It can be verify that C(L) ∩ F (m, n, X , Z, f ) = ∅. Hence by Proposition 4.8, this IC provides a solution to this instance of the ICSRI problem.
+where the minimum is taken over all choices of u (i) X i , i ∈ [m], which satisfy
+Let κ ∗ q = +∞ if there are no choices of u (i) ’s, i ∈ [m], which satisfy (1). The following proposition follows immediately.
+Proposition 4.9: The length of an optimal linear (m, n, X , Z, f )-IC over F q is κ ∗ q . If κ ∗ q = +∞ then there exist no linear (m, n, X , Z, f )-ICs over F q .
+In this section, we consider an adversary with an additional ability to corrupt some transmissions of S.
+We ﬁrst generalize the deﬁnition of ICs to randomized ICs. Let G = (G 1 , G 2 , . . . , G η ) be a vector of η random variables which are distributed independently and uniformly over F q . Let g = (g 1 , g 2 , . . . , g η ) be a realization of G.
+Deﬁnition 5.1: An η-randomized (m, n, X , f )-IC over F q for an instance (m, n, X , f ) is an encoding function E : F n q × F η q → F N q , such that for each receiver R i , i ∈ [m], there exists a decoding function D i : F N q × F |X i | q → F q satisfying
+An η-randomized IC is linear over F q if its encoding function is linear, i.e. E(x, g) = (x|g)L, where L is an (n + η) × N matrix over F q . Observe that by simply treating x i ’s and g i ’s as messages, the results from previous sections still apply to linear randomized ICs.
+Deﬁnition 5.2: The linear η-randomized (m, n, X , f )-IC over F q based on L is said to be (µ, t, δ)-strongly secure if it has the following two properties:
+1) This code is δ-error-correcting, i.e., upon receiving (x|g)L with at most δ coordinates in error, the receiver R i can still recover x f (i) , for all i ∈ [m].
+2) This code is (µ, t)-strongly secure, i.e., an adversary A who possesses x X A (|X A | = t), and listens to at most µ transmissions (µ ≤ N ) gains no information about other messages. Equivalently, for any W ⊆ [N ], |W | ≤ µ,
+Lemma 5.1: If L corresponds to a (µ, t)-strongly secure linear η-randomized (m, n, X , f )-IC over F q , then η ≥ µ.
+Sketch of the proof: By contradiction, suppose that L corresponds to a (µ, t)-strongly secure η-randomized (m, n, X , f )-IC over F q , and that η < µ. Let E = {n + 1, n + 2, . . . , n + η}.
+For W ⊆ [N ] let C(L[W ]) be the space spanned by columns of L indexed by elements of W . Then, for all W ⊆ [N ] with |W | ≤ µ, the equality (2) holds. From Lemma 4.1 with C(L) being replaced by C(L[W ]), we conclude that C(L[W ]) does not contain a vector c which satisﬁes c X
+= 0 and c E = 0 (we denote this as Property A).
+) T be the matrix obtained from L by ﬁrst deleting rows of L indexed by X A , and then taking its transpose. It is possible to show that rank q (L ) ≤ µ − 1. Now
+let r = rank q (L ), and let {L j 1 , L j 2 , . . . , L j r } be a basis of the space spanned by the rows of L .
+• On one hand, by Corollary 4.3, C(L) contains a vector c = u (i) + e f (i) where u (i) X i and f (i) ∈ X A . Therefore, c E = 0 and c X
+• On the other hand, there exist β 1 , β 2 , . . . , β r such that (c X
+|c E ) = r =1 β L j . Since r < µ and c E = 0, by Property A we have c X
+= 0. We obtain a contradiction.
+Remark 5.2: From Lemma 5.1, a (µ, t, δ)-strongly secure linear randomized IC requires at least µ random symbols. We show in Section V-B that there exists a (µ, t, δ)-strongly secure IC that uses precisely µ random symbols.
+Lemma 5.3: Suppose that L corresponds to a linear µ- randomized (m, n, X , f )-IC over F q . If this randomized IC is (µ, t)-strongly secure, then for all i ∈ [µ], there exists a vector v (i) ∈ F n+µ q satisfying v (i) [n] and v (i) + e n+i ∈ C(L).
+Sketch of the proof: Assume, by contradiction, that for some i ∈ [µ], we have v (i) + e n+i / ∈ C(L) for all v (i) [n]. Consider a virtual receiver who owns {x j } j∈[n] and requests the symbol g i . By Corollary 4.2, this virtual receiver has no information about g i after listening to all transmissions. It can be shown that discarding G i from the scheme does not affect its strong security. However, this contradicts Lemma 5.1, since the resulting code has less than µ random symbols.
+Theorem 5.4: The length of a (µ, t)-strongly secure linear η-randomized (m, n, X , f )-IC over F q is at least κ q + µ.
+Sketch of the proof: If η = µ then by Corollary 4.3 and Lemma 5.3, the length of the code is at least
+Similar argument applies to the case when η > µ and for all i ∈ [η] there exists some v (i) [n] such that v (i) + e n+i ∈ C(L). For the remaining case, we keep discarding some random variable G i from the code, until we reach a code which falls into the ﬁrst two cases.
+The next theorem establishes a lower bound on the length of a (µ, t, δ)-strongly secure linear randomized IC.
+Theorem 5.5: The length of a (µ, t, δ)-strongly secure lin- ear η-randomized (m, n, X , f )-IC over F q is at least κ q + µ + 2δ.
+In this section, we present a construction of an optimal (µ, t, δ)-strongly secure µ-randomized linear (m, n, X , f )-IC over F q whose length attaining the lower bound established in Theorem 5.5. The proposed construction is based on the coset coding technique, originally introduced by Ozarow and Wyner [18].
+Construction A: Let L (0) correspond to a linear (m, n, X , f )-IC over F q of optimal length κ q . Let M be a generator matrix of an [N = κ q + µ + 2δ, κ q + µ, 2δ + 1] q
+MDS code, so that the last µ rows of M form a generator matrix of another MDS code (for instance, M can be chosen to be a generator matrix of a Reed-Solomon code). Let P be the sub-matrix of M formed by the ﬁrst κ q rows, and Q the sub-matrix formed by the last µ rows of M . Take
+Theorem 5.6: The length of an optimal (µ, t, δ)-strongly secure linear η-randomized (m, n, X , f )-IC over F q (q ≥ κ q + µ + 2δ + 1) is κ q + µ + 2δ. Moreover, the code in Construction A achieves this optimal length.
+The authors would like to thank Fr´ed´erique Oggier for helpful discussions. This work is supported by the National Research Foundation of Singapore (Research Grant NRF- CRP2-2007-03).
+[[[ REFS ]]]
+Y. Birk
+T. Kol
+--
+Informed-source coding-on-demand (ISCOD) over broadcast channels
+----
+S. Katti
+H. Rahul
+W. Hu
+D. Katabi
+M. Mdard
+J. Crowcroft
+--
+Xors in the air: Practical wireless network coding
+----
+Z. Bar-Yossef
+Z. Birk
+T. S. Jayram
+T. Kol
+--
+Index coding with side information
+----
+
+--
+Index coding with side information
+----
+E. Lubetzky
+U. Stav
+--
+Non-linear index coding outperforming the linear optimum
+----
+S. E. Rouayheb
+M. A. R. Chaudhry
+A. Sprintson
+--
+On the minimum number of transmissions in single-hop wireless coding networks
+----
+A. E. Rouayheb
+A. Sprintson
+C. Georghiades
+--
+On the index coding problem and its relation to network coding and matroid theory
+----
+N. Alon
+A. Hassidim
+E. Lubetzky
+U. Stav
+A. Weinstein
+--
+Broad- casting with side information
+----
+R. Ahlswede
+N. Cai
+S. Y. R. Li
+R. W. Yeung
+--
+Network information ﬂow
+----
+R. Koetter
+M. M´edard
+--
+An algebraic approach to network coding
+----
+D. Silva
+F. R. Kschischang
+--
+Universal secure error-correcting schemes for network coding
+----
+A. E. Rouayheb
+E. Soljanin
+--
+On wiretap networks II
+----
+S. H. Dau
+V. Skachek
+Y. M. Chee
+--
+On the security of index coding with side information
+----
+F. J. MacWilliam
+N. J. A. Sloan
+--
+The Theory of Error-Correcting Codes 
+----
+A. S. Hedaya
+N. J. A. Sloan
+J. Stufke
+--
+Orthogonal Arrays: Theory and Applications 
+----
+R. Peeters
+--
+Orthogonal representations over ﬁnite ﬁelds and the chro- matic number of graphs
+----
+W. Haemers
+--
+An upper bound for the shannon capacity of a graph
+----
+L. H. Ozarow
+A. D. Wyner
+--
+The wire-tap channel II
+[[[ META ]]]
+xmlpapertitle -> On Secure Index Coding with Side Information
+parsed -> yes
+xmldate -> -
+file -> E:\testDataset\012.pdf
+xmlauthors -> Son Hoang Dau, Vitaly Skachek, Yeow Meng Chee
+xmlroom -> -
+[[[ LINKS ]]]
+

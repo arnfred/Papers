@@ -1,0 +1,182 @@
+[[[ ID ]]]
+195
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Network-Error Correcting Codes using Small Fields
+[[[ AUTHORS ]]]
+K. Prasad
+B. Sundar Rajan
+[[[ ABSTR ]]]
+Abstract—Recently, Ebrahimi and Fragouli proposed an algorithm to construct scalar network codes using small ﬁelds (and vector network codes of small lengths) satisfying multicast constraints in a given single-source, acyclic network. The contribution of this paper is two fold. Primarily, we extend the scalar network coding algorithm of Ebrahimi and Fragouli (henceforth referred to as the EF algorithm) to block network- error correction. Existing construction algorithms of block network-error correcting codes require a rather large ﬁeld size, which grows with the size of the network and the number of sinks, and thereby can be prohibitive in large networks. We give an algorithm which, starting from a given network- error correcting code, can obtain another network code using a small ﬁeld, with the same error correcting capability as the original code. Our secondary contribution is to improve the EF Algorithm itself. The major step in the EF algorithm is to ﬁnd a least degree irreducible polynomial which is coprime to another large degree polynomial. We suggest an alternate method to compute this coprime polynomial, which is faster than the brute force method in the work of Ebrahimi and Fragouli.
+[[[ BODY ]]]
+Network coding was introduced in [1] as a means to improve the rate of transmission in networks. Linear network coding was introduced in [2]. Deterministic algorithms exist [3]–[5] to construct scalar network codes (in which the input symbols and the network coding coefﬁcients are scalars from a ﬁnite ﬁeld) which achieve the maxﬂow-mincut capacity in the case of acyclic networks with a single source which wishes to multicast a set of ﬁnite ﬁeld symbols to a set of N sinks, as long as the ﬁeld size q > N . Finding the minimum ﬁeld size over which a network code exists for a given network is known to be a hard problem [6]. Most recently, an algorithm was proposed in [7] which attempts to ﬁnd network codes using small ﬁeld sizes, given a network coding solution for the network over some larger ﬁeld size q > N. The algorithms of [7] also apply to linear deterministic networks [8], and for vector network codes (where the source seeks to multicast a set of vectors, rather than just ﬁnite ﬁeld symbols). In this work, we are explicitly concerned about the scalar network coding problem, although the same techniques can be easily extended to accommodate for vector network coding and linear deterministic networks, if permissible, as in the case of [7].
+Network-error correction was introduced in [9] and de- veloped in [10], [11] as an extension of classical error correction to a network setting. Algorithms for constructing network-error correcting codes which meet a generalization of the classical Singleton bound for networks can be found in [10]–[12]. Using the algorithm of [12], a network code which can correct any errors occurring in at most α edges can be constructed, as long as the ﬁeld size q is such that q > N |E| 2α , where E is the set of edges in the network. The algorithms of [10], [11] have ﬁeld size requirements and complexity to construct such network-error correcting codes. This can be prohibitive when |E| is large, as the sink nodes and the coding nodes of the network have to perform operations over this large ﬁeld, possibly increasing the overall delay in communication.
+In this work, we extend the EF algorithm to block network-error correction using small ﬁelds. As in [7], we shall restrict our algorithms and analysis to ﬁelds with binary characteristic. The techniques presented can be extended to ﬁnite ﬁelds of other characteristics without much difﬁcultly. The contributions of this work are as follows.
+• We extend the EF algorithm of [7] to construct network-error correcting codes using small ﬁelds, by bridging the techniques of the EF algorithm and the network-error correction algorithm of [12].
+• The major step in the EF algorithm is to compute a polynomial of least degree coprime with a polynomial, f (X), of possibly large degree. While it is shown in [7] that this can be done in polynomial time, the complexity can still be large. Optimizing based on our requirement, we propose a alternate algorithm for computing the polynomial coprime with f (X). This is shown to have lesser complexity than that of the EF algorithm, which simply adopts a brute force method to do the same.
+The rest of this paper is organized as follows. In Section II, we give the basic notations and deﬁnitions related to network coding, required for our purpose. In Section III, we review the EF algorithm brieﬂy and then propose our modiﬁ- cation to it, and prove that the modiﬁed algorithm has lesser complexity than the original technique in the EF algorithm. Section IV presents our algorithm for constructing network-
+error correcting codes using small ﬁeld sizes, along with calculations of the complexity of the algorithm. Examples illustrating the algorithm performance for network coding and error correction are presented in Section V. Finally, we conclude the paper in Section VI with comments and directions for further research.
+An expanded version of this paper with the proofs of all claims, along with additional examples and explanations, which have been omitted here due to space considerations, can be found in [13].
+The model for acyclic networks considered in this paper is as in [14]. An acyclic network can be represented as a acyclic directed multi-graph G = (V, E), where V is the set of all nodes and E is the set of all edges in the network. We assume that every edge in G can carry utmost one symbol from F q . Let s ∈ V be the source node and T be the set of N (= |T |) receivers. Let h T be the unicast capacity for a sink node T ∈ T , i.e., the maximum number of edge- disjoint paths from s to T . Then h = min T ∈T h T is the max-ﬂow min-cut capacity of the multicast connection.
+A h ′ -dimensional network code (h ′ ≤ h) is one which can be used to transmit h ′ symbols simultaneously from s to T, and can be described by the three matrices A (of size h ′ × |E|), F (of size |E| × |E|), and D T (of size |E| × h ′ for every sink T ∈ T ), each having elements from some ﬁnite ﬁeld F q . Further details on the structure of these matrices can be found in [3] and [7]. The network transfer matrix [3], M T for a h ′ -dimensional network code, corresponding to a sink node T ∈ T is a full rank h ′ × h ′ matrix deﬁned as M T := AF D T = AF T .
+The matrix M T governs the input-output relationship at sink T. The problem of designing a h ′ -dimensional network code then implies making a choice for the matrices A, F, and D T , such that the matrices {M T : T ∈ T } have rank h ′ each. We thus consider each element of A, F , and D T to be a variable X i for some positive integer i, which takes values from the ﬁnite ﬁeld F q . Let {X i } be the set of all variables, whose values deﬁne the network code. The variables X i s are known as the local encoding coefﬁcients [14]. For an edge e in a network with a h ′ -dimensional network code in place, the global encoding vector [14] is a h ′ dimensional vector which deﬁnes the particular linear combination of the h ′ input symbols which ﬂow through e. It is known [3]–[5] that deterministic methods of constructing a h-dimensional network code exist, as long as q > N.
+Let Λ be the length of the longest path from the source to any sink. Because of the structure of the matrices A, F and D T , it is seen [7] that the matrix M T has degree at most Λ in any particular variable X i and also a total degree (sum of the degrees across all variables in any monomial) of Λ. Let f T X 1 , X 2 , ..X |{X i }| be the determinant of M T and f (X 1 , X 2 , ..X |{X i }| ) = T ∈T f T . Then the degree in any variable (and the total degree) of the polynomials f T and f are at most h ′ Λ and N h ′ Λ respectively.
+Algorithm 1 is a brief version of the EF algorithm. Algorithm 1: Scalar network coding algorithm using small ﬁelds - [7]
+(1) Assign values α i s to the scalar coding coefﬁcients X i s from an appropriate ﬁeld
+transfer matrices M T s to all the sinks are invertible. (2) Express every X i = α i as a binary polynomial p i (X) of degree at most k − 1 using the usual
+particular choice of the primitive polynomial of degree k.
+(3) Substituting these polynomials representing the X i s in the matrices M T , calculate the determinants of M T as the polynomials f T (X) ∈ F[X], and also ﬁnd
+f (X) = T ∈T f T (X). Then, f (X) is non-zero and has degree at most N (k − 1)hΛ in the variable X. (4) Find an irreducible polynomial of least degree, g (X), which is coprime with f (X).
+be viewed as an element in F[X] (g(X)) . Also, for each sink T, the matrices M T remain invertible as
+It is shown in [7] that such a coprime g (X) exists can be found in polynomial time.
+Remark 1: [7] The worst-case complexity of computing g (X) is O n 2 log (n) , where n = N hΛlog(N ).
+A. Fast algorithm for computing least degree coprime poly- nomial
+We now optimize the key step of Algorithm 1 so that the overall complexity of the algorithm is reduced. Algorithm 2 is a fast method to compute the least degree irreducible polynomial g (X) that is coprime with f (X). It uses the fact that any polynomial g (X) coprime with f (X) is useful only if the degree of g(X) is less than ⌈log(N )⌉ + 1, as only such a g(X) can result in a network code using a smaller ﬁeld than the one we started with.
+Calculate r (X) = f (X)(mod p i (X)). if r (X) is non-zero then
+Break. end
+(3) Let p j (X) be the ﬁrst polynomial for which r(X) is non-zero. Note that every p i (X) ∈ P is the product of all irreducible polynomials whose degree divides i.
+Also, all irreducible polynomials of degree i < j divide f (X) as all p i (X)|f (X) for all i < j. Therefore, at
+least one of the irreducible polynomials of degree j is coprime with f (X). Find one such polynomial g(X).
+The following lemma ensures that all polynomials which are found to be coprime with f (X) by directly computing the gcd (or the remainder for irreducible polynomials) in the brute force method (as done in Algorithm 1), can also be found by running Algorithm 2, using the set of polynomials P upto the appropriate degree.
+Lemma 1: For some ﬁeld F, let f, g ∈ F[X] be two polynomials relatively prime with each other. Let p ∈ F[X] such that g |p. Then g is also relatively prime with the polynomial f (mod p).
+The following proposition gives the complexity of Step 4 of Algorithm 1, which is less than that of [7].
+Proposition 1: The complexity of Algorithm 2 is at most O (N 2 ) + O(hN (log(N )) 2 Λ).
+Remark 2: Note that the worst-case complexity of Algo- rithm 2 is lesser than the worst-case complexity of ﬁnding the coprime polynomial g (X) according to [7] (which assumes a direct test for coprimeness of f (X) and the candidate polynomials), indicated in Remark 1. Even if we test for coprimeness only for polynomials upto degree ⌈log(N )⌉, the algorithm of [7] would still have a worst-case complexity of O N 2 h Λlog(n) , where n = N hΛlog(N ).
+This section presents the major contribution of this work. After brieﬂy reviewing the network-error correcting code construction algorithm in [12], we proceed to give an algorithm which can obtain network-error correcting codes using small ﬁnite ﬁelds.
+An edge is said to be in error if its input symbol and output symbol (both from some appropriate ﬁeld F q ) are not the same. We model the edge error as an additive error from F q . A network-error is a |E| length vector over F q , whose components indicate the additive errors on the corresponding edges. A network code which enables every sink to correct any errors in any set of edges of cardinality at most α is said to be a α network-error correcting code. There have been different approaches to network-error correction [9]– [12]. We concern ourselves with the notations and approach of [12], as the algorithm in [12] lends itself to be extended according to the techniques of [7].
+It is known [9] that the number of messages M in an α network-error correcting code is upper bounded according to the network Singleton bound as M ≤ q h −2α . Assuming that the message set is a vector space over F q of dimension k, we have k ≤ h − 2α.
+Algorithm 3 is a brief version of the algorithm given in [12] for constructing an α network-error correcting code for a given single source, acyclic network that meets the network Singleton bound. The construction of [12] is based on the network code construction algorithm of [4]. The
+algorithm constructs a network code such that all network- errors in upto 2α edges will be corrected as long as the sinks know where the errors have occurred. Such a network code is then shown [12] to be equivalent to an α network-error correcting code. It is shown in [12] that Algorithm 3 results in a network code which is a α network-error correcting code meeting the network Singleton bound, as long as the ﬁeld size
+Algorithm 3: Algorithm of [12] for constructing a network-error correcting code that meets the network Singleton bound.
+2α. Add an imaginary source s ′ and draw k = h − 2α edges from s ′ to s.
+e ∈ F and add an edge of unit capacity from s ′ to each v.
+Draw as many edge disjoint paths from s ′ to T passing through the imaginary edges added at Step (i) as possible. Let m F T (≤ 2α) be the
+Draw k edge disjoint paths passing through s that are also edge disjoint from the m F T paths drawn in the previous step.
+identiﬁed edge disjoint paths such that it ultimately gives a network code with the following property. Let B F T be the (k + 2α) × k + m F T matrix, the
+columns of which are the h length global encoding vectors (representing the linear combination of the k input symbols and 2α error symbols) of the
+k + m F T edge disjoint paths. Then B F T must be full rank. As proved in [12], this ensures that the
+correcting and meets the network Singleton bound. end
+B. Network Error Correction using Small Fields - Algorithm Algorithm 4 builds on Algorithm 3 to construct a network-
+error correcting code using small ﬁeld sizes (conditioned on the existence of an irreducible polynomial of small degree satisfying the necessary requirements).
+In order to ensure that the error correction property of the original network code is preserved, it is sufﬁcient if a
+Algorithm 4: Network-error correcting codes under small ﬁeld sizes
+(1) With q = 2 ⌈log(N |F |)⌉+1 , run Algorithm 3 to ﬁnd an α network-error correcting code meeting the
+network Singleton bound. Let the encoding coefﬁcients for X i be α i .
+(2) Express every X i = α i as a binary polynomial p i (X) of degree at most k − 1 using the usual
+polynomial representation of the ﬁnite ﬁeld F 2 k . (3) foreach F ∈ F do
+Find a non-zero minor of the matrix B F T , obtained from a k + m F T × k + m F T
+submatrix. At least one such minor exists as B F T has rank = k + m F T . Let the minor be f F T (X), which can be of degree at most
+h Λlog(N |F|), according to Section II and (1). end
+irreducible polynomial of least degree, g (X), which is coprime with f (X).
+be viewed as an element in F[X] (g(X)) . Because of the fact that f F T (X)(mod g(X)) = 0, the new B F T matrices
+which implies that the error correcting capability of the code is preserved.
+polynomial g (X) is coprime with each polynomial f F T (X), rather than their product f (X), as shown in Step 5 of Algorithm 4. However, the following lemma shows that both are equivalent.
+Lemma 2: Let U = {f i : f i ∈ F[X], i = 1, 2, ..., n} be a collection of univariate polynomials with coefﬁcients from some ﬁeld F. A polynomial g ∈ F[X] is relatively prime with all the polynomials in U if and only if it is relatively prime with their product.
+The complexity of Algorithm 4 is given by Table I, along with the references and reasoning for the mentioned complexities for every step of the algorithm.
+The only complexity calculation of Table I which is not straightforward is the complexity involved in identifying and calculating the non-zero minor of the matrix B F T . There are 	 h k + m F
+O k + m F T 3 multiplications over F q . As k + m F T can take values upto h, clearly the function to be maximized
+is of the form f (m) = h m m 3 , for m = 0, 1, ..., h. Proposition 2 gives the value of m for which such a function is maximized, based on which the value in Table I has been calculated.
+Proposition 2: For some positive integer n, let m be an integer such that 0 ≤ m ≤ n. The func- tion f (m) = 	 n m m 3 is maximized at m =
+⌈ n 2 ⌉ + 1 	 if n ≥ 2 1 	 if n = 1.
+Example 1: We now present a network-error correction example that uses Algorithm 4. Consider the network, with 18 edges, shown in Fig. 1. This network is from [16], in which a 1 network-error correcting code meeting the net- work Singleton bound is given by brute-force construction for this network over F 4 , which is the smallest possible ﬁeld over which such a code exists. According to the algorithm in [12], a 1 network-error correcting code can be constructed deterministically if q > 2 18 2 	 = 306. In Fig. 1, let the variable X 1 denote the encoding coefﬁcient between edges v 1 → v 4 and v 4 → v 6 . Similarly, let the variable X 2 (X 3 ) denote the local encoding coefﬁcients between v 2 → v 5 (v 6 → v 7 ) and v 5 → v 8 (v 7 → v 9 ).
+Let q = 2 9 . Let A = β, β 130 , β 130 and B = β 132 , β 391 , β 391 , where β is a primitive element of F 2 9 .
+Let b 1 (X) = X 9 + X 4 + 1 be the primitive polynomial of degree 9 under consideration.
+Consider two such 1 network-error correcting codes ob- tained using Algorithm 3 for the network of Fig. 1 as fol- lows. Let A and B be two choices for the set {X 1 , X 2 , X 3 } with all the other local encoding coefﬁcients being unity. It can be veriﬁed that these two network codes can be used to transmit one error-free F 2 9 symbol from the source to both sinks, as long as not more than single edge errors occur in
+the network. Table II gives the results of running Algorithm 4 for this network starting from these two codes, with β 4 and β 8 being the primitive elements of F 4 and F 8 respectively.
+Except for {X 1 , X 2 , X 3 } , all the other coding coefﬁcients remain 1 over the respective ﬁelds. It is seen from Table II that the initial choice of the sets A and B for {X 1 , X 2 , X 3 } affects the complexity of the problem (i.e., degree of f (X)) and also the ﬁeld size of the ﬁnal network code. With B, the resultant network-error correcting code is over F 4 , exactly the one reported in [16] by brute force construction.
+As in the original paper [7], questions remain open about the achievability of a code using the minimal ﬁeld size. Factors such as the initial choice of the network code (Section V) and the primitive polynomial of the ﬁeld over which the initial code is deﬁned (see Section V in [13]) control the resultant ﬁeld size after the algorithm.
+The authors would like to thank Raman Sankaran of the CSA Dept., IISc, for useful discussions regarding the complexity calculations of the algorithms presented in this paper. This work was supported partly by the DRDO-IISc program on Advanced Research in Mathematical Engineer- ing through a research grant and partly by the INAE Chair Professorship grant to B. S. Rajan.
+[[[ REFS ]]]
+R. Ahlswede
+N. Cai
+R. Li
+R. Yeung
+--
+Network Information Flow
+----
+N. Cai
+R. Li
+R. Yeung
+--
+Linear Network Coding
+----
+R. Koetter
+M. Medard
+--
+An Algebraic Approach to Network Coding
+----
+S. Jaggi
+P. Sanders
+A. Chou
+M. Effros
+S. Egner
+K. Jain
+M. Tolhuizen
+--
+Polynomial time algorithms for multicast network code construction
+----
+N. Harvey
+--
+Deterministic network coding by matrix completion
+----
+A. Lehman
+E. Lehman
+--
+Complexity classiﬁcation of network information ﬂow problems
+----
+J. B. Ebrahimi
+C. Fragouli
+--
+Algebraic algorithms for vector network coding
+----
+S. Avestimehr
+N. Diggavi
+C. Tse
+--
+Wireless network information ﬂow
+----
+W. Yeung
+N. Cai
+--
+Network error correction, part 1 and part 2
+----
+Z. Zhang
+--
+Linear network-error Correction Codes in Packet Net- works
+----
+S. Yang
+W. Yeung
+--
+Reﬁned Coding Bounds for network error Correction
+----
+R. Matsumoto
+--
+Construction Algorithm for Network Error- Correcting Codes Attaining the Singleton Bound
+----
+K. Prasad
+B. Sundar Rajan
+--
+Network-Error Correcting Codes using Small Fields
+----
+N. Cai
+R. Li
+R. Yeung
+Z. Zhang
+--
+Network Coding Theory
+----
+A. Borodin
+I. Munro
+--
+The computational complexity of alge- braic and numeric problems
+----
+S. Yang
+W. Yeung
+--
+Construction of Linear Network Codes that achieve a Reﬁned Singleton Bound
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\195.pdf
+[[[ LINKS ]]]
+

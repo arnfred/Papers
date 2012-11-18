@@ -1,0 +1,125 @@
+[[[ ID ]]]
+154
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Linear Error Correcting Codes with Anytime Reliability
+[[[ AUTHORS ]]]
+Ravi Teja Sukhavasi
+Babak Hassibi
+[[[ ABSTR ]]]
+Abstract—We consider rate R = k n causal linear codes that map a sequence of k-dimensional binary vectors {b t } ∞ t=0 to a sequence of n-dimensional binary vectors {c t } ∞ t=0 , such that each c t is a function of {b τ } t τ =0 . Such a code is called anytime reliable, for a particular binary-input memoryless channel, if at each time instant t, and for all delays d ≥ d o , the probabil- ity of error P “ˆb t−d|t = b t−d ” decays exponentially in d, i.e., P “ˆb t−d|t = b t−d ” ≤ η2 −βnd , for some β > 0. Anytime reliable codes are useful in interactive communication problems and, in particular, can be used to stabilize unstable plants across noisy channels. Schulman proved the existence of such codes which, due to their structure, he called tree codes in [1]; however, to date, no explicit constructions and tractable decoding algorithms have been devised. In this paper, we show the existence of anytime reliable “linear” codes with “high probability”, i.e., suitably chosen random linear causal codes are anytime reliable with high probability. The key is to consider time-invariant codes (i.e., ones with Toeplitz generator and parity check matrices) which obviates the need to union bound over all times. For the binary erasure channel we give a simple ML decoding algorithm whose average complexity is constant per time instant and for which the probability that complexity at a given time t exceeds KC 3 decays exponentially in C. We show the efﬁcacy of the method by simulating the stabilization of an unstable plant across a BEC, and remark on the tradeoffs between the utilization of the communication resources and the control performance.
+[[[ BODY ]]]
+Shannon’s information theory, in large part, is concerned with one-way communication of a message, that is available in its entirety, over a noisy communication network. There are increasingly many applications such as networked control systems [2] and distributed computing [1] where communication is not one-way but interactive. A networked control system is characterized by the measurement unit being separated from the control unit by a communication channel. The interactive nature of communication can be understood by observing that the mea- surements to be encoded are determined by the control inputs, which in turn, are determined by the encoded measurements received by the controller. Block encoding of the measurements is not applicable anymore because the controller needs real time information about the system so that an appropriate control input can be applied. This is especially critical when the system being controlled is open loop unstable. Any encoding-decoding delay translates into the system growing increasingly unstable. Hence, the desired reliability of communication is determined by the quality of the control input needed to stabilize the system.
+In the context of rate-limited deterministic channels, signiﬁ- cant progress has been made (see eg., [3], [4]) in understanding the bandwidth requirements for stabilizing open loop unstable
+systems. When the communication channel is stochastic, [5] provides a necessary and sufﬁcient condition on the communi- cation reliability needed over a channel that is in the feedback loop of an unstable scalar linear process, and proposes the notion of anytime capacity as the appropriate ﬁgure of merit for such channels. In essence, the encoder is causal and the probability of error in decoding a source symbol that was transmitted d time instants ago should decay exponentially in the decoding delay d.
+Although the connection between communication reliability and control is clear, very little is known about error-correcting codes that can achieve such reliabilities. Prior to the work of [5], and in a different context, [1] proved the existence of codes which under maximum likelihood decoding achieve such reliabilities and referred to them as tree codes. Note that any real-time error correcting code is causal and since it encodes the entire trajectory of a process, it has a natural tree structure to it. [1] proves the existence of nonlinear tree codes and gives no explicit constructions and/or efﬁcient decoding algorithms. Much more recently [6] proposed efﬁcient error correcting codes for unstable systems where the state grows only polynomially large with time. So, for linear unstable systems that have an exponential growth rate, all that is known in the way of error correction is the existence of tree codes which are, in general, non-linear. When the state of an unstable scalar linear process is available at the encoder, [7] and [8] develop encoding-decoding schemes that can stabilize such a process over the binary sym- metric channel and the binary erasure channel respectively. But when the state is available only through noisy measurements, little is known in the way of stabilizing an unstable scalar linear process over a stochastic communication channel.
+The subject of error correcting codes for control is in its relative infancy, much as the subject of block coding was after Shannon’s seminal work in [9]. So, a ﬁrst step towards realizing practical encoder-decoder pairs with anytime reliabilities is to explore linear encoding schemes. We consider rate R = k n causal linear codes which map a sequence of k-dimensional binary vectors {b τ } ∞ τ =0 to a sequence of n−dimensional binary vectors {c τ } ∞ τ =0 where c t is only a function of {b τ } t τ =0 . Such a code is anytime reliable if at all times t and delays d ≥ d o , P ˆ b t−d|t = b t−d ≤ η2 −βnd for some β > 0. We show that linear tree codes exist and further, that they exist with a high probability. For the binary erasure channel, we propose a maximum likelihood decoder whose average complexity of decoding is constant per each time iteration and for which the probability that the complexity at a given time t exceeds KC 3 decays exponentially in C. This allows one to stabilize a
+partially observed unstable scalar linear process over a binary erasure channel and to the best of the authors’ knowledge, this has not been done before.
+In Section II, we present some background and motivate the need for anytime reliability with a simple example. In Section III, we come up with a sufﬁcient condition for anytime reliability in terms of the weight distribution of the code. In Section IV, we introduce the ensemble of time invariant codes and use the results from Section III to prove that time invariant codes with anytime reliability exist with a high probability. Due to page limitations, proofs have been skipped. They can be found in a companion paper [10]. In Section V, we present a simple decoding algorithm for the BEC and present simulations in Section VI to demonstrate the efﬁcacy of the algorithm.
+Owing to the duality between estimation and control, the essential complexity of stabilizing an unstable process over a noisy communication channel can be captured by studying the open loop estimation of the same process. So, we will illustrate the kind of communication reliability needed for control by analyzing the open loop estimation of the following random walk.
+A toy example: Consider estimating the following random walk, x t+1 = λx t + w t , where w t = ±1 w.p 1 2 , x 0 = 0 and |λ| > 1. Suppose an observer observes x t and commu- nicates over a noisy communication channel to an estimator. The observer clearly needs to communicate one bit 1 telling whether w t is +1 or −1. Now the estimator’s estimate of the state, ˆ x t+1|t , is given by ˆ x t+1|t = t j=0 λ t−j ˆ w j|t . Suppose P e d,t = P argmin j ( ˆ w j|t = ˆ w j ) = t − d + 1 , i.e., the position of the earliest erroneous ˆ w j|t is at time j = t − d + 1. We can then write E x t+1 − ˆ x t+1|t 2 as
+Clearly, a sufﬁcient condition for lim sup t E x t+1 − ˆ x t+1|t 2 to be ﬁnite is as follows
+where d o and t o are constants that do no depend on t, d. In the above example, noise is discrete valued. If it is not discrete, e.g., a uniform random variable on a bounded interval, then apart from the reliability criterion above, one would also need a minimum rate of communication that is at least log 2 |λ|. But codes that communicate at a positive rate and satisfy the above reliability criterion have been more or less elusive. Consider the
+x t+1 = λx t + u t + w t 	 (2) y t = x t + v t 	 (3)
+where |λ| > 1, u t is the control input and, |w t | < W 2 and |v t | < V 2 are bounded process and measurement noise variables. The measurements {y t } are made by an observer while the control inputs {u t } are applied by a remote controller that is connected to the observer by a noisy communication channel. Naturally, the measurements y 0:t−1 will need to be encoded by the observer to provide protection from the noisy channel while the controller will need to decode the channel output to estimate the state x t and apply a suitable control input u t . This can be accomplished by employing a channel encoder at the observer and a decoder at the controller. For simplicity, we will assume that the channel input alphabet is binary. Suppose one time step of system evolution in (2) corresponds to n channel uses 2 . Then, at each instant of time t, the operations performed by the observer, the channel encoder, the channel decoder and the controller can be described as follows. The observer generates a k−bit message, b t ∈ {0, 1} k , that is a causal function of the measurements, i.e., it depends only on y 0:t . Then the channel encoder causally encodes b 0:t ∈ {0, 1} kt to generate the n channel inputs c t ∈ {0, 1} n . Note that the rate of the channel encoder is R = k/n. Denote the n channel outputs corresponding to c t by z t ∈ Z n , where Z denotes the channel output alphabet. Using the channel outputs received so far, i.e., z 0:t ∈ Z nt , the channel decoder generates estimates {ˆb τ |t } τ ≤t of {b τ } τ ≤t , which, in turn, the controller uses to generate the control input u t+1 . This is illustrated in Fig. 1. Note that we do not assume any channel feedback. Then using the lattice quantizer argument presented in [5], in the limit of large n and large λ, one gets the following sufﬁcient condition on the performance of the encoder-decoder pair so that the unstable process in (2) can be stabilized
+Lemma 2.1 (Theorem 5.2 [5]): It is possible to control the unstable scalar process (2) over a noisy communication channel so that lim sup t E|x t | m < ∞ if, for some rate R > 1 n log 2 |λ| and exponent β > m n log 2 |λ|, we have
+In what follows, we will demonstrate causal linear codes which under maximum likelihood decoding achieve such exponential reliabilities.
+As discussed earlier, a ﬁrst step towards developing practical encoding and decoding schemes for automatic control is to study the existence of linear codes with anytime reliability. We will begin by deﬁning a causal linear code.
+Deﬁnition 1 (Causal Linear Code): A causal linear code is a sequence of linear maps f τ : {0, 1} kτ → {0, 1} n and hence can be represented as
+We denote c τ f τ (b 1:τ ). Note that a tree code is a more general construction where f τ need not be linear. Also note that the associated code rate is R = k n . The above encoding is equivalent to using an inﬁnite dimensional block lower triangular generator matrix whose entries are clear from (4) or equivalently as an inﬁnite dimensional block lower triangular parity check matrix,
+      
+H 11 	 0 . . . . . . . . . H 21 H 22 0 . . . . . .
+      
+where H ij ∈ {0, 1} n×n and n = n(1 − R). In fact, we present all our results in terms of the parity check matrix 3 . Before proceeding further, it is useful to introduce some notation
+H t n,R nt × nt leading principal minor of H n,R 	 (6a) C t 	 c ∈ {0, 1} nt : H t n,R c = 0 	 (6b)
+C t,d {c ∈ C t : c τ <t−d+1 = 0, c t−d+1 = 0} 	 (6c) N t w,d |{c ∈ C t,d : c = w}| 	 (6d)
+The objective is to study the existence of causal linear codes which under ML decoding guarantee P e d,t ≤ η2 −βd for all t, d ≥ d o , where d o is a constant independent of d, t. In what follows, we will develop a sufﬁcient condition for a linear code to be anytime reliable in terms of its weight distribution. Suppose the decoding instant is t and without loss of generality, assume that the all zero codeword is transmitted, i.e., c τ = 0 for τ ≤ t. We are interested in the error event where the earliest error in
+estimating b τ happens at τ = t − d + 1, i.e., ˆ b τ |t = 0 for all τ < t − d + 1 and ˆ b t−d+1|t = 0. Note that this is equivalent to the ML codeword, ˆ c, satisfying ˆ c τ <t−d+1 = 0 and ˆ c t−d+1 = 0, and H t n,R having full rank so that ˆ c can be uniquely mapped to a transmitted sequence ˆ b. Then, using a union bound, we have
+Now, it is well known (for eg, see [11]) that, un- der maximum likelihood decoding, P (0 is decoded as c) ≤ ζ c , where ζ is the Bhattacharya parameter, i.e., ζ =
+channel output and input respectively. From (7a), it follows that P e t,d ≤ w t
+ζ w . If w t min,d ≥ αnd and N t w,d ≤ 2 θw for some θ < log 2 (1/ζ), then
+where η = (1 − 2 log 2 (1/ζ)−θ ) −1 . So, an obvious sufﬁcient condition for H n,R can be described in terms of w t min,d and N t w,d as follows. For some θ < log 2 (1/ζ), we need
+w t min,d ≥ αnd ∀ t, d ≥ d o 	 (9a) N t w,d ≤ 2 θw ∀ t, d ≥ d o 	 (9b)
+where d o is a constant that is independent of d, t. This brings us to the following deﬁnition
+Deﬁnition 2 (Anytime distance and Anytime reliability): We say that a code H n,R has (α, θ, d o )−anytime distance, if the following hold
+Also, we say that a code H n,R is (R, β, d o )−anytime reliable if, under ML decoding P e t,d ≤ η2 −βnd , ∀ t > 0, d ≥ d o , where d o is constant independent of d, t.
+We will begin by proving the existence of such codes over a ﬁnite time horizon, T , i.e., P e d,t ≤ η2 −nβd , ∀ t ≤ T, d ≥ d o . We will then prove their existence for all time.
+Over a ﬁnite time horizon, T , a causal linear code is represented by a block lower triangular parity check matrix H n,R,T ∈ {0, 1} nT ×nT . The following Theorem guarantees the existence of a H n,R,T such that (9) is true for all t ≤ T .
+each time T > 0, rate R > 0, α < H −1 (1 − R) and θ > log 2 (1/(2 1−R − 1)), there exists a causal linear code H(n, k, T ) that has (α, θ, d o )−anytime distance, where d o is a constant independent of d, t and T .
+H −1 (1 − R) is the smaller root of the equation H(x) = 1 − R, where H(.) is the binary entropy function. The proof is by induction and is detailed in the Appendix. Theorem 4.1 proves the existence of ﬁnite dimensional causal linear codes, H n,R,T , that are anytime reliable for decoding instants upto time T .
+In the following subsection, we demonstrate the existence of inﬁnite dimensional causal linear codes, H n,R , that are anytime reliable for all decoding instants. We also show that such codes drawn from an appropriate ensemble are anytime reliable with a high probability.
+Consider causal linear codes with the following Toeplitz structure
+      
+H 1 	 0 	 . . . . . . . . . H 2 H 1 	 0 . . . . . .
+      
+The superscript T Z in H T Z n,R denotes ‘Toeplitz’. H T Z n,R is ob- tained from H n,R in (5) by setting H ij = H i−j+1 for i ≥ j. Due to the Toeplitz structure, we have the following invariance, w t min,d = w t min,d and N t w,d = N t w,d for all t, t . The code H T Z n,R will be referred to as a time-invariant code. The notion of time invariance is analogous to the convolutional structure used to show the existence of inﬁnite tree codes in [1]. This time invariance allows one to prove that such codes which are anytime reliable are abundant.
+Deﬁnition 3 (The ensemble TZ p ): The ensemble TZ p of time-invariant codes, H T Z n,R , is obtained as follows, H 1 is any full rank binary matrix and for τ ≥ 2, the entries of H τ are chosen i.i.d according to Bernoulli(p), i.e., each entry is 1 with probability p and 0 otherwise.
+Theorem 4.2 (Abundance of time-invariant codes): For each R > 0, α < H −1 [(1 − R) log 2 (1/(1 − p))] and θ > − log 2 (1 − p) −(1−R) − 1 , we have
+We can now use this result to demonstrate an achievable region of rate-exponent pairs for a given channel, i.e., the set of rates R and exponents β such that one can guarantee (R, β) anytime reliability using linear codes. To determine the values of R that will satisfy (8), note that we need
+(10b) if H T Z n,R is chosen from TZ p , then
+Note that by choosing p small, we can trade off better rates and exponents with sparser parity check matrices. For BSC( )
+with p = 1 2 , the threshold for rate in Corollary 4.3 becomes R < 1 − 2 log 2 (
+Theorem 4.4 (Tighter bounds for BSC( )): Let ∗ be deﬁned as ∗ 	 argmin >0 1 − H(2 ) ≤ 1 − 2 log 2 (
+Consider BSC( ) for < ∗ , then for any rate R and exponent β such that
+Owing to the simplicity of the erasure channel, it is possible to come up with an efﬁcient way to perform maximum likelihood decoding at each time step. We will show that the average complexity of the decoding operation at any time t is constant and that it being larger than KC 3 decays exponentially in C. Consider an arbitrary decoding instant t, let c = [c T 1 , . . . , c T t ] T be the transmitted codeword and let z = [z T 1 , . . . , z T t ] T denote the corresponding channel outputs. Let z e denote the erasures in z and let H e denote the columns of H t n,R that correspond to the positions of the erasures. Also, let ˜ z e denote the unerased entries of z and let ˜ H e denote the columns of H n,R excluding H e . So, we have the following parity check condition on z e , H e z e = ˜ H e ˜ z e . Since ˜ z e is known at the decoder, s ˜ H e ˜ z e is known. Maximum likelihood decoding boils down to solving the linear equation H e z e = s. Due to the lower triangular nature of H e , unlike in the case of traditional block coding, this equation will typically not have a unique solution, since H e will typically not be full rank. This is alright as we are not interested in decoding the entire z e correctly, we only care about decoding the earlier entries accurately. If z e = [z T e,1 z T e,2 ] T , then z e,1 corresponds to the earlier time instants while z e,2 corresponds to the latter time instants. The desired reliability requires one to recover z e,1 with an exponentially smaller error probability than z e,2 . Let H e = [H e,1 H e,2 ] and let H ⊥ e,2 denote the orthogonal complement of H e,2 , i.e., H ⊥ e,2 H e,2 = 0. Then we can write H e z e = s as H e,1 z e,1 + H e,2 z e,2 = s which implies H ⊥ e,2 H e,1 z e,1 = H ⊥ e,2 s. If H ⊥ e,2 H e,1 has full column rank, then z e,1 can be recovered exactly. The decoding algorithm now suggests itself, i.e., ﬁnd the largest possible H e,1 such that H ⊥ e,2 H e,1 is full rank. Suppose the earliest entry in z e , i.e., j ∗ in
+1) Using the notation above, at time t, identify H e and let H e = [h e,1 , . . . , h e, ]. Determine
+2) Determine z e,1 = h ⊥ e,j ∗ +1: h e,1:j ∗ −1 h ⊥ e,j ∗ +1: s and incre- ment t.
+(11), corresponds to time t − d + 1, then the complexity of the above decoding operation is O d 3 . Now, the earliest entry in z e is at time t−d+1 implies that it was not corrected at time t−1, the probability of which is P e d−1,t−1 ≤ η2 −nβ(d−1) . Hence, the average decoding complexity is atmost K d>0 d 3 2 −nβd which is bounded and is independent of t. In particular, the probability of the decoding complexity being Kd 3 is atmost η2 −nβd . The decoder is easy to implement and its performance is simulated in the next section. Note that the encoding complexity per time iteration increases linear with time. This can also be made constant on average if the decoder can send acks back to the encoder whenever it decodes correctly.
+Consider stabilizing the scalar unstable process of (2) with λ = 2, w t and v t be- ing uniform on [−30, 30] and [−1, 1] respectively, over a binary erasure channel with erasure probability = 0.3. Also, let n = 15. We quan- tize the measurements us- ing an L-regular lattice quan- tizer with bin width δ > V (see e.g., [5]). If at some time t, x t ∈ (−δ, δ) and the controller is aware of it, then, y t+1 ∈ − V +W 2 − |λ|δ, |λ|δ + W +V 2 and hence can lie in atmost one of
+possible bins. So, if L > V +W +2|λ|δ δ 	 , then the observer can encode the bin label of y t+1 as b t ∈ {0, 1} k , while the channel coder produces the channel inputs c t ∈ {0, 1} n . Clearly we need 2 k ≥ L. So, for δ = V , L = 35 and hence k = 6, the associated code rate R = 6/15 < 1 − log 2 (1 + 0.3) = 0.6215. Using Lemma 2.1, inorder to stabilize |x t |, one needs a code with exponent β ≥ 1 n = 0.0667. Using Corollary 4.3, causal linear codes exist for β < β ∗ = H −1 (1 − R) log 2 1 ζ + log 2 2 1−R − 1 . A quick calculation shows that for k = 6, n = 15, β ∗ = 1.1413 n = 0.0761 > 0.0667. A time invariant code H 15,0.4 ∈ TZ 1 2 was randomly generated and used with the decoding algorithm in Section V. Fig 2 shows the plot of a sample path of the above process before and after closing the loop, the fact that the plant has been stabilized is clear. By easing up on the rate R, the control performance of the code ensemble improves. This is demonstrated in Fig 3. In the example considered above, one can decrease the rate by increasing δ, e.g., increasing δ from V to 4V , k drops from 6 to 4 bits and the resulting rate drops from 0.4 to 0.267. For each value of k from 3 to 6, 1000 time invariant codes were generated at random from TZ 1 2 . Each such code was used to control the process above over a time horizon of T = 100. The x−axis denotes the proportion of codes for which sup t<100 E|x t | is below a prescribed value, e.g., with k = 6, n = 15, sup t<100 E|x t | was less than 200 for 50% of
+the codes while with k = 3, n = 15, this fraction increases to more than 95%. This shows that one can tradeoff utilization of communication resources and control performance.
+We prove the existence of linear anytime codes with high probability. Our analysis considered binary alphabet, but is easily extendable. This is a signiﬁcant step, since prior work only demonstrated the existence of such codes. For the BEC, we also propose an efﬁcient decoding algorithm with constant average complexity per iteration, and for which the probability of having a complexity of KC 3 at some given iteration decays exponentially in C. Simulations validate the efﬁcacy of the method. Constructing code families with efﬁcient decoding for other channels, such as the BSC or AWGN remains an interesting open problem.
+[[[ REFS ]]]
+
+--
+Coding for interactive communication
+----
+J. Baillieul
+J. Antsaklis
+--
+Control and communication challenges in networked real-time systems
+----
+
+--
+Stabilizability of stochastic linear systems with ﬁnite feedback data rates
+----
+S. Matvee
+V. Savki
+--
+Alexey  Andrey  Estimation and Control over Communication Networks (Control Engineering) , Birkhauser, 2007
+----
+
+--
+The necessity and sufﬁciency of anytime capacity for stabilization of a linear system over a noisy communication link - part i: Scalar systems
+----
+
+--
+Error-correcting codes for automatic control
+----
+
+--
+A random time stochastic drift result and application to stochastic stabilization over noisy channels
+----
+T. Simsek
+R. Jain
+P. Varaiya
+--
+Scalar estimation and control with noisy binary observations
+----
+
+--
+A mathematical theory of communication
+----
+
+--
+Linear error correcting codes with anytime reliability
+----
+
+--
+Performance analysis of linear codes under maximum-likelihood decoding: A tutorial
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\154.pdf
+[[[ LINKS ]]]
+

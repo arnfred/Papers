@@ -1,0 +1,145 @@
+[[[ ID ]]]
+26
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Analysis of Stopping Constellation Distribution for Irregular Non-binary LDPC code ensemble
+[[[ AUTHORS ]]]
+Takayuki Nozaki
+Kenta Kasai
+Kohichi Sakaniwa
+[[[ ABSTR ]]]
+Abstract—The ﬁxed points of the belief propagation decoder for non-binary low-density parity-check (LDPC) codes are re- ferred to as stopping constellations. In this paper, we give the stopping constellation distributions for the irregular non-binary LDPC code ensembles deﬁned over the general linear group. Moreover, we derive the exponential growth rate of the average number of the stopping constellation distributions in the limit of large codelength.
+[[[ BODY ]]]
+Gallager invented low-density parity-check (LDPC) codes [1]. Due to the sparseness of the parity check matrices, LDPC codes are efﬁciently decoded by the belief propagation (BP) decoder. Optimized LDPC codes can exhibit performance very close to the Shannon limit [2]. Davey and MacKay [3] found that non-binary LDPC codes can outperform binary ones.
+An LDPC code is deﬁned by a sparse parity check matrix. In this paper, we consider the non-binary LDPC codes deﬁned over the general linear group. The general linear group over the binary ﬁeld of dimension m is the set of all m × m invertible binary matrices. Each entry of parity check matrix for non- binary LDPC code deﬁned over the general linear group is an element of the general linear group. It is known that LDPC codes deﬁned over the general linear groups outperform LDPC codes deﬁned over ﬁnite ﬁelds in terms of the decoding performance [4].
+The block and the bit erasure probabilities for binary LDPC codes over the binary erasure channels (BEC) are determined by the size of the maximal stopping set [5]. The ﬁxed points of the BP decoder for non-binary LDPC codes are referred to as stopping constellations [6]. The stopping constellations for the non-binary LDPC codes correspond to the stopping sets for the binary LDPC codes. To analyze the decoding erasure probabilities of the non-binary LDPC codes over the BEC by the BP decoder, we need to analyze the stopping constellation. In this paper, as the ﬁrst step, we derive the stopping constellation distribution. In this paper, we also give the exponential growth rate of the average number of the stopping constellation distributions in the limit of large code length.
+The remainder of this paper is organized as follows. In Section II, we deﬁne the irregular non-binary LDPC code ensemble and the stopping constellation. In Section III, we show the structure of the stopping constellation. In Section IV,
+we derive the stopping constellation distributions for irregular non-binary LDPC code ensembles. In Section V, we derive the exponential growth rate of the average number of stopping constellation distributions in the limit of large code length. In Section VI, we give numerical results for the exponential growth rate of the average number of stopping constellation distributions.
+In this section, we deﬁne the irregular non-binary LDPC code ensemble and the stopping constellation. We introduce some notations used throughout this paper.
+Let F 2 be the Galois ﬁeld of order 2. We denote the general linear group over the binary ﬁeld of dimension m, by GL(m, F 2 ). In this paper, we consider non-binary LDPC code deﬁned over GL(m, F 2 ). A non-binary LDPC code is deﬁned by an M ×N parity check matrix. Each entry of parity check matrix for the non-binary LDPC codes over GL(m, F 2 ) is an m × m invertible binary matrix. Denote the (i, j)-th entry of parity check matrix by H i,j . Let [a, b] be the set of consecutive integers from a to b, i.e., [a, b] = {a, a+1, . . . , b}. For i ∈ [1, N ], the i-th symbol x i is represented by an m-tuple deﬁned over F 2 . The code is deﬁned as follows:
+The Tanner graph for a non-binary LDPC code is repre- sented by a bipartite graph with variable nodes, check nodes and labeled edges. The parity-check matrices are represented by Tanner graphs. Let L and R be the sets of degrees of the variable nodes and the check nodes, respectively. Irregular non-binary LDPC codes are characterized with the number of variable nodes N , the dimension m of the general linear group and a pair of degree distribution, λ(x) = i ∈L λ i x i −1 and ρ(x) = i ∈R ρ i x i −1 , where λ i and ρ i are the fractions of the edges connected to the variable nodes and the check nodes of degree i, respectively.
+Let L i and R j be the fraction of the variable nodes of degree i and the check nodes of degree j, respectively, i.e.,
+Assume that we are given the number of variable node N , the dimension m and degree distribution pair (λ, ρ). A non-binary LDPC code ensemble EGL(N, m, λ, ρ) is de- ﬁned as the following way. To sample from the ensemble EGL(N, m, λ, ρ) proceed as follows. There exist L i N variable nodes of degree i and R j N check nodes of degree j. A node of degree i has i sockets for its connected edges. Consider a permutation π on the number of edges. Join the i-th socket on the variable node side to the π(i)-th socket on the check node side. The bipartite graphs is chosen from all the permutations on the number of edges with uniformly at random. Each label in an edge is chosen an element from GL(m, F 2 ) uniformly at random.
+Consider the transmission over the BEC. For the BEC, we are able to assume that all-zero codewords were sent without loss of generality to analyze the decoding erasure probability [7]. The indices corresponding to the nonzero entries of a message arising in the BP decoder form a linear subspace in F m 2 . Thus, each message in the BP decoder is represented by a linear subspace in F m 2 [7].
+To deﬁne the ﬁxed points of the BP decoder for the non-binary LDPC codes, which are referred to as stopping constellations [6], we review the states in the peeling decoder for non-binary LDPC codes [6].
+The peeling decoder for the non-binary LDPC codes assigns a set of candidate symbols for the decoding result to each variable node. Such a set is referred to as state of the variable node v and denoted by E v , where E v ⊆ F m 2 . It is known that the states of the variable nodes are also represented by linear subspaces [6]. For any k linear subspaces {V i } k i =1 in F m 2 , we denote
+For a linear subspace V in F m 2 and an m× m invertible binary matrix H, we denote HV := {Hv | v ∈ V }.
+Deﬁnition 1: [6] Let V be the set of variable nodes. With some abuse of notation, we identify V and [1, N ] hereafter. We denote the set of variable nodes which connecting to the check node c, by N (c). A stopping constellation {E v } v ∈V is deﬁned as an assignment of the states such that
+It is known that stopping constellations are ﬁxed points of the peeling decoder and the BP decoder [6]. In this paper, we refer to the number of states whose dimensions are not equal to 0 as the weight of the stopping constellation.
+In this section, we show the relationship between the structure of stopping constellation and the stopping set. A stopping set S is a set of variable nodes such that all the neighbors of S are connected to S at least twice. We deﬁne the structure ˜ S for the stopping constellation {E v } v ∈V as
+Lemma 1: For a ﬁxed G ∈ EGL(N, m, λ, ρ) and a given stopping constellation, the structure ˜ S for the stopping con- stellation forms a stopping set.
+Lemma 2: For a ﬁxed G ∈ EGL(N, m, λ, ρ) and a given stopping set S, there exists a stopping constellation with structure ˜ S such that ˜ S = S.
+From those lemmas, to make a code which does not contain the stopping constellations with small weight, we need to avoid the stopping sets with small weight.
+In this section, we derive the stopping constellation distribu- tions for irregular non-binary LDPC code ensembles. We give some lemmas to count constellations of the linear subspaces satisfying the stopping constellation constraint (1) for check nodes.
+It is known that the number of distinct subspaces of di- mension k of the vector space F m 2 is given by the Gaussian binomial coefﬁcient [8, p. 443]. Deﬁne for non-negative inte- ger m
+The Gaussian binomial coefﬁcient m t is given by m
+We denote the dimension of V i , by dim V i . The following lemma gives the number of the sets of linear subspaces {V i } k i =1 for a given condition for the dimension of {V i } k i =1 .
+Lemma 3: For a given set of non-negative integers a k = {a k (S)} S ⊆[1,k] , let B k (a k ) be the number of the sets of linear subspaces {V i } k i =1 in F m 2 which satisfy
+[a k (S)] 2 T k , 	 (2) where
+Lemma 4: Deﬁne B k (a k ) as in (2). The number of the sets of linear subspaces {V i } k i =1 such that V i ⊇ j ∈[1,k]\{i} V j for all i ∈ [1, k] is given by
+Discussion 1: Let d i be the number of subspace in {V j } k j =1 such that the dimension is m − i. For j ∈ [1, m], let p j be the smallest integer such that j ≤ p j i =0 d i . For a given d = (d 0 , . . . , d m ), the number of the sets of linear subspaces {V i } k i =1 such that V i ⊇ j ∈[1,k]\{i} V j for all i ∈ [1, k] is given by
+B. Stopping Constellation Distributions for Non-Binary LDPC Codes
+Recall that we refer to the number of states whose di- mensions are not equal to 0 as the weight of the stopping constellation. Let ℓ be the weight of the stopping constellation. For a given Tanner graph G ∈ EGL(N, m, λ, ρ), we denote the number of stopping constellations of weight ℓ in G by A G (ℓ). For the ensemble EGL(N, m, λ, ρ), let A(ℓ) be the average number of stopping constellations of weight ℓ. Since each code is chosen uniformly at random from EGL(N, m, λ, ρ), we get
+The following theorem gives the average number of stop- ping constellations for non-binary irregular LDPC code en- sembles.
+Theorem 1: Deﬁne f k (u) as in (4). The average number of stopping constellations A(ℓ) of weight ℓ for the non-binary LDPC code ensemble EGL(N, m, λ, ρ) is given by
+where coef(g(s, t, u), t ℓ m i =1 s b i i u b i i ) is the coefﬁcient of a term t ℓ m i =1 s b i i u b i i in the polynomial g(s, t, u).
+Proof: First, we count constellations of the linear sub- spaces satisfying the stopping constellation constraint (1) for all check nodes. Consider a check node c of degree k. We say that the check node c satisﬁes the decoding failure criterion with respect to the state assignment E if
+where α, β denotes the inner product of α and β. Using the dual subspaces, we have
+We refer to the edges adjacent to the variable node assigned to state of dimension i as the edges of dimension i. Let d i be the number of edges of dimension i which are adjacent to the check node c. From Discussion 1, for given (d 0 , . . . , d m ), the number of the constellation that satisfy the stopping constellation constraint for the check node c is written as coef f k (u), m i =1 u d i i . Let b i be the total number of edges of dimension i. Since there are R k (1−r)N check nodes of degree k, the number of the constellations that satisfy the stopping constellation constraints for the N (1 − r) check nodes for a given b = (b 0 , . . . , b m ) is given by
+Secondly, we count constellations of linear subspaces satis- fying the constraints of the variable nodes. Consider a variable node v of degree k. If the variable node v assigned to state of dimension i, the k edges adjacent to v are of dimension i. Deﬁne the parameter w as 1 if the dimension of the state of the variable node v is not 0, and otherwise 0. Denote the number of edges of dimension i adjacent to the variable node
+v , by d i . For a given w ∈ {0, 1} and d = (d 0 , . . . , d m ), let g k (w, d) be the number of constellations of linear subspaces satisfying a constraint of variable node of degree k. Since the number of the states of dimension i is m i , we have
+Since there are L k N variable nodes of degree k, for a given ℓ and b, the number of constellations of linear subspaces satisfying constraints of the N variable nodes is given by
+Thirdly, we count the edge permutation and the edge labels which satisfy the constellation. For a given b, the number of permutations of edges is given by m i =0 b i !. For a given b, the number of edge labels is equal to m i =0 [m] m
+Finally, the number of Tanner graphs in EGL(N, m, λ, ρ) is given by ξ![m] ξ . From (6), (7) the condition for the edge permutation, the edge labels and the number of Tanner graphs, the average stopping constellation distribution for a given ℓ and b is given by
+In this section, we investigate the asymptotic behavior of the average stopping constellation distributions of non-binary LDPC code ensembles in the limit of large code length. Deﬁne the normalized weight ω by ω := ℓ/N . We deﬁne
+and refer to this as the exponential growth rate or simply growth rate of the average number of stopping constellations.
+To simplify the notation, we denote logarithms to base 2 as log.
+With the growth rate, we can roughly estimate the number of stopping constellations by
+The number of the terms in (5) is at most (ξ + 1) m . Hence, from (5) we have
+To calculate this equation, we introduce the following lemma. Lemma 5: [9, Theorem 2] Let γ > 0 be some rational
+number and let p(x 1 , x 2 , . . . , x m ) be a function such that p(x 1 , x 2 , . . . , x m ) γ is a multivariate polynomial with non- negative coefﬁcients. Let α k > 0 be some rational numbers for k ∈ [1, m] and let n i be the series of all indices j such that j/γ is an integer and coef(p(x 1 , . . . , x m ) j , x α 1 j 1 · · · x α m j m ) = 0. Then
+A point (x 1 , . . . , x m ) achieves the minimum of p(x 1 , . . . , x m )/(x α 1 1 . . . x α m m ), if and only if it satisﬁes the following equation for all k ∈ [1, m]:
+Deﬁne β i := b i /N for i ∈ [0, m] and ǫ := ξ/N . From Theorem 1 and Lemma 5, we obtain the following theorem.
+Theorem 2: The growth rate γ(ω) of the average number of stopping constellation distributions for the non-binary irregular LDPC code ensemble EGL(N, m, λ, ρ) is given by
+ǫ 	 (8) =: sup
+A point (u, s, t) that takes inf u ,s,t is given a solution of the following equations for all i ∈ [1, m]:
+The point β which gives the maximum of γ(ω, β) needs to satisfy the stationary condition
+Lemma 6: For t such that t > 0 (9), (10) and (11) hold, we have
+Theorem 3: For the non-binary irregular LDPC code en- semble EGL(N, m, λ, ρ) with λ ′ (0) > 0, the growth rate of the average number of stopping constellation distributions of normalized weight ω, in the limit of large symbol code length for ω → 0, is given by
+Discussion 2: From Theorem 3, we see that the growth rate for ω → 0 does not depend on the dimension m. The result of Theorem 3 coincides with the results for the weight distribution of non-binary LDPC codes [10]. The techniques to prove Theorem 3 and Lemma 5 are originally developed in [11].
+In this section, we give the growth rates by the numerical computation. Figure 1 and 2 show the growth rates of the average number of stopping constellations for the (2,4)-regular non-binary LDPC code ensembles deﬁned over GL(m, F 2 ), where m = 1, 2, 3, 4. From Figure 2, we see that the growth rate for small ω does not depend on the dimension m. Moreover, we see that the slopes of the growth rates for small ω is log λ ′ (0)ρ ′ (1).
+In this paper, we derive the stopping constellation distri- bution and growth rate for non-binary LDPC codes over the general linear group. We show that the growth rate for small ω does not depend on the dimension of the general linear group for λ ′ (0) > 0.
+As a future work, we will derive the stopping constellation distribution for the non-binary LDPC code ensemble deﬁned over ﬁnite ﬁelds and we will derive the block and the symbol erasure probabilities for the non-binary LDPC code ensemble.
+This work was partially supported by Grant-in-Aid for JSPS Fellows.
+[[[ REFS ]]]
+R. G. Gallage
+--
+Low Density Parity Check Codes
+----
+T. Richardson
+M. A. Shokrollahi
+R. Urbanke
+--
+Design of capacity- approaching irregular low-density parity-check codes
+----
+M. Davey
+D. MacKay
+--
+Low-density parity check codes over GF(q)
+----
+W. Chen
+C. Poulliat
+D. Declercq
+L. Conde-Canencia
+A. Al- Ghouwayel
+E. Boutillon
+--
+Non-binary LDPC codes deﬁned over the general linear group: Finite length design and practical implementation issues
+----
+C. Di
+D. Proietti
+I. Telatar
+T. Richardson
+R. Urbanke
+--
+Finite- length analysis of low-density parity-check codes on the binary erasure channel
+----
+V. Rathi
+--
+Conditional entropy of non-binary LDPC codes over the BEC
+----
+V. Rathi
+R. Urbanke
+--
+Density evolution, thresholds and the stability condition for non-binary LDPC codes
+----
+F. J. MacWilliam
+N. J. A. Sloan
+--
+The Theory of Error-Correcting Codes 
+----
+D. Burshtein
+G. Miller
+--
+Asymptotic enumeration methods for analyzing LDPC codes
+----
+K. Kasai
+C. Poulliat
+D. Declercq
+K. Sakaniwa
+--
+Weight distri- bution of non-binary LDPC codes
+----
+K. Kasai
+T. Awano
+D. Declercq
+C. Poulliat
+K. Sakaniwa
+--
+Weight distribution of multi-edge type LDPC codes
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\026.pdf
+[[[ LINKS ]]]
+

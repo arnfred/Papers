@@ -1,0 +1,123 @@
+[[[ ID ]]]
+189
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Efﬁcient Message Passing Scheduling for Terminated LDPC Convolutional Codes
+[[[ AUTHORS ]]]
+Michael Lentmaier
+Maria Mellado Prenda
+Gerhard P. Fettweis
+[[[ ABSTR ]]]
+Abstract—Message passing schedules that reduce the decoding complexity of terminated LDPC convolutional code ensembles are analyzed. Considering the AWGN channel, various sched- ules are compared by means of density evolution. The results of the analysis together with computer simulations for some (3,6)-regular codes conﬁrm that sliding window decoding is an attractive practical solution for low-latency and low-complexity decoding.
+[[[ BODY ]]]
+It can be observed that terminated LDPC convolutional code ensembles have better belief propagation (BP) decoding thresholds than their tailbiting versions or the block codes they are constructed from [1], [2], [3]. However, if a standard BP block decoder is applied to these ensembles the decoding complexity per symbol increases linearly with the number of consecutively encoded blocks, which we denote as termination factor L. Small values of L, on the other hand, result in a large rate loss that is undesirable.
+At the same time it is widely known that the special structure of convolutional codes is well-suited for efﬁcient pipeline decoding [4], [5], [6], allowing for a continuous windowed transmission without any termination or, more practically, a termination after an arbitrarily large number L of consecutively encoded blocks. A different type of sliding window decoding was introduced in [7] for proving that the threshold improvement of LDPC convolutional codes does not vanish as L → ∞ (see also [2]). This type of window decoding was also investigated in [8] from a latency perspective.
+In this paper, considering the AWGN channel, we analyze and compare various message passing schedules (MPS) by means of a density evolution analysis. We demonstrate that the window decoder considered in [8], [7] and [2] can be inter- preted as a natural and easily implementable approximation of a special MPS in which superﬂuous node updates are omitted. Simulation results for some (3,6)-regular code examples show that with the sliding window decoder LDPC convolutional codes can outperform their block code counterparts without increasing latency and complexity.
+Consider an ensemble of LDPC block codes, deﬁned by a protograph with n c check nodes and n v variable nodes and its bi-adjacency matrix B, called base matrix. An individual code
+of this ensemble, with an N n c × N n v parity-check matrix H, can be derived from this protograph by a lifting procedure that replaces each 1 in B by an N × N permutation matrix and each 0 by an N × N all-zero matrix 1 . Assume now that we want to transmit a sequence of codewords v t , t = 1, . . . , L. In conventional block coding, each of these codewords of length n t = N n c is encoded independently by means of a code of the ensemble. The achievable performance depends on the lifting factor N and the structure of the protograph. In convolutional coding, on the other hand, the blocks v t are coupled by the encoder over various time instants t. The memory m cc of the convolutional code determines the maximal distance between a pair of coupled blocks. Starting from the base matrix B of a block code ensemble, the coupling of consecutive blocks can be achieved by an edge spreading procedure [9] that divides the edges from variable nodes at time t among equivalent check nodes at times t + i, i = 0, . . . , m cc . This procedure is illustrated in Fig. 1 for a (3,6)-regular ensemble with B = [3, 3]. The resulting sequence of coupled code blocks forms a codeword v = [v 1 , v 2 , . . . , v t . . . v L ] of a terminated LDPC convolutional code. The corresponding ensemble can be described by means of a convolutional protograph with base matrix
+  
+The block coding ensemble with disconnected protographs corresponds to the special case m cc = 0 and B 0 = B.
+In order to maintain the degree distribution and the structure of the original ensemble, a valid edge spreading should satisfy the condition 	 m
+This condition ensures that the entries of B are divided among the matrices B i in such a way that the sums over the columns and rows of B [1,L] are equal to those of B. The only exception are the ﬁrst and last m cc n c rows of B [1,L] ,
+whose weights are reduced as a result of the termination at the ends of the convolutional ensemble. The corresponding check nodes at the start and end of the protograph have lower degrees (see also Fig. 1), resulting in a slight irregularity with stronger protection of the symbols associated with the connected variable nodes. As L → ∞, the fraction of lower degree check nodes vanishes and the degree distribution of the coupled ensemble B [1,L] converges to that of the original block code ensemble B. As a consequence, the ensemble of terminated LDPC convolutional codes considered in Fig. 1 (which we subsequently refer to as Ensemble A) forms an example of asymptotically regular LDPC codes. Despite of the vanishing fraction of stronger check nodes, it turns out that the coupled ensembles have a substantially better BP decoding threshold than the block ensembles they are constructed from. In particular, as L → ∞ the BP decoding threshold of the coupled ensembles converges to the optimal MAP decoding threshold of the underlying block ensemble. For regular LDPC codes this threshold saturation phenomenon has been proven analytically for the BEC in [3], and it can be observed em- pirically for the AWGN channel as well. The slight structured irregularity of the coupled ensembles leads to BP decoding thresholds that approach the Shannon limit as the node degrees increase.
+We assume that transmission takes place over the AWGN channel and consider BP decoding with log-likelihood ratios (LLRs) acting as messages. Let L ch (i) denote the channel LLR of code symbol i and L c (e) and L v (e) denote the messages passed from a check node and a variable node along an edge e, respectively. The edges connected to a variable node i or a check node m are labeled by e v i,j or e c m,k . The j-th edge of variable node i is connected to the k-th edge of check node m if e v i,j = e c m,k . Before decoding, all messages L v (e) are initialized with the incoming channel LLRs and all messages L c (e) are set to zero.
+The message passing schedule that is most frequently used for BP decoding of LDPC codes is the ﬂooding schedule.
+In each decoding iteration ﬁrst all check nodes and then all variables nodes are updated. Since within each decoding iteration the check node updates and variable node updates of all nodes can be performed in parallel it is also called parallel schedule .
+Message Passing Schedule I (MPS-I) 1) Check node update:
+For all edges e c m,k update the outgoing messages according to
+For all edges e v i,j update the outgoing messages according to
+For a code with sufﬁciently large girth, the probability distribution of the messages L c (e) and L v (e) exchanged during the iterations can be computed by density evolution within the protograph. We have used the discretized density evolution technique by Chung [10] for a convergence analysis of coupled codes from Ensemble A. For a decoder with MPS- I the bit error probability P b (t) corresponding to messages L v (e) from variable nodes at time t is shown in Fig. 2 for different numbers of iterations. As expected, for all iterations the symbols at the start and end of the protograph are better protected due to the lower check node degrees from the termination. Furthermore, the curves show that this improved performance propagates through toward the center as the number of iterations increases until, eventually, a low P b (t) can be observed for all t.
+The results in Fig. 2 show that the number of iterations required to guarantee a particular target error probability
+P max b depends on the position t within the protograph. Due to the special structure of the coupled ensemble, while a P b (t) < 10 − 5 is achieved already after I = 50 iterations at position t = 1, more than I = 300 iterations are required closer to the center at t = 40. The following schedule makes use of this behavior by deactivating updates of nodes at positions t where the target probability already has been achieved.
+Exclude check nodes m and variable nodes i at position t from the set of updated nodes.
+2) Perform check node and variable node updates for the remaining nodes according to the rules of MPS-I.
+Let I t denote the number of times the variable and check nodes at position t are updated during the iteration proce- dure. The average decoding complexity per symbol is then proportional to the effective number of iterations I eff , deﬁned as I eff = 1/L L t =1 I t . While for MPS-I I t is equal to the total number of iterations for all t, i.e., I eff = I t = I, for MPS-II I t depends on the position in the protograph, as depicted in Fig. 3 for P max b = 10 − 5 . For L = 100 the maximal value of I t is equal to the total number of iterations I required in Fig. 2. It can be observed that I t increases linearly with the distance from the ends of the protograph, with a slope that is independent of the termination factor L. In the neighborhood of the center a ﬂattening of the curves to a constant value can be observed, which can be prescribed to the inﬂuence of messages propagating from the other end of the graph. The width of the ﬂat region as well as the slope of the curve depend on P max b and on the standard deviation σ of the channel noise, but not on L. Note that MPS-II clearly reduces I eff and, hence, the average complexity per symbol compared to MPS-I.
+According to Fig. 3 the nodes in the center of the protograph require the largest number of updates. On the other hand, from Fig. 2 we can conclude that little inﬂuence from the stronger check nodes can be expected within the
+ﬁrst decoding iterations. In order to quantify the actual relevance of an update, let us introduce the fractional bit error improvement ∆P b (t) = (P old b (t) − P new b (t))/P old b (t) resulting from an update of all nodes at position t. The following schedule updates only nodes with a minimum improvement θ, 0 ≤ θ ≤ 1.
+Message Passing Schedule III (MPS-III) 1) For all t such that P b (t) < P max b :
+Exclude check nodes m and variable nodes i at position t from the set of updated nodes.
+Exclude variable nodes i at position t from the set of updated nodes.
+3) For all check nodes m at positions t that are not connected to variable nodes to be updated:
+Exclude check nodes m at position t from the set of updated nodes.
+4) Perform check node and variable node updates for the remaining nodes according to the rules of MPS-I.
+The values I t for this schedule are also depicted in Fig. 3 for θ = 0.01. It turns out that the proposed deactivation of nodes in the center leads to a dramatic reduction in complexity. For all t = 1, . . . , L the required number of updates is reduced to a value that previously was only sufﬁcient for the ﬁrst and last few positions in the protograph. The maximal I t depends on P max b , on σ, and on θ, but not on L. As a remarkable consequence, in contrast to the other schedules, for MPS- III the effective number of iterations per symbol I eff does no longer increase with the termination factor L (see Fig. 4 and Fig. 5). Although we limit ourselves to regular LDPC ensembles of rate R = 1/2 in this paper, the same principle behavior can be observed for arbitrary regular and irregular base protographs and edge spreadings [9].
+The complexity reduction in the MPS-III schedule was obtained by omitting irrelevant node updates at the ends and
+in the center of the protograph. Due to the structure of the coupled ensemble, during the decoding process the remaining active nodes move from both ends of the protograph toward the center. A natural approximation of this schedule can be easily implemented by means of a sliding window decoder.
+Message Passing Schedule IV (MPS-IV) [8] [7] [2] For all window positions p = 1, . . . , L:
+The number of iterations I win p and the window size W should be chosen in such a way that the target error probability is achieved at position t = p. For a given W it can be observed that the probabilities P b (t), t = p, . . . , p + W − 1 within the window converge to a ﬁx point as I t → ∞ . This behavior is illustrated in Fig. 6 for different window sizes W . The ﬁgure also shows another ensemble (Ensemble B), deﬁned by another valid edge spreading B 0 = [2, 2] and B 1 = [1, 1] of B = [3, 3]. This ensemble, which has been proposed in [8], achieves the target error probability with a smaller W . Figure 7 shows the protograph of Ensemble B and illustrates the ranges of updated nodes covered by the sliding window.
+The values I t for Ensemble B with windowed schedule MPS-IV are shown in Fig. 8 for window sizes W = 4, 6, and 12. Schedule MPS-II is also shown for comparison. The number of iterations I win p at window position p is chosen adap- tively, so that the window is shifted after the target probability P max b = 10 − 5 has been achieved. The maximal I t increases with the values I win p and W , where I win p is also inﬂuenced by W . The values I win p are smallest for large windows, when the slope of I t at the start of the protograph approaches that of MPS-II. In terms of average complexity the optimal window size in the example is W = 6. A comparison with the
+behavior of the low-complexity MPS-III schedule considered in the previous subsection shows that the window decoder efﬁciently reduces the number of irrelevant node updates for a given target error probability. A further practical advantage of the window decoder is that the latency is determined by the window size, so that both decoding complexity and latency are independent of the termination factor L.
+In this section we evaluate the performance of terminated (3,6)-regular LDPC convolutional codes from Ensemble B by means of computer simulations. Window decoding scheduling (MPS-IV) for L = 1000 and W = 6 and W = 12 is compared to MPS-II schedule of convolutional codes with L = 100 (CC) and block codes (BC). The corresponding thresholds are shown as vertical lines. All simulated codes where picked randomly from the corresponding ensembles without any cycle reduction procedure. For the MPS-II schedule (CC) and the block codes (BC) the maximal iteration number was set to I max = 10000. For the window decoder I win 1 = 501 iterations have been performed at window position p = 1. For all other positions p > 1 the number of iterations I win p was chosen adaptively, with a maximal number of I win p,max = 501. For fair complexity comparison, in terms of the average effective number of required iterations I eff , a stopping rule was applied to the block codes, which interrupts the iterations as soon as a valid codeword is achieved.
+Figure 9 shows the results of these simulations for lifting factors N = 500 and N = 1000. The value ∆C in the ﬁgure denotes the complexity advantage of the convolutional codes compared to the block codes. Compared to the MPS-II decoder, the window decoder reduces the decoding complexity at the cost of a performance degradation. At the same time, the window decoder outperforms the corresponding block codes with a lower average decoding complexity.
+In Fig. 10 the lifting factors are chosen in such a way that the latency n WD = 2W N of the window decoder is equal to the length of the block codes n BC = 6N . Even in this case the window decoder still outperforms the block codes both in terms of complexity and bit error rate, although the advantage is now smaller than in Fig. 9. At 1.5 dB we can see an example that achieves equal performance as a block code with window decoding at half the latency and half the complexity.
+[[[ REFS ]]]
+A. Sridharan
+M. Lentmaier
+D. J. Costello
+K. Sh. Zigangirov
+--
+Convergence analysis of a class of LDPC con- volutional codes for the erasure channel
+----
+M. Lentmaier
+A. Sridharan
+J. Costello
+--
+Iterative decoding threshold analysis for LDPC convolutional codes
+----
+S. Kudekar
+J. Richardson
+L. Urbanke
+--
+Threshold satu- ration via spatial coupling: Why convolutional LDPC ensembles perform so well over the BEC
+----
+A. Jim´enez Feltstr¨om
+--
+Periodic time- varying convolutional codes with low-density parity-check ma- trices
+----
+A. E. Pusane
+A. Jim´enez Feltstr¨om
+A. Sridharan
+M. Lentmaier
+K. Sh. Zigangirov
+D. J. Costello
+--
+Implementation aspects of LDPC convolutional codes
+----
+E. Mat´uˇs
+S. Tavares
+M. Bimberg
+P. Fettweis
+--
+To- wards a GBit/s programmable decoder for LDPC convolutional codes
+----
+M. Lentmaier
+A. Sridharan
+K. Sh. Zigangirov
+D. J. Costello
+--
+Terminated LDPC convolutional codes with thresholds close to capacity
+----
+M. Papaleo
+A. Iyengar
+P. Siegel
+J. Wolf
+G. Corazza
+--
+Windowed erasure decoding of LDPC convolutional codes
+----
+M. Lentmaier
+P. Fettweis
+J. Costello
+--
+Approaching capacity with asymptotically regular LDPC codes
+----
+J. Richardson
+R. Ur- banke
+--
+On the design of low-density parity-check codes within 0.0045 db of the Shannon limit
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\189.pdf
+[[[ LINKS ]]]
+

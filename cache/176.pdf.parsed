@@ -1,0 +1,192 @@
+[[[ ID ]]]
+176
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Common Information of Random Linear Network Coding Over A 1-Hop Broadcast Packet Erasure Channel
+[[[ AUTHORS ]]]
+Chih-Chun Wang
+Jaemin Han; {chihw
+han83}@purdue.edu
+[[[ ABSTR ]]]
+Abstract—Random linear network coding (RLNC) is widely used in practical network coding (NC) protocol design. Recent results show that RLNC also plays an important role in capacity- achieving intersession NC schemes for erasure-based 1-hop relay networks. This work quantiﬁes the common information of RLNC over a 1-hop broadcast packet erasure channel. Several potential applications are discussed, including source coding, intersession NC, and broadcasting with common and private information.
+[[[ BODY ]]]
+For any positive integer K, we deﬁne [K] Δ = {1, · · · , K} and use 2 [K] to denote the collection of all subsets of [K]. We consider a 1-hop wireless broadcast channel with a single source s and multiple destinations d k , k ∈ [K]. Source s has N information packets to transmit, denoted by a row vector W Δ = (W 1 , · · · , W N ) ∈ (GF(q)) N . Random linear network coding (RLNC) [6] is used. That is, for each time slot t, source s sends a packet Y t = v t W T through a broadcast erasure channel, where v t is an N-dimensional row vector chosen independently and uniformly randomly from (GF(q)) N . We assume that {v t : ∀t} are known to all destinations d k . This can be achieved either by generating {v t : ∀t} via a pseudo random number generator with a common seed; or by the generation-based construction in [3].
+In the end of time t, destination d k either receives an erasure Z k,t = ∗ or the transmitted packet Z k,t = Y t . We assume whether the packet is erased or not is independent of W and {Y t : ∀t}. We use Z k Δ = {Z k,t : ∀t} to denote what d k has received/observed. For any t, we use R t ∈ 2 [K] to denote the set of destinations that successfully receive Y t . Deﬁne
+Some other notations are also useful for our discussion. For any two linear spaces A and B, we deﬁne the sum space A ⊕ B Δ = span(v : ∀v ∈ A ∪ B). For any S ∈ 2 [K] , deﬁne
+simplicity, we often use π k as shorthand for π {k} . The classic results of RLNC [6] prove that when a sufﬁciently large GF(q) is used, with close-to-one probability we must have
+Rank(Ω k ) = min(N, π k ). 	 (1) Since Ω k is the information space at d k , the common infor-
+scheme, what is the value of Rank k ∈[K] Ω k when a sufﬁciently large GF(q) is used?
+Remark 1: For K = 2, one can easily prove that Rank(Ω 1 ∩ Ω 2 )
+(2) The case of K ≥ 3 quickly becomes non-trivial and cannot be derived by iteratively applying (2). One reason is that although the cardinality equality |(S 1 ∩S 2 )∪S 3 | = |(S 1 ∪S 3 )∩(S 2 ∪S 3 )| holds for arbitrary sets S 1 to S 3 , when focusing on ranks and sum spaces, we may have Rank((Ω 1 ∩Ω 2 )⊕Ω 3 ) being strictly smaller than Rank((Ω 1 ⊕ Ω 3 ) ∩ (Ω 2 ⊕ Ω 3 )). As a result, one cannot derive the results for K ≥ 3 by iteratively applying (2), and the expression of Rank k ∈[K] Ω k no longer admits the inclusion-exclusion form as in the simplest case of K = 2.
+Remark 2: [6] proves that if min k ∈[K] π k ≥ N, then Rank k ∈[K] Ω k = N, i.e., all destinations can decode all packets. This paper explores the transient behavior of RLNC (in terms of Rank k ∈[K] Ω k ) when individual d k has not received enough packets (when min k ∈[K] π k < N ).
+Remark 3: We deliberately choose not to specify the total number of time slots used in transmission so that our setting is compatible to that of the rate-less codes [1]. For readers interested in ﬁxed-length codes over i.i.d. broadcast erasure channels [12], [13], one can view π S = n k ∈S p k , where n is the total number of time slots and p k is the marginal success probability that d k receives a transmission.
+RLNC is widely used in system-level research due to its distributed nature [2], [9] and optimal performance for single
+multicast [10]. Studying the common information of RLNC will deepen our understanding and have impact on both the information theory and the networking societies. In the following, we highlight three such connections to other areas.
+1) G´acs-K¨orner Common Information: In [5], [7], the G´acs-K¨orner common information (GKCI) between two ran- dom variables (RVs) X and Y is deﬁned as the supremum of the entropy H (V ) over all RVs V , taking values in some ﬁnite set V, that can be written as V = f(X) = g(Y ) for some functions f (·) and g(·). The GKCI can also be generalized 1 for K random variables X 1 to X K by ﬁnding the supremum of H (V ) for all V = f 1 (X 1 ) = · · · = f K (X K ). In our RLNC setting, the GKCI among Z 1 to Z K is indeed quantiﬁed by Rank k ∈[K] Ω k . Some relationships of the GKCI to other source coding problems can be found in [7].
+2) Broadcast With Private And Common Messages: Under a wireline setting, [4] derives the capacity when a single source s would like to send two private messages to d 1 and d 2 with rates R 1 and R 2 , respectively, and send one common message to both d 1 and d 2 with rate R 0 . [4] proves that (R 0 , R 1 , R 2 ) is achievable if there exists an N such that the corresponding RLNC-based information spaces Ω k , k = 1, 2, satisfy
+⎧ ⎪ ⎪ ⎪ ⎨ ⎪ ⎪ ⎪ ⎩
+R 1 = ˜ R 1 + ˆ R 1 , R 2 = ˜ R 2 + ˆ R 2 R 0 + ˜ R 1 + ˜ R 2 = Rank(Ω 1 ∩ Ω 2 )
+ˆ R 1 ≤ Rank(Ω 1 ) − Rank(Ω 1 ∩ Ω 2 ) ˆ R 2 ≤ Rank(Ω 2 ) − Rank(Ω 1 ∩ Ω 2 )
+for some rate vector ( ˜ R 1 , ˆ R 1 , ˜ R 2 , ˆ R 2 ). The interpretation of (3) is straightforward: we ﬁrst break the rate R k into two sub- rates ˜ R k and ˆ R k for k = 1, 2. The sub-rates ˜ R 1 , ˜ R 2 , and the common message rate R 0 are then communicated to both d 1 and d 2 through the common information of RLNC. For each k, the sub-rate ˆ R k is communicated to d k through the information space Ω k that is not in the common information space Ω 1 ∩Ω 2 , and is thus upper bounded by the difference of the ranks. Combining the expressions in (1) and (2), [4] further proves that the achievable region (3) is indeed the capacity.
+A natural question is whether we can extend the above RLNC-based results for K ≥ 3. Characterizing the corre- sponding performance requires quantifying the common in- formation Rank k ∈[K] Ω k for arbitrary K values.
+3) Combination of Intersession Network Coding And Op- portunistic Routing: Consider a wireless relay network in
+Fig. 1(a) with two source-destination pairs (s 1 , d 1 ) and (s 2 , d 2 ) and a relay r interconnected by broadcast packet erasure channels (PECs), which models the widely-studied intersession network coding (INC) protocol in [8]. Recently the capacity of Fig. 1(a) has been characterized under a 1- time-reception-report setting [13]. In the capacity-achieving scheme of [13] each s i simply performs RLNC that broadcasts packets to r and the other destination d j , j = i. The relay r later intelligently mixes the s 1 -packets overheard by d 2 and the s 2 -packets overheard by d 1 , which achieves the capacity.
+On the other hand, in practice, a packet transmission may be heard directly by its 2-hop neighbors. The opportunistic routing scheme in [2] shows that by exploiting this obser- vation alone (without INC), one can substantially enhance the throughput. An interesting question is thus how much throughput enhancement one can achieve when combining both INC and opportunistic routing. For example, Fig. 1(b) illustrates the scenario in which a packet sent by s 1 may be overheard by d 1 . Assume RLNC is used by s 1 , and let Ω r , Ω d 1 , and Ω d 2 denote the information spaces received by r, d 1 , and d 2 , respectively. Then relay r needs to transmit additional
+Rank(Ω r ) − Rank(Ω r ∩ Ω d 1 ) 	 (4) packets to d 1 , where the ﬁrst term quantiﬁes the overall infor- mation at r, and the second term quantiﬁes the corresponding (sub-) information already known at d 1 . By similar reasonings,
+Rank(Ω r ∩ Ω d 2 ) − Rank((Ω r ∩ Ω d 2 ) ∩ Ω d 1 ) (5) corresponds to the amount of information possessed by r and also overheard by d 2 while being beneﬁcial to d 1 . Since (5) describes how many s 1 -packets at r are overheard by d 2 and can later be mixed with the s 2 -packets overheard by d 1 , the INC performance depends on the values of (4) and (5). See [12], [13] for detailed discussion. The common information Rank k ∈S Ω k is thus critical to the throughput analysis when combining INC and opportunistic routing.
+For any S ∈ 2 [K] , we say a collection of subsets {S 1 , S 2 , · · · , S M } is a partition of S if S m = ∅ for all m ∈ [M], S i ∩ S j = ∅ for all i = j, and M m =1 S m = S. We use {S m } as shorthand for a partition {S 1 , S 2 , · · · , S M }. For any N, we deﬁne a function f N : 2 [K] → R +
+(N − π S m ) + : ∀ partition {S m } , (6)
+where (·) + = max(0, ·) is the projection to non-negative reals. Proposition 1: Assume RLNC on a ﬁnite ﬁeld GF(q). For
+any given receiving sets {R t : ∀t} and the corresponding {π T : ∀T ∈ 2 [K] }, we have
+Example: When S = {1}, there is only one partition {{1}}. Rank(Ω 1 ) is thus f N ({1}) = N − (N − π 1 ) + = min(π 1 , N )
+as predicted in (1). When S = {1, 2}, there are two partitions {{1, 2}} and {{1}, {2}}. The rank of Ω 1 ∩ Ω 2 is thus
+f N ({1, 2}) = max N − (N − π 1 ) + − (N − π 2 ) + , N − (N − π {1,2} ) + .
+By simple arithmetics, one can prove that f N ({1, 2}) is equivalent to (2). Note that for any ﬁxed S, f N (S) depends on the value of N. Fig. 1(c) plots f N (S) versus N when S = {1, 2, 3} for some ﬁxed receiving status {R t : ∀t}. As can be seen, the resulting curve is neither concave nor convex.
+The proof of Proposition 1 is outlined in this section. The detailed proofs are omitted due to the space limit.
+Step 0.1: Conversion to a simpler setting. For any given S ∈ 2 [K] , N, receiving sets {R t : ∀t}, and the corresponding {π T : ∀T ∈ 2 [K] }, consider the following two inequalities:
+Lemma 1: If both (7) and (8) are satisﬁed, then f N (S) in (6) can be rewritten as
+Lemma 2: Fix S and N. Consider any receiving sets {R t : ∀t}, which may not satisfy (7) and (8). We can always construct a new RLNC system with ˇ K destinations such that the corresponding ˇ S ∈ 2 [ ˇ K ] , { ˇ R t : ∀t}, and {ˇπ T : ∀T ∈ 2 [ ˇ K ] } satisfy (7) and (8) for the original N and the new ˇ S ; and simultaneously the following two equalities are satisﬁed
+⎛ ⎝
+⎞ ⎠
+(11) where {Ω k } (resp. {ˇΩ k }) are the information spaces of RLNC according to the receiving sets {R t : ∀t} (resp. { ˇ R t : ∀t}). f N (·) and ˇ f N (·) are the function (6) evaluated corresponding to {R t : ∀t} and { ˇ R t : ∀t}, respectively.
+Combining Lemmas 1 and 2, we thus only need to prove that when both (7) and (8) are satisﬁed, Rank k ∈S Ω k can be computed by (9). In our proof, we also use the induction assumption that Rank k ∈S Ω k can be computed by (6) for any S satisfying |S | < |S|.
+Step 0.2: Generalized linear network coding theorem for the intersection of spaces. We now introduce a lemma and a proposition that will be the theoretic foundation of Step 1.
+Fix any N 1 , N 2 , and N that satisfy max(N 1 , N 2 ) ≤ N and N 1 + N 2 ≥ N. For any i ∈ [N 1 ], consider 2N multi-variable polynomials g [1] i,n (x) and h [1] i,n (x) for all n ∈ [N] where x is the ﬁnite collection of input variables, each taking values
+in GF(q). For those x values such that h [1] i,n (x) = 0 for all i ∈ [N 1 ] and n ∈ [N], we can construct N 1 row vectors
+Similarly, for any j ∈ [N 2 ], consider 2N multi-variable polynomials g [2] j,n (x) and h [2] j,n (x) for all n ∈ [N]. For those x values such that h [2] j,n (x) = 0 for all j ∈ [N 2 ] and n ∈ [N], we can construct N 2 row vectors
+Lemma 3: Let A denote the collection of all x values satisfying i ∈[N 1 ] n ∈[N] h [1] i,n (x) = 0 and
+lim q →∞ Prob(x ∈ A) = 1. 	 (12) Lemma 3 is a simple extension of the RLNC results in [6]. Some further notation is needed before describing the next
+N k ≤ N k for all k ∈ {1, 2}, we use B ˜ N 1 , ˜ N 2 to denote the collection of all x values satisfying
+(13) For any x ∈ B ˜ N 1 , ˜ N 2 we deﬁne the “marginal spaces” by
+Proposition 2: Suppose B ˜ N 1 , ˜ N 2 is not empty. For any given x 0 ∈ B ˜ N 1 , ˜ N 2 and any ﬁxed vector w 0 ∈ Ω [1] (x 0 ) ∩ Ω [2] (x 0 ), we can construct 2N polynomials g n (x) and h n (x) for all n ∈ [N], such that for all x ∈ B ˜ N 1 , ˜ N 2 , we have
+⎧ ⎪ ⎪ ⎨ ⎪ ⎪ ⎩
+Step 1: Characterizing a typical solution of RLNC-based spaces through a merging process. The preliminary Step 0.1 ensures that we can focus only on those {R t : ∀t} satisfying (7) and (8). Given such {R t : ∀t}, the goal in this step is to ﬁnd a ﬁxed, deterministic coding vector assignment { ◦ v t : ∀t} that satisﬁes some “typicality” conditions such that with close- to-one probability, a randomly constructed {v t : ∀t} will have the same “rank” property as that of the deterministic { ◦ v t : ∀t}.
+Consider S = [K]. In addition to (7) and (8), we further assume (8) is satisﬁed even for S 0 = S. We call it the (8+)
+condition, which will be relaxed later. We will construct a ﬁxed coding vector assignment { ◦ v t : ∀t} satisfying the following. Deﬁne ◦ Ω k as the information space at d k generated by { ◦ v t : ∀t}. The typicality conditions to be satisﬁed are
+To see why (14) and (15) characterize typicality, consider the following merging process from k = 1 to k = K − 1. When k = 1, (14) guarantees Rank( ◦ Ω 1 ) = f N ({1}) = π 1 , which is indeed a typical rank value for a RLNC scheme (see (7)).
+Consider the case k = k 0 sequentially for k 0 = 2, · · · , K − 1. With k = k 0 , by (14) we can construct f N ([k 0 ]) linearly independent coding vectors from i ∈[k 0 ] ◦ Ω i . Note that with k = k 0 − 1, (15) guarantees that i ∈[k 0 −1] ◦ Ω i and ◦ Ω
+satisfy (13). Therefore, Proposition 2 ensures that we can express the above deterministic f N ([k 0 ]) coding vectors as fractions of polynomials with the input variables being the choices of the RLNC vectors {v t : ∀t}. Then we can use Lemma 3 (with N 1 = f N ([k 0 ])) to prove that even when we randomly choose {v t : ∀t}, the random f N ([k 0 ]) coding vectors, computed from the fractions of polynomials, are linearly independent with close-to-one probability. By the construction in Proposition 2, these f N ([k 0 ]) coding vectors are in i ∈[k 0 −1] Ω i ∩ Ω k 0 with close-to-one probability.
+By the induction assumption for all S with |S | < |S| = K discussed in the end of Step 0.1, we also know that with close-to-one probability, we can have at most f N ([k 0 ]) linearly independent coding vectors from i ∈[k 0 ] Ω i . As a result, the deterministic f N ([k 0 ]) linearly independent coding vectors from i ∈[k 0 ] ◦ Ω i and the corresponding expressions based on fractions of polynomials are a typical solution of the basis vectors of the intersection k ∈[k 0 ] Ω k of a RLNC scheme.
+⎛ ⎝
+⎛ ⎝
+⎛ ⎝
+⎛ ⎝
+⎞ ⎠
+⎛ ⎝
+⎛ ⎝
+⎛ ⎝
+where (16) follows from Lemma 3 and our aforementioned typicality arguments; the ﬁrst equality of (17) follows from
+(14) and (15); and the last equality of (17) follows from (7), (8+), and Lemma 1.
+Step 2: Explicitly constructing a typical solution. Given {R t : ∀t} satisfying (7) and (8+), Step 1 converts the prob- lem of quantifying Rank i ∈[K] Ω i of randomly assigned {v t : ∀t} to that of ﬁnding one deterministic assignment { ◦ v t : ∀t} satisfying (14) and (15). To solve the latter, we provide a structured random construction of { ◦ v t : ∀t} that satisﬁes (14) and (15) with close-to-one probability.
+Assume that (7) and (8+) hold. Consider (K + 1) integer values u [K] , u [K]\1 , u [K]\2 , · · · , u [K]\K deﬁned by
+⎛ ⎝
+By (7) and (8+), all u values are non-negative and u [K] + ∀k∈[K] u [K]\k = N. We use δ 1 to δ N to represent N
+elementary basis vectors of (GF(q)) N such that each δ n is an N-dimensional row vector with the n-th coordinate being 1 and all other coordinates being 0. Construct (K + 1) matrices U [K] , U [K]\1 , U [K]\2 , · · · , U [K]\K as follows. U [K] is a u [K] × N matrix constructed by vertically concate- nating the ﬁrst u [K] basis vectors δ 1 to δ u [K] . For each k , U [K]\k is a u [K]\k × N matrix constructed by verti- cally concatenating the next u [K]\k basis vectors δ n , n ∈
+For any T ∈ 2 [K] , consider all the packets that are received by and only by the users in T . We slightly abuse the notation and use π T [K]\T to denote the number of such packets. Let V T denote a π T [K]\T × N matrix that contains all v t vectors satisfying R t = T . We construct a speciﬁc ◦ V T by
+where Γ [K];T (resp. Γ [K]\i;T ) is a π T [K]\T × u [K] (resp. π T [K]\T ×u [K]\i ) mixing matrix for which each entry is chosen independently and uniformly from GF(q). Repeat the above construction for all T ∈ 2 [K] and we have constructed a coding vector assignment { ◦ v t : ∀t}.
+The following lemma characterizes the typical behavior of the above random construction and implies the existence of one deterministic { ◦ v t : ∀t} satisfying (14) and (15).
+Lemma 4: For sufﬁciently large GF(q), the following three events hold with close-to-one probability for any k ∈ [K − 1]:
+⎛ ⎝
+⎛ ⎝
+(ii) The elementary basis vectors contained in U [K] , U [K]\(k+1) , U [K]\(k+2) to U [K]\K are also the basis vectors of i ∈[k] ◦ Ω i ; and
+⎛ ⎝
+⎛ ⎝
+Remark: Our structured random construction of { ◦ v t : ∀t} has delicate structures (18) that are quite different from the uniformly random construction of {v t : ∀t}. The readers may think why not use a uniformly random construction for { ◦ v t : ∀t}. The reason is that if we use a uniformly random construction, then proving “ { ◦ v t : ∀t} satisﬁes (15) with k = (K − 1)” is no easier than directly proving Proposition 1 for {v t : ∀t}, which becomes a tautology. In contrast, our structured random construction enables a clean proof for the existence of { ◦ v t : ∀t} satisfying (14) and (15), which circumvents the difﬁculty of directly proving Proposition 1.
+Step 3: Relaxing the condition (8+). In this following, we let S = [K] and discuss how to relax condition (8+) back to condition (8). Assume the receiving sets {R t : ∀t} satisfy (7) and (8) but not (8+). It thus means that
+⎛ ⎝
+⎛ ⎝
+⎛ ⎝
+⎛ ⎝
+⎛ ⎝
+⎛ ⎝
+We temporarily let destination d K hear additional Δ new coded packets u 1 W T to u Δ W T , where each coordinate of u i is chosen independently and uniformly from GF(q). After d K receiving additional Δ new packets, we have a new π K = π K + Δ and all other π T remain unchanged for all T = {K}. Since both (7) and (8+) are now satisﬁed, our previous proof shows that
+where Ω K is the new space generated by the original packets and the new extra packets. Since we add Δ new packets, for the original space Ω K we must have
+with close-to-one probability, where (20) follows from the induction assumption and from (19). By the classic results of RLNC (similar to (1)), we can also prove that
+As a result, when only (7) and (8) are satisﬁed but not (8+), with close-to-one probability
+We have quantiﬁed the common information of random linear network coding (RLNC) over 1-hop broadcast erasure channels for an arbitrary number of K destinations. In our future work, we will quantify the common information of RLNC of K destinations over h-hop erasure networks for arbitrary h values. Such results need to further take into account the topology of the underlying network.
+This work was supported in parts by NSF grants CCF- 0845968 and CNS-0905331.
+[[[ REFS ]]]
+J. Byers
+M. Luby
+M. Mitzenmacher
+--
+A digital fountain approach to asynchronous reliable multicast
+----
+S. Chachulski
+M. Jennings
+S. Katti
+D. Katabi
+--
+Trading structure for randomness in wireless opportunistic routing
+----
+P. Chou
+Y. Wu
+K. Jain
+--
+Practical network coding
+----
+E. Erez
+M. Feder
+--
+Capacity region and network codes for two receivers multicast with private and common data
+----
+P. G´acs
+J. K¨orner
+--
+Common information is far less than mutual information
+----
+T. Ho
+M. M´edard
+R. Koetter
+D. Karger
+M. Effros
+J. Shi
+B. Leong
+--
+A random linear network coding approach to multicast
+----
+S. Kamath
+V. Anantharam
+--
+A new dual to the G´acs-K¨orner common information deﬁned via the Gray-Wyner system
+----
+S. Katti
+H. Rahul
+W. Hu
+D. Katabi
+M. M´edard
+J. Crowcroft
+--
+XORs in the air: Practical wireless network
+----
+D. Koutsonikolas
+C.-C. Wang
+Y. Hu
+--
+Efﬁcient network coding based opportunistic routing through cumulative coded acknowledgment
+----
+S.-Y. Li
+R. Yeung
+N. Cai
+--
+Linear network coding
+----
+W. Liu
+G. Xu
+B. Chen
+--
+The common information of n dependent random variables
+----
+C.-C. Wang
+--
+Capacity of 1-to-K broadcast packet erasure channels with channel output feedback
+----
+
+--
+On the capacity of wireless 1-hop intersession network coding — a broadcast packet erasure channel approach
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\176.pdf
+[[[ LINKS ]]]
+

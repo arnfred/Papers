@@ -1,0 +1,148 @@
+[[[ ID ]]]
+86
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Optimal-Cost Repair in Multi-hop Distributed Storage Systems
+[[[ AUTHORS ]]]
+Majid Gerami
+Ming Xiao
+Mikael Skoglund
+[[[ ABSTR ]]]
+Abstract—In distributed storage systems reliability is achieved through redundant storage nodes distributed in the network. Then a data collector can recover source information even if some nodes fail. To maintain reliability, an autonomous and efﬁcient protocol should be used to reconstruct the failed node. The repair process causes trafﬁc in the network. Recent results in e.g., [1], [2] found the optimal trafﬁc-storage tradeoff, and proposed regenerating codes to achieve the optimality. We investigate the link costs and the impact of network topologies during the repair process. We formulate the minimum cost repair problem in joint and decoupled methods. We investigate the required ﬁeld size for the joint method. For the decoupled method, we show that the optimization problem is linear for the linear cost. We further show that the cooperation of surviving nodes could efﬁciently exploit the network topology and reduce the repair cost. The numerical results in tandem, star and grid networks show the beneﬁts of our methods in term of the repair cost.
+[[[ BODY ]]]
+The increasing number of new applications have caused a fast growth of data and trafﬁc over the Internet during last decades. High demand in QoS (quality of service) in e.g., fast and ubiquitous access, low-delay and reliability poses high requirements on information storage. The development of high-speed computers and network infrastructures makes it possible to distribute the storage system/storing-nodes among the network. Compared to centralized storage systems, the beneﬁts of distributed storage systems include fast and ubiq- uitous access, high reliability, availability and scalability etc.
+Reliability is usually obtained through redundant nodes in a distributed storage system, in which error control (EC) codes are normally used to increase storage efﬁciency. An EC code with the MDS (maximum distance separable) property is optimal in term of the redundancy-storage tradeoff. Yet, MDS codes may not be optimal considering the trafﬁc for reconstructing failed nodes. References [1], [2] investigate the trafﬁc (repair bandwidth) and propose the optimal storage- bandwidth tradeoff. A new class of erasure codes namely regenerating codes based on network coding ([3], [4]) are proposed in [1], [2] to achieve the optimal tradeoff. To further decrease the repair trafﬁc, multiple simultaneously- failed nodes [5] cooperate in the repair process. The exact reconstruction of failed nodes is studied in [6].
+Though references [1], [2], [5], [6] have well addressed the optimal storage-bandwidth tradeoff in distributed systems from
+different aspects, the link cost (transmission cost in a channel) and the impact of the network topology have not been con- sidered. In a practical system, the cost is an important design consideration and different links (channels) of a network may have different cost. The topology of networks may impact the repair schemes too. Recently, reference [7] considers the cost for the trafﬁc from surviving nodes to the new node and then the cost-bandwidth tradeoff is derived. Yet, reference [7] does not consider the impact of the network topology on the cost, and the storage-cost tradeoff has not been studied either. Reference [8] considers the impact of the network and then shows the optimum tree-structure of regenerating code in term of repair trafﬁc on the network. Here we will study the link cost in the repair process. The impact of the network topology on repair will also be considered. Further, we will propose a surviving node cooperation (SNC) scheme to reduce the repair cost. For a general setting, we shall formulate the minimum- cost problem and study the solution for them. A related work is also found in [10], in which the minimum-cost multicast is studied in networks with network coding. In [9], the minimum transmission cost in distributing a source ﬁle among nodes, either with or without network coding is studied. Here, we assumed the ﬁle is distributed efﬁciently then our objective is to ﬁnd the optimum repair process; to recover the failed node efﬁciently.
+The remainder of the paper is organized as follows. In Section II, we will give a motivation example by a speciﬁc net- work. For more general networks, we formulate optimization problem and discuss the solutions in Section III. In Section IV, we will give numerical results for tandem, star and grid networks. Finally, in Section V, we will conclude the paper.
+We ﬁrst give an example to illustrate the idea. Consider a distributed storage system in a four-node tandem network shown in Fig. 1. A ﬁle of 4 mega-bits (M = 4 mega- bits) is coded with a regenerating code [1] and distributed among 4 nodes (n = 4). Each node stores 2 one-mega-bit fragments (α = 2) and the source ﬁle can be recovered by any 2 nodes (k = 2). When a node fails (say node 4), a new node downloads β fragments from each of 3 surviving nodes (d = 3). Here we follow the notation of the regenerating codes
+[1], [2], which are speciﬁed by a vector (n, k, α, d, β) denoting the number of storing nodes, the minimum number of nodes to recover the source ﬁle, the storage amount of each node, the number of surviving nodes used to repair a failed node and the amount downloaded from a surviving node, respectively.
+Through cut analysis of an information ﬂow graph ([1], [2]) shown in Fig. 2, we can see that for a data collector (DC) to recover the source ﬁle, it requires α + 2β ≥ M . Since α = 2, M = 4, β ≥ 1, the new node must download at least β = 1 mega-bits from each surviving node. The optimal-trafﬁc repair to achieve this lower bound is to download p 1 , p 2 , p 3 as in Fig. 1 from node 1, node 2 and node 3, respectively. Here p 1 , p 2 and p 3 are formed by coding at nodes 1, 2 and 3, respectively. Yet, the analysis is different if we consider the link cost.
+We assume that each fragment of 1 mega-bits transmitted in a single channel costs one transmission unit. To reach the new node (node 5), we can easily see that p 1 passes the route (node 1 → node2 → node3 → node 5) with a cost of 3 units. Accordingly, p 2 passes node 2 → node3 → node 5 with a cost of 2 units and p 3 passes node 3 → node 5 with a cost of 1 unit. Thus, the total cost in repair is 6 units.
+However, consider the repair scheme in Fig. 3, where we allow surviving node cooperation (SNC). Here the cooperation means that a surviving node can combine/encode the codeword of another node. That is, surviving nodes are allowed to linearly combine its own fragment and the fragments of other nodes. For instance, at node 2, p 2 and p 3 are encoded from the received p 1 of node 1 and stored fragments in node 2. At node 3, p 4 and p 5 are obtained by encoding p 2 and p 3 with the fragments of node 3. Note that, we only consider functional
+repair, in which the reconstructed node may not be identical to the failed node but it has the same code property. That is, with the new node 5, any 2 out of 4 nodes can rebuild the source. It is easy to see that the cost of repair is reduced to 5 units as shown in Fig. 3 (only two packets transmitted from node 3 to node 5). Here we further note that SNC applies to the scenario of one or multiple node failure, but the failed-node cooperation in [5] should have multiple node failure.
+Above we consider the repair cost and propose SNC to reduce the cost of a speciﬁc network. Naturally, we may ask what is the optimal cost and how to achieve the optimality. To study the problem of repair cost optimization for general networks, we deﬁne a cost matrix C as follows,
+  
+0 c 12 . . . c 1n c 21 0 . . . c 2n
+The element c ij denotes the link cost from node i to node j. c ij is nonzero only if there is a direct link from node i to node j. Otherwise, c ij = 0. We note that from C, we can also calculate the cost between any two nodes if there is a path between them. We consider only a linear cost, which means if the transmission of one unit from node i to j costs c ij , then it costs mc ij to transmit m units. For a distributed storage system with a ﬁxed cost matrix C and a given failed node, we can use a graph to denote the repair process. The graph has the same topology as the network, which is directed and acyclic. The graph is denoted by G = (N, A), where N is the set of nodes and A is the set of directed links. We use a vector to denote amount of fragments transmitted in the links. The vector is called as a subgraph [10]. For a subgraph (z = [z (ij) ], where link (ij) ∈ A is from node i to node j), the repair cost is
+Our design objective is to minimize σ c during the repair process. To ﬁnd the minimum-cost repair, we consider two
+different methods: (1) For a given distributed storage system, we ﬁnd the minimum-cost regenerating codes deﬁned in [1], [2]. In this way, we ﬁnd jointly the subgraph and correspond- ing coding coefﬁcients. We call this approach joint method. (2) Decoupling the minimum-cost problem into two steps: We ﬁrst ﬁnd the optimum-cost subgraph (without considering coding constraints) and then ﬁnd network codes for the subgraph [10]. We call this approach the decoupled method. In what follows, we shall discuss them separately.
+We consider a source ﬁle of size M fragments coded by (n, k, α, d, β) regenerating codes [1], [2]. The coding block of node i is denoted by a matrix Q i of size M × α. A column of Q i denotes a fragment in node i. When a node fails (without loss of generality, we assume node 1 fails), the system seeks to ﬁnd the minimum-cost regenerating codes to reconstruct node 1 from d = n − 1 surviving nodes. The resulting codes should satisfy the (n, k, α, d, β) regenerating code property (RCP). Here RCP refers to a property that in a distributed storage system coded by (n, k, α, d, β) regenerating codes, the source ﬁle can be recovered by any k out of n nodes. If a code satisﬁes the RCP, the corresponding subgraph is among the feasible set. The optimized solution is the subgraph in the feasible set with the minimum cost. We can verify if a code satisﬁes the RCP by the regenerating code rank test:
+Deﬁnition 1 Regenerating code rank test [2]. A code with coded blocks Q 1 , · · · , Q n passes the rank test with a test vector h = (h 1 , . . ., h n ) (where h i ∈
+0, · · · , α}) if [Q 1 E h 1 , · · · , Q n E h n ] has a full rank M . Here Q i E h i is the ﬁrst h i columns of Q i . The test vector is calculated as follows. Let c i min{ (d − i + 1)β, α} and let c denote the length-n vector c [c 1 , · · · , c k , 0, · · · , 0 ]. The test vector h = (h 1 , . . ., h n ) is deﬁned as a length-n vector such that the vector c majorizes h (denoted as c h. For two length-n a and b vectors, containing non-increasing sequences of real numbers, it is called a b whenever n i a i = n i b i and k i a i ≥ k i b i for all k ∈ { 1, · · · , n}). To preserve the RCP for all h ∈ H { h ∈ Z n + | c h} it is required that det( [Q 1 E h 1 , · · · , Q n E h n ]) = 0. Thus, the optimization problem can be formulated as
+(2) Now we discuss the existence of the solution for the
+problem in (2). First we recall the approach in [1], [2] where in the repair process, a new node downloads β fragments from each surviving node (using e.g., random network coding as regenerating codes). With the received γ = dβ codewords, a new node is reconstructed. We denote this approach as the non-optimized method since the link costs are not optimized. Note that the optimality here means link costs rather than the storage-trafﬁc tradeoff [1], [2]. In the joint-optimization method, SNC may be used to reduce the cost. Then some
+surviving nodes may encode the fragments of other surviving nodes. The optimization process ﬁnds the regenerating codes incorporated SNC with the minimum cost in the feasible set (the RCP is preserved). In either approach, network coding coefﬁcients are chosen from a sufﬁciently large ﬁnite ﬁeld to guarantee the existence of a solution. For a non-optimized method, if the ﬁeld size F ≥ d 1 max{ nα M , 2M |H|}, there exists a linear code in the ﬁnite ﬁeld F by which the failed node is reconstructed and the RCP is preserved [2]. For our joint method, we have following results.
+Proposition 1: For the optimized repair with a joint method, if the ﬁnite ﬁeld size |F| ≥ d 2 , there exists a linear network coding solution in which the failed node is reconstructed and the RCP is preserved, where
+Proof: As in [4], we set the regenerating coding coefﬁcients as variables. Then the product of determinants in (2) forms a polynomial which must be nonzero. The necessary ﬁeld size of the codes is determined by the maximum degree of the polynomial (to be nonzero) [4]. In the joint-optimization method, SNC (network coding in the surviving nodes) may be used in all n nodes. Each node may use the fragments of n nodes. Thus the maximum degree of the repair node Q 1 is n times of the scheme without SNC in the worst scenario. We can follow the exactly the same approach as [2], Theorem 3, to show that d 2 = max{ nα M , nM |H|}.
+Thus, to solve the problem in a joint method, we just ﬁnd the regenerating codes (SNC is allowed) in a sufﬁciently large ﬁeld. The optimized one is obtained by searching all codes in the feasible sets with the minimum cost. However, we note that the complexity of ﬁnding all feasible codes and their cost may be high.
+In the decoupled method, we ﬁrst minimize σ c in a subgraph with the constraint that any k out of n nodes can rebuild the original ﬁle. Then we ﬁnd the network code for the subgraph. The constraint region of a subgraph is analyzed as follows.
+1) Constraint Region: Clearly, if the min-cut between the source and a DC is larger than M , there is a linear network coding solution by which the original ﬁle can be recovered by the DC [3], [4]. Therefore, by connecting the DC to the new node and k − 1 surviving nodes, we can ﬁnd the min- cut of the graph, and the constraint on the subgraph such that the min-cut is larger than the source ﬁle size M . Since there are n− 1 k− 1 possible choices of surviving nodes, there are n− 1 k− 1
+linear constraints. They denote a region in a multi-dimensional space which the subgraph must satisfy to be a feasible solution. The feasible solution region is often called polytope [12]. To denote the polytope in a matrix form, we present the subgraph as a column vector z = [z (ij) ], edge (ij) ∈ A and use a
+A| matrix L as a coefﬁcient matrix [12] (each row is for one inequality denoting the requirement of the min- cut). Then we put all constants to the right side of inequality
+which constitutes a column vector b with n− 1 k− 1 rows. Thus, we can express n− 1 k− 1 min-cut constraints by the matrix Lz ≥ b. Consequently the polytope is
+S = {z = [z (ij) ] | z (ij) ≥ 0 , Lz ≥ b}. 	 (4) Here the comparison of two vectors e.g, d ≥ e means every element in d is greater or equal to the element in e with the same position.
+(ij)∈A c ij z (ij) is linear. Thus the problem is convex if the constraint region is convex. By (4), this is true if z (ij) s are real [12]. Note that the ﬁle transmitted in the link are quite large, we can consider z (ij) real valued since one fragment has lots of bits. Thus, S constitutes a convex region.
+3) Linear Optimization: Since the objective function and constraint inequalities are linear, we can model the problem as a linear programming problem
+subject to 	 Lz ≥ b , z (ij) ≥ 0.
+With the optimal subgraph z (ij) s, we can always ﬁnd a linear coding scheme (possibly with SNC) for repair, since our constraints meet the min-cut.
+4) Example for a tandem network: For illustration, we formulate the optimization problem for the example in Fig. 1. The cost matrix is given by
+0 0 0 1 0 0 0 0
+Now we analyze the constraint. When the DC connects to node 1 and the new node (since k = 2), as shown in Fig. 4, the ﬁrst min-cut constraint is
+2. 	 (7) Similarly, when the DC connects to node 3 and new node,
+The third constraint follows if we connect the DC with node 2 and the new node,
+Solving the linear optimization problem (e.g., by a simplex method [12]) gives the optimal subgraph (z (12) , z (23) , z (34) ) = (0, 2, 2) with a cost of 4 units. A network coding scheme with SNC in Fig. 3 can meet the subgraph as p 1 = 0, p 2 = 2a 2 +b 2 , p 3 = a 2 +2b 2 , p 4 = p 2 +(a 1 +b 1 +a 2 +b 2 ) = a 1 +b 1 +3a 2 +2b 2 and p 5 = p 3 + (a 1 + 2b 1 + a 2 + 2b 2 ) = a 1 + 2b 1 + 2a 2 + 4b 2 . Here p 4 , p 5 are fragments for the new node.
+For further illustration, we discuss the tandem, star and grid networks as follows. We note that they are quite fundamental network topologies and more complicated networks can be built by some combinations of them. Here we deﬁne the optimization gain as
+where σ non−Opt and σ c are the cost of the scheme without and with cost optimization respectively.
+For a general tandem network, the repair costs depend on the number of nodes and the failing node location. In Fig. 5, we compare the repair storage-cost tradeoff for the joint method, decoupled method and non-optimization for the example in Fig. 1. The results are obtained by changing α and calculating the cost. The ﬁgure highlights the gain of optimization and SNC. The difference between decoupled and joint methods shows that regenerating code ([2], [1]) used by the joint method might be sub-optimum for repair-cost. The decoupled method can choose the optimal subgraph without the constraint of codes. For instance, a less-cost scheme to repair node 4 may use no codewords from node 1 (while regenerating codes use since d = 3).
+In a star network, communication between any two nodes must pass the central node. Fig. 6 shows an example of a distributed storage system in a star network. A ﬁle containing 8 fragments (x 1 , x 2 , · · · , x 8 ) is encoded and distributed among
+6 nodes. Every node stores 2 fragments such that any 4 nodes can recover the original ﬁle. If node 6 fails, in non-optimized repair, each of 5 (d = n−1 = 5) surviving nodes transmits one fragment (β = 1 by min-cut analysis) to node 6. Fragments p 1 , p 2 , p 3 , p 4 and p 5 are formed by network coding at node 1, 2, 3, 4, 5, respectively. Then these fragments are sent to the new node through the central node. We assume that a fragment cost one unit for a single channel. The total costs σ non−Opt = 9 units. As shown in Fig. 6, in the joint method (using SNC), the central node encode the received p 1 , p 2 , p 3 , p 4 to form p 6 and p 7 fragments, where p 6 = p 1 + p 2 + p 3 + p 4 + y 1 and p 7 = p 1 +p 2 +p 3 +p 4 +y 2 . We can see that p 6 and p 7 preserve the RCP and they are sent to the new node The total cost is 6 units. Thus, the optimization gain for the joint method is g c = 9 6 = 1.5, which means around 33% cost reduction. Further, we can obtain the storage-cost tradeoff by solving the optimization problem. The result is shown in Fig. 7. Similar to tandem networks, the joint method with regenerating codes might be suboptimal in term of repair costs.
+Consider a 2 × 3 grid network in Fig. 8. Each node only connects to their neighbors. We assume the cost of every link is 1 unit. Similar to that of star networks, we assume here 6 nodes storing 8 fragments (x 1 , x 2 , · · · , x 8 ). If node 6 fails, the non-optimized repair costs 9 unit as shown in Fig. 8. In the decoupled method, the optimized repair costs 7 units with the subgraph (z (12) , z (14) , z (23) , z (25) , z (36) , z (45) , z (56) ) = (0, 1, 0, 1, 1, 2, 2). (For space limitation, we omit the detailed optimization process here). The optimal subgraph and the corresponding network code is shown in Fig. 9.
+Repair costs are investigated for distributed storage systems. We formulate the optimal cost problem with joint/decoupled
+methods. For the joint method, we discuss the required ﬁeld size for the existence of the regenerating codes. For the de- coupled method, we show the problem is linear. Furthermore, we propose surviving node cooperation to reduce the costs. Numerical results on the tandem, star and grid networks show the beneﬁts of the optimization and SNC in repair costs.
+[[[ REFS ]]]
+A. G. Dimakis
+P. B. Godfrey
+Y. Wu
+M. J. Wainwright
+K. Ramchandran
+--
+Network coding for distributed storage systems
+----
+Y. Wu
+--
+Existence and construction of capacity-achieving network codes for distributed storage
+----
+R. Ahlswede
+N. Cai
+S. Y. Robert Li
+R. W. Yeung
+--
+Network information ﬂow
+----
+R. Koetter
+M. Medard
+--
+An algebraic approach to network coding
+----
+Y. Hu
+Y. Xu
+X. Wang
+P. Li
+--
+Cooperative recovery of distributed storage systems from multiple losses with network coding
+----
+K. V. Rashmi
+B. Shah
+P. V. Kumar
+K. Ramchandran
+--
+Explicit construction of optimal exact regenerating codes for distributed storage
+----
+S. Akhlaghi
+A. Kiani
+M. R. Ghanavati
+--
+Cost-bandwidth tradeoff in distributed storage systems
+----
+J. Li
+S. Yang
+X. Wang
+B. Li
+--
+Tree-structured data regeneration in distributed storage systems with regenerating codes
+----
+A. Jiang
+--
+Network coding for joint storage and transmission with minimum cost
+----
+D. S. Lun
+N. Ratnakar
+M. Medard
+D. Karger
+T. Ho
+E. Ahmad
+F. Zhao
+--
+Minimum-cost multicast over coded packet networks
+----
+S. Jaggi
+P. Sanders
+P. A. Chou
+M. Effros
+S. Egner
+K. Jain
+L. Tolhuizen
+--
+Polynomial time algorithms for network code construction
+----
+S. Boy
+L. Vandenbergh
+--
+Convex Optimization, Cambridge Uni- versity Press, 2004
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\086.pdf
+[[[ LINKS ]]]
+

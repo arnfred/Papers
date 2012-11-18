@@ -1,0 +1,124 @@
+[[[ ID ]]]
+124
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Characterization of a Part of the Rate Distortion Region for the Gaussian Distributed Source Coding
+[[[ AUTHORS ]]]
+Yasutada Oohama
+[[[ ABSTR ]]]
+Abstract—We consider the distributed source coding system of L correlated Gaussian sources Y i , i = 1, 2, · · · , L. We assume that Y L = t (Y 1 , Y 2 , · · · , Y L ) is an observation of the remote source vector X L = t (X 1 , X 2 , · · · , X L ), having the formY L = X K + N L , where N L = t (N 1 , N 2 , · · · , N L ) is a vector of L independent Gaussian random variables also independent of X L . In this system L correlated Gaussian observations are separately compressed by Lencoders and sent to the information processing center. In this paper, we study the multiterminal source coding problem where the decoder wishes to reconstruct the observation Y L = X L + N L . In the previous work the author derived inner and outer bounds of the rate distortion region and derived a matching condition of the above two bounds. In this paper, based on this matching condition, we give a detail analysis on a part of the inner bound where it coincides with the outer bound. We further study an explicit characterization of the sum rate part of the rate distortion region when the observed Gaussian sources have a certain symmetric property.
+[[[ BODY ]]]
+In this paper we consider a distributed source coding problem of L correlated Gaussian sources Y i , i = 1, 2, · · · , L which are noisy observations of Gaussian remote sources X i , i = 1, 2, · · · , L. We assume that Y L = t (Y 1 , Y 2 , · · · , Y L ) is an observation of the source vector X L =
+· · · , X L ), having the form Y L = X L + N L , where N L = t (N 1 , N 2 , · · · , N L ) is a vector of L independent Gaus- sian random variables also independent of X L . In this system L correlated Gaussian observations are separately compressed by L encoders and sent to the information processing center. In this paper, we study the multiterminal source coding prob- lem where the decoder wishes to reconstruct the observation Y L = X L + N L .
+The above multiterminal source coding problem was studied by [1]-[5]. Wagner et al. [4] gave a complete solution to this problem in the case of L = 2 by proving that the sum rate part of the inner bound of Berger [1] and Tung [2] is optimal. Wang et al. [5] gave a new alternative proof of the sum rate part optimality in the case of L = 2. In spite of a recent progress made by those two works, the multiterminal source coding problem still largely remains open.
+We consider two distortion criteria based on the covariance matrix of the average estimation error on Y L . The ﬁrst criterion is called the vector distortion criterion, where for a ﬁxed positive vector D L = (D 1 , D 2 , · · · , D L ) and for each i = 1, 2, · · · , L, the diagonal (i, i) entry of the covariance matrix is upper bounded by D i . The second criterion is called
+    
+ˆ Y 1 ˆ Y 2
+    
+the sum distortion criterion, where the trace of the covariance matrix must not exceed a prescribed positive level D. For each distortion criterion a rate distortion region is deﬁned by a set of all rates vectors for which the estimation error does not exceed an arbitrary prescribed distortion level. For each of the above two rate distortion regions, the authors derived its explicit inner and outer bounds. Speciﬁcally, in the case of the sum distortion criterion the author derived an explicit threshold such that for the distortion level D below this threshold the outer bound coincides with the inner bound. In this paper, based on this matching condition, we give a detail analysis on a part of the inner bound where it coincides with the outer bound. We also study an explicit characterization of the sum rate part of the rate distortion region when the observed Gaussian sources have a certain symmetric property.
+Let Λ L △ = {1, 2, · · · , L}. We consider the multitermi- nal source coding problem for correlated Gaussian sources Y i , i ∈ Λ L which are noisy observations of Gaussian re- mote sources X i , i ∈ Λ L . We assume that Y L = t (Y 1 , Y 2 , · · · , Y L ) is an observation of the source vector X L =
+· · · , X L ), having the form Y L = X L + N L , where N L = t (N 1 , N 2 , · · · , N L ) is a vector of L independent Gaussian random variables also independent of X L . The Gaussian random vector X L can be regarded as a “hidden” information source of Y L . Note that (X L , Y L ) satisﬁes Y S →
+X L → Y S c for any S ⊆ Λ L . Here for any subset S ⊆ Λ L , we introduce the notation Y S = (Y i ) i ∈S . In particular, Y Λ L = Y L = (Y 1 , Y 2 , · · · , Y L ).
+Let {(Y 1 (t), Y 2 (t), · · · , Y L (t)) } ∞ t=1 be a stationary memory- less multiple Gaussian source. For each t = 1,2, · · · , Y L (t) △ = t (Y
+· · · ,Y L (t)) has the same distribution as Y L . For each t = 1, 2, · · ·, Y i (t), i ∈ Λ L is a vector of L correlated observations of X L (t), having the form Y L (t) = X L (t) + N L (t), where X L (t), N L (t), t = 1, 2, · · · , are independent identically distributed (i.i.d.) Gaussian random vectors having the same distribution as X L and N L , respectively. A random vector consisting of n independent copies of the random variable Y i is denoted by Y i △ = (Y i (1), Y i (2), · · · , Y i (n)).
+The distributed source coding system for L correlated Gaussian source treated here is shown in Fig. 1. The dis- tributed encoder functions φ (n) i , i ∈ Λ L are deﬁned by φ (n) i : R n → M i △ = {1, 2, · · · , M i } , where R is the real line. For each i ∈ Λ L , set R (n) i △ = 1 n log M i , which stands for the transmission rate of the encoder function φ (n) i . The decoder function ϕ (n) = (ϕ (n) 1 , ϕ (n) 2 , · · · , ϕ (n) L ) is deﬁned by ϕ (n) i : M 1 ×· · ·×M L → R n , i ∈ Λ L . Set φ (n) = (φ 1 , φ 2 , · · · , φ L ). For Y L = (Y 1 , Y 2 , · · · , Y L ), set
+    
+ˆ Y 1 ˆ Y 2
+  
+     
+    
+where ⟨a, b⟩ stands for the inner product between a and b. Let Σ Y L − ˆ Y L be a covariance matrix with ˜ d ij in its (i, j) entry. Let Σ d be a given L × L covariance matrix which serves as a distortion criterion. We consider two types of distortion criterion. For each distortion criterion we deﬁne the determination problem of the rate distortion region.
+Problem 1. Vector Distortion Criterion: For given L × L invertible matrix Γ and D L > 0, the rate vector (R 1 , R 2 , · · · , R L ) is (Γ, D L )-admissible if there exists a sequence
+Let R L (Γ, D L |Σ Y L ) denote the set of all (Γ, D L )-admissible rate vectors. The sum rate part of the rate distortion region is deﬁned by
+Problem 2. Sum Distortion Criterion: For given L ×L invert- ible matrix Γ and D > 0, the rate vector (R 1 , R 2 , · · · , R L ) is
+Let R L (Γ, D |Σ Y L ) denote the set of all admissible rate vectors. The sum rate part of the rate distortion region is deﬁned by
+We ﬁrst state the previous result on inner and outer bounds of R L (Γ, D |Σ Y L ). For each l ∈ Λ L and for r l ≥ 0, let V l (r l ), l ∈ Λ L be a Gaussian random variable with mean 0 and variance σ 2 N l /(e 2r l − 1). We assume that V l (r l ), l ∈ Λ L are independent. When r l = 0, we formally think that the inverse value σ −1 V
+of V l (0) is zero. Let Σ V L (r L ) be a covariance matrix of the random vector V L (r L ). When r S = 0, we formally deﬁne Σ −1 V
+. By an elementary computation we have X L = ˜ AY L + ˜ N L , where ˜ A = (Σ −1 X L +Σ −1 N L ) −1 Σ −1 N L and ˜ N L is a zero mean Gaussian random vector with covariance matrix Σ ˜ N L = (Σ −1 X L +Σ −1 N L ) −1 . The random vector ˜ N L is independent of Y L . Set
+     
+    
+for any S ⊆ Λ L . } , R (in) L (r L |Σ Y L ) △ = { R L : ∑
+where A 1 ≼ A 2 means that A 2 − A 1 is positive semi-deﬁnite matrix. Furthermore, set
+Theorem 1 (Oohama [8], [9]): For any invertible Γ and any D > 0, we have
+Proof of this theorem is found in [8]. A matching condition for R (out) L (Γ, D |Σ Y L ) to coincide with R (in) L (Γ, D |Σ Y L ) is as follows.
+Theorem 2 (Oohama [8], [9] ): Let µ ∗ min be the minimum eigenvalue of Γ
+In the following argument we consider the case where Γ is the positive deﬁnite diagonal matrix, that is, [Γ] ij = γ j if i = j and [Γ] ij = 0 if i ̸= j. Set γ L △ = (γ 1 , γ 2 , · · · , γ L ) ∈ [1, + ∞) L . We call γ L the weight vector. Since Γ is spec- iﬁed by the weight vector γ L , we write R L (Γ, D |Σ Y L ) as R L (γ L , D |Σ Y L ). Similar notations are adopted for other regions. Let η min △ = η 1 ≤ η 2 ≤ · · · ≤ η L △ = η max be the ordered list of L eigenvalues of Σ Y L By an elementary computation we obtain the following corollary from Theorem 2.
+then we have (1) for any weight vector γ L ∈ [1, ∞) L . If γ max = 1 and
+1 (
+Proof of this corollary is in [8]. Fix γ L ∈ [1, +∞) L ar- bitrarily. Consider the minimum distortion D L (γ L , R L |Σ Y L ) induced by R L (γ L , D |Σ Y L ). This quantity is formally deﬁned by
+From Theorem 1 and Corollary 1, we obtain the following corollary.
+Corollary 2: For any R L ≥ 0 and any γ L ∈ [1, +∞) L , we have
+We apply Corollary 2 to the derivation of a matching condition in the case of vector distortion criterion. We con- sider the distortion rate region D L (R L |Σ Y L ) induced by R L (D L |Σ Y L ). This region is formally deﬁned by
+We examine a part of the boundary of D (in) (R L |Σ Y L ) which coincides with the boundary of D(R L |Σ Y L ). Consider the following two hyperplanes:
+Theorem 3: The distortion rate region D L (R L |Σ Y L ) and its inner bound D (in) L (R L |Σ Y L ) share their boundaries at D ∗ L (ζ L ) ∩ D (in) L (R L |Σ Y L ), where
+Proof of this theorem is found in [8]. When L = 3, we show D (in) 3 (R 3 |Σ Y 3 ), D (+) 3 (ζ 3 ), and Π (u) 3 (γ 3 ) ∩{D 3 ≥ 0} in Fig. 1.
+B. Sum Rate Characterization for the Cyclic Shift Invariant Source
+In this subsection we further examine an explicit charac- terization of R sum,L ( D |Σ Y L ) when the source has a certain symmetrical property. Let τ : Λ L → Λ L be a cyclic shift on Λ L , that is,
+Let p X ΛL (x Λ L ) = p X 1 X 2 ···X L (x 1 , x 2 , · · · , x L ) be a probabil- ity density function of X L . The source X L is said to be cyclic shift invariant if we have
+for any (x 1 , x 2 , · · · , x L ) ∈ X L . In the following argument we assume that X L satisﬁes the cyclic shift invariant property. We further assume that N l , l ∈ Λ L are i.i.d. Gaussian random variables with mean 0 and variance ϵ. Then, the observation Y L = X L + N L also satisﬁes the cyclic shift invariant property. We assume that the covariance matrix Σ N L of N L is given by ϵI L . Then ˜ A and B are given by
+Fix r > 0, let N l (r), l ∈ Λ L be L i.i.d. Gaussian random vari- ables with mean 0 and variance ϵ/(1 − e −2r ). The covariance matrix Σ N L (r) for the random vector N L (r) is given by
+Let µ l , l ∈ Λ L be L eigenvalues of the matrix Σ Y L and let β l = β l (r), l ∈ Λ L be L eigenvalues of the matrix
+Using the eigenvalues of Σ Y L , β l (r), l ∈ Λ L can be written as
+| ˜ ω(D, r)
+Since π(r) is a monotone decreasing function of r, there exists a unique r such that π(r) = D+tr[B], we denote it by r ∗ (D+
+= 1 2
+Theorem 4: Assume that the source X L and its noisy version Y L = X L + N L are cyclic shift invariant. Then, we have
+Proof of this theorem is found in [8]. Next we state our result on a sufﬁcient condition for R (l) sum,L (D |Σ Y L ) to coincide with R (u) sum,L ( D |Σ Y L ). For ϵ ∈ (0, µ min ), deﬁne
+1 3
+Theorem 5: We suppose that Y L is cyclic shift invariant. Fix ϵ ∈ (0, µ min ) arbitrary. If 0 ≤ D ≤ D th (ϵ), then we have
+Furthermore, the curve R = R sum,L (D |Σ Y L ) has the follow- ing parametric form:
+            
+Proof of this theorem is found in [8]. Since D th (ϵ) is a monotone increasing function of ϵ, to choose ϵ arbitrary close to µ min is a choice yielding the best matching condition. Note here that we can not choose ϵ = µ min because π(r) becomes inﬁnity in this case. Letting ϵ arbitrary close to µ min and considering the continuities of D th (ϵ) and the functions in the right hand side of (2) with respect to ϵ, we have the following.
+Theorem 6: We suppose that Y L is cyclic shift invariant. If 0 ≤ D ≤ D th (µ min ), then we have
+Furthermore, the curve R = R sum,L (D |Σ Y L ) has the follow- ing parametric form:
+            
+Let 1 L △ = (1, 1, · · · , 1) be a L dimensional vector whose L components are all 1. We consider the characterization of R sum,L (D · 1 L |Σ Y L ). From Theorem 6, we obtain the following corollary.
+Corollary 3: Suppose that Y L is cyclic shift invariant. If 0 ≤ D ≤ 1 L D th (µ min ), then we have
+Here we consider the case where Σ Y L has at most two eigenvalues. In this case we have ˜ µ = µ min . Then we have s(µ min ) = 0 and D th (0) = tr[Σ Y L ]. This implies that R = R sum,L (D ·1 L |Σ Y L ) is determined for all 0 ≤ D ≤ 1 L tr[Σ Y L ]. Wagner et al. [4] determined R = R sum,L (D · 1 L |Σ Y L ) in a special case where Σ Y L satisﬁes [Σ Y L ] ll = σ 2 for l ∈ Λ L and [Σ Y L ] ll ′ = cσ 2 , 0 < c < 1 for l ̸= l ′ ∈ Λ L . In this special case Σ Y L has two distinct eigenvaules. Hence our result includes their result as a special case. Yang and Xiong [10] determined R sum,L (D · 1 L |Σ Y L ) in the case where Σ Y L has two distinct eigenvalues. Wang et al. [5] determined R sum,L (D L |Σ Y L ) for another case of Σ Y L and D L . The class of information sources satisfying the cyclic shift invariant property is different from the class of information sources investigated by Yang and Xiong [10] and Wang et al. [5] although we have some overlap between them.
+[[[ REFS ]]]
+T. Berger
+--
+Multiterminal source coding
+----
+S. Y. Tung
+--
+Multiterminal source coding
+----
+Y. Oohama
+--
+Gaussian multiterminal source coding
+----
+A. B. Wagner
+S. Tavildar
+P. Viswanath
+--
+Rate region of the quadratic Gaussian two-encoder source-coding problem
+----
+J. Wang
+J. Chen
+X. Wu
+--
+On the minimum sum rate of Gaussian multiterminal source coding: New proofs
+----
+Y. Oohama
+--
+The rate-distortion function for the quadratic Gaussian CEO problem
+----
+
+--
+Rate-distortion theory for Gaussian multiterminal source coding systems with several side Informations at the decoder
+----
+
+--
+On the Rate Distortion Region of Gaussian Multiterminal Source Coding
+----
+Y. Yan
+Z. Xion
+--
+The sum rate-bound for a new class of quadratic Gaussian multiterminal source coding problem
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\124.pdf
+[[[ LINKS ]]]
+

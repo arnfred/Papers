@@ -1,0 +1,133 @@
+[[[ ID ]]]
+63
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Efﬁcient methods for bounding the fractional distance of LDPC codes and obtaining fundamental polytopes of nonbinary and generalized codes
+[[[ AUTHORS ]]]
+David Burshtein
+Idan Goldenberg
+[[[ ABSTR ]]]
+Abstract—A method which obtains a tight lower bound on the fractional distance of LDPC codes is proposed. This algorithm exhibits complexity which scales quadratically with the block length, and thus less than currently-known methods. We also show how the fundamental LP polytope for generalized LDPC codes and nonbinary LDPC codes can be obtained.
+Index Terms—Linear programming decoding, low-density parity-check (LDPC) codes, fractional distance, fundamental polytope.
+[[[ BODY ]]]
+Within the ﬁeld of error-correcting codes, the method of lin- ear programming (LP) decoding of linear codes has attracted considerable attention in recent years. One reason for this is that the LP decoder has the ML certiﬁcate property [1], i.e., that if the LP decoder succeeds in producing an integral solution vector, then it produces the ML solution.
+However, LP decoding is disadvantaged as compared to it- erative decoding algorithms such as belief propagation or min- sum decoding because the decoding complexity can be much larger. In general the LP decoder entails a polynomial, non- linear complexity. Several authors have proposed algorithms for low-complexity LP decoding, e.g. [2] [3], [4]. Vontobel and Koetter [3] have proposed an iterative, Gauss-Seidel-type algorithm for approximate LP decoding. In [5] their approach was studied under a newly-proposed scheduling scheme. This study showed that the performance of the LP decoder can be approached with linear computational complexity. It was also shown that the iterative LP decoder can correct a ﬁxed fraction of errors with linear computational complexity. These results were also extended to generalized LDPC (GLDPC) codes.
+In this paper, we present two main results. First, an algorithm is proposed which calculates a lower bound on the fractional distance. This algorithm entails computational complexity of O(N 2 ), where N is the block length. We note that Feldman et al. [1] were the ﬁrst to propose an algorithm which calculates the exact fractional distance; however, their algorithm entails a complexity which is polynomial but not quadratic in the block length. This is also true for the method proposed in [4] even though it has reduced complexity as compared to [1]. Our approach has lower complexity as compared to these techniques. Second, we show how the
+fundamental polytope of two important classes of codes, namely GLDPC and nonbinary codes, can be obtained. This paper complements the upper bounds on the fractional distance and the lower bounds on the minimum distance which were derived in [6]. The full version can be found in [7].
+The paper is organized as follows. In section II the linear- complexity LP decoder [5] is reviewed. In Section III, an algorithm which produces a tight lower bound on the fractional distance is presented. We show how to obtain the fundamental polytope of GLDPC and nonbinary codes in Section IV. Section V provides some numerical results.
+Consider a discrete binary-input memoryless channel de- scribed by the probability transition function Q(y|c) where c is the transmitted code-bit and y is the channel output. An LDPC code C is represented by a Tanner graph G with N variable nodes and M check nodes. In GLDPC codes, rather than check nodes, we have M constraint nodes, each of which represents a small local constituent code (rather than a single parity check (SPC)). The code C is used to transmit information over the given channel. Following the notation in [1], let I and J be the sets of variable and constraint nodes, respectively, such that |I| = N and |J | = M . The variable node i ∈ I is connected to the set N i of constraint node neighbors. The constraint node j ∈ J is connected to the set N j of variable node neighbors. Further denote
+Given some j ∈ J , denote by C j the constituent binary linear code corresponding to the constraint node j ∈ J (thus for plain LDPC codes, C j is a simple parity-check code). Let 0 j denote the all-zero local codeword on constraint node j, and let 0 denote the all-zero codeword in C. A valid codeword c ∈ C satisﬁes c j ∈ C j , ∀j ∈ J .
+We assume, without loss of generality, that there are no parallel edges in the Tanner graph, since otherwise we can modify the structure of the code to satisfy this constraint.
+where all logarithms henceforth are to the base e. We assume that there are no perfect measurements from the channel, i.e., |γ i | < ∞ ∀i ∈ I.
+We term the minimization problem (1)-(5), Problem-P. The polytope Q j (G) is deﬁned as follows [1]: c ∈ Q j (G) (sometimes we will use the notation c j ∈ Q j (G), the meaning will be clear from the context) if and only if there exists a vector ω such that (3)-(5) hold for this value of j. For plain LDPC codes it was shown that c ∈ Q j (G) if and only if
+(6) We further denote by Q(G) ∆ = j∈J Q j (G) the relaxed [1] or fundamental polytope. Thus c is feasible in (3)-(5) if and only if c ∈ Q(G). We thus have, in addition to (1), the relation
+Let V(Q(G)) denote the set of vertices of the polytope Q(G). The weight of a vertex v ∈ V(Q(G)) is deﬁned as its L 1 norm i∈I v i . The fractional distance d frac [1] is deﬁned as the minimum weight over the set of nonzero vertices. Under this deﬁnition, it was shown [1] that the fractional distance plays an operational role for the LP decoder which is similar to the role of minimum distance for the ML decoder, i.e., the LP decoder can successfully correct any set of up to ⌈d frac /2⌉ − 1 bits ﬂipped by the binary symmetric channel. This conclusion extends trivially to GLDPC codes.
+Now consider the following problem, which we term Problem-D . This problem can be shown to be equivalent to the dual of Problem-P [5]. The variables in this problem are u = {u i,j } i∈I,j∈N i and the problem is deﬁned by
+The following iterative algorithm was proposed in [5] to ﬁnd an approximate solution to Problem-P in linear time (it was also extended therein to GLDPC codes). In the algorithm, each edge in the graph connecting the variable node i and the constraint node j is associated with the variables u i,j , v i,j and λ i,j (deﬁned below). Each variable node i ∈ I is associated with the variables λ i , ˜ λ i , ˆ c i and ǫ i .
+Algorithm 1: Given an LDPC code, channel observations {γ i } i∈I and some ﬁxed parameters ǫ 0 ∈ (0, 1/6] and K > 0 do:
+2) Iteration: Pick an arbitrary element k ∈ A and make the following updates:
+∀j ∈ N k , i ∈ N j : If i ∈ A and ǫ i < ǫ 0 then A = A \ i ∀j ∈ N k , i ∈ N j : If i ∈ A and ǫ i ≥ ǫ 0 then A = A ∪ i
+3) Loop Control: If A = ∅ then repeat step 2. Otherwise proceed to step 4.
+4) Produce the ﬁnal solution and Exit: Compute ˜ λ i and ˆ c i ∀i ∈ I using
+, the dual vector u and the bitwise-estimated integral vector [ˆ c i ] i∈I .
+Let P ∗ be the minimum value of Problem-P. It was shown in [5] that for any δ > 0, by setting K sufﬁciently large and ǫ 0 sufﬁciently small, after O(N ) iterations we have
+In [1], the following algorithm for calculating the fractional distance d frac was proposed. Consider the codeword polytope Q(C) and the all-zero vertex 0. It was shown in [1] that the facets of this polytope (for plain LDPC codes) are given by (6), ∀j ∈ J . Denote the set of facets of Q(C) which do not contain 0 by F. For each facet f ∈ F, run an LP solver to ﬁnd the minimum L 1 norm i∈I c i over f . The smallest value (over all facets in F) obtained in this procedure is the fractional distance [1]. The complexity of this calculation is the same as the complexity of running an LP solver |F| times, and in our case we have |F| = O(N ). By using the iterative linear-complexity LP decoder, we will demonstrate a procedure which produces a lower bound on the fractional distance with complexity O(N 2 ). In terms of computational complexity, this compares favorably with the aforementioned procedure because an LP solver in general has complexity worse than O(N ). Furthermore, by trading off complexity, this lower bound can be made arbitrarily close to the true fractional distance. In this section we assume plain LDPC codes. The results in the next section enable the generalization of the algorithm to GLDPC codes.
+Recall that c ∈ Q(C) if and only if 0 ≤ c i ≤ 1 ∀i ∈ I and ∀j ∈ J , S ⊆ N j , |S| odd we have
+Of these inequality constraints, the facets of Q(C) which do not contain 0 are
+We follow the approach in [1], i.e., for each of the facets in (11)-(12) we evaluate the minimum L 1 norm over the facet. We show how each such evaluation can be performed in linear time using Algorithm 1.
+Let i ∈ I be some index and consider its corresponding facet from (11). To ﬁnd the minimum weight (or L 1 norm) over this facet, we can implement the following method. The
+Tanner graph is modiﬁed by removing variable node i and all the edges incident to it. Now, to keep the graph consistent with the original code, each check node j ∈ N i is modiﬁed so that it represents a local coset code H j\i c j\i = 1 (where the subscript j \ i denotes that we remove the i’th element of the local parity-check matrix (in this case, row vector) H j and the i’th bit of c j ) rather than H j c j = 0. Algorithm 1 runs the same on this modiﬁed graph, except that we need to replace the calculation of A k,j and B k,j in (10) ∀j ∈ N i , k ∈ N j \{i}, by
+where C i j is the set of codewords of the coset code H j\i c j\i = 1. If we take the value of the dual D(u) (see (8)) in the execution of Algorithm 1 then due to weak duality we get for each i ∈ I, a vector with weight d (1) frac ,i which is a lower bound on the minimum weight over the facet {c i = 1}. The minimum value,
+is thus a lower bound on the minimum fractional weight over all facets (11) of Q(C). This lower bound can be made as tight as desired if in Algorithm 1 we take K large enough and ǫ 0 small enough.
+We now turn to the problem of calculating minimum fractional distance on the facets (12). Let r be some ﬁxed constraint node and let S ⊆ N r be an odd-sized set, |S| > 1. Deﬁne the hyperplane R r,S as follows:
+Our problem is to ﬁnd the minimum fractional distance on R r,S ∩ Q(C), denoted d r,S frac . Consider the following problem,
+subject to (3)-(5), where B > 0 is some large constant. This deﬁnition is motivated by the following observations. First, the feasible region of Problem-P r,S,B frac (in the c variables) is by deﬁnition the polytope Q(C). Thus, every feasible point must satisfy
+The second term in (15) is, by (16), a positive penalty term on the event of sharp inequality in (16). Therefore, in the limit where B → ∞, the exact value d r,S frac is produced as the solution to Problem-P r,S,B frac . If the constant B is ﬁnite, the weight d (2) frac ,r,S,B of the solution to Problem-P r,S,B frac can be seen
+to be a lower bound on d r,S frac (since the vector c which attains the minimum fractional distance d r,S frac is feasible in Problem- P r,S,B frac and yields the same objective function value, d r,S frac ). Second, the objective function of Problem-P r,S,B frac is linear in its variables (it also contains the additive constant B(|S| − 1) which is independent of the variables and thus can be ignored). Consequently, Problem-P r,S,B frac can be reduced to an instance of Problem-P, by setting {γ i } i∈I as
+We conclude that the solution to Problem-P r,S,B frac can be approximated arbitrarily closely by Algorithm 1. Now, we use Algorithm 1 to solve Problem-P r,S,B frac ∀j ∈ J , S ⊆ N j , |S| odd, |S| > 1. By taking the dual value D(u) output by Algorithm 1, again by weak duality, we obtain a set of lower bounds {d (2) frac ,r,S,B } on the minimum fractional weight for each of the facets (12) of Q(C). A lower bound on the minimum fractional distance over the facets (12) is given by
+Finally, we combine this result with (14) and obtain the lower bound
+Assuming the node degrees in the Tanner graph are bounded by a constant independent of N , the overall number of calls to Algorithm 1 is O(N ). Thus the computational complexity of evaluating a lower bound on the minimum fractional distance using the procedure described above is O(N 2 ).
+Naturally, the exact fractional distance can be approached by using very large values for the penalty constant B. It should be noted that this could theoretically have an effect on the bound on the convergence rate of Algorithm 1: In [5, Theorem 1] it was shown that the bound on the convergence rate of Algorithm 1 is related to γ max ∆ = max{|γ i |} i∈I , and from (17) it can be seen that this quantity may be large as we increase B, suggesting there is a tradeoff between the computational complexity and the tightness of the bound. In Section V, we describe several experiments conducted with B = 10N . In these experiments, we have not observed a signiﬁcant increase in running time as compared with runs with much smaller
+For plain LDPC codes, the fundamental polytope is repre- sented by (6). In this section, we propose a practical procedure which obtains representations of the fundamental polytopes of two important classes of codes: GLDPC and nonbinary codes. We propose a general practical technique which relies on the double description method [8], [9] to ﬁnd, similar to (6), a description of the fundamental polytope. For the case of nonbinary codes, we consider the LP formulation from [10]
+which expresses a nonbinary decoding problem using a binary problem of higher dimension. These representations of the fundamental polytopes can be used together with a procedure similar to the one presented in Section III to calculate a tight lower bound on the fractional distance, which can be used to assess the performance of the LP decoder.
+Consider a constraint node j. Suppose it represents some general, not necessarily linear, local code C j with M code- words c 0 , c 1 , . . . , c M−1 .
+The code polytope, Q j (C) (here the code is not necessarily linear, so we use the notation Q j (C) rather than Q j (G) as in Section II), is deﬁned by
+The polytope Q j (C) can be equivalently represented as the convex hull of the codewords c 0 , c 1 , . . . , c M−1 . This follows immediately from the fact that the coefﬁcients of any convex combination of the codewords constitute a probability vector ω which satisﬁes the deﬁnition (19).
+Now, we can use any algorithm which converts the vertex representation of the polytope into a facet representation to ex- press Q(C) in terms of its facets. Unfortunately, the complexity of such algorithms in general grows exponentially with the size of the problem, so it will only work reasonably if we keep the code small. One possibility for doing this is by applying the double description method [9], for which a publicly available software implementation, cdd+ [11], exists (we note, however, that other implementations are also available).
+Using cdd+, we obtained the fundamental polytope Q(H 7 ) of a binary constraint node representing the (7, 4) Hamming code H 7 . Using this representation together with the lower bound on the fractional distance in Section III, we found for a randomly-generated GLDPC code with 70 variable nodes and 20 constraint nodes, each representing a local H 7 code, that the fractional distance is at least 11.2418. This code has rate 1/7. The fractional distance result guarantees that this code can correct 5 errors using the LP decoder.
+A. Nonbinary codes: The fundamental polytope, the fractional distance and its signiﬁcance
+Flanagan et al. [10] gave an LP formulation suitable for nonbinary codes over rings. For a ring
+of size |R| = q, let R − = R \ {0} be the ring without the additive identity element. Every nonbinary symbol c i is represented using a binary column vector c i = [c i,q ′ ] q ′ ∈R − of size q − 1. A vector of N nonbinary symbols is represented by a column vector c = c 1 T c 2 T . . . c N T T of dimension N (q − 1). If a nonbinary symbol c i is zero in some codeword, the corresponding binary vector c i is set to zero. If the nonbinary symbol c i is nonzero, say c i = a l , then the l’th element of c i is set to 1 and all other elements are set to zero. In this manner, a nonbinary local codeword c j can be mapped to a binary local codeword. The convex hull of all the resulting
+binary codewords corresponding to constraint node j yields the fundamental polytope Q j (C) and the overall polytope is given by Q(C) = ∩ j∈J Q j (C), just as in the binary case. The difference is that in the nonbinary case, the dimension of the polytope is higher, i.e., Q(C) ⊆ R N (q−1) , and because of the method of representation, C j , when viewed as a binary code, is not necessarily linear. Each nonbinary symbol c i is associated with a column vector of channel log-likelihood ratios γ i = [γ i,q ′ ] q ′ ∈R − , where
+(recall that Q(·|·) is the channel transition probability). As an example, consider the q-ary symmetric channel with transition probability p. The transition probability satisﬁes
+γ i,q ′ =   
+The fractional distance for a nonbinary code is deﬁned as the minimum L 1 norm over all nonzero vertices of Q(C), i.e.,
+Using a technique analogous to the binary case (see [1]) it can be shown that the LP decoder can correct any pattern of ⌈ d frac q ⌉ − 1 symbol errors on the q-ary symmetric channel.
+In the experiments outlined below, Algorithm 1 was oper- ated in the following mode [5], with respect to the values of the parameters K and ǫ 0 . Initialize with K = 1000 and ǫ 0 = 0.01. Iterate until ǫ < ǫ 0 . Then multiply K by 1.26, divide ǫ by 1.26 and iterate with the new constraints. The process of iterating and multiplying and dividing by 1.26 is repeated ten times, so that at the end of the process K ≈ 10000 and ǫ 0 ≈ 0.001.
+In Figure 1, we plot our results from Section III. This plot shows, for various block lengths, the average value of d frac ,B (see (18)) over 10 randomly-generated codes, taken from Gallager’s (3, 4)-regular ensemble. The bound on the fractional distance is calculated with the penalty constant set to B = 10N . In this case we set ǫ 0 in Algorithm 1 to an initial value of 0.1/B. This setting was used in order to increase the accuracy of our result in light of the large value of γ max 1 . Finally, exact fractional distance results, appearing in asterisks, are included in Figure 1. These results were taken from [1] and depict exact fractional distance, averaged over a sample of 100 codes. Comparing the exact results with our lower bound, we see that although the randomly-selected codes are not the same, the statistical averages indicate that the lower bound is close to the mark for B = 10N .
+This research was supported by the Israel Science Founda- tion, grant no. 772/09.
+[[[ REFS ]]]
+J. Feldman
+M. J. Wainwright
+D. R. Karger
+--
+Using linear programming to decode binary linear codes
+----
+P. O. Vontobel
+R. Koetter
+--
+Towards low-complexity linear- programming decoding
+----
+P. O. Vontobel
+R. Koetter
+--
+On low-complexity linear-programming decoding of LDPC codes
+----
+K. Yang
+X. Wang
+J. Feldman
+--
+A new linear programming approach to decoding linear block codes
+----
+D. Burshtein
+--
+Iterative approximate linear programming decoding of LDPC codes with linear complexity
+----
+D. Burshtein
+I. Goldenberg
+--
+Improved linear programming de- coding of LDPC codes and bounds on the minimum and fractional distance
+----
+D. Burshtein
+I. Goldenberg
+--
+Improved linear programming decod- ing of LDPC codes and bounds on the minimum and fractional distance
+----
+K. Fukuda
+A. Prodon
+--
+Double Description Method Revisited
+----
+T. S. Motzkin
+H. Raiffa
+G. L. Thompson
+R. M. Thrall
+--
+The double description method
+----
+M. F. Flanagan
+V. Skachek
+E. Byrne
+M. Greferath
+--
+Linear- programming decoding of nonbinary linear codes
+----
+K. 	 Fukuda
+--
+CDD 	 and 	 CDD+ 	 homepage
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\063.pdf
+[[[ LINKS ]]]
+

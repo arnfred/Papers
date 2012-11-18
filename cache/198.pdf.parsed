@@ -1,0 +1,125 @@
+[[[ ID ]]]
+198
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Entropy power inequality for a family of discrete random variables
+[[[ AUTHORS ]]]
+Naresh Sharma
+Smarajit Das
+Siddharth Muthukrishnan
+[[[ ABSTR ]]]
+Abstract—It is known that the Entropy Power In- equality (EPI) always holds if the random variables have density. Not much work has been done to identify discrete distributions for which the inequality holds with the differential entropy replaced by the discrete entropy. Harremo¨es and Vignat showed that it holds for the pair (B(m, p), B(n, p)), m, n ∈ N, (where B (n, p) is a Binomial distribution with n trials each with success probability p) for p = 0.5. In this paper, we considerably expand the set of Binomial distribu- tions for which the inequality holds and, in particular, identify n 0 (p) such that for all m, n ≥ n 0 (p), the EPI holds for (B(m, p), B(n, p)). We further show that the EPI holds for the discrete random variables that can be expressed as the sum of n independent and identically distributed (IID) discrete random variables for large n .
+Index Terms—Entropy power inequality, Taylor’s theorem, asymptotic series, binomial distribution.
+[[[ BODY ]]]
+with densities, where h(·) is the differential entropy. It was ﬁrst stated by Shannon in Ref. [1], and the proof was given by Stam and Blachman [2]. See also Refs. [3], [4], [5], [6], [7], [8], [9].
+This inequality is, in general, not true for dis- crete distributions where the differential entropy is replaced by the discrete entropy. For some special cases (binary random variables with modulo 2 ad- dition), results have been provided by Shamai and Wyner in Ref. [10].
+More recently, Harremo¨es and Vignat have shown that this inequality will hold if X and Y are B(n, 1/2) and B(m, 1/2) respectively for all m, n [11]. Signiﬁcantly, the convolution operation to get the distribution of X +Y is performed over the usual addition over reals and not over ﬁnite ﬁelds.
+It is observed that n 0 (p) depends on the skew- ness of the associated Bernoulli distribution. Skew- ness of a probability distribution is deﬁned as κ 3 / κ 3 2 where κ 2 and κ 3 are respectively the sec- ond and third cumulants of the Bernoulli distribution B(1, p), and it turns out to be (2p − 1)/ p(1 − p). Let
+p(1 − p) . 	 (4) We ﬁnd an expression for n 0 (p) that depends on ω(p). The well known Taylor’s theorem will be useful for this purpose (see for example p. 110 in Ref. [15]) and is stated as follows.
+Suppose f is a real function on [a, b], n ∈ N, the (n − 1)th derivative of f denoted by f (n−1) is continuous on [a, b], and f (n) (t) exists for all t ∈ (a, b). Let α, β be distinct points of [a, b], then there exists a point y between α and β such that
+For 0 ≤ p ≤ 1, let H(p) denote the discrete entropy of a Bernoulli distribution with probability of success p, that is, H(p) −p log(p) − (1 − p) log(1 − p). We shall use the natural logarithm throughout this paper. Note that we earlier deﬁned H(·) to be the discrete entropy of a discrete random variable. The deﬁnition to be used would be amply clear from the context in what follows. Let
+k! . 	 (7) Note that ˆ H(x) satisﬁes the assumptions in the Taylor’s theorem in x ∈ (0, 1). Therefore, we can write
++ F (n) (x 1 )(x − p) n , (8) for some x 1 ∈ (x, p). Note that ˆ H(p) = 0.
+For even k, F (k) (x) ≥ 0 for all x ∈ (0, 1), and hence,
+1 2
+pP X (n) +1 + qP X (n) and (11), we generalize Eq. (3.7) in Ref. [11] as
+where µ (n) k is the k-th central moment of B(n, p), i.e.,
+We note that there exist m, n for p = 0.5 for which EPI does not hold, that is,
+For the case m = 1 and n = 2, it is clear from th Fig. 1 that EPI holds when p is close to 0.5, while EPI does not hold if p is close to 0 or 1. This leads us to the question that for a given p, what should m, n be such that the EPI would hold. The main theorem of this section answers this question.
+Lemma 3 (Knessl [17]). For a random variable X (n) , as deﬁned above, having ﬁnite moments, we have as n → ∞,
+where κ j is the jth cumulant of of X 1 . If κ 3 = κ 4 = · · · = κ N = 0 but κ N +1 = 0, then
+Note that the leading term in the asymptotic expansion is always negative. We also note using Lemma 3 that as n → ∞,
+To see this, we invoke the deﬁnition of the asymp- totic series to get
+n N . From the deﬁnition of the “little-oh” notation, we know that given any > 0, there exists a L( ) > 0 such that for all n > L( ),
+Choosing n large enough, we get the desired result. We consider the case of the pair (X (n) , X (m) ) when both m, n are large and have the following result.
+Proof: We shall prove the sufﬁcient condition for the EPI to hold (as per Lemma 1) and show that
+Let us take the ﬁrst three terms in the above asymptotic series as
+[[[ REFS ]]]
+C. E. Shannon
+--
+A mathematical theory of communication
+----
+N. M. Blachman
+--
+The convolution inequality for entropy powers
+----
+M. H. M. Costa
+--
+A new entropy power inequality
+----
+A. Dembo
+T. M. Cover
+J. A. Thomas
+--
+Information theoretic inequalities
+----
+O. T. Johnson
+--
+Log-concavity and the maximum entropy property of the Poisson distribution
+----
+S. Artstein
+K. M. Ball
+F. Barthe
+A. Naor
+--
+Solution of Shannon’s problem on the monotonicity of entropy
+----
+A. M. Tulino
+S. Verd´u
+--
+Monotonic decrease of the non-Gaussianness of the sum of independent random vari- ables: A simple proof
+----
+S. Verd´u
+D. Guo
+--
+A simple proof of the entropy-power inequality
+----
+M. Madiman
+A. Barron
+--
+Generalized entropy power inequalities and monotonicity properties of information
+----
+S. Shamai (Shitz)
+A. D. Wyner
+--
+A binary analog to the entropy-power inequality
+----
+P. Harremo¨es
+C. Vignat
+--
+An entropy power inequality for the binomial family
+----
+P. Harremo¨es
+O. Johnshon
+I. Kontoyiannis
+--
+Thinning, entropy, and the law of thin numbers
+----
+O. Johnshon
+Y. Yu
+--
+Monotonicity, thinning, and dis- crete versions of the entropy power inequality
+----
+N. Sharma
+S. Das
+S. Muthukrishnan
+--
+Entropy power inequality for a family of discrete random variables
+----
+W. Rudi
+--
+Principles of Mathematical Analysis, 3rd ed
+----
+F. Topsøe
+--
+Some inequalities for information divergence and related measures of discrimination
+----
+C. Knessl
+--
+Integral representations and asymptotic expan- sions for Shannon and Renyi entropies
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\198.pdf
+[[[ LINKS ]]]
+

@@ -1,0 +1,142 @@
+[[[ ID ]]]
+135
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Interference Alignment and Degrees of Freedom Region of Cellular Sigma Channel
+[[[ AUTHORS ]]]
+Huarui Yin
+Lei Ke
+Zhengdao Wang
+[[[ ABSTR ]]]
+Abstract—We investigate the Degrees of Freedom (DoF) Region of a cellular network, where the cells can have overlapping areas. Within an overlapping area, the mobile users can access multiple base stations. We consider a case where there are two base stations both equipped with multiple antennas. The mobile stations are all equipped with single antenna and each mobile station can belong to either a single cell or both cells. We completely characterize the DoF region for the uplink channel assuming that global channel state information is available at the transmitters. The achievability scheme is based on interference alignment at the base stations.
+[[[ BODY ]]]
+Traditional cellular systems orthogonalize the channels such that signals sent from different transmitters are supposed to be orthogonal, at least in the ideal case, in time, frequency, or code dimensions. Such orthogonalization yield technologies such as TDMA, FDMA, or CDMA. However, orthogonaliza- tion is not the most efﬁcient way of utilizing the available sig- nal dimensions. This can be clearly seen even in a simple two- user scalar Gaussian multiple access channel: TDMA/FDMA is optimal only in one case where the bandwidth allocation is proportional to the power available to the users. For any other cases/rates, orthogonalization is strictly suboptimal [2, Fig. 15.8].
+Non-orthogonal transmissions necessarily create interfer- ence at the receivers. How to “design” or control such interference is the key to higher network efﬁciency. While it is important to consider interference, the fully coupled interference channel model may be too pessimistic. The reason is that for cellular networks, the users well inside a cell have high signal to interference ratio (SNR), and as a result interference can be neglected compared to the useful signal. Whereas for users on the boundary of two or multiple cells, the interference is comparable with the signal.
+For interference networks, instead of trying to characterize the capacity region completely, which is a difﬁcult problem, the notion of degrees of freedom (DoF) has been used to characterize how capacity scales with transmit power as the SNR goes to inﬁnity [4]–[6]. The degrees of freedom is also known as the multiplexing gain [10]. The interference alignment for cellular network has been considered in [8] based on decomposable channel, where it is shown that the interference free DoF can be achieved when the number of mobile stations increases. Practical usage of interference alignment in cellular network has been considered in [7], [9].
+In this paper, we consider a cellular network that has overlapping cells. Within an overlapping area, the mobile stations (MS) can access multiple base stations (BS). This is a typical scenario in cellular communications. We consider
+a simple case where there are only two base stations both equipped with multiple antennas. We assume that the mobile stations are all equipped with single antenna.
+Our main contribution of the paper is the complete char- acterization of the uplink DoF region for a cellular system with two base stations serving two overlapping areas. The achievability scheme uses interference alignment at the two base stations. As a special case of our result, we obtain the DoF region of an X-network [1] with single antenna at the transmitters and multiple antennas at two receivers.
+The rest of the paper is organized as follows. In Section II, we present the system model of the problem considered. The statement of our main result is presented in Section III. The proof of the converse is presented in Section IV, and the achievability is established in Section V. Finally, Section VI concludes the paper.
+We consider a typical communication scenario in wireless cellular system, where there is an overlapping area between two cells; see Fig. 1. For simplicity, we only consider a system of two base stations. We assume the number of antennas at two base stations are N 1 and N 2 , respectively, and all the mobile stations have single antenna. Depending on the locations of the mobile stations, we divide the mobile stations into three groups:
+1) Group A: mobile stations that communicate with BS 1 only;
+2) Group B: mobile stations that communicate with both BS 1 and BS 2;
+3) Group C: mobile stations that communicate with BS 2 only.
+Denote the number of mobile stations in different groups as L a , L b and L c , respectively. We consider the uplink transmission, where mobile stations in Group A or Group C each have only one independent message and mobile stations in Group B generate independent messages for both base stations. Therefore, the total number of messages is L = L a + 2L b + L c . We term such a channel as Σ channel, due to the resemblance, see Fig. 2. Let t be time index. The channel from the mobile station j in Group A to BS 1 is denoted as h (a) 1j (t) ∈ C N 1 × 1 , 1 ≤ j ≤ L a . The channel from the mobile station j in Group B to BS i is denoted as h (b) ij (t) ∈ C N i × 1 , i ∈ {1, 2}, 1 ≤ j ≤ L b . The channel from the mobile station j in Group C to BS 2 is denoted as h (c) 2j (t) ∈ C N 2 × 1 , 1 ≤ j ≤ L c . The channel coefﬁcients in different time instants are all independently and identically
+generated from some continuous distribution whose minimum and maximum values are ﬁnite. When i ∈ {1, 2} denote the index for BS, we use i c := 3 − i to refer to the index of the other BS.
+Denote the messages and the corresponding transmitted signals from the three types of mobile stations as
+W (b) ij , i ∈ {1, 2}, 1 ≤ j ≤ L b , x (b) j (t), 1 ≤ j ≤ L b W (c) 2j , x (c) 2j (t), 1 ≤ j ≤ L c ,
+where z i (t) ∈ C N i × 1 , i ∈ {1, 2} are the additive CN (0, 1) noise.
+The power of all transmitted signals is limited to P . The achievable rates of the messages are denoted as R (a) 1j (P ), 1 ≤ j ≤ L a , R (b) ij (P ), i ∈ {1, 2}, 1 ≤ j ≤ L b , and R (c) 2j (P ), 1 ≤ j ≤ L c , respectively. The associated DoF of the messages are
+Let R L (P ) ∈ R + L denote the vector containing all the rates at power P , and d L ∈ R + L denote the vector containing all the DoF. Let C(P ) ⊂ R + L denote the capacity region of the system, which contains all the rate tuples R L (P ) such that the probability of error at all receivers can approach zero as the coding length tends to inﬁnity. The DoF region of the Σ channel is the collection of all the DoF points
+Theorem 1: The DoF region of Σ channel with global channel state information at transmitters is speciﬁed by the following inequalities
+d (a) 1j ≤ 1, 1 ≤ j ≤ L a ; 	 (3) d (b) 1j + d (b) 2j ≤ 1, 1 ≤ j ≤ L b ; 	 (4)
+We prove the converse part of Theorem 1 in this section. The ﬁrst three inequalities (3)–(5) are due to the fact that all the mobile stations have single antennas. To show the upper bound (6), we ﬁrst divide the mobile stations in Group B into two parts. We treat the mobile stations of Group B whose indices in J 2 as a super user S b , whose messages are W (b) 1j , W (b) 2j , j ∈ J 2 and number of antennas is |J 2 |. We treat the remaining mobile stations in Group B and the mobile stations in Group A as another super user S a . In addition, we assume all the messages W (b) 2j = 0, j / ∈ J 2 . Therefore, the super user S a has L a +L b −|J 2 | antennas and its messages are W (a) 1j , 1 ≤ j ≤ L a and W (b) 1j , 1 ≤ j ≤ L b , j / ∈ J 2 . We further assume that the mobile stations within S a and S b can fully cooperate with each other if they belong to the same super user set. Then S a , S b , BS 1 and BS 2 form a multiple-input and multiple-output Z interference channel. Since cooperation does no harm to the degrees of freedom, the inequality (6) holds based on [4, Corollary 1]. The inequality (7) can be proved similarly.
+We here give the achievability scheme of the DoF region of Σ channel based on interference alignment over the time expansion channel. The proof is built upon the alignment scheme proposed in [3].
+For any rational DoF point d L within D and satisfying (3)– (7), we can choose a positive integer µ 0 , such that
+where Z L + denotes the set of L-dimensional non-negative integers. For any irrational DoF point in the DoF region, we can always approximate it as a rational point with ar- bitrarily small error. Denote µ n as the duration in number of symbols of the time expansion. Here and after, we use the ˜ notation to denote the time expanded signals. Hence, ˜ H (b) ij = diag(h (b) ij (1), h (b) ij (2), . . . , h (b) ij (µ n )), which is a size N i µ n × µ n block diagonal matrix. Matrices ˜ H (a) 1j and ˜ H (c) 2j
+1) When L b > N 1 , we will align L b − N 1 interference messages at BS 1. For any DoF point d L within D, let
+¯ J 2 denote a set containing the indices of mobile stations in Group B such that | ¯ J 2 | = N 1 and
+As we will see, the interference messages W (b) 2j , j ∈ ¯ J 2 will span the interference space at BS 1 after going through the time-varying channel. Among all these mes- sages W (b) 2δ 2 is the message having smallest DoF. For any other messages W (b) 2j , j / ∈ ¯ J 2 , its DoF must be less than d (b) 2δ 2 . We will align these messages to message W (b) 2j , j ∈ ¯ J 2 at BS1.
+which suggests that all the messages are decodable at BS 1. Therefore there is no need to do interference alignment for BS 1.
+1) when L b > N 2 , let ¯ J 1 denote the set containing the indices of mobile stations in Group B such that | ¯ J 1 | = N 2 and
+Let Γ 1 = N 1 max(L b − N 1 , 0) and Γ 2 = N 2 max(L b − N 2 , 0). We shall see that they are the numbers of alignment
+constraints that mobile stations in Group B need to satisfy in order to align interference at BS 1 and BS 2, respectively.
+We propose to use µ n = µ 0 (n + 1) Γ 1 +Γ 2 fold time expansion, where n is a positive integer. Speciﬁcally, we want to achieve the following DoF over µ n slots
+¯ d (a) 1j = µ 0 n Γ 1 +Γ 2 d (a) 1j , 1 ≤ j ≤ L a , 	 (12) ¯ d (b) 1j = µ 0 n Γ 1 +Γ 2 d (b) 1j , 1 ≤ j ≤ L b , j / ∈ ¯ J 1 , 	 (13) ¯ d (b) 1j = µ 0 n Γ 1 (n + 1) Γ 2 d (b) 1j , 1 ≤ j ≤ L b , j ∈ ¯ J 1 , (14) ¯ d (b) 2j = µ 0 n Γ 1 +Γ 2 d (b) 2j , 1 ≤ j ≤ L b , j / ∈ ¯ J 2 , 	 (15) ¯ d (b) 2j = µ 0 (n + 1) Γ 1 n Γ 2 d (b) 2j , 1 ≤ j ≤ L b , j ∈ ¯ J 2 , (16) ¯ d (c) 2j = µ 0 n Γ 1 +Γ 2 d (c) 2j , 1 ≤ j ≤ L c . 	 (17)
+Therefore, when n → ∞, the desired DoF point d L can be achieved. The key is to design the beamforming column sets for mobiles stations in Group B such that the DoF (12)–(17) can be achieved over µ n slots.
+When L b ≤ N 1 , no interference alignment is needed at BS 1, in which case we choose ˜ V (b) 2j to be a size µ n × ¯ d (b) 2j
+random full rank matrix. Similarly, when L b ≤ N 2 , we choose ˜ V (b) 1j to be a size µ n × ¯ d (b) 1j random full rank matrix. In the following, we assume that L b > max(N 1 , N 2 ) and will design the beamforming matrices.
+We choose the beamforming column sets of mobile stations in Group B whose indices belong to ¯ J 1 and ¯ J 2 to have the following forms
+˜ V (b) 1j = [ ˜ P 11 , ˜ Q (b) 1j ], j ∈ ¯ J 1 , 	 (18) ˜ V (b) 2j = [ ˜ P 21 , ˜ Q (b) 2j ], j ∈ ¯ J 2 , 	 (19)
+where ˜ Q (b) 1j is a size µ n × ( ¯ d (b) 1j − ¯ d (b) 1δ 1 ) random matrix, and ˜ Q (b) 2j is a size µ n × ( ¯ d (b) 2j − ¯ d (b) 2δ
+The two matrices ˜ P 11 and ˜ P 21 are structured and will be determined later. In our design (18) and (19), all the messages W (b) 1j , j ∈ ¯ J 1 sharing part of the same beamforming columns which is ˜ P 11 . Similarly, all the messages W (b) 2j , j ∈ ¯ J 2 sharing part of the same beamforming columns which is ˜ P 21 .
+For i = 1, 2, by the deﬁnition of ¯ J i , the DoF of message W (b) ij , j / ∈ ¯ J i is at most the same as that of W (b) iδ i . It would therefore be sufﬁcient if we could design a beamforming column set, denoted as ˜ P i2 , to be used by mobile station j / ∈ ¯ J i , which is able to deliver message with DoF ¯ d (b) iδ i .
+Denote the set of elements of ¯ J i as {β i,1 , β i,2 , . . . , β i,N ic }. As the channel are random generated, the following channels
+, ˜ H (b) 1β 2,2 , . . . , ˜ H (b) 1β 2,N1 ], 	 (21) ˜ H (2) = [ ˜ H (b) 2β
+have full rank with probability 1. As observed in [3], it is impossible to align interference message W (b) ij , j / ∈ ¯ J i from
+mobile station j to only one interference message W (b) ik , k ∈ ¯ J i at BS i c , because the channel between any N i c mobile
+stations to BS i c are linear independent with probability one. However, we can choose
+so that the interference space at BS i c is not larger than that spanned by messages in ¯ J i .
+We deﬁne the µ n × µ n matrices T (ij) l , l = 1, 2, . . . , N i according to the following
+It has been shown in [3] that these T (ij) l matrices are diagonal matrices. We also deﬁne the following block diagonal matrices
+T (1j) l ˜ P 22 ≺ ˜ P 21 , j / ∈ ¯ J 2 , 1 ≤ l ≤ N 1 , 	 (29) T (2j) l ˜ P 12 ≺ ˜ P 11 , j / ∈ ¯ J 1 , 1 ≤ l ≤ N 2 , 	 (30)
+and the total number of constraints is Γ 1 and Γ 2 , respectively. Denote B 1 = µ 0 n Γ 1 d (b) 1δ 1 and B 2 = µ 0 n Γ 2 d (b) 2δ 2 . The
+It can be veriﬁed that the number of columns of ˜ P 11 and ˜ P 21 are µ 0 n Γ 1 (n + 1) Γ 2 d (b) 1δ 1 and µ 0 (n + 1) Γ 1 n Γ 2 d (b) 2δ 2 , respectively. Therefore messages W (b) 1δ 1 and W (b) 2δ 2 can achieve desired DoF over µ n slots when n → ∞. It can be veriﬁed that if message W (b) ij , j / ∈ ¯ J i use ˜ P i2 as the beamforming matrix, its signal will fall into the interference subspace spanned by messages W (b) ij , j ∈ ¯ J i at BS i c . That is, all the alignment conditions in (29) and (30) are satisﬁed.
+Having speciﬁed the matrices ˜ P 11 , ˜ P 12 , ˜ P 21 , ˜ P 22 , we de- scribe the beamforming matrices of all mobile stations in the following.
+1) For mobile station j in Group B, if j ∈ ¯ J 1 , it uses the beamforming matrix in (18) to transmit message W (b) 1j
+to BS 1. Mobile station j / ∈ ¯ J 1 randomly chooses ¯ d (b) 1j columns of ˜ P 12 as the beamforming matrix.
+Similarly, if j ∈ ¯ J 2 , mobile station j uses the beam- forming matrix in (19) to transmit message W (b) 2j to BS 2. mobile station j / ∈ ¯ J 2 randomly chooses ¯ d (b) 2j columns of ˜ P 22 as the beamforming matrix.
+2) Each mobile station j in Group A randomly generates a µ n × ¯ d (a) 1j matrix as beamforming matrix ˜ V (a) 1j .
+3) Each mobile station j in Group C randomly generates a µ n × ¯ d (c) 2j matrix as beamforming matrix ˜ V (c) 2j .
+4) All the entries of the random beamforming columns of mobile stations in Group A, Group B and Group C are independently and identically generated from some continuous distribution whose minimum and maximum values are ﬁnite.
+To guarantee that both base stations can decode the desired messages, we ﬁrst need to make sure that all the beamforming matrices are full rank, which is easy to verify. In addition, we need to guarantee the following conditions
+1) [ ˜ V (b) 1j , ˜ V (b) 2j ] has full column rank for any mobile station j in Group B.
+2) The interference space and signal space are independent for both base stations.
+The ﬁrst condition is needed to guarantee that two messages of mobile stations in Group B can be distinguished. It can be veriﬁed that [ ˜ P 11 , ˜ P 21 ] has µ 0 n Γ 1 (n + 1) Γ 2 d (b) 1δ 1 + µ 0 (n + 1) Γ 1 n Γ 2 d (b) 2δ 2 columns, which may be larger than the number µ n of rows. However, the beamforming matrix for any mobile station will contain a subset of the columns of [ ˜ P 11 , ˜ P 21 ], plus possibly some additional random columns. Since d (b) 1j + d (b) 2j ≤ 1, [ ˜ V (b) 1j , ˜ V (b) 2j ] is always a tall matrix (more rows than columns). To establish its full rankness, note that each entry is a monomial, the random variables that deﬁne the monomials are different for all rows due to the time varying channel. In addition, in one row, the exponents of the monomials are different. Therefore, the conditions in Lemma 1 are satisﬁed and the sub-matrix has full rank.
+We then need to validate the second condition, which is needed to guarantee that the mobile stations can decode the messages that they are interested in. We only show this for BS 1 as the same argument can be applied to BS 2 as well. Deﬁne the following matrix
+˜ Q (2) = diag( ˜ Q (b) 2β 2,1 , ˜ Q (b) 2β 2,2 , . . . , ˜ Q (b) 2β 2,N1−1 ) 0
+where 0 is an all zero matrix. When L b > N 1 we would like to show that the matrix in (36) has full column rank. Here A and B correspond to the signal part, while C corresponds to the interference space generated by the mobile stations whose indices are in ¯ J 2 . The number of columns of A is µ 0 n Γ 1 +Γ 2 L a j=1 d (a) 1j . The number of columns of B is
+Therefore, the number of columns of Λ 1 is less than µ 0 (n + 1) Γ 1 +Γ 2 N 1 due to (6). Hence, Λ 1 is a tall matrix. We can see that the conditions of Lemma 1 still hold due to the following reasons: 1) All the elements of Λ 1 are monomials of different random variables. 2) The random variables of different rows are different. 3) The random variables of V (a) 1j do not appear in B and C. The random variables in ˜ H (b) 1j do not appear in C. The random variables in ˜ P (2) and ˜ Q (2) do not appear in A and B. Therefore, the associated exponents of monomials in one row differs at least by one. Based on this, we conclude that Λ 1 has full column rank and the signal space is independent from interference space at BS 1. The proof of the achievability is then complete.
+In the paper we proposed a Sigma ( Σ) channel model for cellular communication networks with overlapping cell areas. We allowed the base stations to have multiple antennas and the mobile stations to have single antennas. We derived the degrees of freedom region for the uplink communication in the simple cellular network of two base stations, under the assumption that global channel state information is available at the transmitters. The achievability scheme is based on beamforming at the mobile stations and interference alignment at the base stations.
+Lemma 1: [1, Lemma 1] Consider an M ×M square matrix A such that a ij , the elements in the ith row and jth column of A, is of the form
+where x [k] i are random variables and all exponents are integers, α [k] ij ∈ Z. Suppose that
+1) x [k] i |{x [k ′ ] i ′ , ∀(i, k) = (i ′ , k ′ )} has a continuous cumula- tive probability distribution.
+In other words, each random variable has a continuous cumulative probability distribution conditioned on all the remaining variables. Also, any two terms in the same row of the matrix A differ in at least one exponent.
+[[[ REFS ]]]
+V. Cadambe
+S. Jafar
+--
+Interference alignment and the degrees of freedom of wireless X networks
+----
+T. M. Cove
+J. A. Thoma
+--
+Elements of Information Theory, John Wiley & Sons, Inc
+----
+T. Gou
+S. A. Jafar
+--
+Degrees of freedom of the K user M × N MIMO interference channel
+----
+S. Jafar
+M. Fakhereddin
+--
+Degrees of freedom for the MIMO interference channel
+----
+S. Jafar
+S. Shamai
+--
+Degrees of freedom region of the MIMO X channel
+----
+M. A. Maddah-Ali
+S. A. Motahari
+A. K. Khandani
+--
+Communi- cation over MIMO X channels: Interference alignment, decomposition, and performance analysis
+----
+C. Suh
+M. Ho
+D. Tse
+--
+Downlink Interference Alignment
+----
+C. Suh
+D. Tse
+--
+Interference Alignment for Cellular Networks
+----
+R. Tresch
+M. Guillaud
+--
+Clustered interference alignment in large cellular networks
+----
+L. Zheng
+D. N. C. Tse
+--
+Diversity and multiplexing: a fundamental tradeoff in multiple-antenna channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\135.pdf
+[[[ LINKS ]]]
+

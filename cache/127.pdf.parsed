@@ -1,0 +1,168 @@
+[[[ ID ]]]
+127
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Capacity-achieving encoding for the broadcast erasure channel with multiple users
+[[[ AUTHORS ]]]
+Marios Gatzianas §
+Leonidas Georgiadis ∗§
+Leandros Tassiulas †§
+[[[ ABSTR ]]]
+Abstract—We consider the N -user memoryless broadcast era- sure channel with N unicast sessions (one for each user) where receiver feedback is sent to the transmitter in the form of ACK/NACK messages. We ﬁrst provide a generic outer bound to the capacity of this system; using concepts from network coding, we then propose a session-mixing coding algorithm applied on specially constructed and maintained virtual queues (at the transmitter side), determine its throughput region and show that it achieves capacity under certain conditions on channel statistics (assuming that instantaneous feedback is known to all users). The algorithm requires no knowledge of channel statistics or future events.
+Index Terms—Broadcast erasure channels, physically degraded channels, virtual queues, Basis tokens.
+[[[ BODY ]]]
+Although the capacity of broadcast channels, ﬁrst intro- duced in [1], remains unknown in the general case, special cases have been solved, including the important category of “degraded” channels [2]. Another class of channels that has received signiﬁcant attention is erasure channels, where either the receiver receives the input symbol unaltered or the input symbol is erased at the receiver. Combining the above classes, a broadcast erasure channel (BEC) is a suitable abstraction for wireless communications modeling since it captures the broadcast nature of the medium as well as the potential for packet loss. Since this channel is not always degraded, the computation of its feedback capacity region is an open problem. Numerous variations of this channel, under different assumptions, have been studied, a brief summary of which follows.
+For multicast trafﬁc, an outer bound to the capacity region of erasure channels is derived in [3], in the form of a suitably deﬁned minimum cut, and it is proved that the bound can be achieved by linear coding at intermediate nodes. The concept of combining packets for efﬁcient transmission based on receiver feedback is also used in [4], where broadcast trafﬁc is assumed and a rate-optimal, zero-delay, ofﬂine algorithm is presented for 3 users. Online heuristics that attempt to minimize the decoding delay are also provided.
+Multiple unicast ﬂows, which are traditionally difﬁcult to handle within the network coding framework, are studied in
+[5] for a network where each source is connected to a relay as well as to all destinations, other than its own, and all connections are modeled as BECs. A capacity outer bound is presented for an arbitrary number of users N and is shown to be achievable for N = 3 and almost achievable for N = 4, 5. The capacity-achieving algorithm operates in two stages with the relay having knowledge of the destination message side information at the end of the ﬁrst stage but not afterward.
+A similar setting is studied in [6], where ACK-based packet combining is proposed and emphasis is placed on the overhead and complexity requirements of the proposed scheme. An actual implementation of the use of packet XORing in an intermediate layer between the IP and 802.11 MAC layers is presented and evaluated in [7], while [8] proposes a replace- ment for the 802.11 retransmission scheme based on exploiting knowledge of previously received packets.
+This paper expands upon earlier work in [9] (which studied the case N = 2) and differs from the aforementioned works in that, although it also uses the idea of packet mixing (similar to the network coding sense), it provides explicit performance guarantees. Speciﬁcally, an outer bound to the feedback ca- pacity region for multiple unicast ﬂows is computed and an online algorithm, inspired by the network coding paradigm, is presented that achieves this bound for arbitrary N with channel statistics that satisfy a speciﬁc order relation (this includes the special cases of symmetric and spatially independent channels with fairness constraints). Preliminary results of this work have been presented in the NetCoop 2010 conference [10]; the additional results of the current paper are: 1) the introduction of the concept of Basis tokens, which allows for a more insightful performance analysis, and 2) a generalized optimality criterion based on the newly deﬁned set R ord .
+We were recently informed that C. Wang has indepen- dently studied in [11] the same problem as appears here and proposed coding algorithms that achieve capacity under the same conditions as ours. Although the two works share common ideas (namely, introducing degraded channels to derive capacity outer bounds and performing packet coding based on receiver feedback), the proposed algorithms, as well as the methodology used for deriving their throughput regions, are quite different.
+the exact model under investigation and provides a capacity outer bound. The coding algorithm is presented in Section III, which also contains a discussion of the intuition behind the algorithm, its correctness and optimal performance under certain conditions, while Section IV concludes the paper. Due to space restrictions, the proofs of all stated results are omitted and presented in [12] instead.
+We consider a time slotted system where messages (inter- changeably referred to as “packets” or “symbols”) of length L bits are transmitted in each slot, where slot l, for l = 1, 2, . . ., is deﬁned as the time interval [(l − 1)L lL). The system consists of a single transmitter and a set N = {1, 2, . . . , N } of receivers, where a distinct set K i of unicast packets destined for each user i is stored at the transmitter. The channel is modeled as memoryless broadcast erasure so that each broadcast packet is either received unaltered by a user or is dropped, in which case an erasure occurs for the user. This is equivalent to considering that the user receives the special symbol E, which is distinct from any transmitted symbol. At the end of each slot, all users inform the transmitter whether the symbol was received or not.
+In information-theoretic terms, the BEC is described by the tuple (X , (Y i : i ∈ N ), p(Y l |X l )), where X is the input alphabet (we hereafter assume X = F q , with F q a suitable ﬁeld of size q), Y i = Y = X {E} is the output alphabet for user i, and p(Y l |X l ) is the probability of having, at slot l, output Y l = (Y i,l , i ∈ N ) for a broadcast input symbol X l .
+Deﬁne Z i,l = I[Y i,l = E] as the indicator function of an erasure occurring for user i and slot l, and consider the random vector Z l = (Z i,l , i ∈ N ). The sequence {Z l } ∞ l =1 is assumed to consist of temporally iid vectors, although, for a ﬁxed slot, arbitrary correlation between erasures for different users is allowed. For any index set I ⊆ N , we deﬁne E I = {Z i = 1, ∀ i ∈ I} as the event that an erasure occurs for all users in I, and denote its corresponding probability with Pr(E I ) = I , where, by convention, it holds ∅ = 1.
+We use the standard deﬁnitions of channel codes with feedback, probability of erroneous decoding and achievable rates from [13, Chap. 15], albeit with a minor twist; instead of considering a ﬁxed block length n, (equivalently, a ﬁxed number of slots in which each user must decode all of its packets), we assume that i ∈N |K i | packets are transmitted until all users have decoded their packets and compute the number of slots T ∗ required for this to happen. The rate of user i is then deﬁned as R i = |K i |/T ∗ . The derivation of the capacity outer bound is based on a method similar to the approaches in [11], [14], [15], i.e. the introduction of a new hypothetical channel which is shown to be physically degraded. Due to space constraints, we only present the ﬁnal result [12].
+Theorem 1: Denote with P the set of all possible permuta- tions π on N and with C f the feedback capacity region of the BEC. It then holds C f ⊆ C out = ∩ π ∈P ˆ C π,f , where ˆ C π,f =
+CODE1 , which achieves the outer bound of Theorem 1 for the following special cases, among others:
+• symmetric channels, i.e. channels which satisfy the con- dition I = J whenever |I| = |J |, for any I, J ⊆ N .
+• spatially independent channels (i.e. I = i ∈I i for all I ⊆ N ) with one-sided fairness constraints. The latter notion, which appears in [11], is deﬁned as follows: assuming without loss of generality that it holds i ≥ j for all i < j, a rate R = (R 1 , . . . , R N ) is one-sided fair iff it holds i R i ≥ j R j for all i < j. Denoting with R f air the set of one-sided fair rates, we are searching for algorithms that achieve a rate region of C out ∩ R f air .
+It should be mentioned that the proposed algorithms in [11] also achieve capacity for both of the above settings. In the following, we assume that each user knows the size |K i | of all sessions and instant feedback is available to all users.
+Before the algorithm’s description, a brief discussion of its underlying rationale will be useful. Viewing the packets in all sets K i as elements of a ﬁeld F q , the idea is to transmit appropriate linear combinations of packets so that each user i eventually receives at least |K i | linearly independent com- binations of the packets in K i . Speciﬁcally, the transmitter keeps track of a set of virtual queues Q S , indexed by the non- empty subsets S of N . Each transmitted symbol (or packet) s is a linear combination of all packets currently stored in Q S , i.e. s = p ∈Q S a s (p)p, where all operations are performed in F q and a s (p) are suitably chosen coefﬁcients in F q . If the symbol s can also be written as s = p ∈K i b (i) s (p)p + c (i) s , where b (i) s = (b (i) s (p), p ∈ K i ), c (i) s are known to user i, then s is considered to be a “token” for i.
+In words, a token for i is any packet s that allows i, upon reception of s, to effectively construct a linear equation with the packets in K i as unknowns (since b (i) s , c (i) s are known). For efﬁciency reasons, this equation should ideally be linearly independent w.r.t. all previous equations constructed by user i. In this case, borrowing from network coding terminology, the packet is considered to be an “innovative” token. In the context of this paper, we introduce the related, but not identical, notion of a “Basis” token, rigorously deﬁned in Section III-A, and use it to simplify the ensuing analysis.
+Hence, each user i must receive |K i | innovative tokens in order to decode its packets. Note that it is quite possible, and actually very desirable, for the same packet to simultaneously be a token (better yet, an innovative token) for multiple users. In order to avoid inefﬁciency and, hopefully, achieve the outer bound of Section II, it is crucial that, under certain circumstances, a symbol that is erased by some users, but is received by at least one other user, is stored in an appropriate queue so that it can be combined in the future with other erased symbols to provide tokens for multiple users, and thus compensate for the loss.
+Algorithm CODE1 is succinctly presented in pseudocode in Fig. 1. Speciﬁcally, the transmitter maintains a network of virtual queues Q S , indexed by the non-empty subsets S of N (see Fig. 2 for an illustration for 4 users). The queues are initialized with the unicast packets as follows: Q S = K i if S = {i}, otherwise Q S = ∅. Additionally, with each queue Q S , indices T i S are maintained for all i ∈ S and are initialized as: T i S = |K i | if S = {i}, otherwise T i S = 0.
+It will become apparent from the algorithm’s description that T i S represents the number of linearly independent tokens s that user i must receive successfully from Q S in order to eventually decode its packets 1 . These indices are dynamically updated during the algorithm’s execution based on the received feedback, as will be explained soon.
+The transmitter maintains an additional set of queues Q D i , S , for all non-empty S ⊆ N with i ∈ S, where it stores the innovative tokens user i receives from Q S ; we denote with Q D i the aggregate of all queues Q D i , S . Each user i also has local copies of Q D i , S and Q D i , as will be explained in a later section. All queues Q D i , S are initially empty. We assume for now that all users always know which queue the packet they receive comes from.
+Denote with Q n the set of all queues Q S with |S| = n. The algorithm operates in N phases so that in phase n, with 1 ≤ n ≤ N , only transmissions of linear combinations of packets in one of the queues in Q n occur. Speciﬁcally, at phase n, the transmitter orders the set Q n according to a predetermined rule, known to all users. The transmitter then examines the ﬁrst, according to this order, queue Q S and transmits a symbol (or packet) s that is a linear combination of all packets in Q S , i.e. s = p ∈Q S a s (p)p. It can be shown that the generated s is a token for all users i ∈ S.
+The coefﬁcients a s (p) ∈ F q can be produced either via a pseudo-random number generator or through structured codes. The exact generation method for a s (p) is unimportant as long as both of the following conditions hold.
+Condition 1: The procedure for generating a s (p) is known to all users, so that they can always reproduce the values of
+a s (p) even when they don’t receive the packet s. This requires that the receivers also know the size of all queues Q S , S ⊆ N , at all times.
+Condition 2: Assume that at the beginning of slot t (i.e. be- fore any packet transmission occurs) there exist (possibly empty) sets of vectors B (i) I (t) ⊆ {b (i) p : p ∈ Q I }, for all I ⊆ N and i ∈ I, and B D i (t) = {b (i) p : p ∈ Q D i } such that |B (i) I (t)| = T i I (t) and B D i (t) ∪ I:I⊆N
+F |K i | q 	 for all i ∈ N . If, for each i ∈ S with T (i) S (t) > 0, we pick an arbitrary ˆ b i ∈ B (i) S (t), it is then possible to transmit, at slot t, a packet s = p ∈Q S a s (p)p from queue Q S with the following property: the set {b (i) s }∪B D i (t)∪ I:I⊆N
+Conformance to the above two conditions is what the term “suitable coefﬁcients” appearing in line 5 of Fig. 1 actually means. Of the two conditions, the second one is clearly the more difﬁcult to satisfy. It should be stated that Condition 2 merely asserts the truth of a logical implication of the form P ⇒ Q (where P is the existence of suitable sets B (i) I (t), B D i (t) and the selection of arbitrary ˆ b i , while Q is the existence of a packet s with the mentioned properties) without any claim on the validity of P (i.e. we don’t know yet whether such sets exist in the ﬁrst place; their existence will be proved by induction later using this implication as the crucial inductive step). Condition 2 now motivates the following deﬁnition.
+Deﬁnition 1: Consider the sets B D i (t), B (i) I (t), with I ⊆ N , appearing in the initial assumption of Condition 2. Then, a packet p is called a Basis token for user i ∈ N at slot t iff
+It will be shown in Section III-B (viz. Lemma 2) that the assumption of Condition 2 can always be satisﬁed, so that the above deﬁnition is applicable. Since the performance analysis in Section III-C is greatly facilitated if we think in terms of Basis rather than innovative tokens, we hereafter concentrate on Basis tokens.
+combination s, is transmitted from Q S and the transmitter receives the corresponding feedback from all users, the fol- lowing actions (or steps), collectively referred to as ACTFB1, are taken (all 4 cases must be examined)
+2) if the set G of users that receive s is a subset of S such that T i G = 0 for all i ∈ G, s is retransmitted.
+3) for each user i ∈ S that receives s and satisﬁes T i S > 0, s is added to queue Q D i , S and T i S is decreased by 1.
+4) if s has been erased by at least one user i ∈ S, denote with G the set of users in N − S that received s. Packet s is then added to queue Q S∪G (no packets are removed from Q S ). Additionally, for each user i ∈ S that erased s and satisﬁes T i S > 0, T i S is decreased by 1 and T i S∪G is increased by 1.
+No new coefﬁcients are produced for the retransmissions in steps 1, 2. Fig. 2 presents the allowable token movements from queues Q {1} , Q {1,3} that occur in step 4 of ACTFB1 (for graphical clarity, transitions from the other queues are not shown; dashed lines correspond to step 3 of ACTFB1). Transmission of linear combinations of packets from Q S continues for as long as there exists at least one i ∈ S with T i S > 0. When it holds T i S = 0 for all i ∈ S, the transmitter moves to the next queue Q S in the ordering of Q n and repeats the above procedure until it has processed all queues in Q n . When this occurs, phase n is complete and the algorithm moves to phase n + 1. CODE1 terminates at the end of phase N .
+The following two Lemmas, proved in [12], contain all important properties of CODE1, as they follow from its con- struction.
+Lemma 1: During the execution of CODE1, the following statements are always true:
+• any packet s in queue Q S is a token for all i ∈ S (and only these i ∈ S).
+• when transmitting a linear combination s from Q S , the coefﬁcients a s (p) can indeed be chosen so that the implication in Condition 2 is true, provided that it holds L > log 2 N .
+Lemma 2: At the beginning of each slot t, the following is true: there exist vector sets B (i) I (t) ⊆ {b (i) p : p ∈ Q I }, for all I ⊆ N and i ∈ I, and B D i (t) = {b (i) p : p ∈ Q D i } such that
+Lemma 2 is easily proved by induction, using the implication of Condition 1 (which is always true, due to Lemma 1) and the fact that at the beginning of slot 0, we can trivially construct the appropriate sets B (i) S (0) as follows: B (i) S (0) = standard basis(F |K i | ) if S = {i}, otherwise B (i) S (0) = ∅. Denoting with t end the end of the last slot (after the completion of phase N ), Lemma 2 implies (since T i I (t end ) = 0 for all i,
+I) that B D i (t end ) is a basis of F |K i | q , for all i ∈ N . Hence, each user i has received |K i | linearly independent tokens (i.e. Basis tokens, according to Deﬁnition 1) and can decode its packets on a one-shot manner with zero probability of error. Since this result holds for arbitrary channel statistics, CODE1 is, in principle, universally applicable. In addition, no prior knowledge of channel statistics is required for its execution.
+In retrospect, the combination of Lemmas 1, 2 and their methods of proof give a very intuitive explanation to the algorithm’s operation. Speciﬁcally, the sets B (i) I (t) contain vectors b (i) which correspond, at slot t, to appropriate linear combinations that user i needs to receive from Q I in order to decode its packets. The number of linear combinations that must be received is |B (i) I (t)| = T i I (t). These linear combi- nations are, by construction, linearly independent w.r.t. the vectors in B D i (t), since the union of all these vector sets constitutes a basis of F |K i | q , for all i ∈ N .
+The complete analysis of the performance of CODE1 is quite lengthy with full details being given in [12]. We present here the starting point of the analysis along with the main results. We assume that min i ∈N |K i | is sufﬁciently large to invoke the strong law of large numbers, and deﬁne the event R G = {Z i = 0, ∀ i ∈ G}. Denoting with p S,G = Pr(E S ∩ R G ) the probability that a packet is received exactly by all users in G (i.e. S ∩ G = ∅), and using the identity E S = (E S ∩ R G )
+E S ∩ R c G leads to the following recursion for p S,G in terms of S
+If T ∗ is the number of slots (including retransmissions due to steps 1,4 of ACTFB1) required for all users to fully decode their packets under CODE1, the achieved rate for user i (in information symbols per transmission) is R i = |K i |/T ∗ ; therefore, we only need to compute T ∗ . Denoting with T ∗ S the number of slots required for the processing of queue Q S under CODE1, it holds
+with k i S being the value of index T i S just before processing of Q S begins. Hence, the throughput of CODE1 is essentially known once k i S is computed.
+Step 4 of ACTFB1 also implies that k i S = ∅=I⊂S k i I,S , where k i I,S is the number of linear combinations of packets in Q I (with i ∈ I) that are erased by i and received by S −I (so that step 4 of ACTFB1 is applicable). The previous relation, which can be interpreted as a principle of token conservation for each user, leads to the following recursion
+for all S with |S| ≥ 2. It turns out that the last recursion has an explicit solution [12], from which T ∗ (and therefore R i ) can be computed through (2) to produce the following result:
+. For arbitrary channel statistics, the throughput region of CODE1 is R CODE1 = R ≥ 0 : S⊆N max i ∈S (R i f i S ) ≤ L .
+In order to provide a general optimality criterion for CODE1, we deﬁne the set R ord = R ≥ 0 : ∃ permutation ˜ π s.t. ∀ S ⊆ N it holds arg max i ∈S ˆ f i S R i = arg min i ∈S (˜ π(i)) . Although the permutation ˜ π may implicitly depend on R (as well as on channel statistics through ˆ f i S ) and should actually be written as ˜ πR, we opt to simplify the notation by henceforth omitting this dependence.
+Theorem 3: The throughput region of CODE1 satisﬁes the relation R CODE1 ∩ R ord = C out ∩ R ord (i.e. CODE1 achieves any achievable rate in R ord ). Therefore, if it holds R ord ⊇ C out , the throughput region of CODE1 satisﬁes the relation R CODE1 = C out , i.e. CODE1 achieves capacity.
+Theorem 3 implies the following result regarding the optimal- ity of CODE1.
+Theorem 4: The set R ord satisﬁes the following relations: 1) R ord = {R : R ≥ 0}, for symmetric channels and 2) R ord ⊇ R f air for spatially independent one-sided fair channels which satisfy the condition 1 ≥ . . . ≥ N . Hence,
+CODE1 achieves capacity for symmetric channels and also achieves all rates in R f air for spatially independent channels.
+It is easy to construct examples (see [12] for details) to show that CODE1 does not always achieve capacity for arbitrary channel statistics. However, for N = 3, CODE1 can be slightly modiﬁed to actually achieve capacity for arbitrary statistics. In the new algorithm, referred to as CODE2 in [12], it is necessary to transmit, at certain stages, linear combinations of packets stored in more than one queue.
+Additionally, the assumption of complete feedback knowl- edge in all users can be replaced by the simpler assumption that each user knows only its own feedback. This is achieved through an overhead scheme where special feedback infor- mation is conveyed to the users (by the transmitter) after all information packets have been transmitted, so that the actual decoding can begin. The overhead scheme results in a throughput reduction of O(N/L) w.r.t. to the outer bound of Theorem 1. Due to space restrictions, both of these topics are discussed in detail in [12]. Finally, although we assumed a ﬁxed number of packets per user available for transmission, the algorithm can be extended, in the spirit of [9] (which considers the case N = 2), to handle stochastic packet arrivals as well. In fact, CODE1 can be modiﬁed so that its stability region approaches arbitrarily close to its throughput region (as given by Theorem 2), which in turn is equal to the channel capacity region under the provisions of Theorem 3.
+This paper presented a coding algorithm, CODE1, that achieves the feedback capacity of N -user broadcast erasure channels with N unicast sessions for arbitrary N and channel statistics that satisfy the general conditions of Theorem 3 (this includes symmetric and one-sided fair spatially independent channels). The main features of the algorithm are the introduc- tion of virtual queues to store packets, depending on received feedback, and the appropriate mixing of the packets to allow for simultaneous reception of innovative packets by multiple users. Since only an outer bound to the capacity region is known for N ≥ 4 and arbitrary channels, future research may involve the search for capacity achieving algorithms for N ≥ 4. It is expected that such algorithms cannot be constructed through minor modiﬁcations of CODE1 and may possibly require complete knowledge of channel statistics. Suboptimal algorithms with guaranteed performance bounds in the spirit of [16] may also be pursued.
+[[[ REFS ]]]
+T. Cover
+--
+Broadcast channels
+----
+P. Bergmans
+--
+Random coding theorem for broadcast channels with degraded components
+----
+A. Dana
+R. Gowaikar
+R. Palanki
+B. Hassibi
+M. Effros
+--
+Capacity of wireless erasure networks
+----
+L. Keller
+E. Drinea
+C. Fragouli
+--
+Online broadcasting with net- work coding
+----
+C. Wang
+--
+On the capacity of wireless 1-hop intersession network coding — a broadcast packet erasure channel approach
+----
+P. Larsson
+N. Johansson
+--
+Multi-user ARQ
+----
+S. Katti
+H. Rahul
+W. Hu
+D. Katabi
+M. M´edard
+J. Crowcroft
+--
+XORs in the air: practical wireless network coding
+----
+E. Rozner
+A. Iyer
+Y. Mehta
+L. Qiu
+M. Jafry
+--
+ER: efﬁcient retransmission scheme for wireless LANs
+----
+L. Georgiadis
+L. Tassiulas
+--
+Broadcast erasure channel with feed- back — capacity and algorithms
+----
+M. Gatzianas
+L. Georgiadis
+L. Tassiulas
+--
+Multiuser broadcast erasure channel with feedback — capacity and algorithms
+----
+C.-C. Wang
+--
+Capacity of 1–to-K broadcast packet erasure channels with channel output feedback
+----
+M. Gatzianas
+L. Georgiadis
+L. Tassiulas
+--
+Multiuser broadcast erasure channel with feedback — capacity and algorithms.
+----
+T. Cove
+J. Thoma
+--
+Elements of information theory, 2nd ed
+----
+L. Ozarow
+S. Leung-Yan-Cheong
+--
+An achievable region and outer bound for the gaussian broadcast channel with feedback
+----
+R. Liu
+H. Poor
+--
+Secrecy capacity region of a mutiple-antenna gaussian broadcast channel with conditional messages
+----
+Y. Sagduyu
+A. Ephremides
+--
+On broadcast stability of queue-based dynamic network coding over erasure channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\127.pdf
+[[[ LINKS ]]]
+

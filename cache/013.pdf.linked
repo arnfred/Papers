@@ -1,0 +1,153 @@
+[[[ ID ]]]
+13
+[[[ INDEX ]]]
+12
+[[[ TITLE ]]]
+Cliff Effect Suppression through Multiple-Descriptions with Split Personality
+[[[ AUTHORS ]]]
+Silvija Kokalj-Filipovi´c
+Emina Soljanin
+Yang Gao
+[[[ ABSTR ]]]
+Abstract—We propose a compression/transmission scheme that allows the quality of the reconstructed signal to gracefully degrade as the channel quality drops, as well as steadily improve with the channel improvement. The main idea is to partition the channel and/or network resources into m units (e.g., sub-bands, packets) and compress the source independently m times to per- fectly match single unit resources, thus creating m independently distorted source versions. Consequently, we create a multiple- description, joint source-channel like architecture, that enables efﬁcient reconstruction starting from a single received description with improvements onward. We further split the compression rate in two parts, allocating one to a rate-distortion optimal encoder, and the other to transmitting uncoded source symbols. We show how this architecture can easily leverage modularity in terms of adjustable rate-splitting ratio and the maximum number of descriptions, e.g., through software parameters, to simultaneously and robustly (i.e. avoiding the cliff effect) achieve operating points close to rate-distortion curve for many channel states. We demonstrate how statistical description of channel states (or performance statistics of content delivery network) can be used to set the two parameters constructively in terms of converging to optimal operation in the range of interest.
+[[[ BODY ]]]
+Cliff effect [1] is a phenomenon that the quality of the received information abruptly drops as soon as the channel quality goes below a certain critical point. Moreover, once the channel quality surpasses this critical point, the quality of the received information does not improve. Cliff effect is inherent to digital communications, but did not present a practical prob- lem until recently, as the most frequent transmission model was the point-to-point communication with fairly constant channel quality. However, in modern network environments (e.g. content delivery networks, mobile, wireless networks), when content is transmitted over diverse channel conditions to heterogeneous users, cliff effect becomes a major impediment. In simultaneous video delivery to multiple users, the users whose channel quality is below the critical point receive unwatchable streams, whereas those whose channel quality is well above the critical point do not see any improvement.
+In point to point environments, source and channel coding are separated, and each suffers from the cliff effect. The cliff effect associated exclusively with channel coding has been addressed by already standardized solutions such as hybrid ARQ and rateless coding schemes that adapt their redundancy to changing channel conditions. However, these schemes are very inefﬁcient for simultaneous streaming to very diverse users, and cannot reduce the information distortion that is set by a separately designed source encoder. Optimal solutions for the cliff effect in networked environments are likely to require joint source-channel coding.
+Solutions based solely on source coding, such as the SVC extension of the H.264 video compression standard, are based on successive reﬁnement, progressive, or multi-layer coding, all resulting in scalable information representations (see ref- erences in [2]). Such solutions distinguish between more and less important representations, and those of higher importance must be received ﬁrst if the rest of the representations are to be used at all. As the contemporary video delivery networks are shared media that can be easily congested, it is likely that some of the base-layer packets get delayed to the point of not reaching the destination by the time of the video playback, and hence the entire video content is lost.
+Multiple description coding (MDC) is a source coding approach with the channel/network in mind. An interesting variety of MDC, due to its tractability and relevance for network delivery, is when source data is described by, say n, independently quantized representations of the same rate (see [2] and references therein), so that receiving any k < n representations results in some reconstruction. This symmetric MDC does not in general eliminate the cliff effect; when it does, the challenge is to optimize its performance to approach the efﬁciency bounds set by the rate-distortion (R-D) curve of the source. Some recent schemes address one side of the cliff-effect phenomenon, by enabling increasing source reconstruction quality with channel improvement above a critical channel quality [3]–[7]. Even then, their decoders are predominantly based on joint-typicality, and thus of limited practical use.
+The practical inadequacy of the traditional solutions has been recognized, and novel schemes have been recently pro- posed. Most notable are Microsoft’s Smooth Streaming (MSS) [8] and MIT’s SoftCast [9], both with limited applicability; MSS requires channel-state feedback to be sent from the receiver to the transmitter, and abundant storage space to separately store content versions for different channel qual- ities, whereas SoftCast proposes OFDM-based wireless video, with an insight on achieved quality gain with respect to conventional wireless video, but without an analysis wrt rate- distortion bounds.
+We aim to enable efﬁcient reconstruction starting from a single received description with improvements onward. This feature is desirable for the recent trends in multimedia industry where proliferation of applications for video devices of diverse screen qualities justiﬁes both high deﬁnition reconstruction demands, and those that seek scene reconnaissance only. To this end, we propose to partition the channel and/or network resources into m units (e.g., sub-bands, packets) and compress the content independently m times to perfectly match single
+unit resources, thus creating m independently distorted content versions. Consequently, receiving any single version results in the best reconstruction that a unit of resources allows, while receiving multiple versions gives improvements. When so many content versions under the above scheme have been received, additional versions bring little improvement. We successfully address this problem by splitting the resources of a single transmission unit even further. We use one part as before, to create an optimal version for now reduced resources, and the remaining part for sending an uncompressed piece of the original. We refer to this strategy as the hybrid source- network coding design.
+We compress the source messages using m independent random quantizers so that the quantization error becomes smaller as the signal recovery includes more quantizers’ outputs. Each quantizer output is an independently distorted description of the signal X. The compressed signals from all quantizers are sent over a channel of maximum capacity C and minimum capacity C/m. We model it as m parallel subchannels that can be either erased or error-free, of capacity C/m each. Consequently, each quantizer is designed so that its distortion is optimal for the rate C/m. We next describe the baseline implementation of the proposed design for both binary-symmetric and Gaussian sources.
+We use the Hamming distortion measure between a source symbol and its reproduction over the same alphabet, which is equivalent to the frequency of error p in the reproduction sequence. In order to achieve the distortion according to the R-D curve, each quantizer compresses the source optimally for the rate R(p) = 1 − h(p) = C/m, where h(p) is the binary entropy. It can be achieved using random linear codes such as Low-Density Generator Matrix (LDGM) codes [10], which is equivalent to utilizing a binary symmetric channel (BSC) of cross probability p (known as test-channel representation), as presented in Figure 1 . Note that C = 1 enables zero distortion for the BSS. We refer to this single- description-optimal (S-D-O) encoder as the BSC encoder. As the decoder collects outputs of k independent quantizers, the source symbol recovery is performed based on majority logic. Distortion for the sum rate kC/m is the error-probability of majority logic decision
+The distortion as a function of the sum rate kC/m is shown in Fig. 2, together with the (inverse) R-D curve.
+1) Binary Erasure Quantizer: Consider a compression of the BSS source that is based on random puncturing of the orig- inal source sequence with probability e. The compression rate is equivalent to the capacity of an erasure channel R = 1 − e. Such scenario calls for a different distortion measure, namely
+erasure distortion d e . Per letter deﬁnition for the binary source X, as in [6], assigns zero to d e whenever X = ˆ X, ˆ X being the reconstructed letter, and assigns one whenever the original bit is punctured/ erased. We deﬁne the per-letter distortion as half the erasure probability, which is more appropriate for binary sources, as the decoder ﬁlls in the punctured bits by simple guessing. Consider now a multiple description scheme based on disjoint pieces of the original bit sequence, which are then punctured to meet the allocated rate per description. Assume that the maximum channel capacity C = 1 is only partially available to the MD scheme, while the rest of the capacity is reserved for other purposes. In particular, only 1 − x bits per channel use, where 0 ≤ x ≤ 1, are allocated to the MD scheme, which for a symmetric system, means
+bits per description per channel use. For x = 0, if we partition a sequence of length l into m equal disjoint pieces, each one would be transmitted over l/m channel uses. Such system is presented in Fig. 3, where we denote each disjoint piece with E m . Note that the disjoint pieces are pairwise negatively correlated. If x > 0, we would have to puncture each disjoint piece w.p. x, and transmit the remaining bits at rate 1 −x m per description. The rate-distortion curve obtained this way (dubbed erasure MD curve) is a represented by the line 1 − 1 −x m k, i.e. for smaller x distortion decreases faster with additional descriptions. For x = 0, Fig. 8 compares the erasure MD curve with Shannon’s R-D curve, and with the S-
+D-O MD curve. Note that, while the S-D-O MD curve is close to Shannon’s R-D curve for small channel SNRs (Q-zone), the erasure MD curve is closer to R-D curve for good channels (large SNRs), referred to as E-zone.
+We consider a Gaussian source X N (0, σ 2 ). Each quantizer is designed so that its MMSE distortion D o is optimal for the compression rate of C/m. For a point (C/m, D o ) on the Gaussian R-D curve, R(D o ) = 1/2 ∗ log(σ 2 /D o ) = C/m. From this equation we calculate D o = σ 2 2 −2 C m . The test- channel representation of this R-D optimal quantizer (for one subchannel/ one description) is shown in Fig. 4 (a). For the MMSE estimate ˆ X is a linear function of the observed signal U = X + Z, Z N (0, σ 2 z ) i.e. ˆ X = γU. The value of γ as a function of the quantizer noise σ 2 z is calculated based on the MMSE deﬁnition D o = min E ˆ X − X 2 = min ∆(γ), i.e.
+D o = min γ 2 σ 2 + σ 2 z − 2γσ 2 + σ 2 . 	 (2) The solution of ∆(γ) = 2γ σ 2 + σ 2 z − 2σ 2 = 0. gives γ =
+For each such quantizer, and each unerased subchannel, the receiver observes a description U i = X + Z i , Z i N (0, σ 2 z ), as illustrated in Fig. 4 (b). Any collection of k observations, denoted by Y k = [U 1 ···U k ] , is equivalent. The estimate based on the set of k observations is a linear function of Y k , and the coefﬁcient γ is determined in the same manner as for one observation: D k = min E (γY k − X) 2 . From D k (γ) = 0,
+Per (4), for σ 2 z calculated previously, and σ 2 = 1, D k depends on R k = k C m , 2 ≤ k ≤ m, as illustrated in Fig. 5.
+1) Jointly optimal Gaussian multiple descriptions: For the sake of completeness, we present jointly-optimal Gaussian MD compression, i.e. with no-excess rate for k > 1 descriptions. The structure of the encoder is the same as illustrated in Fig. 4. It is again symmetric, all quantizers being equal. However, the quantizer is designed so that the distortion is optimal for k received descriptions. This system is proposed in [11]. The requirement that the sum rate R k = k i=1 C m and the distortion of the joint decoder D k be a Shannon optimal R-D point (D k , R k = R(D k )) results in a design with D k = σ 2 σ 2 z kσ 2 +σ 2
+is smaller than in (3). Consequently, no source reconstruction is possible for less than k descriptions. Also, note from Fig. 6 that for high SNRs (E-zone), the obtained curve is very close to Shannon’s curve. This suggests that jointly-optimal descriptions are not R-D complementary with an erasure quantizer, and that S-D-O scheme is more suitable to be combined with uncoded symbols, as presented next.
+We now combine the above two schemes for the BSS into a hybrid MD system. Based on the results in Sec. II-B, the extension of this hybrid scheme to Gaussian sources is
+straightforward. We will omit it due to space considerations. To obtain bits in the Gaussian case, we may apply uniform quantization with dither both to the optimally quantized and source samples, which is known to be universal approach, and incurs only a small rate penalty [12].
+We deﬁne the average per-symbol distortion d as the Ham- ming distance p, i.e. the bit-error probability, and, conse- quently, the erasure distortion for punctured source pieces is scaled to its half. Hybrid quantizers are designed so that the compression rate of each quantizer is 1/m, and the distortion from a single description is p o . This distortion is not optimal, i.e. 1/m = R (p o ) , R ( ·) being the Shannon R-D curve for the BSS. Instead, the i th description of a binary sequence X ( ) of length , denoted by (B i , X i ) , is composed of the output B i of an optimal BSS quantizer, designed for rate x m , 0 ≤ x ≤ 1, and of uncoded bits X i in predetermined positions within the source sequence, whose length is (1 − x)/m.
+to emphasize the two design parameters, is shown in Fig. 7. The total rate allocated to a single description is 1/m, while p o = p ∗ 1 − 1 −x m , where p ∗ comes from the the output of the BSC encoder at rate x m
+In addition, uncoded bits X i , i ∈ [1,··· ,m] in different descriptions are disjoint, so that each collected description increases the number of recovered bits by fraction 1 −x m , not accounting for the contribution of the BSC-encoded parts. The collected BSC encoded parts are independently quantized, and, hence, the decoding of k such parts is based on the majority logic, as described in Sec. II-A. In fact, the joint decoder for the binary source is a combination of two key parts:
+• (1) a majority logic decision decoder that combines the received outputs of optimal quantizers and • (2) an error-correction part based on the side information provided by received uncoded bits.
+The source sequence reconstruction based on B i 1 , . . . , B i k exhibits distortion p ∗ (k) = k j=(k+1)/2 k j p ∗j (1 − p ∗ ) k −j . However, the distortion on k collected descriptions is smaller, as u (k) = k(1 −x) m uncoded bits from X ( ) eliminate on
+As exempliﬁed by the dotted curve in Fig. 8, the distortion decreases with the number of collected descriptions, and the system outperforms the base schemes in both Q-zone and E- zone, even for an unoptimized rate-splitting (RS) ratio x = 1 16 .
+Our architecture is based on multiple descriptions and rate splitting, where part of the rate in each description is allocated to an optimized quantizer, while part is reserved for uncoded source symbols. An encoder based on such an architecture can easily leverage modularity in terms of maximum number of descriptions m and RS ratio x, e.g. through software parameters, to simultaneously and robustly (i.e. avoiding the cliff effect) achieve operating points close to rate-distortion curve for multiple channel states. A statistical description of channel states (or performance statistics of content delivery network) can be used to set the two parameters optimally in terms of narrowing the gap to R-D optimal operation for a range of channel/ network states.
+With respect to that goal, we formalize an optimization problem to determine ”the best” RS ratio x (o) for a given probability distribution of the channel quality, as speciﬁed by the algorithm in Fig. 10. Here, g (i) (x) represents the
+gap between the obtained and the optimal R-D curve for sum-rate of i descriptions, under the RS parameter x. The objective function f (g(x), P ) describes what the ”best” value of x (o) means. It may be deﬁned as the average gap with respect to optimal distortion, i.e. norm-one of the gap, s.t. f (g(x), P ) = P • g(x), where X •Y denotes the dot product of vectors X and Y . Alternatively, the objective function may be the inﬁnity-norm, i.e. the maximum gap wrt the optimal distortion for a given rate. Note that p ∗ (i) is the distortion before the uncoded symbols are accounted for, and PMF denotes probability mass function P . We optimized both objective functions for a test channel with a Gaussian-like distribution presented in Fig. 9, which we refer to as folded Gaussian.
+The term ”folded” indicates that the probability mass which spills outside the range [0, C] is equally redistributed inside that range. The mean of the initial Gaussian is kept constant, located in E-zone, close to the maximum channel quality. The variance is at ﬁrst very small, meaning that such good quality is almost constant. In that case, sending uncoded (uncompressed) symbols is the natural choice, and we see that x is almost zero. We then optimize for the channels of larger and larger variance, so that the last one is characterized by an almost uniform distribution of its quality. The growth trend of the optimized RS parameter with the changing variance is presented in Fig. 9 below the channel curves.
+We proposed an MD based scheme allowing reconstruction starting from a single received description with improvements onward, and is thus suitable for content delivery over het- erogeneous networks and time-varying channels. Our idea to utilize the synergy of two simple and tractable MDC strategies, which have different dynamics of the rate-distortion curve for particular rate ranges, is consistent with the recent theoretical results [7]. We showed that the interplay of the two schemes can be controlled and optimized for the likely states of the transmission channel or content delivery network. By splitting the rate between the two schemes within a single description, we are modifying the pairwise correlation between descrip- tions in a simple way. It has been shown in [4] that by varying the correlation between the quantization noise components in the Gaussian case, one obtains a tradeoff between the rate- distortion performance with k descriptions on one hand, and n descriptions on the other. A constructive way to leverage their result, especially for general sources, is unknown.
+[[[ REFS ]]]
+
+--
+Online]
+----
+V. K. Goyal
+--
+Multiple description coding: Compression meets the network
+----
+R. Venkataramani
+G. Kramer
+V. K. Goyal
+--
+Multiple description coding with many channels
+----
+S. S. Pradhan
+R. Puri
+K. Ramchandran
+--
+n-channel symmetric multiple descriptions - part i: (n, k)source-channel erasure codes
+----
+R. Puri
+S. S. Pradhan
+K. Ramchandran
+--
+n-channel symmetric multiple descriptions - part ii: an achievable rate-distortion region
+----
+E. Ahmed
+A. Wagner
+--
+Binary erasure multiple descriptions: Average-case distortion
+----
+C. Tian
+J. Chen
+--
+New coding schemes for the symmetric k - description problem
+----
+A. Zambell
+--
+IIS Smooth Streaming Technical Overview
+----
+S. Jakubczak
+D. Katabi
+--
+Softcast: one-size-ﬁts-all wireless video
+----
+T. Filler
+J. Fridrich
+--
+Binary quantization using belief propagation with decimation over factor graphs of ldgm codes
+----
+S. S. Pradhan
+R. Puri
+K. Ramchandran
+--
+(n; k) source-channel erasure codes: Can parity bits also reﬁne quality?
+----
+J. Ziv
+--
+On universal quantization
+[[[ META ]]]
+xmlpapertitle -> Cliff Effect Suppression through Multiple-Descriptions with Split Personality
+pdf -> E:\testDataset\013.pdf
+parsed -> yes
+linked -> yes
+xmldate -> -
+file -> E:\testDataset\013.pdf
+xmlauthors -> Silvija Kokalj-Filipovi´c, Emina Soljanin, Yang Gao
+xmlroom -> -
+[[[ LINKS ]]]
+1 18
+----
+2 12
+----
+3 38
+----
+4 11
+----
+5 13
+----
+6 16
+----
+7 8
+----
+8 51
+----
+9 21
+----
+10 45
+----
+11 16
+----
+12 7
+----
+14 28
+----
+15 9
+----
+16 61
+----
+17 21
+----
+18 54
+----
+19 27
+----
+20 26

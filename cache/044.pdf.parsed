@@ -1,0 +1,151 @@
+[[[ ID ]]]
+44
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+The Capacity Region of the Symmetric Gaussian Interference Channel with Common Information to within a Constant Gap
+[[[ AUTHORS ]]]
+Chinmay S. Vaze Mahesh K. Varanasi
+[[[ ABSTR ]]]
+Abstract—The interference channel with common information (IC-CI) is studied. In an IC-CI, each transmitter has an indi- vidual message for its paired receiver, and additionally, both transmitters collaboratively must deliver a common message to both the receivers. For the symmetric Gaussian IC-CI, the capacity region is characterized to within a gap of 3 bits independently of the values of the channel parameters. Further, using this constant-gap characterization, the generalized degrees of freedom region is also determined. Insight is provided on how the common message helps in markedly improving the achievable rates over that in an IC without a common message.
+Index Terms—Capacity region, common information, general- ized degrees of freedom, interference channel.
+[[[ BODY ]]]
+The interference channel (IC) consists of two transmit- receive pairs that communicate over a common noisy medium. Despite the continued effort for over a few decades, the capac- ity region of the IC is known only in some special cases [1]–[4] (see references in [5] for a more comprehensive list). The rate region proposed in [6] remains the best-known inner-bound 1 for the general IC (cf. [8]). Instead of pursuing a capacity characterization, Etkin et al. [9] made signiﬁcant progress by proving that the rate region proposed by Han and Kobayashi [6] is within 1 bit of the capacity region of the Gaussian IC regardless of the values of the channel parameters. This constant gap result, derived in [9] for the scalar Gaussian IC, has recently been generalized to the multiple-input multiple- output Gaussian IC [5].
+The IC with common information (IC-CI) has also been considered in the literature. In the IC-CI, as in the IC (without common information), each transmitter has a message which it needs to convey to its corresponding/paired receiver; however, in addition to these two individual messages, both transmitters are to deliver a common message to both receivers. For the discrete memoryless (DM) IC-CI, achievable-rate regions have been proposed [10]–[12]. Moreover, the capacity region has also been determined in some special cases such as the IC-CI with strong interference [13], the deterministic IC-CI [10], and the semi-deterministic IC-CI [14]. Further, for the Gaussian IC-CI, outer-bounds to the capacity region have been proposed, but nothing is known about their tightness [15].
+In this paper, we study the symmetric Gaussian IC-CI, and determine its capacity region to within 3 bits. To establish this
+result, ﬁrst an inner-bound to the capacity region is determined by making use of the rate region proposed in [10]. Subse- quently, a new outer-bound to the capacity region is proposed that has a shape similar to that of the derived inner-bound. This facilitates a comparison of the inner and outer-bounds. The comparison reveals at most a 3-bit gap between these bounds, irrespective of the values of the channel parameters, thereby yielding the sought constant-gap characterization of the capacity region.
+Using the above constant-gap result, we determine the generalized degrees of freedom (GDoF, henceforth referred to simply as DoF) region, which denotes the rate of growth, in the high SNR regime, of the capacity region with respect to log SNR, when the ratio of SNR to INR (both in dB scale) is equal to α [9]. In Fig. 1, we plot the maximum number of DoF achievable per user over the IC-CI when the DoF to be achieved for the two individual messages are equal to the maximum of those achievable in the absence of the common information. From this ﬁgure, it is evident that over a wide range of values of α, the presence of the common message can signiﬁcantly enhance the total DoF achievable for each user, without affecting those achievable for the two individual messages. In the sequel, we provide an intuitive explanation of how the introduction of the common message helps in improving the per-user DoF by developing some explicit and interesting coding schemes for achieving the solid curve of Fig. 1 (see Section IV).
+The next section describes the model of the IC-CI and the main results, Theorems 1 and 2.
+The IC-CI consists of two transmitters, T1 and T2, and their corresponding receivers, R1 and R2. In the case of IC-CI, each transmitter needs to communicate an “individual” message to its paired receiver, and additionally, both the transmitters together need to deliver a “common” message to both the receivers. In this paper, we study the symmetric Gaussian IC- CI for which the input-output relationship is given by
+where, at time t, Y 1 (t) ∈ C and Y 2 (t) ∈ C are respectively the signals received by R1 and R2; X 1 (t) ∈ C and X 2 (t) ∈ C are the signals transmitted by T1 and T2, respectively; and Z 1 (t), Z 2 (t) ∼ CN(0,1) are the additive Gaussian 2 noises at the two receivers and the noise realizations are assumed to be independent and identically distributed (i.i.d.) across time. We impose a power constraint that E |X i | 2 ≤ 1 ∀ i,t. Then SNR (signal-to-noise ratio) and INR (interference-to- noise ratio) denote the channel gains corresponding to the direct links (from T1 to R1 and from T2 to R2) and the cross links (from T2 to R1 and from T1 to R2), respectively. Let H △ = (SNR, INR).
+Let M 0 , M 1 , and M 2 be three independent messages to be sent over a blocklength of n, where M 0 is the com- mon message, and M 1 and M 2 are the two individual mes- sages. The message M i is assumed to be distributed uni- formly over a set of cardinality 2 nR i (H) . The rate 3-tuple
+R 0 (H), R 1 (H), R 2 (H) is said to be achievable if for each n, there exists a coding scheme, wherein X i (t) is a function of M 0 and M i for each i ∈ {1,2} and ∀t, such that the average probability of error in decoding messages M 0 and M i at the i th receiver goes to zero as n → ∞ for each i. The capacity region C(H) is deﬁned as the closure of the set of all achievable rate 3-tuples. Finally, if MG(y) △ = lim
+, then for α △ = MG(log 2 INR) ≥ 0, the GDoF region D(α) of the Gaussian IC-CI is as deﬁned in equation (1) at the bottom of this page.
+To state our main results about C and D(α), we need the following two deﬁnitions. Let R n + denote the set of all n-tuples of non-negative real numbers.
+Deﬁnition 1: Let R 1 , R 2 ⊂ R 3 + . The region R 1 is said to be within b ( ≥ 0) bits of the region R 2 , if for any given tuple (R 0 , R 1 , R 2 ) ∈ R 2 , ∃ a tuple (R ′ 0 , R ′ 1 , R ′ 2 ) ∈ R 1 such that R i − R ′ i ≤ b, i = 0,1,2.
+Deﬁnition 2: Let x △ = min 1, 1/INR , γ(y) △ = log 2 1 + y/4 , A △ = γ SNR · x , D △ = γ SNR · [1 + x] , E △ = γ x · SNR+INR , G △ = γ SNR ·[1+x]+INR , and G ′ △ = γ SNR · [2 + x] + 2 · INR + 2 · √SNR · INR .
+Deﬁnition 3: If N (H) △ = (A, D, E, G, G ′ ) ∈ R 5 + , then C inner (H) = R N (H) , where the region R( ·) ⊂ R 3 + is deﬁned in equation (2) at the bottom of this page.
+The following theorem gives us an inner-bound which is within 3 bits of the capacity region.
+Theorem 1: The region C inner (H) is achievable over the symmetric Gaussian IC-CI, i.e., C inner (H) ⊆ C(H). Moreover, it is within 3 bits of the capacity region C(H), regardless of the value of H.
+Proof: The proof consists of three steps: First, it is shown that the region C inner (H) is achievable over the symmetric Gaussian IC-CI (see Section III-A). Second, an outer-bound C outer (H) to the capacity region C(H) is derived such that its shape resembles that of the inner-bound C
+inner (H) (see Lemma 2 in Section III-B). Finally, it is shown that the inner and outer-bounds are within 3 bits of each other (see Section III-C), which implies the theorem since, by deﬁnition, C inner (H) ⊆ C(H) ⊆ C outer (H). See Section III for the detailed proof.
+Using the above theorem, we now determine the GDoF region of the symmetric Gaussian IC-CI.
+Theorem 2: The GDoF region of the symmetric Gaussian IC-CI is given by the region deﬁned in equation (3) at the bottom of this page.
+Proof: Since the inner-bound C inner (H) is within constant number of bits of the capacity region C(H), it is tight as far as the GDoF region is concerned. Hence, the GDoF region can be computed from the inner-bound C inner (H) by applying
+the function MG( ·) to both sides of each of the deﬁning inequalities of the inner-bound. We omit further details due to lack of space.
+We can now explain the beneﬁt of having a common message. Consider for instance the case of d 1 = d 2 , and denote their common value by d sym . For a given α, the maximum achievable d sym , which we denote by d ⋆ sym (α), is given by ( [9, equation (25)]) because d sym would be maximum when no common message is transmitted, i.e., when d 0 = 0. The function d ⋆ sym (α) is plotted as the dashed curve in Fig. 1. Let d sum = d 0 + d 1 when d 1 = d 2 . Deﬁne for each a ∈ {0,sum}
+Corollary 1: We have d ⋆ sum (α) = d ⋆ sym (α) + d ⋆ 0 (α) and range α 	 d ⋆ 0 (α) 	 d ⋆ sum (α)
+< α ≤ 2 	 0 	 max {1 − α 2 , α 2 } 2 ≤ α 	 α − 2 	 α − 1
+The function d ⋆ sum is plotted in Fig. 1 as the solid curve. To see why the introduction of the common message increases the total DoF achievable per user, let us ﬁrst recall the scheme developed in [9] for achieving d ⋆ sym over the IC. The authors make use of the Han-Kobayashi achievability scheme [6], wherein each individual message is split into two sub- messages. The ﬁrst sub-message, called the private message, is to be decoded by only the paired/intended receiver, while the second sub-message, called the public message, is to be de- coded by both receivers 3 . Suppose d pr (α) and d pu (α) denote the numbers of DoF that are achieved via the private and the public sub-messages, respectively, so that d pr (α) + d pu (α) = d ⋆ sym (α). Moreover, the signal corresponding to the private messages is designed such that it gets received at the noise ﬂoor of the unintended receiver, and thus, causes negligible amount of interference to the unintended receiver. Therefore, to achieve d ⋆ sym (α) DoF for each individual message, a total of d ut (α) = d pr (α) + 2 · d pu (α) number of DoF are utilized at each receiver because every receiver needs to decode the intended private and the two common sub-messages while the unintended private sub-message does not produce any signiﬁcant interference.
+Now, each receiver has at most d am (α) = max {1,α} DoF available to it. It turns out that in the absence of the common message, the total available d am (α) DoF are not utilized at any of the receiver, i.e., d ut (α) ≤ d am (α) and the inequality is strict for some values of α. Moreover, it can be easily veriﬁed that d ⋆ 0 (α) = d am (α) − d ut (α), and therefore, Corollary 1
+asserts that the introduction of the common message results in fully exploiting the DoF that remain unutilized at the receivers in the case of a transmission of just the two individual messages. This explains how the transmission of the common message improves the total DoF achievable per user. See Section IV for further discussion.
+To prove that C inner (H) ⊆ C(H), we make use of the achievable-rate region derived in [10] for the DM IC-CI. This region is stated in Lemma 1 below for the symmetric DM IC-CI, which is deﬁned as the DM IC-CI for which the transition probabilities p(Y 1 = y 1 , Y 2 = y 2 |X 1 = x 1 , X 2 = x 2 ) = p(y 1 y 2 |x 1 x 2 ) satisfy the following two “symmetry” properties: a) p(y 1 , y 2 |x 1 , x 2 ) = p(y 1 |x 1 x 2 )p(y 2 |x 1 x 2 ), and b ) p(Y 1 = y |X 1 = x 1 , X 2 = x 2 ) = p(Y 2 = y |X 1 = x 2 , X 2 = x 1 ). To state the lemma, we need the following deﬁnition.
+Deﬁnition 4: Let P be the set of joint probability distri- butions p( ·) which are such that 1) p(u 0 u 1 u 2 x 1 x 2 y 1 y 2 ) = p(u 0 )p(u 1 |u 0 )p(x 1 |u 1 u 0 )p(u 2 |u 0 )p(x 2 |u 2 u 0 )p(y 1 y 2 |x 1 x 2 ),
+2) p(u 1 |u 0 ) = p(u 2 |u 0 ) and p(x 1 |u 0 u 1 ) = p(x 2 |u 0 u 2 ), and 3) p(y 1 y 2 |x 1 x 2 ) satisﬁes the two symmetry properties stated above. Further, for any given i, j ∈ {1,2} with i = j, let a △ = I(X i ; Y i |U 0 U i U j ), d △ = I(U i X i ; Y i |U 0 U j ), e △ = I(X i U j ; Y i |U 0 , U i ), g △ = I(U i X i U j ; Y i |U 0 ),
+g ′ △ = I(U 0 U i X i U j ; Y i ). Finally, for a given p ∈ P, R(p) = R n(p) with n(p) = (a,d,e,g,g ′ ). Lemma 1 ( [10]): For a given p ∈ P, the region R(p) is
+Remark 1: The coding scheme proposed in [10] for the DM IC-CI is based on the superposition coding [16] at the transmitters and joint typical decoding at the receivers. It can be viewed as an extension of the scheme of [8] for the IC. Thus, the random variable U 0 appearing in the description of their rate region corresponds to the common message. Random variables U i and X i carry public and private sub-messages of the i th transmitter, respectively.
+The choice of p(u 0 u 1 u 2 x 1 x 2 ) to achieve C inner (H) over the symmetric Gaussian IC-CI: Choose
+with x = min 1, 1/INR and random variables U 0 , U 1,pu , U 2,pu , U 1,pr , and U 2,pr being independent. This choice of p(u 0 u 1 u 2 x 1 x 2 ) induces a joint distribution on random vari- ables (U 0 U 1 X 1 U 2 X 2 Y 1 Y 2 ), which we refer in the sequel as p G . Clearly, p G ∈ P, and the choice of p = p G satisﬁes the power constraint. Here, U 0 carries the common message, while U i,pu and U i,pr carry public and private messages of the i th transmitter. The common and public messages are allocated 1 3 of the total power because they do not cause
+any interference, while the private messages are allocated x 3 of the total power so that they produce only a negligible amount of interference at the unintended receivers (cf. [9]). With p = p G , the received signal at the i th receiver can be written as Y i (t) = √SNR U 0 (t) + U i,pu (t) + U i,pr (t)
+where j = i. The mutual information terms appearing in the deﬁnition of R(p) can be computed for p = p G , whence it can be shown that for p = p G , a ≥ A, d ≥ D, e ≥ E, g ≥ G, and g ′ ≥ G ′ , which proves the achievability of C inner (H). The details are omitted due to lack of space.
+Deﬁnition 5: If C(y) △ = log 2 (1+y), then let D △ = C(SNR), G △ = C(SNR + INR), G ′ △ = C [√SNR + √INR] 2 ,
+Lemma 2: The region C outer (H) = R N (H) is an outer- bound to the capacity region of the symmetric Gaussian IC-CI, i.e., C(H) ⊆ C outer (H) = R N (H) .
+Proof: We present here only the proof of the bound on R 0 + 2R 1 + R 2 , i.e., we want to show that R 0 + 2R 1 + R 2 ≤ G ′ + A + E + 3. The remaining inequalities can be derived in a similar fashion, the details of which are omitted due to lack of space. Let {Z ij (t) }, i,j = 1,2, be i.i.d. CN(0,1/2) random variables. For i, j ∈ {1,2} with i = j, let V i (t) △ = √
+INRX i (t) + Z j 1 (t) and then without loss of generality, we may assume Y i (t) = √SNRX i (t) + V j (t) + Z i 2 (t). For a random variable Y 1 (t), let Y n 1 be the column vector formed out of entries Y 1 (1), Y 1 (2), ···, Y 1 (n). Then the bound on R 0 + 2R 1 + R 2 is proved at the bottom of this page, where various equalities and inequalities hold because of the
+following reasons. The ﬁrst inequality (4) holds because of Fano’s inequality [16]. The second inequality follows due to (ii) stated below (cf. [9], [10]). Next, the inequality (7) holds because the following is true: (i) Given M 0 and M i , X n i is deterministic for i = 1, 2, (ii) given M 0 , V n i is independent of M j , X n j and V n j for j = i, and (iii) adding Z n 22 to V n 1 and Z n 12 to V n 2 can only increase the differential entropy. Further, the inequality (8) holds since conditioning reduces entropy. Next, (9) holds since the Gaussian distribution maximizes conditional (unconditional) differential entropy for a given covariance (variance) constraint [16] (cf. [9, Proof of (14)]). Finally, the inequality (10) follows since the quantities involved in (9) are increasing functions of P 1,t and P 2,t , and P 1,t , P 2,t ≤ 1.
+Note that we do not use the outer-bounds proposed in [15] because their tightness is not known. Moreover, they do not resemble our inner-bound in shape (none of those outer-bounds constrain R 0 + 2R 1 + R 2 and R 0 + R 1 + 2R 2 ) which makes it difﬁcult to compare their bounds with our inner-bound.
+Note that the inner and outer bounds are identical in shape, i.e., for every bound that deﬁnes C inner (H), there exists a corresponding bound in the deﬁnition of C outer (H). Therefore, by performing a bound-by-bound comparison, C inner (H) can be shown to be within 3 bits of C outer (H), which yields Theorem 1. The details are skipped.
+The achievability of the curve d ⋆ sum follows from Theorem 2, i.e., from the coding scheme of [10] with the choice of p = p G (see Section III-A). To achieve d ⋆ sum (α) for a given α, this coding scheme allocates the appropriate number of DoF to the common message, and the public and the private sub-messages of the two individual messages. Hence, specifying the choice of p does not completely tell us how d ⋆ sum (α) can be achieved. With this motivation, we develop here some explicit coding
+schemes without being concerned about the constant-gap to capacity, where we specify not just the choice of p but also the allocation of the number of DoF to the different messages. As we will see, these schemes help us better understand the achievability of d ⋆ sum .
+1) 0 ≤ α ≤ 1 2 : Here, the distribution of p(u 0 u 1 u 2 x 1 x 2 ) speciﬁed in equation (11) can be used with just a change of setting U i,pu = 0 ∀ i (i.e., public messages are not assigned any rate). From (12), we observe that R1 receives U 0 at the power level of SNR (along the direct link, ignoring the weaker cross link), U 1,pr at the power level of (SNR) 1−α , and U 2,pr at the noise ﬂoor. The receive-signal space of R1 is depicted in Fig. 2(a) for α = 0.25. R1 can employ sequential decoding with successive interference cancelation [16], i.e., it can ﬁrst decode the common message to achieve d 0 = α(= d ⋆ 0 (α)), then subtract the contribution of U 0 from its received signal, and ﬁnally, decode the intended private message carried by U 1,pr to achieve d 1 = 1 −α, and thus a total of d sum = 1 = d ⋆ sum (α). The operation of R2 is analogous.
+2) 1 2 < α ≤ 2 3 : We illustrate the coding scheme for α = 0.6 since the general idea follows in a similar fashion. To achieve d ⋆ sum (0.6) = 0.8, we want 0.4 and 0.2 DoF for the private and public messages and 0.2 DoF for the common message. Suppose the distributions of U i,pu and U i,pr , i = 1, 2, are chosen as per (11). Then from Fig. 2(b), one may notice that the intended public message (carried by U 1,pu ) is received at the power level of SNR, and although we need to achieve only 0.2 DoF for this message, the next interfering signal, namely, U 2,pu is received at the power level of SNR 0.6 . Hence, if we choose the distribution of U 0 such that R1 can observe U 0 at the power level of SNR 0.8 , R1 would still be able to achieve 0.2 DoF for its intended public message. Accordingly, we choose U 0 ∼ CN(0,SNR − 0.2 ) with the distributions of U i,pu and U i,pr as per (11). Under this choice, the receive- signal space of R1 is depicted in Fig. 2(b). Thus, if R1 employs sequential decoding with successive interference cancelation
+and decodes the required messages in the descending order of the power levels at which they are received, then it can achieve the required DoF for all the messages.
+Since in the regime of 2 3 < α ≤ 2, d ⋆ sum = d ⋆ sym , we skip the discussion of this case (see [9]).
+3) α > 2: The distribution speciﬁed in (11) can be used with a change of setting U i,pr = 0. Then U 0 and U 2,pu are received at the power level of SNR α (the cross link is stronger here), while U 1,pu is received at the power level of SNR. Thus, R1 may jointly decode the common message and the unintended public message treating the intended public message as noise to achieve d 0 = d ⋆ 0 . Then, after subtracting the contribution due to U 0 and U 2,pu , it can decode its own individual (now, public) message to achieve d sum = d ⋆ sum . See also Fig. 2(c).
+The capacity region of the symmetric Gaussian IC-CI is obtained to within a 3-bit gap. Using this result, the GDoF region is determined. Consequently, the beneﬁt of having a common message is quantiﬁed. An intuitive explanation is provided as to how this beneﬁt is achieved.
+[[[ REFS ]]]
+A. B. Carleial
+--
+A case where interference does not reduce the capacity
+----
+H. Sato
+--
+The capacity of Gaussian interference channel under strong interference
+----
+A. A. E. Gamal
+M. H. M. Costa
+--
+The capacity region of a class of deterministic interference channels
+----
+V. S. Annapureddy
+V. V. Veeravalli
+--
+Sum capacity of the Gaussian interference channels in the low interference regime
+----
+S. Karmakar
+M. K. Varanasi
+--
+Capacity within constant gap of the MIMO interference channel
+----
+T. S. Han
+K. Kobayashi
+--
+A new achievable region for the inter- ference channel
+----
+G. A. Hodtani
+--
+Improvement of the Han-Kobayashi rate region for general interference channel-v2
+----
+H. F. Chong
+M. Motani
+H. K. Garg
+--
+A comparison of two achievable rate regions for the interference channel
+----
+R. H. Etkin
+D. N. C. Tse
+H. Wang
+--
+Gaussian interference channel capacity to within one bit
+----
+J. Jiang
+Y. Xin
+H. K. Garg
+--
+Interference channels with common information
+----
+Y. Cao
+B. Chen
+J. Zhang
+--
+A new achievable rate region for interference channels with common information
+----
+H. H. Tan
+--
+Two-user interference channels with correlated information sources
+----
+I. Maric
+R. D. Yates
+G. Kramer
+--
+Capacity of interference channels with partial transmitter cooperation
+----
+H.-F. Chong
+M. Motani
+--
+The capacity region of a class of semideterministic interference channels
+----
+Y. Cao
+B. Chen
+--
+Outer bounds on the capacity region of in- terference channels with common message
+----
+T. Cove
+J. Thoma
+--
+Elements of Inform
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\044.pdf
+[[[ LINKS ]]]
+

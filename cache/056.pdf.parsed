@@ -1,0 +1,139 @@
+[[[ ID ]]]
+56
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Joint Source-Channel Coding with Correlated Interference
+[[[ AUTHORS ]]]
+Yu-Chih Huang
+Krishna R. Narayanan
+[[[ ABSTR ]]]
+Abstract—In this paper, we study the joint source-channel coding problem of transmitting a discrete-time analog source over an additive white Gaussian noise (AWGN) channel with interference known at transmitter. We consider the case when the source and the interference are correlated. We ﬁrst derive an outer bound on the achievable distortion and then, we propose two joint source-channel coding schemes to make use of the correlation between the source and the interference. The ﬁrst scheme is the superposition of the uncoded signal and a digital part which is the concatenation of a Wyner-Ziv encoder and a dirty paper encoder. In the second scheme, the digital part is replaced by a hybrid digital and analog scheme so that the proposed scheme can provide graceful degradation in the presence of (signal-to-noise ratio) SNR mismatch. Interestingly, unlike the independent interference setup, we show that neither of both schemes outperform the other universally in the presence of SNR mismatch.
+Index Terms—Distortion region, joint source-channel coding, cognitive radios.
+[[[ BODY ]]]
+In this paper, we consider transmitting a length- n i.i.d. zero-mean Gaussian source V n = (V (1), V (2), . . . , V (n)) over n uses of an additive white Gaussian noise (AWGN) channel with noise Z n ∼ N(0,N · I) in the presence of Gaussian interference S n which is known at the transmitter as shown in Fig. 1. Throughout the paper, we only focus on the bandwidth-matched case, i.e., the number of channel uses is equal to the source’s length. The transmitted signal X n = (X(1), X(2), . . . , X(n)) is subject to a power con- straint
+1 n
+where E[ ·] represents the expectation operation. The received signal Y n is given by
+We are interested in the expected distortion between the source and the estimate ˆ V n at the output of the decoder given by
+where f and g are a pair of source-channel coding encoder and decoder, respectively, and d(., .) is the mean squared error
+Here the lower case letters represent realizations of random variables denoted by upper case letters. As in [1], a distortion D is said to be achievable under a power constraint P if for any ε > 0, there exists a source-channel code and a sufﬁciently large n such that d ≤ D + ε.
+When V and S are uncorrelated, it is known that an optimal quantizer followed by Costa’s dirty paper coding (DPC) [2] is optimal and the corresponding joint source-channel coding problem is fully discussed in [3]. However, different from the typical writing on dirty paper problem, we consider the case where the source and the interference are correlated with a covariance matrix given by
+Under this assumption, separate source and channel coding using DPC naively may not be a good candidate for encoding V n in general. It is due to the fact that the DPC quantizes the input and then throws quantized codewords into bins without taking advantage of the correlation between the source and the interference at all. In this paper, we ﬁrst derive an outer bound on the achievable distortion region and then, we propose two joint source-channel coding schemes which exploit the corre- lation between V n and S n , thereby outperforming the naive DPC scheme. The performance of the proposed schemes for signal-to-noise ratio (SNR) mismatch cases are also analyzed. It is shown that both proposed schemes beneﬁt from a higher SNR; however, interestingly, their performances are different.
+One interesting application of this problem is to derive the achievable distortion region for the generalized cognitive radio
+channels considered in [4]. This channel can be modeled as a typical two-user interference channel except that one of them knows exactly what the other plans to transmit. We can regard the informed user’s channel as the setup we consider in this paper and then derive the achievable distortion region. Due to space limitations, this application is not discussed in this paper; however, it is discussed in [5].
+In [6], Lapidoth et al. consider the 2 × 1 multiple access channel (MAC) in which two transmitters wish to communi- cate their sources, which are drawn from a bi-variate Gaussian distribution, to a receiver interested in reconstructing both sources. There are some similarities between the work in [6] and here. However, in the MAC setup [6], for the particular transmitter, the interference is not known.
+Joint source-channel coding for point to point communica- tions over Gaussian channels has been widely discussed. e.g. [3], [7], [8]. However, they either don’t consider interference ([7], [8]) or assume independence of source and interference ([3]). In [3], Wilson et al. proposed a hybrid digital and analog (HDA) coding scheme for the typical writing on dirty paper problem in which the source is independent of the interference. This HDA scheme is originally proposed to deal with SNR mismatch.
+From now on, since all the random variables we consider are i.i.d. in time, i.e. V (i) is independent of V (j) for i = j, we will drop the index i for the sake of convenience.
+For comparison, we ﬁrst present a genie-aided outer bound. This outer bound is derived in a similar way to the one in [9] in which we assume that the interference S is revealed to the decoder by a genie. Thus, we have
+where (a) follows from the rate-distortion theory [1], (b) is from the data processing inequality, (c) is due from that con- ditioning reduces differential entropy and (d) comes from the fact that the Gaussian density maximizes differential entropy. Therefore, we have the outer bound as
+Note that this outer bound may not be tight in general for our setup since in the presence of correlation, giving S to the decoder also offers a correlated version of the source that we wish to estimate. For example, in the case of ρ = 1, giving S to the decoder implies that the outer bound is D ob = 0 no matter
+what the received signal Y is. On the other hand, if ρ = 0, the setup reduces to the one with uncorrelated interference and we know that this outer bound is tight. Now, we present another outer bound that improves this outer bound for some values of ρ.
+Since S and V are drawn from a jointly Gaussian distribu- tion with covariance matrix given in (5), we can write
+where N ρ ∼ N 0,(1 − ρ 2 )σ 2 S and is independent of V . Now, suppose a genie reveals only N ρ to the decoder, we have
+≤ 1 2 log var X+ρ σ S σ V V + Z N  (e)
+where (a)-(d) follow from the same reasons with those in the previous outer bound and (e) is due to the Cauchy-Schwartz inequality that states that the maximum occurs when X and V are collinear. Thus, we have
+Note that although the encoder knows the interference S exactly instead of just N ρ , the outer bound is valid since S is a function of V and N ρ .
+Remark 1: If ρ = 0, this outer bound reduces to the previous one and is tight. If ρ = 1, the genie actually reveals nothing to the decoder and the setup reduces to the one considered in [10] that the encoder is interested in revealing the interference to the decoder. For this case, we know that this outer bound is tight. However, this outer bound may in general be optimistic except for two extremes. It is due to the fact that in derivations, we assume that we can simultaneously ignore the N ρ and use all the power to take advantage of the coherent part. Despite this, the outer bound still provides the insight that in order to build a good coding scheme, one should try to use a portion of power to make use of the correlation and then use the remaining power to avoid N ρ .
+We now propose a superposition-based scheme which can be regarded as an extension of the coding scheme in [8] to the setup we consider. As shown in Fig. 2, the transmitted signal of this scheme is the superposition of the analog part X a with power P a and the digital part X d with power P − P a . The motivation here is to allocate some power for the analog part to make use of the interference which is somewhat coherent to the source for large ρ’s and to assign more power to the digital part to avoid the interference when ρ is small. The analog part is the scaled version of the source as
+The receiver ﬁrst makes a minimum mean-square error (MMSE) estimate from Y only as V ′ = βY with
+We now reﬁne the estimate through the digital part, which is the concatenation of a Wyner-Ziv [11] coding and a DPC. Since the DPC achieves the rate equal to that when there is no interference at all, the encoder can use the remaining power P − P a to reliably transmit the reﬁning bits T with a rate arbitrarily close to
+Remark 2: Different from the setup considered in [8] that the optimal distortion can be achieved by any power allocation between coded and uncoded transmissions, in our setup the optimal distortion is in general achieved by a particular power allocation which is a function of ρ.
+Now, let us focus on the HDA scheme obtained by replacing the digital part in Fig. 2 by the HDA scheme given in [3]. The analog signal remains the same as (12) and the HDA output is referred to as X h . Therefore, we have
+Again, the HDA scheme regards S ′ as interference and V ′ described previously as side-information. The encoding and decoding procedures are similar to that in [3] but the coef- ﬁcients need to be re-derived to ﬁt our setup (the reader is referred to [3] for details).
+where X h ∼ N(0,P h ) independent to S ′ and V and P h = P − P a .
+Codebook Generation : Generate a random i.i.d. codebook U with 2 nR 1 codewords, reveal this codebook to both transmitter and receiver.
+Encoding : Given realizations s ′ and v, ﬁnd a u ∈ U such that (s ′ , v, u) is jointly typical. If such an u can be found, transmit x h = u − αs ′ − κv. Otherwise, an encoding failure is declared.
+Decoding : The decoder looks for a ˆ u such that (y, v ′ , ˆ u ) is jointly typical. A decoding failure is declared if none or more than one such ˆ u are found. It is shown in [3] that if n → ∞ and the condition described later is satisﬁed, the probability of ˆ u = u → 0.
+Estimation : After decoding u, the receiver forms a linear MMSE estimate of v from y and u. The distortion is then obtained as
+In the encoding step, to make sure the probability of encoding failure vanishes with increasing n, we require
+P h . 	 (23) where (a) follows because X h is independent of S ′ and V .
+Further, to guarantee the decodability of U in the decoding step, one requires
+where (a) follows from the error analysis of E 3 in Section III of [12] and (b) is due to the fact that V ′ = βY . By choosing
+one can verify that (23) and (24) are satisﬁed. Note that in (23) what we really need is R 1 ≥ I(U;S ′ , V ) + ε and in (24) it is R 1 ≤ I(U;Y,V ′ ) − δ. However, since ε and δ can be made arbitrarily small, these are omitted for the sake of convenience and to maintain clarity.
+In Fig. 3, we compare the distortions (in −10 log 10 (D)) for a ﬁxed SNR as a function of ρ. The parameters are set to be σ 2 V = σ 2 S = 1, P = 10, and N = 1. It can be seen that both the proposed schemes perform exactly the same and that the achievable distortion region with the proposed scheme is larger than what is achievable with a separation based scheme using DPC and a uncoded scheme. Further, although the proposed schemes perform close to the outer bound over a wide range of ρs, the outer bound and the inner bound do not coincide however, leaving room for improvement either of the outer bound or the schemes.
+In this section, we assume that the actual channel noise to be Z a ∼ N(0,N a ) but the transmitter only knows that N a ≤ N so that it designs the coefﬁcients for this N . In what follows, we analyze the performance for both proposed schemes under the above assumption.
+Since the transmitter designs its coefﬁcients for N , it aims to achieve the distortion D sep given in (18). It ﬁrst quantizes the source to T using a Wyner-Ziv encoder with side-information D ∗ given in (16) and then encodes the quantization output by a DPC with a rate
+where ˜ P a is the power allotted to X a such that the distortion in the absence of SNR mismatch is minimized. i.e.,
+At receiver, since N a ≤ N, the DPC decoder can correctly decode T with high probability. Moreover, the receiver forms the MMSE estimate of V from Y as V ′ a = β a Y with
+Thus, the problem reduces to the Wyner-Ziv problem with mismatch side-information. We can show that for this problem, the following distortion is achievable
+The proof can be found in the extended version of this paper [5].
+Unlike the separation-based scheme that we have seen in [3], the proposed superposition-based scheme (whose digital part can be regarded as a separation-based scheme) can still take advantage of better channels through mismatched side- information.
+For the HDA scheme, the problem cannot be reduced to the Wyner-Ziv problem with mismatch side-information as we did for the superposition-based scheme. It is due from that the HDA scheme still makes an estimate of V from U which is a function of S. Fortunately, as shown in [3], the HDA scheme is capable of making use of SNR mismatch. All we have to do is to modify E[Y 2 ] in Λ U Y appropriately to address the fact that the actual noise variance is N a in this case.
+Remark 3: In [3], the authors made an important obser- vation that, in the presence of SNR mismatch, the HDA scheme outperforms the separation-based scheme in estimating the source; however, the separation-based scheme is better than the HDA scheme if one is interested in estimating the interference. Here, since the effective interference S ′ includes the source in part and this source is assumed to be correlated to the interference, estimating the source V is equivalent to estimating a part of S ′ . Thus, one can expect that if the P a
+we choose and the correlation ρ are large enough, the beneﬁt coming from using the HDA scheme to estimate the source may be less than that from adopting the superposition-based scheme to estimate a part of S ′ .
+Now, we compare the performance of the proposed schemes with and without the knowledge of actual SNR. The param- eters are set to be σ 2 V = σ 2 S = 1. We plot the −10 log 10 (D) as we move away from the designed SNR for both small ( ρ = 0.1) and large (ρ = 0.5) correlations.
+In Fig. 4, we consider P = N = 1, i.e., the designed SNR is 0 dB. For this case, we can see that which scheme performs better in the presence of SNR mismatch really depends on ρ. It can be explained by the observations made in Remark 3 and the power allocation strategy. For this case the optimal power allocation ˜ P a is highly dependent on ρ. For ρ = 0.1 case, since the correlation is small and the assigned ˜ P a is also small, the HDA scheme is better than the superposition-based scheme. On the other hand, for ρ = 0.5 case, we allot a relatively large power to ˜ P a so that one may get a better estimate if we try to use the superposition-based scheme to estimate a part of S ′ .
+In Fig. 5, we plot the proposed schemes with different choices of P a under the same channel parameters with those in the previous ﬁgure for ρ = 0.1. We observe that for both schemes, if we compromise the optimality at the designed SNR, it is possible to get better slopes of distortion than that obtained by setting P a = ˜ P a . In other words, we can obtain a family of achievable distortion under SNR mismatch by choosing P a ∈ [0,P].
+In this paper, we have discussed the joint source-channel coding problem of transmitting a discrete time Gaussian source with an interference known at the transmitter. In particular, we considered the case that the source and the interference are correlated. We proposed a superposition-based scheme with digital DPC and a HDA scheme which can adapt with ρ. These two schemes perform exactly the same and clearly
+outperform the uncoded scheme and the naively DPC scheme. The performance of these two schemes under SNR mismatch are also discussed. Different from typical separation-based schemes suffering from the pronounced threshold effect in the presence of SNR mismatch, both the proposed schemes can beneﬁt from a better side-information acquired at the decoder and thus, provide a graceful degradation under SNR mismatch. However, there is a difference between the performance of the two proposed schemes under a SNR mismatch and which scheme is better depends on the designed SNR and ρ.
+[[[ REFS ]]]
+T. M. Cove
+J. A. Thoma
+--
+Elements of Information Theory, New York: Wiley, 1991
+----
+M. Costa
+--
+Writing on dirty paper
+----
+M. Wilson
+K. Narayanan
+G. Caire
+--
+Joint source channel coding with side information using hybrid digital analog codes
+----
+N. Devroye
+P. Mitran
+V. Tarokh
+--
+Achievable rates in cognitive radio channels
+----
+Y.-C. Huang
+K. Narayanan
+--
+Joint source-channel coding with correlated interference
+----
+A. Lapidoth
+S. Tinguely
+--
+Sending a bi-varite Gaussian source over a Gaussian MAC
+----
+S. Shamai
+S. Verdu
+R. Zamir
+--
+Systematic lossy source/channel coding
+----
+R. Puri
+K. Ramchandran
+S. Pradhan
+--
+On seamless digital upgrade of analog transmission systems using coding with side information
+----
+R. Soundararajan
+S. Vishwanath
+--
+Hybrid coding for Gaussian broadcast channels with Gaussian sources
+----
+A. Sutivong
+M. Chiang
+T. M. Cover
+Y.-H. Kim
+--
+Channel capacity and state estimation for state-dependent Gaussian channels
+----
+A. D. Wyner
+J. Ziv
+--
+The rate-distortion function for source coding with side information at the decoder
+----
+S. H. Lim
+P. Minero
+Y.-H. Kim
+--
+Lossy communication of corre- lated sources over multiple access channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\056.pdf
+[[[ LINKS ]]]
+

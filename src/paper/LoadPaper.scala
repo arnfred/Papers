@@ -9,7 +9,7 @@ import java.io._
 object Cache {
   
   // Constants
-  val dir = "cache/"
+  val dir = "cache" + Paths.sep
   val parsed = "parsed"
   val extended = "extended"
   val linked = "linked"
@@ -47,11 +47,11 @@ object Cache {
   def load(file : File) : Paper = {
 
     // Printout
-    println("loading file " + file.getName + " from cache")
+    println("Loading file " + file.getName + " from cache")
 
     // Get file and read in lines
     val lines : Iterator[String] = Source.fromFile(file).getLines
-    
+
     // Variables
     var vars : Map[String, List[String]] = Map.empty.withDefaultValue(Nil)
     var current = "unknown";
@@ -121,12 +121,12 @@ object Cache {
   }
 }
 
-
-
 trait LoadPaper {
 
-  def load(name : String, postfix : List[String], parser : Parsers, loader : FileLoader) : List[Paper] = {
-	// Get file handle of original file or directory
+  def loadAndParse(name : String, postfix : List[String], parser : Parsers, loader : FileLoader) : List[Paper] = {
+	println("BEGIN OF PARSING")
+    
+    // Get file handle of original file or directory
     val orig = new File(name)
 
     // Check that directory or file exists
@@ -147,6 +147,8 @@ trait LoadPaper {
     // Filter papers for None's and set index
     val papers : List[Paper] = finalPapers.filter(p => p != None).zipWithIndex.map({case Pair(p,i) => p.get.setIndex(i) }).toList
 
+    println("END OF PARSING")
+    
     return papers
   }
 
@@ -209,6 +211,22 @@ trait LoadPaper {
       }
     }
   }
-  
-  
 }
+
+
+object CacheLoader extends LoadPaper{
+    def load(paperPos:String, postfix : String): List[Paper] = {
+    // Get file handle of original file or directory
+    val orig = new File(paperPos)
+
+    // Check that directory or file exists
+    if (!orig.exists) sys.error("Problem with file path")
+    
+    val files : List[File] = if(orig.isDirectory()) orig.listFiles.toList else List(orig)
+
+    // If postfix exists, try loading from cache
+    val papers : List[Option[Paper]] = files.map(f => loadFromCache(f, List(postfix)))
+
+    return papers.filter((p:Option[Paper]) => p != None).map((p:Option[Paper]) => p.get)
+    }
+  }

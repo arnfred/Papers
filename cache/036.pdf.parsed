@@ -1,0 +1,144 @@
+[[[ ID ]]]
+36
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Secrecy Games on the One-Sided Interference Channel
+[[[ AUTHORS ]]]
+Jianwei Xie
+Sennur Ulukus
+[[[ ABSTR ]]]
+Abstract—In this paper, we study the two-user one-sided inter- ference channel with conﬁdential messages. In this interference channel, in addition to the usual selﬁshness of the users, the relationship between the two pairs of users is further adversarial in the sense of both receivers’ desires to eavesdrop on the communication of the other pair. We develop a game-theoretic model to study the information-theoretic secure communications in this setting. We ﬁrst start with a game-theoretic model where each pair’s payoff is their own secrecy rate. The analysis of the binary deterministic interference channel with this payoff function shows that self-jamming of a transmitter, which injures the eavesdropping ability of its own receiver, is not excluded by the Nash equilibria. We propose a reﬁnement for the payoff function by explicitly accounting for the desire of the receiver to eavesdrop on the other party’s communication. This payoff function captures the adversarial relationship between the two pairs of users better. We determine the Nash equilibria for the binary deterministic channel for both payoff functions.
+[[[ BODY ]]]
+In the interference channel, multiple users share the trans- mission medium, and simultaneously wish to have reli- able communication with their respective receivers. The information-theoretic capacity region of the interference chan- nel is mostly unknown; it is known only in certain special cases, e.g., a class of deterministic interference channels [1], a class of strong interference channels [2]–[4], and a class of degraded interference channels [5]. In order to achieve a particular rate point on the capacity region of the interference channel, the transmitter-receiver pairs need to jointly choose encoding and decoding schemes, and cooperate to agree on the particular operating rate point, and coordinate their actions, e.g., time-sharing.
+In actual interference networks, such kinds of cooperations may not be practical or agreeable by the users. It is reasonable to assume that all transmitter-receiver pairs in the network are selﬁsh and rational. Moreover, each pair is only interested in transmitting their messages at the maximum reliable rate. Consequently, the information-theoretic capacity region may not be fully achievable. Reference [6] made this intuition precise by considering the interference channel from a game- theoretic point of view, and found the Nash equilibrium operating points on the capacity region, especially focusing on the binary deterministic interference channel and the Gaussian interference channel. Taking the reliable communication rate
+for each transmitter as its payoff function, [6] showed that, in a non-cooperative game, two transmitters agree only on a subset of the capacity region of the interference channel, which forms the set of Nash equilibria.
+In this paper, we consider an interference channel with conﬁdential messages, where two transmitters communicate with two receivers, while each receiver eavesdrops on the other pair’s communication. Information-theoretic security was ﬁrst introduced by using the wiretap channel by Wyner [7], in which the transmitter wishes to send a message to the receiver secret from the eavesdropper. If the quality of the transmitter-receiver channel is better than that of the transmitter-eavesdropper channel, Wyner showed that the mes- sages can be transmitted securely at a positive rate. Later, this result was generalized by Csiszar and Korner [8] to broadcast channels with conﬁdential messages and extended by Leung- Yan-Cheong and Hellman [9] to Gaussian wiretap channels. In recent years, many research works studied secure communica- tions in multi-user channels, including the interference channel [10]–[12].
+In this paper, we focus on the two-user one-sided inter- ference channel with conﬁdential messages, in which one transmitter-receiver pair is interference-free as shown in Fig. 1. The best known achievable secrecy rate region for the inter- ference channel with conﬁdential messages was developed in [10]. As in the case of interference channels without secrecy constraints, in [10], the two transmitter-receiver pairs need to jointly choose encoding and decoding schemes and further cooperate and coordinate their actions to achieve a secrecy rate pair in this region. In addition, the achievable scheme in [10] requires that the parties trust each other in that they will not unilaterally change their encoding-decoding schemes. Hence, even if it was known, secrecy capacity region might not be sufﬁcient to understand the adversarial relationship in this
+network. Reference [11], addressed the issue of trust. In [11], the transmitters can deviate from their transmit strategies. In their deﬁnition of robust-secrecy [11], a transmitter can deviate from its strategy, however, arbitrary deviations are not allowed; a transmitter can only deviate to a strategy if the new strategy does not injure the performance of the other transmitter- receiver pair in terms of reliability. When the transmitters are selﬁsh, such kind of behavior may not be guaranteed. Selﬁsh transmitters would care only about their own reliability and secrecy of their own messages. Such selﬁsh transmitters may choose any strategy to maximize the secrecy rate of their own private message, which may hurt the other user’s performance.
+To develop a model to characterize the adversarial relation- ship between the two pairs, we only assume that the two transmitter-receiver pairs are selﬁsh and rational; other than these two, they are free to choose any transmission strategy to maximize their own payoff. Under these assumptions, we give a formal deﬁnition of the game on interference channels with conﬁdential messages and deﬁne the Nash equilibrium in the secrecy rate region. We ﬁrst consider the case where the payoff function is the reliable secrecy rate of each user. We analyze the binary deterministic interference channel for this payoff function. This analysis reveals that some of the Nash equilibrium secrecy rate pairs are achieved only by self- jamming of a transmitter of its own receiver. This hurts the eavesdropping ability of its own receiver, which in fact is one of the interests of the receivers. Among all the strategies achieving the same secrecy rate, a transmitter-receiver pair is more likely to choose the one that allows the receiver to more strongly eavesdrop on the other pair. To overcome this difﬁculty, we propose a reﬁnement to the equilibrium. Speciﬁcally, we modify the payoff function by incorporating an information leakage measure to it in addition to the secure reliable rate. We ﬁnd the Nash equilibria with both payoff functions.
+We consider a two-user one-sided interference channel, where each transmitter is free to choose a transmission strat- egy, which is deﬁned as follows.
+Deﬁnition 1 (Strategy s i ) is the encoding method at trans- mitter i, such that:
+• the number of information bits of equiprobable messages W i is log(M i ), and the block length of codewords is n;
+• the stochastic encoding function f i : {1,2,··· ,M i } → C i maps the message w i to an n-length codeword x n i which belongs to the codebook C i ;
+We assume that the receiver i performs maximum-likelihood decoding on the received signal to get an estimate of the message ˆ w i . We denote the resulting probability of error as P e,i = P [W i = ˆ W i ]. The decoding error probability P e,i is jointly determined by both strategies s 1 and s 2 due to
+interference. To characterize information-theoretic secrecy, we deﬁne the measure of information leakage of transmitter i as
+j ) 	 (1) where j = ¯i, i.e., i = 1, j = 2 or i = 2, j = 1, and Y n j is the n-length symbol observed at receiver j.
+Then, for any ﬁxed threshold > 0, which is small enough, given s 1 and s 2 , we deﬁne the payoff of each transmitter as
+for i = 1, 2. It is important to emphasize that, as deﬁned above, s 1 and s 2 jointly determine the payoff π i of transmitter i. In order to improve π i , transmitter i can deviate from s i to any other strategy s i , and the only criteria for this improvement are P e,i and L i , not P e,j or L j . This implies that such a deviation may affect the performance of the other transmitter j. To model the behavior of transmitters, who have the freedom to choose their strategies, it is reasonable to assume that each transmitter is selﬁsh. Furthermore, each transmitter i is rational and intelligent, i.e., its objective is to ﬁnd the best strategy s i to maximize corresponding payoff π i (given the other transmitter’s strategy s j ), and each transmitter understands the situation, including the fact that another transmitter is also an intelligent rational decision maker.
+Based on the above consideration and assumptions, the deﬁnition of the Nash equilibrium secrecy rate region C s,N E is given as follows:
+Deﬁnition 2 (Nash equilibrium secrecy rate region) Nash equilibrium secrecy rate region C s,N E is the closure of all rate pairs (R s1 , R s2 ) such that, there exists a ¯ > 0 such that for all ∈ (0, ¯), there exists a strategy pair (s ∗ 1 , s ∗ 2 ) which achieves the payoffs π i (s ∗ 1 , s ∗ 2 ) = R si for i = 1, 2 and s ∗ i is the best response to s ∗ j in the sense that
+By this deﬁnition, if any transmitter i unilaterally attempts to deviate from the equilibrium strategy while the other transmitter j’s strategy remains the same, the corresponding payoff π i of transmitter-receiver pair i will not be improved, i.e., there is no incentive for each transmitter to deviate from the equilibrium strategy. Such a secrecy rate pair achieved by the best response strategy pair is an equilibrium in the secrecy rate region.
+In this section, we consider the binary deterministic one- sided interference channel with conﬁdential messages to ana- lyze the Nash equilibrium secrecy rate region with the payoff function deﬁned above. The channel model shown in Fig. 2 is:
+where ⊕ is modulo-2 addition. This is a simple example to analyze the equilibrium. However, it is not difﬁcult to see that it could be easily extended to the general one-sided binary deterministic channel which was used in [12].
+Based on the capacity results of deterministic interference channels [1], the capacity region of this channel is the follow- ing region
+In fact, it is also easy to check to see that each corner point of this pentagon is an achievable secrecy rate pair also, and therefore, the unconstrained capacity region is equal to the secrecy capacity region. In addition, if we do not consider the secrecy constraint L i in the payoff function, then [6] already found the unique Nash equilibrium rate pair (R ∗ 1 , R ∗ 2 ) to be R ∗ 1 = 2 and R ∗ 2 = 1. The explanation for this is the following: Since there is no secrecy constraint, transmitter 1 can always transmit unencoded messages on both sub-channels with max- imum rate 2 bits, and due to the interference, transmitter 2 can only achieve 1 bit as the maximum rate. It can be shown that neither user will have any incentive to deviate from this point, and there exists no other such point. The capacity region is shown in Fig. 3. The unique Nash equilibrium with no secrecy constraints is shown with a ﬁlled circle.
+With secrecy constraints, we will show that the Nash equilibrium secrecy rate region is not a unique point. We give the precise form of the Nash equilibrium secrecy rate region of this channel with the following theorem.
+Proof: First, note that R s1 ≥ 1 and R s2 ≥ 1. This is because, given any strategy s 2 , transmitter 1 can at least em- ploy independent encoding on two sub-channels and transmit unencoded information on sub-channel a with zero decoding error probability and without any information leakage. The same argument can be applied to sub-channel b of transmitter 2. Next, note that R s1 ≤ 2 is trivial. To prove R s2 = 1, it sufﬁces to prove that R s2 ≤ 1.
+Assume that (s 1 , s 2 ) is an equilibrium strategy, which is the best response to each other and public to both transmitter- receiver pairs. The reliable transmission rate for transmitter 2
+nR s2 = nR 2 	 (8) ≤ max P (X n 2 ) I(X n 2 ; Y n 2 ) 	 (9) ≤ max P (X n 2 ) [I(X n 2a ; Y n 2a ) + H(X n 2b )] (10)
+where the inequality in (10) is proved in Appendix with X 2b = Y 2b . This could always (but not limited to) be achieved by independently encoding on both sub-channels. The necessary condition for the equality in (10) is
+Considering s 1 , the channel X 1 → Y 1 , Y 2 is a degraded wiretap channel with the following upper bound for the secrecy rate:
+≤ H(X n 1a ) + I(X n 1b ; Y n 1b ) − I(X n 1 ; Y n 2 ) 	 (13) = H(X n 1a ) + I(X n 1b ; Y n 1b ) − I(X n 1a , X n 1b ; Y n 2 ) 	 (14) = H(X n 1a ) + I(X n 1b ; Y n 1b )
+− I(X n 1b ; Y n 2 ) − I(X n 1a ; Y n 2 |X n 1b ) 	 (15) = H(X n 1a ) + I(X n 1b ; Y n 1b ) − I(X n 1b ; Y n 2 ) 	 (16) = H(X n 1a ) + I(X n 1b ; Y n 1b )
+where (13) is proven in Appendix with X 1a = Y 1a , (16) is due to the Markov chain X n 1a → X n 1b → Y n 2 . The fourth item in (17) is equal to
+I(X n 1b ; Y n 2b |Y n 2a ) = H(Y n 2b |Y n 2a ) − H(Y n 2b |X n 1b , Y n 2a ) (18) = H(X n 2b |Y n 2a ) − H(X n 2b |X n 1b , Y n 2a ) (19) = H(X n 2b ) − H(X n 2b |X n 1b , Y n 2a ) 	 (20) = H(X n 2b ) − H(X n 2b |X n 2a , Y n 2a ) 	 (21) = H(X n 2b ) − H(X n 2b |X n 2a ) 	 (22) = I(X n 2a ; X n 2b ) 	 (23)
+; Y n 2a ) − I(X n 2a ; X n 2b ) 	 (24) = H(X n 1a ) + H(X n 1b ) − H(Y n 2a )
++ H(Y n 2a |X n 1b ) − I(X n 2a ; X n 2b ) 	 (25) = H(X n 1a ) + H(X n 1b ) − H(Y n 2a )
++ H(X n 2a ) − I(X n 2a ; X n 2b ) 	 (26) = H(X n 1a ) + H(X n 1b |X n 2a ) − H(Y n 2a ) + H(X n 2a |X n 2b )
+(27) = H(X n 1a ) + H(Y n 2a |X n 2a ) − H(Y n 2a ) + H(X n 2a |X n 2b )
+(28) = H(X n 1a ) − I(X n 2a ; Y n 2a ) + H(X n 2a |X n 2b ) 	 (29) ≤ H(X n 1a ) + H(X n 2a |X n 2b ) 	 (30) ≤ n + H(X n
+where (26) is due to H(Y n 2a |X n 1b ) = H(X n 2a |X n 1b ) = H(X n 2a ) and (30) is due to I(X n 2a ; Y n 2a ) ≥ 0. When s 2 is given, H(X n 2a |X n 2b ) is a ﬁxed item for transmitter 1. (31) could always (but not limited to) be achieved by a wiretap code with independent and uniform distributions for X n 1a and X n 1b . The necessary condition is
+which means that, under the condition that transmitter 1 achieves the maximum secrecy rate, the upper bound for the reliable transmission rate (10) for transmitter 2 is only
+[I(X n 2a ; Y n 2a ) + H(X n 2b )] 	 (33) ≤ max P (X n 2 ) H(X n 2b ) 	 (34) ≤ n 	 (35)
+which is achievable. Therefore, the reliable secrecy rate R s2 is upper bounded by 1.
+Finally, we prove the achievability here. Assume that s 2 is the following: transmit unencoded information on sub-channel b, but pure noise with input distribution P (X 2a = 0) = 1 − P (X 2a = 1) = p, for some 0 ≤ p ≤ 1/2 on sub-channel a. Then, R s2 = 1.
+Given s 2 , the channel X 1 → Y 1 → Y 2 is a degraded wiretap channel with the optimal encoder s ∗ 1 which independently encodes the signals on two sub-channels. On sub-channel a, unencoded message is transmitted, and on sub-channel b, encoder transmits the secure message via a wiretap code with the optimal distribution P ∗ (X 1b = 0) = 1/2. It is straightforward to see that s ∗ 1 and s 2 jointly determine the achievable secrecy rate for transmitter 1 as R s1a + R s1b = 1 + I(X 1b ; Y 1b ) −I(X 1b ; Y 2a ) = 1+ {1−[1−h 2 (p)] } = 1+h 2 (p), where h 2 is the binary entropy function.
+It is easy to check that, to maximize the payoff π 2 , s 2 is also the best response s ∗ 2 to s ∗ 1 , i.e., (s ∗ 1 , s ∗ 2 ) are best responses to each other, and therefore form an equilibrium, by deﬁnition.
+where 0 ≤ p ≤ 1/2, which means R s1 ∈ [1,2] and R s2 = 1. The Nash equilibrium line is shown as the blue line going from [1, 1] to [2, 1] in Fig. 3.
+Achieving the Nash equilibrium pairs in the previous section required transmitter 2 to transmit artiﬁcial noise on sub- channel a to self-jam its own receiver. Since all of the equilibrium points yield the same payoff for pair 2, a rational transmitter 2 would rather help its receiver eavesdrop on the other pair than self-jam its own receiver. However, the self- jamming scheme is not excluded by the Nash equilibrium in Section III.
+We now modify the payoff function of the game in order for the resulting Nash equilibrium to reﬂect the adversarial relationship between the two pairs of user better in this inter- ference channel with conﬁdential messages. Here we explicitly account for the desire of the receiver to eavesdrop on the other party’s communication by including the leakage of the other user’s message in the payoff function of a user together with its own secret rate.
+Deﬁnition 3 (Reﬁnement of the game and equilibria) The equilibrium secrecy rate region ˜ C s,N E is the closure of all rate pairs (R s1 , R s2 ) such that there exists a ¯ > 0 such that for all ∈ (0, ¯), there exists a strategy pair (s ∗ 1 , s ∗ 2 ) which achieves the payoffs π i (s ∗ 1 , s ∗ 2 ) = R si for i = 1, 2, and s ∗ i is the best response to s ∗ j in the sense that
+In addition, (s ∗ 1 , s ∗ 2 ) is also the best responses with respect to the following payoff
+We emphasize a few points here. First, any rate pair in ˜ C s,N E must also belong to C s,N E . Secondly, we include the information leakage L j deﬁned in (1) into the deﬁnition of ˜ π i in addition to the R i to further limit the rational behavior of the selﬁsh transmitters and receivers, i.e., eavesdropping is at least not bad for the receiver. Lastly, for any rate pair (R s1 , R s2 ) ∈ ˜ C s,N E , by the deﬁnition of payoff π, there must exist a strategy pair which does not violate the secrecy constraint even though it is also an equilibrium with respect to the payoff ˜ π, which includes the information leakage in the deﬁnition.
+We again examine the channel in Section III to illustrate the idea of the reﬁned payoff function and the resulting equilibrium. With the new deﬁnition, the equilibrium rate pairs in the secrecy rate region are modiﬁed as stated in the following theorem.
+Proof: (1, 1) ∈ ˜ C s,N E . This is because each transmitter trans- mits unencoded information on the private sub-channel, e.g., sub-channel a of transmitter 1 and sub-channel b of transmitter 2. Transmitter 1 sends pure noise with uniform distribution on sub-channel b. Transmitter 2 keeps silent. Here by silence, we mean that transmitter 2 sends a constant symbol which is known to everyone in this network, i.e., the corresponding rate is zero. Since no information is transmitted on the interfered sub-channel, there is no information leakage which implies that (1, 1) ∈ ˜ C s,N E .
+(2, 1) / ∈ ˜ C s,N E . The only scheme to achieve this rate pair is that transmitter 1 transmits unencoded information on both sub-channels as s 1 . And, for s 2 transmitter 2 transmits unencoded information on sub-channel b but sends pure noise (uniform distribution) on sub-channel a. Obviously, if trans- mitter 2 deviates from s 2 to one special strategy s 2 which keeps silent on sub-channel a, then the payoff ˜ π 2 will increase due to the information leakage L 1 .
+(R s1 , 1) / ∈ ˜ C s,N E for any R s1 > 1. We prove this by contradiction. Assume that this rate pair is in the set ˜ C s,N E and is achieved by some strategy pair (s 1 , s 2 ). R s1 > 1 means that H(W 1 ) ≥ n(1+ ) for a positive constant value > 0. It is not difﬁcult to see that transmitter 2 could always deviate to s 2 , i.e., keeping silent on sub-channel a, then the secrecy rate R s2 remains the same but the information leakage increases:
+nL 1 = I(W 1 ; Y n 2 ) = I(W 1 ; Y n 2a ) 	 (40) = I(W 1 ; X n 1b ) 	 (41) = I(W 1 ; Y n 1b ) 	 (42)
+= I(W 1 ; Y n 1a , Y n 1b ) − I(W 1 ; Y n 1a |Y n 1b ) 	 (43) = H(W 1 ) − H(W 1 |Y n 1a , Y n 1b ) − I(W 1 ; Y n 1a |Y n 1b ) (44) ≥ H(W 1 ) − I(W 1 ; Y n 1a |Y n 1b ) − n 	 (45) ≥ n(1 + ) − H(Y n
+) − n 	 (46) ≥ n( − ) 	 (47)
+where by Fano’s inequality, H(W 1 |Y n 1a , Y n 1b ) ≤ n for some negligible . Hence, the payoff ˜ π 2 (s 1 , s 2 ) = R s2 + βL 1 > R s2 = ˜ π 2 (s 1 , s 2 ) which means that s 2 is not the best response to s 1 with respect to ˜ π, which implies that (R s1 , 1) / ∈ ˜ C s,N E .
+Therefore, we conclude that the Nash equilibrium contains only a single rate pair: ˜ C s,N E = {(1,1)}, which is shown with the ﬁlled square in Fig. 3.
+This theorem shows that all the secrecy rate pairs in the set C s,N E but not in the set ˜ C s,N E are only achieved by the strategies employing self-jamming. The modiﬁed deﬁnition for the payoff and the resulting equilibrium are essential to rule out such rate pairs.
+In this paper, we studied the one-sided interference channel with conﬁdential messages. To model the adversarial relation-
+ship between two transmitter-receiver pairs, we considered a scenario where each transmitter has the freedom to choose any strategy, and the only objective is to maximize a certain given payoff. To this end, we formally developed a game theory model and studied its equilibria. When we deﬁned the payoff function to be only the secrecy rate of each user, the resulting Nash equilibria did not reject the behavior of self- jamming, in which a transmitter jams its own receiver. To improve the modeling of the adversarial relationship between the two pairs better, we deﬁned a reﬁned payoff function to explicitly incorporate the receiver’s desire to eavesdrop on the other user. The equilibrium achieved with this payoff function excluded the possibility of self-jamming, for the deterministic binary channel considered here.
+For independent parallel channel P (Y α , Y β |X α , X β ) = P (Y α |X α )P (Y β |X β ) with Y β = X β , the upper bound of the mutually information I(X; Y ) is the following:
+I(X; Y ) = I(X α , X β ; Y α , Y β ) 	 (48) = I(X β ; Y α , Y β ) + I(X α ; Y α , Y β |X β ) 	 (49) = H(X β ) + I(X α ; Y α |X β ) 	 (50) = H(X β ) + H(Y α |X β ) − H(Y α |X α , X β ) (51) ≤ H(X β ) + H(Y α ) − H(Y α |X α , X β ) (52) = H(X
+− H(Y α |X α ) 	 (53) = H(X β ) + I(X α ; Y α ) 	 (54)
+where the (53) is due to the Markov chain X β → X α → Y α . The equality holds iff I(Y a ; X β ) = 0.
+[[[ REFS ]]]
+A. El Gamal
+M. Costa
+--
+The capacity region of a class of deterministic interference channels
+----
+A. B. Carleial
+--
+A case where interference does not reduce capacity
+----
+H. Sato
+--
+On the capacity region of a discrete two-user channel for strong interference
+----
+
+--
+The capacity of the gaussian interference channel under strong interference
+----
+N. Liu
+S. Ulukus
+--
+The capacity region of a class of discrete degraded interference channels
+----
+R. A. Berry
+D. Tse
+--
+Shannon meets nash on the interference channel
+----
+A. D. Wyner
+--
+The wiretap channel
+----
+I. Csiszar
+J. Korner
+--
+Broadcast channels with conﬁdential mes- sages
+----
+S. K. Leung-Yan-Cheong
+M. E. Hellman
+--
+Gaussian wiretap chan- nel
+----
+R. Liu
+I. Maric
+P. Spasojevic
+R. D. Yates
+--
+Discrete memoryless interference and broadcast channels with conﬁdential messages: secrecy rate regions
+----
+R. D. Yates
+D. Tse
+Z. Li
+--
+Secret communication on interference channels
+----
+Z. Li
+R. D. Yates
+W. Trappe
+--
+Secrecy capacity region of a class of one-sided interference channel
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\036.pdf
+[[[ LINKS ]]]
+

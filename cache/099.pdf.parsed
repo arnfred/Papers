@@ -1,0 +1,238 @@
+[[[ ID ]]]
+99
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Codes for Unordered Sets of Words
+[[[ AUTHORS ]]]
+Yuriy A. Reznik
+[[[ ABSTR ]]]
+Abstract—We study the problem of coding of unordered sets of words, appearing in language processing, retrieval, machine learning, computer vision, and other ﬁelds. We review known re- sults about this problem, and offer a code construction technique suitable for solving it. We show that in a memoryless model the expected length of our codes approaches Ht − log m! + O(m) where m is the number of words in the set, t is the combined length of all words, and H is the entropy of the source. We also offer design of a universal code for sets of words and perform its redundancy analysis.
+[[[ BODY ]]]
+The classic problem of source coding is to encode a given sequence of words (or a message) w = w 1 , w 2 , . . . such that the length of the code is minimal. Most commonly, it is further assumed that words must be decoded in the same order as they appear, and that the result of decoding must be unique and matching the original. This setting, coupled with the assumption about stochastic nature of the source, has lead to many fundamental results, including Shannon’s source coding theorem, Huffman codes, and others [1].
+Nevertheless, in practice we may also encounter a slightly different problem: the message may be given by a set of words {w 1 , . . . , w m }, where their order is not important. This happens, for example, when we formulate a request to a search engine by providing a list of keywords. Such keywords can be communicated in any order, without affecting the meaning of the message. Given this ﬂexibility, one may expect a code constructed for a set {w 1 , . . . , w m } to consume about log 2 m! less bits than a code constructed for a particular sequence w i 1 , . . . , w i m . However, the construction of codes for unordered sets does not appear to be entirely trivial: most existing source coding tools assume sequential processing. Somewhat different approach is needed in this case.
+The purpose of this paper is to offer one possible method for solving this coding problem. The key tool that we employ comes from information retrieval: it is a digital search tree or DST structure, due to E. Coffman and J. Eve [9]. It is similar, in a sense, to the preﬁx tree or incremental parsing rule of J. Ziv and A. Lempel’s code [19]. However, the preﬁx tree always parses a single sequence, while the DST is designed to parse a set of sequences. DST is also different than parsing trees used by Tunstall or Khodak codes [20]–[22], CTW [23], and other conventional source coding algorithms. Once the DST is constructed, we use Zacks ranking scheme [24] to compute its lexicographic index, and then we transmit it. Finally, to encode parts of input words that are not “absorbed” by the tree structure, we deﬁne a canonic order of nodes in the tree,
+and transmit missing parts of words according to this order. We provide detailed analysis of the average performance of this scheme in the memoryless model, and show that, under certain conditions, it asymptotically approaches the expected log 2 m! reduction in the bitrate. We also describe and analyze design of universal codes based on DST-encoding technique.
+Among related prior studies, we must mention 1986 work of A. Lempel [5], who predicted existence of multiset decipher- able codes , and shown that such codes should be more com- pact than conventional (uniquely decipherable) codes when m > 3. Another related class of codes (for words over partially commutative alphabet) was studied by S. Savari [6]. The achievable performance bounds for coding of sets were studied by L. Varshney and V. Goyal [7]. Properties of DST and related structures were studied in [3], [10]–[16]. Techniques for coding of trees were discussed in [24]–[26]. Descriptions of other known uses of coding of trees in data compression can be found in [29]–[31]. The problem of construction of codes for unordered sets was ﬁrst considered by the author in [8]. This paper is an extension of that work.
+In Section II we provide detailed description of our tech- nique. In Section III, we study asymptotic performance of the resulting coding scheme in the memoryless model. Section IV shows how our scheme can be adopted to construct universal codes. Conclusions are drawn in Section V.
+Let {w 1 , . . . , w m } be a set of words that we need to encode. For simplicity, we will assume that these words are binary, of length |w i | = n, and produced by a symmetric memoryless source . That is, characters “0” and “1” have same probability 1/2. The entropy rate of such source is 1 bit/character [1], implying, that conventional sequential encoding of words w 1 , . . . , w m will cost at least mn bits.
+Hereafter, we will often refer to an example shown Table I. In this case: m = 8, n = 5, and the total length mn = 8×5 = 40 bits.
+In order to construct a compact representation of the set {w 1 , . . . , w m }, we employ a data structure, known as digital search tree or DST [3], [9], [10]. We start with a single root node, and assume that it corresponds to an empty word. We then pick our ﬁrst word w 1 , and depending on the value of its ﬁrst character, we add left or right branch to the root node, and insert a new node there. We also store pointer to w 1 in that node. With second and subsequent words, we
+traverse the tree starting from the root node, by following characters in a current word, and once we hit the leaf (a node with no continuation in the direction of interest), we extend it by creating a new node and storing pointer to the current word in it. This process is repeated m times, so that all words from our input set {w 1 , . . . , w m } are inserted.
+The DST structure constructed over our example set is shown in Fig.1. The paths from root to other nodes in the tree correspond to portions (preﬁxes) of words inserted in this structure. We list such preﬁxes in the third column in Table I. The forth column in Table I lists the remainders (sufﬁxes) of each word. In other words, we observe that DST construction effectively “splits” words w i ( i = 1, . . . , m) in two parts:
+correspondingly. In our example, shown in Fig. 1, the overall DST path length is P m = 18, and the length of the remaining sufﬁxes is S m = 40 − 18 = 22.
+Our next task is to encode the structure of the DST efﬁciently. More speciﬁcally, we need to encode the shape of its binary tree. This tree contains i = m + 1 nodes (m nodes associated with input words + root).
+We start by scanning the tree recursively, by using pre-order tree traversal [4], and assigning labels “1” to the existing nodes, and ”0” to missing ones (see Fig. 2). We call the resulting sequence of labels an x-sequence. It is known, that this sequence contains 2i + 1 digits, and that it can serve as a unique representation of a tree with i nodes [2], [24]. Indeed, x-sequence may also serve as a code, but as we shall show, more compact representation is possible.
+In general, it is known, that the total number of possible rooted binary trees with i nodes is given by the Catalan number [2, Section 2.3.4.4]:
+We next brieﬂy describe one possible coding technique [24] that achieves this rate.
+Given an x-sequence for a tree, we produce a list of positions of symbols “1” in it. We will call it a z- sequence z = z 1 , . . . , z i . For example, for a sequence x = 1111100010010011000, corresponding to a tree in Fig. 2, we produce: z = 1, 2, 3, 4, 5, 9, 12, 15, 16. We next deﬁne a rule for incremental reduction of z-sequences. Let j ∗ be the largest j, such that z j = j. By z ∗ = z ∗ 1 , . . . , z ∗ i −1 we will denote a new sequence that omits value z j ∗ , and subtracts 2 from all subsequent values in the original sequence:
+Then, a lexicographic index (or Zaks rank Z) of a tree is recursively computed as follows:
+For example, for a tree in Fig. 2, Zaks algorithm (4) produces:
+We are now ready to describe the remaining steps in our coding scheme for sets of words.
+Given a set of m words {w 1 , . . . , w m }, our encoding algorithm performs the following operations:
+1) Build, encode, and transmit DST structure over the input set {w 1 , . . . , w m };
+2) Traverse the tree and deﬁne a canonic order for nodes i 1 , . . . , i m and preﬁxes p i 1 , . . . , p i m stored in the DST;
+3) Encode and transmit sufﬁxes according to canonic order: s i 1 , . . . , s i m .
+The construction of the DST structure and its encoding is performed as discussed in previous sections. To deﬁne a canonic order of nodes we use the standard pre-order tree traversal [4], and assign each node a serial number, starting with 0, assigned to the root node (see Fig. 3). As we reach a j-th node during the traversal, we can also recover preﬁx of a word w i j that was inserted in it. This produces an order i 1 , . . . , i m in which preﬁxes of all words from our set can be retrieved from the tree. We omit the root node (and empty word that it contains) in this sequence. For example, for a tree in Fig. 3, this produces i 1 = 1, i 2 = 2, i 3 = 6, i 4 = 8, i 5 = 7, i 6 = 4, i 7 = 3, i 8 = 5. In order to transmit information about corresponding sufﬁxes, we simply arrange and encode them in the same order: s i 1 , . . . , s i m . Any standard source coding technique (such as Shannon, Huffman, or arithmetic codes) can be applied for this sequence.
+2) Traverse the tree, deﬁne canonic order of nodes, and retrieve corresponding preﬁxes p i 1 , . . . , p i m ;
+3) Decode sufﬁxes s i 1 , . . . , s i m , and form complete de- coded words: w i j = p i j s i j , j = 1, . . . , m.
+We conclude our presentation by showing a complete DST- based code constructed for our example set of words (see Table 1, and Figures 1–3).
+As evident, the length of this code is 13 + 22 = 35 bits, which is by 40 − 35 = 5 bits shorter than the length of a straightforward sequential encoding of words in this set.
+Let us now assume that input words {w 1 , . . . , w m } are produced by a general (not necessarily symmetric) binary memoryless source, emitting “0”s and “1”s with probabilities p and q = 1 − p correspondingly. We assume that source parameter p is known. We further assume that all words are of length n, and that the total length of words in our set is
+t = |w 1 . . . w m | = m n . 	 (5) If we apply a conventional code, such as Shannon or
+arithmetic code for a sequence of words w 1 , . . . , w m , then the average length of such code will satisfy:
+H = −p log 2 p − q log 2 q, 	 (7) is the entropy of the source [1].
+Theorem 1. The average length of DST-based code for a set of m binary words of length n, in a memoryless model satisﬁes (with m, n → ∞, n/ log 2 m > − log −1 2 max(p, q)):
+where A is a constant, and δ 1 (m) is a zero-mean, oscillating function of a small magnitude. When log(p)/ log(q) is irra- tional, lim m →∞ |δ 1 (m)| = 0. The exact value of A is
+where γ = 0.577 . . . is the Euler constant, H is the entropy of the source (7), H 2 = p log 2 2 p + q log 2 2 q, and
+Proof: We start by observing that condition n/log 2 m > − log −1 2 max(p, q) implies that the height (longest path) of DST constructed over m randomly generated input words is shorter than n [13]. This ensures that words in our set will be uniquely parsed by the tree.
+Our code consists of 2 parts: (1) encoded DST structure, occupying at most L DST = log 2 C m +1 	 log 2 C m +1 + 1 bits, and (2) encoded sequence of sufﬁxes. We assume that Shannon code [1] is used to encode sufﬁxes, producing at most L suﬀ (S m ) H S m + 1 bits, where S m is the total length of all sufﬁxes, and H is the entropy of the source. Consequently, the expected code length becomes EL suﬀ (S m ) H ¯ S m + 1, where ¯ S m = ES m , is the expected length of sufﬁxes in our set. In turn, ¯ S m can be expressed as ¯ S m = t − ¯ P m , where
+We next retrieve result for the expected path length in DST [10]–[12]:
+2 H − α + δ 1 (m) +O(log m) , which introduces quantities H, H 2 , γ, α and δ 1 (n) appearing in the text of the theorem.
+The rest becomes a matter of simple algebra: ¯ L set = L DST + EL suﬀ (S m )
+where by plugging expressions for ¯ P m and C m and subsequent simpliﬁcations we arrive at the expression claimed by the theorem.
+By comparing average length of our code (8) with length of conventional code (6), we immediately notice about log 2 m! difference. The contribution of the following O(m) term becomes relatively small as both n and m increase.
+We now offer a modiﬁcation of our scheme, allowing encod- ing of sets of words from unknown sources. As a component tool, we will use J. Ziv and A. Lempel’s LZ1 code [19].
+The proposed universal code for a set of m words {w 1 , . . . , w m }, is constructed as follows:
+1) Build, encode, and transmit DST structure over the input set {w 1 , . . . , w m };
+2) Start LZ1 encoder, using our DST structure as initial dictionary;
+3) Traverse the DST, and deﬁne a canonic order of nodes i 1 , . . . , i m and the corresponding preﬁxes p i 1 , . . . , p i m stored in the DST;
+4) Use LZ1 encoder to progressively encode and transmit all sufﬁxes of words according to above deﬁned order.
+From the analysis of Lempel-Ziv algorithm (cf. [17], [19]), we know that the average length of LZ1 code for a sequence of words w 1 , . . . , w m in memoryless model satisﬁes:
+log 2 t , (9) where t = m n is the total input length, H is the entropy of the source, and B is a constant
+where component quantities H 2 , γ and α match ones described in Theorem 1, and δ 2 (t) is another zero-mean ﬂuctuating function of small magnitude.
+We now estimate average length of the proposed DST-based universal code for sets of words.
+Theorem 2. The average length of universal DST-based code for a set of m binary words of length n, in a memoryless model satisﬁes (with m, n → ∞, n/ log 2 m > − log −1 2 max(p, q)):
+ln 2 + δ 3 (m) (10) + H B + δ 2 (t) t log
+where δ 2 (t) and δ 3 (m) are zero-mean, oscillating functions of small magnitude.
+Proof: We ﬁrst observe that DST structure for our set of input words {w 1 , . . . , w m } can always be converted into a sequence of preﬁxes p 1 , . . . , p m . If LZ1 encoder is used to encode this sequence, it will construct a preﬁx tree, matching exactly the structure of the DST. The means, that by im- plementing a particular partition and reordering of our input words in a sequence we can produce LZ1 encoding that will coincide with ours after processing of ﬁrst P m symbols. Hence, in memoryless model, the length of our DST-based code can be expressed as:
+where L DST is the length of encoded DST structure, and E ¯ L LZ 1 sequence (P m ) is the expected length of LZ1 codes con- structed for a sequence of preﬁxes stored in DST.
+We now observe that ¯ L LZ 1 sequence (t) is a ”mostly” concave function of t. It becomes concave if we disregard small ﬂuctuating function δ 2 (t) in the O t log t term and subse- quent terms. By following this argument, and using Jensen’s inequality we can conjecture that:
+where ¯ P m = EP m is the expected length of a all preﬁxes in the DST, and where O ¯ P m log ¯ P
+captures the magnitude of contribution of oscillating terms. More precise derivation is possible by applying analysis techniques used in [17], [18].
+By combining (IV) and (IV) together, plugging in expres- sions for P m and ¯ L LZ 1 sequence , and some simple algebra, we arrive at expression claimed by the theorem.
+Again, by comparing estimated length of our code (10) with the length of LZ1 code (9), we notice about log 2 m! difference. The contribution of the following O(m) term becomes relatively small as both n and m increase.
+In passing, we must note that the use of LZ1 code offers just one possible way of achieving universality for codes for sets. It is simple, but it may not be the best. For example, for a class of memoryless sources, the use of Krichevsky-Troﬁmov codes [32] is known to be more efﬁcient. Their use should reduce the O t log t redundancy term in (10) to just O (log t).
+A simple construction procedure for design of codes for unordered sets of words is offered. The performance of pro- posed codes is analyzed, and it is shown that in the memoryless model such codes offer close to log m! (where m is the number of words) rate savings compared to sequential encoding of same words. It is shown that such codes can be designed for both known and unknown sources.
+[[[ REFS ]]]
+T. M. Cove
+J. M. Thoma
+--
+Elements of Information Theory, John Wiley & Sons, New York, 1991
+----
+D. Knut
+--
+The Art of Computer Programming
+----
+D. Knut
+--
+The Art of Computer Programming
+----
+R. Sedgewic
+--
+Algorithms
+----
+A. Lempe
+--
+On multiset decipherable codes, IEEE Trans
+----
+S. A. Savar
+--
+Compression of words over a partially commutative alpha- bet, IEEE Trans
+----
+L. R. Varshne
+V. K. Goya
+--
+Toward a Source Coding Theory for Sets, Proc
+----
+Y. A. Rezni
+--
+Coding of Sets of Words, Proc
+----
+E. G. Coffma
+J. Ev
+--
+Jr
+----
+P. Flajole
+R. Sedgewic
+J. Computing
+--
+Digital Search Trees Revisited, SIAM  vol
+----
+P. Kirschenhofe
+H. Prodinge
+--
+Some further results on digital search trees, Lecture Notes in Computer Science, vol
+----
+W. Szpankowsk
+--
+A characterization of digital search trees from the successful search viepoint, Theoretical Computer Science, vol
+----
+B. Pitte
+--
+Asymptotic growth of a class of random trees, Annals of Probability , vol
+----
+A. Andersso
+S. Nilsso
+--
+Improved Behaviour of Tries by Adaptive Branching, Information Processing Letters, vol
+----
+Y. A. Rezni
+--
+Some Results on Tries with Adaptive Branching, Theo- retical Computer Science , vol
+----
+Y. A. Rezni
+--
+On the Average Depth of Asymmetric LC-tries, Informa- tion Processing Letters, vol
+----
+G. Louchar
+W. Szpankowsk
+--
+On the Average Redundancy Rate of the Lempel-Ziv Code, IEEE Trans
+----
+Y. A. Rezni
+W. Szpankowsk
+--
+On the Average Redundancy Rate of the Lempel- Ziv Code with the K-Error Protocol, Information Sciences, vol
+----
+J. Zi
+A. Lempe
+--
+Compression of Individual Sequences via Variable-Rate Coding, IEEE Trans
+----
+B. P. Tunstal
+D. disser- tatio
+--
+Synthesis of Noiseless Compression Codes, Ph
+----
+G. L. Khoda
+--
+Redundancy Estimates for Word-Based Encoding of Messages Produced by Bernoulli Sources, Probl
+----
+M. Drmot
+Y. A. Rezni
+S. A. Savar
+W. Szpankowsk
+--
+Precise Asymptotic Analysis of the Tunstall Code, Proc
+----
+F. William
+Y. Shtarko
+T. Tjalken
+--
+The Context-Tree Weighting Method: Basic Properties, IEEE Trans
+----
+S. Zak
+--
+Lexicographic Generation of Ordered Trees, Theoretical Com- puter Science , vol
+----
+J. Katajane
+E. Makine
+--
+Tree compression and optimization with applications, International Journal of Foundations of Computer Science, vol
+----
+E. Makine
+--
+A survey of binary tree codings, The Computer Journal, vol
+----
+B. Ryabk
+--
+Fast enumeration of combinatorial objects, Discrete Math
+----
+D. Lewi
+--
+Naive (Bayes) at Forty: The Independence Assumtion in Information Retrieval, Proc
+----
+T. Gagi
+--
+Compressing Probability Distributions, Information Processing Letters , vol
+----
+D. Che
+S. Tsa
+V. Chandrasekha
+G. Takac
+J. Sing
+B. Giro
+--
+Tree histogram coding for mobile image matching, in Proc
+----
+V. Chandrasekha
+G. Takac
+D. Che
+S. Tsa
+Y. Rezni
+R. Grzeszczu
+B. Giro
+--
+Compressed Histogram of Gradients: a Low- bitrate Descriptor, International Journal of Computer Vision, vol
+----
+R. E. Krichevsk
+V. K. Troﬁmo
+--
+The Performance of Universal Encoding, IEEE Trans
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\099.pdf
+[[[ LINKS ]]]
+

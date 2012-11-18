@@ -1,0 +1,118 @@
+[[[ ID ]]]
+107
+[[[ INDEX ]]]
+0
+[[[ TITLE ]]]
+Asymptotic Analysis of Downlink Multi-cell Systems with Partial CSIT
+[[[ AUTHORS ]]]
+Subhash Lakshminarayana ∗†
+M´erouane Debbah ∗†
+Mohamad Assaad ∗
+[[[ ABSTR ]]]
+Abstract—We analyze the downlink of multiple input multiple output (MIMO) multicell systems in the presence of intercell interference (ICI), under different transmit channel state infor- mation (CSI) assumptions. We assume, for the ﬁrst scenario, that the Base Stations (BSs) have only the statistical CSI of all the channels. For the second scenario, we assume that the BSs have perfect CSI of their User Terminals(UTs) but only the statistical CSI of channels of the interfering BSs. We consider the following receiver structures at the UTs a) Optimal Decoding b) Minimum Mean Square (MMSE) receiver. We derive analytical expressions to compute the optimal number of streams each BS must use in order to maximize the total spectral efﬁciency of the system. We perform our analysis in the large dimensional regime (assuming the number of antennas on the BSs and UTs approaching inﬁnity, at the same rate) using results from random matrix theory (RMT). However, the asymptotic results provide close approximation in the ﬁnite dimensional scenario. Remarkably, in the asymptotic regime, the optimization parameters depend only on the channel statistics and not on the instantaneous CSI, thus enabling a decentralized resource allocation policy in a multicell scenario. Our results show that in an interference limited regime, it is optimal for the BSs to use only a small subset of its streams to maximize the total spectral efﬁciency of the system.
+[[[ BODY ]]]
+In this work, we provide an asymptotic analysis of the downlink spectral efﬁciency of MIMO multicell systems. For a point to point MIMO channel in the absence of interfer- ence, under high SNR assumption and optimal decoding at the receiver, the spectral efﬁciency scales linearly with the available degrees of freedom (DOFs, number of streams) [1]. This implies that the BS must use all its available DOFs. However, when the receiver uses a linear decoding strategy such as linear Minimum Mean Square error (MMSE) receiver, there exists an optimal fraction of streams to maximize the spectral efﬁciency [2] 1 . The performance of todays cellular systems is limited by inter-cell interference (ICI). In this work, we analyze the impact of ICI on the optimal number of streams in a MIMO multi-cell setting. We derive analytical expressions to compute the optimal number of streams to be used by each BS in a MIMO multicell scenario in order to maximize the total spectral efﬁciency of the system.
+With respect to transmitter channel state information (CSIT), we consider two scenarios. First the case where BS
+has only the statistical CSI of all the channels including that of the interfering BSs. In the second scenario, the BS is assumed to have perfect CSI of its UT and statistical CSI of the channels of the interfering BSs. These two CSIT scenarios are particularly important due to the fact that the knowledge of perfect CSI of interfering BSs require tremendous amount of information exchange between the BSs. Hence, it is imperative to optimize the performance of multi-cell systems with such partial CSI sharing strategies at the BS. We assume that the UTs have perfect knowledge of the channel of its serving BS and the interfering links. We consider two separate decoding strategies at the receiver namely optimal decoding (MMSE receiver+successive interference cancellation for the useful streams while considering ICI as colored Gaussian noise) and linear MMSE receiver (treating all the other stream except the stream to be decoded as colored Gaussian noise). Quite remarkably, in each of the two CSIT scenarios, we show that there is an optimal fraction β ∈ [0,1] of the total number of available streams that each BS must use in order to maximize the total spectral efﬁciency of the system.
+We formulate the analysis in the asymptotic regime (assum- ing the number of antennas on the BSs and UTs approaching inﬁnity, their ratio being constant) using tools from random matrix theory (RMT). We then show that the asymptotic result provides good approximation in the ﬁnite dimensional scenario as well. The advantages of such a formulation is two fold.
+• In the large dimensional regime, the total spectral efﬁ- ciency of the system only depends on the channel statis- tics rather than the instantaneous realizations. Hence the BSs have to exchange only the statistical CSIT between themselves which tremendously reduces the amount of information exchange between the BSs.
+• In the ﬁnite dimensional regime, choosing the optimal subset of antennas to transmit the streams is a NP-hard problem and hence computationally expensive. However, in the asymptotic formulation, the antenna selection prob- lem depends only on the channel statistics rather than the instantaneous gains. Since all the channels between a given BS and UT have the same statistics, it does not matter which antenna subset the BS uses. The system performance only depends on the number of antennas the BS transmits on.
+Prior works relating to stream control in MIMO systems in the presence of interference include [3],[4],[5]. (Some other
+references in ﬁeld of ad-hoc networks have not been discussed here due to the lack of space). Of particular relevance is the work of [5]. It deals with ad-hoc networks consisting of multiple transmit receive pairs with transmitters knowing only the CSI of the channel of their receiver. The authors derive asymptotic expression for the spectral efﬁciency and show with the help of simulations that when the node density becomes high, the system performance is better if nodes transmit using fewer streams.
+We start by summarizing the relevant results from RMT for use in our subsequent analysis.
+where the matrices R 1/2 1 , . . . , R 1/2 K ∈ C N ×N are determin- istic correlation matrices and T 1/2 1 , . . . , T 1/2 K ∈ C n×n are nonnegative diagonal matrices and X 1/2 1 , . . . , X 1/2 K ∈ C n×n are random channel matrices with i.i.d. entries with zero mean variance 1 n . Let us denote |X| and tr(X) as the determinant and the trace of matrix X respectively. The Shannon transform of the matrix B N is deﬁned as
+For large N, n the Shannon transform satisﬁes Ψ N (z) − ¯ Ψ N (z) a.s. −−−−−→
+where ¯ Ψ N (z) is the deterministic equivalent of the Shannon transform evaluated at point z given by
+(e i (z), δ i (z)), i ∈ 1,...,K form the unique solution to the equations
+Note that conventional results in the ﬁeld of RMT assume that the e.s.d. of matrices R k , T k and B N converge to a limiting distribution which is not true in many practical appli- cations. Hence, in this work, we propose to use the concept of deterministic equivalents which gives the deterministic approximation of the Stieltjes transform for every realization of the underlying matrices.
+Consider a cellular system consisting on N cells. Each BS has N t antennas and the UTs have K antennas 2 . We consider only one active UT per cell at any given time (over a particular frequency band). The channel matrix between a BS i and UT in cell j is given by µ ij H ij ∈ C N t ×K where µ ij is the path loss between BS i and UT in cell j. We consider the Kronecker channel model [6] with only left sided correlation.
+R 1/2 ij ∈ C K×K is a complex Hermitian matrix representing the correlation at the receiver. The entries of the matrix X ij are i.i.d. Gaussian distributed ( CN(0,1/N t )). We assume that the antennas at the BS are spaced sufﬁciently apart from each other. Hence, the correlation matrix at the transmitter is the identity matrix. Each BS employs a precoding matrix W i and hence x i = W i s i . We assume that the BSs use Gaussian codebooks s i ∼ CN(0,I N t ). The received signal y i by the UT in cell i is given by
+where x i ∈ C N t ×1 is the useful signal for UT in cell i and n i ∈ C K×1 ∼ CN(0,I) is the noise vector at UT i.
+In this section, we analyze the system under different CSIT assumptions.
+We ﬁrst consider the case with only statistical CSI at the BS. For a point to point MIMO system with only statistical CSIT, it is well known that the optimal strategy is to transmit streams on all the antennas with uniform power allocation (assuming independent and identically distributed (i.i.d.) Gaussian chan- nels). In the presence of ICI, we assume that the BS i uses only M i ≤ N t of its antennas to send Mi independent streams with uniform power allocation (hence the precoding matrix W i = I N t ). We seek to ﬁnd the optimal number of streams M ∗ i for every BS i so that the total spectral efﬁciency of the system is maximized.
+We deﬁne β i = M i /N t , the fraction of antennas which are turned on. Accordingly the covariance matrix of the input signal Λ i for BS i is
+In the formulation of Λ i , we have assumed that the BS decides to divide its power between the ﬁrst M i of its antennas. However, the BS can equivalently choose to divide its power between any of its M i antennas yielding a different perfor- mance in terms of the total spectral efﬁciency. Let us denote the permutation matrix by Π. The the covariance matrix of the input signal (with BS i transmitting on M i antennas) can correspond to any permutation ΠΛ i of ΠΛ i .
+1) Optimal Decoding: Assuming Gaussian signaling, the spectral efﬁciency for UT i assuming optimal decoding strat- egy (for the useful streams) and considering ICI as colored Gaussian noise is given by
+where G i = N j=i µ ji H ji Λ j H H ji . Let us denote the ﬁrst term and second terms of (6) by the notation Ψ S+I and Ψ I respectively. The spectral efﬁciency maximization problem can be formulated as an optimization problem given by
+Note that in order to analyze the above system directly, the BSs must have perfect knowledge of all the channels including the interfering links. This information can is very hard to obtain in real time. Additionally, the BSs must compare all possible subsets of antenna selection (and every possible permutation) which is a NP-hard problem. In what follows, we overcome this issue by resorting to the asymptotic approxima- tion assuming very large system dimensions and use tools from RMT. In the large dimensional regime, we can approximate the expression for the spectral efﬁciency by its deterministic equivalent given by
+where ¯ R i (β 1 , . . . , β N ) can be calculated using the result of Theorem 1 applied to the terms Ψ S+I and Ψ I separately.
+The BSs can now jointly optimize β i , i ∈ {1,...,N} in order to maximize the total spectral efﬁciency of the system. We now introduce the theorem which will enable us to maximize the deterministic equivalent of the spectral efﬁciency directly rather than maximizing the exact expression in equation (5). Let us deﬁne
+The proof follows a similar approach as in [7] (Theorem 4). It has been omitted here for the lack of space. The main idea behind the proof is to add and subtract some intermediate
+terms in equation (11) and use the deﬁnition of deterministic equivalents.
+It should be noted that the computation of the deterministic equivalent only depends upon the statistics of the channel and not on the exact realization. Since the channels between a given BS and UT have the same statistical properties, it does not matter which subset of antennas the BS decides to use. The only factor to be considered is the number of streams which the BSs must optimize. Interestingly, the BSs have to exchange only the statistical CSI which reduces the amount of information to be exchanged between them (especially in fast fading scenarios).
+2) MMSE Receiver: We now consider a more practical decoding strategy namely the MMSE receiver. Let us denote the k th column of the matrix H ii by the notation h ik . Likewise, we denote the kth transmitted, received symbol and power allocation for UT i by the notation y ik , x ik and pik respectively. We once again consider the uniform power allocation strategy.With the above notation, the received signal
+Let us denote Λ −l i i as the matrix Λ i with the l th diagonal entry removed. The SINR of the k th stream, γ i,k at the output of the MMSE receiver is
+The spectral efﬁciency for UT i is given by the sum of spectral efﬁciencies of the individual streams.
+Once again in order to obtain analytical expressions to opti- mize the fraction β i , we use asymptotic results from RMT. Under large dimensional assumption, we can approximate the RHS of equation (12) by the deterministic equivalent of the Stieltjes transform of the matrix G ik evaluated at point z = σ 2 .
+which can be evaluated as in equation (4). Hence the deter- ministic equivalent ¯ γ i,k of the SINR per stream is given by
+(14) Therefore the expression for the spectral efﬁciency in (13) con- verges to its deterministic equivalent in the large dimensional regime given by
+We would like to remark that equation (14) only shows the convergence of SINR of a single stream. The expression for R MMSE i 	 (β 1 , . . . , β N ) involves summing over the spectral efﬁciency of inﬁnitely many streams whose convergence to the sum of its deterministic equivalents is not true in general. However, [8] chage proves the convergence of the sum in the special case of Gaussian distributed channel, hence validating the RMT approximation. We now proceed to study the impact of perfect knowledge of CSI at the BS on the optimal number of streams.
+In this section, the BS is assumed to have perfect CSI of the UT it serves. For the point to point MIMO system in presence of CSIT, the optimal transmission strategy is to perform SVD of the channel matrix and transmit along the right singular vectors with water ﬁlling power allocation strategy. In the pres- ence of interference, the authors in [5] argue that performing SVD and transmitting along the M i < min(N t , K) best right singular vectors is still a good strategy when the BSs do not have the knowledge of interference caused to the unintended UTs (due to the lack of CSI). We adopt a similar transmission strategy in our setting as well.
+For technical reasons, we restrict our analysis to the case of i.i.d. Gaussian channel model (with transmit and receive correlation matrices being identity) and optimal decoding strategy at the receiver. Let us denote the SVD of the channel matrix H ii by the notation
+wher U ii = [u i1 u i2 . . . u iN t ] ∈ C N t ×N t and V H ii = [v i1 v i2 . . . v iK ] ∈ C K×K are unitary matrices and Σ ii ∈ R N t ×K is a diagonal matrix containing the singular values of matrix H ii as its diagonal elements. The transmitted message x i by BS i and the corresponding covariance matrix Λ i is
+where P i = diag(P i1 , . . . , P i min(N t ,K) ). Note that since the covariance matrix of the input signal now depends on the channel matrix, we cannot apply the result of Theorem 1 directly to our analysis. It can be shown that, the spectral efﬁciency of UT i is upper and lower bounded by [5]
+entries of each of these matrices being i.i.d. CN(0,1). The vectors ˆ u H ik ∈ C N t −M+1×1 , u H ik ∈ C N t ×1 are unit-norm isotropic random vectors that are mutually orthogonal. λ ik and p ik represent the k th largest eigen value of matrix H ii H H ii and the power allocated on the k th largest eigen mode respectively.
+In the asymptotic limit, the upper and lower bounds collapse to the same value. Once again for analytical tractability, we resort to an asymptotic approximation of the achievable rate using RMT. First notice that asymptotically,
+¯ m G u i is the deterministic equivalent of the Stieltjes transform evaluated at z = σ 2 . For large N t and K, the eigen value distribution of the matrix H ii H H ii given by the Marcenko- Pastur Law
+where a = (1 −√c) 2 , b = (1+√c) 2 , correspond to the support set of the eigen value distribution and δ(λ) = 1 {0} (λ) is the Dirac function.We assume that the power allocation across the eigen values converges to p iλ in the asymptotic regime. Additionally, the summation of (16) converges to integration over a subset of the support of the eigen value distribution (corresponding to the M i largest eigen values). Hence,
+The lower limit in the intergration α i ∈ [a,b] is related to the M th i largest eigen values by the relation
+where F −1 is the functional inverse of the empirical distri- bution function of the eigen values (the CDF) of the matrix H ii H H ii , given by
+Finally, the relationship between β i , and α i is given by β i = 1 − F(α i )
+Once again, we have formulated the asymptotic approximation of the system with perfect CSIT. The BSs can now optimize the asymptotic expression to maximize the total spectral efﬁ- ciency of the system.
+In this section, we provide some simulation results. We consider a distance dependent path loss model. The path loss factor from BS i to UT j is given as where µ ij = 1 d
+is the distance between from BS i to UT j . γ is the path loss exponent which is taken to be 3.6 We normalize the variance of the total received noise to σ 2 = 1. For the correlation model at the receiver, we use an extended version of the Jakes model, refer [6] for details. We plot the variation of the spectral efﬁciency around the deterministic equivalent for ﬁnite system dimensions in Figure 2 for a two cell scenario with β 1 = β 2 = 1. We assume the number of receive antennas scales with number of transmit antennas such that N t = K. The horizontal line represents the deterministic equivalent and
+the vertical lines represent the variation of spectral efﬁciency around their mean value. It can be seen that the deterministic equivalent provides us with good approximation results for practical network dimensions of the order 10 × 10, thus validating the RMT results.
+To have a good understanding of the impact of ICI on the optimal number of streams and the spectral efﬁciency, we now consider the inﬁnite 1-D Wyner model (as shown in Figure V with α = 0.8). We assume a special case in which each UT in a given cell receives interference from only L adjacent BSs (and zero from the rest). We study the impact of L on the optimal number of streams. Note that since the system is perfectly symmetric in the asymptotic regime, all the BSs transmit with the same number of streams (which we will optimize to maximize the spectral efﬁciency). The optimal number of streams per BS is plotted as a function of the number of cells causing ICI in Figure 3. It can be observed that the optimal number of streams decreases with the number of interfering BSs. We would like to mention that both in the case of perfect CSIT and the case with MMSE receiver, the optimal fraction β ∗ < 1, even with no ICI. In the case of perfect CSIT, this is due to the fact that the BS invests power only in the best eigen modes. The spectral efﬁciency attainable by investing power in certain weaker eigen modes might actually be lesser. In the case of MMSE receiver, the optimal fraction is less than 1 due to the inter-stream interference.
+Finally, in order to compare the gain obtained by knowledge of perfect CSIT over the case of statistical CSIT, we plot the maximum achievable spectral efﬁciency (obtained by optimiz- ing β ∗ ) in both the cases as a function of the SNR in Figure 4. It can be seen that the presence of CSI yields higher spectral efﬁciency than the case latter case. In Figure 4, we obtain a gain of 21% at 10dB SNR.
+In this paper, we derived an analytical model for the downlink spectral efﬁciency of MIMO multicell systems in
+the asymptotic regime using tools from RMT. We also showed that in an interference regime, it is optimal for the BSs to transmit over only a small subset of streams. In the case with statistical CSIT, this translates to turning off certain antennas on the BS. Turning off of a subset of antennas has importance in the context of Green Communications since it leads to the reduction in the RF power and the cost of RF elements.
+[[[ REFS ]]]
+G. J. Foschini
+M. J. Gans
+--
+On Limits of Wireless Communications in a Fading Environment when Using Multiple Antennas
+----
+S. Verdu
+S. Shamai
+--
+Spectral Efﬁciency of CDMA with Random Spreading
+----
+R. Blum
+--
+MIMO Capacity with Interference
+----
+H. Dai
+H. Poor
+--
+Asymptotic spectral efﬁciency of multicell MIMO systems with frequency-ﬂat fading
+----
+S. Govindasamy
+D. W. Bliss
+D. H. Staelin
+--
+Asymptotic Spectral Efﬁciency of Multi-antenna Links in Wireless Networks with Limited Tx CSI
+----
+R. Couillet
+M. Debbah
+J. Silverstein
+--
+A deterministic equivalent for the capacity analysis of correlated multi-user MIMO channels
+----
+J. Hoydis
+M. Kobayashi
+M. Debbah
+--
+Optimal Channel Training in Uplink Network MIMO Systems
+----
+W. Hachem
+O. Khorunzhiy
+P. Loubaton
+J. Najim
+L. Pastur
+--
+A New Approach for Mutual Information Analysis of Large Dimensional Multi- Antenna Channels
+[[[ META ]]]
+parsed -> yes
+file -> E:\isit2011\107.pdf
+[[[ LINKS ]]]
+
