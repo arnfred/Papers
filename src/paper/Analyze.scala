@@ -3,11 +3,11 @@ package paper
 object Analyze {
   def main(args : Array[String]): Unit= {
     // create analyzer
-    val A : Analyzer = new Analyzer()    
-    
+    val A : Analyzer = new Analyzer()
+
     // Check that a directory is supplied (there is an argument)
     if (args.length == 0 || args.length > 2) {println("You should provide at leath a path and at most a path and an option. Type -h for help.");List()}
-    
+
     else if(args.contains("-h")) { println("How to call: Analyze [path] [parameter]?\nPARAMETERS:\n\t-p : parsing\n\t-s : looks for xml scheduler\n\t-c : compare\n\t-e : extend\n\t-g : create graph\n\t-h : shows this help page\n\tnothing : do everything"); List()}
     // Then go ahead
     else A.analyze(args(0), args.toList.tail)
@@ -17,7 +17,7 @@ object Analyze {
 class Analyzer extends Object with LoadPaper
                               with ParsePaper 
                               with ExtendPaper
-                              with bagOfWords
+                              with BagOfWords
                               with XMLScheduleParser
                               with Graphs {
 

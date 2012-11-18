@@ -171,7 +171,7 @@ object XMLParagraphsConstructor {
 		}
 		
 		// Global page processing
-		def processGlobalPage(paragraphs: List[XMLParagraph]): List[XMLParagraph] = paragraphs.remove(p => (p.getLines.length == 1 && p.getText.length() <= 3) || p.getPosition.getX < 0 || (p.getPosition.getX + p.getPosition.getWidth) > (pagePosition.getX + pagePosition.getWidth) || p.getPosition.getY < 0 || (p.getPosition.getY + p.getPosition.getHeight) > (pagePosition.getY + pagePosition.getHeight))
+		def processGlobalPage(paragraphs: List[XMLParagraph]): List[XMLParagraph] = paragraphs.filterNot(p => (p.getLines.length == 1 && p.getText.length() <= 3) || p.getPosition.getX < 0 || (p.getPosition.getX + p.getPosition.getWidth) > (pagePosition.getX + pagePosition.getWidth) || p.getPosition.getY < 0 || (p.getPosition.getY + p.getPosition.getHeight) > (pagePosition.getY + pagePosition.getHeight))
 		
 		val finalParagraphs = processGlobalPage(constructParagraphs(lines, List()).reverse)
 		

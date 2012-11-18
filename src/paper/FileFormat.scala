@@ -35,7 +35,7 @@ abstract class FileFormat {
 	      val process: Process = sys.runtime.exec((List(command) ::: params ::: List(file.getAbsolutePath())).toArray[String])
 	      
 		  // Waiting until the end of the command execution
-		  if(process.waitFor() != 0) { println("Can't convert pdf file. Program will exit"); exit }
+		  if(process.waitFor() != 0) { println("Can't convert pdf file. Program will exit"); sys.exit }
 
 		  new File(file.getParent() + Paths.sep + SystemHelper.name(file.getName) + "." + format)
 		}

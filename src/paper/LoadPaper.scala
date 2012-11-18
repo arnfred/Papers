@@ -86,6 +86,7 @@ object Cache {
     var m : Map[String, String] = Map.empty
     // Looping through all the maps
     for (e <- s) {
+      println(e.split(" -> ")(0))
       m = m + Pair((e.split(" -> "))(0), (e.split(" -> "))(1))
     }
     return m
