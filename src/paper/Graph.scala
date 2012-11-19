@@ -36,14 +36,17 @@ trait Graphs {
 class Graph(nodes : List[Node], edges : List[Edge]) {
 
   def save : Unit = {
-    val f = new java.io.File("data.json")
+    val f = new java.io.File("data.js")
     val p = new java.io.PrintWriter(f)
     p.println(toString)
     p.close
   }
 
   override def toString : String = {
-    var ret : String = "{\n"
+    var ret : String = ""
+
+    // Add define
+    ret += "define([], function () {\n\ndata = {"
 
     // add nodes
     ret += "\"nodes\":" + nodes.mkString("[\n  ",",\n  ","\n],") + "\n"
@@ -52,7 +55,7 @@ class Graph(nodes : List[Node], edges : List[Edge]) {
     ret += "\"links\":" + edges.mkString("[\n  ",",\n  ","\n]") + "\n\n"
 
     // End
-    ret += "}"
+    ret += "}\n\nreturn data;\n})"
 
     return ret
   }
