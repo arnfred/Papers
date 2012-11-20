@@ -6,13 +6,61 @@ object Analyze {
     val A : Analyzer = new Analyzer()
 
     // Check that a directory is supplied (there is an argument)
-    if (args.length == 0 || args.length > 2) {println("You should provide at leath a path and at most a path and an option. Type -h for help.");List()}
+    if (args.length == 0 || args.length > 2) {
+      println("You should provide at least a path and at most a path and an option. Type -h for help.");
+    }
 
-    else if(args.contains("-h")) { println("How to call: Analyze [path] [parameter]?\nPARAMETERS:\n\t-p : parsing\n\t-s : looks for xml scheduler\n\t-c : compare\n\t-e : extend\n\t-g : create graph\n\t-h : shows this help page\n\tnothing : do everything"); List()}
-    // Then go ahead
-    else A.analyze(args(0), args.toList.tail)
+    else {
+      val options = readOptions(args.last)
+
+      // Then go ahead
+      A.analyze(args(0), options)
+    }
+  }
+
+  // Reads in the options and converts them to a map of options
+  def readOptions(s : String) : Map[String,Boolean] = {
+
+    var options : Map[String,Boolean] = Map();
+
+    if (s.length > 0 && s(0) == '-') {
+      // Define options as always false, except
+      options = Map().withDefaultValue(false)
+        
+      // Check for parsing
+      if (s.contains('p')) options += ("parse" -> true)
+
+      // Check for getting schedule
+      if (s.contains('s')) options += ("xmlschedule" -> true)
+
+      // Check for extending
+      if (s.contains('e')) options += ("extend" -> true)
+
+      // Check for linking
+      if (s.contains('l')) options += ("link" -> true)
+
+      // Check for linking
+      if (s.contains('g')) options += ("graph" -> true)
+
+      if(s.contains('h')) { 
+        println("""How to call: Analyze [path] 
+        [parameter]?\nPARAMETERS:\n\t-p : parsing\n\t-s : looks for xml 
+        scheduler\n\t-c : compare\n\t-l : link\n\t-g : create graph\n\t-h 
+        : shows this help page\n\tnothing : do everything"""); 
+      }
+
+    }
+
+    else {
+      // If no options are supplied we do everything by default
+      options = Map().withDefaultValue(true)
+    }
+
+    return options
   }
 }
+
+
 
 class Analyzer extends Object with LoadPaper
                               with ParsePaper 
@@ -32,33 +80,39 @@ class Analyzer extends Object with LoadPaper
   val sources : List[PaperSource] = List(PdfLink)
 
   // Analyze a paper
-  def analyze(paperPos: String, options: List[String]): List[Paper] = {
+  def analyze(paperPos: String, options: Map[String, Boolean]): List[Paper] = {
+
+    var papers : List[Paper] = List();
+
     // Get a list of parsed papers
-    val papers : Option[List[Paper]] = if(options.isEmpty || options.contains("-p")) Some(loadAndParse(paperPos, cache, XMLParser, XMLConverterLoader)) else None
+    if (options("parse") == true) {
+      papers = loadAndParse(paperPos, cache, XMLParser, XMLConverterLoader)
+    }
 
     // Mix in the schedule XML data
-    val xmlPapers : Option[List[Paper]] = if(options.isEmpty || options.contains("-s")) Some(getXMLSchedule(paperPos, papers)) else None
+    if (options("xmlschedule") == true) {
+      papers = getXMLSchedule(paperPos, papers)
+    }
 
     // Extend papers with tertiary data
-    val extendedPapers : Option[List[Paper]] = if(options.isEmpty || options.contains("-e")) Some(extend(paperPos, xmlPapers, sources)) else None
+    if (options("extend") == true) {
+      papers = extend(paperPos, papers, sources)
+    }
 
     // Compare the papers individually
-    val comparedPapers : Option[List[Paper]] = if(options.isEmpty || options.contains("-c")) Some(compareBoW(paperPos, extendedPapers, limit)) else None
+    if (options("link") == true) {
+      papers = compareBoW(paperPos, papers, limit)
+    }
 
+    // Create graph
+    if (options("graph") == true) {
+      val graph : Graph = getGraph(paperPos, papers)
 
-    if(options.isEmpty || options.contains("-g")){
-	    // Create graph
-	    val graph : Graph = getGraph(paperPos, comparedPapers)
-	
-	    // Print graph to file 'data.json'
-	    graph.save
-  	}
-	
-	if(options.contains("-p")) return papers.get
-	else if(options.contains("-s")) return xmlPapers.get
-	else if(options.contains("-e")) return extendedPapers.get
-	else if(options.isEmpty || options.contains("-c")) return comparedPapers.get
-	
-	List()
+      // Print graph to file 'data.json'
+      graph.save
+    }
+
+    // Now return the papers as is
+    return papers
   }
 }

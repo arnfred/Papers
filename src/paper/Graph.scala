@@ -2,9 +2,9 @@ package paper
 
 trait Graphs {
 
-  def getGraph(paperPos:String, papers : Option[List[Paper]]) : Graph = {
+  def getGraph(paperPos:String, papers : List[Paper]) : Graph = {
     println("BEGIN OF GRAPH CREATION")
-    val loadedPapers = if(papers == None) CacheLoader.load(paperPos, Cache.linked) else papers.get
+    val loadedPapers = if(papers == List()) CacheLoader.load(paperPos, Cache.linked) else papers
     // Add all papers as nodes
     val nodes : List[Node] = for (p <- loadedPapers) yield makeNode(p)
 

@@ -6,8 +6,8 @@ import scala.collection.immutable.List
 
 
 	//compare based on scores and return List[Paper]
-	def compareBoW(paperPos: String, papers : Option[List[Paper]], limit : Int) : List[Paper] = {
-	  val loadedPapers = if(papers == None) CacheLoader.load(paperPos, Cache.extended) else papers.get
+	def compareBoW(paperPos: String, papers : List[Paper], limit : Int) : List[Paper] = {
+	  val loadedPapers = if(papers == List()) CacheLoader.load(paperPos, Cache.extended) else papers
 	  val matrixOfWeights: Array[Array[Int]] = getMatrixOfScores(loadedPapers)
 			loadedPapers.map(p => {
 				// Check that paper isn't already linked
