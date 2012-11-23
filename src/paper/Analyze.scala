@@ -26,7 +26,7 @@ object Analyze {
     if (s.length > 0 && s(0) == '-') {
       // Define options as always false, except
       options = Map().withDefaultValue(false)
-        
+
       // Check for parsing
       if (s.contains('p')) options += ("parse" -> true)
 
@@ -65,7 +65,7 @@ object Analyze {
 class Analyzer extends Object with LoadPaper
                               with ParsePaper 
                               with ExtendPaper
-                              with BagOfWords
+                              with BagOfWordsLSI
                               with XMLScheduleParser
                               with Graphs {
 
@@ -101,7 +101,7 @@ class Analyzer extends Object with LoadPaper
 
     // Compare the papers individually
     if (options("link") == true) {
-      papers = compareBoW(paperPos, papers, limit)
+      papers = compareBoWLSI(paperPos, papers, limit)
     }
 
     // Create graph

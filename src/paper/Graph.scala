@@ -36,7 +36,7 @@ trait Graphs {
 class Graph(nodes : List[Node], edges : List[Edge]) {
 
   def save : Unit = {
-    val f = new java.io.File("data.js")
+    val f = new java.io.File("graph.js")
     val p = new java.io.PrintWriter(f)
     p.println(toString)
     p.close
